@@ -201,4 +201,8 @@
   - measure: count
     type: count
     drill_fields: [firstname, lastname, nickname, username]
+    
+  - measure: registered_users_count
+    type: count_distinct
+    sql: ${customer_id}
 

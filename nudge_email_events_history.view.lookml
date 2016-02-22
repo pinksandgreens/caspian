@@ -42,7 +42,11 @@
     type: number
     sql: ${TABLE}.total_occurrences
 
-  - measure: count
+  - measure: count_events
     type: count
     drill_fields: []
+    
+  - measure: count_individuals
+    type: count_distinct
+    sql: ${individual_id}
 

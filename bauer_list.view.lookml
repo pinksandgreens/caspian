@@ -5,22 +5,30 @@
   - dimension: age
     type: string
     sql: ${TABLE}.age
+    
+  - dimension: age_tier
+    type: tier
+    tiers: [0,10,20,30,40,60,80]
+    sql: ${age}
+    style: integer
+    
+    
 
-  - dimension: agebanding
+  - dimension: age_banding
     type: string
     sql: ${TABLE}.agebanding
 
-  - dimension: birthday
-    type: number
-    sql: ${TABLE}.birthday
-
-  - dimension: birthmonth
-    type: number
-    sql: ${TABLE}.birthmonth
-
-  - dimension: birthyear
-    type: number
-    sql: ${TABLE}.birthyear
+#   - dimension: birthday
+#     type: number
+#     sql: ${TABLE}.birthday
+# 
+#   - dimension: birth_month
+#     type: number
+#     sql: ${TABLE}.birthmonth
+# 
+#   - dimension: birth_year
+#     type: number
+#     sql: ${TABLE}.birthyear
 
   - dimension: city
     type: string
@@ -44,9 +52,9 @@
     type: string
     sql: ${TABLE}.customer_id
 
-  - dimension_group: dateofbirth
+  - dimension_group: birth_day
     type: time
-    timeframes: [date, week, month]
+    timeframes: [date, week, month, year, day_of_week]
     convert_tz: false
     sql: ${TABLE}.dateofbirth
 
@@ -83,13 +91,15 @@
     type: string
     sql: ${TABLE}.hometown
 
-  - dimension: householdincome
+  - dimension: household_income
+    label: 'Household Income ($USD)'
+    description: 'This is the income in USD '
     type: string
     sql: ${TABLE}.householdincome
 
-  - dimension: isregistered
-    type: string
-    sql: ${TABLE}.isregistered
+  - dimension: is_registered
+    type: yesno
+    sql: ${TABLE}.isregistered = 'Y'
 
   - dimension: lastname
     type: string
@@ -177,7 +187,7 @@
     type: string
     sql: ${TABLE}.telephoneworkadded
 
-  - dimension: telephoneworkiso
+  - dimension: telephone_work_iso
     type: string
     sql: ${TABLE}.telephoneworkiso
 

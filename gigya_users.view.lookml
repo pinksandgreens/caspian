@@ -78,6 +78,7 @@
 
   - dimension: email
     type: string
+    primary_key: true
     sql: ${TABLE}.email
 
   - dimension: first_name

@@ -1,5 +1,22 @@
-- view: nudge_email_events_history
-  sql_table_name: publications.nudge_email_events_history
+- view: nudge_email_history
+  derived_table:
+    sql: |
+      select
+      individual_id,
+      email_address,
+      brand,
+      first_event_date,
+      last_event_date,
+      event_type,
+      event_sub_type,
+      commercial_list,
+      total_occurrences,
+      row_number() over (order by first_event_date asc) as id
+      from "publications"."nudge_email_events_history"
+
+    sql_trigger_value: SELECT MAX(last_event_date) FROM publications.nudge_email_events_history
+    sortkeys: [id]
+
   fields:
 
   - dimension: brand
@@ -42,11 +59,15 @@
     type: number
     sql: ${TABLE}.total_occurrences
 
-  - measure: count_events
+  - measure: count
     type: count
     drill_fields: []
     
-  - measure: count_individuals
+  - measure: events_count
     type: count_distinct
-    sql: ${individual_id}
+    sql: ${row_number() over (order by first_event_date asc)}
+    
+  - measure: individuals_count
+    type: count_distinct
+    sql: ${email_address}
 

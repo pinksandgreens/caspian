@@ -6,7 +6,8 @@
       c.event_type,
       c.campaign_id,
       c.riid,
-      d.email_address
+      d.email_address,
+      row_number() over (order by c.event_captured_dt asc) as id
       from
       
       ((select
@@ -21,7 +22,7 @@
       launch_id,
       email_format,
       'sent' as event_type
-      from responsys.ced_sent)
+      from "responsys"."ced_sent")
       
       UNION
       (select
@@ -36,7 +37,7 @@
       launch_id,
       email_format,
       'clicked' as event_type
-      from responsys.ced_clicked)
+      from "responsys"."ced_clicked")
       
       UNION
       (select
@@ -51,10 +52,10 @@
       launch_id,
       email_format,
       'opened' as event_type
-      from responsys.ced_opened)) c
+      from "responsys"."ced_opened")) c
       
       left join
-      responsys.ced_sent d
+      "responsys"."ced_sent" d
       on c.riid = d.riid
       
       group by 1,2,3,4,5
@@ -86,11 +87,15 @@
     value_format_name: id
     sql: ${TABLE}.riid
 
-  - measure: events_count
+  - measure: count
     type: count
     drill_fields: []
     
-  - measure: email_address_count
+  - measure: events_count
+    type: count_distinct
+    sql: ${row_number() over (order by event_captured_dt asc)}
+    
+  - measure: individuals_count
     type: count_distinct
     sql: ${email_address}
 

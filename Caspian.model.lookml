@@ -16,14 +16,19 @@
 - explore: gigya_users
 
   joins:
-  - join: "responsys_email_history"
+  - join: responsys_email_history
     type: inner
     relationship: one_to_many
-    sql_on: ${"gigya_users".email} = ${"responsys_email_history".email_address}
+    sql_on: ${gigya_users.email} = ${responsys_email_history.email_address}
     
-  - join: "nudge_email_history"
+  - join: nudge_email_history
     type: inner
     relationship: one_to_many
-    sql_on: ${"nudge_email_history".email_address} = ${"gigya_users".email}
+    sql_on: ${nudge_email_history.email_address} = ${gigya_users.email}
+    
+  - join: bk_categories
+    type: inner
+    relationship: one_to_many
+    sql_on: ${gigya_users.gigya_id} = ${bk_categories.gygia_id}
     
   

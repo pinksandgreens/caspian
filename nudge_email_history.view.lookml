@@ -58,6 +58,11 @@
   - dimension: total_occurrences
     type: number
     sql: ${TABLE}.total_occurrences
+    
+  - dimension: event_id
+    type: number
+    primary_key: true
+    sql: ${TABLE}.id
 
   - measure: count
     type: count

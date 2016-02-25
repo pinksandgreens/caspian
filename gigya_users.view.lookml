@@ -95,7 +95,10 @@
 
   - dimension: gender
     type: string
-    sql: ${TABLE}.gender
+    sql_case:
+      female: ${TABLE}.gender = 'f' or ${TABLE}.gender = 'F' 
+      male: ${TABLE}.gender = 'm' or ${TABLE}.gender = 'M' 
+      else: 'unknown'    
 
   - dimension: gigya_id
     type: string

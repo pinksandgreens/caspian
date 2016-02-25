@@ -86,6 +86,11 @@
     type: number
     value_format_name: id
     sql: ${TABLE}.riid
+    
+  - dimension: event_id
+    type: number
+    primary_key: true
+    sql: ${TABLE}.id
 
   - measure: count
     type: count

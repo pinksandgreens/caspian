@@ -90,6 +90,7 @@
 
   - dimension: user_id
     type: string
+    primary_key: true
     sql: ${TABLE}.user_id
 
   - dimension: workphonenumber

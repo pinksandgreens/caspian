@@ -17,7 +17,7 @@
 
 - connection: caspian-live
 
-- view: events
+- view: snowplow_events
   derived_table:
     sql: |
       SELECT
@@ -67,7 +67,7 @@
       FROM snowplow.events
       WHERE domain_userid IS NOT NULL
     
-    sql_trigger_value: SELECT MAX(collector_tstamp) FROM atomic.events
+    sql_trigger_value: SELECT MAX(collector_tstamp) FROM snowplow.events
     distkey: domain_userid
     sortkeys: [domain_userid, domain_sessionidx, collector_tstamp]
   

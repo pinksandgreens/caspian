@@ -72,8 +72,8 @@
       
       group by 1,2,3,4,5,6,7,8,9,10,11,12,13,14
     
-    sql_trigger_value: SELECT MAX(event_captured_dt) FROM responsys.ced_sent
-    sortkeys: [event_captured_dt]
+    sql_trigger_value: SELECT MAX(email_event_timestamp) FROM responsys.ced_sent
+    sortkeys: [email_event_timestamp]
 
   fields:
 
@@ -93,6 +93,42 @@
     type: time
     timeframes: [time, date, week, month]
     sql: ${TABLE}.event_captured_dt
+
+  - dimension: campaign_name
+    type: string
+    sql: ${TABLE}.campaign_name
+
+  - dimension: description
+    type: string
+    sql: ${TABLE}.description
+
+  - dimension: launch_name
+    type: string
+    sql: ${TABLE}.launch_name
+
+  - dimension: launch_status
+    type: string
+    sql: ${TABLE}.launch_status
+
+  - dimension: launch_type
+    type: string
+    sql: ${TABLE}.launch_type
+
+  - dimension: marketing_program
+    type: string
+    sql: ${TABLE}.marketing_program
+
+  - dimension: marketing_strategy
+    type: string
+    sql: ${TABLE}.marketing_strategy
+
+  - dimension: purpose
+    type: string
+    sql: ${TABLE}.purpose
+
+  - dimension: subject
+    type: string
+    sql: ${TABLE}.subject
 
   - dimension: riid
     type: number

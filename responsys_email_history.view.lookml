@@ -2,9 +2,18 @@
   derived_table:
     sql: |
       select
-      c.event_captured_dt,
+      c.event_captured_dt email_event_timestamp,
       c.event_type,
       c.campaign_id,
+      e.campaign_name,
+      e.launch_name,
+      e.launch_status,
+      e.launch_type,
+      e.purpose,
+      e.subject,
+      e.description,
+      e.marketing_strategy,
+      e.marketing_program,
       c.riid,
       d.email_address,
       row_number() over (order by c.event_captured_dt asc) as id
@@ -22,7 +31,7 @@
       launch_id,
       email_format,
       'sent' as event_type
-      from "responsys"."ced_sent")
+      from responsys.ced_sent)
       
       UNION
       (select
@@ -37,7 +46,7 @@
       launch_id,
       email_format,
       'clicked' as event_type
-      from "responsys"."ced_clicked")
+      from responsys.ced_clicked)
       
       UNION
       (select
@@ -52,13 +61,16 @@
       launch_id,
       email_format,
       'opened' as event_type
-      from "responsys"."ced_opened")) c
+      from responsys.ced_opened)) c
       
       left join
-      "responsys"."ced_sent" d
+      responsys.ced_sent d
       on c.riid = d.riid
       
-      group by 1,2,3,4,5
+      left join responsys.ced_launch_state e
+      on concat(c.account_id,c.launch_id) = concat(e.account_id,e.launch_id)
+      
+      group by 1,2,3,4,5,6,7,8,9,10,11,12,13,14
     
     sql_trigger_value: SELECT MAX(event_captured_dt) FROM responsys.ced_sent
     sortkeys: [event_captured_dt]

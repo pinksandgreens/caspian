@@ -17,7 +17,7 @@
 
 - connection: caspian-live
 
-- view: snowplow_events
+- view: events
   derived_table:
     sql: |
       SELECT

@@ -31,10 +31,10 @@
     relationship: one_to_many
     sql_on: ${gigya_users.gigya_id} = ${bk_categories.gygia_id}
     
-  - join: snowplow_events
+  - join: events
     type: inner
     relationship: one_to_many
-    sql_on: ${gigya_users.gigya_id} = ${snowplow_events.user_id}
+    sql_on: ${gigya_users.gigya_id} = ${events.user_id}
     
   - join: es_users
     type: inner

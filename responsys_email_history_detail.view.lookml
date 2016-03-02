@@ -15,8 +15,8 @@
             'sent' as event_type
             from responsys.ced_sent
       
-            UNION ALL
-            (select
+          UNION ALL
+            select
             event_type_id,
             account_id,
             list_id,
@@ -28,11 +28,11 @@
             launch_id,
             email_format,
             'clicked' as event_type
-            from responsys.ced_clicked)
+            from responsys.ced_clicked
             
                   
-            UNION ALL
-            (select
+          UNION ALL
+            select
             event_type_id,
             account_id,
             list_id,
@@ -44,7 +44,7 @@
             launch_id,
             email_format,
             'opened' as event_type
-            from responsys.ced_opened)
+            from responsys.ced_opened
             
     sql_trigger_value: SELECT DATE(CURRENT_TIMESTAMP - interval '4 hour')
     sortkeys: [event_captured_dt]

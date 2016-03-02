@@ -20,6 +20,7 @@
       e.marketing_program,
       c.riid,
       d.email_address
+      
       from
       
       ${responsys_email_history_detail.SQL_TABLE_NAME} c
@@ -29,9 +30,8 @@
       on c.riid = d.riid
       
       left join responsys.ced_launch_state e
-      on concat(c.account_id,c.launch_id) = concat(e.account_id,e.launch_id)
+      on c.account_id = e.account_id AND c.launch_id = e.launch_id
       
-      group by 1,2,3,4,5,6,7,8,9,10,11,12,13,14
     
     sql_trigger_value: SELECT MAX(event_captured_dt) FROM responsys.ced_sent
     sortkeys: [email_event_timestamp]

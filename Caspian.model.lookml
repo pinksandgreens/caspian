@@ -43,6 +43,11 @@
     
   
 - explore: events
+  joins:
+    - join: gigya_users
+      type: left_outer
+      relationship: many_to_one
+      sql_on: ${gigya_users.gigya_id} = ${events.user_id}
 
 
 

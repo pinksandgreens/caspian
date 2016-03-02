@@ -1,7 +1,7 @@
 
 
 
-
+- explore: ced_launch_state_distinct
 - view: responsys_email_history
   derived_table:
     sql: |
@@ -24,8 +24,6 @@
       from
       
       ${responsys_email_history_detail.SQL_TABLE_NAME} c
-      
-      
       left join ${ced_launch_state_distinct.SQL_TABLE_NAME} e
       on c.account_id = e.account_id AND c.launch_id = e.launch_id AND c.campaign_id = e.campaign_id
       

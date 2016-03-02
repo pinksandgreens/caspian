@@ -9,6 +9,7 @@
       c.event_captured_dt email_event_timestamp,
       c.event_type,
       c.campaign_id,
+      c.email_address,
       e.campaign_name,
       e.launch_name,
       e.launch_status,
@@ -18,16 +19,12 @@
       e.description,
       e.marketing_strategy,
       e.marketing_program,
-      c.riid,
-      d.email_address
+      c.riid
       
       from
       
       ${responsys_email_history_detail.SQL_TABLE_NAME} c
       
-      left join
-      responsys.ced_sent d
-      on c.riid = d.riid
       
       left join responsys.ced_launch_state e
       on c.account_id = e.account_id AND c.launch_id = e.launch_id

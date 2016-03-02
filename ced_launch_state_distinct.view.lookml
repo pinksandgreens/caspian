@@ -6,6 +6,7 @@
       account_id, 
       launch_id, 
       list_id,
+      campaign_id,
       campaign_name,
       launch_name,
       launch_status,

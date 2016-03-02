@@ -28,7 +28,7 @@
             campaign_id,
             launch_id,
             email_format,
-            email_address,
+            NULL,
             'clicked' as event_type
             from responsys.ced_clicked
             
@@ -45,7 +45,7 @@
             campaign_id,
             launch_id,
             email_format,
-            email_address,
+            NULL,
             'opened' as event_type
             from responsys.ced_opened
             

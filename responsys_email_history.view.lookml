@@ -26,8 +26,8 @@
       ${responsys_email_history_detail.SQL_TABLE_NAME} c
       
       
-      left join responsys.ced_launch_state e
-      on c.account_id = e.account_id AND c.launch_id = e.launch_id
+      left join ${ced_launch_state_distinct.SQL_TABLE_NAME} e
+      on c.account_id = e.account_id AND c.launch_id = e.launch_id AND c.campaign_id = e.campaign_id
       
     
     sql_trigger_value: SELECT MAX(event_captured_dt) FROM responsys.ced_sent

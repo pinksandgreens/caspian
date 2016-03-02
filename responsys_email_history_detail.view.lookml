@@ -1,3 +1,4 @@
+- explore: responsys_email_history_detail
 - view: responsys_email_history_detail
   derived_table:
     sql: |

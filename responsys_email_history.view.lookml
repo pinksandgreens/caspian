@@ -1,3 +1,7 @@
+
+
+
+
 - view: responsys_email_history
   derived_table:
     sql: |
@@ -19,49 +23,7 @@
       row_number() over (order by c.event_captured_dt asc) as id
       from
       
-      ((select
-      event_type_id,
-      account_id,
-      list_id,
-      riid,
-      customer_id,
-      event_captured_dt,
-      event_stored_dt,
-      campaign_id,
-      launch_id,
-      email_format,
-      'sent' as event_type
-      from responsys.ced_sent)
-      
-      UNION
-      (select
-      event_type_id,
-      account_id,
-      list_id,
-      riid,
-      customer_id,
-      event_captured_dt,
-      event_stored_dt,
-      campaign_id,
-      launch_id,
-      email_format,
-      'clicked' as event_type
-      from responsys.ced_clicked)
-      
-      UNION
-      (select
-      event_type_id,
-      account_id,
-      list_id,
-      riid,
-      customer_id,
-      event_captured_dt,
-      event_stored_dt,
-      campaign_id,
-      launch_id,
-      email_format,
-      'opened' as event_type
-      from responsys.ced_opened)) c
+      ( ${responsys_email_history_detail.SQL_TABLE_NAME} ) c
       
       left join
       responsys.ced_sent d

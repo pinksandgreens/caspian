@@ -42,5 +42,13 @@
     sql_on: ${gigya_users.email} = ${es_users.email}
     
   
-    
+- explore: events
+
+
+
+
+
+
+
+
   

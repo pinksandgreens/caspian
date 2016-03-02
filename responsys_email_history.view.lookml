@@ -19,11 +19,10 @@
       e.marketing_strategy,
       e.marketing_program,
       c.riid,
-      d.email_address,
-      row_number() over (order by c.event_captured_dt asc) as id
+      d.email_address
       from
       
-      ( ${responsys_email_history_detail.SQL_TABLE_NAME} ) c
+      ${responsys_email_history_detail.SQL_TABLE_NAME} c
       
       left join
       responsys.ced_sent d
@@ -36,6 +35,10 @@
     
     sql_trigger_value: SELECT MAX(event_captured_dt) FROM responsys.ced_sent
     sortkeys: [email_event_timestamp]
+
+
+#       row_number() over (order by c.event_captured_dt asc) as id
+
 
   fields:
 

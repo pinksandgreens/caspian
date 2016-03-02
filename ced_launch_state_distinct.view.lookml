@@ -17,6 +17,8 @@
       marketing_strategy,
       marketing_program
       FROM responsys.ced_launch_state 
+    sql_trigger_value: select current_date
+    sortkeys: [account_id, launch_id, campaign_id]
 
   fields:
   - measure: count

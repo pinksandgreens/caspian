@@ -29,6 +29,7 @@
         event,
         collector_tstamp,
         dvce_created_tstamp,
+        dvce_type,
         page_title,
         page_urlscheme,
         page_urlhost,
@@ -82,6 +83,9 @@
   
   - dimension: event_type
     sql: ${TABLE}.event
+      
+  - dimension: dvce_type
+    sql: ${TABLE}.dvce_type
     
   - dimension: app_id
     sql: ${TABLE}.app_id
@@ -126,7 +130,7 @@
     type: number
     sql: ${TABLE}.domain_sessionidx
 
-  - dimension: domain_user_id
+  - dimension: domain_userid
     sql: ${TABLE}.domain_userid
     
   - dimension: user_id
@@ -267,7 +271,7 @@
 
   - measure: visitors_count
     type: count_distinct
-    sql: ${user_id}
+    sql: ${domain_userid}
     drill_fields: visitors_detail
     hidden: true  # Not to be shown in the UI (in UI only show visitors count for visitors table)
     

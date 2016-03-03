@@ -106,6 +106,13 @@
       when ${app_id} like '%MAB%' then 'Mother & Baby'
       when ${app_id} like '%ABR%' then 'Absolute Radio'
       else 'other' end
+      
+  - dimension: uk_only
+    sql: |
+      case when events.geo_country = 'GB' then 'UK Only' else 'Non UK' end
+      
+  - dimension: Country
+    sql: ${TABLE}.geo_country
   
   - dimension: timestamp
     sql: ${TABLE}.collector_tstamp

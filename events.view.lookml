@@ -97,7 +97,7 @@
       when ${app_id} like '%YRS%' then 'Yours'
       when ${app_id} like '%EMP%' then 'Empire'
       when ${app_id} like '%PLR%' then 'Planet Rock'
-      when ${app_id} like '%TDG%' then 'Today's Golfer'
+      when ${app_id} like '%TDG%' then 'Todays Golfer'
       when ${app_id} like '%KIS%' then 'Kiss'
       when ${app_id} like '%HEA%' then 'Heat'
       when ${app_id} like '%GRA%' then 'Grazia'

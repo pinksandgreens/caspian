@@ -72,7 +72,7 @@
       
       group by 1,2,3,4,5,6,7,8,9,10,11,12,13,14
     
-    sql_trigger_value: SELECT MAX(email_event_timestamp) FROM responsys.ced_sent
+    sql_trigger_value: SELECT MAX(event_captured_dt) FROM responsys.ced_sent
     sortkeys: [email_event_timestamp]
 
   fields:

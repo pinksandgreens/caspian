@@ -15,10 +15,17 @@
 # Copyright: Copyright (c) 2013-2015 Snowplow Analytics Ltd
 # License: Apache License Version 2.0
 
-- connection: snowplow_production
+- connection: caspian-live
 
 - scoping: true                  # for backward compatibility
 - include: "*.view.lookml"       # include all the views
 - include: "*.dashboard.lookml"  # include all the dashboards
 
 - explore: events
+
+  joins:
+    - join: gigya_users
+      type: inner
+      relationship: many_to_one
+      sql_on: ${events.user_id} = ${gigya_users.gigya_id}
+    

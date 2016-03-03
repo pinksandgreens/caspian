@@ -29,3 +29,8 @@
       relationship: many_to_one
       sql_on: ${events.user_id} = ${gigya_users.gigya_id}
     
+  joins:
+    - join: com_snowplowanalytics_snowplow_link_click_1
+      type: inner
+      relationship: many_to_many
+      sql_on: ${events.event_id} = ${com_snowplowanalytics_snowplow_link_click_1.root_id}

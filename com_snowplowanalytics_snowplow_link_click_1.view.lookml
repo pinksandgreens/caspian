@@ -1,4 +1,4 @@
-- view: com_snowplowanalytics_snowplow_link_click_1
+- view: snowplow_clicks
   sql_table_name: snowplow.com_snowplowanalytics_snowplow_link_click_1
   fields:
 
@@ -28,6 +28,7 @@
 
   - dimension: root_id
     type: string
+    primary_key: true
     sql: ${TABLE}.root_id
 
   - dimension_group: root_tstamp

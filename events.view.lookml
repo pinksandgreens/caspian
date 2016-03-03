@@ -23,6 +23,7 @@
       SELECT
         domain_userid, 
         domain_sessionidx,
+        user_id,
         event_id,
         app_id,
         event,
@@ -84,6 +85,27 @@
     
   - dimension: app_id
     sql: ${TABLE}.app_id
+    
+  - dimension: brand
+    sql: |
+      case
+      when ${app_id} like '%ABR%' then 'Absolute Radio'
+      when ${app_id} like '%MCN%' then 'Motorcycle News'
+      when ${app_id} like '%DBF%' then 'Debrief'
+      when ${app_id} like '%CAR%' then 'Car Magazine'
+      when ${app_id} like '%PAR%' then 'Parkers'
+      when ${app_id} like '%YRS%' then 'Yours'
+      when ${app_id} like '%EMP%' then 'Empire'
+      when ${app_id} like '%PLR%' then 'Planet Rock'
+      when ${app_id} like '%TDG%' then 'Today's Golfer'
+      when ${app_id} like '%KIS%' then 'Kiss'
+      when ${app_id} like '%HEA%' then 'Heat'
+      when ${app_id} like '%GRA%' then 'Grazia'
+      when ${app_id} like '%CLO%' then 'Closer'
+      when ${app_id} like '%LIF%' then 'Lifestyle.one Homepage'
+      when ${app_id} like '%MAB%' then 'Mother & Baby'
+      when ${app_id} like '%ABR%' then 'Absolute Radio'
+      else 'other' end
   
   - dimension: timestamp
     sql: ${TABLE}.collector_tstamp
@@ -97,8 +119,11 @@
     type: number
     sql: ${TABLE}.domain_sessionidx
 
-  - dimension: user_id
+  - dimension: domain_user_id
     sql: ${TABLE}.domain_userid
+    
+  - dimension: user_id
+    sql: ${TABLE}.user_id
 
   - dimension: session_id
     sql: ${TABLE}.domain_userid || '-' || ${TABLE}.domain_sessionidx

@@ -28,8 +28,8 @@
       on c.account_id = e.account_id AND c.launch_id = e.launch_id AND c.campaign_id = e.campaign_id
       
     
-    sql_trigger_value: SELECT MAX(event_captured_dt) FROM responsys.ced_sent
-    sortkeys: [email_event_timestamp]
+#    sql_trigger_value: SELECT MAX(event_captured_dt) FROM responsys.ced_sent
+#   sortkeys: [email_event_timestamp]
 
 
 #       row_number() over (order by c.event_captured_dt asc) as id

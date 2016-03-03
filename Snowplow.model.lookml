@@ -25,12 +25,11 @@
 
   joins:
     - join: gigya_users
-      type: inner
+      type: left_outer
       relationship: many_to_one
       sql_on: ${events.user_id} = ${gigya_users.gigya_id}
     
-  joins:
-    - join: com_snowplowanalytics_snowplow_link_click_1
+    - join: snowplow_clicks
       type: inner
       relationship: many_to_many
-      sql_on: ${events.event_id} = ${com_snowplowanalytics_snowplow_link_click_1.root_id}
+      sql_on: ${events.event_id} = ${snowplow_clicks.root_id}

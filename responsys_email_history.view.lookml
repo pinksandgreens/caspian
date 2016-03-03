@@ -1,3 +1,7 @@
+
+
+
+- explore: ced_launch_state_distinct
 - view: responsys_email_history
   derived_table:
     sql: |
@@ -5,6 +9,7 @@
       c.event_captured_dt email_event_timestamp,
       c.event_type,
       c.campaign_id,
+      c.email_address,
       e.campaign_name,
       e.launch_name,
       e.launch_status,
@@ -14,66 +19,21 @@
       e.description,
       e.marketing_strategy,
       e.marketing_program,
-      c.riid,
-      d.email_address,
-      row_number() over (order by c.event_captured_dt asc) as id
+      c.riid
+      
       from
       
-      ((select
-      event_type_id,
-      account_id,
-      list_id,
-      riid,
-      customer_id,
-      event_captured_dt,
-      event_stored_dt,
-      campaign_id,
-      launch_id,
-      email_format,
-      'sent' as event_type
-      from responsys.ced_sent)
+      ${responsys_email_history_detail.SQL_TABLE_NAME} c
+      left join ${ced_launch_state_distinct.SQL_TABLE_NAME} e
+      on c.account_id = e.account_id AND c.launch_id = e.launch_id AND c.campaign_id = e.campaign_id
       
-      UNION
-      (select
-      event_type_id,
-      account_id,
-      list_id,
-      riid,
-      customer_id,
-      event_captured_dt,
-      event_stored_dt,
-      campaign_id,
-      launch_id,
-      email_format,
-      'clicked' as event_type
-      from responsys.ced_clicked)
-      
-      UNION
-      (select
-      event_type_id,
-      account_id,
-      list_id,
-      riid,
-      customer_id,
-      event_captured_dt,
-      event_stored_dt,
-      campaign_id,
-      launch_id,
-      email_format,
-      'opened' as event_type
-      from responsys.ced_opened)) c
-      
-      left join
-      responsys.ced_sent d
-      on c.riid = d.riid
-      
-      left join responsys.ced_launch_state e
-      on concat(c.account_id,c.launch_id) = concat(e.account_id,e.launch_id)
-      
-      group by 1,2,3,4,5,6,7,8,9,10,11,12,13,14
     
     sql_trigger_value: SELECT MAX(event_captured_dt) FROM responsys.ced_sent
     sortkeys: [email_event_timestamp]
+
+
+#       row_number() over (order by c.event_captured_dt asc) as id
+
 
   fields:
 

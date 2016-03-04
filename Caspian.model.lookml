@@ -16,10 +16,10 @@
 - explore: gigya_users
 
   joins:
-  - join: responsys_email_history
+  - join: responsys_email_history_detail
     type: inner
     relationship: one_to_many
-    sql_on: ${gigya_users.email} = ${responsys_email_history.email_address}
+    sql_on: ${gigya_users.email} = ${responsys_email_history_detail.email_address}
     
   - join: nudge_email_history
     type: inner

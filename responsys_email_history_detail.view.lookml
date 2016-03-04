@@ -97,6 +97,10 @@
   - dimension: email_format
     type: string
     sql: ${TABLE}.email_format
+    
+  - dimension: email_address
+    type: string
+    sql: ${TABLE}.email_address
 
   - dimension: event_type
     type: string

@@ -261,23 +261,33 @@
     drill_fields: detail*
     
 
-  - measure: sessions_count_this_week
+  - measure: sessions_count_last_7days
     type: count_distinct
     sql: ${session_id}
     drill_fields: detail*
     filters:
       timestamp_date: 7 days
     
-    
-  - measure: sessions_count_last_week
+  - measure: sessions_count_7to14_days_ago
     type: count_distinct
     sql: ${session_id}
     drill_fields: detail*    
     filters: 
       timestamp_date: 14 days ago for 7 days
       
-    
-
+  - measure: sessions_count_14to21_days_ago
+    type: count_distinct
+    sql: ${session_id}
+    drill_fields: detail*    
+    filters: 
+      timestamp_date: 21 days ago for 7 days
+      
+  - measure: sessions_count_21to28_days_ago
+    type: count_distinct
+    sql: ${session_id}
+    drill_fields: detail*    
+    filters: 
+      timestamp_date: 28 days ago for 7 days
     
   - measure: page_pings_per_session
     type: number

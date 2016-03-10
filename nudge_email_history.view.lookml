@@ -14,7 +14,7 @@
       row_number() over (order by first_event_date asc) as id
       from "publications"."nudge_email_events_history"
 
-    sql_trigger_value: SELECT DATE(CURRENT_TIMESTAMP - interval '4 hour')
+    #sql_trigger_value: SELECT DATE(CURRENT_TIMESTAMP - interval '4 hour')
     sortkeys: [id]
 
   fields:

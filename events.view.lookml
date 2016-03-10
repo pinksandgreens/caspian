@@ -27,6 +27,7 @@
         event_id,
         app_id,
         event,
+        geo_country,
         collector_tstamp,
         dvce_created_tstamp,
         dvce_type,

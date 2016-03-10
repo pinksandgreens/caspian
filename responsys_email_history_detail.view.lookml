@@ -1,4 +1,4 @@
-- explore: responsys_email_history_detail
+# - explore: responsys_email_history_detail
 - view: responsys_email_history_detail
   derived_table:
     sql: |
@@ -110,10 +110,16 @@
     type: count_distinct
     sql: ${email_address}
     
-  #- measure: email_event_count
-  #  type: count
-  #  primary_key: true
-  #  sql: concat(${account_id},${launch_id})
+  - dimension: pk
+    hidden: true
+    primary_key: true
+    sql: concat(${account_id},${launch_id})
+    
+  - measure: email_event_count
+    type: count
+    
+    
+    
 
   sets:
     detail:

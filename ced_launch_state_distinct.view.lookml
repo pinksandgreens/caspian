@@ -39,6 +39,9 @@
   - dimension: campaign_name
     type: string
     sql: ${TABLE}.campaign_name
+  - dimension: campaign_id
+    type: string
+    sql: ${TABLE}.campaign_id
 
   - dimension: launch_name
     type: string

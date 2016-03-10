@@ -22,10 +22,15 @@
     sql_on: ${gigya_users.email} = ${responsys_email_history_detail.email_address}
     
   - join: ced_launch_state
+    from: ced_launch_state_distinct
     type: inner
     relationship: many_to_one
-    sql_on: ${responsys_email_history_detail.launch_id} = ${ced_launch_state.launch_id} and ${responsys_email_history_detail.account_id} = ${ced_launch_state.account_id}
+    sql_on: |
+      ${responsys_email_history_detail.launch_id} = ${ced_launch_state.launch_id} and ${responsys_email_history_detail.account_id} = ${ced_launch_state.account_id}
+      AND ${responsys_email_history_detail.campaign_id} =${ced_launch_state.campaign_id}
     
+      
+      
   - join: nudge_email_history
     type: inner
     relationship: one_to_many

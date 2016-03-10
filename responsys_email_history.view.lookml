@@ -1,7 +1,7 @@
 
 
 
-- explore: ced_launch_state_distinct
+# - explore: ced_launch_state_distincts
 - view: responsys_email_history
   derived_table:
     sql: |

@@ -105,6 +105,15 @@
   - dimension: event_type
     type: string
     sql: ${TABLE}.event_type
+    
+  - measure: individuals_count
+    type: count_distinct
+    sql: ${email_address}
+    
+  #- measure: email_event_count
+  #  type: count
+  #  primary_key: true
+  #  sql: concat(${account_id},${launch_id})
 
   sets:
     detail:

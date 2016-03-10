@@ -273,7 +273,7 @@
     type: count_distinct
     sql: ${domain_userid}
     drill_fields: visitors_detail
-    hidden: true  # Not to be shown in the UI (in UI only show visitors count for visitors table)
+    #hidden: true  # Not to be shown in the UI (in UI only show visitors count for visitors table)
     
   - measure: events_per_session
     type: number

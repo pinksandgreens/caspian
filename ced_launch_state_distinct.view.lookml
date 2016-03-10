@@ -16,7 +16,7 @@
       marketing_strategy,
       marketing_program
       FROM responsys.ced_launch_state 
-    sql_trigger_value: select current_date
+    sql_trigger_value: SELECT DATE(CURRENT_TIMESTAMP - interval '4 hour')
     sortkeys: [account_id, launch_id, campaign_id]
 
   fields:

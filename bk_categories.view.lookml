@@ -20,7 +20,7 @@
       left join "publications"."bk_taxonomy_categories" c
       on a.category_id = c.node_id
       group by 1,2,3,4,5,6,7,8,9,10,11,12
-    sql_trigger_value: SELECT MAX(insert_date_time) FROM "publications"."bk_identity_categories"
+    sql_trigger_value: SELECT DATE(CURRENT_TIMESTAMP - interval '4 hour')
     sortkeys: [insert_date_time]
     
   fields:

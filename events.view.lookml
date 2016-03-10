@@ -70,7 +70,7 @@
       FROM snowplow.events
       WHERE domain_userid IS NOT NULL
     
-    sql_trigger_value: SELECT MAX(collector_tstamp) FROM snowplow.events
+    sql_trigger_value: SELECT DATE(CURRENT_TIMESTAMP - interval '4 hour')
     distkey: domain_userid
     sortkeys: [domain_userid, domain_sessionidx, collector_tstamp]
   

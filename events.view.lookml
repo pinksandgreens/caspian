@@ -124,7 +124,7 @@
 
   - dimension_group: timestamp
     type: time
-    timeframes: [time, hour, date, week, month]
+    timeframes: [time, hour, date, week, month, day_of_week]
     sql: ${TABLE}.collector_tstamp
 
   - dimension: session_index
@@ -259,6 +259,25 @@
     type: count_distinct
     sql: ${session_id}
     drill_fields: detail*
+    
+
+  - measure: sessions_count_this_week
+    type: count_distinct
+    sql: ${session_id}
+    drill_fields: detail*
+    filters:
+      timestamp_date: 7 days
+    
+    
+  - measure: sessions_count_last_week
+    type: count_distinct
+    sql: ${session_id}
+    drill_fields: detail*    
+    filters: 
+      timestamp_date: 14 days ago for 7 days
+      
+    
+
     
   - measure: page_pings_per_session
     type: number

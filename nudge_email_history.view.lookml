@@ -15,7 +15,7 @@
       from "publications"."nudge_email_events_history"
 
     #sql_trigger_value: SELECT DATE(CURRENT_TIMESTAMP - interval '4 hour')
-    sortkeys: [id]
+    #sortkeys: [id]
 
   fields:
 

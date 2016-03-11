@@ -50,8 +50,8 @@
             'opened' as event_type
             from responsys.ced_opened
             
-    sql_trigger_value: SELECT DATE(CURRENT_TIMESTAMP - interval '4 hour')
-    sortkeys: [event_captured_dt]
+  #  sql_trigger_value: SELECT DATE(CURRENT_TIMESTAMP - interval '4 hour')
+  #  sortkeys: [event_captured_dt]
 
   fields:
   - measure: count

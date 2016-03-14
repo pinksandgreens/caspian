@@ -110,6 +110,7 @@
       when ${app_id} like '%LIF%' then 'Lifestyle.one Homepage'
       when ${app_id} like '%MAB%' then 'Mother & Baby'
       when ${app_id} like '%ABR%' then 'Absolute Radio'
+      when ${app_id} like '%KER%' then 'Kerrang'
       else 'other' end
       
   - dimension: uk_only

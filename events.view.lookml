@@ -289,6 +289,27 @@
     drill_fields: detail*    
     filters: 
       timestamp_date: 28 days ago for 7 days
+      
+  - measure: sessions_count_yesterday
+    type: count_distinct
+    sql: ${session_id}
+    drill_fields: detail*    
+    filters: 
+      timestamp_date: yesterday
+      
+  - measure: sessions_count_last7days
+    type: count_distinct
+    sql: ${session_id}/7
+    drill_fields: detail*    
+    filters: 
+      timestamp_date: last 7 days
+      
+  - measure: sessions_count_last30days
+    type: count_distinct
+    sql: ${session_id}/30
+    drill_fields: detail*    
+    filters: 
+      timestamp_date: last 30 days
     
   - measure: page_pings_per_session
     type: number

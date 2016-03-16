@@ -5,31 +5,66 @@
 - view: responsys_email_history
   derived_table:
     sql: |
-      select
-      c.event_captured_dt email_event_timestamp,
-      c.event_type,
-      c.campaign_id,
-      c.email_address,
-      e.campaign_name,
-      e.launch_name,
-      e.launch_status,
-      e.launch_type,
-      e.purpose,
-      e.subject,
-      e.description,
-      e.marketing_strategy,
-      e.marketing_program,
-      c.riid
-      
-      from
-      
-      ${responsys_email_history_detail.SQL_TABLE_NAME} c
-      left join ${ced_launch_state_distinct.SQL_TABLE_NAME} e
-      on c.account_id = e.account_id AND c.launch_id = e.launch_id AND c.campaign_id = e.campaign_id
+          select
+          a.date,
+          a.account_id,
+          a.campaign_id,
+          a.launch_id,
+          a.events_count,
+          a.event_type,
+          b.campaign_name,
+          b.launch_name,
+          b.subject,
+          b.marketing_strategy,
+          b.marketing_program,
+          b.launch_started_dt
+          
+          from
+          
+          ((select
+          to_char(event_captured_dt,'YYYY-MM-DD') as date,
+          account_id,
+          campaign_id,
+          launch_id,
+          count(distinct riid) events_count,
+          'sent' as event_type
+          from responsys.ced_sent
+          where event_captured_dt > current_date - 7
+          group by 1,2,3,4,6)
+          
+          UNION
+          (select
+          to_char(event_captured_dt,'YYYY-MM-DD') as date,
+          account_id,
+          campaign_id,
+          launch_id,
+          count(distinct riid) events_count,
+          'clicked' as event_type
+          from responsys.ced_clicked
+          where event_captured_dt > current_date - 7
+          group by 1,2,3,4,6)
+          
+          UNION
+          (select
+          to_char(event_captured_dt,'YYYY-MM-DD') as date,
+          account_id,
+          campaign_id,
+          launch_id,
+          count(distinct riid) events_count,
+          'opened' as event_type
+          from responsys.ced_opened
+          where event_captured_dt > current_date - 7
+          group by 1,2,3,4,6)) a
+          
+          left join responsys.ced_launch_state b
+          on a.account_id = b.account_id and a.launch_id = b.launch_id
+          
+          group by 1,2,3,4,5,6,7,8,9,10,11,12
+
       
     
-#    sql_trigger_value: SELECT MAX(event_captured_dt) FROM responsys.ced_sent
-#   sortkeys: [email_event_timestamp]
+    #sql_trigger_value: SELECT DATE(CURRENT_TIMESTAMP - interval '4 hour')
+    #sortkeys: [email_event_timestamp]
 
 
 #       row_number() over (order by c.event_captured_dt asc) as id
@@ -45,14 +80,15 @@
     type: string
     sql: ${TABLE}.event_type
 
-  - dimension: email_address
-    type: string
-    sql: ${TABLE}.email_address
-
-  - dimension_group: event_captured_dt
+  - dimension_group: event_timestamp
     type: time
     timeframes: [time, date, week, month]
-    sql: ${TABLE}.event_captured_dt
+    sql: ${TABLE}.date
+
+  - dimension_group: launch_timestamp
+    type: time
+    timeframes: [time, date, week, month]
+    sql: ${TABLE}.launch_started_at
 
   - dimension: campaign_name
     type: string
@@ -66,14 +102,6 @@
     type: string
     sql: ${TABLE}.launch_name
 
-  - dimension: launch_status
-    type: string
-    sql: ${TABLE}.launch_status
-
-  - dimension: launch_type
-    type: string
-    sql: ${TABLE}.launch_type
-
   - dimension: marketing_program
     type: string
     sql: ${TABLE}.marketing_program
@@ -82,33 +110,14 @@
     type: string
     sql: ${TABLE}.marketing_strategy
 
-  - dimension: purpose
-    type: string
-    sql: ${TABLE}.purpose
-
   - dimension: subject
     type: string
     sql: ${TABLE}.subject
 
-  - dimension: riid
-    type: number
-    value_format_name: id
-    sql: ${TABLE}.riid
-    
-  - dimension: event_id
-    type: number
-    primary_key: true
-    sql: ${TABLE}.id
-
   - measure: count
     type: count
     drill_fields: []
-    
-  - measure: events_count
-    type: count_distinct
-    sql: ${row_number() over (order by event_captured_dt asc)}
-    
-  - measure: individuals_count
-    type: count_distinct
-    sql: ${email_address}
 
+  - measure: events_count
+    type: sum
+    sql: ${TABLE}.events_count

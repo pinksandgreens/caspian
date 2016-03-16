@@ -268,6 +268,13 @@
     drill_fields: detail*
     filters:
       timestamp_date: 7 days
+      
+  - measure: sessions_count_last_30days
+    type: count_distinct
+    sql: ${session_id}
+    drill_fields: detail*    
+    filters: 
+      timestamp_date: 30 days
     
   - measure: sessions_count_7to14_days_ago
     type: count_distinct
@@ -297,19 +304,22 @@
     filters: 
       timestamp_date: yesterday
       
-  - measure: sessions_count_last7days
+  - measure: sessions_count_yesterday_prior_week
     type: count_distinct
-    sql: ${session_id}/7
+    sql: ${session_id}
     drill_fields: detail*    
     filters: 
-      timestamp_date: last 7 days
+      timestamp_date: 8 days ago for 1 day
       
-  - measure: sessions_count_last30days
-    type: count_distinct
-    sql: ${session_id}/30
+  - measure: sessions_avg_last_30days
+    type: number
+    sql: ${sessions_count_last_30days}/30
     drill_fields: detail*    
-    filters: 
-      timestamp_date: last 30 days
+    
+  - measure: sessions_avg_last_7days
+    type: number
+    sql: ${sessions_count_last_7days}/7
+    drill_fields: detail*   
     
   - measure: page_pings_per_session
     type: number

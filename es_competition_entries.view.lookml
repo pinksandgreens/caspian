@@ -139,7 +139,13 @@
     type: string
     sql: ${TABLE}.useragent
 
-  - measure: count
-    type: count
+  - measure: entries_count
+    type: count_distinct
+    sql: ${id}
+    drill_fields: [id, account_name, source_user_name]
+    
+  - measure: competition_count
+    type: count_distinct
+    sql: ${competition_id}
     drill_fields: [id, account_name, source_user_name]
 

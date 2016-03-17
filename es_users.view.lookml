@@ -101,7 +101,8 @@
     type: string
     sql: ${TABLE}.zipcode
 
-  - measure: count
-    type: count
+  - measure: users_count
+    type: count_distinct
+    sql: ${user_id}
     drill_fields: [first_name, last_name]
 

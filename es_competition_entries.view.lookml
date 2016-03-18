@@ -144,8 +144,13 @@
     sql: ${id}
     drill_fields: [id, account_name, source_user_name]
     
-  - measure: competition_count
+  - measure: competitions_count
     type: count_distinct
     sql: ${competition_id}
+    drill_fields: [id, account_name, source_user_name]
+    
+  - measure: avg_entries_per_competition
+    type: number
+    sql: ${entries_count}/${competitions_count}
     drill_fields: [id, account_name, source_user_name]
 

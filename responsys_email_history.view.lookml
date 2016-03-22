@@ -88,7 +88,7 @@
   - dimension_group: launch_timestamp
     type: time
     timeframes: [time, date, week, month]
-    sql: ${TABLE}.launch_started_at
+    sql: ${TABLE}.launch_started_dt
 
   - dimension: campaign_name
     type: string

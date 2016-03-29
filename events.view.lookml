@@ -117,6 +117,12 @@
     sql: |
       case when events.geo_country = 'GB' then 'UK Only' else 'Non UK' end
       
+  - dimension: page_views_tier
+    type: tier
+    tiers: [0,1000,5000,10000,20000,50000,100000,500000]
+    sql: ${page_views_count}
+    style: integer
+      
   - dimension: Country
     sql: ${TABLE}.geo_country
   

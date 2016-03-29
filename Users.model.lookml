@@ -13,4 +13,4 @@
 #     - join: users
 #       sql_on: ${users.id} = ${orders.user_id}
 
-- explore: bauer_list
+- explore: gigya_users

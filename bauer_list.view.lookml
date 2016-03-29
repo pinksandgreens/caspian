@@ -12,8 +12,6 @@
     sql: ${age}
     style: integer
     
-    
-
   - dimension: age_banding
     type: string
     sql: ${TABLE}.agebanding

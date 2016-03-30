@@ -99,7 +99,7 @@
     sql: ${TABLE}.domain_userid
     
   - dimension: session_index
-    type: int
+    type: number
     sql: ${TABLE}.domain_sessionidx
   
   - dimension: session_id
@@ -128,7 +128,7 @@
   # Session duration #
 
   - dimension: session_duration_seconds
-    type: int
+    type: number
     sql: EXTRACT(EPOCH FROM (${TABLE}.session_end_tstamp - ${TABLE}.session_start_tstamp))
 
   - dimension: session_duration_seconds_tiered
@@ -147,7 +147,7 @@
   # Events per visit and bounces (infered) #
 
   - dimension: events_during_session
-    type: int
+    type: number
     sql: ${TABLE}.event_count
     
   - dimension: events_during_session_tiered
@@ -357,7 +357,7 @@
 
   - measure: bounce_rate
     type: number
-    decimals: 2
+    value_format_name: decimal_2
     sql: ${bounced_sessions_count}/NULLIF(${count},0)::REAL
   
   - measure: sessions_from_new_visitors_count
@@ -374,12 +374,12 @@
   
   - measure: new_visitors_count_over_total_visitors_count
     type: number
-    decimals: 2
+    value_format_name: decimal_2
     sql: ${sessions_from_new_visitors_count}/NULLIF(${count},0)::REAL
 
   - measure: returning_visitors_count_over_total_visitors_count
     type: number
-    decimals: 2
+    value_format_name: decimal_2
     sql: ${sessions_from_returning_visitor_count}/NULLIF(${count},0)::REAL
     
   - measure: event_count
@@ -388,12 +388,12 @@
     
   - measure: events_per_session
     type: number
-    decimals: 2
+    value_format_name: decimal_2
     sql: ${event_count}/NULLIF(${count},0)::REAL
     
   - measure: events_per_visitor
     type: number
-    decimals: 2
+    value_format_name: decimal_2
     sql: ${event_count}/NULLIF(${visitors_count},0)::REAL
 
   - measure: average_session_duration_seconds

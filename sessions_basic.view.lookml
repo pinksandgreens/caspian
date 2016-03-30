@@ -23,18 +23,18 @@
         domain_sessionidx,
         MIN(collector_tstamp) AS session_start_tstamp,
         MAX(collector_tstamp) AS session_end_tstamp,
-        MIN(dvce_tstamp) AS dvce_min_tstamp,
-        MAX(dvce_tstamp) AS dvce_max_tstamp,
+        MIN(dvce_created_tstamp) AS dvce_min_tstamp,
+        MAX(dvce_created_tstamp) AS dvce_max_tstamp,
         COUNT(*) AS event_count,
-        COUNT(DISTINCT(FLOOR(EXTRACT(EPOCH FROM dvce_tstamp)/30)))/2::FLOAT AS time_engaged_with_minutes
+        COUNT(DISTINCT(FLOOR(EXTRACT(EPOCH FROM dvce_created_tstamp)/30)))/2::FLOAT AS time_engaged_with_minutes
       FROM
         snowplow.events
       WHERE domain_sessionidx IS NOT NULL
         AND domain_userid IS NOT NULL
         AND domain_userid != ''
-        AND dvce_tstamp IS NOT NULL
-        AND dvce_tstamp > '2000-01-01'
-        AND dvce_tstamp < '2030-01-01'
+        AND dvce_created_tstamp IS NOT NULL
+        AND dvce_created_tstamp > '2000-01-01'
+        AND dvce_created_tstamp < '2030-01-01'
         -- if dev -- AND collector_tstamp > DATEADD (day, -2, GETDATE())
       GROUP BY 1,2
     sql_trigger_value: SELECT DATE(CURRENT_TIMESTAMP - interval '4 hour')

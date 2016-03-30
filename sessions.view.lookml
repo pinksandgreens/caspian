@@ -32,6 +32,7 @@
         g.geo_city,
         l.page_urlhost AS landing_page_host,
         l.page_urlpath AS landing_page_path,
+        l.app_id AS landing_page_app_id,
         e.page_urlhost AS exit_page_host,
         e.page_urlpath AS exit_page_path,
         s.mkt_source,
@@ -195,6 +196,9 @@
     
   - dimension: landing_page_host
     sql: ${TABLE}.landing_page_urlhost
+    
+  - dimension: landing_page_app_id
+    sql: ${TABLE}.landing_page_app_id
     
   - dimension: landing_page_path
     sql: ${TABLE}.landing_page_path

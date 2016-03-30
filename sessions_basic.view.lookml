@@ -101,6 +101,8 @@
   - dimension: bounce
     type: yesno
     sql: ${TABLE}.event_count = 1
+    filters:
+      ${TABLE}.event = 'page_view'
   
   # New vs returning visitor
 

@@ -69,6 +69,7 @@
         ti_quantity
       FROM snowplow.events
       WHERE domain_userid IS NOT NULL
+      AND collector_tstamp > current_date - 35
     
     sql_trigger_value: SELECT DATE(CURRENT_TIMESTAMP - interval '4 hour')
     distkey: domain_userid

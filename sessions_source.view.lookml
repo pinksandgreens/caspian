@@ -41,7 +41,7 @@
         INNER JOIN ${sessions_basic.SQL_TABLE_NAME} AS b
           ON  a.domain_userid = b.domain_userid
           AND a.domain_sessionidx = b.domain_sessionidx
-          AND a.dvce_tstamp = b.dvce_min_tstamp
+          AND a.dvce_created_tstamp = b.dvce_min_tstamp
         WHERE a.refr_medium != 'internal' -- Not an internal referer
           AND (
             NOT(a.refr_medium IS NULL OR a.refr_medium = '') OR

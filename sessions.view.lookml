@@ -35,6 +35,7 @@
         l.app_id AS landing_page_app_id,
         e.page_urlhost AS exit_page_host,
         e.page_urlpath AS exit_page_path,
+        e.app_id AS exit_page_app_id,
         s.mkt_source,
         s.mkt_medium,
         s.mkt_term,

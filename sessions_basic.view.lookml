@@ -168,8 +168,10 @@
   
   - measure: average_session_duration_seconds
     type: average
+    value_format_name: decimal_2
     sql: EXTRACT(EPOCH FROM (${end}-${start}))
       
   - measure: average_time_engaged_minutes
     type: average
+    value_format_name: decimal_2
     sql: ${time_engaged_with_minutes}

@@ -14,3 +14,9 @@
 #       sql_on: ${users.id} = ${orders.user_id}
 
 - explore: gigya_users
+
+  joins:
+  - join: gigya_brand_optin
+    type: inner
+    relationship: one_to_many
+    sql_on: ${gigya_users.gigya_id} = ${gigya_brand_optin.gigya_id}

@@ -311,4 +311,8 @@
   - measure: count
     type: count
     drill_fields: [first_name, last_name, name, nickname, username]
+    
+  - measure: users_count
+    type: count_distinct
+    sql: ${TABLE}.email_address
 

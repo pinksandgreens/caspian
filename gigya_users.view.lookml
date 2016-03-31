@@ -314,5 +314,5 @@
     
   - measure: users_count
     type: count_distinct
-    sql: ${TABLE}.email_address
+    sql: ${TABLE}.email
 

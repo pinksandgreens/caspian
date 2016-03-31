@@ -20,3 +20,8 @@
     type: inner
     relationship: one_to_many
     sql_on: ${gigya_users.gigya_id} = ${gigya_brand_optin.gigya_id}
+    
+  - join: es_source
+    type: inner
+    relationship: many_to_one
+    sql_on: ${gigya_brand_optin.brand_code} = ${es_source.brand}

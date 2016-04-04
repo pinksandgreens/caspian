@@ -23,6 +23,10 @@
   - dimension: user_id
     type: string
     sql: ${TABLE}.user_id
+    
+  - measure: users_count
+    type: count_distinct
+    sql: ${TABLE}.user_id
 
   - measure: count
     type: count

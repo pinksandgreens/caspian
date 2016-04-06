@@ -55,4 +55,8 @@
   - measure: count
     type: count
     drill_fields: [schema_name]
+    
+  - measure: articles_count
+    type: count_distinct
+    sql: ${TABLE}.title
 

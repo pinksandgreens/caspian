@@ -35,3 +35,8 @@
     type: inner
     relationship: one_to_many
     sql_on: ${es_brand_optin.brand} = ${es_source.brand}
+    
+  - join: brand_lookup
+    type: inner
+    relationship: one_to_one
+    sql_on: ${es_source.brand} = ${brand_lookup.bra_code}

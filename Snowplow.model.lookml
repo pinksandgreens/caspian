@@ -39,6 +39,11 @@
       relationship: one_to_one
       sql_on: ${events.event_id} = ${article_context.root_id}
       
+    - join: sessions
+      type: inner
+      relationship: one_to_many
+      sql_on: ${events.session_id} = ${sessions.session_id}
+      
       
       
       

@@ -6,7 +6,7 @@
        gigya_users.email as email,
        gigya_users.created,
        gigya_users.ddw_updated_date,
-       gigya_users.registered_timestamp,
+       gigya_users.registered,
        gigya_newsletters.optin_subscribe_date,
        gigya_newsletters.optin_unsubscribe_date,
        
@@ -84,10 +84,10 @@
     timeframes: [time, hour, date, week, month]
     sql: ${TABLE}.created
     
-  - dimension: registered_timestamp
+  - dimension: registered
     type: time
     timeframes: [time, hour, date, week, month]
-    sql: ${TABLE}.registered_timestamp
+    sql: ${TABLE}.registered
     
   - dimension: optin_subscribe_date
     type: time

@@ -40,3 +40,8 @@
     type: inner
     relationship: one_to_one
     sql_on: ${es_source.brand} = ${brand_lookup.bra_code}
+    
+  - join: gigya_users
+    type: inner
+    relationship: one_to_one
+    sql_on: ${es_users.email} = ${gigya_users.email}

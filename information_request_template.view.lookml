@@ -4,6 +4,12 @@
       select
        gigya_users.gigya_id as gigya_id,
        gigya_users.email as email,
+       gigya_users.created,
+       gigya_users.ddw_updated_date,
+       gigya_users.registered_timestamp,
+       gigya.newsletters.optin_subscribe_date,
+       gigya.newsletters.optin_unsubscribe_date,
+       
        decode(gigya_users.baueremailoptin,'t',
         '1',
         '0'
@@ -67,6 +73,32 @@
     
   - dimension: brand_code
     sql: ${TABLE}.brand_code
+    
+  - dimension: ddw_updated_date
+    type: time
+    timeframes: [time, hour, date, week, month]
+    sql: ${TABLE}.ddw_updated_date
+    
+  - dimension: created
+    type: time
+    timeframes: [time, hour, date, week, month]
+    sql: ${TABLE}.created
+    
+  - dimension: registered_timestamp
+    type: time
+    timeframes: [time, hour, date, week, month]
+    sql: ${TABLE}.registered_timestamp
+    
+  - dimension: optin_subscribe_date
+    type: time
+    timeframes: [time, hour, date, week, month]
+    sql: ${TABLE}.optin_subscribe_date
+    
+  - dimension: optin_unsubscribe_date
+    type: time
+    timeframes: [time, hour, date, week, month]
+    sql: ${TABLE}.optin_unsubscribe_date
+    
     
   - measure: count
     type: count

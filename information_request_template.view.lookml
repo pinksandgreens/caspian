@@ -7,8 +7,8 @@
        gigya_users.created,
        gigya_users.ddw_updated_date,
        gigya_users.registered_timestamp,
-       gigya.newsletters.optin_subscribe_date,
-       gigya.newsletters.optin_unsubscribe_date,
+       gigya_newsletters.optin_subscribe_date,
+       gigya_newsletters.optin_unsubscribe_date,
        
        decode(gigya_users.baueremailoptin,'t',
         '1',

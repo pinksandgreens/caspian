@@ -9,6 +9,7 @@
        gigya_users.registered,
        gigya_newsletters.optin_subscribe_date,
        gigya_newsletters.optin_unsubscribe_date,
+       gigya_users.zipcode,
        
        decode(gigya_users.baueremailoptin,'t',
         '1',
@@ -64,6 +65,9 @@
 
   - dimension: newletter_name
     sql: ${TABLE}.newletter_name
+    
+  - dimension: zipcode
+    sql: ${TABLE}.zipcode
 
   - dimension: newsletter_id
     sql: ${TABLE}.newsletter_id

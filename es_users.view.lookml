@@ -11,7 +11,8 @@
     sql: ${TABLE}.address_line2
 
   - dimension: age
-    type: number
+    type: tier
+    tiers: [0,10,20,30,40,50,60,70,80]
     sql: ${TABLE}.age
 
   - dimension: city

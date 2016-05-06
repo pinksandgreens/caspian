@@ -129,11 +129,10 @@
   - dimension: Country
     sql: ${TABLE}.geo_country
     
-  - dimension: geo_latitude
-    sql: ${TABLE}.geo_latitude
-    
-  - dimension: geo_longitude
-    sql: ${TABLE}.geo_longitude
+  - dimension: location
+    type: location
+    sql_longitude: ${TABLE}.location_long
+    sql_latitude: ${TABLE}.location_lat
   
   - dimension: timestamp
     sql: ${TABLE}.collector_tstamp

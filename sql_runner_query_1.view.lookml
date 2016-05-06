@@ -14,10 +14,9 @@
              geo_longitude,
              collector_tstamp,
              dvce_created_tstamp,
-             dvce_type,
+             dvce_type
            FROM snowplow.events
            WHERE domain_userid IS NOT NULL
-           AND collector_tstamp > current_date - 35
       )
       SELECT 
         sql_runner_query.domain_userid AS "sql_runner_query.domain_userid",

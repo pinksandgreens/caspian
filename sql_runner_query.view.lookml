@@ -53,8 +53,7 @@
               ti_quantity
             FROM snowplow.events
             WHERE domain_userid IS NOT NULL
-            AND collector_tstamp > current_date - 35
-            limit 100;
+            AND collector_tstamp > current_date - 35;
 
   fields:
   - measure: count

@@ -1,6 +1,7 @@
 - connection: caspian-live
 
 - include: sql_runner_query.view.lookml
+- explore: sql_runner_query
 
 # # Select the views that should be a part of this model,
 # # and define the joins that connect them together.

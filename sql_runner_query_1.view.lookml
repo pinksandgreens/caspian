@@ -27,6 +27,7 @@
       
       GROUP BY 1,2,3
       ORDER BY 1
+      
   fields:
   - measure: count
     type: count

@@ -3,7 +3,7 @@
   fields:
 
   - dimension: age
-    type: string
+    type: number
     sql: ${TABLE}.age
     
   - dimension: age_tier

@@ -28,6 +28,8 @@
         app_id,
         event,
         geo_country,
+        geo_latitude,
+        geo_longitude,
         collector_tstamp,
         dvce_created_tstamp,
         dvce_type,
@@ -126,6 +128,12 @@
       
   - dimension: Country
     sql: ${TABLE}.geo_country
+    
+  - dimension: geo_latitude
+    sql: ${TABLE}.geo_latitude
+    
+  - dimension: geo_longitude
+    sql: ${TABLE}.geo_longitude
   
   - dimension: timestamp
     sql: ${TABLE}.collector_tstamp

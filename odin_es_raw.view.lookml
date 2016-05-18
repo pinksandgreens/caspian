@@ -92,7 +92,7 @@
 #    type: string
 #    sql: ${TABLE}.esugcthumbnail
 
-  - dimension: esuserid
+  - dimension: competition_user_id
     type: string
     sql: ${TABLE}.esuserid
 

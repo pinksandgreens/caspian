@@ -11,7 +11,8 @@
         DATEDIFF('day', identities.last_updated, CURRENT_DATE) last_updated_diff,
         CASE WHEN type = 'gigya' THEN 1 ELSE 0 END AS seen_gigya,
         CASE WHEN type = 'es' THEN 1 ELSE 0 END AS seen_es,
-        CASE WHEN type = 'nudge' THEN 1 ELSE 0 END AS seen_nudge
+        CASE WHEN type = 'nudge' THEN 1 ELSE 0 END AS seen_nudge,
+        CASE WHEN type = 'dmp' THEN 1 ELSE 0 END AS seen_dmp
         FROM publications.identities
       INNER JOIN publications.identities_keys ON identities_keys.idd_key_id = identities.idd_id
       

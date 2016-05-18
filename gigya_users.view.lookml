@@ -78,7 +78,6 @@
 
   - dimension: email
     type: string
-    primary_key: true
     sql: ${TABLE}.email
 
   - dimension: first_name
@@ -102,6 +101,7 @@
 
   - dimension: gigya_id
     type: string
+    primary_key: true
     sql: ${TABLE}.gigya_id
 
   - dimension: has_been_processed

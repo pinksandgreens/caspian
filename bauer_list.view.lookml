@@ -34,7 +34,7 @@
 
   - dimension: country
     type: string
-    sql: ${TABLE}.country
+    sql: INITCAP(${TABLE}.country)
 
   - dimension_group: created
     type: time
@@ -81,10 +81,19 @@
   - dimension: gender
     type: string
     sql_case:
-      female: ${TABLE}.gender = 'f' or ${TABLE}.gender = 'F' 
-      male: ${TABLE}.gender = 'm' or ${TABLE}.gender = 'M' 
-      else: 'unknown'
-
+      F: ${TABLE}.gender = 'f' or ${TABLE}.gender = 'F' 
+      M: ${TABLE}.gender = 'm' or ${TABLE}.gender = 'M' 
+      else: 'U'
+  
+  - dimension: gender_name
+    sql: |
+      CASE 
+        WHEN ${gender} = 'F' THEN 'Female' 
+        WHEN ${gender} = 'M' THEN 'Male' 
+        ELSE 'Unknown' 
+      END
+    
+  
   - dimension: hometown
     type: string
     sql: ${TABLE}.hometown
@@ -126,6 +135,10 @@
   - dimension: postal_code
     type: string
     sql: ${TABLE}.postal_code
+
+  - dimension: postal_area
+    type: string
+    sql: split_part(${postal_code},' ', 1)
 
   - dimension: postal_street_1
     type: string

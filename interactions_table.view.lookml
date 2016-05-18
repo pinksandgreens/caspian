@@ -76,6 +76,17 @@
     type: yesno
     sql: ${last_updated_diff} <= 365
   
+  - dimension: interact_recency
+    sql: |
+      CASE
+      WHEN ${last_updated_diff} = 0 THEN 'Today'
+      WHEN ${last_updated_diff} <= 7 THEN 'Last 7 days'
+      WHEN ${last_updated_diff} <= 30 THEN 'Last 30 days'
+      WHEN ${last_updated_diff} <= 90 THEN 'Last 3 months'
+      WHEN ${last_updated_diff} <= 180 THEN 'Last 6 months'
+      WHEN ${last_updated_diff} <= 365 THEN 'Last 12 months'
+      END
+  
 #   - dimension: active_last_7_days
 #     sql: |
 #       CASE

@@ -1,4 +1,4 @@
-- view: odin_es_raw
+- view: competitions
   sql_table_name: responsys.odin_es_raw
   fields:
 

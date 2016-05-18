@@ -21,5 +21,5 @@
       sql_on: ${identities.email} = ${bauer_list.customer_id}
 
 
-- explore: interactions_table
-- explore: odin_es_raw
+- explore: interactions
+- explore: competitions

@@ -1,4 +1,3 @@
-
 - view: interactions_table
   derived_table:
     sql: |
@@ -83,28 +82,6 @@
 #       ELSE 'N'
 #       END 
 
-# 
-# CASE
-#   WHEN DATEDIFF('day', last_updated, CURRENT_DATE) <= 7 THEN 'Y'
-#   ELSE 'N'
-# END AS active_last_7_days,
-# CASE
-#   WHEN DATEDIFF('day', last_updated, CURRENT_DATE) <= 30 THEN 'Y'
-#   ELSE 'N'
-# END AS active_last_30_days,
-# CASE
-#   WHEN DATEDIFF('day', last_updated, CURRENT_DATE) <= 90 THEN 'Y'
-#   ELSE 'N'
-# END AS active_last_3_months,
-# CASE
-#   WHEN DATEDIFF('day', last_updated, CURRENT_DATE) <= 180 THEN 'Y'
-#   ELSE 'N'
-# END AS active_last_6_months,
-# CASE
-#   WHEN DATEDIFF('day', last_updated, CURRENT_DATE) <= 365 THEN 'Y'
-#   ELSE 'N'
-# END AS active_last_12_months
-
   - dimension: seen_gigya_num
     hidden: true
     sql: ${TABLE}.seen_gigya
@@ -114,7 +91,6 @@
       CASE
       WHEN sum(${seen_gigya_num})>0 THEN 'Y' ELSE 'N'
       END
-      
       
   - dimension: seen_es_num
     hidden: true
@@ -126,7 +102,6 @@
       WHEN sum(${seen_es_num})>0 THEN 'Y' ELSE 'N'
       END
       
-      
   - dimension: seen_nudge_num
     hidden: true
     sql: ${TABLE}.seen_nudge
@@ -135,10 +110,18 @@
     sql: |
       CASE
       WHEN sum(${seen_nudge_num})>0 THEN 'Y' ELSE 'N'
+      END      
+      
+  - dimension: seen_dmp_num
+    hidden: true
+    sql: ${TABLE}.seen_dmp
+
+  - measure: seen_dmp
+    sql: |
+      CASE
+      WHEN sum(${seen_dmp_num})>0 THEN 'Y' ELSE 'N'
       END
-      
-      
-      
+
       
   sets:
     detail:

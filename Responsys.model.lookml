@@ -1,24 +1,26 @@
-# Copyright (c) 2013-2015 Snowplow Analytics Ltd. All rights reserved.
-#
-# This program is licensed to you under the Apache License Version 2.0,
-# and you may not use this file except in compliance with the Apache License Version 2.0.
-# You may obtain a copy of the Apache License Version 2.0 at http://www.apache.org/licenses/LICENSE-2.0.
-#
-# Unless required by applicable law or agreed to in writing,
-# software distributed under the Apache License Version 2.0 is distributed on an
-# "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-# See the Apache License Version 2.0 for the specific language governing permissions and limitations there under.
-#
-# Version: 3-0-0
-#
-# Authors: Yali Sassoon, Christophe Bogaert
-# Copyright: Copyright (c) 2013-2015 Snowplow Analytics Ltd
-# License: Apache License Version 2.0
-
 - connection: caspian-live
 
-- scoping: true                  # for backward compatibility
-- include: "*.view.lookml"       # include all the views
-- include: "*.dashboard.lookml"  # include all the dashboards
+- include: "*.view.lookml"       # include all views in this project
+- include: "*.dashboard.lookml"  # include all dashboards in this project
 
-- explore: responsys_email_history
+- explore: ced_launch_state
+  joins:
+    - join: ced_sent
+      type: inner
+      relationship: many_to_one
+      sql_on: ${ced_sent.riid} = ${ced_launch_state.account_id}
+    
+    - join: ced_opened
+      type: left_outer
+      relationship: many_to_one
+      sql_on: ${ced_opened.riid} = ${ced_launch_state.account_id}
+    
+    - join: ced_clicked
+      type: left_outer
+      relationship: many_to_one
+      sql_on: ${ced_clicked.riid} = ${ced_launch_state.account_id}
+    
+    - join: ced_bounced
+      type: left_outer
+      relationship: many_to_one
+      sql_on: ${ced_bounced.riid} = ${ced_launch_state.account_id}

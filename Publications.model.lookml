@@ -20,6 +20,13 @@
       relationship: one_to_one
       sql_on: ${identities.email} = ${bauer_list.customer_id}
 
+- explore: competitions
+  joins:
+    - join: es_competitions
+      type: left_outer
+      relationship: one_to_one
+      sql_on: ${es_competitions.id} = ${competitions.campaign_id}
+
 
 - explore: interactions
-- explore: competitions
+

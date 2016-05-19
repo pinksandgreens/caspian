@@ -1,4 +1,4 @@
-- view: interactions_table
+- view: interactions
   derived_table:
     sql: |
       SELECT DISTINCT

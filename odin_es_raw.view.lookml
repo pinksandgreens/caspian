@@ -1,4 +1,4 @@
-- view: odin_es_raw
+- view: competitions
   sql_table_name: responsys.odin_es_raw
   fields:
 
@@ -92,7 +92,7 @@
 #    type: string
 #    sql: ${TABLE}.esugcthumbnail
 
-  - dimension: esuserid
+  - dimension: competition_user_id
     type: string
     sql: ${TABLE}.esuserid
 

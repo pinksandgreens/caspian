@@ -13,7 +13,7 @@
 #     - join: users
 #       sql_on: ${users.id} = ${orders.user_id}
 
-- explore: es_users
+#- explore: es_users
  
   joins:
   - join: es_competition_entries

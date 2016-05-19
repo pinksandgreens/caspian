@@ -13,7 +13,7 @@
 #     - join: users
 #       sql_on: ${users.id} = ${orders.user_id}
 
-- explore: gigya_users
+#- explore: gigya_users
 
   joins:
   - join: gigya_brand_optin

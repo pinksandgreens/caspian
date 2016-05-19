@@ -8,7 +8,7 @@
         identities.date_created,
         identities.last_updated,
         identities_keys.type,
-        DATEDIFF('day', identities.last_updated, CURRENT_DATE) last_updated_diff,
+        DATEDIFF('day', identities_keys.last_updated, CURRENT_DATE) last_updated_diff,
         CASE WHEN type = 'gigya' THEN 1 ELSE 0 END AS seen_gigya,
         CASE WHEN type = 'es' THEN 1 ELSE 0 END AS seen_es,
         CASE WHEN type = 'nudge' THEN 1 ELSE 0 END AS seen_nudge,
@@ -133,6 +133,10 @@
       CASE
       WHEN sum(${seen_dmp_num})>0 THEN 'Y' ELSE 'N'
       END
+  
+  - measure: users_count
+    type: count_distinct
+    sql: ${TABLE}.idd_id
 
       
   sets:

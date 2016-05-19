@@ -3,12 +3,24 @@
 - include: "*.view.lookml"       # include all views in this project
 - include: "*.dashboard.lookml"  # include all dashboards in this project
 
-# # Select the views that should be a part of this model,
-# # and define the joins that connect them together.
-#
-# - explore: responsys
-#   joins:
-#     - join: orders
-#       sql_on: ${orders.id} = ${order_items.order_id}
-#     - join: users
-#       sql_on: ${users.id} = ${orders.user_id}
+- explore: ced_launch_state
+  joins:
+    - join: ced_sent
+      type: inner
+      relationship: many_to_one
+      sql_on: ${ced_sent.riid} = ${ced_launch_state.account_id}
+    
+    - join: ced_opened
+      type: left_outer
+      relationship: many_to_one
+      sql_on: ${ced_opened.riid} = ${ced_launch_state.account_id}
+    
+    - join: ced_clicked
+      type: left_outer
+      relationship: many_to_one
+      sql_on: ${ced_clicked.riid} = ${ced_launch_state.account_id}
+    
+    - join: ced_bounced
+      type: left_outer
+      relationship: many_to_one
+      sql_on: ${ced_bounced.riid} = ${ced_launch_state.account_id}

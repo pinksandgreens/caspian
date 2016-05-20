@@ -35,3 +35,14 @@
     type: inner
     relationship: one_to_one
     sql_on: ${es_users.user_id} = ${identities_keys.value}
+    
+  - join: identities
+    type: inner
+    relationship: many_to_one
+    sql_on: ${identities_keys.idd_key_id} = ${identities.idd_id}
+    
+  - join: bauer_list
+    type: inner
+    relationship: one_to_one
+    sql_on: ${identities.email} = ${bauer_list.customer_id}
+    

@@ -6,7 +6,7 @@
     type: string
     sql: ${TABLE}.brand
 
-  - dimension: source
+  - dimension: competition_brand
     type: string
     sql: ${TABLE}.source
 

@@ -144,6 +144,12 @@
     sql: ${id}
     drill_fields: [id, account_name, source_user_name]
     
+  - measure: entries_count_banding
+    type: tier
+    tiers: [1,4,9,14,19,29]
+    sql: ${entries_count}
+    style: integer
+    
   - measure: competitions_count
     type: count_distinct
     sql: ${competition_id}

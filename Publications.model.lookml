@@ -28,5 +28,5 @@
       sql_on: ${es_competitions.id} = ${competitions.campaign_id}
 
 
-- explore: interactions
+#- explore: interactions
 

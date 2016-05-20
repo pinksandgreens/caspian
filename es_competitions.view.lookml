@@ -34,7 +34,13 @@
 
   - dimension: ref_campaign_stakeholder
     type: string
-    sql: ${TABLE}.ref_campaign_stakeholder
+    sql: |
+      CASE ${TABLE}.ref_campaign_stakeholder
+        WHEN 'C' THEN 'Commercial'
+        WHEN 'S' THEN 'Service'
+        WHEN 'B' THEN 'Brand'
+        WHEN 'M' THEN 'Marketing'
+      END
 
   - dimension: ref_campaign_type
     type: string

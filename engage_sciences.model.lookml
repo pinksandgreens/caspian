@@ -30,3 +30,8 @@
     type: inner
     relationship: one_to_one
     sql_on: ${es_source.brand} = ${brand_lookup.bra_code}
+    
+  - join: identities_keys
+    type: inner
+    relationship: one_to_one
+    sql_on: ${es_users.user_id} = ${identities_keys.value}

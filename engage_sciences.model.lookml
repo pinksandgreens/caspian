@@ -46,3 +46,7 @@
     relationship: one_to_one
     sql_on: ${identities.email} = ${bauer_list.customer_id}
     
+  - join: odin_es_agg
+    type: left_outer
+    relationship: one_to_one
+    sql_on: ${bauer_list.customer_id} = ${odin_es_agg.email_address}

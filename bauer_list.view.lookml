@@ -81,9 +81,9 @@
   - dimension: gender
     type: string
     sql_case:
-      F: ${TABLE}.gender = 'f' or ${TABLE}.gender = 'F' 
-      M: ${TABLE}.gender = 'm' or ${TABLE}.gender = 'M' 
-      else: 'U'
+      F: ${TABLE}.gender = 'f' or ${TABLE}.gender = 'Female' 
+      M: ${TABLE}.gender = 'm' or ${TABLE}.gender = 'Male' 
+      else: 'Uknown'
   
   - dimension: gender_name
     sql: |

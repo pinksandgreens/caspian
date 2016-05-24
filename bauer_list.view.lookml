@@ -221,6 +221,42 @@
   - dimension: zippafvalidated
     type: string
     sql: ${TABLE}.zippafvalidated
+    
+  - dimension: registered_date_banding
+    type: string
+    sql: |
+      CASE 
+        WHEN DATEDIFF('day', ${TABLE}.regdate, CURRENT_DATE) = 0 THEN 'Today'
+        WHEN DATEDIFF('day', ${TABLE}.regdate, CURRENT_DATE) <= 7 THEN '1-7 days'
+        WHEN DATEDIFF('day', ${TABLE}.regdate, CURRENT_DATE) <= 30 THEN '8-30 days'
+        WHEN DATEDIFF('day', ${TABLE}.regdate, CURRENT_DATE) <= 90 THEN '1-3 months'
+        WHEN DATEDIFF('day', ${TABLE}.regdate, CURRENT_DATE) <= 180 THEN '3-6 months'
+        WHEN DATEDIFF('day', ${TABLE}.regdate, CURRENT_DATE) <= 365 THEN '6-12 months'
+      END
+  
+  - dimension: registered_date_today
+    type: yesno
+    sql: DATEDIFF('day', ${TABLE}.regdate, CURRENT_DATE) = 0
+  
+  - dimension: registered_date_last_7_days
+    type: yesno
+    sql: DATEDIFF('day', ${TABLE}.regdate, CURRENT_DATE) <= 7
+  
+  - dimension: registered_date_last_30_days
+    type: yesno
+    sql: DATEDIFF('day', ${TABLE}.regdate, CURRENT_DATE) <= 30
+  
+  - dimension: registered_date_last_3_months
+    type: yesno
+    sql: DATEDIFF('day', ${TABLE}.regdate, CURRENT_DATE) <= 90
+  
+  - dimension: registered_date_last_6_months
+    type: yesno
+    sql: DATEDIFF('day', ${TABLE}.regdate, CURRENT_DATE) <= 180
+  
+  - dimension: registered_date_last_12_months
+    type: yesno
+    sql: DATEDIFF('day', ${TABLE}.regdate, CURRENT_DATE) <= 365
 
   - measure: count
     type: count

@@ -44,9 +44,35 @@
   - join: bauer_list
     type: inner
     relationship: one_to_one
-    sql_on: ${identities.email} = ${bauer_list.customer_id}
-    
-  - join: odin_es_agg
-    type: left_outer
+    sql_on: ${identities.email} = ${bauer_list.email_address}
+
+  - join: es_competition_entries_banded_today
+    type: inner
     relationship: one_to_one
-    sql_on: ${bauer_list.customer_id} = ${odin_es_agg.email_address}
+    sql_on: ${bauer_list.email_address} = ${es_competition_entries_banded_today.email}
+  
+  - join: es_competition_entries_banded_7_days
+    type: inner
+    relationship: one_to_one
+    sql_on: ${bauer_list.email_address} = ${es_competition_entries_banded_7_days.email}
+    
+  - join: es_competition_entries_banded_30_days
+    type: inner
+    relationship: one_to_one
+    sql_on: ${bauer_list.email_address} = ${es_competition_entries_banded_30_days.email}
+
+  - join: es_competition_entries_banded_3_months
+    type: inner
+    relationship: one_to_one
+    sql_on: ${bauer_list.email_address} = ${es_competition_entries_banded_3_months.email}
+
+  - join: es_competition_entries_banded_6_months
+    type: inner
+    relationship: one_to_one
+    sql_on: ${bauer_list.email_address} = ${es_competition_entries_banded_6_months.email}
+    
+  - join: es_competition_entries_banded_1_year
+    type: inner
+    relationship: one_to_one
+    sql_on: ${bauer_list.email_address} = ${es_competition_entries_banded_1_year.email}    
+    

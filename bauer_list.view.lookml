@@ -83,7 +83,7 @@
     sql_case:
       F: ${TABLE}.gender = 'f' or ${TABLE}.gender = 'Female' 
       M: ${TABLE}.gender = 'm' or ${TABLE}.gender = 'Male' 
-      else: 'Uknown'
+      else: 'Unknown'
   
   - dimension: gender_name
     sql: |

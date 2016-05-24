@@ -15,6 +15,11 @@
     type: inner
     relationship: many_to_one
     sql_on: ${es_competitions.id} = ${es_competition_entries.competition_id}
+  
+  - join: es_campaign_report
+    type: inner
+    relationship: one_to_one
+    sql_on: ${es_competitions.external_ref} = ${es_campaign_report.external_ref}
       
   - join: es_brand_optin
     type: inner

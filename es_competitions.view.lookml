@@ -65,6 +65,11 @@
   - dimension: source
     type: string
     sql: ${TABLE}.source
+  
+  - dimension: external_ref
+    type: string
+    sql: |
+      COALESCE (ref_brand,'')  || '-' || COALESCE (ref_channel, '')|| '-' || COALESCE (ref_campaign_stakeholder, '') || '-' || COALESCE (ref_campaign_description,'' ) || '-' || COALESCE (ref_target_date, '') || '-' || COALESCE (ref_campaign_aim, '') || '-' || COALESCE (ref_campaign_type, '') || '-' || COALESCE (ref_taxonomy_1, '') || COALESCE (ref_taxonomy_2, '')
 
   - dimension_group: updated
     type: time

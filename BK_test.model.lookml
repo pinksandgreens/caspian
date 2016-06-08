@@ -17,4 +17,9 @@
        type: inner
        relationship: many_to_one
        sql_on: ${bk_identity_categories.category_id} = ${bk_taxonomy_categories.node_id}
+       
+     - join: gigya_users
+       type: inner
+       relationship: one_to_one
+       sql_on: ${bk_swap_ids_gygia.gygia_id} = ${gigya_users.gigya_id}
 

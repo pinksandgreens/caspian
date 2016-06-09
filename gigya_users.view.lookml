@@ -91,6 +91,11 @@
   - dimension: followingcount
     type: number
     sql: ${TABLE}.followingcount
+    
+  - dimension: location_test
+    type: location
+    sql_latitude: ROUND(${TABLE}.location_lat,1)
+    sql_longitude: ROUND(${TABLE}.location_long,1)
 
   - dimension: gender
     type: string

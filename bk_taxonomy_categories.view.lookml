@@ -43,6 +43,11 @@
   - measure: count
     type: count
     drill_fields: [node_name]
+    
+  - measure: bk_size_number
+    type: number
+    sql: ${bk_size}
+  
 
    
 

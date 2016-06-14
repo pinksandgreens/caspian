@@ -8,7 +8,7 @@
 
   - dimension: competition_brand
     type: string
-    sql: ${TABLE IS NOT '%tickets%'}.source 
+    sql: ${TABLE}.source IS NOT '%tickets%'
 
   - measure: count
     type: count

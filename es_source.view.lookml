@@ -9,8 +9,7 @@
   - dimension: competition_brand
     type: string
     sql: ${TABLE}.source
-    sql: SELECT * WHERE competition_brand NOT LIKE '%tickets%';
-
+    
   - measure: count
     type: count
     drill_fields: []

@@ -8,7 +8,7 @@
 
   - dimension: competition_brand
     type: string
-    sql: ${TABLE}.source
+    sql: ${TABLE}.source IS NOT LIKE '%tickets%' OR 'tickets' OR '%tickets' OR 'tickets' OR 'ticket'
 
   - measure: count
     type: count

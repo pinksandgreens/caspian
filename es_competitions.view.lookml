@@ -19,6 +19,11 @@
   - dimension: name
     type: string
     sql: ${TABLE}.name
+    html: |
+      {{ linked_value }}
+      <a href="https://bauerxcel.looker.com/dashboards/14?Competition={{ value }}" target="_new">
+      <img src="http://dreamatico.com/data_images/kitten/kitten-1.jpg" height=20 width=20></a)
+    
 
   - dimension: ref_brand
     type: string

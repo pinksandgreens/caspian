@@ -35,11 +35,11 @@
     sql: ${TABLE}.total_conversions
 
   - dimension: total_shares
-    type: string
+    type: number
     sql: ${TABLE}.total_shares
 
   - dimension: total_views
-    type: string
+    type: number
     sql: ${TABLE}.total_views
 
   - measure: count

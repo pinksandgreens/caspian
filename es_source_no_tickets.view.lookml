@@ -4,7 +4,7 @@
     sql: |
       SELECT *
       FROM implementation.es_source
-      --WHERE source NOT LIKE '%tickets'
+      WHERE source NOT LIKE '%tickets'
 
   fields:
   - measure: count

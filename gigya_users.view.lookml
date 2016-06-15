@@ -307,6 +307,23 @@
   - dimension: zipcode
     type: string
     sql: ${TABLE}.zipcode
+  
+  - dimension: logged_in_date_banding
+    type: string
+    sql: |
+      CASE 
+        WHEN DATEDIFF('day', ${TABLE}.last_login, CURRENT_DATE) = 0 THEN 'Today'
+        WHEN DATEDIFF('day', ${TABLE}.last_login, CURRENT_DATE) > 0 AND DATEDIFF('day', ${TABLE}.last_login, CURRENT_DATE) <= 7 THEN '1-7 days'
+        WHEN DATEDIFF('day', ${TABLE}.last_login, CURRENT_DATE) > 7 AND DATEDIFF('day', ${TABLE}.last_login, CURRENT_DATE) <= 30 THEN '8-30 days'
+        WHEN DATEDIFF('day', ${TABLE}.last_login, CURRENT_DATE) > 30 AND DATEDIFF('day', ${TABLE}.last_login, CURRENT_DATE) <= 90 THEN '1-3 months'
+        WHEN DATEDIFF('day', ${TABLE}.last_login, CURRENT_DATE) > 90 AND DATEDIFF('day', ${TABLE}.last_login, CURRENT_DATE) <= 180 THEN '3-6 months'
+        WHEN DATEDIFF('day', ${TABLE}.last_login, CURRENT_DATE) > 180 AND DATEDIFF('day', ${TABLE}.last_login, CURRENT_DATE) <= 365 THEN '6-12 months'
+        ELSE 'Unknown'
+      END
+  
+  - dimension: active_user
+    type: yesno
+    sql: DATEDIFF('hour', ${TABLE}.last_login, CURRENT_DATE) >= 0  AND DATEDIFF('hour', ${TABLE}.last_login, CURRENT_DATE) <= 6
 
   - measure: count
     type: count

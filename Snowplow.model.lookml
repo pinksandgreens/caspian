@@ -18,10 +18,10 @@
 - connection: caspian-live
 
 - scoping: true                  # for backward compatibility
-#- include: "*.view.lookml"       # include all the views
-#- include: "*.dashboard.lookml"  # include all the dashboards
+- include: "*.view.lookml"       # include all the views
+- include: "*.dashboard.lookml"  # include all the dashboards
 
-#- explore: events
+- explore: events
 
   joins:
     - join: gigya_users

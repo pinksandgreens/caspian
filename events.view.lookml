@@ -81,6 +81,11 @@
 
   # DIMENSIONS #
   
+  - dimension: location_test
+    type: location
+    sql_latitude: ROUND(${TABLE}.geo_latitude,1)
+    sql_longitude: ROUND(${TABLE}.geo_longitude,1)
+  
   - dimension: event_id
     primary_key: true
     sql: ${TABLE}.event_id
@@ -131,8 +136,8 @@
     
   - dimension: location
     type: location
-    sql_longitude: ${TABLE}.location_long
-    sql_latitude: ${TABLE}.location_lat
+    sql_longitude: ${TABLE}.geo_longitude
+    sql_latitude: ${TABLE}.geo_latitude
   
   - dimension: timestamp
     sql: ${TABLE}.collector_tstamp
@@ -248,6 +253,10 @@
     hidden: true
   
   # MEASURES #
+  
+  - measure: domain_userid_count
+    type: count_distinct
+    sql: ${domain_userid}
 
   - measure: count
     type: count

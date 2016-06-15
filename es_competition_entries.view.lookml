@@ -159,4 +159,3 @@
     type: number
     sql: ${entries_count}/${competitions_count}
     drill_fields: [id, account_name, source_user_name]
-

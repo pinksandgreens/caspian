@@ -9,8 +9,7 @@
   - dimension: competition_brand
     type: string
     sql: ${TABLE}.source
-
+    
   - measure: count
     type: count
     drill_fields: []
-

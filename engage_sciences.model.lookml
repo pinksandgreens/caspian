@@ -26,15 +26,15 @@
     relationship: one_to_many
     sql_on: ${es_brand_optin.user_id} = ${es_users.user_id}
       
-  - join: es_source
+  - join: es_source_no_tickets
     type: inner
     relationship: one_to_one
-    sql_on: ${es_brand_optin.brand} = ${es_source.brand}
+    sql_on: ${es_brand_optin.brand} = ${es_source_no_tickets.brand}
     
   - join: brand_lookup
     type: inner
     relationship: one_to_one
-    sql_on: ${es_source.brand} = ${brand_lookup.bra_code}
+    sql_on: ${es_source_no_tickets.brand} = ${brand_lookup.bra_code}
     
   - join: identities_keys
     type: inner

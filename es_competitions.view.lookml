@@ -10,6 +10,10 @@
   - dimension: brand
     type: string
     sql: ${TABLE}.brand
+    html: |
+      {{ linked_value }}
+      <a href="https://bauerxcel.looker.com/dashboards/20?Brand%20Code={{ value }}" target="_new">
+      <img src="http://i.imgur.com/aJnF2oW.jpg" height=10 width=10></a)
 
   - dimension_group: created
     type: time
@@ -71,7 +75,11 @@
   - dimension: ref_taxonomy_1
     type: string
     sql: ${TABLE}.ref_taxonomy_1
-
+    html: |
+      {{ linked_value }}
+      <a href="https://bauerxcel.looker.com/dashboards/21?Category%2FTaxonomy={{ value }}&Timeframe=" target="_new">
+      <img src="http://i.imgur.com/aJnF2oW.jpg" height=10 width=10></a)
+    
   - dimension: ref_taxonomy_2
     type: string
     sql: ${TABLE}.ref_taxonomy_2

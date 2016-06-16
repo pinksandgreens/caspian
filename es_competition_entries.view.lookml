@@ -167,11 +167,11 @@
     drill_fields: [id, account_name, source_user_name]
     html: |
       {% if value > 1 %}
-        <p style="color: green; font-size:100%; text-align:center">{{ rendered_value }}</p>
+      <font color="darkgreen">{{ rendered_value }}</font>
       {% elsif value < 1 %}
-        <p style="color: red; font-size:100%; text-align:center">{{ rendered_value }}</p>
+        <font color="red">{{ rendered_value }}</font>
       {% else %}
-        <p style="color: black; font-size:100%; text-align:center">{{ rendered_value }}</p>
+        <font color="black">{{ rendered_value }}</font>
       {% endif %}
 
   

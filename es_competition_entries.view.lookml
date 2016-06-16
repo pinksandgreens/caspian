@@ -159,3 +159,27 @@
     type: number
     sql: ${entries_count}/${competitions_count}
     drill_fields: [id, account_name, source_user_name]
+    
+# Takes entries count and divides by estimated mean, >1 above average, <1 below average) formats by colour
+  - measure: success_metric
+    type: number
+    sql: ${es_competition_entries.entries_count}/1814.24
+    drill_fields: [id, account_name, source_user_name]
+    html: |
+      {% if value > 1 %}
+        <p style="color: green; font-size:100%; text-align:center">{{ rendered_value }}</p>
+      {% elsif value < 1 %}
+        <p style="color: red; font-size:100%; text-align:center">{{ rendered_value }}</p>
+      {% else %}
+        <p style="color: black; font-size:100%; text-align:center">{{ rendered_value }}</p>
+      {% endif %}
+
+  
+  
+  
+  
+  
+  
+  
+  
+  

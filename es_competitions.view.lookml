@@ -32,19 +32,28 @@
   - dimension: ref_campaign_aim
     type: string
     sql: ${TABLE}.ref_campaign_aim
+    sql: |
+      CASE ${TABLE}.ref_campaign_aim
+        WHEN '' THEN 'Other'
+        WHEN 'ACQ' THEN 'Acquisition'
+        WHEN 'ENG' THEN 'Engagement'
+        WHEN 'RET' THEN 'Retention'
+      END
 
   - dimension: ref_campaign_description
     type: string
     sql: ${TABLE}.ref_campaign_description
 
+# The data dictionary lied to us? It says that S=Service, but there are no S's in the database.
   - dimension: ref_campaign_stakeholder
     type: string
     sql: |
       CASE ${TABLE}.ref_campaign_stakeholder
         WHEN 'C' THEN 'Commercial'
-        WHEN 'S' THEN 'Service'
         WHEN 'B' THEN 'Brand'
         WHEN 'M' THEN 'Marketing'
+        WHEN 'E' THEN 'Service'
+        WHEN '' THEN 'Other'
       END
 
   - dimension: ref_campaign_type

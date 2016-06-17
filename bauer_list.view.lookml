@@ -15,6 +15,16 @@
   - dimension: age_banding
     type: string
     sql: ${TABLE}.agebanding
+    sql_case:
+      18-24: ${TABLE}.agebanding = '18-24'
+      25-34: ${TABLE}.agebanding = '25-34'
+      35-44: ${TABLE}.agebanding = '35-44'
+      45-54: ${TABLE}.agebanding = '45-54'
+      55-64: ${TABLE}.agebanding = '55-64'
+      65-74: ${TABLE}.agebanding = '65-74'
+      75+: ${TABLE}.agebanding = '75+'
+      else: 'Unknown' 
+
 
 #   - dimension: birthday
 #     type: number

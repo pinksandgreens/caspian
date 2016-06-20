@@ -9,16 +9,16 @@
   - join: bauer_list
     type: inner
     relationship: one_to_many
-    sql_on: ${bauer_list.customer_id} = ${gigya_users.email}
+    sql_on: ${bauer_list.email_address} = ${gigya_users.email}
   
   - join: identities
     type: inner
     relationship: one_to_one
-    sql_on: ${identities.email} = ${bauer_list.customer_id}
+    sql_on: ${identities.email} = ${bauer_list.email_address}
   
   - join: gigya_brand_optin
-    type: inner
-    relationship: one_to_many
+    type: left_outer
+    relationship: one_to_one
     sql_on: ${gigya_brand_optin.gigya_id} = ${gigya_users.gigya_id}
   
   - join: brand_lookup

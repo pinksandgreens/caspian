@@ -8,7 +8,7 @@
       CASE ${TABLE}.brand
         WHEN 'Key103' THEN 'Key 103'
         WHEN 'Northsound 1' THEN 'Northsound 1'
-        WHEN 'Kiss FM (UK)' THEN 'Kiss FM'
+        WHEN 'Kiss FM (UK)' THEN 'Kiss'
         WHEN '96.3 Radio Aire' THEN 'Radio Aire'
         WHEN 'Radio Borders' THEN 'Radio Borders'
         WHEN 'Radio City 96.7' THEN 'Radio City'
@@ -17,7 +17,7 @@
         WHEN 'Cool FM' THEN 'Cool FM'
         WHEN 'Forth 1' THEN 'Forth 1'
         WHEN 'Hallam FM' THEN 'Hallam FM'
-        WHEN 'Magic' THEN 'Magic'
+        WHEN 'Magic Radio' THEN 'Magic'
         WHEN 'Metro Radio' THEN 'Metro Radio'
         WHEN 'MFR' THEN 'MFR'
         WHEN 'Tay FM' THEN 'Tay FM'

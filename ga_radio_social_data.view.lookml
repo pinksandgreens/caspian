@@ -26,55 +26,75 @@
         WHEN 'CFM Radio' THEN 'CFM Radio'
       END
 
-  - dimension: f1
-    type: string
-    sql: ${TABLE}.f1
+#  - dimension: f1
+#    type: string
+#    sql: ${TABLE}.f1
 
-  - dimension: fav_count
-    type: string
-    sql: ${TABLE}.fav_count
+  - measure: fav_count
+    label: 'Twitter Favourite Count'
+    type: number
+    sql: sum_distinct(${TABLE}.fav_count)
+    drill_fields: [brand, label, fb_users_web, tw_users_web]
 
-  - dimension: fb_sessions_web
-    type: string
-    sql: ${TABLE}.fb_sessions_web
+#  - measure: fb_sessions_web
+#    label: 'Facebook Sessions Count'
+#    type: number
+#    sql: SUM(${TABLE}.fb_sessions_web)
+#    drill_fields: [brand, label, fb_users_web, tw_users_web]
 
-  - dimension: fb_users_web
-    type: string
-    sql: ${TABLE}.fb_users_web
+  - measure: fb_users_web
+    label: 'Facebook Users Count'
+    type: number
+    sql: sum(${TABLE}.fb_users_web)
+    drill_fields: [brand, label, fb_users_web, tw_users_web]
 
   - dimension: label
+    label: 'Week Starting'
+    primary_key: true
     type: date
     sql: ${TABLE}.label
+#
+#  - measure: page_engaged_users
+#    label: 'Facebook Engaged Users Count'
+#    type: number
+#    drill_fields: [brand, label, fb_users_web, tw_users_web]
+#    sql: SUM(${TABLE}.page_engaged_users)
 
-  - dimension: page_engaged_users
-    type: string
-    sql: ${TABLE}.page_engaged_users
+#  - measure: page_impressions_unique
+#    label: 'Facebook Unique Page Impressions Count'
+#    type: number
+#    sql: SUM(${TABLE}.page_impressions_unique)
+#    drill_fields: [brand, label, fb_users_web, tw_users_web]
 
-  - dimension: page_impressions_unique
-    type: string
-    sql: ${TABLE}.page_impressions_unique
+#  - measure: page_impressions_viral_unique
+#    label: 'Facebook Viral Impressions Count'
+#    type: number
+#    sql: SUM(${TABLE}.page_impressions_viral_unique)
+#    drill_fields: [brand, label, fb_users_web, tw_users_web]
 
-  - dimension: page_impressions_viral_unique
-    type: string
-    sql: ${TABLE}.page_impressions_viral_unique
+  - measure: retweets
+    label: 'Twitter Retweets'
+    type: number
+    sql: SUM(${TABLE}.retweets)
+    drill_fields: [brand, label, fb_users_web, tw_users_web]
 
-  - dimension: retweets
-    type: string
-    sql: ${TABLE}.retweets
+#  - measure: tw_sessions_web
+#    label: 'Twitter Sessions Count'
+#    type: number
+#    sql: SUM(${TABLE}.tw_sessions_web)
+#    drill_fields: [brand, label, fb_users_web, tw_users_web]
 
-  - dimension: tw_sessions_web
-    type: string
-    sql: ${TABLE}.tw_sessions_web
+  - measure: tw_users_web
+    label: 'Twitter Users Count'
+    type: number
+    sql: SUM(${TABLE}.tw_users_web)
+    drill_fields: [brand, label, fb_users_web, tw_users_web]
 
-  - dimension: tw_users_web
-    type: string
-    sql: ${TABLE}.tw_users_web
+#  - dimension: week
+#    type: string
+#    sql: ${TABLE}.week
 
-  - dimension: week
-    type: string
-    sql: ${TABLE}.week
-
-  - measure: count
-    type: count
-    drill_fields: []
+#  - measure: count
+#    type: count
+#    drill_fields: [brand, label, fb_users_web, tw_users_web]
 

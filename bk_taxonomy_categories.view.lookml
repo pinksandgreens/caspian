@@ -1,4 +1,4 @@
-- explore: bk_taxonomy_categories
+#- explore: bk_taxonomy_categories
 - view: bk_taxonomy_categories
   sql_table_name: publications.bk_taxonomy_categories
   fields:

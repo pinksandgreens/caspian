@@ -25,6 +25,10 @@
         WHEN 'Absolute Radio' THEN 'Absolute Radio'
         WHEN 'CFM Radio' THEN 'CFM Radio'
       END
+    html: |
+      {{ linked_value }}
+      <a href="https://bauerxcel.looker.com/dashboards/25?Brand={{ value }}" target="_new">
+      <img src="http://i.imgur.com/aJnF2oW.jpg" height=10 width=10></a)
 
   - measure: likes
     type: number

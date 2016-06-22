@@ -15,10 +15,21 @@
 
 
 - explore: ga_radio_social_data
-  sql_table_name: publications.ga_radio_social_data
+  sql_table_name: publications.ga_radio_twitter_data
   
   joins:
-   - join: brand_lookup
-     type: inner
-     relationship: many_to_many
-     sql_on: ${brand_lookup.bra_description} = ${ga_radio_social_data.brand}
+    - join: brand_lookup
+      type: inner
+      relationship: many_to_many
+      sql_on: ${brand_lookup.bra_description} = ${ga_radio_social_data.brand}
+  
+    - join: ga_radio_twitter_data
+      type: inner
+      relationship: many_to_many
+      sql_on: ${ga_radio_twitter_data.brand} = ${ga_radio_social_data.brand}
+     
+    - join: ga_radio_users_data
+      type: inner
+      relationship: many_to_many
+      sql_on: ${ga_radio_users_data.brand} = ${ga_radio_twitter_data.brand}
+  

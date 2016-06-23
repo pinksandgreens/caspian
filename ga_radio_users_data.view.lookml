@@ -3,6 +3,7 @@
   fields:
 
   - dimension: brand
+    label: 'Brand'
     type: string
     sql: |
       CASE ${TABLE}.brand
@@ -31,31 +32,37 @@
       <img src="http://i.imgur.com/aJnF2oW.jpg" height=10 width=10></a)
 
   - measure: likes
+    label: 'Facebook Likes'
     type: number
     sql: avg(${TABLE}.likes)
-    drill_fields: [brand, yearmonth, likes, mobile_social_monthly_uvs, montly_uvs, radio_play_sessions, radioplay_monthly_uvs]
+    drill_fields: soc_drill_set_1*
 
   - measure: mobile_social_monthly_uvs
+    label: 'Mobile Social Unique Visitors (Monthly)'
     type: number
     sql: sum(${TABLE}."mobile.social.monthly.uvs")
-    drill_fields: [brand, yearmonth, likes, mobile_social_monthly_uvs, montly_uvs, radio_play_sessions, radioplay_monthly_uvs]
+    drill_fields: soc_drill_set_1*
 
   - measure: monthly_uvs
+    label: 'Social Unique Visitors (Monthly)'
     type: number
     sql: sum(${TABLE}."monthly.uvs")
-    drill_fields: [brand, yearmonth, likes, mobile_social_monthly_uvs, montly_uvs, radio_play_sessions, radioplay_monthly_uvs]
+    drill_fields: soc_drill_set_1*
 
   - measure: radio_play_sessions
+    label: 'Radioplay Sessions'
     type: number
     sql: sum(${TABLE}."radio.play.sessions")
-    drill_fields: [brand, yearmonth, likes, mobile_social_monthly_uvs, montly_uvs, radio_play_sessions, radioplay_monthly_uvs]
+    drill_fields: soc_drill_set_1*
 
   - measure: radioplay_montly_uvs
+    label: 'Radioplay Unique Visitors (Monthly)'
     type: number
     sql: sum(${TABLE}."radioplay.montly.uvs")
-    drill_fields: [brand, yearmonth, likes, mobile_social_monthly_uvs, montly_uvs, radio_play_sessions, radioplay_monthly_uvs]
+    drill_fields: soc_drill_set_1*
 
   - dimension: yearmonth
+    label: 'Year/Month (Monthly)'
     type: string
     sql: ${TABLE}.yearmonth
 
@@ -63,3 +70,11 @@
     type: count
     drill_fields: []
 
+  sets:
+    soc_drill_set_1:                              
+      - brand
+      - yearmonth
+      - monthly_uvs
+      - radio_play_sessions
+      - likes
+      - ga_radio_twitter_data.followers_count

@@ -10,10 +10,6 @@
   - dimension: brand
     type: string
     sql: ${TABLE}.brand
-    html: |
-      {{ linked_value }}
-      <a href="https://bauerxcel.looker.com/dashboards/20?Brand%20Code={{ value }}" target="_new">
-      <img src="http://i.imgur.com/aJnF2oW.jpg" height=10 width=10></a)
 
   - dimension_group: created
     type: time
@@ -48,7 +44,6 @@
     type: string
     sql: ${TABLE}.ref_campaign_description
 
-# The data dictionary lied to us? It says that S=Service, but there are no S's in the database.
   - dimension: ref_campaign_stakeholder
     type: string
     sql: |
@@ -100,5 +95,5 @@
 
   - measure: count
     type: count
-    drill_fields: [id, name]
+    drill_fields: [id, name, created, ref_brand, ref_campaign_aim, ref_campaign_description,ref_campaign_stakeholder, ref_taxonomy_1, source]
 

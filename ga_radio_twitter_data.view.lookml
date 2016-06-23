@@ -3,10 +3,12 @@
   fields:
 
   - dimension: id
+    label: 'Brand Twitter ID'
     type: string
     sql: ${TABLE}.id
 
   - dimension: brand
+    label: 'Brand'
     type: string
     sql: |
       CASE ${TABLE}.brand
@@ -31,20 +33,23 @@
       END
 
   - measure: favourites_count
+    label: 'Twitter Favourites'
     type: number
     sql: sum(${TABLE}.favourites_count)
     drill_fields: [brand, favourites_count, followers_count, statuses_count]
 
   - measure: followers_count
+    label: 'Twitter Followers'
     type: number
     sql:  avg(${TABLE}.followers_count)
     drill_fields: [brand, favourites_count, followers_count, statuses_count]
 
-  - dimension: name
-    type: string
-    sql: ${TABLE}.name
+#  - dimension: name
+#    type: string
+#    sql: ${TABLE}.name
 
   - measure: statuses_count
+    label: 'Number of Tweets'
     type: number
     sql: sum(${TABLE}.statuses_count)
     drill_fields: [brand, favourites_count, followers_count, statuses_count]

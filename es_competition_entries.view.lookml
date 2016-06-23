@@ -142,7 +142,12 @@
   - measure: entries_count
     type: count_distinct
     sql: ${id}
-    drill_fields: [id, account_name, source_user_name]
+    drill_fields: comp_drill_set_1*
+    
+#  - dimension: entries_count_drill
+#    type: count_distinct
+#    hidden: true 
+#    sql: ${id}
     
   - measure: entries_count_banding
     type: tier
@@ -153,18 +158,18 @@
   - measure: competitions_count
     type: count_distinct
     sql: ${competition_id}
-    drill_fields: [id, account_name, source_user_name]
+    drill_fields: comp_drill_set_1*
     
   - measure: avg_entries_per_competition
     type: number
     sql: ${entries_count}/${competitions_count}
-    drill_fields: [id, account_name, source_user_name]
+    drill_fields: comp_drill_set_1*
     
 # Takes entries count and divides by estimated mean, >1 above average, <1 below average) formats by colour
   - measure: success_metric
     type: number
     sql: ${es_competition_entries.entries_count}/1814.24
-    drill_fields: [id, account_name, source_user_name]
+    drill_fields: comp_drill_set_1*
     html: |
       {% if value > 1 %}
       <font color="darkgreen">{{ rendered_value }}</font>
@@ -174,9 +179,26 @@
         <font color="black">{{ rendered_value }}</font>
       {% endif %}
 
+  sets:
+    comp_drill_set_1:                              
+      - es_competitions.name 
+      - es_competitions.ref_taxonomy_1
+      - es_competitions.ref_campaign_aim
+      - es_competitions.ref_campaign_stakeholder
+      - entries_count_drill
   
-  
-  
+#  sets:
+#    comp_drill_set_1:                              
+#      - es_competitions.name 
+#      - es_competitions.brand
+#      - es_users.created_week
+#      - es_users.email
+#      - es_users.optin
+#      - es_competition_entries.date_entered
+#      - es_competitions.ref_campaign_aim
+#      - es_competitions.ref_campaign_stakeholder
+#      - es_competitions.ref_taxonomy_1
+#      - es_competition_entries.entires_count
   
   
   

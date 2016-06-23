@@ -56,7 +56,7 @@
         WHEN 'C' THEN 'Commercial'
         WHEN 'B' THEN 'Brand'
         WHEN 'M' THEN 'Marketing'
-        WHEN 'E' THEN 'Service'
+        WHEN 'E' THEN 'Event Registration'
         WHEN '' THEN 'Other'
       END
 

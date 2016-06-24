@@ -148,6 +148,11 @@
   - dimension: postal_area
     type: string
     sql: split_part(${postal_code},' ', 1)
+    
+  - dimension: postal_area1
+    type: string
+    sql: substring(${postal_code},1,2)
+    
 
   - dimension: postal_street_1
     type: string

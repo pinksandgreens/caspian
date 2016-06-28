@@ -5,6 +5,10 @@
   - dimension: unsub_type
     type: string
     sql: ${TABLE}.unsub_type
+    
+  - dimension: unsubscribe_count
+    type: string
+    sql: ${TABLE}.unsub_count  
  
   - dimension: bounce_type
     type: string
@@ -67,12 +71,3 @@
     type: count_distinct
     sql: ${TABLE}.riid
     
-  - measure: clicks
-    label: 'Click_Count'
-    type: number
-    sql: sum(${TABLE}.click_count)
-    
-  - measure: opens
-    label: 'Open_Count'
-    type: number
-    sql: sum(${TABLE}.open_count)

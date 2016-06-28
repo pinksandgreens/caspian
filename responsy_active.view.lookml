@@ -1,4 +1,3 @@
-- explore: responsy_active
 - view: responsy_active
   sql_table_name: responsys.responsy_active
   fields:

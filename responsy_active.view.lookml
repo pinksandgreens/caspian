@@ -9,7 +9,11 @@
   - dimension: unsubscribe_count
     type: string
     sql: ${TABLE}.unsub_count  
- 
+    
+  - dimension: open_count
+    type: string
+    sql: ${TABLE}.open_count 
+  
   - dimension: bounce_type
     type: string
     sql: ${TABLE}.bounce_type
@@ -47,17 +51,11 @@
     type: string
     sql: ${TABLE}.launch_name
 
-  - dimension: open_count
-    type: string
-    sql: ${TABLE}.open_count
-
-  - dimension: open_date
-    type: string
-    sql: ${TABLE}.open_date
-
   - dimension: riid
     type: string
     sql: ${TABLE}.riid
+
+#######################
 
   - measure: count
     type: count
@@ -65,9 +63,21 @@
     
   - measure: Unique_Riid_Count
     type: count_distinct
-    sql: ${TABLE}.riid
+    sql: ${TABLE}.concatid
     
-  - measure: sends
+  - measure: Send_Count
     type: count_distinct
-    sql: ${TABLE}.riid
+    sql: ${TABLE}.concatid
+    
+  - measure: Click_count
+    type: sum
+    sql: ${TABLE}.click_count     
+
+  - measure: Unsubscribe_count1
+    type: sum
+    sql: ${TABLE}.unsub_count
+    
+  - measure: Open_Count
+    type: sum
+    sql: ${TABLE}.open_count
     

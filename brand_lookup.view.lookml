@@ -3,18 +3,22 @@
   fields:
 
   - dimension: bra_business
+    label: 'Brand Business'
     type: string
     sql: ${TABLE}.bra_business
 
   - dimension: bra_code
+    label: 'Brand Code'
     type: string
     sql: ${TABLE}.bra_code
 
   - dimension: bra_comments
+    hidden: TRUE
     type: string
     sql: ${TABLE}.bra_comments
 
   - dimension: bra_description
+    label: 'Brand Name'
     type: string
     sql: ${TABLE}.bra_description
     html: |
@@ -23,6 +27,8 @@
       <img src="http://i.imgur.com/aJnF2oW.jpg" height=10 width=10></a>
  
   - dimension: bra_description_reg
+    label: 'Brand Name - Registrations'
+    hidden: TRUE
     type: string
     sql: ${TABLE}.bra_description
     html: |
@@ -31,6 +37,7 @@
       <img src="http://i.imgur.com/aJnF2oW.jpg" height=10 width=10></a>
       
   - dimension: bra_market
+    label: 'Brand Market'
     type: string
     sql: ${TABLE}.bra_market
     html: |
@@ -39,6 +46,8 @@
       <img src="http://i.imgur.com/aJnF2oW.jpg" height=10 width=10></a)
       
   - dimension: bra_market_reg
+    label: 'Brand Market - Registrations'
+    hidden: TRUE
     type: string
     sql: ${TABLE}.bra_market
     html: |
@@ -47,10 +56,12 @@
       <img src="http://i.imgur.com/aJnF2oW.jpg" height=10 width=10></a)
 
   - dimension: bra_obsolete
+    hidden: TRUE
     type: string
     sql: ${TABLE}.bra_obsolete
 
   - dimension: bra_parent_code
+    hidden: TRUE
     type: string
     sql: ${TABLE}.bra_parent_code
 

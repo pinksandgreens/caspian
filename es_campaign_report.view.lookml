@@ -3,30 +3,38 @@
   fields:
 
   - dimension: created_by
+    hidden: TRUE
     type: string
     sql: ${TABLE}.created_by
 
   - dimension: external_ref
+    label: 'External Reference'
+    hidden: TRUE
     type: string
     sql: ${TABLE}.external_ref
 
   - dimension: master
+    hidden: TRUE
     type: string
     sql: ${TABLE}.master
 
   - dimension: name
+    label: 'Competition Name'
     type: string
     sql: ${TABLE}.name
 
   - dimension: name1
+    label: 'Competition Reference'
     type: string
     sql: ${TABLE}.name1
 
   - dimension: publish_date
+    label: 'Date Published'
     type: string
     sql: ${TABLE}.publish_date
 
   - dimension: short_url
+    hidden: TRUE
     type: string
     sql: ${TABLE}.short_url
 

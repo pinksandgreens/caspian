@@ -3,20 +3,24 @@
   fields:
 
   - dimension: id
+    hidden: TRUE
     primary_key: true
     type: string
     sql: ${TABLE}.id
 
   - dimension: brand
+    label: 'Brand Code'
     type: string
     sql: ${TABLE}.brand
 
   - dimension_group: created
+    label: 'Date Created'
     type: time
     timeframes: [time, date, week, month]
     sql: ${TABLE}.created_date
 
   - dimension: name
+    label: 'Brand Name'
     type: string
     sql: ${TABLE}.name
     html: |
@@ -26,10 +30,12 @@
     
 
   - dimension: ref_brand
+    hidden: TRUE
     type: string
     sql: ${TABLE}.ref_brand
 
   - dimension: ref_campaign_aim
+    label: 'Campaign Aim'
     type: string
     sql: ${TABLE}.ref_campaign_aim
     sql: |
@@ -41,10 +47,12 @@
       END
 
   - dimension: ref_campaign_description
+    hidden: TRUE
     type: string
     sql: ${TABLE}.ref_campaign_description
 
   - dimension: ref_campaign_stakeholder
+    label: 'Campaign Stakeholder'
     type: string
     sql: |
       CASE ${TABLE}.ref_campaign_stakeholder
@@ -56,18 +64,22 @@
       END
 
   - dimension: ref_campaign_type
+    label: 'Campaign Type'
     type: string
     sql: ${TABLE}.ref_campaign_type
 
   - dimension: ref_channel
+    hidden: TRUE
     type: string
     sql: ${TABLE}.ref_channel
 
   - dimension: ref_target_date
+    hidden: TRUE
     type: string
     sql: ${TABLE}.ref_target_date
 
   - dimension: ref_taxonomy_1
+    label: 'Campaign Taxonomy'
     type: string
     sql: ${TABLE}.ref_taxonomy_1
     html: |
@@ -76,14 +88,17 @@
       <img src="http://i.imgur.com/aJnF2oW.jpg" height=10 width=10></a)
     
   - dimension: ref_taxonomy_2
+    hidden: TRUE
     type: string
     sql: ${TABLE}.ref_taxonomy_2
 
   - dimension: source
+    hidden: TRUE
     type: string
     sql: ${TABLE}.source
   
   - dimension: external_ref
+    hidden: TRUE
     type: string
     sql: |
       COALESCE (ref_brand,'')  || '-' || COALESCE (ref_channel, '')|| '-' || COALESCE (ref_campaign_stakeholder, '') || '-' || COALESCE (ref_campaign_description,'' ) || '-' || COALESCE (ref_target_date, '') || '-' || COALESCE (ref_campaign_aim, '') || '-' || COALESCE (ref_campaign_type, '') || '-' || COALESCE (ref_taxonomy_1, '') || COALESCE (ref_taxonomy_2, '')

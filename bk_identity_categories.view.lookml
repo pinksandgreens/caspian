@@ -3,10 +3,12 @@
   fields:
 
   - dimension: category_count
+    label: 'Category Count'
     type: number
     sql: ${TABLE}.category_count
 
   - dimension: category_id
+    label: 'Category ID'
     type: number
     sql: ${TABLE}.category_id
 

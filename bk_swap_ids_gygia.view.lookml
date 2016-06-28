@@ -3,14 +3,17 @@
   fields:
 
   - dimension: bk_uuid
+    label: 'BlueKai UserID'
     type: string
     sql: ${TABLE}.bk_uuid
 
   - dimension: gygia_id
+    label: 'Gygia User ID'
     type: string
     sql: ${TABLE}.gygia_id
 
   - dimension_group: time_inserted
+    label: 'Date Swapped'
     type: time
     timeframes: [time, date, week, month]
     sql: ${TABLE}.time_inserted

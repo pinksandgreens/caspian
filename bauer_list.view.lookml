@@ -44,7 +44,12 @@
 
   - dimension: country
     type: string
-    sql: INITCAP(${TABLE}.country)
+    sql: |
+       CASE 
+         WHEN ${TABLE}.country = 'United States' THEN 'United States of America'
+         ELSE INITCAP(${TABLE}.country)
+       END
+
 
   - dimension_group: created
     type: time
@@ -153,7 +158,6 @@
     type: string
     sql: substring(${postal_code},1,2)
     
-
   - dimension: postal_street_1
     type: string
     sql: ${TABLE}.postal_street_1

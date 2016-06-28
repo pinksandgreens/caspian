@@ -48,6 +48,9 @@
     type: number
     sql: ${bk_size}
   
+  - measure: bk_size_count
+    type: number
+    sql: AVG(${bk_size})
 
    
 

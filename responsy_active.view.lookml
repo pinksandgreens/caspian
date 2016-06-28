@@ -81,3 +81,7 @@
     type: sum
     sql: ${TABLE}.open_count
     
+  - measure: Bounce_Count
+    type: sum
+    sql: ${TABLE}.bounce_count
+    

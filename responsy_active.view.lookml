@@ -63,6 +63,10 @@
     type: count_distinct
     sql: ${TABLE}.riid
     
+  - measure: sends
+    type: count_distinct
+    sql: ${TABLE}.riid
+    
   - measure: clicks
     label: 'Click_Count'
     type: number

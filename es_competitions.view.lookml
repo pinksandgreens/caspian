@@ -69,7 +69,7 @@
     sql: ${TABLE}.ref_campaign_type
 
   - dimension: ref_channel
-    hidden: TRUE
+    hidden: FALSE
     type: string
     sql: ${TABLE}.ref_channel
 

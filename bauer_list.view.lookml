@@ -1,13 +1,18 @@
 - view: bauer_list
+  label: 'First Party Data'
   sql_table_name: publications.bauer_list
   fields:
 
   - dimension: age
     label: 'Age'
     type: number
-    sql: ${TABLE}.age
-    
+    sql: |
+       CASE 
+         WHEN ((${TABLE}.age < 90) AND (${TABLE}.age > 18)) THEN ${TABLE}.age
+       END
+
   - dimension: age_tier
+    hidden: TRUE
     label: 'Age Tier'
     type: tier
     tiers: [0,10,20,30,40,60,80]
@@ -64,6 +69,7 @@
     sql: ${TABLE}.created
 
   - dimension: created_by
+    hidden: TRUE
     label: 'Data From (ES/Nudge/Gigya)'
     type: string
     sql: ${TABLE}.created_by
@@ -81,6 +87,7 @@
     sql: ${TABLE}.dateofbirth
 
   - dimension_group: ddw_updated
+    hidden: TRUE
     label: 'DDW Date'
     type: time
     timeframes: [date, week, month]
@@ -98,6 +105,7 @@
     sql: ${TABLE}.email_address
 
   - dimension: email_permission_status
+    hidden: TRUE
     type: string
     sql: ${TABLE}.email_permission_status
 
@@ -115,6 +123,7 @@
       else: 'Unknown'
   
   - dimension: gender_name
+    label: 'Gender'
     sql: |
       CASE 
         WHEN ${gender} = 'F' THEN 'Female' 
@@ -135,7 +144,7 @@
     sql: ${TABLE}.householdincome
 
   - dimension: is_registered
-    label: 'Is Registered (Y/N)'
+    label: 'Registered on Gigya'
     type: yesno
     sql: ${TABLE}.isregistered = 'Y'
 
@@ -175,6 +184,7 @@
     sql: ${TABLE}.postal_code
 
   - dimension: postal_area
+    hidden: TRUE
     label: 'Postal Area'
     type: string
     sql: split_part(${postal_code},' ', 1)
@@ -207,7 +217,7 @@
     sql: ${TABLE}.regdate
 
   - dimension: region
-    label: 'British Region'
+    label: 'Region'
     type: string
     sql: ${TABLE}.region
 
@@ -217,7 +227,8 @@
     sql: ${TABLE}.regsource
 
   - dimension: state
-    label: 'US State'
+    hidden: TRUE
+    label: 'State'
     type: string
     sql: ${TABLE}.state
 
@@ -301,12 +312,13 @@
       END
   
   - measure: count
+    hidden: TRUE
     label: 'Count'
     type: count
     drill_fields: [firstname, lastname, nickname, username]
   
   - measure: registered_users_count
-    label: 'Registered Users Count'
+    label: 'Users Count'
     type: count_distinct
     sql: ${customer_id}
 

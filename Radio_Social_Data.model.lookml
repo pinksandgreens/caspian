@@ -15,6 +15,7 @@
 
 
 - explore: ga_radio_social_data
+  label: 'Brand Social Data'
   sql_table_name: publications.ga_radio_twitter_data
   
   joins:

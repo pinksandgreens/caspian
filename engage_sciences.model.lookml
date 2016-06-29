@@ -4,6 +4,7 @@
 - include: "*.dashboard.lookml"  # include all dashboards in this project
 
 - explore: es_users
+  label: 'Competition Data'
  
   joins:
   - join: es_competition_entries

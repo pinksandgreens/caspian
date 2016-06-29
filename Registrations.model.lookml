@@ -4,6 +4,7 @@
 - include: "*.dashboard.lookml"  # include all dashboards in this project
 
 - explore: gigya_users
+  label: 'User Registration Data'
 
   joins:
   - join: bauer_list

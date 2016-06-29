@@ -4,6 +4,7 @@
 - include: "*.dashboard.lookml"  # include all dashboards in this project
 
 - explore: responsy_active
+  label: 'Email Data'
   joins:
     - join: bauer_list
       type: inner

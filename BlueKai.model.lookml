@@ -7,6 +7,7 @@
 # # and define the joins that connect them together.
 
 - explore: bk_swap_ids_gygia
+  label: 'DMP Audience Data'
 
   joins:
   - join: bk_identity_categories

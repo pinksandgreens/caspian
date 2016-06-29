@@ -22,6 +22,7 @@
 - include: "*.dashboard.lookml"  # include all the dashboards
 
 - explore: events
+  label: 'Web Analytics Data'
 
   joins:
     - join: gigya_users

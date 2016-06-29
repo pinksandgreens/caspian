@@ -1,5 +1,6 @@
 
 - view: es_source_no_tickets
+  label: 'Engaged Sciences Source'
   derived_table:
     sql: |
       SELECT *
@@ -16,6 +17,7 @@
     sql: ${TABLE}.source
 
   - dimension: brand
+    label: 'Brand Name'
     type: string
     sql: ${TABLE}.brand
 

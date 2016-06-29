@@ -67,7 +67,7 @@
     label: 'Data From (ES/Nudge/Gigya)'
     type: string
     sql: ${TABLE}.created_by
-
+    
   - dimension: customer_id
     hidden: TRUE
     type: string

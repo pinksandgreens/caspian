@@ -25,7 +25,7 @@
     sql: ${TABLE}.last_updated
 
   - dimension: user_id
-    hidden: TRUE
+    hidden: FALSE
     type: string
     sql: ${TABLE}.user_id
     

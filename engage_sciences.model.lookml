@@ -41,11 +41,13 @@
     type: inner
     relationship: one_to_one
     sql_on: ${es_users.user_id} = ${identities_keys.value}
-    
+  
   - join: identities
     type: inner
     relationship: many_to_one
-    sql_on: ${identities_keys.idd_key_id} = ${identities.idd_id}
+    sql_on: ${identities_keys.idd_key_id} = ${identities.idd_id} 
+    
+# DO NOT REMOVE IDENTITIES IS MATCHING BASED ON BAUER LIST - SO BAUER LIST CAN BE USED
     
   - join: bauer_list
     type: inner

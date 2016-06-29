@@ -9,14 +9,17 @@
 
   fields:
   - measure: count
+    hidden: TRUE
     type: count
     drill_fields: detail*
 
   - dimension: source
+    hidden: TRUE
     type: string
     sql: ${TABLE}.source
 
   - dimension: brand
+    hidden: TRUE
     label: 'Brand Name'
     type: string
     sql: ${TABLE}.brand

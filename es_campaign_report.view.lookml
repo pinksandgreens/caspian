@@ -1,4 +1,5 @@
 - view: es_campaign_report
+  label: 'Campaign Report(s)'
   sql_table_name: looker_scratch.es_campaign_report
   fields:
 
@@ -38,19 +39,24 @@
     type: string
     sql: ${TABLE}.short_url
 
-  - dimension: total_conversions
+  - dimension: total_conversions      ############ HIDDEN ###############
+    hidden: TRUE
     type: string
     sql: ${TABLE}.total_conversions
 
-  - dimension: total_shares
+  - dimension: total_shares         ############ HIDDEN ###############
+    hidden: TRUE
     type: number
     sql: ${TABLE}.total_shares
 
   - dimension: total_views
     type: number
     sql: ${TABLE}.total_views
+    
+    # Can't set these 3 as integers, might be because they're strings in the DB?
 
   - measure: count
+    hidden: TRUE
     type: count
     drill_fields: [name]
 

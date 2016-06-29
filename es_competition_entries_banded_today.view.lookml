@@ -28,14 +28,17 @@
 
   fields:
   - measure: count
+    hidden: TRUE
     type: count
     drill_fields: detail*
 
   - dimension: email
+    hidden: TRUE
     type: string
     sql: ${TABLE}.email
 
   - dimension: entries_banded
+    hidden: TRUE
     type: string
     sql: ${TABLE}.entries_banded
 

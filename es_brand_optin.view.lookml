@@ -1,4 +1,5 @@
 - view: es_brand_optin
+  label: 'Competition Optins'
   sql_table_name: publications.es_brand_optin
   fields:
 
@@ -8,18 +9,18 @@
     sql: ${TABLE}.brand
 
   - dimension: brandoptin
-    label: 'Brand Opin (Yes/No)'
+    label: 'Brand Opin'
     type: yesno
     sql: ${TABLE}.brandoptin
 
   - dimension_group: date_created
-    label: 'Date Created'
+    label: 'Optin'
     type: time
     timeframes: [time, date, week, month]
     sql: ${TABLE}.date_created
 
   - dimension_group: last_updated
-    label: 'Last Updated'
+    label: 'Updated Optin'
     type: time
     timeframes: [time, date, week, month]
     sql: ${TABLE}.last_updated

@@ -1,4 +1,5 @@
 - view: es_competition_entries
+  label: 'Competition Entries'
   sql_table_name: publications.es_competition_entries
   fields:
 

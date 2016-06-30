@@ -199,13 +199,19 @@
 #    label: 'Postcode'
 #    type: string
 #    sql: ${TABLE}.postal_code
+  
+  - dimension: postal_code_RAW
+    hidden: TRUE
+    label: 'PostcodeTESTING1'
+    type: string
+    sql: UPPER(${TABLE}.postal_code)
     
   - dimension: postal_code0
     hidden: TRUE
     label: 'PostcodeTESTING1'
     type: string
     sql: |
-      TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')
+      TRANSLATE(${postal_code_RAW}, ' ,-*.', '')
 
   - dimension: postal_code1
     hidden: TRUE
@@ -219,13 +225,14 @@
     label: 'PostcodeTESTING3'
     type: string
     sql: |
-      substring(${postal_code0},2,4) 
+      substring(${postal_code0},5,4) 
       
   - dimension: postal_code_clean
-    hidden: FALSE
+    hidden: TRUE
     label: 'PostcodeTESTING4'
     type: string
-    sql: CONCAT(${postal_code1},' ', ${postal_code2})  
+    sql: |
+      ${postal_code1} || ' ' ||  ${postal_code2}  
       
   
   - dimension: postal_code
@@ -233,14 +240,10 @@
     type: string
     sql: |
        CASE 
-          WHEN ${postal_code_clean} LIKE 'DA%' THEN ${postal_code_clean}
+          WHEN ${postal_code_clean} ILIKE 'DA%' THEN ${postal_code_clean}
           ELSE 'Unknown'
        END
     
-#    sql_where: (${TABLE}.postal_code ILIKE 'AB')
-#    sql: ${TABLE}.postal_code
-#    sql: |
-#    WHERE ${postal_code} ILIKE 'DA%'
 
   - dimension: postal_area
     hidden: TRUE

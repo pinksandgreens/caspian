@@ -1,9 +1,11 @@
 - view: es_competitions
+  label: 'Competition Information'
   sql_table_name: publications.es_competitions
   fields:
 
   - dimension: id
-    hidden: TRUE
+    label: 'Competition ID'
+    hidden: FALSE
     primary_key: true
     type: string
     sql: ${TABLE}.id
@@ -14,7 +16,7 @@
     sql: ${TABLE}.brand
 
   - dimension_group: created
-    label: 'Date Created'
+    label: 'Created'
     type: time
     timeframes: [time, date, week, month]
     sql: ${TABLE}.created_date
@@ -67,11 +69,33 @@
     label: 'Campaign Type'
     type: string
     sql: ${TABLE}.ref_campaign_type
-
+    sql: |
+      CASE ${TABLE}.ref_campaign_type
+        WHEN 'CMP' THEN 'Competition'
+        WHEN 'CON' THEN 'Contest'
+        WHEN 'OTH' THEN 'Other'
+        WHEN 'POL' THEN 'Poll'
+        WHEN 'PRM' THEN 'Promotion'
+        WHEN 'QIZ' THEN 'Quiz'
+        WHEN 'REG' THEN 'Registration'
+        WHEN 'SOW' THEN 'Social Wall'
+        WHEN '' THEN 'Unknown'
+      END
+    
   - dimension: ref_channel
+    label: 'Entry Channel'
     hidden: FALSE
     type: string
-    sql: ${TABLE}.ref_channel
+    sql: |
+      CASE ${TABLE}.ref_channel
+        WHEN 'W' THEN 'Web'
+        WHEN 'M' THEN 'Microsite'
+        WHEN 'F' THEN 'Facebook'
+        WHEN 'T' THEN 'Twitter'
+        WHEN 'I' THEN 'Instagram'
+        WHEN '' THEN 'Unknown'
+      END
+    
 
   - dimension: ref_target_date
     hidden: TRUE

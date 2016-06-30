@@ -30,10 +30,13 @@
     sql: ${TABLE}.name1
 
   - dimension: publish_date
-    label: 'Date Published'
-    type: string
-    sql: ${TABLE}.publish_date
-
+    label: 'Competition Published'
+    type: time
+    timeframes: [date, week, month]
+    sql: |
+     TO_DATE (${TABLE}.publish_date, 'DD-MM-YYYY')
+      
+      
   - dimension: short_url
     hidden: TRUE
     type: string

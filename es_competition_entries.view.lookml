@@ -15,6 +15,7 @@
     sql: ${TABLE}.account_id
 
   - dimension: account_name
+    hidden: TRUE
     label: 'Account Name'
     type: string
     sql: ${TABLE}.account_name
@@ -35,6 +36,7 @@
     sql: ${TABLE}.competition_id
 
   - dimension: couponcode
+    hidden: TRUE
     label: 'Coupon Code Used'
     type: string
     sql: ${TABLE}.couponcode
@@ -46,7 +48,7 @@
     sql: ${TABLE}.created_date
 
   - dimension_group: date_created
-    label: 'Competition - Date Created'
+    label: 'Competition - Created'
     type: time
     timeframes: [time, date, week, month]
     sql: ${TABLE}.date_created
@@ -88,12 +90,13 @@
     sql: ${TABLE}.mode
 
   - dimension: network
-    label: 'Entry Method (Web/Facebook, etc.)'
+    label: 'Entry Method'
     type: string
     sql: ${TABLE}.network
 
   - dimension: quizcategory
-    hidden: TRUE
+    label: 'Quiz Category'
+    hidden: FALSE
     type: string
     sql: ${TABLE}.quizcategory
 
@@ -169,7 +172,8 @@
     sql: ${TABLE}.user_id
 
   - dimension: useragent
-    hidden: TRUE
+    label: 'User Device Info - TESTING'
+    hidden: FALSE
     type: string
     sql: ${TABLE}.useragent
 
@@ -185,6 +189,7 @@
 #    sql: ${id}
     
   - measure: entries_count_banding
+    hidden: TRUE
     label: 'Entries Count Banding'
     type: tier
     tiers: [1,4,9,14,19,29]

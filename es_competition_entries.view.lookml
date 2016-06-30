@@ -203,6 +203,7 @@
     drill_fields: comp_drill_set_1*
     
   - measure: avg_entries_per_competition
+    hidden: TRUE
     label: 'Average Entries per Competition'
     type: number
     sql: ${entries_count}/${competitions_count}

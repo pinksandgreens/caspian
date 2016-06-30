@@ -128,8 +128,8 @@
     sql: ${TABLE}.zipcode
 
   - measure: users_count
-    hidden: TRUE
+    label: 'Users Count'
     type: count_distinct
     sql: ${user_id}
-    drill_fields: [first_name, last_name]
+    drill_fields: [user_ID]
 

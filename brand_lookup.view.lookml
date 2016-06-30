@@ -66,6 +66,7 @@
     sql: ${TABLE}.bra_parent_code
 
   - measure: count
+    hidden: TRUE
     type: count
     drill_fields: []
 

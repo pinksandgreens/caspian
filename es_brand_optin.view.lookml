@@ -31,11 +31,13 @@
     sql: ${TABLE}.user_id
     
   - measure: users_count
+    hidden: TRUE
     label: 'Users Count'
     type: count_distinct
     sql: ${TABLE}.user_id
 
   - measure: count
+    hidden: TRUE
     type: count
     drill_fields: []
 

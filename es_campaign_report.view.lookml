@@ -43,9 +43,10 @@
     sql: ${TABLE}.short_url
 
   - dimension: total_conversions      ############ HIDDEN ###############
-    hidden: TRUE
-    type: string
+    hidden: TRUE                      #  Hours wasted trying to fix: 1  #
+    type: string                      ###################################
     sql: ${TABLE}.total_conversions
+#    sql: TO_NUMBER(${TABLE}.total_conversions) ## Testing Still
 
   - dimension: total_shares         ############ HIDDEN ###############
     hidden: TRUE

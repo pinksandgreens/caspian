@@ -30,3 +30,13 @@ Featured Dashboards and reports
 ​
 [Competitions](https://bauerxcel.looker.com/dashboards/23) | [User Registrations](https://bauerxcel.looker.com/spaces/27) | [Web Analytics](https://bauerxcel.looker.com/spaces/26)  | [DMP](https://bauerxcel.looker.com/spaces/32) |
 
+  Dashboard                                                   | Description
+ -------------------------------------------------------------|---------------------------
+ [Competitions](https://bauerxcel.looker.com/dashboards/23)   | Competition entries, demographics etc
+  i) Competitions by brand  - FIX THIS IT'S DUMB              |
+ -------------------------------------------------------------|---------------------------
+ [User Registrations](https://bauerxcel.looker.com/spaces/27) | Registration data, demographics etc
+ -------------------------------------------------------------|----------------------------
+ [Web Analytics](https://bauerxcel.looker.com/spaces/26)      | Web Analytics data, social data, audience etc
+ -------------------------------------------------------------|-----------------------------
+ [DMP](https://bauerxcel.looker.com/spaces/32)                | Data mangement platform audience data

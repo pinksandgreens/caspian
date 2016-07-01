@@ -22,7 +22,7 @@
     sql: ${TABLE}.created_date
 
   - dimension: name
-    label: 'Brand Name'
+    label: 'Name'
     type: string
     sql: ${TABLE}.name
     html: |

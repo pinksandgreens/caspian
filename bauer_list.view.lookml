@@ -195,174 +195,174 @@
     type: string
     sql: ${TABLE}.occupation
 
-  - dimension: postal_code
-    label: 'Postcode'
-    type: string
-    sql: ${TABLE}.postal_code
+#   - dimension: postal_code
+#     label: 'Postcode'
+#     type: string
+#     sql: UPPER(${TABLE}.postal_code)
   
 #   - dimension: postal_code_RAW
 #     hidden: TRUE
 #     label: 'PostcodeTESTING1'
 #     type: string
 #     sql: UPPER(${TABLE}.postal_code)
-#     
-#   - dimension: postal_code0
+    
+#   - dimension: postal_code
 #     hidden: TRUE
 #     label: 'PostcodeTESTING1'
 #     type: string
 #     sql: |
-#       TRANSLATE(${postal_code_RAW}, ' ,-*.', '')
+#       substring(UPPER(TRANSLATE(${postal_code}, ' ,-*.', '')),1,4)
 # 
 #   - dimension: postal_code1
 #     hidden: TRUE
 #     label: 'PostcodeTESTING2'
 #     type: string
 #     sql: |
-#       substring(${postal_code0},1,4)
-#       
+#       substring(UPPER(TRANSLATE(${postal_code}, ' ,-*.', '')),5,4)
+      
 #   - dimension: postal_code2
 #     hidden: TRUE
 #     label: 'PostcodeTESTING3'
 #     type: string
 #     sql: |
 #       substring(${postal_code0},5,4) 
-#       
+      
 #   - dimension: postal_code_clean
 #     hidden: TRUE
 #     label: 'PostcodeTESTING4'
 #     type: string
 #     sql: |
-#       ${postal_code1} || ' ' ||  ${postal_code2}  
-#       
-#   
-#   - dimension: postal_code
-#     label: 'Postcode'
-#     type: string
-#     sql: |
-#        CASE 
-#             WHEN ${postal_code_clean} LIKE 'AB%' THEN ${postal_code_clean}
-#             WHEN ${postal_code_clean} LIKE 'AL%' THEN ${postal_code_clean}
-#             WHEN ${postal_code_clean} LIKE 'B%' THEN ${postal_code_clean}
-#             WHEN ${postal_code_clean} LIKE 'BA%' THEN ${postal_code_clean}
-#             WHEN ${postal_code_clean} LIKE 'BB%' THEN ${postal_code_clean}
-#             WHEN ${postal_code_clean} LIKE 'BD%' THEN ${postal_code_clean}
-#             WHEN ${postal_code_clean} LIKE 'BH%' THEN ${postal_code_clean}
-#             WHEN ${postal_code_clean} LIKE 'BL%' THEN ${postal_code_clean}
-#             WHEN ${postal_code_clean} LIKE 'BN%' THEN ${postal_code_clean}
-#             WHEN ${postal_code_clean} LIKE 'BR%' THEN ${postal_code_clean}
-#             WHEN ${postal_code_clean} LIKE 'BS%' THEN ${postal_code_clean}
-#             WHEN ${postal_code_clean} LIKE 'BT%' THEN ${postal_code_clean}
-#             WHEN ${postal_code_clean} LIKE 'CA%' THEN ${postal_code_clean}
-#             WHEN ${postal_code_clean} LIKE 'CB%' THEN ${postal_code_clean}
-#             WHEN ${postal_code_clean} LIKE 'CF%' THEN ${postal_code_clean}
-#             WHEN ${postal_code_clean} LIKE 'CH%' THEN ${postal_code_clean}
-#             WHEN ${postal_code_clean} LIKE 'CM%' THEN ${postal_code_clean}
-#             WHEN ${postal_code_clean} LIKE 'CO%' THEN ${postal_code_clean}
-#             WHEN ${postal_code_clean} LIKE 'CR%' THEN ${postal_code_clean}
-#             WHEN ${postal_code_clean} LIKE 'CT%' THEN ${postal_code_clean}
-#             WHEN ${postal_code_clean} LIKE 'CV%' THEN ${postal_code_clean}
-#             WHEN ${postal_code_clean} LIKE 'CW%' THEN ${postal_code_clean}
-#             WHEN ${postal_code_clean} LIKE 'DA%' THEN ${postal_code_clean}
-#             WHEN ${postal_code_clean} LIKE 'DD%' THEN ${postal_code_clean}
-#             WHEN ${postal_code_clean} LIKE 'DE%' THEN ${postal_code_clean}
-#             WHEN ${postal_code_clean} LIKE 'DG%' THEN ${postal_code_clean}
-#             WHEN ${postal_code_clean} LIKE 'DH%' THEN ${postal_code_clean}
-#             WHEN ${postal_code_clean} LIKE 'DL%' THEN ${postal_code_clean}
-#             WHEN ${postal_code_clean} LIKE 'DN%' THEN ${postal_code_clean}
-#             WHEN ${postal_code_clean} LIKE 'DT%' THEN ${postal_code_clean}
-#             WHEN ${postal_code_clean} LIKE 'DY%' THEN ${postal_code_clean}
-#             WHEN ${postal_code_clean} LIKE 'E%' THEN ${postal_code_clean}
-#             WHEN ${postal_code_clean} LIKE 'EC%' THEN ${postal_code_clean}
-#             WHEN ${postal_code_clean} LIKE 'EH%' THEN ${postal_code_clean}
-#             WHEN ${postal_code_clean} LIKE 'EN%' THEN ${postal_code_clean}
-#             WHEN ${postal_code_clean} LIKE 'EX%' THEN ${postal_code_clean}
-#             WHEN ${postal_code_clean} LIKE 'FK%' THEN ${postal_code_clean}
-#             WHEN ${postal_code_clean} LIKE 'FY%' THEN ${postal_code_clean}
-#             WHEN ${postal_code_clean} LIKE 'G%' THEN ${postal_code_clean}
-#             WHEN ${postal_code_clean} LIKE 'GL%' THEN ${postal_code_clean}
-#             WHEN ${postal_code_clean} LIKE 'GU%' THEN ${postal_code_clean}
-#             WHEN ${postal_code_clean} LIKE 'HA%' THEN ${postal_code_clean}
-#             WHEN ${postal_code_clean} LIKE 'HD%' THEN ${postal_code_clean}
-#             WHEN ${postal_code_clean} LIKE 'HG%' THEN ${postal_code_clean}
-#             WHEN ${postal_code_clean} LIKE 'HP%' THEN ${postal_code_clean}
-#             WHEN ${postal_code_clean} LIKE 'HR%' THEN ${postal_code_clean}
-#             WHEN ${postal_code_clean} LIKE 'HS%' THEN ${postal_code_clean}
-#             WHEN ${postal_code_clean} LIKE 'HU%' THEN ${postal_code_clean}
-#             WHEN ${postal_code_clean} LIKE 'HX%' THEN ${postal_code_clean}
-#             WHEN ${postal_code_clean} LIKE 'IG%' THEN ${postal_code_clean}
-#             WHEN ${postal_code_clean} LIKE 'IP%' THEN ${postal_code_clean}
-#             WHEN ${postal_code_clean} LIKE 'IV%' THEN ${postal_code_clean}
-#             WHEN ${postal_code_clean} LIKE 'KA%' THEN ${postal_code_clean}
-#             WHEN ${postal_code_clean} LIKE 'KT%' THEN ${postal_code_clean}
-#             WHEN ${postal_code_clean} LIKE 'KW%' THEN ${postal_code_clean}
-#             WHEN ${postal_code_clean} LIKE 'KY%' THEN ${postal_code_clean}
-#             WHEN ${postal_code_clean} LIKE 'L%' THEN ${postal_code_clean}
-#             WHEN ${postal_code_clean} LIKE 'LA%' THEN ${postal_code_clean}
-#             WHEN ${postal_code_clean} LIKE 'LD%' THEN ${postal_code_clean}
-#             WHEN ${postal_code_clean} LIKE 'LE%' THEN ${postal_code_clean}
-#             WHEN ${postal_code_clean} LIKE 'LL%' THEN ${postal_code_clean}
-#             WHEN ${postal_code_clean} LIKE 'LN%' THEN ${postal_code_clean}
-#             WHEN ${postal_code_clean} LIKE 'LS%' THEN ${postal_code_clean}
-#             WHEN ${postal_code_clean} LIKE 'LU%' THEN ${postal_code_clean}
-#             WHEN ${postal_code_clean} LIKE 'M%' THEN ${postal_code_clean}
-#             WHEN ${postal_code_clean} LIKE 'ME%' THEN ${postal_code_clean}
-#             WHEN ${postal_code_clean} LIKE 'MK%' THEN ${postal_code_clean}
-#             WHEN ${postal_code_clean} LIKE 'ML%' THEN ${postal_code_clean}
-#             WHEN ${postal_code_clean} LIKE 'N%' THEN ${postal_code_clean}
-#             WHEN ${postal_code_clean} LIKE 'NE%' THEN ${postal_code_clean}
-#             WHEN ${postal_code_clean} LIKE 'NG%' THEN ${postal_code_clean}
-#             WHEN ${postal_code_clean} LIKE 'NN%' THEN ${postal_code_clean}
-#             WHEN ${postal_code_clean} LIKE 'NP%' THEN ${postal_code_clean}
-#             WHEN ${postal_code_clean} LIKE 'NR%' THEN ${postal_code_clean}
-#             WHEN ${postal_code_clean} LIKE 'NW%' THEN ${postal_code_clean}
-#             WHEN ${postal_code_clean} LIKE 'OL%' THEN ${postal_code_clean}
-#             WHEN ${postal_code_clean} LIKE 'OX%' THEN ${postal_code_clean}
-#             WHEN ${postal_code_clean} LIKE 'PA%' THEN ${postal_code_clean}
-#             WHEN ${postal_code_clean} LIKE 'PE%' THEN ${postal_code_clean}
-#             WHEN ${postal_code_clean} LIKE 'PH%' THEN ${postal_code_clean}
-#             WHEN ${postal_code_clean} LIKE 'PL%' THEN ${postal_code_clean}
-#             WHEN ${postal_code_clean} LIKE 'PO%' THEN ${postal_code_clean}
-#             WHEN ${postal_code_clean} LIKE 'PR%' THEN ${postal_code_clean}
-#             WHEN ${postal_code_clean} LIKE 'RG%' THEN ${postal_code_clean}
-#             WHEN ${postal_code_clean} LIKE 'RH%' THEN ${postal_code_clean}
-#             WHEN ${postal_code_clean} LIKE 'RM%' THEN ${postal_code_clean}
-#             WHEN ${postal_code_clean} LIKE 'S%' THEN ${postal_code_clean}
-#             WHEN ${postal_code_clean} LIKE 'SA%' THEN ${postal_code_clean}
-#             WHEN ${postal_code_clean} LIKE 'SE%' THEN ${postal_code_clean}
-#             WHEN ${postal_code_clean} LIKE 'SG%' THEN ${postal_code_clean}
-#             WHEN ${postal_code_clean} LIKE 'SK%' THEN ${postal_code_clean}
-#             WHEN ${postal_code_clean} LIKE 'SL%' THEN ${postal_code_clean}
-#             WHEN ${postal_code_clean} LIKE 'SM%' THEN ${postal_code_clean}
-#             WHEN ${postal_code_clean} LIKE 'SN%' THEN ${postal_code_clean}
-#             WHEN ${postal_code_clean} LIKE 'SO%' THEN ${postal_code_clean}
-#             WHEN ${postal_code_clean} LIKE 'SP%' THEN ${postal_code_clean}
-#             WHEN ${postal_code_clean} LIKE 'SR%' THEN ${postal_code_clean}
-#             WHEN ${postal_code_clean} LIKE 'SS%' THEN ${postal_code_clean}
-#             WHEN ${postal_code_clean} LIKE 'ST%' THEN ${postal_code_clean}
-#             WHEN ${postal_code_clean} LIKE 'SW%' THEN ${postal_code_clean}
-#             WHEN ${postal_code_clean} LIKE 'SY%' THEN ${postal_code_clean}
-#             WHEN ${postal_code_clean} LIKE 'TA%' THEN ${postal_code_clean}
-#             WHEN ${postal_code_clean} LIKE 'TD%' THEN ${postal_code_clean}
-#             WHEN ${postal_code_clean} LIKE 'TF%' THEN ${postal_code_clean}
-#             WHEN ${postal_code_clean} LIKE 'TN%' THEN ${postal_code_clean}
-#             WHEN ${postal_code_clean} LIKE 'TQ%' THEN ${postal_code_clean}
-#             WHEN ${postal_code_clean} LIKE 'TR%' THEN ${postal_code_clean}
-#             WHEN ${postal_code_clean} LIKE 'TS%' THEN ${postal_code_clean}
-#             WHEN ${postal_code_clean} LIKE 'TW%' THEN ${postal_code_clean}
-#             WHEN ${postal_code_clean} LIKE 'UB%' THEN ${postal_code_clean}
-#             WHEN ${postal_code_clean} LIKE 'W%' THEN ${postal_code_clean}
-#             WHEN ${postal_code_clean} LIKE 'WA%' THEN ${postal_code_clean}
-#             WHEN ${postal_code_clean} LIKE 'WC%' THEN ${postal_code_clean}
-#             WHEN ${postal_code_clean} LIKE 'WD%' THEN ${postal_code_clean}
-#             WHEN ${postal_code_clean} LIKE 'WF%' THEN ${postal_code_clean}
-#             WHEN ${postal_code_clean} LIKE 'WN%' THEN ${postal_code_clean}
-#             WHEN ${postal_code_clean} LIKE 'WR%' THEN ${postal_code_clean}
-#             WHEN ${postal_code_clean} LIKE 'WS%' THEN ${postal_code_clean}
-#             WHEN ${postal_code_clean} LIKE 'WV%' THEN ${postal_code_clean}
-#             WHEN ${postal_code_clean} LIKE 'YO%' THEN ${postal_code_clean}
-#             WHEN ${postal_code_clean} LIKE 'ZE%' THEN ${postal_code_clean}
-#             ELSE 'Unknown'
-#        END
+#       substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),1,4) || ' ' ||  substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),5,4) 
+      
+  
+  - dimension: postal_code
+    label: 'Postcode'
+    type: string
+    sql: |
+       CASE 
+            WHEN substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),1,4) || ' ' ||  substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),5,4) ILIKE 'AB%' THEN substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),1,4) || ' ' ||  substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),5,4)
+            WHEN substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),1,4) || ' ' ||  substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),5,4) ILIKE 'AL%' THEN substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),1,4) || ' ' ||  substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),5,4)
+            WHEN substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),1,4) || ' ' ||  substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),5,4) ILIKE 'B%' THEN substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),1,4) || ' ' ||  substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),5,4)
+            WHEN substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),1,4) || ' ' ||  substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),5,4) ILIKE 'BA%' THEN substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),1,4) || ' ' ||  substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),5,4)
+            WHEN substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),1,4) || ' ' ||  substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),5,4) ILIKE 'BB%' THEN substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),1,4) || ' ' ||  substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),5,4)
+            WHEN substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),1,4) || ' ' ||  substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),5,4) ILIKE 'BD%' THEN substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),1,4) || ' ' ||  substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),5,4)
+            WHEN substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),1,4) || ' ' ||  substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),5,4) ILIKE 'BH%' THEN substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),1,4) || ' ' ||  substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),5,4)
+            WHEN substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),1,4) || ' ' ||  substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),5,4) ILIKE 'BL%' THEN substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),1,4) || ' ' ||  substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),5,4)
+            WHEN substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),1,4) || ' ' ||  substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),5,4) ILIKE 'BN%' THEN substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),1,4) || ' ' ||  substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),5,4)
+            WHEN substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),1,4) || ' ' ||  substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),5,4) ILIKE 'BR%' THEN substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),1,4) || ' ' ||  substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),5,4)
+            WHEN substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),1,4) || ' ' ||  substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),5,4) ILIKE 'BS%' THEN substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),1,4) || ' ' ||  substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),5,4)
+            WHEN substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),1,4) || ' ' ||  substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),5,4) ILIKE 'BT%' THEN substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),1,4) || ' ' ||  substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),5,4)
+            WHEN substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),1,4) || ' ' ||  substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),5,4) ILIKE 'CA%' THEN substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),1,4) || ' ' ||  substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),5,4)
+            WHEN substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),1,4) || ' ' ||  substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),5,4) ILIKE 'CB%' THEN substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),1,4) || ' ' ||  substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),5,4)
+            WHEN substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),1,4) || ' ' ||  substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),5,4) ILIKE 'CF%' THEN substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),1,4) || ' ' ||  substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),5,4)
+            WHEN substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),1,4) || ' ' ||  substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),5,4) ILIKE 'CH%' THEN substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),1,4) || ' ' ||  substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),5,4)
+            WHEN substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),1,4) || ' ' ||  substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),5,4) ILIKE 'CM%' THEN substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),1,4) || ' ' ||  substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),5,4)
+            WHEN substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),1,4) || ' ' ||  substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),5,4) ILIKE 'CO%' THEN substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),1,4) || ' ' ||  substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),5,4)
+            WHEN substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),1,4) || ' ' ||  substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),5,4) ILIKE 'CR%' THEN substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),1,4) || ' ' ||  substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),5,4)
+            WHEN substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),1,4) || ' ' ||  substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),5,4) ILIKE 'CT%' THEN substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),1,4) || ' ' ||  substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),5,4)
+            WHEN substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),1,4) || ' ' ||  substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),5,4) ILIKE 'CV%' THEN substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),1,4) || ' ' ||  substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),5,4)
+            WHEN substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),1,4) || ' ' ||  substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),5,4) ILIKE 'CW%' THEN substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),1,4) || ' ' ||  substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),5,4)
+            WHEN substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),1,4) || ' ' ||  substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),5,4) ILIKE 'DA%' THEN substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),1,4) || ' ' ||  substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),5,4)
+            WHEN substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),1,4) || ' ' ||  substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),5,4) ILIKE 'DD%' THEN substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),1,4) || ' ' ||  substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),5,4)
+            WHEN substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),1,4) || ' ' ||  substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),5,4) ILIKE 'DE%' THEN substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),1,4) || ' ' ||  substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),5,4)
+            WHEN substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),1,4) || ' ' ||  substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),5,4) ILIKE 'DG%' THEN substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),1,4) || ' ' ||  substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),5,4)
+            WHEN substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),1,4) || ' ' ||  substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),5,4) ILIKE 'DH%' THEN substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),1,4) || ' ' ||  substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),5,4)
+            WHEN substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),1,4) || ' ' ||  substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),5,4) ILIKE 'DL%' THEN substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),1,4) || ' ' ||  substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),5,4)
+            WHEN substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),1,4) || ' ' ||  substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),5,4) ILIKE 'DN%' THEN substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),1,4) || ' ' ||  substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),5,4)
+            WHEN substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),1,4) || ' ' ||  substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),5,4) ILIKE 'DT%' THEN substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),1,4) || ' ' ||  substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),5,4)
+            WHEN substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),1,4) || ' ' ||  substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),5,4) ILIKE 'DY%' THEN substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),1,4) || ' ' ||  substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),5,4)
+            WHEN substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),1,4) || ' ' ||  substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),5,4) ILIKE 'E%' THEN substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),1,4) || ' ' ||  substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),5,4)
+            WHEN substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),1,4) || ' ' ||  substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),5,4) ILIKE 'EC%' THEN substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),1,4) || ' ' ||  substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),5,4)
+            WHEN substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),1,4) || ' ' ||  substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),5,4) ILIKE 'EH%' THEN substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),1,4) || ' ' ||  substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),5,4)
+            WHEN substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),1,4) || ' ' ||  substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),5,4) ILIKE 'EN%' THEN substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),1,4) || ' ' ||  substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),5,4)
+            WHEN substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),1,4) || ' ' ||  substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),5,4) ILIKE 'EX%' THEN substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),1,4) || ' ' ||  substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),5,4)
+            WHEN substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),1,4) || ' ' ||  substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),5,4) ILIKE 'FK%' THEN substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),1,4) || ' ' ||  substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),5,4)
+            WHEN substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),1,4) || ' ' ||  substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),5,4) ILIKE 'FY%' THEN substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),1,4) || ' ' ||  substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),5,4)
+            WHEN substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),1,4) || ' ' ||  substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),5,4) ILIKE 'G%' THEN substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),1,4) || ' ' ||  substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),5,4)
+            WHEN substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),1,4) || ' ' ||  substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),5,4) ILIKE 'GL%' THEN substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),1,4) || ' ' ||  substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),5,4)
+            WHEN substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),1,4) || ' ' ||  substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),5,4) ILIKE 'GU%' THEN substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),1,4) || ' ' ||  substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),5,4)
+            WHEN substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),1,4) || ' ' ||  substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),5,4) ILIKE 'HA%' THEN substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),1,4) || ' ' ||  substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),5,4)
+            WHEN substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),1,4) || ' ' ||  substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),5,4) ILIKE 'HD%' THEN substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),1,4) || ' ' ||  substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),5,4)
+            WHEN substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),1,4) || ' ' ||  substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),5,4) ILIKE 'HG%' THEN substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),1,4) || ' ' ||  substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),5,4)
+            WHEN substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),1,4) || ' ' ||  substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),5,4) ILIKE 'HP%' THEN substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),1,4) || ' ' ||  substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),5,4)
+            WHEN substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),1,4) || ' ' ||  substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),5,4) ILIKE 'HR%' THEN substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),1,4) || ' ' ||  substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),5,4)
+            WHEN substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),1,4) || ' ' ||  substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),5,4) ILIKE 'HS%' THEN substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),1,4) || ' ' ||  substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),5,4)
+            WHEN substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),1,4) || ' ' ||  substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),5,4) ILIKE 'HU%' THEN substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),1,4) || ' ' ||  substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),5,4)
+            WHEN substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),1,4) || ' ' ||  substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),5,4) ILIKE 'HX%' THEN substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),1,4) || ' ' ||  substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),5,4)
+            WHEN substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),1,4) || ' ' ||  substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),5,4) ILIKE 'IG%' THEN substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),1,4) || ' ' ||  substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),5,4)
+            WHEN substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),1,4) || ' ' ||  substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),5,4) ILIKE 'IP%' THEN substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),1,4) || ' ' ||  substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),5,4)
+            WHEN substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),1,4) || ' ' ||  substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),5,4) ILIKE 'IV%' THEN substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),1,4) || ' ' ||  substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),5,4)
+            WHEN substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),1,4) || ' ' ||  substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),5,4) ILIKE 'KA%' THEN substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),1,4) || ' ' ||  substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),5,4)
+            WHEN substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),1,4) || ' ' ||  substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),5,4) ILIKE 'KT%' THEN substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),1,4) || ' ' ||  substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),5,4)
+            WHEN substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),1,4) || ' ' ||  substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),5,4) ILIKE 'KW%' THEN substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),1,4) || ' ' ||  substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),5,4)
+            WHEN substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),1,4) || ' ' ||  substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),5,4) ILIKE 'KY%' THEN substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),1,4) || ' ' ||  substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),5,4)
+            WHEN substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),1,4) || ' ' ||  substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),5,4) ILIKE 'L%' THEN substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),1,4) || ' ' ||  substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),5,4)
+            WHEN substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),1,4) || ' ' ||  substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),5,4) ILIKE 'LA%' THEN substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),1,4) || ' ' ||  substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),5,4)
+            WHEN substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),1,4) || ' ' ||  substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),5,4) ILIKE 'LD%' THEN substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),1,4) || ' ' ||  substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),5,4)
+            WHEN substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),1,4) || ' ' ||  substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),5,4) ILIKE 'LE%' THEN substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),1,4) || ' ' ||  substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),5,4)
+            WHEN substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),1,4) || ' ' ||  substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),5,4) ILIKE 'LL%' THEN substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),1,4) || ' ' ||  substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),5,4)
+            WHEN substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),1,4) || ' ' ||  substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),5,4) ILIKE 'LN%' THEN substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),1,4) || ' ' ||  substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),5,4)
+            WHEN substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),1,4) || ' ' ||  substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),5,4) ILIKE 'LS%' THEN substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),1,4) || ' ' ||  substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),5,4)
+            WHEN substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),1,4) || ' ' ||  substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),5,4) ILIKE 'LU%' THEN substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),1,4) || ' ' ||  substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),5,4)
+            WHEN substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),1,4) || ' ' ||  substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),5,4) ILIKE 'M%' THEN substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),1,4) || ' ' ||  substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),5,4)
+            WHEN substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),1,4) || ' ' ||  substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),5,4) ILIKE 'ME%' THEN substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),1,4) || ' ' ||  substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),5,4)
+            WHEN substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),1,4) || ' ' ||  substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),5,4) ILIKE 'MK%' THEN substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),1,4) || ' ' ||  substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),5,4)
+            WHEN substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),1,4) || ' ' ||  substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),5,4) ILIKE 'ML%' THEN substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),1,4) || ' ' ||  substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),5,4)
+            WHEN substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),1,4) || ' ' ||  substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),5,4) ILIKE 'N%' THEN substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),1,4) || ' ' ||  substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),5,4)
+            WHEN substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),1,4) || ' ' ||  substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),5,4) ILIKE 'NE%' THEN substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),1,4) || ' ' ||  substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),5,4)
+            WHEN substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),1,4) || ' ' ||  substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),5,4) ILIKE 'NG%' THEN substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),1,4) || ' ' ||  substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),5,4)
+            WHEN substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),1,4) || ' ' ||  substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),5,4) ILIKE 'NN%' THEN substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),1,4) || ' ' ||  substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),5,4)
+            WHEN substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),1,4) || ' ' ||  substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),5,4) ILIKE 'NP%' THEN substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),1,4) || ' ' ||  substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),5,4)
+            WHEN substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),1,4) || ' ' ||  substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),5,4) ILIKE 'NR%' THEN substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),1,4) || ' ' ||  substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),5,4)
+            WHEN substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),1,4) || ' ' ||  substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),5,4) ILIKE 'NW%' THEN substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),1,4) || ' ' ||  substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),5,4)
+            WHEN substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),1,4) || ' ' ||  substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),5,4) ILIKE 'OL%' THEN substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),1,4) || ' ' ||  substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),5,4)
+            WHEN substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),1,4) || ' ' ||  substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),5,4) ILIKE 'OX%' THEN substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),1,4) || ' ' ||  substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),5,4)
+            WHEN substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),1,4) || ' ' ||  substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),5,4) ILIKE 'PA%' THEN substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),1,4) || ' ' ||  substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),5,4)
+            WHEN substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),1,4) || ' ' ||  substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),5,4) ILIKE 'PE%' THEN substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),1,4) || ' ' ||  substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),5,4)
+            WHEN substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),1,4) || ' ' ||  substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),5,4) ILIKE 'PH%' THEN substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),1,4) || ' ' ||  substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),5,4)
+            WHEN substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),1,4) || ' ' ||  substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),5,4) ILIKE 'PL%' THEN substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),1,4) || ' ' ||  substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),5,4)
+            WHEN substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),1,4) || ' ' ||  substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),5,4) ILIKE 'PO%' THEN substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),1,4) || ' ' ||  substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),5,4)
+            WHEN substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),1,4) || ' ' ||  substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),5,4) ILIKE 'PR%' THEN substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),1,4) || ' ' ||  substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),5,4)
+            WHEN substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),1,4) || ' ' ||  substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),5,4) ILIKE 'RG%' THEN substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),1,4) || ' ' ||  substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),5,4)
+            WHEN substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),1,4) || ' ' ||  substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),5,4) ILIKE 'RH%' THEN substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),1,4) || ' ' ||  substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),5,4)
+            WHEN substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),1,4) || ' ' ||  substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),5,4) ILIKE 'RM%' THEN substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),1,4) || ' ' ||  substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),5,4)
+            WHEN substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),1,4) || ' ' ||  substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),5,4) ILIKE 'S%' THEN substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),1,4) || ' ' ||  substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),5,4)
+            WHEN substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),1,4) || ' ' ||  substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),5,4) ILIKE 'SA%' THEN substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),1,4) || ' ' ||  substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),5,4)
+            WHEN substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),1,4) || ' ' ||  substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),5,4) ILIKE 'SE%' THEN substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),1,4) || ' ' ||  substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),5,4)
+            WHEN substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),1,4) || ' ' ||  substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),5,4) ILIKE 'SG%' THEN substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),1,4) || ' ' ||  substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),5,4)
+            WHEN substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),1,4) || ' ' ||  substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),5,4) ILIKE 'SK%' THEN substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),1,4) || ' ' ||  substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),5,4)
+            WHEN substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),1,4) || ' ' ||  substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),5,4) ILIKE 'SL%' THEN substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),1,4) || ' ' ||  substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),5,4)
+            WHEN substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),1,4) || ' ' ||  substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),5,4) ILIKE 'SM%' THEN substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),1,4) || ' ' ||  substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),5,4)
+            WHEN substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),1,4) || ' ' ||  substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),5,4) ILIKE 'SN%' THEN substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),1,4) || ' ' ||  substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),5,4)
+            WHEN substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),1,4) || ' ' ||  substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),5,4) ILIKE 'SO%' THEN substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),1,4) || ' ' ||  substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),5,4)
+            WHEN substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),1,4) || ' ' ||  substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),5,4) ILIKE 'SP%' THEN substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),1,4) || ' ' ||  substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),5,4)
+            WHEN substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),1,4) || ' ' ||  substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),5,4) ILIKE 'SR%' THEN substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),1,4) || ' ' ||  substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),5,4)
+            WHEN substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),1,4) || ' ' ||  substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),5,4) ILIKE 'SS%' THEN substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),1,4) || ' ' ||  substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),5,4)
+            WHEN substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),1,4) || ' ' ||  substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),5,4) ILIKE 'ST%' THEN substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),1,4) || ' ' ||  substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),5,4)
+            WHEN substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),1,4) || ' ' ||  substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),5,4) ILIKE 'SW%' THEN substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),1,4) || ' ' ||  substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),5,4)
+            WHEN substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),1,4) || ' ' ||  substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),5,4) ILIKE 'SY%' THEN substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),1,4) || ' ' ||  substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),5,4)
+            WHEN substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),1,4) || ' ' ||  substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),5,4) ILIKE 'TA%' THEN substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),1,4) || ' ' ||  substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),5,4)
+            WHEN substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),1,4) || ' ' ||  substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),5,4) ILIKE 'TD%' THEN substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),1,4) || ' ' ||  substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),5,4)
+            WHEN substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),1,4) || ' ' ||  substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),5,4) ILIKE 'TF%' THEN substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),1,4) || ' ' ||  substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),5,4)
+            WHEN substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),1,4) || ' ' ||  substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),5,4) ILIKE 'TN%' THEN substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),1,4) || ' ' ||  substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),5,4)
+            WHEN substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),1,4) || ' ' ||  substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),5,4) ILIKE 'TQ%' THEN substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),1,4) || ' ' ||  substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),5,4)
+            WHEN substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),1,4) || ' ' ||  substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),5,4) ILIKE 'TR%' THEN substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),1,4) || ' ' ||  substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),5,4)
+            WHEN substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),1,4) || ' ' ||  substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),5,4) ILIKE 'TS%' THEN substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),1,4) || ' ' ||  substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),5,4)
+            WHEN substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),1,4) || ' ' ||  substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),5,4) ILIKE 'TW%' THEN substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),1,4) || ' ' ||  substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),5,4)
+            WHEN substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),1,4) || ' ' ||  substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),5,4) ILIKE 'UB%' THEN substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),1,4) || ' ' ||  substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),5,4)
+            WHEN substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),1,4) || ' ' ||  substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),5,4) ILIKE 'W%' THEN substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),1,4) || ' ' ||  substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),5,4)
+            WHEN substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),1,4) || ' ' ||  substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),5,4) ILIKE 'WA%' THEN substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),1,4) || ' ' ||  substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),5,4)
+            WHEN substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),1,4) || ' ' ||  substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),5,4) ILIKE 'WC%' THEN substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),1,4) || ' ' ||  substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),5,4)
+            WHEN substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),1,4) || ' ' ||  substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),5,4) ILIKE 'WD%' THEN substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),1,4) || ' ' ||  substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),5,4)
+            WHEN substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),1,4) || ' ' ||  substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),5,4) ILIKE 'WF%' THEN substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),1,4) || ' ' ||  substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),5,4)
+            WHEN substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),1,4) || ' ' ||  substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),5,4) ILIKE 'WN%' THEN substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),1,4) || ' ' ||  substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),5,4)
+            WHEN substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),1,4) || ' ' ||  substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),5,4) ILIKE 'WR%' THEN substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),1,4) || ' ' ||  substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),5,4)
+            WHEN substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),1,4) || ' ' ||  substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),5,4) ILIKE 'WS%' THEN substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),1,4) || ' ' ||  substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),5,4)
+            WHEN substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),1,4) || ' ' ||  substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),5,4) ILIKE 'WV%' THEN substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),1,4) || ' ' ||  substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),5,4)
+            WHEN substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),1,4) || ' ' ||  substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),5,4) ILIKE 'YO%' THEN substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),1,4) || ' ' ||  substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),5,4)
+            WHEN substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),1,4) || ' ' ||  substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),5,4) ILIKE 'ZE%' THEN substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),1,4) || ' ' ||  substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),5,4)
+            ELSE 'Unknown'
+       END
     
 
   - dimension: postal_area

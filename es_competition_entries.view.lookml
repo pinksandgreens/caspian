@@ -184,14 +184,14 @@
     type: string
     sql: |
       CASE
-            WHEN ${TABLE}.useragent LIKE '%Mobile%' THEN 'Mobile'
+            WHEN ${TABLE}.useragent LIKE '%Mobile Safari%' THEN 'Mobile'
             WHEN ${TABLE}.useragent LIKE '%Android%' THEN 'Mobile'
             WHEN ${TABLE}.useragent LIKE '%iPhone%' THEN 'Mobile'
             WHEN ${TABLE}.useragent LIKE '%BB10%' THEN 'Mobile'
             WHEN ${TABLE}.useragent LIKE '%Windows%' THEN 'Desktop'
             WHEN ${TABLE}.useragent LIKE '%MSIE%' THEN 'Desktop'  
             WHEN ${TABLE}.useragent LIKE '%Macintosh%' THEN 'Desktop'
-            WHEN ${TABLE}.useragent LIKE '%X11%' THEN 'Desktop'
+            WHEN ${TABLE}.useragent LIKE '%X11%' THEN 'Desktop' 
             WHEN ${TABLE}.useragent LIKE '%iPad%' THEN 'Tablet'
             WHEN ${TABLE}.useragent LIKE '%Ubuntu%' THEN 'Desktop'
             WHEN ${TABLE}.useragent LIKE '%PlayStation%' THEN 'Console'
@@ -201,9 +201,24 @@
             WHEN ${TABLE}.useragent LIKE '%Linux; Linux%' THEN 'Desktop'
             WHEN ${TABLE}.useragent LIKE '%Linux; NetCast%' THEN 'Desktop'
             WHEN ${TABLE}.useragent LIKE '%Linux; U%' THEN 'Desktop'
-            ELSE 'Unknown'
+            ELSE 'Other/Unknown'
       END
-
+      
+      
+  - dimension: device_type2
+    label: 'User Device Type2'
+    hidden: FALSE
+    type: string
+    sql: |
+      CASE
+            WHEN ${TABLE}.useragent LIKE '%Mobile%' THEN 'Mobile'
+            WHEN ${TABLE}.useragent LIKE '%iPad%' THEN 'Tablet'
+            
+            WHEN ${TABLE}.useragent LIKE '%PlayBook%' THEN 'Tablet'
+            
+            ELSE ${TABLE}.useragent
+      END
+      
   - dimension: browser
     label: 'User Web Browser'
     hidden: FALSE
@@ -227,8 +242,22 @@
     sql: ${TABLE}.useragent
     sql: |
       CASE
-            WHEN ${TABLE}.useragent ILIKE '%ZE%' THEN ${TABLE}.useragent
-            ELSE 'Unknown'
+            WHEN ${TABLE}.useragent LIKE '%Windows%' THEN 'Windows'
+            WHEN ${TABLE}.useragent LIKE '%Macintosh%' THEN 'Mac OS'
+            WHEN ${TABLE}.useragent LIKE '%Presto%' THEN 'Linux'
+            WHEN ${TABLE}.useragent LIKE '%Linux; Linux%' THEN 'Linux'
+            WHEN ${TABLE}.useragent LIKE '%Linux; NetCast%' THEN 'Linux'
+            WHEN ${TABLE}.useragent LIKE '%Linux; U%' THEN 'Linux'
+            WHEN ${TABLE}.useragent LIKE '%Ubuntu%' THEN 'Linux'
+            WHEN ${TABLE}.useragent LIKE '%Mac OS X%' THEN 'Mac OS'
+            WHEN ${TABLE}.useragent LIKE '%Android%' THEN 'Android'
+            WHEN ${TABLE}.useragent LIKE '%CrOS%' THEN 'Chrome OS'
+            WHEN ${TABLE}.useragent LIKE '%X11%' THEN 'Mac OS'
+            WHEN ${TABLE}.useragent LIKE '%PlayStation%' THEN 'Console'
+            WHEN ${TABLE}.useragent LIKE '%Nintendo%' THEN 'Console'
+            WHEN ${TABLE}.useragent LIKE '%AppleWebKit%' THEN 'Mac OS'
+            WHEN ${TABLE}.useragent LIKE '%iPhone%' THEN 'Mac OS'
+            ELSE 'Other/Unknown'
       END
 
   - measure: entries_count

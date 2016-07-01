@@ -22,12 +22,11 @@ Thanks!
 ​
 ---
 ​
-## [Example dashboard link]([link to dashboard])
-### Check out this dashboard to see our KPIs, it's a great place to get a pulse of the business!
+[Example dashboard link]([link to dashboard])
+Check out this dashboard to see our KPIs, it's a great place to get a pulse of the business!
 ---
 ​
-### Featured Dashboards and reports 
+Featured Dashboards and reports 
 ​
-[Competitions](https://bauerxcel.looker.com/dashboards/23) | [User Registrations](https://bauerxcel.looker.com/spaces/27) | [Web Analytics](https://bauerxcel.looker.com/spaces/26)  | [DMP](https://bauerxcel.looker.com/spaces/32)
--- | -- | --
+[Competitions](https://bauerxcel.looker.com/dashboards/23) | [User Registrations](https://bauerxcel.looker.com/spaces/27) | [Web Analytics](https://bauerxcel.looker.com/spaces/26)  | [DMP](https://bauerxcel.looker.com/spaces/32) |
 

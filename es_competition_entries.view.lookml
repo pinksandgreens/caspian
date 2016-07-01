@@ -205,20 +205,6 @@
       END
       
       
-  - dimension: device_type2
-    label: 'User Device Type2'
-    hidden: FALSE
-    type: string
-    sql: |
-      CASE
-            WHEN ${TABLE}.useragent LIKE '%Mobile%' THEN 'Mobile'
-            WHEN ${TABLE}.useragent LIKE '%iPad%' THEN 'Tablet'
-            
-            WHEN ${TABLE}.useragent LIKE '%PlayBook%' THEN 'Tablet'
-            
-            ELSE ${TABLE}.useragent
-      END
-      
   - dimension: browser
     label: 'User Web Browser'
     hidden: FALSE

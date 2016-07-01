@@ -8,12 +8,13 @@
     sql: ${TABLE}.brand
 
   - dimension: created_by
+    hidden: TRUE
     label: 'Created By (ES/Gigya/Nudge)'
     type: string
     sql: ${TABLE}.created_by
 
   - dimension_group: date_created
-    label: 'Date Created'
+    label: 'Created'
     type: time
     timeframes: [time, date, week, month]
     sql: ${TABLE}.date_created

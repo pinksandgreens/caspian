@@ -16,7 +16,7 @@ Click on the [_looker_](https://bauerxcel.looker.com/spaces/1) logo in the upper
 ​
 ## Welcome!
 ​
-If you are new to the Looker data exploration platform or would like training on how to explore, visualize and share date with Looker, please send an email to <support@looker.com> for access to the training ground at learn.looker.com.
+If you are new to the Looker data exploration platform or would like training on how to explore, visualize and share date with Looker, please send an email to BOBBY.
 ​
 Thanks!
 ​
@@ -30,6 +30,4 @@ Thanks!
 ​
 [Competitions](https://bauerxcel.looker.com/dashboards/23) | [User Registrations](https://bauerxcel.looker.com/spaces/27) | [Web Analytics](https://bauerxcel.looker.com/spaces/26)  | [DMP](https://bauerxcel.looker.com/spaces/32)
 -- | -- | --
-[Look 1](link to Look)  | [[Look 1](link to Look)   | [Look 1](link to Look) 
-[Look 1](link to Look)  | [[Look 1](link to Look)   | [Look 1](link to Look) 
-[Look 1](link to Look)  | [Look 1](link to Look)  | [Look 1](link to Look)
+

@@ -5,6 +5,7 @@
 
 - explore: es_users
   label: 'Competition Data'
+  persist_for: 1 hour
  
   joins:
   - join: es_competition_entries

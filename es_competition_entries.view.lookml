@@ -173,9 +173,46 @@
 
   - dimension: useragent
     label: 'User Device Info - TESTING'
-    hidden: FALSE
+    hidden: TRUE
     type: string
     sql: ${TABLE}.useragent
+
+      
+#  - dimension: device_type
+#    label: 'Device Type'
+#    hidden: FALSE
+#    type: string
+#    sql: ${TABLE}.useragent
+#    sql: |
+#      CASE
+#            WHEN ${TABLE}.useragent ILIKE '%Mobile%' THEN 'Mobile'
+#            WHEN ${TABLE}.useragent ILIKE '%Android%' THEN 'Mobile'
+#            WHEN ${TABLE}.useragent ILIKE '%iPhone%' THEN 'Mobile'
+#            WHEN ${TABLE}.useragent ILIKE '%Mozilla%' THEN 'Desktop'
+#            ELSE 'Unknown'
+#      END
+
+#  - dimension: operating_system
+#    label: 'Operating System'
+#    hidden: FALSE
+#    type: string
+#    sql: ${TABLE}.useragent
+#    sql: |
+#      CASE
+#            WHEN ${TABLE}.useragent ILIKE '%ZE%' THEN ${postal_code_clean}
+#            ELSE 'Unknown'
+#      END
+      
+#  - dimension: browser
+#    label: 'Web Browser'
+#    hidden: FALSE
+#    type: string
+#    sql: ${TABLE}.useragent
+#    sql: |
+#      CASE
+#            WHEN ${TABLE}.useragent ILIKE '%ZE%' THEN ${postal_code_clean}
+#            ELSE 'Unknown'
+#      END
 
   - measure: entries_count
     label: 'Entries Count'

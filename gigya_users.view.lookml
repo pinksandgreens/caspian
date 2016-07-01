@@ -114,12 +114,12 @@
     type: number
     sql: ${TABLE}.followingcount
     
-  - dimension: Location
+  - dimension: location_test
     label: 'Latitude/Longitude Location'
     type: location
     sql_latitude: ROUND(${TABLE}.location_lat,1)
     sql_longitude: ROUND(${TABLE}.location_long,1)
-
+   
   - dimension: gender
     hidden: TRUE
     type: string

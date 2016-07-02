@@ -1,5 +1,5 @@
 - view: es_brand_optin
-  label: 'Competition Optins'
+  label: '2e. Competition Optins'
   sql_table_name: publications.es_brand_optin
   fields:
 

@@ -1,5 +1,5 @@
 - view: es_users
-  label: 'Competition Users'
+  label: '2a. Competition Users'
   sql_table_name: publications.es_users
   fields:
 

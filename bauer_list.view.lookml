@@ -1,5 +1,5 @@
 - view: bauer_list
-  label: 'Bauer First Party Data'
+  label: '1a. Bauer First Party Data'
   sql_table_name: publications.bauer_list
   fields:
 
@@ -184,45 +184,6 @@
     hidden: TRUE
     type: string
     sql: ${TABLE}.occupation
-
-#   - dimension: postal_code
-#     label: 'Postcode'
-#     type: string
-#     sql: UPPER(${TABLE}.postal_code)
-  
-#   - dimension: postal_code_RAW
-#     hidden: TRUE
-#     label: 'PostcodeTESTING1'
-#     type: string
-#     sql: UPPER(${TABLE}.postal_code)
-    
-#   - dimension: postal_code
-#     hidden: TRUE
-#     label: 'PostcodeTESTING1'
-#     type: string
-#     sql: |
-#       substring(UPPER(TRANSLATE(${postal_code}, ' ,-*.', '')),1,4)
-# 
-#   - dimension: postal_code1
-#     hidden: TRUE
-#     label: 'PostcodeTESTING2'
-#     type: string
-#     sql: |
-#       substring(UPPER(TRANSLATE(${postal_code}, ' ,-*.', '')),5,4)
-      
-#   - dimension: postal_code2
-#     hidden: TRUE
-#     label: 'PostcodeTESTING3'
-#     type: string
-#     sql: |
-#       substring(${postal_code0},5,4) 
-      
-#   - dimension: postal_code_clean
-#     hidden: TRUE
-#     label: 'PostcodeTESTING4'
-#     type: string
-#     sql: |
-#       substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),1,4) || ' ' ||  substring(UPPER(TRANSLATE(${TABLE}.postal_code, ' ,-*.', '')),5,4) 
 
   - dimension: postal_code
     label: 'Postcode'

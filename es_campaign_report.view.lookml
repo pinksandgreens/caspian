@@ -1,5 +1,5 @@
 - view: es_campaign_report
-  label: 'Campaign Report(s)'
+  label: '2d. Campaign Report(s)'
   sql_table_name: looker_scratch.es_campaign_report
   fields:
 

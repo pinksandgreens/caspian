@@ -40,3 +40,14 @@ Featured Dashboards and reports
  [Web Analytics](https://bauerxcel.looker.com/spaces/26)      | Web Analytics data, social data, audience etc
  -------------------------------------------------------------|-----------------------------
  [DMP](https://bauerxcel.looker.com/spaces/32)                | Data mangement platform audience data
+ 
+ 
+ | Dashboard                                                                                                                                                      | Description                                   |
+|----------------------------------------------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------|
+| Competitions Overview    i) Competitions by Brand    ii) Competitions by Market    iii) Competitions by Category    iv) Competitions by Individual Competition | Competition entries, demographics etc         |
+| Registrations Overview     i) Registrations by Brand     ii) Registrations by Market                                                                           | Registration data, demographics etc           |
+| Social Media Overview     i) Social Media by Brand                                                                                                             | Web Analytics data, social data, audience etc |
+| Audience Profile     i) Women's Lifestyle Articles      ii) Film & Music Articles (<- TESTING)                                                                 | Web Analytics data, social data, audience etc |
+| Data Management Platform                                                                                                                                       | Data mangement platform audience data         |
+ 
+  # http://www.tablesgenerator.com/markdown_tables

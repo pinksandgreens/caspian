@@ -410,6 +410,7 @@
     drill_fields: [first_name, last_name, name, nickname, username]
     
   - measure: users_count
+    label: 'Registered Users Count'
     type: count_distinct
     sql: ${TABLE}.email
 

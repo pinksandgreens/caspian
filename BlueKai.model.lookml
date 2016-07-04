@@ -8,6 +8,7 @@
 
 - explore: bk_swap_ids_gygia
   label: 'DMP Audience Data'
+  persist_for: 1 hour
 
   joins:
   - join: bk_identity_categories

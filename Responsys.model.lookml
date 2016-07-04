@@ -5,6 +5,7 @@
 
 - explore: responsy_active
   label: 'Email Data'
+  persist_for: 1 hour
   joins:
     - join: bauer_list
       type: inner

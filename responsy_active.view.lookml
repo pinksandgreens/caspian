@@ -2,6 +2,20 @@
   sql_table_name: responsys.responsy_active
   fields:
 
+#### EMAIL EVENTS
+
+  - dimension: open_count
+    type: string
+    sql: ${TABLE}.open_count 
+
+  - dimension: click_count
+    type: string
+    sql: ${TABLE}.click_count
+
+  - dimension: bounce_type
+    type: string
+    sql: ${TABLE}.bounce_type
+
   - dimension: unsub_type
     type: string
     sql: ${TABLE}.unsub_type
@@ -10,23 +24,28 @@
     type: string
     sql: ${TABLE}.unsub_count  
     
-  - dimension: open_count
-    type: string
-    sql: ${TABLE}.open_count 
-  
-  - dimension: bounce_type
-    type: string
-    sql: ${TABLE}.bounce_type
+###### DATE FIELDS
 
-  - dimension: click_count
-    type: string
-    sql: ${TABLE}.click_count
+  - dimension_group: launch_date
+    label: 'Sent Date'
+    type: time
+    timeframes: [date, week, month]
+    sql: ${TABLE}.launch_date
 
   - dimension: click_date
     type: string
     sql: ${TABLE}.click_date
 
+##### BRAND LOOKUP
+
+  - dimension: launch_name
+    type: string
+    sql: ${TABLE}.launch_name
+
+#### EMAIL DIMENSIONS
+
   - dimension: concatid
+    alias: Uni
     type: string
     sql: ${TABLE}.concatid
 
@@ -34,22 +53,15 @@
     type: string
     sql: ${TABLE}.email_address
 
-  - dimension: launch_date
-    type: string
-    sql: ${TABLE}.launch_date
+
     
-  - dimension_group: launch_date
-    type: time
-    timeframes: [date, week, month]
-    sql: ${TABLE}.launch_date
+
 
   - dimension: launch_id
     type: string
     sql: ${TABLE}.launch_id
 
-  - dimension: launch_name
-    type: string
-    sql: ${TABLE}.launch_name
+
     
   - dimension: Launch_Brand
     label: 'Brand'

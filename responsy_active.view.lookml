@@ -81,30 +81,29 @@
 
 #######################
 
-  - measure: count
-    type: count
-    drill_fields: [launch_name]
-    
-  - measure: Unique_Riid_Count
-    type: count_distinct
-    sql: ${TABLE}.concatid
-    
-  - measure: Send_Count
-    type: count_distinct
-    sql: ${TABLE}.concatid
-    
-  - measure: Click_count
-    type: sum
-    sql: ${TABLE}.click_count     
+#### COUNT OF SENT/OPEN/CLICK/UNSUB
 
-  - measure: Unsubscribe_count1
-    type: sum
-    sql: ${TABLE}.unsub_count
+#   - measure: count
+#     type: count
+#     drill_fields: [launch_name]
+     
+    
+  - measure: Uniqe_Send_Count
+    type: count_distinct
+    sql: ${TABLE}.concatid
     
   - measure: Open_Count
     type: sum
     sql: ${TABLE}.open_count
     
+  - measure: Click_Count
+    type: sum
+    sql: ${TABLE}.click_count     
+
+  - measure: Unsubscribe_Count
+    type: sum
+    sql: ${TABLE}.unsub_count
+  
   - measure: Bounce_Count
     type: sum
     sql: ${TABLE}.bounce_count

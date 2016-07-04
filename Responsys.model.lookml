@@ -14,5 +14,5 @@
     - join: brand_lookup
       type: inner
       relationship: one_to_one
-      sql_on: ${brand_lookup.bra_code} = ${responsy_active.launch_name},
+      sql_on: ${brand_lookup.bra_code} = substring(UPPER(${responsy_active.launch_name}),1,3)
     

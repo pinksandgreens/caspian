@@ -61,7 +61,12 @@
   - dimension: Launch_Brand
     label: 'Brand Sent'
     type: string
-    sql: substring(${launch_name},1,3)
+    sql: |
+     CASE
+      WHEN substring(UPPER(${TABLE}.launch_name),1,3) LIKE '[A-Z][A-Z][0-9]' THEN substring(UPPER(${TABLE}.launch_name),1,3)
+      WHEN substring(UPPER(${TABLE}.launch_name),1,3) LIKE '[A-Z][A-Z][A-Z]' THEN substring(UPPER(${TABLE}.launch_name),1,3)
+      ELSE 'Unknown'
+     END
 
   - dimension: concatid
     alias: Uni

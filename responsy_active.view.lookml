@@ -4,13 +4,13 @@
 
 #### EMAIL EVENTS
 
-  - dimension: open_count
-    type: string
-    sql: ${TABLE}.open_count 
-
-  - dimension: click_count
-    type: string
-    sql: ${TABLE}.click_count
+#   - dimension: open_count
+#     type: string
+#     sql: ${TABLE}.open_count 
+# 
+#   - dimension: click_count
+#     type: string
+#     sql: ${TABLE}.click_count
 
   - dimension: bounce_type
     type: string
@@ -20,9 +20,9 @@
     type: string
     sql: ${TABLE}.unsub_type
     
-  - dimension: unsubscribe_count
-    type: string
-    sql: ${TABLE}.unsub_count  
+#   - dimension: unsubscribe_count
+#     type: string
+#     sql: ${TABLE}.unsub_count  
     
 ###### DATE FIELDS
 
@@ -30,19 +30,38 @@
     label: 'Sent Date'
     type: time
     timeframes: [date, week, month]
-    sql: ${TABLE}.launch_date
+    sql: |
+     TO_DATE (${TABLE}.launch_date, 'YYYY-MM-DD')
+
+  - dimension: open_date
+    label: 'Open Date'
+    type: time
+    timeframes: [date, week, month]
+    sql: |
+     TO_DATE (${TABLE}.open_date, 'YYYY-MM-DD')
 
   - dimension: click_date
-    type: string
-    sql: ${TABLE}.click_date
+    label: 'Click Date'
+    type: time
+    timeframes: [date, week, month]
+    sql: |
+     TO_DATE (${TABLE}.click_date, 'YYYY-MM-DD')
 
-##### BRAND LOOKUP
+
+  - dimension: launch_id
+    type: string
+    label: 'Launch ID'
+    sql: ${TABLE}.launch_id
 
   - dimension: launch_name
+    label: 'Campaign Name'
     type: string
     sql: ${TABLE}.launch_name
-
-#### EMAIL DIMENSIONS
+    
+  - dimension: Launch_Brand
+    label: 'Brand'
+    type: string
+    sql: substring(${launch_name},1,3)
 
   - dimension: concatid
     alias: Uni
@@ -51,25 +70,12 @@
 
   - dimension: email_address
     type: string
+    hidden: TRUE
     sql: ${TABLE}.email_address
-
-
     
-
-
-  - dimension: launch_id
-    type: string
-    sql: ${TABLE}.launch_id
-
-
-    
-  - dimension: Launch_Brand
-    label: 'Brand'
-    type: string
-    sql: substring(${launch_name},1,3)
-
   - dimension: riid
     type: string
+    hidden: TRUE
     sql: ${TABLE}.riid
 
 #######################

@@ -1,5 +1,5 @@
 - view: gigya_users
-  label: 'Registered Users'
+  label: '2a. Registered Users'
   sql_table_name: publications.gigya_users
   fields:
 

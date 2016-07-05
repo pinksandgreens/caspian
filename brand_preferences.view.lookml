@@ -1,4 +1,5 @@
 - view: brand_preferences
+  label: '2b. Brand Preferences'
   sql_table_name: publications.brand_preferences
   fields:
 

@@ -1,5 +1,5 @@
 - view: gigya_social_identities
-  label: 'Registered Social Identities'
+  label: '2d. Registered Social Identities'
   sql_table_name: publications.gigya_social_identities
   fields:
 

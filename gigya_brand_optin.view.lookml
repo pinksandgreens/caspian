@@ -1,5 +1,5 @@
 - view: gigya_brand_optin
-  label: 'Registered Brand Optin'
+  label: '2c. Registered Brand Optin'
   sql_table_name: publications.gigya_brand_optin
   fields:
 

@@ -22,3 +22,12 @@
     type: inner
     relationship: one_to_one
     sql_on: ${nudge_individuals.individual_id} = ${nudge_subscriptions.individual_id} 
+    
+    
+  - join: nudge_interactions
+    type: inner
+    relationship: one_to_one
+    sql_on: ${nudge_individuals.individual_id} = ${nudge_interactions.individual_id}
+    
+    
+    

@@ -66,7 +66,6 @@
     ################################ ^^^^^ case these you silly sausage
 
   - dimension: concatid
-    alias: Uni
     type: string
     hidden: TRUE
     sql: ${TABLE}.concatid

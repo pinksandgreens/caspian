@@ -382,6 +382,7 @@
     sql: ${TABLE}.year_of_birth
 
   - measure: count
-    type: count
+    type: count_distinct
+    sql: ${TABLE}.individual_id
     drill_fields: [first_name, last_name]
 

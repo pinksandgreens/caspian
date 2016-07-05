@@ -54,10 +54,21 @@
 
   - dimension: click_date_not_null
     label: 'Unique Clicks'
+    hidden: TRUE
     type: string
     sql: |
      CASE
       WHEN ${TABLE}.click_date = ' ' THEN '0'
+      ELSE '1'
+     END
+
+  - dimension: open_date_not_null
+    label: 'Unique Opens'
+    hidden: TRUE
+    type: string
+    sql: |
+     CASE
+      WHEN ${TABLE}.open_date = ' ' THEN '0'
       ELSE '1'
      END
 
@@ -76,7 +87,8 @@
     type: string
     sql: substring(UPPER(${TABLE}.launch_name),1,3)
     
-    ################################ ^^^^^ case these you silly sausage
+    
+    ################################ ^^^^^ case these
 
   - dimension: concatid
     type: string
@@ -108,15 +120,39 @@
     
   - measure: Open_Count
     type: sum
-    sql: ${TABLE}.open_count
-    
+    sql: |
+      CASE
+        WHEN ${TABLE}.open_count >10 THEN ${TABLE}.open_count
+      END
+      
   - measure: Click_Count
     type: sum
-    sql: ${TABLE}.click_count 
+    sql: |
+      CASE
+        WHEN ${TABLE}.click_count >10 THEN ${TABLE}.click_count
+      END
+
     
   - measure: Click_Count_Unique
-    type: count_distinct
-    sql: ${TABLE}.click_count   
+    type: number
+    sql: |
+      CASE
+        WHEN sum(${click_date_not_null}) >10 THEN sum(${click_date_not_null}) 
+      END
+    
+  - measure: Open_Count_Unique
+    type: number
+    sql: |
+      CASE
+        WHEN sum(${open_date_not_null}) >10 THEN sum(${open_date_not_null})
+      END
+  
+  - measure: Click_to_Open_Rate
+    label: 'Click-to-Open Rate'
+    type: number
+    value_format: '0.00\%'
+    sql: (${Click_Count_Unique}/${Open_Count_Unique})*100
+    
 
   - measure: Unsubscribe_Count
     type: sum

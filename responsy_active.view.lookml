@@ -1,4 +1,5 @@
 - view: responsy_active
+  label: '2a. Email Data'
   sql_table_name: responsys.responsy_active
   fields:
 
@@ -31,26 +32,34 @@
 ###### DATE FIELDS
 
   - dimension_group: launch_date
-    label: 'Sent Date'
+    label: 'Sent'
     type: time
     timeframes: [date, week, month]
     sql: |
      TO_DATE (${TABLE}.launch_date, 'YYYY-MM-DD')
 
   - dimension: open_date
-    label: 'Open Date'
+    label: 'Open'
     type: time
     timeframes: [date, week, month]
     sql: |
      TO_DATE (${TABLE}.open_date, 'YYYY-MM-DD')
 
   - dimension: click_date
-    label: 'Click Date'
+    label: 'Click'
     type: time
     timeframes: [date, week, month]
     sql: |
      TO_DATE (${TABLE}.click_date, 'YYYY-MM-DD')
 
+  - dimension: click_date_not_null
+    label: 'Unique Clicks'
+    type: string
+    sql: |
+     CASE
+      WHEN ${TABLE}.click_date = ' ' THEN '0'
+      ELSE '1'
+     END
 
   - dimension: launch_id
     type: string
@@ -103,7 +112,11 @@
     
   - measure: Click_Count
     type: sum
-    sql: ${TABLE}.click_count     
+    sql: ${TABLE}.click_count 
+    
+  - measure: Click_Count_Unique
+    type: count_distinct
+    sql: ${TABLE}.click_count   
 
   - measure: Unsubscribe_Count
     type: sum

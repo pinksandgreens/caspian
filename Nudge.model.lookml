@@ -29,5 +29,10 @@
     relationship: one_to_one
     sql_on: ${nudge_individuals.individual_id} = ${nudge_interactions.individual_id}
     
+  - join: nudge_registrations
+    type: inner
+    relationship: one_to_one
+    sql_on: ${nudge_individuals.individual_id} = ${nudge_registrations.cre_user_id}
+    
     
     

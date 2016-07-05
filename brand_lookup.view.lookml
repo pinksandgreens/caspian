@@ -37,6 +37,16 @@
       <a href="https://bauerxcel.looker.com/dashboards/28?Brand%20name={{ value }}" target="_new">
       <img src="http://i.imgur.com/aJnF2oW.jpg" height=10 width=10></a>
       
+  - dimension: bra_description_ema
+    label: 'Brand Name - Email'
+    hidden: TRUE
+    type: string
+    sql: ${TABLE}.bra_description
+    html: |
+      {{ linked_value }}
+      <a href="https://bauerxcel.looker.com/dashboards/40?Brand%20Name={{ value }}&Timeframe=21%20weeks" target="_new">
+      <img src="http://i.imgur.com/aJnF2oW.jpg" height=10 width=10></a>
+
   - dimension: bra_market
     label: 'Brand Market'
     type: string
@@ -56,6 +66,16 @@
       <a href="https://bauerxcel.looker.com/dashboards/29?Market%20type={{ value }}" target="_new">
       <img src="http://i.imgur.com/aJnF2oW.jpg" height=10 width=10></a)
 
+  - dimension: bra_market_ema
+    label: 'Brand Market - Email'
+    hidden: TRUE
+    type: string
+    sql: ${TABLE}.bra_market
+    html: |
+      {{ linked_value }}
+      <a href="https://bauerxcel.looker.com/dashboards/39?Market={{ value }}&Timeframe=21%20weeks" target="_new">
+      <img src="http://i.imgur.com/aJnF2oW.jpg" height=10 width=10></a)
+      
   - dimension: bra_obsolete
     hidden: TRUE
     type: string

@@ -18,7 +18,11 @@
 
   - dimension: unsub_type
     type: string
-    sql: ${TABLE}.unsub_type
+    sql: |
+      CASE
+        WHEN ${TABLE}.unsub_type = 'LEGA' THEN 'BRAN'
+        ELSE ${TABLE}.unsub_type
+      END
     
 #   - dimension: unsubscribe_count
 #     type: string

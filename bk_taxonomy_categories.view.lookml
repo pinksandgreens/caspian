@@ -4,6 +4,7 @@
   fields:
 
   - dimension: bk_size
+    hidden: TRUE
     label: 'BlueKai Audience Size'
     type: number
     sql: ${TABLE}.bk_size

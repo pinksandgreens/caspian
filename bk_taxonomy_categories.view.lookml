@@ -9,7 +9,7 @@
     sql: ${TABLE}.bk_size
 
   - dimension_group: ddw_updated
-    label: 'Date Updated'
+    label: 'Updated'
     type: time
     timeframes: [time, date, week, month]
     sql: ${TABLE}.ddw_updated_date

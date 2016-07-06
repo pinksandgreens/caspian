@@ -13,7 +13,7 @@
     sql: ${TABLE}.gygia_id
 
   - dimension_group: time_inserted
-    label: 'Date Swapped'
+    label: 'Swapped'
     type: time
     timeframes: [time, date, week, month]
     sql: ${TABLE}.time_inserted

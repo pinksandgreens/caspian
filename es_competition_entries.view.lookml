@@ -54,7 +54,7 @@
     sql: ${TABLE}.date_created
 
   - dimension_group: date_entered
-    label: 'Entry Date'
+    label: 'Entry'
     type: time
     timeframes: [time, date, week, month]
     sql: ${TABLE}.date_entered
@@ -299,7 +299,7 @@
       - es_competitions.ref_taxonomy_1
       - es_competitions.ref_campaign_aim
       - es_competitions.ref_campaign_stakeholder
-      - entries_count_drill
+      - es_competition_entries.entries_count
   
 #  sets:
 #    comp_drill_set_1:                              

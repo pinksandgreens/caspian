@@ -18,6 +18,7 @@
     sql: ${TABLE}.category_last_modified
 
   - dimension_group: insert_date
+    label: 'Insert'
     type: time
     timeframes: [time, date, week, month]
     sql: ${TABLE}.insert_date_time

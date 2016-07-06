@@ -4,6 +4,7 @@
 - include: "*.dashboard.lookml"  # include all dashboards in this project
 
 - explore: bauer_list
+  hidden: TRUE
   label: 'General User Demographics'
   joins:
     - join: gigya_users

@@ -25,7 +25,7 @@
     sql: ${TABLE}.fullpath
 
   - dimension: leaf_node
-    label: 'Leaf Node (Y/N)'
+    label: 'Leaf Node'
     type: yesno
     sql: ${TABLE}.leaf_node
 
@@ -60,6 +60,7 @@
     sql: ${bk_size}
   
   - measure: bk_size_count
+    hidden: TRUE
     label: 'BlueKai Size Count'
     type: number
     sql: AVG(${bk_size})

@@ -143,6 +143,7 @@
     sql_latitude: ${TABLE}.geo_latitude
   
   - dimension: timestamp
+    hidden: TRUE
     sql: ${TABLE}.collector_tstamp
 
   - dimension_group: timestamp
@@ -173,6 +174,7 @@
     sql: ${TABLE}.page_title
 
   - dimension: page_url_scheme
+    hidden: TRUE
     sql: ${TABLE}.page_urlscheme
 
   - dimension: page_url_host
@@ -195,6 +197,7 @@
     hidden: true
     
   - dimension: refr_medium
+    label: 'Referer Medium'
     sql: ${TABLE}.refr_medium
     
   - dimension: first_event_in_session
@@ -206,18 +209,22 @@
     sql: ${TABLE}.refr_medium != 'internal' AND ${TABLE}.domain_sessionidx = 1
     
   - dimension: refr_source
+    label: 'Referer Source'
     sql: ${TABLE}.refr_source
     
   - dimension: refr_term
+    label: 'Referer Term'
     sql: ${TABLE}.refr_term
     
   - dimension: refr_url_host
     sql: ${TABLE}.refr_urlhost
     
   - dimension: refr_url_path
+    hidden: TRUE
     sql: ${TABLE}.refr_urlpath
 
   - dimension: x_offset
+    label: 'Page interaction - X axis'
     type: number
     sql: ${TABLE}.pp_xoffset_max
 
@@ -227,6 +234,7 @@
     hidden: true
 
   - dimension: y_offset
+    label: 'Page interaction - Y axis'
     type: number
     sql: ${TABLE}.pp_yoffset_max
 
@@ -236,18 +244,22 @@
     hidden: true
 
   - dimension: structured_event_action
+    hidden: TRUE
     sql: ${TABLE}.se_action
 
   - dimension: structured_event_category
+    hidden: TRUE
     sql: ${TABLE}.se_category
 
   - dimension: structured_event_label
     sql: ${TABLE}.se_label
 
   - dimension: structured_event_property
+    hidden: TRUE
     sql: ${TABLE}.se_property
 
   - dimension: structured_event_value
+    hidden: TRUE
     type: number
     sql: ${TABLE}.se_value
     
@@ -258,11 +270,13 @@
   # MEASURES #
   
   - measure: domain_userid_count
+    label: 'Unique Users Count'
     type: count_distinct
     sql: ${domain_userid}
 
   - measure: count
     type: count
+    hidden: TRUE
     drill_fields: event_detail*
 
   - measure: page_pings_count

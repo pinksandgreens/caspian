@@ -83,6 +83,7 @@
   
   - dimension: location_test
     type: location
+    label: 'Location'
     sql_latitude: ROUND(${TABLE}.geo_latitude,1)
     sql_longitude: ROUND(${TABLE}.geo_longitude,1)
   
@@ -94,6 +95,7 @@
     sql: ${TABLE}.event
       
   - dimension: dvce_type
+    label: 'Device Type'
     sql: ${TABLE}.dvce_type
     
   - dimension: app_id
@@ -135,6 +137,7 @@
     sql: ${TABLE}.geo_country
     
   - dimension: location
+    hidden: TRUE
     type: location
     sql_longitude: ${TABLE}.geo_longitude
     sql_latitude: ${TABLE}.geo_latitude

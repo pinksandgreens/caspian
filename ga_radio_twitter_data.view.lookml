@@ -1,5 +1,6 @@
 - view: ga_radio_twitter_data
   sql_table_name: publications.ga_radio_twitter_data
+  label: 'Twitter Data'
   fields:
 
   - dimension: id

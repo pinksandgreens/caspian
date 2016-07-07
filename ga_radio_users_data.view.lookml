@@ -1,5 +1,6 @@
 - view: ga_radio_users_data
   sql_table_name: publications.ga_radio_users_data
+  label: 'Social Users Data'
   fields:
 
   - dimension: brand

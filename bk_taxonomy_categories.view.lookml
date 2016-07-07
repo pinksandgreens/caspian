@@ -58,7 +58,7 @@
   - measure: bk_size_number
     label: 'BlueKai Audience Size'
     type: number
-    sql: ${bk_size}
+    sql: sum(${bk_size})
   
   - measure: bk_size_count
     hidden: TRUE

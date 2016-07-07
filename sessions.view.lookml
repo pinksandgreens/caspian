@@ -121,6 +121,7 @@
     sql: ${TABLE}.session_start_tstamp
     
   - dimension: end
+    label: Session End Timestamp
     sql: ${TABLE}.session_end_tstamp
   
   - dimension: event_stream
@@ -251,18 +252,23 @@
   # Marketing fields (paid acquisition channels)
     
   - dimension: campaign_medium
+    hidden: TRUE
     sql: ${TABLE}.mkt_medium
   
   - dimension: campaign_source
+    hidden: TRUE
     sql: ${TABLE}.mkt_source
   
   - dimension: campaign_term
+    hidden: TRUE
     sql: ${TABLE}.mkt_term
   
   - dimension: campaign_name
+    hidden: TRUE
     sql: ${TABLE}.mkt_campaign
 
   - dimension: campaign_content
+    hidden: TRUE
     sql: ${TABLE}.mkt_content
 
   # Device fields #
@@ -293,51 +299,65 @@
   # Browser fields #
   
   - dimension: browser
+    hidden: TRUE
     sql: ${TABLE}.br_name
 
   - dimension: browser_family
     sql: ${TABLE}.br_family
     
   - dimension: browser_version
+    hidden: TRUE
     sql: ${TABLE}.br_version
     
   - dimension: browser_type
     sql: ${TABLE}.br_type
     
   - dimension: browser_renderengine
+    hidden: TRUE
     sql: ${TABLE}.br_renderengine
     
   - dimension: browser_language
+    hidden: TRUE
     sql: ${TABLE}.br_lang
     
   - dimension: browser_has_director_plugin
+    hidden: TRUE
     sql: ${TABLE}.br_features_director
     
   - dimension: browser_has_flash_plugin
+    hidden: TRUE
     sql: ${TABLE}.br_features_flash
     
   - dimension: browser_has_gears_plugin
+    hidden: TRUE
     sql: ${TABLE}.br_features_gears
     
   - dimension: browser_has_java_plugin
+    hidden: TRUE
     sql: ${TABLE}.br_features_java
     
   - dimension: browser_has_pdf_plugin
+    hidden: TRUE
     sql: ${TABLE}.br_features_pdf
     
   - dimension: browser_has_quicktime_plugin
+    hidden: TRUE
     sql: ${TABLE}.br_features_quicktime
     
   - dimension: browser_has_realplayer_plugin
+    hidden: TRUE
     sql: ${TABLE}.br_features_realplayer
     
   - dimension: browser_has_silverlight_plugin
+    hidden: TRUE
     sql: ${TABLE}.br_features_silverlight
     
   - dimension: browser_has_windowsmedia_plugin
+    hidden: TRUE
     sql: ${TABLE}.br_features_windowsmedia
     
   - dimension: browser_supports_cookies
+    hidden: TRUE
     sql: ${TABLE}.br_cookies
   
   # MEASURES #

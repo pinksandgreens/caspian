@@ -25,17 +25,18 @@
         WHEN 'TFM' THEN 'TFM Radio'
         WHEN 'Absolute Radio' THEN 'Absolute Radio'
         WHEN 'CFM Radio' THEN 'CFM Radio'
+        ELSE ${TABLE}.brand
       END
 
 #  - dimension: f1
 #    type: string
 #    sql: ${TABLE}.f1
 
-  - measure: fav_count
-    label: 'Twitter Favourite Count'
-    type: number
-    sql: sum_distinct(${TABLE}.fav_count)
-    drill_fields: [brand, label, fb_users_web, tw_users_web]
+#   - measure: fav_count
+#     label: 'Twitter Favourite Count'
+#     type: number
+#     sql: sum_distinct(${TABLE}.fav_count)
+#     drill_fields: [brand, label, fb_users_web, tw_users_web]
 
 #  - measure: fb_sessions_web
 #    label: 'Facebook Sessions Count'

@@ -113,19 +113,25 @@
     sql: ${session_index}
   
   - dimension: start
+    hidden: TRUE
     sql: ${TABLE}.session_start_tstamp
   
   - dimension_group: start
+    hidden: TRUE
     type: time
     timeframes: [time, hour, date, week, month]
     sql: ${TABLE}.session_start_tstamp
     
-  - dimension: end
-    label: Session End Timestamp
+  - dimension_group: end
+    type: time
+    timeframes: [time, hour, date, week, month, day_of_week]
+    label: 'Session End'
+    hidden: TRUE
     sql: ${TABLE}.session_end_tstamp
   
   - dimension: event_stream
     sql: ${session_id}
+    hidden: TRUE
     html: |
       <a href=events?fields=events.event_detail*&f[events.session_id]={{value}}>Event Stream</a>
   # Session duration #
@@ -140,9 +146,11 @@
     sql: ${session_duration_seconds}
 
   - dimension: time_engaged_with_minutes
+    label: 'Time Engaged In Minutes'
     sql: ${TABLE}.time_engaged_with_minutes
   
   - dimension: time_engaged_with_minutes_tiered
+    label: 'Time Engaged In Minutes - Tiered'
     type: tier
     tiers: [0,1,5,10,30,60,300,900]
     sql: ${time_engaged_with_minutes}
@@ -154,6 +162,7 @@
     sql: ${TABLE}.event_count
     
   - dimension: events_during_session_tiered
+    hidden: TRUE
     type: tier
     tiers: [1,2,5,10,25,50,100,1000,10000]
     sql: ${TABLE}.event_count
@@ -183,12 +192,15 @@
       <img src="/images/qr-graph-line@2x.png" height=20 width=20></a>
     
   - dimension: geography_country_three_letter_iso_code
+    hidden: TRUE
     sql: ${TABLE}.geo_country_code_3_characters
     
   - dimension: geography_country_two_letter_iso_code
+    hidden: TRUE
     sql: ${TABLE}.geo_country_code_2_characters
   
   - dimension: geography_region
+    hidden: TRUE
     sql: ${TABLE}.geo_region
     
   - dimension: geography_city
@@ -197,12 +209,14 @@
   # Landing page
     
   - dimension: landing_page_host
+    hidden: TRUE
     sql: ${TABLE}.landing_page_urlhost
     
   - dimension: landing_page_app_id
     sql: ${TABLE}.landing_page_app_id
     
   - dimension: landing_page_path
+    hidden: TRUE
     sql: ${TABLE}.landing_page_path
     html: |
       {{linked_value}}
@@ -212,12 +226,15 @@
   - dimension: landing_page
     sql: ${TABLE}.landing_page_host || ${TABLE}.landing_page_path
     
+    
   # Exit page
   
   - dimension: exit_page_host
+    hidden: TRUE
     sql: ${TABLE}.exit_page_host
     
   - dimension: exit_page_path
+    hidden: TRUE
     sql: ${TABLE}.exit_page_path
     
   - dimension: exit_page
@@ -247,6 +264,7 @@
     sql: ${TABLE}.refr_urlhost
   
   - dimension: referer_url_path
+    hidden: TRUE
     sql: ${TABLE}.refr_urlpath
     
   # Marketing fields (paid acquisition channels)
@@ -363,6 +381,7 @@
   # MEASURES #
 
   - measure: count
+    label: 'Unique Sessions Count'
     type: count_distinct
     sql: ${session_id}
     drill_fields: individual_detail*
@@ -432,6 +451,7 @@
   # Geo measures
 
   - measure: country_count
+    hidden: TRUE
     type: count_distinct
     sql: ${geography_country}
     drill_fields:
@@ -439,6 +459,7 @@
     - detail*
     
   - measure: region_count
+    hidden: TRUE
     type: count_distinct
     sql: ${geography_region}
     drill_fields:
@@ -447,6 +468,7 @@
     - detail*
     
   - measure: city_count
+    hidden: TRUE
     type: count_distinct
     sql: ${geography_city}
     drill_fields:
@@ -458,6 +480,7 @@
   # Marketing measures
 
   - measure: campaign_medium_count
+    hidden: TRUE
     type: count_distinct
     sql: ${campaign_medium}
     drill_fields:
@@ -465,6 +488,7 @@
     - detail*
     
   - measure: campaign_source_count
+    hidden: TRUE
     type: count_distinct
     sql: ${campaign_source}
     drill_fields:
@@ -473,6 +497,7 @@
     - detail*
     
   - measure: campaign_term_count
+    hidden: TRUE
     type: count_distinct
     sql: ${campaign_term}
     drill_fields:
@@ -482,6 +507,7 @@
     - detail*
       
   - measure: campaign_count
+    hidden: TRUE
     type: count_distinct
     sql: ${campaign_name}
     drill_fields:
@@ -494,6 +520,7 @@
   # Referer measures
 
   - measure: referer_medium_count
+    hidden: TRUE
     type: count_distinct
     sql: ${referer_medium}
     drill_fields:
@@ -501,6 +528,7 @@
     - detail*
     
   - measure: referer_source_count
+    hidden: TRUE
     type: count_distinct
     sql: ${referer_source}
     drill_fields:
@@ -509,6 +537,7 @@
     - detail*
     
   - measure: referer_term_count
+    hidden: TRUE
     type: count_distinct
     sql: ${referer_term}
     drill_fields:
@@ -520,11 +549,13 @@
   # Technology measures 
   
   - measure: device_count
+    hidden: TRUE
     type: count_distinct
     sql: ${device_type}
     drill_fields: detail*
   
   - measure: operating_system_count
+    hidden: TRUE
     type: count_distinct
     sql: ${operating_system}
     drill_fields:
@@ -533,6 +564,7 @@
   
   - measure: browser_count
     type: count_distinct
+    hidden: TRUE
     sql: ${browser}
     drill_fields:
     - browser

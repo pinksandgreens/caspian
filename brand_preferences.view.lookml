@@ -22,16 +22,19 @@
 
   - dimension: email_bauer_optin
     label: 'Email Optin - Bauer'
+    hidden: TRUE
     type: string
     sql: ${TABLE}.email_bauer_optin
 
   - dimension: email_brand_optin
     label: 'Email Optin - Brand'
+    hidden: TRUE
     type: string
     sql: ${TABLE}.email_brand_optin
 
   - dimension: email_third_optin
     label: 'Email Optin - Third'
+    hidden: TRUE
     type: string
     sql: ${TABLE}.email_third_optin
 

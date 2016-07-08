@@ -21,7 +21,8 @@
   - join: es_campaign_report
     type: inner
     relationship: one_to_one
-    sql_on: substring(UPPER(${es_competitions.external_ref}),1,12) = substring(UPPER(${es_campaign_report.external_ref}),1,12) #326 comps match
+    sql_on: UPPER(${es_competitions.external_ref}) = UPPER(${es_campaign_report.external_ref}) #326 comps match
+#   sql_on: substring(UPPER(${es_competitions.external_ref}),1,12) = substring(UPPER(${es_campaign_report.external_ref}),1,12) #326 comps match
 #   sql_on: UPPER(${es_competitions.name}) = UPPER(${es_campaign_report.name}) # 323 comps match
 
   - join: es_brand_optin

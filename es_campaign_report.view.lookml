@@ -54,7 +54,7 @@
     type: number
     sql: ${TABLE}.total_shares
 
-  - measure: total_views
+  - measure: total_views_sum
     type: sum
     sql: |
       CAST(CASE WHEN ${TABLE}.total_views =  0 THEN NULL
@@ -62,6 +62,11 @@
         ELSE ${TABLE}.total_views
       END AS INT)
     
+  - dimension: total_views
+    hidden: TRUE
+    type: number
+    sql: ${TABLE}.total_views
+
     # Can't set these 3 as integers, might be because they're strings in the DB?
 
   - measure: count

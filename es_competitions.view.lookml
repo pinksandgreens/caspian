@@ -22,7 +22,7 @@
     sql: ${TABLE}.created_date
 
   - dimension: name
-    label: 'Name'
+    label: 'Competition Name'
     type: string
     sql: ${TABLE}.name
     html: |
@@ -121,11 +121,13 @@
     type: string
     sql: ${TABLE}.source
   
+  #      COALESCE (ref_brand,'')  || '-' || COALESCE (ref_channel, '')|| '-' || COALESCE (ref_campaign_stakeholder, '') || '-' || COALESCE (ref_campaign_description,'' ) || '-' || COALESCE (ref_target_date, '') || '-' || COALESCE (ref_campaign_aim, '') || '-' || COALESCE (ref_campaign_type, '') || '-' || COALESCE (ref_taxonomy_1, '') || COALESCE (ref_taxonomy_2, '')
+  
   - dimension: external_ref
     hidden: TRUE
     type: string
     sql: |
-      COALESCE (ref_brand,'')  || '-' || COALESCE (ref_channel, '')|| '-' || COALESCE (ref_campaign_stakeholder, '') || '-' || COALESCE (ref_campaign_description,'' ) || '-' || COALESCE (ref_target_date, '') || '-' || COALESCE (ref_campaign_aim, '') || '-' || COALESCE (ref_campaign_type, '') || '-' || COALESCE (ref_taxonomy_1, '') || COALESCE (ref_taxonomy_2, '')
+      COALESCE (${TABLE}.ref_brand,'')  || '-' || COALESCE (${TABLE}.ref_channel, '')|| '-' || COALESCE (${TABLE}.ref_campaign_stakeholder, '') || '-' || COALESCE (${TABLE}.ref_campaign_description,'' ) || '-' || COALESCE (${TABLE}.ref_target_date, '') || '-' || COALESCE (${TABLE}.ref_campaign_aim, '') || '-' || COALESCE (${TABLE}.ref_campaign_type, '') || '-' || COALESCE (${TABLE}.ref_taxonomy_1, '') || COALESCE (ref_taxonomy_2, '')
 
   - dimension_group: updated
     type: time

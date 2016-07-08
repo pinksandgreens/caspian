@@ -10,6 +10,7 @@
 
   - dimension: external_ref
     label: 'External Reference'
+    primary_key: TRUE
     hidden: TRUE
     type: string
     sql: ${TABLE}.external_ref
@@ -53,9 +54,13 @@
     type: number
     sql: ${TABLE}.total_shares
 
-  - dimension: total_views
-    type: number
-    sql: ${TABLE}.total_views
+  - measure: total_views
+    type: sum
+    sql: |
+      CAST(CASE WHEN ${TABLE}.total_views =  0 THEN NULL
+        WHEN LEN(${TABLE}.total_views) = 0 THEN NULL
+        ELSE ${TABLE}.total_views
+      END AS INT)
     
     # Can't set these 3 as integers, might be because they're strings in the DB?
 

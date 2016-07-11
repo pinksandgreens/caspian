@@ -82,6 +82,7 @@
     sql: ${TABLE}.created_by
     
   - dimension: customer_id
+    label: 'Customer ID'
     hidden: TRUE
     type: string
     sql: ${TABLE}.customer_id

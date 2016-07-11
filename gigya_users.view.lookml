@@ -402,7 +402,7 @@
   - dimension: active_user
     label: 'Is Active User'
     type: yesno
-    sql: DATEDIFF('month', ${TABLE}.last_login, CURRENT_DATE) >= 0  AND DATEDIFF('month', ${TABLE}.last_login, CURRENT_DATE) <= 2
+    sql: DATEDIFF('month', ${TABLE}.last_login, CURRENT_DATE) >= 0  AND DATEDIFF('month', ${TABLE}.last_login, CURRENT_DATE) <= 3
 
   - measure: count
     hidden: TRUE

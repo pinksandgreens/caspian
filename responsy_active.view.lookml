@@ -21,7 +21,11 @@
     type: string
     sql: |
       CASE
-        WHEN ${TABLE}.unsub_type = 'LEGA' THEN 'BRAN'
+        WHEN ${TABLE}.unsub_type = 'LEGA' THEN 'Brand'
+        WHEN ${TABLE}.unsub_type = 'BRAN' THEN 'Brand'
+        WHEN ${TABLE}.unsub_type = 'NEWS' THEN 'Newsletter'
+        WHEN ${TABLE}.unsub_type = 'BAUR' THEN 'Bauer'
+        WHEN ${TABLE}.unsub_type = 'THRD' THEN 'Third Party'
         ELSE ${TABLE}.unsub_type
       END
     

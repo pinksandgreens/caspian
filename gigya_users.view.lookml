@@ -74,6 +74,7 @@
     sql: ${TABLE}.country
 
   - dimension_group: created
+    hidden: TRUE
     type: time
     timeframes: [time, date, week, month]
     sql: ${TABLE}.created
@@ -190,6 +191,7 @@
     sql: ${TABLE}.is_verified
 
   - dimension_group: last_login
+    label: 'Registered'
     type: time
     timeframes: [time, date, week, month]
     sql: ${TABLE}.last_login
@@ -256,6 +258,7 @@
     sql: ${TABLE}.nickname
 
   - dimension_group: oldest_data_updated
+    hidden: TRUE
     type: time
     timeframes: [time, date, week, month]
     sql: ${TABLE}.oldest_data_updated
@@ -291,6 +294,8 @@
     sql: ${TABLE}.proxy_email
 
   - dimension_group: registered
+    label: 'DEPRICATED REG'
+    hidden: TRUE
     type: time
     timeframes: [time, date, week, month]
     sql: ${TABLE}.registered

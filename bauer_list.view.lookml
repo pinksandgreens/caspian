@@ -69,7 +69,7 @@
 
 
   - dimension_group: created
-    label: 'Date Created'
+    label: 'Created'
     type: time
     timeframes: [date, week, month]
     convert_tz: false
@@ -83,7 +83,7 @@
     
   - dimension: customer_id
     label: 'Customer ID'
-    hidden: TRUE
+    hidden: FALSE
     type: string
     sql: ${TABLE}.customer_id
 

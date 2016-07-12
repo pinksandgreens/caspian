@@ -191,7 +191,8 @@
     sql: ${TABLE}.is_verified
 
   - dimension_group: last_login
-    label: 'Registered'
+    label: 'DEPRICATED'
+    hidden: TRUE
     type: time
     timeframes: [time, date, week, month]
     sql: ${TABLE}.last_login
@@ -294,8 +295,8 @@
     sql: ${TABLE}.proxy_email
 
   - dimension_group: registered
-    label: 'DEPRICATED REG'
-    hidden: TRUE
+    label: 'Registered'
+    hidden: FALSE
     type: time
     timeframes: [time, date, week, month]
     sql: ${TABLE}.registered

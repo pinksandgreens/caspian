@@ -118,7 +118,7 @@
 #     drill_fields: [launch_name]
      
     
-  - measure: Unique_Send_Count
+  - measure: Uniqe_Send_Count
     label: 'Send Count Unique'
     type: count_distinct
     sql: ${TABLE}.concatid
@@ -162,7 +162,7 @@
     label: 'Send-to-Open Rate'
     type: number
     value_format: '0.00\%'
-    sql: (${Open_Count_Unique}/${Unique_Send_Count})*100
+    sql: (${Open_Count_Unique}/${Uniqe_Send_Count})*100
     
 
   - measure: Unsubscribe_Count

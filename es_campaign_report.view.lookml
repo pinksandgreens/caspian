@@ -1,7 +1,13 @@
 - view: es_campaign_report
   label: '2d. Campaign Report(s)'
-  sql_table_name: looker_scratch.es_campaign_report
+  sql_table_name: publications.es_campaign_report
   fields:
+  
+  - dimension: id
+    primary_key: true
+    hidden: FALSE
+    type: string
+    sql: ${TABLE}.comp_id
 
   - dimension: created_by
     hidden: TRUE
@@ -10,7 +16,6 @@
 
   - dimension: external_ref
     label: 'External Reference'
-    primary_key: TRUE
     hidden: TRUE
     type: string
     sql: ${TABLE}.external_ref
@@ -37,7 +42,6 @@
     sql: |
      TO_DATE (${TABLE}.publish_date, 'DD-MM-YYYY')
       
-      
   - dimension: short_url
     hidden: TRUE
     type: string
@@ -55,15 +59,14 @@
     sql: ${TABLE}.total_shares
 
   - measure: total_views_sum
+    hidden: TRUE
     type: sum
     sql: |
       CAST(CASE WHEN ${TABLE}.total_views =  0 THEN NULL
-        WHEN LEN(${TABLE}.total_views) = 0 THEN NULL
-        ELSE ${TABLE}.total_views
       END AS INT)
     
   - dimension: total_views
-    hidden: TRUE
+    hidden: FALSE
     type: number
     sql: ${TABLE}.total_views
 
@@ -73,4 +76,5 @@
     hidden: TRUE
     type: count
     drill_fields: [name]
+
 

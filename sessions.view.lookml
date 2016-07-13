@@ -249,10 +249,6 @@
       social: ${TABLE}.refr_medium = 'social'
       other_website: ${TABLE}.refr_medium = 'unknown'
       else: direct
-    html: |
-      {{linked_value}}
-      <a href="/dashboards/snowplow/traffic_pulse?referer_medium={{value}}" target="_new">
-      <img src="/images/qr-graph-line@2x.png" height=20 width=20></a>
     
   - dimension: referer_source
     sql: ${TABLE}.refr_source

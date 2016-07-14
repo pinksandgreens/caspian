@@ -25,7 +25,6 @@
         domain_sessionidx,
         user_id,
         event_id,
-        event_name,
         app_id,
         event,
         geo_country,
@@ -46,11 +45,6 @@
         refr_term,
         refr_urlhost,
         refr_urlpath,
-        mkt_medium,
-        mkt_source,
-        mkt_term,
-        mkt_content,
-        mkt_campaign, 
         pp_xoffset_max,
         pp_xoffset_min,
         pp_yoffset_max,
@@ -83,24 +77,31 @@
     distkey: domain_userid
     sortkeys: [domain_userid, domain_sessionidx, collector_tstamp]
   
+#         event_name,
+#         mkt_medium,
+#         mkt_source,
+#         mkt_term,
+#         mkt_content,
+#         mkt_campaign, 
+
   fields:
 
   # DIMENSIONS #
         
-  - dimension: mkt_medium
-    sql: ${TABLE}.mkt_medium
-    
-  - dimension: mkt_source
-    sql: ${TABLE}.mkt_source
-    
-  - dimension: mkt_term
-    sql: ${TABLE}.mkt_term
-    
-  - dimension: mkt_content
-    sql: ${TABLE}.mkt_content
-    
-  - dimension: mkt_campaign
-    sql: ${TABLE}.mkt_campaign
+#   - dimension: mkt_medium
+#     sql: ${TABLE}.mkt_medium
+#     
+#   - dimension: mkt_source
+#     sql: ${TABLE}.mkt_source
+#     
+#   - dimension: mkt_term
+#     sql: ${TABLE}.mkt_term
+#     
+#   - dimension: mkt_content
+#     sql: ${TABLE}.mkt_content
+#     
+#   - dimension: mkt_campaign
+#     sql: ${TABLE}.mkt_campaign
     
   - dimension: location_test
     type: location
@@ -112,8 +113,8 @@
     primary_key: true
     sql: ${TABLE}.event_id
   
-  - dimension: event_name
-    sql: ${TABLE}.event_name
+#   - dimension: event_name
+#     sql: ${TABLE}.event_name
     
   - dimension: event_type
     sql: ${TABLE}.event

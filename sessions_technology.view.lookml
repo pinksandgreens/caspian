@@ -30,6 +30,15 @@
           a.br_type,
           a.br_renderengine,
           a.br_lang,
+          a.br_features_director,
+          a.br_features_flash,
+          a.br_features_gears,
+          a.br_features_java,
+          a.br_features_pdf,
+          a.br_features_quicktime,
+          a.br_features_realplayer,
+          a.br_features_silverlight,
+          a.br_features_windowsmedia,
           a.br_cookies,
           a.os_name,
           a.os_family,
@@ -118,6 +127,41 @@
   - dimension: browser_language
     sql: ${TABLE}.br_lang
     
+  - dimension: browser_has_director_plugin
+    type: yesno
+    sql: ${TABLE}.br_features_director
+    
+  - dimension: browser_has_flash_plugin
+    type: yesno
+    sql: ${TABLE}.br_features_flash
+    
+  - dimension: browser_has_gears_plugin
+    type: yesno
+    sql: ${TABLE}.br_features_gears
+    
+  - dimension: browser_has_java_plugin
+    type: yesno
+    sql: ${TABLE}.br_features_java
+    
+  - dimension: browser_has_pdf_plugin
+    type: yesno
+    sql: ${TABLE}.br_features_pdf
+    
+  - dimension: browser_has_quicktime_plugin
+    type: yesno
+    sql: ${TABLE}.br_features_quicktime
+    
+  - dimension: browser_has_realplayer_plugin
+    type: yesno
+    sql: ${TABLE}.br_features_realplayer
+    
+  - dimension: browser_has_silverlight_plugin
+    type: yesno
+    sql: ${TABLE}.br_features_silverlight
+    
+  - dimension: browser_has_windowsmedia_plugin
+    type: yesno
+    sql: ${TABLE}.br_features_windowsmedia
     
   - dimension: browser_supports_cookies
     type: yesno

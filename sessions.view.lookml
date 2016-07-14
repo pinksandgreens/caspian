@@ -244,11 +244,11 @@
   
   - dimension: referer_medium
     sql_case:
-      email: ${TABLE}.refr_medium = 'email'
-      search: ${TABLE}.refr_medium = 'search'
-      social: ${TABLE}.refr_medium = 'social'
-      other_website: ${TABLE}.refr_medium = 'unknown'
-      else: direct
+      Email: ${TABLE}.refr_medium = 'email'
+      Search: ${TABLE}.refr_medium = 'search'
+      Social: ${TABLE}.refr_medium = 'social'
+      Other Website: ${TABLE}.refr_medium = 'unknown'
+      else: Direct
     
   - dimension: referer_source
     sql: ${TABLE}.refr_source

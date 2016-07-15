@@ -147,7 +147,11 @@
       when ${app_id} like '%ABR%' then 'Absolute Radio'
       when ${app_id} like '%KER%' then 'Kerrang'
       else 'other' end
-      
+    html: |
+      {{ linked_value }}
+      <a href="https://bauerxcel.looker.com/dashboards/46?Brand%20Name={{ value }}&Timeframe=1%20months%20ago%20for%201%20months&Set%20same%20date%20as%20Timeframe=1%20months%20ago%20for%201%20months" target="_new">
+      <img src="http://i.imgur.com/aJnF2oW.jpg" height=10 width=10></a>
+    
   - dimension: uk_only
     sql: |
       case when events.geo_country = 'GB' then 'UK Only' else 'Non UK' end

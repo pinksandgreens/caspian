@@ -51,6 +51,8 @@
         mkt_term,
         mkt_content,
         mkt_campaign,
+        mkt_network,
+        mkt_clickid,
         pp_xoffset_max,
         pp_xoffset_min,
         pp_yoffset_max,
@@ -109,6 +111,15 @@
     label: 'Market Campaign'
     sql: ${TABLE}.mkt_campaign
     
+  - dimension: mkt_network
+    label: 'Market Ad Network Click'
+    sql: ${TABLE}.mkt_network
+  
+  - dimension: mkt_clickid
+    label: 'Market ClickID'
+    sql: ${TABLE}.mkt_clickid
+    
+
   - dimension: location_test
     type: location
     label: 'Location'
@@ -156,7 +167,7 @@
       else 'other' end
     html: |
       {{ linked_value }}
-      <a href="https://bauerxcel.looker.com/dashboards/46?Brand%20Name={{ value }}&Timeframe=1%20months%20ago%20for%201%20months&Set%20same%20date%20as%20Timeframe=1%20months%20ago%20for%201%20months" target="_new">
+      <a href="https://bauerxcel.looker.com/dashboards/46?Brand%20Name(s)={{ value }}&Timeframe=1%20months%20ago%20for%201%20months&Set%20same%20date%20as%20Timeframe=1%20months%20ago%20for%201%20months" target="_new">
       <img src="http://i.imgur.com/aJnF2oW.jpg" height=10 width=10></a>
     
   - dimension: uk_only
@@ -171,6 +182,7 @@
       
   - dimension: Country
     sql: ${TABLE}.geo_country
+    
     
   - dimension: location
     hidden: TRUE
@@ -280,22 +292,22 @@
     hidden: true
 
   - dimension: structured_event_action
-    hidden: TRUE
+    hidden: FALSE
     sql: ${TABLE}.se_action
 
   - dimension: structured_event_category
-    hidden: TRUE
+    hidden: FALSE
     sql: ${TABLE}.se_category
 
   - dimension: structured_event_label
     sql: ${TABLE}.se_label
 
   - dimension: structured_event_property
-    hidden: TRUE
+    hidden: FALSE
     sql: ${TABLE}.se_property
 
   - dimension: structured_event_value
-    hidden: TRUE
+    hidden: FALSE
     type: number
     sql: ${TABLE}.se_value
     
@@ -331,6 +343,11 @@
     type: count_distinct
     drill_fields: page_views_detail*
     sql: ${page_url_path}
+    
+  - measure: articles_count
+    type: count_distinct                ##################### Testing ##########################
+    drill_fields: page_views_detail*
+    sql: ${TABLE}.page_title
     
   - measure: sessions_count
     type: count_distinct

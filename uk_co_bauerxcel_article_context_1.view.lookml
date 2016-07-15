@@ -32,7 +32,7 @@
     sql: ${TABLE}.root_id
 
   - dimension_group: root_tstamp
-    hidden: TRUE
+    hidden: FALSE
     type: time
     timeframes: [time, date, week, month]
     sql: ${TABLE}.root_tstamp

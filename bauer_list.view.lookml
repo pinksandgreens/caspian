@@ -76,7 +76,7 @@
     sql: ${TABLE}.created
 
   - dimension: created_by
-    hidden: TRUE
+    hidden: FALSE
     label: 'Data From (ES/Nudge/Gigya)'
     type: string
     sql: ${TABLE}.created_by
@@ -92,7 +92,13 @@
     type: time
     timeframes: [date, week, month, year, day_of_week]
     convert_tz: false
-    sql: ${TABLE}.dateofbirth
+    sql: |
+         CASE
+           WHEN ${TABLE}.dateofbirth = '0001-01-01' THEN NULL
+           WHEN ${TABLE}.dateofbirth > CURRENT_DATE THEN NULL
+           WHEN DATEDIFF('year', ${TABLE}.dateofbirth, CURRENT_DATE) <= 8 THEN NULL
+           ELSE ${TABLE}.dateofbirth 
+         END
 
   - dimension_group: ddw_updated
     hidden: TRUE
@@ -145,7 +151,7 @@
     sql: ${TABLE}.hometown
 
   - dimension: household_income
-    hidden: TRUE
+    hidden: FALSE
     label: 'Household Income ($USD)'
     description: 'This is the income in USD '
     type: string
@@ -434,9 +440,20 @@
     sql: ${TABLE}.telephoneworknumber
 
   - dimension: title
-    hidden: TRUE
+    hidden: FALSE
     type: string
-    sql: ${TABLE}.title
+    sql: |
+      CASE
+        WHEN INITCAP(${TABLE}.title) = 'Mr' THEN 'Mr'
+        WHEN INITCAP(${TABLE}.title) = 'Ms' THEN 'Ms'
+        WHEN INITCAP(${TABLE}.title) = 'Mrs' THEN 'Mrs'
+        WHEN INITCAP(${TABLE}.title) = 'Miss' THEN 'Miss'
+        WHEN INITCAP(${TABLE}.title) = 'Dr' THEN 'Dr'
+        WHEN INITCAP(${TABLE}.title) = 'Doctor (Male)' THEN 'Dr'
+        WHEN INITCAP(${TABLE}.title) = 'Doctor (Female)' THEN 'Dr'
+        WHEN INITCAP(${TABLE}.title) = 'Doctor' THEN 'Dr'
+        ELSE NULL
+      END
 
   - dimension: updated_by
     hidden: TRUE
@@ -478,3 +495,26 @@
     type: count_distinct
     sql: ${customer_id}
 
+#   - dimension: AGE_IS_NULL
+#     label: 'AGE IS NULL'
+#     hidden: FALSE
+#     type: string
+#     sql: |
+#      CASE
+#       WHEN ${TABLE}.age IS NULL THEN '0'
+#       WHEN ${TABLE}.age = '' THEN '0'
+#       WHEN ${TABLE}.age = ' ' THEN '0'
+#       ELSE '1'
+#      END
+# 
+  - measure: Percent_of_Total
+    type: percent_of_total
+    sql: ${registered_users_count}
+    html: |
+      {% if value > 30 %}
+      <font color="red">{{ rendered_value }}</font>
+      {% elsif value < 30 %}
+        <font color="darkgreen">{{ rendered_value }}</font>
+      {% else %}
+        <font color="black">{{ rendered_value }}</font>
+      {% endif %}

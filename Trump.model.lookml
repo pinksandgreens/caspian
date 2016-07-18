@@ -57,7 +57,7 @@
 
 
   - join: es_users
-    type: inner
+    type: left_outer
     relationship: one_to_many
     sql_on: ${es_users.email} = ${bauer_list.email_address}
   
@@ -101,7 +101,25 @@
     
 ##########################################################################################################################################################
 
-
+  - join: events
+    type: left_outer
+    relationship: many_to_one
+    sql_on: ${gigya_users.gigya_id} = ${events.user_id}
+    
+  - join: snowplow_clicks
+    type: inner
+    relationship: many_to_many
+    sql_on: ${events.event_id} = ${snowplow_clicks.root_id}
+      
+  - join: article_context
+    type: inner
+    relationship: one_to_one
+    sql_on: ${events.event_id} = ${article_context.root_id}
+      
+  - join: sessions
+    type: inner
+    relationship: one_to_many
+    sql_on: ${events.session_id} = ${sessions.session_id}
     
     
     

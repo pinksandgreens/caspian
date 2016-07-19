@@ -144,7 +144,102 @@
         WHEN ${gender} = 'M' THEN 'Male' 
         ELSE 'Unknown' 
       END
+      
+################################### IS NULL DIMENSIONS, LEAVE THESE ALONE, THEY'RE USELESS TO ANYBODY BUT ME #########################
+
+  - dimension: gender_name_null
+    hidden: TRUE
+    type: string
+    sql: |
+      CASE
+        WHEN ${gender_name} IS NULL THEN 'Null'
+        WHEN ${gender_name} = 'Unknown' THEN 'Null'
+        ELSE 'Populated'
+      END
+      
+  - dimension: fn_name_null
+    hidden: TRUE
+    type: string
+    sql: |
+      CASE
+        WHEN ${firstname} IS NULL THEN 'Null'
+        ELSE 'Populated'
+      END
+
+  - dimension: ln_name_null
+    hidden: TRUE
+    type: string
+    sql: |
+      CASE
+        WHEN ${lastname} IS NULL THEN 'Null'
+        ELSE 'Populated'
+      END
+      
+  - dimension: age_name_null
+    hidden: TRUE
+    type: string
+    sql: |
+      CASE
+        WHEN ${age_banding} IS NULL THEN 'Null'
+        ELSE 'Populated'
+      END
+      
+  - dimension: postcode_name_null
+    hidden: TRUE
+    type: string
+    sql: |
+      CASE
+        WHEN ${postal_code} IS NULL THEN 'Null'
+        ELSE 'Populated'
+      END
+      
+  - dimension: country_name_null
+    hidden: TRUE
+    type: string
+    sql: |
+      CASE
+        WHEN ${country} IS NULL THEN 'Null'
+        ELSE 'Populated'
+      END
     
+  - dimension: city_name_null
+    hidden: TRUE
+    type: string
+    sql: |
+      CASE
+        WHEN ${city} IS NULL THEN 'Null'
+        ELSE 'Populated'
+      END
+      
+  - dimension: phone_name_null
+    hidden: TRUE
+    type: string
+    sql: |
+      CASE
+        WHEN ${telephonehomenumber} IS NULL THEN 'Null'
+        ELSE 'Populated'
+      END
+      
+  - dimension: income_name_null
+    hidden: TRUE
+    type: string
+    sql: |
+      CASE
+        WHEN ${household_income} IS NULL THEN 'Null'
+        ELSE 'Populated'
+      END
+      
+  - dimension: dob2_name_null
+    hidden: TRUE
+    type: string
+    sql: |
+      CASE
+        WHEN ${TABLE}.dateofbirth IS NULL THEN 'Null'
+        ELSE 'Populated'
+      END
+      
+############################################################################################################## #########################
+
   - dimension: hometown
     hidden: TRUE
     type: string
@@ -510,11 +605,17 @@
   - measure: Percent_of_Total
     type: percent_of_total
     sql: ${registered_users_count}
-    html: |
-      {% if value > 30 %}
-      <font color="red">{{ rendered_value }}</font>
-      {% elsif value < 30 %}
-        <font color="darkgreen">{{ rendered_value }}</font>
-      {% else %}
-        <font color="black">{{ rendered_value }}</font>
-      {% endif %}
+#     html: |
+#       {% if value > 30 %}
+#       <font color="red">{{ rendered_value }}</font>
+#       {% elsif value < 30 %}
+#         <font color="darkgreen">{{ rendered_value }}</font>
+#       {% else %}
+#         <font color="black">{{ rendered_value }}</font>
+#       {% endif %}
+      
+      
+      
+
+      
+      

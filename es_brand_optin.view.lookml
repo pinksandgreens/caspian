@@ -12,13 +12,27 @@
     label: 'Brand Opin'
     type: yesno
     sql: ${TABLE}.brandoptin
+    
+  - dimension: brandoptin_not_null
+    label: 'brandoptinnotnull'
+    hidden: TRUE
+    type: string
+    sql: |
+     CASE
+      WHEN ${brandoptin} = 'Yes' THEN '1'
+      ELSE '0'
+     END
 
   - dimension_group: date_created
     label: 'Optin'
     type: time
     timeframes: [time, date, week, month]
     sql: ${TABLE}.date_created
-
+    
+  - measure: Brand_Optin_Total
+    type: number
+    sql: sum(${brandoptin_not_null})
+    
   - dimension_group: last_updated
     label: 'Updated Optin'
     type: time
@@ -36,8 +50,10 @@
     type: count_distinct
     sql: ${TABLE}.user_id
 
-  - measure: count
-    hidden: TRUE
-    type: count
-    drill_fields: []
+#   - measure: count
+#     hidden: TRUE
+#     type: count
+#     drill_fields: []
+    
+
 

@@ -16,7 +16,12 @@
   - dimension: emailoptin
     label: 'Email Optin'
     type: string
-    sql: ${TABLE}.emailoptin
+    sql: |
+      CASE
+        WHEN ${TABLE}.emailoptin = ' ' THEN 'false'
+        WHEN ${TABLE}.emailoptin IS NULL THEN 'Unknown'
+        ELSE ${TABLE}.emailoptin
+      END
 
   - dimension: gigya_id
     label: 'User ID'

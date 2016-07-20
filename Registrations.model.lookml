@@ -9,7 +9,7 @@
 
   joins:
   - join: bauer_list
-    type: inner
+    type: full_outer
     relationship: one_to_many
     sql_on: ${bauer_list.email_address} = ${gigya_users.email}
   

@@ -191,8 +191,8 @@
     sql: ${TABLE}.is_verified
 
   - dimension_group: last_login
-    label: 'DEPRICATED'
-    hidden: TRUE
+    label: 'Last Login'
+    hidden: FALSE
     type: time
     timeframes: [time, date, week, month]
     sql: ${TABLE}.last_login
@@ -396,12 +396,12 @@
     type: string
     sql: |
       CASE 
-        WHEN DATEDIFF('day', ${TABLE}.last_login, CURRENT_DATE) = 0 THEN 'Today'
-        WHEN DATEDIFF('day', ${TABLE}.last_login, CURRENT_DATE) > 0 AND DATEDIFF('day', ${TABLE}.last_login, CURRENT_DATE) <= 7 THEN '1-7 days'
-        WHEN DATEDIFF('day', ${TABLE}.last_login, CURRENT_DATE) > 7 AND DATEDIFF('day', ${TABLE}.last_login, CURRENT_DATE) <= 30 THEN '8-30 days'
-        WHEN DATEDIFF('day', ${TABLE}.last_login, CURRENT_DATE) > 30 AND DATEDIFF('day', ${TABLE}.last_login, CURRENT_DATE) <= 90 THEN '1-3 months'
-        WHEN DATEDIFF('day', ${TABLE}.last_login, CURRENT_DATE) > 90 AND DATEDIFF('day', ${TABLE}.last_login, CURRENT_DATE) <= 180 THEN '3-6 months'
-        WHEN DATEDIFF('day', ${TABLE}.last_login, CURRENT_DATE) > 180 AND DATEDIFF('day', ${TABLE}.last_login, CURRENT_DATE) <= 365 THEN '6-12 months'
+        WHEN DATEDIFF('day', ${TABLE}.last_login, CURRENT_DATE) = 0 THEN '6) Today'
+        WHEN DATEDIFF('day', ${TABLE}.last_login, CURRENT_DATE) > 0 AND DATEDIFF('day', ${TABLE}.last_login, CURRENT_DATE) <= 7 THEN '5) 1-7 days'
+        WHEN DATEDIFF('day', ${TABLE}.last_login, CURRENT_DATE) > 7 AND DATEDIFF('day', ${TABLE}.last_login, CURRENT_DATE) <= 30 THEN '4) 8-30 days'
+        WHEN DATEDIFF('day', ${TABLE}.last_login, CURRENT_DATE) > 30 AND DATEDIFF('day', ${TABLE}.last_login, CURRENT_DATE) <= 90 THEN '3) 1-3 months'
+        WHEN DATEDIFF('day', ${TABLE}.last_login, CURRENT_DATE) > 90 AND DATEDIFF('day', ${TABLE}.last_login, CURRENT_DATE) <= 180 THEN '2) 3-6 months'
+        WHEN DATEDIFF('day', ${TABLE}.last_login, CURRENT_DATE) > 180 AND DATEDIFF('day', ${TABLE}.last_login, CURRENT_DATE) <= 365 THEN '1) 6-12 months'
         ELSE 'Unknown'
       END
   

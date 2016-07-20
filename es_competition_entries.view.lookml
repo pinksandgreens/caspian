@@ -177,32 +177,41 @@
     type: string
     sql: ${TABLE}.useragent
 
-      
+########### Stopped using this.
+#sql: |
+#      CASE
+#             WHEN ${TABLE}.useragent LIKE '%Mobi%' THEN 'Mobile'
+#             WHEN ${TABLE}.useragent LIKE '%Tablet%' THEN 'Tablet'
+#             WHEN ${TABLE}.useragent LIKE '%Mobile Safari%' THEN 'Mobile'
+#             WHEN ${TABLE}.useragent LIKE '%Android%' THEN 'Mobile'
+#             WHEN ${TABLE}.useragent LIKE '%iPhone%' THEN 'Mobile'
+#             WHEN ${TABLE}.useragent LIKE '%BB10%' THEN 'Mobile'
+#             WHEN ${TABLE}.useragent LIKE '%Windows%' THEN 'Desktop'
+#             WHEN ${TABLE}.useragent LIKE '%MSIE%' THEN 'Desktop'  
+#             WHEN ${TABLE}.useragent LIKE '%Macintosh%' THEN 'Desktop'
+#             WHEN ${TABLE}.useragent LIKE '%X11%' THEN 'Desktop' 
+#             WHEN ${TABLE}.useragent LIKE '%iPad%' THEN 'Tablet'
+#             WHEN ${TABLE}.useragent LIKE '%Ubuntu%' THEN 'Desktop'
+#             WHEN ${TABLE}.useragent LIKE '%PlayStation%' THEN 'Console'
+#             WHEN ${TABLE}.useragent LIKE '%Nintendo%' THEN 'Console'
+#             WHEN ${TABLE}.useragent LIKE '%PlayBook%' THEN 'Tablet'
+#             WHEN ${TABLE}.useragent LIKE '%Presto%' THEN 'Desktop'
+#             WHEN ${TABLE}.useragent LIKE '%Linux; Linux%' THEN 'Desktop'
+#             WHEN ${TABLE}.useragent LIKE '%Linux; NetCast%' THEN 'Desktop'
+#             WHEN ${TABLE}.useragent LIKE '%Linux; U%' THEN 'Desktop' 
+#       END
+    
   - dimension: device_type
     label: 'User Device Type'
     hidden: FALSE
     type: string
     sql: |
-      CASE
-            WHEN ${TABLE}.useragent LIKE '%Mobile Safari%' THEN 'Mobile'
-            WHEN ${TABLE}.useragent LIKE '%Android%' THEN 'Mobile'
-            WHEN ${TABLE}.useragent LIKE '%iPhone%' THEN 'Mobile'
-            WHEN ${TABLE}.useragent LIKE '%BB10%' THEN 'Mobile'
-            WHEN ${TABLE}.useragent LIKE '%Windows%' THEN 'Desktop'
-            WHEN ${TABLE}.useragent LIKE '%MSIE%' THEN 'Desktop'  
-            WHEN ${TABLE}.useragent LIKE '%Macintosh%' THEN 'Desktop'
-            WHEN ${TABLE}.useragent LIKE '%X11%' THEN 'Desktop' 
-            WHEN ${TABLE}.useragent LIKE '%iPad%' THEN 'Tablet'
-            WHEN ${TABLE}.useragent LIKE '%Ubuntu%' THEN 'Desktop'
-            WHEN ${TABLE}.useragent LIKE '%PlayStation%' THEN 'Console'
-            WHEN ${TABLE}.useragent LIKE '%Nintendo%' THEN 'Console'
-            WHEN ${TABLE}.useragent LIKE '%PlayBook%' THEN 'Tablet'
-            WHEN ${TABLE}.useragent LIKE '%Presto%' THEN 'Desktop'
-            WHEN ${TABLE}.useragent LIKE '%Linux; Linux%' THEN 'Desktop'
-            WHEN ${TABLE}.useragent LIKE '%Linux; NetCast%' THEN 'Desktop'
-            WHEN ${TABLE}.useragent LIKE '%Linux; U%' THEN 'Desktop'
-            ELSE 'Other/Unknown'
-      END
+        CASE
+         WHEN (${useragent} LIKE '%iphone%' OR ${useragent} LIKE '%iPhone%' OR ${useragent} LIKE '%Windows mobile%' OR ${useragent} LIKE '%Windows phone%' OR ${useragent} LIKE '%Windows Phone%' OR ${useragent} LIKE '%Nexus 5%' OR ${useragent} LIKE '%GTI-9300%' OR ${useragent} LIKE '%Nokia%' OR ${useragent} LIKE '%SGH-M919V%' OR ${useragent} LIKE '%SCH-%' OR ${useragent} LIKE '%Mobi%' OR ${useragent} LIKE '%Opera mini%') AND (${useragent} NOT LIKE '%iPad%') THEN 'Mobile'
+         WHEN ((${useragent} LIKE '%Windows%' OR ${useragent} LIKE '%WOW64%' OR ${useragent} LIKE '%Intel Mac OS%' OR ${useragent} LIKE '%Windows NT 6.1; Trident/7.0%' OR ${useragent} LIKE '%Media Center PC%') AND (${useragent} NOT LIKE '%iPad%')) THEN 'Desktop'
+         WHEN (${useragent} LIKE '%Tablet PC%' OR ${useragent} LIKE '%Touch%' OR ${useragent} LIKE '%MyPhone%' OR ${useragent} LIKE '%iPad%' OR ${useragent} LIKE '%ipad%' OR ${useragent} LIKE '%Tablet%') THEN 'Tablet'
+         ELSE 'Unknown'
+        END
       
       
   - dimension: browser

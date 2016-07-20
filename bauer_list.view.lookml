@@ -180,7 +180,7 @@
     type: string
     sql: |
       CASE
-        WHEN ${age_banding} IS NULL THEN 'Null'
+        WHEN ${age} IS NULL THEN 'Null'
         ELSE 'Populated'
       END
       
@@ -589,6 +589,8 @@
     label: 'Users Count'
     type: count_distinct
     sql: ${customer_id}
+    html: |
+       <font color="green">{{ rendered_value }}</font>
 
 #   - dimension: AGE_IS_NULL
 #     label: 'AGE IS NULL'

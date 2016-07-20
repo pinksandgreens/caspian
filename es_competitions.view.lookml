@@ -133,9 +133,10 @@
     type: time
     timeframes: [time, date, week, month]
     sql: ${TABLE}.updated_date
-    
-  - measure: count
-    hidden: TRUE
-    type: count
+
+  - measure: competitions_count
+    label: 'Competitions Count'
+    type: count_distinct
+    sql: ${TABLE}.id
     drill_fields: [id, name, created, ref_brand, ref_campaign_aim, ref_campaign_description,ref_campaign_stakeholder, ref_taxonomy_1, source]
 

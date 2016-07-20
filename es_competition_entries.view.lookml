@@ -265,6 +265,11 @@
 #    type: count_distinct
 #    hidden: true 
 #    sql: ${id}
+
+  - measure: competitions_count
+    label: 'Competitions Count'
+    type: count_distinct
+    sql: ${TABLE}.competition_id
     
   - measure: entries_count_banding
     hidden: TRUE
@@ -274,11 +279,6 @@
     sql: ${entries_count}
     style: integer
     
-  - measure: competitions_count
-    label: 'Competitions Count'
-    type: count_distinct
-    sql: ${competition_id}
-    drill_fields: comp_drill_set_1*
     
   - measure: avg_entries_per_competition
     hidden: TRUE

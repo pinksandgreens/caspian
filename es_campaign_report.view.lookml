@@ -10,9 +10,10 @@
     sql: ${TABLE}.comp_id
 
   - dimension: created_by
-    hidden: TRUE
+    hidden: FALSE
     type: string
-    sql: ${TABLE}.created_by
+    sql: |
+      INITCAP(split_part(REPLACE(${TABLE}.created_by, '.', ' '),'@',1))
 
   - dimension: external_ref
     label: 'External Reference'

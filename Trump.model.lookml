@@ -11,7 +11,7 @@
 
   joins:
   - join: gigya_users
-    type: inner
+    type: full_outer
     relationship: one_to_many
     sql_on: ${gigya_users.email} = ${bauer_list.email_address}
   

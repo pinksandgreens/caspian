@@ -13,8 +13,11 @@
     hidden: FALSE
     type: string
     sql: |
-      INITCAP(split_part(REPLACE(${TABLE}.created_by, '.', ' '),'@',1))
-
+      CASE
+        WHEN INITCAP(split_part(REPLACE(${TABLE}.created_by, '.', ' '),'@',1)) = 'Richard Foster2' THEN 'Richard Foster'
+        ELSE INITCAP(split_part(REPLACE(${TABLE}.created_by, '.', ' '),'@',1))
+      END
+      
   - dimension: external_ref
     label: 'External Reference'
     hidden: TRUE

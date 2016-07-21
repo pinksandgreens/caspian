@@ -15,6 +15,8 @@
     sql: |
       CASE
         WHEN INITCAP(split_part(REPLACE(${TABLE}.created_by, '.', ' '),'@',1)) = 'Richard Foster2' THEN 'Richard Foster'
+        WHEN INITCAP(split_part(REPLACE(${TABLE}.created_by, '.', ' '),'@',1)) = 'John' THEN 'John (Empire)'
+        WHEN INITCAP(split_part(REPLACE(${TABLE}.created_by, '.', ' '),'@',1)) = 'James' THEN 'James (Empire)'
         ELSE INITCAP(split_part(REPLACE(${TABLE}.created_by, '.', ' '),'@',1))
       END
       

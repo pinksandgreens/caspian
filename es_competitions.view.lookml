@@ -21,6 +21,20 @@
     timeframes: [time, date, week, month]
     sql: ${TABLE}.created_date
 
+  - dimension_group: created_week
+    label: ' '
+    hidden: TRUE
+    type: time
+    timeframes: [week_of_year]
+    sql: ${TABLE}.created_date
+
+  - dimension_group: created_month
+    label: ' '
+    hidden: TRUE
+    type: time
+    timeframes: [month_name]
+    
+    sql: ${TABLE}.created_date
   - dimension: name
     label: 'Competition Name'
     type: string

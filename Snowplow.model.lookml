@@ -43,7 +43,7 @@
     - join: sessions
       type: inner
       relationship: one_to_many
-      sql_on: ${events.session_id} = ${sessions.session_id
+      sql_on: ${events.session_id} = ${sessions.session_id}
       
       
       

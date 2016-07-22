@@ -54,7 +54,7 @@
       )
       WHERE rank = 1 -- If there are different rows with the same dvce_tstamp, rank and pick the first row
     
-    sql_trigger_value: SELECT COUNT(*) FROM ${sessions_exit_page.SQL_TABLE_NAME} # Generate this table after sessions_exit_page
+    sql_trigger_value: SELECT DATE(CURRENT_TIMESTAMP - interval '4 hour')
     distkey: domain_userid
     sortkeys: [domain_userid, domain_sessionidx]
 

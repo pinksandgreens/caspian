@@ -37,8 +37,7 @@
         AND dvce_created_tstamp < '2030-01-01'
         -- if dev -- AND collector_tstamp > DATEADD (day, -2, GETDATE())
       GROUP BY 1,2
-#    sql_trigger_value: SELECT DATE(CURRENT_TIMESTAMP - interval '4 hour')
-    sql_trigger_value: SELECT DATE_PART('hour', GETDATE()) # update every hour
+    sql_trigger_value: SELECT DATE(CURRENT_TIMESTAMP - interval '4 hour')
     distkey: domain_userid
     sortkeys: [domain_userid, domain_sessionidx]
 

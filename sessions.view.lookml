@@ -87,7 +87,7 @@
         ON  b.domain_userid = t.domain_userid
         AND b.domain_sessionidx = t.domain_sessionidx
     
-    sql_trigger_value: SELECT COUNT(*) FROM ${sessions_technology.SQL_TABLE_NAME} # Generate this table after sessions_technology
+    sql_trigger_value: SELECT DATE(CURRENT_TIMESTAMP - interval '4 hour')
     distkey: domain_userid
     sortkeys: [domain_userid, domain_sessionidx]
   

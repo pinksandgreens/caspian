@@ -37,7 +37,7 @@
         AND dvce_created_tstamp < '2030-01-01'
         -- if dev -- AND collector_tstamp > DATEADD (day, -2, GETDATE())
       GROUP BY 1,2
-    sql_trigger_value: SELECT DATE(CURRENT_TIMESTAMP - interval '4 hour')
+    sql_trigger_value: SELECT FLOOR(EXTRACT(epoch from GETDATE()) / (4*60*60))
     distkey: domain_userid
     sortkeys: [domain_userid, domain_sessionidx]
 

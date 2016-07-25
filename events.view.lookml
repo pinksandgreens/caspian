@@ -81,7 +81,7 @@
       WHERE domain_userid IS NOT NULL
       AND collector_tstamp > current_date - 35
     
-    sql_trigger_value: SELECT DATE(CURRENT_TIMESTAMP - interval '4 hour')
+    sql_trigger_value: SELECT FLOOR(EXTRACT(epoch from GETDATE()) / (4*60*60))
     distkey: domain_userid
     sortkeys: [domain_userid, domain_sessionidx, collector_tstamp]
   

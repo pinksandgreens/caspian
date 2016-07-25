@@ -66,22 +66,19 @@
     label: 'Sent'
     type: time
     timeframes: [date, week, month]
-    sql: |
-     TO_DATE (${TABLE}.launch_date, 'YYYY-MM-DD')
+    sql: ${TABLE}.launch_date
 
   - dimension: open_date
     label: 'Open'
     type: time
     timeframes: [date, week, month]
-    sql: |
-     TO_DATE (${TABLE}.open_date, 'YYYY-MM-DD')
+    sql: ${TABLE}.open_date
 
   - dimension: click_date
     label: 'Click'
     type: time
     timeframes: [date, week, month]
-    sql: |
-     TO_DATE (${TABLE}.click_date, 'YYYY-MM-DD')
+    sql: ${TABLE}.click_date
 
   - dimension: click_date_not_null
     label: 'Unique Clicks'
@@ -89,7 +86,7 @@
     type: string
     sql: |
      CASE
-      WHEN ${TABLE}.click_date = ' ' THEN '0'
+      WHEN ${TABLE}.click_date IS NULL THEN '0'
       ELSE '1'
      END
 
@@ -99,7 +96,7 @@
     type: string
     sql: |
      CASE
-      WHEN ${TABLE}.open_date = ' ' THEN '0'
+      WHEN ${TABLE}.open_date IS NULL THEN '0'
       ELSE '1'
      END
 

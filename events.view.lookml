@@ -491,6 +491,7 @@
       - page_url_host
       - page_url_path
       - device_timestamp
+      - page_views_count
     
     session_detail:
       - user_id

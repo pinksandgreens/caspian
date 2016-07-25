@@ -7,6 +7,12 @@
   label: 'Email Data'
   persist_for: 1 hour
   joins:
+  
+    - join: responsy_device
+      type: inner
+      relationship: one_to_one
+      sql_on: ${responsy_active.concatid} = ${responsy_device.concat_id}
+  
     - join: bauer_list
       type: inner
       relationship: one_to_one

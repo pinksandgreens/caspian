@@ -1,7 +1,34 @@
 - view: responsy_active
   label: '2a. Email Data'
-  sql_table_name: responsys.responsy_active
+  sql_table_name: responsys.lm_ced_replacement_24h
   fields:
+
+
+
+
+#### Marketing Info
+
+  - dimension: marketing_strategy
+    type: string
+    sql: |
+      CASE
+        WHEN ${TABLE}.marketing_strategy = ' ' THEN NULL
+        WHEN ${TABLE}.marketing_strategy = 'Car Magazine' THEN NULL
+        WHEN ${TABLE}.marketing_strategy = 'LandScape' THEN NULL
+        WHEN ${TABLE}.marketing_strategy = 'Motorcycle News' THEN NULL
+        WHEN ${TABLE}.marketing_strategy = 'Parkers' THEN NULL
+        WHEN ${TABLE}.marketing_strategy = 'Todays Golfer' THEN NULL
+        ELSE ${TABLE}.marketing_strategy
+      END
+
+  - dimension: marketing_program
+    type: string
+    sql: |
+      CASE
+        WHEN ${TABLE}.marketing_program = ' ' THEN NULL
+        ELSE ${TABLE}.marketing_program
+      END
+
 
 #### EMAIL EVENTS
 
@@ -101,7 +128,7 @@
   - dimension: concatid
     type: string
     hidden: TRUE
-    sql: ${TABLE}.concatid
+    sql: ${TABLE}.concat_id
 
   - dimension: email_address
     type: string
@@ -125,7 +152,7 @@
   - measure: Uniqe_Send_Count
     label: 'Send Count Unique'
     type: count_distinct
-    sql: ${TABLE}.concatid
+    sql: ${TABLE}.concat_id
     
   - measure: Open_Count
     type: sum

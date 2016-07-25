@@ -54,7 +54,7 @@
       )
       WHERE rank = 1 -- If there are different rows with the same dvce_tstamp, rank and pick the first row
     
-    sql_trigger_value: SELECT DATE(CURRENT_TIMESTAMP - interval '4 hour')
+    sql_trigger_value: SELECT FLOOR(EXTRACT(epoch from GETDATE()) / (4*60*60))
     distkey: domain_userid
     sortkeys: [domain_userid, domain_sessionidx]
 

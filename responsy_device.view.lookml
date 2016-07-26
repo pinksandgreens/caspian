@@ -20,7 +20,6 @@
     hidden: TRUE
     sql: ${TABLE}.riid
 
-
     ################################ 
     
   - dimension: operating_system

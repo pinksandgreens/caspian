@@ -119,7 +119,7 @@
     sql: ${TABLE}.email_address
 
   - dimension: email_permission_status
-    hidden: TRUE
+    hidden: FALSE
     type: string
     sql: ${TABLE}.email_permission_status
 

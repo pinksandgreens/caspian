@@ -47,7 +47,12 @@
     type: full_outer
     relationship: one_to_one
     sql_on: ${responsy_active.email_address} = ${bauer_list.email_address}
-
+    
+  - join: responsy_device
+    type: inner
+    relationship: one_to_one
+    sql_on: ${responsy_active.concatid} = ${responsy_device.concat_id}
+      
   - join: brand_lookup
     type: inner
     relationship: one_to_one

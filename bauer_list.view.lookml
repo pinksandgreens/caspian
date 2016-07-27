@@ -83,7 +83,7 @@
     
   - dimension: customer_id
     label: 'Customer ID'
-    hidden: TRUE
+    hidden: FALSE
     type: string
     sql: ${TABLE}.customer_id
 

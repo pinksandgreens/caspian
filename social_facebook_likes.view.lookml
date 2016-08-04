@@ -23,10 +23,6 @@
     type: string
     sql: ${TABLE}.latitude
 
-  - dimension: likes
-    type: number
-    sql: ${TABLE}.likes
-
   - dimension: link
     type: string
     sql: ${TABLE}.link
@@ -62,9 +58,6 @@
         ELSE ${TABLE}.name
       END
       
-  - dimension: talking_about_count
-    type: number
-    sql: ${TABLE}.talking_about_count
 
   - dimension: username
     type: string
@@ -73,12 +66,14 @@
   - dimension: website
     type: string
     sql: ${TABLE}.website
-
-  - measure: count
-    type: count
-    drill_fields: [id, name, username]
     
+  - dimension: likes
+    type: number
+    sql: ${TABLE}.likes
     
+  - dimension: talking_about_count
+    type: number
+    sql: ${TABLE}.talking_about_count
     
   - dimension: image_file
     hidden: TRUE

@@ -291,6 +291,7 @@
   - measure: success_metric
     label: 'Success Metric'
     type: number
+    hidden: TRUE
     sql: ${es_competition_entries.entries_count}/1814.24
     drill_fields: comp_drill_set_1*
     html: |

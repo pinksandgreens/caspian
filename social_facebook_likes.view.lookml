@@ -55,6 +55,8 @@
         WHEN 'CFM Radio' THEN 'CFM Radio'
         WHEN 'Empire Magazine' THEN 'Empire'
         WHEN 'Parkers' THEN 'Parkers'
+        WHEN 'heat' THEN 'Heat'
+        WHEN 'CAR Magazine' THEN 'Car Magazine'
         ELSE ${TABLE}.name
       END
       
@@ -95,10 +97,10 @@
     
   - dimension: image_file2
     hidden: TRUE
-    sql: ('http://i.imgur.com/b7OVZQm.png')
+    sql: ('http://i.imgur.com/QtkpqLN.png')
     
   - dimension: product_image2
     hidden: TRUE
     sql: ${image_file2}
-    html: <img src="{{ value }}" width="80" height="100"/>
+    html: <img src="{{ value }}" width="100" height="80"/>
 

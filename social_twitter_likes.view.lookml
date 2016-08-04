@@ -31,6 +31,8 @@
         WHEN 'CFM Radio' THEN 'CFM Radio'
         WHEN 'Empire Magazine' THEN 'Empire'
         WHEN 'Parkers' THEN 'Parkers'
+        WHEN 'heat & heatworld.com' THEN 'Heat'
+        WHEN '' THEN 'Car Magazine'
         ELSE ${TABLE}.name
       END
       

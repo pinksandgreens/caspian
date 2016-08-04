@@ -145,7 +145,7 @@
         ELSE 'Unknown' 
       END
       
-################################### IS NULL DIMENSIONS, LEAVE THESE ALONE, THEY'RE USELESS TO ANYBODY BUT ME #########################
+################################### IS NULL DIMENSIONS, LEAVE THESE ALONE, HERE BE DRAGONS #########################
 
   - dimension: gender_name_null
     hidden: TRUE

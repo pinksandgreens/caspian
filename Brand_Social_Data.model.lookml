@@ -24,6 +24,11 @@
       type: inner
       relationship: one_to_one
       sql_on: ${brand_lookup.bra_description} = ${social_facebook_likes.name}
+      
+    - join: social_twitter_likes
+      type: inner
+      relationship: one_to_one
+      sql_on: ${social_twitter_likes.name} = ${social_facebook_likes.name}
   
 #     - join: ga_radio_twitter_data
 #       type: inner

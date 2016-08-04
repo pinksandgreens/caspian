@@ -41,33 +41,30 @@
   - dimension: location
     type: string
     sql: ${TABLE}.location
-      
-  - dimension: talking_about_count
-    type: number
-    sql: ${TABLE}.talking_about_count
-
-  - dimension: username
-    type: string
-    sql: ${TABLE}.username
-
-  - dimension: website
-    type: string
-    sql: ${TABLE}.website
     
-  - dimension: statusesCount
-    type: number
+  - measure: statusesCount
+    label: 'Statuses Count'
+    type: average
     sql: ${TABLE}.statusesCount
 
-  - dimension: followersCount
-    type: number
+  - measure: followersCount
+    label: 'Followers Count'
+    type: average
     sql: ${TABLE}.followersCount
 
-  - dimension: favouritesCount
-    type: number
+  - measure: favouritesCount
+    label: 'Tweet Favourite Count'
+    type: average
     sql: ${TABLE}.favoritesCount
 
-  - dimension: friendsCount
-    type: string
+  - measure: friendsCount
+    label: 'Twitter Friends Count'
+    type: average
     sql: ${TABLE}.friendsCount
+    
+  - measure: Twitter_Engagement
+    value_format: '#.00%'  
+    type: number
+    sql: ${social_twitter_likes.favouritesCount}/${social_twitter_likes.statusesCount}
 
 

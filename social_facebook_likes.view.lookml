@@ -67,8 +67,8 @@
     type: string
     sql: ${TABLE}.website
     
-  - dimension: likes
-    type: number
+  - measure: likes
+    type: average
     sql: ${TABLE}.likes
     
   - dimension: talking_about_count

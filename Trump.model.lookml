@@ -6,7 +6,7 @@
  ###################################################################################################################################################
 
 - explore: bauer_list       
-  label: 'WE MUST BUILD THE CUSTOMER WALL'
+  label: 'Holistic Model'
   persist_for: 24 hours
 
   joins:
@@ -67,7 +67,7 @@
     sql_on: ${es_users.email} = ${bauer_list.email_address}
   
   - join: es_competition_entries
-    type: inner
+    type: left_outer
     relationship: one_to_many
     sql_on: ${es_users.user_id} = ${es_competition_entries.user_id}
     
@@ -127,7 +127,34 @@
     sql_on: ${events.session_id} = ${sessions.session_id}
     
     
+##########################################################################################################################################################
     
+  - join: nudge_individuals
+    type: full_outer
+    relationship: one_to_one
+    sql_on: ${bauer_list.email_address} = ${nudge_individuals.email_address}    
+    
+  - join: nudge_households
+    type: inner
+    relationship: one_to_one
+    sql_on: ${nudge_individuals.individual_id} = ${nudge_households.household_id} 
+
+
+  - join: nudge_subscriptions
+    type: full_outer
+    relationship: one_to_one
+    sql_on: ${nudge_individuals.individual_id} = ${nudge_subscriptions.individual_id} 
+    
+    
+  - join: nudge_interactions
+    type: inner
+    relationship: one_to_one
+    sql_on: ${nudge_individuals.individual_id} = ${nudge_interactions.individual_id}
+    
+  - join: nudge_registrations
+    type: inner
+    relationship: one_to_one
+    sql_on: ${nudge_individuals.individual_id} = ${nudge_registrations.individual_id}    
     
     
   

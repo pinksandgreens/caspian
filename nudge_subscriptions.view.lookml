@@ -92,6 +92,7 @@
 
   - dimension: individual_id
     type: number
+    primary_key: TRUE
     sql: ${TABLE}.individual_id
 
   - dimension: interactions_id
@@ -264,4 +265,10 @@
   - measure: count
     type: count
     drill_fields: []
+    
+  - measure: Active_Subs_Count
+    type: count_distinct
+    sql: ${TABLE}.individual_id
+    filters:              
+     subscription_status: 'C'
 

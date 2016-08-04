@@ -23,6 +23,11 @@
     relationship: one_to_one
     sql_on: ${gigya_brand_optin.gigya_id} = ${gigya_users.gigya_id}
   
+  - join: gigya_newsletters
+    type: left_outer
+    relationship: one_to_one
+    sql_on: ${gigya_newsletters.gigya_id} = ${gigya_users.gigya_id}
+    
   - join: brand_lookup
     type: inner
     relationship: one_to_one

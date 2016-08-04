@@ -125,6 +125,7 @@
   - dimension: concatid
     type: string
     hidden: TRUE
+    primary_key: TRUE
     sql: ${TABLE}.concat_id
 
   - dimension: email_address
@@ -155,29 +156,44 @@
     type: sum
     sql: |
       CASE
-        WHEN ${TABLE}.open_count >10 THEN ${TABLE}.open_count
+        WHEN ${TABLE}.open_count >0 THEN ${TABLE}.open_count
       END
       
   - measure: Click_Count
     type: sum
     sql: |
       CASE
-        WHEN ${TABLE}.click_count >10 THEN ${TABLE}.click_count
+        WHEN ${TABLE}.click_count >0 THEN ${TABLE}.click_count
       END
 
+  - measure: Open_Count_For_Individuals
+    type: sum
+    sql: |
+      CASE
+        WHEN ${TABLE}.open_count IS NULL THEN '0'
+        WHEN ${TABLE}.open_count = '0' THEN '0'
+        ELSE ${TABLE}.open_count
+      END
+      
+  - measure: Open_Count_TEST
+    type: sum
+    sql: |
+      CASE
+        WHEN ${TABLE}.open_count >0 THEN ${TABLE}.open_count
+      END
     
   - measure: Click_Count_Unique
     type: number
     sql: |
       CASE
-        WHEN sum(${click_date_not_null}) >10 THEN sum(${click_date_not_null}) 
+        WHEN sum(${click_date_not_null}) >0 THEN sum(${click_date_not_null}) 
       END
     
   - measure: Open_Count_Unique
     type: number
     sql: |
       CASE
-        WHEN sum(${open_date_not_null}) >10 THEN sum(${open_date_not_null})
+        WHEN sum(${open_date_not_null}) >0 THEN sum(${open_date_not_null})
       END
   
   - measure: Click_to_Open_Rate

@@ -103,4 +103,22 @@
     hidden: TRUE
     sql: ${image_file2}
     html: <img src="{{ value }}" width="100" height="80"/>
+    
+  - dimension: image_file3
+    hidden: TRUE
+    sql: ('http://i.imgur.com/UA5rtyv.png')
+    
+  - dimension: product_image3
+    hidden: TRUE
+    sql: ${image_file3}
+    html: <img src="{{ value }}" width="200" 0height="200"/>
+    
+  - dimension: image_file4
+    hidden: TRUE
+    sql: ('http://i.imgur.com/wmUe83x.jpg')
+    
+  - dimension: product_image4
+    hidden: TRUE
+    sql: ${image_file4}
+    html: <img src="{{ value }}" width="120" 0height="120"/>
 

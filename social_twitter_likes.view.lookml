@@ -11,18 +11,18 @@
     type: string
     sql: |
       CASE ${TABLE}.name
-        WHEN 'Key103' THEN 'Key 103'
+        WHEN 'Key 103 News' THEN 'Key 103'
         WHEN 'Northsound 1' THEN 'Northsound 1'
         WHEN 'Kiss FM (UK)' THEN 'Kiss'
         WHEN '96.3 Radio Aire' THEN 'Radio Aire'
         WHEN 'Radio Borders' THEN 'Radio Borders'
         WHEN 'Radio City 96.7' THEN 'Radio City'
-        WHEN '97.4 Rock FM' THEN 'Rock FM'
+        WHEN 'Rock FM' THEN 'Rock FM'
         WHEN 'Clyde 1' THEN 'Clyde 1'
         WHEN 'Cool FM' THEN 'Cool FM'
         WHEN 'Forth 1' THEN 'Forth 1'
         WHEN 'Hallam FM' THEN 'Hallam FM'
-        WHEN 'Magic Radio' THEN 'Magic'
+        WHEN 'Magic' THEN 'Magic'
         WHEN 'Metro Radio' THEN 'Metro Radio'
         WHEN 'MFR' THEN 'MFR'
         WHEN 'Tay FM' THEN 'Tay FM'
@@ -32,7 +32,12 @@
         WHEN 'Empire Magazine' THEN 'Empire'
         WHEN 'Parkers' THEN 'Parkers'
         WHEN 'heat & heatworld.com' THEN 'Heat'
-        WHEN '' THEN 'Car Magazine'
+        WHEN 'CAR magazine' THEN 'Car Magazine'
+        WHEN 'Motorcycle News' THEN 'Motorcycle News'
+        WHEN 'Closer Mag & Online' THEN 'Closer Magazine'
+        WHEN 'Grazia UK' THEN 'Grazia UK'
+        WHEN 'The Debrief' THEN 'The Debrief'
+        WHEN 'Viking FM' THEN '96.9 Viking FM'
         ELSE ${TABLE}.name
       END
       

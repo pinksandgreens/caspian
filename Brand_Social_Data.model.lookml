@@ -29,6 +29,17 @@
       type: inner
       relationship: one_to_one
       sql_on: ${social_twitter_likes.name} = ${social_facebook_likes.name}
+      
+    - join: social_youtube_likes
+      type: inner
+      relationship: one_to_one
+      sql_on: ${social_youtube_likes.brand} = ${social_facebook_likes.name}
+ 
+    - join: social_instagram_likes
+      type: inner
+      relationship: one_to_one
+      sql_on: ${social_instagram_likes.brand} = ${social_facebook_likes.name}     
+      
   
 #     - join: ga_radio_twitter_data
 #       type: inner

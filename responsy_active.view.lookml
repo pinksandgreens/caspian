@@ -195,6 +195,7 @@
       CASE
         WHEN sum(${open_date_not_null}) >0 THEN sum(${open_date_not_null})
       END
+ 
   
   - measure: Click_to_Open_Rate
     label: 'Click-to-Open Rate'

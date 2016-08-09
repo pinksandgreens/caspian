@@ -70,11 +70,11 @@
     sql: ${TABLE}.website
     
   - measure: likes
-    type: average
+    type: sum
     sql: ${TABLE}.likes
     
-  - dimension: talking_about_count
-    type: number
+  - measure: talking_about_count
+    type: sum
     sql: ${TABLE}.talking_about_count
     
   - dimension: image_file

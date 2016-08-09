@@ -37,11 +37,11 @@
       END
       
   - measure: Followers
-    type: average
+    type: sum
     sql: ${TABLE}.followers
 
   - measure: Number_of_Posts
-    type: average
+    type: sum
     sql: ${TABLE}.media
 
 

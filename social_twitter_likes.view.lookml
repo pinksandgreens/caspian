@@ -51,22 +51,22 @@
     
   - measure: statusesCount
     label: 'Statuses Count'
-    type: average
+    type: sum
     sql: ${TABLE}.statusesCount
 
   - measure: followersCount
     label: 'Followers Count'
-    type: average
+    type: sum
     sql: ${TABLE}.followersCount
 
   - measure: favouritesCount
     label: 'Tweet Favourite Count'
-    type: average
+    type: sum
     sql: ${TABLE}.favoritesCount
 
   - measure: friendsCount
     label: 'Twitter Friends Count'
-    type: average
+    type: sum
     sql: ${TABLE}.friendsCount
     
   - measure: Twitter_Engagement

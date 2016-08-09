@@ -37,19 +37,19 @@
       END
       
   - measure: Views
-    type: average
+    type: sum
     sql: ${TABLE}.views
 
   - measure: Comment
-    type: average
+    type: sum
     sql: ${TABLE}.comments
     
   - measure: Subscribers
-    type: average
+    type: sum
     sql: ${TABLE}.subscribers
 
   - measure: Number_of_Videos
-    type: average
+    type: sum
     sql: ${TABLE}.video_count
 
 

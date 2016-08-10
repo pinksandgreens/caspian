@@ -589,6 +589,7 @@
   - measure: registered_users_count
     label: 'Users Count'
     type: count_distinct
+    sql_distinct_key: ${customer_id}
     sql: ${customer_id}
     html: |
        <font color="green">{{ rendered_value }}</font>

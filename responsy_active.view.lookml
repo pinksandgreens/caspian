@@ -152,6 +152,14 @@
     type: count_distinct
     sql: ${TABLE}.concat_id
     
+  - measure: Uniqe_Send_Count_Without_Bounces
+    hidden: TRUE
+    label: 'Not for human eyes'
+    type: count_distinct
+    sql: ${TABLE}.concat_id
+    filters:
+      bounce_type: -'H',-'S'
+    
   - measure: Open_Count
     type: sum
     sql: |
@@ -178,6 +186,7 @@
       
   - measure: Open_Count_TEST
     type: sum
+    hidden: TRUE
     sql: |
       CASE
         WHEN ${TABLE}.open_count >0 THEN ${TABLE}.open_count
@@ -210,7 +219,12 @@
     value_format: '0.00\%'
     sql: (${Open_Count_Unique}/${Uniqe_Send_Count})*100
     
-
+  - measure: Click_Through_Rate
+    label: 'Click-Through-Rate'
+    type: number
+    value_format: '0.00\%'
+    sql: (${Click_Count_Unique}/${Uniqe_Send_Count_Without_Bounces}) * 100
+    
   - measure: Unsubscribe_Count
     type: sum
     sql: ${TABLE}.unsub_count

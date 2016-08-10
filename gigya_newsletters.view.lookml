@@ -1,5 +1,5 @@
 - view: gigya_newsletters
-  label: '2d) Newsletter Optin'
+  label: '2d. Newsletter Optin'
   sql_table_name: publications.gigya_newsletters
   fields:
 

@@ -30,7 +30,3 @@
     timeframes: [time, date, week, month]
     sql: ${TABLE}.optin_unsubscribe_date
 
-  - measure: count
-    type: count
-    drill_fields: [id]
-

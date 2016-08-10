@@ -167,6 +167,7 @@
       END
 
   - measure: Open_Count_For_Individuals
+    hidden: TRUE
     type: sum
     sql: |
       CASE

@@ -83,6 +83,7 @@
     
   - dimension: customer_id
     label: 'Customer ID'
+    primary_key: TRUE
     hidden: FALSE
     type: string
     sql: ${TABLE}.customer_id

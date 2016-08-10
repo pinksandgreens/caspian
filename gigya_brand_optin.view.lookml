@@ -25,6 +25,7 @@
 
   - dimension: gigya_id
     label: 'User ID'
+    primary_key: TRUE
     type: string
     sql: ${TABLE}.gigya_id
 

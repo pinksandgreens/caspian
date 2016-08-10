@@ -44,7 +44,7 @@
     sql: ${TABLE}.bra_description
     html: |
       {{ linked_value }}
-      <a href="https://bauerxcel.looker.com/dashboards/40?Brand%20Name={{ value }}&Timeframe=21%20weeks" target="_new">
+      <a href="https://bauerxcel.looker.com/dashboards/55?Timeframe=21%20weeks&Brand:={{ value }}" target="_new">
       <img src="http://i.imgur.com/aJnF2oW.jpg" height=10 width=10></a>
 
   - dimension: bra_market
@@ -73,7 +73,7 @@
     sql: ${TABLE}.bra_market
     html: |
       {{ linked_value }}
-      <a href="https://bauerxcel.looker.com/dashboards/39?Market={{ value }}&Timeframe=21%20weeks" target="_new">
+      <a href="https://bauerxcel.looker.com/dashboards/56?Timeframe=21%20weeks&Market:={{ value }}" target="_new">
       <img src="http://i.imgur.com/aJnF2oW.jpg" height=10 width=10></a)
       
   - dimension: bra_obsolete

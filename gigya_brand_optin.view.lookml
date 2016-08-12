@@ -43,6 +43,12 @@
     label: 'SMS Optin'
     type: string
     sql: ${TABLE}.smsoptin
+    
+  - measure: Brand_Optin_Count
+    type: count_distinct
+    sql: ${gigya_users.email}
+    filters:
+      emailoptin: 'true'
 
   - measure: count
     hidden: TRUE

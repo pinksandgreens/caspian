@@ -14,6 +14,7 @@
     sql: ${TABLE}.ddw_updated_date
 
   - dimension: gigya_id
+    hidden: TRUE
     type: string
     sql: ${TABLE}.gigya_id
 
@@ -30,4 +31,10 @@
     type: time
     timeframes: [time, date, week, month]
     sql: ${TABLE}.optin_unsubscribe_date
+    
+  - measure: Newsletter_Optin_Count
+    type: count_distinct
+    sql: ${gigya_users.email}
+    filters:
+      optin: Yes
 

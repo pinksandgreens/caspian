@@ -233,3 +233,9 @@
     type: sum
     sql: ${TABLE}.bounce_count
     
+  - measure: Conservative_Revenue_Estimate
+    type: number
+    value_format: '"£"#,###'
+    sql: (${Click_Count})*(0.107)
+    
+    

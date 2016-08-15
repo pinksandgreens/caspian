@@ -236,6 +236,8 @@
   - measure: Conservative_Revenue_Estimate
     type: number
     value_format: '"£"#,###'
-    sql: (${Click_Count})*(0.107)
+    sql: ((${Click_Count})*(0.107))
+    
+# Need to refine: sql: ((${Click_Count})*(0.107))-((${Uniqe_Send_Count})*(0.05))
     
     

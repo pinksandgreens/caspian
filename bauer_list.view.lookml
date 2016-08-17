@@ -101,9 +101,9 @@
            ELSE ${TABLE}.dateofbirth 
          END
 
-  - dimension_group: ddw_updated
-    hidden: TRUE
-    label: 'DDW Date'
+  - dimension_group: updated_date
+    hidden: FALSE
+    label: 'Updated Date'
     type: time
     timeframes: [date, week, month]
     convert_tz: false

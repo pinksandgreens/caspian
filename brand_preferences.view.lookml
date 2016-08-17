@@ -22,19 +22,16 @@
 
   - dimension: email_bauer_optin
     label: 'Email Optin - Bauer'
-    hidden: TRUE
     type: string
     sql: ${TABLE}.email_bauer_optin
 
   - dimension: email_brand_optin
     label: 'Email Optin - Brand'
-    hidden: TRUE
     type: string
     sql: ${TABLE}.email_brand_optin
 
   - dimension: email_third_optin
     label: 'Email Optin - Third'
-    hidden: TRUE
     type: string
     sql: ${TABLE}.email_third_optin
 
@@ -44,7 +41,6 @@
     sql: ${TABLE}.idd_id
 
   - dimension_group: last_updated
-    hidden: TRUE
     type: time
     timeframes: [time, date, week, month]
     sql: ${TABLE}.last_updated
@@ -95,11 +91,17 @@
     sql: ${TABLE}.sms_third_optin
 
   - dimension: updated_by
-    hidden: TRUE
     type: string
     sql: ${TABLE}.updated_by
 
+  - measure: Brand_Optin_Count
+    type: count_distinct
+    sql: ${TABLE}.idd_id
+    filters:
+      email_brand_optin: 'true'
+
   - measure: count
+    hidden: TRUE
     type: count
     drill_fields: []
 

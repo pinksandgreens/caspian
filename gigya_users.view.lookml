@@ -23,8 +23,7 @@
     type: number
     sql: ${TABLE}.age
       
-  - dimension: baueremailoptin
-    hidden: TRUE
+  - dimension: email_optin
     type: yesno
     sql: ${TABLE}.baueremailoptin
 
@@ -203,7 +202,6 @@
     sql: ${TABLE}.last_name
 
   - dimension_group: last_updated
-    hidden: TRUE
     type: time
     timeframes: [time, date, week, month]
     sql: ${TABLE}.last_updated

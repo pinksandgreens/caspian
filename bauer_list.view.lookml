@@ -103,7 +103,7 @@
 
   - dimension_group: updated_date
     hidden: FALSE
-    label: 'Updated Date'
+    label: 'Updated'
     type: time
     timeframes: [date, week, month]
     convert_tz: false

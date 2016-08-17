@@ -8,7 +8,8 @@
     sql: ${TABLE}.brand_code
 
   - dimension_group: ddw_date_updated
-    hidden: TRUE
+    hidden: FALSE
+    label: 'Preference Updated'
     type: time
     timeframes: [time, date, week, month]
     sql: ${TABLE}.ddw_date_updated

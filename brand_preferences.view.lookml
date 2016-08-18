@@ -94,17 +94,17 @@
     type: string
     sql: ${TABLE}.updated_by
 
-  - measure: Brand_Optin_Count
-    type: count_distinct
-    sql: ${TABLE}.idd_id
-    filters:
-      email_brand_optin: 'true'
-      
-  - measure: Brand_Unsubs_Count
-    type: count_distinct
-    sql: ${TABLE}.idd_id
-    filters:
-      email_brand_optin: 'false'
+#   - measure: Brand_Optin_Count
+#     type: count_distinct
+#     sql: ${TABLE}.idd_id
+#     filters:
+#       email_brand_optin: 'true'
+#       
+#   - measure: Brand_Unsubs_Count
+#     type: count_distinct
+#     sql: ${TABLE}.idd_id
+#     filters:
+#       email_brand_optin: 'false'
 
   - measure: count
     hidden: TRUE

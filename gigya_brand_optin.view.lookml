@@ -51,6 +51,12 @@
     filters:
       emailoptin: 'true'
 
+  - measure: Brand_Unsub_Count
+    type: count_distinct
+    sql: ${gigya_users.email}
+    filters:
+      emailoptin: 'false'
+
   - measure: count
     hidden: TRUE
     type: count

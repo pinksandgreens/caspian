@@ -37,4 +37,10 @@
     sql: ${gigya_users.email}
     filters:
       optin: Yes
+      
+  - measure: Newsletter_Unsub_Count
+    type: count_distinct
+    sql: ${gigya_users.email}
+    filters:
+      optin: No
 

@@ -37,4 +37,14 @@
       type: inner
       relationship: one_to_one
       sql_on: ${gigya_newsletters.gigya_id} = ${gigya_users.gigya_id}
+  
+    - join: identities
+      type: inner
+      relationship: one_to_one
+      sql_on: ${identities.email} = ${bauer_list.email_address}
+    
+    - join: brand_preferences
+      type: inner
+      relationship: one_to_many
+      sql_on: ${brand_preferences.idd_id} = ${identities.idd_id}  
     

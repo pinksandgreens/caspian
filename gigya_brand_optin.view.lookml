@@ -50,6 +50,10 @@
     sql: ${gigya_users.email}
     filters:
       emailoptin: 'true'
+      
+  - measure: Percent_of_Total_Optins
+    type: percent_of_total
+    sql: ${Brand_Optin_Count}
 
   - measure: Brand_Unsub_Count
     type: count_distinct

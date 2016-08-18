@@ -239,7 +239,21 @@
   - measure: Conservative_Revenue_Estimate
     type: number
     value_format: '"£"#,###'
-    sql: ((${Click_Count})*(0.107))
+    sql: ((${Click_Count})*(0.0822727272727273))
+    
+# Per 1000 clicks - 0.082 is the averages figure from this.
+# Equine - £120
+# Photo - £70
+# LRO - £45
+# Classic Cars - £120
+# Gardening - £50
+# Bikes - £200
+# Golf - £60
+# Angling - £70
+# LFTO - £50
+# Lifestyle - £60
+# Radio - £60
+
     
 # Need to refine: sql: ((${Click_Count})*(0.107))-((${Uniqe_Send_Count})*(0.05))
     

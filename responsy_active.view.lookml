@@ -146,6 +146,9 @@
 #     type: count
 #     drill_fields: [launch_name]
      
+#   - dimension: Send_Count
+#     label: 'Send Count'
+#     sql: ${Uniqe_Send_Count_Without_Bounces}
     
   - measure: Uniqe_Send_Count
     label: 'Send Count Unique'

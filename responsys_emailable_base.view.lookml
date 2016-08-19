@@ -1,21 +1,49 @@
 - view: responsys_emailable_base
   derived_table:
     sql: |
-      SELECT
-        c.concat_id
-        c.email_address
-      FROM (
-        SELECT
-          
-        FROM snowplow.events AS a
-        INNER JOIN ${sessions_basic.SQL_TABLE_NAME} AS b
-          ON  a.domain_userid = b.domain_userid
-          AND a.domain_sessionidx = b.domain_sessionidx
-          AND a.dvce_created_tstamp = b.dvce_min_tstamp
-        GROUP BY 1,2,3,4,5 -- Aggregate identital rows (that happen to have the same dvce_tstamp)
-      ) AS c
-      WHERE c.rank = 1 -- If there are different rows with the same dvce_tstamp, rank and pick the first row
-    
+      SELECT l.email_address
+      FROM    responsys.lm_ced_replacement_24h l
+      LEFT JOIN responsys.responsys_exclusion_list r
+      ON      r.email_address_ = l.email_address
+      WHERE   r.email_address_ IS NULL
+
     sql_trigger_value: SELECT FLOOR(EXTRACT(epoch from GETDATE()) / (4*60*60))
-    distkey: domain_userid
-    sortkeys: [domain_userid, domain_sessionidx]
+    distkey: email_address
+    sortkeys: [email_address]
+
+  fields:
+
+  - dimension: email_address
+    type: string
+    sql: ${TABLE}.email_address
+  
+  - measure: registered_users_count
+    label: 'Users Count'
+    type: count_distinct
+    sql: ${TABLE}.email_address
+    html: |
+       <font color="green">{{ rendered_value }}</font>
+
+#   - dimension: AGE_IS_NULL
+#     label: 'AGE IS NULL'
+#     hidden: FALSE
+#     type: string
+#     sql: |
+#      CASE
+#       WHEN ${TABLE}.age IS NULL THEN '0'
+#       WHEN ${TABLE}.age = '' THEN '0'
+#       WHEN ${TABLE}.age = ' ' THEN '0'
+#       ELSE '1'
+#      END
+# 
+  - measure: Percent_of_Total
+    type: percent_of_total
+    sql: ${registered_users_count}
+#     html: |
+#       {% if value > 30 %}
+#       <font color="red">{{ rendered_value }}</font>
+#       {% elsif value < 30 %}
+#         <font color="darkgreen">{{ rendered_value }}</font>
+#       {% else %}
+#         <font color="black">{{ rendered_value }}</font>
+#       {% endif %}

@@ -236,12 +236,39 @@
     type: sum
     sql: ${TABLE}.bounce_count
     
+#   - measure: Uniqe_Send_Count_Commercial
+#     hidden: TRUE
+#     label: 'Not for human eyes'
+#     type: count_distinct
+#     sql: ${TABLE}.concat_id 
+
+  - dimension: Is_Commercial         
+    type: yesno                       
+    sql: ${TABLE}.marketing_program = 'Commercial'
+    
+  - measure: Unique_Send_Count_Commercial
+    hidden: TRUE
+    label: 'Not for human eyes'
+    type: count_distinct
+    sql: ${TABLE}.concat_id
+    filters:
+      marketing_program: 'Commercial, Marketing'
+    
   - measure: Conservative_Revenue_Estimate
     type: number
     value_format: '"£"#,###'
-    sql: ((${Click_Count})*(0.0822727272727273))
+    sql: ((${Unique_Send_Count_Commercial})*(0.0722727272727273))
+      
+#   - measure: Conservative_Revenue_Estimate_1
+#     type: number
+#     value_format: '"£"#,###'
+#     sql: ${Conservative_Revenue_Estimate}
+#     filters:
+#       Is_Commercial : 'Yes'
+      
+# -0.01 for revenue estimation because monies
     
-# Per 1000 clicks - 0.082 is the averages figure from this.
+# Per 1000 clicks(?) - 0.082 is the averages figure from this.
 # Equine - £120
 # Photo - £70
 # LRO - £45

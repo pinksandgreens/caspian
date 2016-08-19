@@ -47,4 +47,11 @@
       type: inner
       relationship: one_to_many
       sql_on: ${brand_preferences.idd_id} = ${identities.idd_id}  
+      
+    - join: responsys_emailable_base
+      type: inner
+      relationship: one_to_one
+      sql_on: ${responsys_emailable_base.email_address} = ${responsy_active.email_address} 
+
+    
     

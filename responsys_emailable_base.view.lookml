@@ -1,11 +1,10 @@
 - view: responsys_emailable_base
   derived_table:
     sql: |
-      SELECT l.email_address
-      FROM    responsys.lm_ced_replacement_24h l
-      LEFT JOIN responsys.responsys_exclusion_list r
-      ON      r.email_address_ = l.email_address
-      WHERE   r.email_address_ IS NULL
+      SELECT b.email_address
+      FROM  publications.bauer_list b
+      INNER JOIN responsys.responsys_exclusion_list r
+      ON r.email_address_ = b.email_address
 
     sql_trigger_value: SELECT FLOOR(EXTRACT(epoch from GETDATE()) / (4*60*60))
     distkey: email_address

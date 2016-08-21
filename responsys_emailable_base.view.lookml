@@ -13,6 +13,7 @@
   fields:
 
   - dimension: email_address
+    hidden: TRUE
     type: string
     sql: ${TABLE}.email_address
   

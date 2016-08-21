@@ -5,7 +5,7 @@
 
 - explore: gigya_users
   label: 'User Registration Data'
-  persist_for: 1 hour
+  persist_for: 24 hour
 
   joins:
   - join: bauer_list

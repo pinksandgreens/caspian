@@ -6,6 +6,7 @@
 
 
 - explore: nudge_individuals
+  persist_for: 24 hour
   label: 'Nudge Database'
 
 # # Select the views that should be a part of this model,

@@ -21,6 +21,7 @@
 - include: "*.dashboard.lookml"  # include all the dashboards
 
 - explore: events
+  persist_for: 24 hour
   label: 'Web Analytics Data'
 
   joins:

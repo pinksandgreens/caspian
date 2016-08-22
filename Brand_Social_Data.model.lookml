@@ -45,6 +45,33 @@
       relationship: one_to_one
       sql_on: ${social_pinterest.brand} = ${social_facebook_likes.name} 
       
+- explore: social_facebook_likes_not_our_brands
+  label: 'Non-Brand Social Data'
+  sql_table_name: publications.social_facebook_likes_not_our_brands
+  persist_for: 24 hour
+  
+  joins:
+      
+    - join: social_twitter_likes_not_our_brands
+      type: inner
+      relationship: one_to_one
+      sql_on: ${social_twitter_likes_not_our_brands.name} = ${social_facebook_likes_not_our_brands.name}
+      
+    - join: social_youtube_likes_not_our_brands
+      type: inner
+      relationship: one_to_one
+      sql_on: ${social_youtube_likes_not_our_brands.brand} = ${social_facebook_likes_not_our_brands.name}
+ 
+    - join: social_instagram_likes_not_our_brands
+      type: inner
+      relationship: one_to_one
+      sql_on: ${social_instagram_likes_not_our_brands.brand} = ${social_facebook_likes_not_our_brands.name}    
+      
+    - join: social_pinterest_not_our_brands
+      type: inner
+      relationship: one_to_one
+      sql_on: ${social_pinterest_not_our_brands.brand} = ${social_facebook_likes_not_our_brands.name} 
+      
 - explore: social_facebook_posts
   label: 'Facebook Posts'
   sql_table_name: publications.social_facebook_posts

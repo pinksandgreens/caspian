@@ -32,6 +32,7 @@
     sql: ${TABLE}.longitude
 
   - dimension: name
+    label: 'Brand'
     type: string
     sql: |
       CASE ${TABLE}.name

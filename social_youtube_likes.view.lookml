@@ -20,7 +20,7 @@
         WHEN 'Magic Radio' THEN 'Magic'
         WHEN 'metroradiouk' THEN 'Metro Radio'
         WHEN 'MorayFirthRadio' THEN 'MFR'
-        WHEN 'Tay FM' THEN 'Tay FM'
+        WHEN 'NA' THEN 'Tay FM'
         WHEN 'tfmradio' THEN 'TFM Radio'
         WHEN 'Absolute Radio' THEN 'Absolute Radio'
         WHEN 'CFMRadio' THEN 'CFM Radio'

@@ -17,7 +17,7 @@
 - explore: social_facebook_likes
   label: 'Brand Social Data'
   sql_table_name: publications.social_facebook_likes
-  persist_for: 1 hour
+  persist_for: 24 hour
   
   joins:
     - join: brand_lookup
@@ -38,7 +38,13 @@
     - join: social_instagram_likes
       type: inner
       relationship: one_to_one
-      sql_on: ${social_instagram_likes.brand} = ${social_facebook_likes.name}     
+      sql_on: ${social_instagram_likes.brand} = ${social_facebook_likes.name}    
+      
+    - join: social_pinterest
+      type: inner
+      relationship: one_to_one
+      sql_on: ${social_pinterest.brand} = ${social_facebook_likes.name} 
+      
       
   
 #     - join: ga_radio_twitter_data

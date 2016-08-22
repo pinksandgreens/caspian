@@ -8,6 +8,7 @@
     sql: ${TABLE}.id
 
   - dimension: name
+    label: 'Brand'
     type: string
     sql: |
       CASE ${TABLE}.name

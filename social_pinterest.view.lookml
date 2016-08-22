@@ -64,13 +64,13 @@
     type: sum
     sql: ${TABLE}.followers
 
-  - measure: following
-    type: sum
-    sql: ${TABLE}.following
+#   - measure: following
+#     type: sum
+#     sql: ${TABLE}.following
 
-  - measure: likes
-    type: sum
-    sql: ${TABLE}.likes
+#   - measure: likes
+#     type: sum
+#     sql: ${TABLE}.likes
     
   - measure: boards
     type: sum

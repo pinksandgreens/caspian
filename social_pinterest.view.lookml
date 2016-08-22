@@ -47,7 +47,7 @@
         WHEN 'tayfm' THEN 'Tay FM'
         WHEN 'tfmradio' THEN 'TFM Radio'
         WHEN 'thedebrief' THEN 'The Debrief'
-      ELSE ${TABLE}.names
+      ELSE ${TABLE}.namess
       END
 
 

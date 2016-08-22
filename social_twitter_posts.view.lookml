@@ -10,19 +10,16 @@
     type: string
     sql: ${TABLE}.date_created
 
-  - dimension: favourites
-    type: string
+  - measure: favourites
+    type: sum
     sql: ${TABLE}.favourites
 
-  - dimension: retweets
-    type: string
+  - measure: retweets
+    type: sum
     sql: ${TABLE}.retweets
 
   - dimension: tweet_content
     type: string
     sql: ${TABLE}.tweet_content
 
-  - measure: count
-    type: count
-    drill_fields: []
 

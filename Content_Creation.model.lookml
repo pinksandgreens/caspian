@@ -12,3 +12,8 @@
   label: 'Spike'
   sql_table_name: publications.social_spike
   persist_for: 1 hour
+
+- explore: social_twitter_trending
+  label: 'Twitter Trending'
+  sql_table_name: publications.social_twitter_trending
+  persist_for: 1 hour  

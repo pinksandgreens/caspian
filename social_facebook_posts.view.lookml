@@ -7,20 +7,20 @@
     type: string
     sql: ${TABLE}.id
 
-  - dimension: comments_count
-    type: string
+  - measure: comments_count
+    type: sum
     sql: ${TABLE}.comments_count
 
   - dimension: created_time
     type: string
     sql: ${TABLE}.created_time
 
-  - dimension: from_name
+  - dimension: Brand
     type: string
     sql: ${TABLE}.from_name
 
-  - dimension: likes_count
-    type: string
+  - measure: likes_count
+    type: sum
     sql: ${TABLE}.likes_count
 
   - dimension: link
@@ -31,15 +31,11 @@
     type: string
     sql: ${TABLE}.message
 
-  - dimension: shares_count
-    type: string
+  - measure: shares_count
+    type: sum
     sql: ${TABLE}.shares_count
 
   - dimension: type
     type: string
     sql: ${TABLE}.type
-
-  - measure: count
-    type: count
-    drill_fields: [id, from_name, created_time]
 

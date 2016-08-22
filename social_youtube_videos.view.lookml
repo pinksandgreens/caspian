@@ -2,24 +2,24 @@
   sql_table_name: publications.social_youtube_videos
   fields:
 
-  - dimension: channel
+  - dimension: brand
     type: string
     sql: ${TABLE}.channel
 
-  - dimension: comments
-    type: string
+  - measure: comments
+    type: sum
     sql: ${TABLE}.comments
 
-  - dimension: dislikes
-    type: string
+  - measure: dislikes
+    type: sum
     sql: ${TABLE}.dislikes
 
   - dimension: etag
     type: string
     sql: ${TABLE}.etag
 
-  - dimension: likes
-    type: string
+  - measure: likes
+    type: sum
     sql: ${TABLE}.likes
 
   - dimension: published_date
@@ -38,11 +38,7 @@
     type: string
     sql: ${TABLE}.video_id
 
-  - dimension: views
-    type: string
+  - measure: views
+    type: sum
     sql: ${TABLE}.views
-
-  - measure: count
-    type: count
-    drill_fields: []
 

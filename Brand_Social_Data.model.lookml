@@ -45,7 +45,20 @@
       relationship: one_to_one
       sql_on: ${social_pinterest.brand} = ${social_facebook_likes.name} 
       
-      
+- explore: social_facebook_posts
+  label: 'Facebook Posts'
+  sql_table_name: publications.social_facebook_posts
+  persist_for: 1 hour
+  
+- explore: social_twitter_posts
+  label: 'Twitter Posts'
+  sql_table_name: publications.social_twitter_posts
+  persist_for: 1 hour
+  
+- explore: social_youtube_videos
+  label: 'Youtube Videos'
+  sql_table_name: publications.social_youtube_videos
+  persist_for: 1 hour
   
 #     - join: ga_radio_twitter_data
 #       type: inner

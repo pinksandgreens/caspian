@@ -4,7 +4,7 @@
 
   - measure: bounce_rate
     type: avg
-    value_format: '0.00\%'
+    value_format: '#,##0.00"%"'
     sql: ${TABLE}.bouncerate
 
   - dimension: brand
@@ -32,7 +32,7 @@
 
   - measure: percent_newsessions
     type: avg
-    value_format: '0.00\%'
+    value_format: '#,##0.00"%"'
     sql: ${TABLE}.percentnewsessions
 
   - dimension: platform

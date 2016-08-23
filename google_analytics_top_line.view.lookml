@@ -20,7 +20,7 @@
     type: time
     timeframes: [date, week, month]
     convert_tz: false
-    sql: ${TABLE}.date
+    sql: TO_DATE(${TABLE}.date,'YYYY-MM-DD')
 
   - dimension: device_category
     type: string

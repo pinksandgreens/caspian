@@ -12,7 +12,7 @@
   
   - dimension: type
     type: string
-    sql: ${TABLE}.type
+    sql: ${TABLE}.category
     
   - measure: facebook_interactions
     type: sum
@@ -32,7 +32,7 @@
     value_format: '0.00#'  
     sql: ${TABLE}.highest_velocity
     
-  - measure: velocity_index
-    type: number
-    value_format: '0.00#'  
-    sql: ${highest_velocity}/${current_velocity}
+#   - measure: velocity_index
+#     type: number
+#     value_format: '0.00#'  
+#     sql: ${highest_velocity}/${current_velocity}

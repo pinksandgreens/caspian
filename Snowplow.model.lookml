@@ -22,7 +22,7 @@
 
 - explore: events
   persist_for: 24 hour
-  label: 'Web Analytics Data'
+  label: 'Snowplow'
 
   joins:
     - join: gigya_users
@@ -44,7 +44,6 @@
       type: inner
       relationship: one_to_many
       sql_on: ${events.session_id} = ${sessions.session_id}
-      
-      
+    
       
       

@@ -28,7 +28,7 @@
 
   - measure: page_views
     type: sum
-    sql: ${TABLE}.pageviews
+    sql: (${TABLE}.pageviews)*(1.10)
 
   - measure: percent_newsessions
     type: avg
@@ -46,15 +46,15 @@
 
   - measure: sessions
     type: sum
-    sql: ${TABLE}.sessions
+    sql: (${TABLE}.sessions)*(1.10)
 
   - measure: unique_pageviews
     type: sum
-    sql: ${TABLE}.uniquepageviews
+    sql: (${TABLE}.uniquepageviews)*(1.10)
 
   - measure: unique_users
     type: sum
-    sql: ${TABLE}.users
+    sql: (${TABLE}.users)*(1.10)
     
   - measure: average_session_duration
     type: number

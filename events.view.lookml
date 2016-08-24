@@ -265,7 +265,11 @@
     sql: ${TABLE}.refr_term
     
   - dimension: refr_url_host
-    sql: ${TABLE}.refr_urlhost
+    sql: |
+     CASE 
+      WHEN ${TABLE}.refr_urlhost = 't.co' THEN 'twitter.com'
+      ELSE ${TABLE}.refr_urlhost
+     END
     
   - dimension: refr_url_path
     hidden: TRUE

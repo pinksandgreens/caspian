@@ -5,7 +5,7 @@
   - measure: bounce_rate
     type: avg
     value_format: '#,##0.00"%"'
-    sql: ${TABLE}.bouncerate
+    sql: avg(${TABLE}.bouncerate)
 
   - dimension: brand
     type: string
@@ -31,9 +31,9 @@
     sql: (${TABLE}.pageviews)*(1.10)
 
   - measure: percent_newsessions
-    type: avg
+    type: number
     value_format: '#,##0.00"%"'
-    sql: ${TABLE}.percentnewsessions
+    sql: avg(${TABLE}.percentnewsessions)
 
   - dimension: platform
     type: string
@@ -42,7 +42,7 @@
   - measure: session_duration
     type: sum
     hidden: TRUE
-    sql: ${TABLE}.sessionduration
+    sql: avg(${TABLE}.sessionduration)
 
   - measure: sessions
     type: sum

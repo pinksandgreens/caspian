@@ -141,4 +141,41 @@
     sql: ${image_file6}
     html: <img src="{{ value }}" width="150" 0height="150"/>
     
+  - dimension: image_file7
+    hidden: TRUE
+    sql: ('http://i.imgur.com/5XWT0zW.png')
+    
+  - dimension: product_image7
+    hidden: TRUE
+    sql: ${image_file7}
+    html: <img src="{{ value }}" width="300" 0height="300"/>
+    
+  - dimension: image_file8
+    hidden: TRUE
+    sql: ('http://i.imgur.com/jq9O2lW.jpg')
+    
+  - dimension: product_image8
+    hidden: TRUE
+    sql: ${image_file8}
+    html: <img src="{{ value }}" width="300" 0height="300"/> 
+    
+  - dimension: image_file9
+    hidden: TRUE
+    sql: ('http://i.imgur.com/83hrfgH.png')
+    
+  - dimension: product_image9
+    hidden: TRUE
+    sql: ${image_file9}
+    html: <img src="{{ value }}" width="300" 0height="300"/> 
+    
+  - dimension: image_file10
+    hidden: TRUE
+    sql: ('http://i.imgur.com/w32hvz8.jpg')
+    
+  - dimension: product_image10
+    hidden: TRUE
+    sql: ${image_file10}
+    html: <img src="{{ value }}" width="200" 0height="200"/> 
+    
+    
   

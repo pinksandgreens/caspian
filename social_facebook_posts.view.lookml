@@ -12,8 +12,10 @@
     sql: ${TABLE}.comments_count
 
   - dimension: created_time
-    type: string
-    sql: ${TABLE}.created_time
+    label: 'Created'
+    type: time
+    timeframes: [date, week, month]
+    sql: TO_DATE(${TABLE}.created_time,'YYYY-MM-DD')
 
   - dimension: Brand
     type: string

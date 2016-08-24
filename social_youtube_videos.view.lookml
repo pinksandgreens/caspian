@@ -23,8 +23,10 @@
     sql: ${TABLE}.likes
 
   - dimension: published_date
-    type: string
-    sql: ${TABLE}.published_date
+    label: 'Created'
+    type: time
+    timeframes: [date, week, month]
+    sql: TO_DATE(${TABLE}.published_date,'YYYY-MM-DD')
 
   - dimension: thumbnail
     type: string

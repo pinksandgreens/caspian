@@ -7,7 +7,9 @@
     sql: ${TABLE}.brand
 
   - dimension: date_created
-    type: string
+    label: 'Created'
+    type: time
+    timeframes: [time, date, week, month]
     sql: ${TABLE}.date_created
 
   - measure: favourites

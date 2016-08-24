@@ -15,10 +15,8 @@
     sql: ${TABLE}.url
 
   - dimension: woeid
+    label: 'Region'
     type: string
     sql: ${TABLE}.woeid
 
-  - measure: count
-    type: count
-    drill_fields: [name]
 

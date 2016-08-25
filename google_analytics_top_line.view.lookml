@@ -18,6 +18,11 @@
   - dimension: country
     type: string
     sql: ${TABLE}.country
+    
+  - dimension: is_mobile_tablet
+    label: 'Is Mobile/Tablet'
+    type: yesno
+    sql: (${TABLE}.devicecategory = 'mobile') OR (${TABLE}.devicecategory = 'tablet')
 
   - dimension: date
     label: 'Recorded'

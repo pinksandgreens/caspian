@@ -10,7 +10,11 @@
   - dimension: brand
     type: string
     sql: ${TABLE}.brand
-
+    
+  - dimension: market
+    type: string
+    sql: ${TABLE}.market
+    
   - dimension: country
     type: string
     sql: ${TABLE}.country

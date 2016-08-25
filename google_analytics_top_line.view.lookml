@@ -46,7 +46,7 @@
     sql: ${TABLE}.platform
 
   - measure: session_duration
-    type: avg
+    type: sum
     hidden: TRUE
     sql: ${TABLE}.sessionduration
 

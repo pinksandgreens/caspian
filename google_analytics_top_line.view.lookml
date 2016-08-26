@@ -29,6 +29,11 @@
     type: yesno
     sql: (${TABLE}.devicecategory = 'mobile') OR (${TABLE}.devicecategory = 'tablet')
 
+  - dimension: is_app
+    label: 'Is App Data'
+    type: yesno
+    sql: ${TABLE}.platform = 'App'
+
   - dimension: date
     label: 'Recorded'
     type: time

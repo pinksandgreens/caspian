@@ -177,5 +177,14 @@
     sql: ${image_file10}
     html: <img src="{{ value }}" width="150" 0height="150"/> 
     
+  - dimension: image_file11
+    hidden: TRUE
+    sql: ('http://i.imgur.com/ufq8vsh.png')
     
+  - dimension: product_image11
+    hidden: FALSE
+    sql: ${image_file11}
+    html: <img src="{{ value }}" width="200" 0height="200"/> 
+
+  
   

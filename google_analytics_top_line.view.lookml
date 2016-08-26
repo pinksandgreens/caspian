@@ -18,6 +18,11 @@
   - dimension: country
     type: string
     sql: ${TABLE}.country
+    sql: |
+      CASE ${TABLE}.country
+        WHEN 'United Kingdom' THEN 'UK'
+        WHEN 'Non-UK' THEN 'Overseas'
+      END
     
   - dimension: is_mobile_tablet
     label: 'Is Mobile/Tablet'

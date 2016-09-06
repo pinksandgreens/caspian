@@ -58,6 +58,7 @@
         WHEN 'Parkers' THEN 'Parkers'
         WHEN 'heat' THEN 'Heat'
         WHEN 'CAR Magazine' THEN 'Car Magazine'
+        WHEN 'eBay_UK' THEN 'Ebay UK'
         ELSE ${TABLE}.name
       END
       

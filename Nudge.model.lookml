@@ -35,6 +35,15 @@
     relationship: one_to_one
     sql_on: ${nudge_individuals.individual_id} = ${nudge_registrations.individual_id}
     
+  - join: odin_global_permission
+    type: inner
+    relationship: one_to_one
+    sql_on: ${nudge_individuals.email_address} = ${odin_global_permission.email_address}
+  
+  - join: odin_newsletter_permission
+    type: inner
+    relationship: one_to_one
+    sql_on: ${nudge_individuals.email_address} = ${odin_newsletter_permission.email_address}
 
     
     

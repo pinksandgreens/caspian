@@ -186,5 +186,14 @@
     sql: ${image_file11}
     html: <img src="{{ value }}" width="200" 0height="200"/> 
 
-  
+# ALEX TEST TO ADD MCN
+
+  - dimension: image_file12
+    hidden: TRUE
+    sql: ('http://i.imgur.com/FsnIbfg.png')
+    
+  - dimension: product_image12
+    hidden: FALSE
+    sql: ${image_file12}
+    html: <img src="{{ value }}" width="200" 0height="200"/> 
   

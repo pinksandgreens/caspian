@@ -164,7 +164,30 @@
       when ${app_id} like '%MAB%' then 'Mother & Baby'
       when ${app_id} like '%ABR%' then 'Absolute Radio'
       when ${app_id} like '%KER%' then 'Kerrang'
-      else 'other' end
+      when ${app_id} like '%MAG%' then 'Magic'
+      when ${app_id} like '%AIR%' then 'Radio Aire'
+      when ${app_id} like '%BOR%' then 'Other'
+      when ${app_id} like '%CFM%' then 'CFM Radio'
+      when ${app_id} like '%CIT%' then 'City Talk'
+      when ${app_id} like '%CLY%' then 'Clyde'
+      when ${app_id} like '%COO%' then 'Cool FM'
+      when ${app_id} like '%DWN%' then 'Downtown'
+      when ${app_id} like '%FOR%' then 'Forth 1'
+      when ${app_id} like '%HAL%' then 'Hallam FM'
+      when ${app_id} like '%HIT%' then 'The Hits Radio'
+      when ${app_id} like '%KEY%' then 'Key 103'
+      when ${app_id} like '%KRG%' then 'Kerrang Radio'
+      when ${app_id} like '%MET%' then 'Metro Radio'
+      when ${app_id} like '%MFR%' then 'MFR'
+      when ${app_id} like '%MGC%' then 'Magic'
+      when ${app_id} like '%NTH%' then 'Northsound'
+      when ${app_id} like '%PRK%' then 'Planet Rock'
+      when ${app_id} like '%RDW%' then 'Other'
+      when ${app_id} like '%ROK%' then 'Rock FM'
+      when ${app_id} like '%TAY%' then 'Tay FM'
+      when ${app_id} like '%TFM%' then 'TFM Radio'
+      when ${app_id} like '%VIK%' then 'Viking FM'
+      else 'Other' end
     html: |
       {{ linked_value }}
       <a href="https://bauerxcel.looker.com/dashboards/46?Brand%20Name(s)={{ value }}&Timeframe=1%20months%20ago%20for%201%20months&Set%20same%20date%20as%20Timeframe=1%20months%20ago%20for%201%20months" target="_new">

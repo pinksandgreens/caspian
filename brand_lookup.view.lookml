@@ -22,6 +22,12 @@
     label: 'Brand Name'
     type: string
     sql: ${TABLE}.bra_description
+      
+  - dimension: bra_description_comp
+    label: 'Brand Name - Competitions'
+    hidden: TRUE
+    type: string
+    sql: ${TABLE}.bra_description
     html: |
       {{ linked_value }}
       <a href="https://bauerxcel.looker.com/dashboards/20?Brand%20Name={{ value }}" target="_new">
@@ -49,6 +55,12 @@
 
   - dimension: bra_market
     label: 'Brand Market'
+    type: string
+    sql: ${TABLE}.bra_market
+      
+  - dimension: bra_market_comp
+    label: 'Brand Market - Competitions'
+    hidden: TRUE
     type: string
     sql: ${TABLE}.bra_market
     html: |

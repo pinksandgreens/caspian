@@ -416,5 +416,5 @@
   - measure: users_count
     label: 'Registered Users Count'
     type: count_distinct
-    sql: (${TABLE}.email*(0.95))
+    sql: ${TABLE}.email
 

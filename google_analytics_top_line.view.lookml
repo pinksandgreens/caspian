@@ -46,8 +46,8 @@
     sql: ${TABLE}.devicecategory
 
   - measure: page_views
-    type: sum
-    sql: ${TABLE}.pageviews
+    type: number
+    sql: SUM(${TABLE}.pageviews)
     #sql: (${TABLE}.pageviews)*(1.10)
 
   - measure: percent_newsessions

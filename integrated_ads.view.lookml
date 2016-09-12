@@ -9,7 +9,63 @@
   - dimension: campaign_name
     type: string
     sql: ${TABLE}.campaign_name
+    
+  - dimension: Brand
+    type: string
+    sql: |
+     CASE
+        WHEN ${channel_name} LIKE '%Parkers%' THEN 'Parkers'
+        WHEN ${channel_name} LIKE '%Heatworld%' THEN 'Heat'
+        WHEN ${channel_name} LIKE '%Classic-Cars-for-Sale%' THEN 'Classic Cars For Sale'
+        WHEN ${channel_name} LIKE '%Empire%' THEN 'Empire'
+        WHEN ${channel_name} LIKE '%Car%' THEN 'Car Magazine'
+        WHEN ${channel_name} LIKE '%Closer%' THEN 'Closer'
+        WHEN ${channel_name} LIKE '%Grazia%' THEN 'Grazia'
+        WHEN ${channel_name} = 'SMODAUTOMOTIVE' THEN 'General Automotive'
+        WHEN ${channel_name} = 'LWOMENS' THEN 'General Womens Lifestyle'
+        WHEN ${channel_name} = 'SMOTORCYCLING' THEN 'General Motor Cycling'
+        WHEN ${channel_name} LIKE '%LWLN_lifestyle.one%' THEN 'General Womens Lifestyle'
+        WHEN ${channel_name} LIKE '%Ride%' THEN 'Ride'
+        WHEN ${channel_name} LIKE '%Practical-Classics%' THEN 'Practical Classics'
+        WHEN ${channel_name} LIKE '%Bike-Magazine%' THEN 'Bike Magazine'
+        WHEN ${channel_name} LIKE '%Bird-Watching%' THEN 'Bird Watching'
+        WHEN ${channel_name} LIKE '%RNAT_kiss%' THEN 'Kiss'
+        WHEN ${channel_name} LIKE '%Trail-Running%' THEN 'Trail Running'
+        WHEN ${channel_name} LIKE '%Modern-Gardens%' THEN 'Modern Gardens'
+        WHEN ${channel_name} LIKE '%Steam-Railway%' THEN 'Steam Railway'
+        WHEN ${channel_name} LIKE '%Classic-Bike%' THEN 'Classic Bike'
+        WHEN ${channel_name} LIKE '%Match%' THEN 'Match'
+        WHEN ${channel_name} LIKE '%Performance-Bikes%' THEN 'Performance Bikes'
+        WHEN ${channel_name} LIKE '%LandScape%' THEN 'LandScape'
+        WHEN ${channel_name} LIKE '%Top-Sante%' THEN 'Top Sante'
+        WHEN ${channel_name} LIKE '%Garden-News%' THEN 'Garden News'
+        WHEN ${channel_name} LIKE '%Practical-Sportsbikes%' THEN 'Practical Sportsbikes'
+        WHEN ${channel_name} LIKE '%Model-Rail%' THEN 'Model Rail'
+        WHEN ${channel_name} LIKE '%Garden-Answers%' THEN 'Garden Answers'
+        WHEN ${channel_name} LIKE '%magic%' THEN 'Magic'
+        WHEN ${channel_name} LIKE '%hallam%' THEN 'Hallam'
+        WHEN ${channel_name} LIKE '%MCN%' THEN 'MCN'
+        WHEN ${channel_name} LIKE '%_key%' THEN 'Key'
+        WHEN ${channel_name} LIKE '%cool-fm%' THEN 'Cool FM'
+        WHEN ${channel_name} LIKE '%_tay%' THEN 'Tay FM'
+        WHEN ${channel_name} LIKE '%_metro%' THEN 'Metro'
+        WHEN ${channel_name} LIKE '%planet-rock%' THEN 'Planet Rock'
+        WHEN ${channel_name} LIKE '%northsound%' THEN 'Northsound'
+        WHEN ${channel_name} LIKE '%clyde%' THEN 'Clyde'
+        WHEN ${channel_name} LIKE '%viking%' THEN 'Viking'
+        WHEN ${channel_name} LIKE '%downtown%' THEN 'Downtown'
+        WHEN ${channel_name} LIKE '%Kerrang%' THEN 'Kerrang'
+        WHEN ${channel_name} LIKE '%_tfm%' THEN 'TFM'
+        WHEN ${channel_name} LIKE '%_mfr%' THEN 'MFR'
+        WHEN ${channel_name} LIKE '%_forth%' THEN 'Forth'
+        WHEN ${channel_name} LIKE '%_rock-fm%' THEN 'Rock FM'
+        WHEN ${channel_name} LIKE '%_cfm%' THEN 'CFM'
+        WHEN ${channel_name} LIKE '%_wave%' THEN 'Wave'
 
+        
+     ELSE 'Unknown'
+     END
+    
   - dimension: channel_id
     type: string
     sql: ${TABLE}.channel_id

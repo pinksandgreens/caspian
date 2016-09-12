@@ -17,3 +17,8 @@
   label: 'Google Analytics - Channels'
   sql_table_name: publications.google_analytics_channels
   persist_for: 20 hour
+  
+- explore: integrated_ads
+  label: 'Advertisement Data'
+  sql_table_name: publications.integrated_ads
+  persist_for: 20 hour

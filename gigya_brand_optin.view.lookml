@@ -34,6 +34,15 @@
     label: 'Phone Optin'
     type: string
     sql: ${TABLE}.phoneoptin
+    
+  - dimension: phone_optin_null
+    hidden: FALSE
+    type: string
+    sql: |
+      CASE
+        WHEN ${TABLE}.phoneoptin IS NULL THEN 'Null'
+        ELSE 'Populated'
+      END
 
   - dimension: postaloptin
     label: 'Postal Optin'

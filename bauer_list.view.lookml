@@ -239,6 +239,37 @@
         ELSE 'Populated'
       END
       
+  - dimension: mobile_phone_null
+    hidden: TRUE
+    type: string
+    sql: |
+      CASE
+        WHEN ${TABLE}.mobile_number IS NULL THEN 'Null'
+        ELSE 'Populated'
+      END
+      
+  - dimension: home_phone_null
+    hidden: TRUE
+    type: string
+    sql: |
+      CASE
+        WHEN ${TABLE}.telephonehomenumber IS NULL THEN 'Null'
+        ELSE 'Populated'
+      END
+      
+  - dimension: home_phone_null_NULL
+    hidden: TRUE
+    type: string
+    sql: |
+      CASE
+        WHEN ${home_mobile_number} = '-' THEN 'Null'
+        ELSE 'Populated'
+      END
+      
+
+      
+      
+      
 ############################################################################################################## #########################
 
   - dimension: hometown
@@ -534,6 +565,12 @@
     hidden: TRUE
     type: string
     sql: ${TABLE}.telephoneworknumber
+    
+  - dimension: home_mobile_number #####################################################
+    hidden: FALSE
+    type: string
+    sql: |
+      COALESCE (${TABLE}.mobile_number,'')  || '-' || COALESCE (${TABLE}.telephonehomenumber, '') 
 
   - dimension: title
     hidden: FALSE

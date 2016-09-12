@@ -24,6 +24,7 @@
         WHEN ${channel_name} = 'SMODAUTOMOTIVE' THEN 'General Automotive'
         WHEN ${channel_name} = 'LWOMENS' THEN 'General Womens Lifestyle'
         WHEN ${channel_name} = 'SMOTORCYCLING' THEN 'General Motor Cycling'
+        WHEN ${channel_name} = 'RBCN' THEN 'General BCN'
         WHEN ${channel_name} LIKE '%LWLN_lifestyle.one%' THEN 'General Womens Lifestyle'
         WHEN ${channel_name} LIKE '%Ride%' THEN 'Ride'
         WHEN ${channel_name} LIKE '%Practical-Classics%' THEN 'Practical Classics'

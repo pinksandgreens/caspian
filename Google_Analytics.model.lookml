@@ -22,3 +22,10 @@
   label: 'Advertisement Data'
   sql_table_name: publications.integrated_ads
   persist_for: 20 hour
+  
+- explore: google_analytics_dfp
+  label: 'Google Analytics - DFP'
+  sql_table_name: publications.google_analytics_dfp
+  persist_for: 20 hour
+  
+  

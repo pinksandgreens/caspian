@@ -11,8 +11,11 @@
     sql: ${TABLE}.channelgrouping
 
   - dimension: date
-    type: string
-    sql: ${TABLE}.date
+    label: 'Recorded'
+    type: time
+    timeframes: [date, week, month]
+    convert_tz: false
+    sql: TO_DATE(${TABLE}.date,'YYYY-MM-DD')
 
   - dimension: device_category
     type: string
@@ -24,15 +27,18 @@
 
   - measure: coverage
     type: avg
-    sql: ${TABLE}.dfpcoverage
+    value_format: '0.00"%"'
+    sql: ((1.00)*(${TABLE}.dfpcoverage::float))
 
   - measure: ctr
     type: avg
-    sql: ${TABLE}.dfpctr
+    value_format: '0.00"%"'
+    sql: (1.00)*(${TABLE}.dfpctr::float)
 
   - measure: ecpm
     type: avg
-    sql: ${TABLE}.dfpecpm
+    value_format: '0.00'
+    sql: (1.00)*(${TABLE}.dfpecpm::float)
 
   - measure: impressions
     type: sum
@@ -40,7 +46,8 @@
 
   - measure: impressions_per_session
     type: avg
-    sql: ${TABLE}.dfpimpressionspersession
+    value_format: '0.00'
+    sql: (1.00)*(${TABLE}.dfpimpressionspersession::float)
 
   - measure: monetized_pageviews
     type: sum
@@ -48,7 +55,8 @@
 
   - measure: revenue
     type: sum
-    sql: ${TABLE}.dfprevenue
+    value_format: '$0.00'
+    sql: (1.00)*(${TABLE}.dfprevenue::float)
 
   - measure: revenue_per_1000_sessions
     type: avg
@@ -69,8 +77,4 @@
   - dimension: source
     type: string
     sql: ${TABLE}.source
-
-  - measure: count
-    type: count
-    drill_fields: []
 

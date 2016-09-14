@@ -19,8 +19,11 @@
     sql: ${TABLE}.bounce_rate
 
   - dimension: date
-    type: string
-    sql: ${TABLE}.date
+    label: 'Recorded'
+    type: time
+    timeframes: [date, week, month]
+    convert_tz: false
+    sql: TO_DATE(${TABLE}.date,'YYYY-MM-DD')
 
   - dimension: device
     type: string

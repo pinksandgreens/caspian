@@ -27,5 +27,13 @@
   label: 'Google Analytics - DFP'
   sql_table_name: publications.google_analytics_dfp
   persist_for: 20 hour
-  
-  
+ 
+- explore: audiometrix_countries
+  label: 'Audiometrix - by Countries'
+  sql_table_name: publications.audiometrix_countries
+  persist_for: 20 hour 
+
+- explore: audiometrix_devices
+  label: 'Audiometrix - by Device'
+  sql_table_name: publications.audiometrix_devices
+  persist_for: 20 hour 

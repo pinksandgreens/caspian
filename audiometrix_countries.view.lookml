@@ -2,7 +2,7 @@
   sql_table_name: publications.audiometrix_countries
   fields:
 
-  - measure: brand
+  - dimension: brand
     type: string
     sql: ${TABLE}.brand
 

@@ -2,6 +2,10 @@
   sql_table_name: publications.audiometrix_devices
   fields:
 
+  - measure: brand
+    type: string
+    sql: ${TABLE}.brand
+
   - measure: active_sessions
     type: sum
     sql: ${TABLE}.active_sessions

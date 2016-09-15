@@ -29,11 +29,17 @@
   persist_for: 20 hour
  
 - explore: audiometrix_countries
-  label: 'Audiometrix - by Countries'
+  label: 'Audiometrix Historical - by Countries'
   sql_table_name: publications.audiometrix_countries
   persist_for: 20 hour 
 
 - explore: audiometrix_devices
-  label: 'Audiometrix - by Device'
+  label: 'Audiometrix Historical - by Device'
   sql_table_name: publications.audiometrix_devices
   persist_for: 20 hour 
+
+- explore: audiometrix_realtime
+  label: 'Audiometrix - Realtime'
+  sql_table_name: publications.audiometrix_realtime
+  persist_for: 20 hour 
+

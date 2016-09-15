@@ -72,7 +72,8 @@
     type: sum
     sql: (${TABLE}.uniquepageviews)
     
-  - measure: users
+  - measure: unique_users
+    label: 'Unique Users'
     type: sum
     sql: (${TABLE}.users)
     

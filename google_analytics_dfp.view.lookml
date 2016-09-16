@@ -8,7 +8,15 @@
 
   - dimension: channel_grouping
     type: string
-    sql: ${TABLE}.channelgrouping
+    sql: |
+      CASE
+        WHEN ${TABLE}.channelgrouping = 'Direct' THEN 'Direct'
+        WHEN ${TABLE}.channelgrouping = 'Email' THEN 'Email'
+        WHEN ${TABLE}.channelgrouping = 'Organic Search' THEN 'Organic Search'
+        WHEN ${TABLE}.channelgrouping = 'Referral' THEN 'Referral'
+        WHEN ${TABLE}.channelgrouping = 'Social' THEN 'Social'
+        ELSE 'Referral'
+      END
 
   - dimension: date
     label: 'Recorded'
@@ -19,7 +27,13 @@
 
   - dimension: device_category
     type: string
-    sql: ${TABLE}.devicecategory
+    sql: |
+      CASE  
+        WHEN ${TABLE}.devicecategory = 'desktop' THEN 'Desktop'
+        WHEN ${TABLE}.devicecategory = 'mobile' THEN 'Mobile'
+        WHEN ${TABLE}.devicecategory = 'tablet' THEN 'Tablet'
+        ELSE 'Desktop'
+      END
 
   - measure: clicks
     type: sum

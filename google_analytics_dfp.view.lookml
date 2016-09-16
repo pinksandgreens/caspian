@@ -47,7 +47,8 @@
   - measure: impressions_per_session
     type: number
     value_format: '0.00'
-    sql: AVG((1.00)*(${TABLE}.dfpimpressionspersession::float) WHERE (1.00)*(${TABLE}.dfpimpressionspersession::float)>0
+    sql: AVG((1.00)*(${TABLE}.dfpimpressionspersession::float)
+#    sql: AVG((1.00)*(${TABLE}.dfpimpressionspersession::float) WHERE (1.00)*(${TABLE}.dfpimpressionspersession::float)>0
 
   - measure: monetized_pageviews
     type: sum

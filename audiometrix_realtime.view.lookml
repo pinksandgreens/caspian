@@ -47,9 +47,17 @@
     sql: ('http://i.imgur.com/ufq8vsh.png')
     
   - dimension: Artist_Image2
-    hidden: FALSE
+    hidden: TRUE
     sql: ${image_file2}
     html: <img src="{{ value }}" width="380" height="200"/>    
 
-
+  - dimension: image_file3
+    hidden: TRUE
+    sql: ('http://i.imgur.com/Rt2aWL7.png')
+    
+  - dimension: Artist_Image3
+    hidden: TRUE
+    sql: ${image_file3}
+    html: <img src="{{ value }}" width="380" height="200"/>
+    
 

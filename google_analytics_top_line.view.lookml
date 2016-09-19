@@ -9,7 +9,15 @@
 
   - dimension: brand
     type: string
-    sql: ${TABLE}.brand
+    sql: |
+      CASE
+        WHEN ${TABLE}.brand = 'am-online.com' THEN ''
+        WHEN ${TABLE}.brand = 'mojo4music.com' THEN ''
+        WHEN ${TABLE}.brand = 'qthemusic.com' THEN ''
+        WHEN ${TABLE}.brand = 'aloud.com' THEN ''
+        ELSE ${TABLE}.brand
+      END
+
     
   - dimension: market
     type: string

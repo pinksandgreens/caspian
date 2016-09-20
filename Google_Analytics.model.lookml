@@ -41,5 +41,7 @@
 - explore: audiometrix_realtime
   label: 'Audiometrix - Realtime'
   sql_table_name: publications.audiometrix_realtime
-  persist_for: 20 hour 
-
+  
+- explore: audiometrix_realtime_devices
+  label: 'Audiometrix - Realtime Devices'
+  sql_table_name: publications.audiometrix_realtime_devices

@@ -271,13 +271,15 @@
     type: count_distinct
     sql: ${TABLE}.competition_id
     
-  - measure: entries_count_banding
+# Meant to be a measure, but some updates and deprication on Looker fucked this.
+  - dimension: entries_count_banding
     hidden: TRUE
     label: 'Entries Count Banding'
     type: tier
     tiers: [1,4,9,14,19,29]
     sql: ${entries_count}
     style: integer
+  
     
     
   - measure: avg_entries_per_competition

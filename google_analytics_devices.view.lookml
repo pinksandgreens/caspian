@@ -1,5 +1,5 @@
-- view: google_analytics_top_line
-  sql_table_name: publications.google_analytics_top_line
+- view: google_analytics_devices
+  sql_table_name: publications.google_analytics_devices
   fields:
 
   - measure: bounce_rate
@@ -17,6 +17,7 @@
         WHEN ${TABLE}.brand = 'aloud.com' THEN ''
         ELSE ${TABLE}.brand
       END
+
     
   - dimension: market
     type: string
@@ -30,6 +31,11 @@
         WHEN 'United Kingdom' THEN 'UK'
         WHEN 'Non-UK' THEN 'Overseas'
       END
+    
+  - dimension: is_mobile_tablet
+    label: 'Is Mobile/Tablet'
+    type: yesno
+    sql: (${TABLE}.devicecategory = 'mobile') OR (${TABLE}.devicecategory = 'tablet')
 
   - dimension: is_app
     label: 'Is App Data'
@@ -42,6 +48,10 @@
     timeframes: [date, week, month]
     convert_tz: false
     sql: TO_DATE(${TABLE}.date,'YYYY-MM-DD')
+
+  - dimension: device_category
+    type: string
+    sql: ${TABLE}.devicecategory
 
   - measure: page_views
     type: sum
@@ -71,25 +81,13 @@
     sql: (${TABLE}.uniquepageviews)
     
   - measure: unique_users
-    label: 'Total Users'
+    hidden: TRUE
+    label: 'Unique Users'
     type: sum
-    sql: ${TABLE}.users
-    
-  - measure: unique_users1
-    label: 'Avg Unique Web Users p/day'
-    type: avg
-    sql: ${TABLE}.users
-    filters:
-      is_app: 'No'
-      
-  - measure: unique_users12
-    label: 'Avg Unique App Users p/day'
-    type: avg
-    sql: ${TABLE}.users
-    filters:
-      is_app: 'Yes'
+    sql: (${TABLE}.users)
     
   - measure: average_session_duration
     type: number
     sql: (${session_duration}/${sessions})/60
+
 

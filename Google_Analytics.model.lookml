@@ -45,3 +45,9 @@
 - explore: audiometrix_realtime_devices
   label: 'Audiometrix - Realtime Devices'
   sql_table_name: publications.audiometrix_realtime_devices
+  
+- explore: google_analytics_devices
+  label: 'Google Analytics - Devices'
+  sql_table_name: publications.google_analytics_devices
+  persist_for: 20 hour
+  

@@ -45,13 +45,13 @@
 
   - measure: page_views
     type: sum
-    sql: (${TABLE}.pageviews)
+    sql: ${TABLE}.pageviews
 
   - measure: percent_newsessions
     label: '% New Sessions'
     type: number
     value_format: '#,##0.00"%"'
-    sql: avg(${TABLE}.percentnewsessions)
+    sql: avg(${TABLE}.percentnewsessions::float)
 
   - dimension: platform
     type: string
@@ -64,11 +64,11 @@
 
   - measure: sessions
     type: sum
-    sql: (${TABLE}.sessions)
+    sql: ${TABLE}.sessions
 
   - measure: unique_pageviews
     type: sum
-    sql: (${TABLE}.uniquepageviews)
+    sql: ${TABLE}.uniquepageviews
     
   - measure: unique_users
     label: 'Total Users'

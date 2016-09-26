@@ -4,7 +4,7 @@
 - include: "*.dashboard.lookml"  # include all dashboards in this project
 
 - explore: responsy_active
-  label: 'Email Data'
+  label: 'Email Campaign Data'
   persist_for: 24 hour
   joins:
   
@@ -57,6 +57,13 @@
       type: left_outer
       relationship: one_to_many
       sql_on: ${responsys_engaged_list.email_address} = ${responsys_newsletter_permissions.email_address}
+
+    - join: responsys_brand_permissions
+      type: left_outer
+      relationship: one_to_many
+      sql_on: ${responsys_engaged_list.email_address} = ${responsys_brand_permissions.email_address}
+      
+      
   
     
     

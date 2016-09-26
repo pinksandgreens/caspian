@@ -4,8 +4,13 @@
 
   - dimension: brandcode
     type: string
-    sql: ${TABLE}.brandcode
-
+    sql: |
+      CASE
+        WHEN ${TABLE}.brandcode = '$campaign_brand$' THEN NULL
+        WHEN ${TABLE}.brandcode LIKE '%BRANDCODE%' THEN NULL
+        ELSE ${TABLE}.brandcode
+      END
+      
   - dimension: created_date
     type: string
     sql: ${TABLE}.created_date

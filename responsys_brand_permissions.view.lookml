@@ -6,7 +6,7 @@
     type: string
     sql: |
       CASE
-        WHEN ${TABLE}.brandcode = '$campaign_brand$' THEN NULL
+        WHEN ${TABLE}.brandcode LIKE '%campaign_brand%' THEN NULL
         WHEN ${TABLE}.brandcode LIKE '%BRANDCODE%' THEN NULL
         ELSE ${TABLE}.brandcode
       END

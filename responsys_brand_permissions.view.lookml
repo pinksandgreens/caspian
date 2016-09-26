@@ -35,6 +35,7 @@
     sql: ${TABLE}.unsub_date
 
   - measure: brand_optins
+    label: 'Commercial/Marketing Optins'
     type: count_distinct
     sql: ${TABLE}.email_address
     filters:

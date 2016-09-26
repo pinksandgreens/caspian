@@ -1,5 +1,5 @@
 - view: responsys_brand_permissions
-  sql_table_name: responsys.responsys_brand_permissions
+  sql_table_name: responsys.responsys_brand_permissions_temp
   fields:
 
   - dimension: brandcode
@@ -20,7 +20,11 @@
 
   - dimension: optin
     type: string
-    sql: ${TABLE}.optin
+    sql: |
+      CASE
+        WHEN ${TABLE}.optin = '6' THEN '0'
+        ELSE ${TABLE}.optin
+      END
 
   - dimension: optin_date
     type: string
@@ -30,3 +34,8 @@
     type: string
     sql: ${TABLE}.unsub_date
 
+  - measure: brand_optins
+    type: count_distinct
+    sql: ${TABLE}.email_address
+    filters:
+      optin: '1'

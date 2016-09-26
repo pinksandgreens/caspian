@@ -1,5 +1,5 @@
 - view: responsys_newsletter_permissions
-  sql_table_name: responsys.responsys_newsletter_permissions
+  sql_table_name: responsys.responsys_newsletter_permissions_temp
   fields:
 
   - dimension: brandcode

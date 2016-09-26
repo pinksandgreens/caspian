@@ -1,5 +1,5 @@
 - view: responsys_engaged_list
-  sql_table_name: responsys.responsys_engaged_list
+  sql_table_name: responsys.responsys_engaged_list_temp
   fields:
 
   - dimension: age_banding

@@ -14,8 +14,8 @@
   - dimension: age_as_number
     hidden: true
     sql: |
-      CAST(CASE WHEN ${TABLE}.age LIKE '%-%' THEN NULL
-      WHEN LEN(${TABLE}.age) = 0 THEN NULL
+      CAST(CASE WHEN ${TABLE}.age LIKE '%-%' THEN '0'
+      WHEN LEN(${TABLE}.age) = 0 THEN '0'
       ELSE ${TABLE}.age
       END AS INT)
     
@@ -26,6 +26,7 @@
     sql: |
        CASE 
          WHEN ((${age_as_number} < 99) AND (${age_as_number} > 17)) THEN ${TABLE}.age
+         WHEN ${age_as_number} IS NULL THEN 'Unknown'
        END
 
   - dimension: age_tier

@@ -664,9 +664,6 @@
   - dimension: gender
     type: string
     sql: ${TABLE}."responsys_engaged_list.gender"
-       
-        
-        
 
   - dimension: postal_code
     type: string
@@ -707,14 +704,14 @@
     type: time
     timeframes: [day_of_week, date, week, month]    
     convert_tz: false
-    sql: TO_DATE(${TABLE}."responsys_brand_permissions.created_date",'YYYY-MM-DD')
+    sql: TO_DATE(${TABLE}."responsys_brand_permissions.bcreated_date_date",'YYYY-MM-DD')
 
   - dimension: commercial_modified_date
     label: 'Commercial Updated'
     type: time
     timeframes: [day_of_week, date, week, month]    
     convert_tz: false
-    sql: TO_DATE(${TABLE}."responsys_brand_permissions.modified_date",'YYYY-MM-DD')
+    sql: TO_DATE(${TABLE}."responsys_brand_permissions.bmodified_date_date",'YYYY-MM-DD')
 
   - dimension: commercial_optin
     type: string
@@ -726,14 +723,14 @@
     type: time
     timeframes: [day_of_week, date, week, month]    
     convert_tz: false
-    sql: TO_DATE(${TABLE}."responsys_brand_permissions.optin_date",'YYYY-MM-DD')
+    sql: TO_DATE(${TABLE}."responsys_brand_permissions.boptin_date_date",'YYYY-MM-DD')
 
   - dimension: commercial_unsub_date
     label: 'Commercial Unsub'
     type: time
     timeframes: [day_of_week, date, week, month]    
     convert_tz: false
-    sql: TO_DATE(${TABLE}."responsys_brand_permissions.unsub_date",'YYYY-MM-DD')
+    sql: TO_DATE(${TABLE}."responsys_brand_permissions.bunsub_date_date",'YYYY-MM-DD')
 
   - measure: brand_optins
     label: 'Commercial/Marketing Optins'
@@ -761,14 +758,14 @@
     type: time
     timeframes: [day_of_week, date, week, month]    
     convert_tz: false
-    sql: TO_DATE(${TABLE}."responsys_newsletter_permissions.created_date",'YYYY-MM-DD')
+    sql: TO_DATE(${TABLE}."responsys_newsletter_permissions.ncreated_date_date",'YYYY-MM-DD')
 
   - dimension: newsletter_modified_date
     label: 'Newsletter Updated'
     type: time
     timeframes: [day_of_week, date, week, month]    
     convert_tz: false
-    sql: TO_DATE(${TABLE}."responsys_newsletter_permissions.modified_date",'YYYY-MM-DD')
+    sql: TO_DATE(${TABLE}."responsys_newsletter_permissions.nmodified_date_date",'YYYY-MM-DD')
 
   - dimension: newsletter_optin
     type: string
@@ -780,17 +777,17 @@
     type: time
     timeframes: [day_of_week, date, week, month]    
     convert_tz: false
-    sql: TO_DATE(${TABLE}."responsys_newsletter_permissions.optin_date",'YYYY-MM-DD')
+    sql: TO_DATE(${TABLE}."responsys_newsletter_permissions.noptin_date_date",'YYYY-MM-DD')
 
   - dimension: newsletter_unsub_date
     label: 'Newsletter Unsub'
     type: time
     timeframes: [day_of_week, date, week, month]    
     convert_tz: false
-    sql: TO_DATE(${TABLE}."responsys_newsletter_permissions.unsub_date",'YYYY-MM-DD')
+    sql: TO_DATE(${TABLE}."responsys_newsletter_permissions.nunsub_date_date",'YYYY-MM-DD')
       
   - measure: newsletter_optins_test
-    hidden: TRUE
+    hidden: FALSE
     type: count_distinct
     sql: ${TABLE}."responsys_engaged_list.email_address"
     filters:
@@ -807,7 +804,8 @@
     type: count_distinct
     sql: ${TABLE}."responsys_engaged_list.email_address"
     filters:
-      newsletter_optin_TEST1: '11'
+      newsletter_optin: '1'
+      commercial_optin: '1'
   
       
       

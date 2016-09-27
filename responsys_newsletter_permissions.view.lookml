@@ -431,6 +431,10 @@
         WHEN ${TABLE}.brandcode = '105' THEN 'TRR'
         ELSE ${TABLE}.brandcode
       END
+      
+  - dimension: newsletter_id
+    type: string
+    sql: ${TABLE}.brandcode
 
   - dimension: created_date
     label: 'Created'

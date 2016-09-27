@@ -5,7 +5,7 @@
 
 - explore: responsy_active
   label: 'Email Campaign Data'
-  persist_for: 24 hour
+  persist_for: 2 hour
   joins:
   
     - join: responsy_device
@@ -50,7 +50,7 @@
       
 - explore: responsys_engaged_list
   label: 'Emailable Numbers'
-  persist_for: 24 hour
+  persist_for: 2 hour
   joins:
   
     - join: responsys_newsletter_permissions

@@ -29,7 +29,7 @@
   - dimension: date
     label: 'Recorded'
     type: time
-    timeframes: [time, date, week, month]
+    timeframes: [time, hour, date, week, month]
     convert_tz: true
     sql: CONVERT_TIMEZONE('UTC','BST',${TABLE}.date::timestamp) # BST/GMT depending on date
 

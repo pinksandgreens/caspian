@@ -12,16 +12,22 @@
       END
       
   - dimension: created_date
-    type: string
-    sql: ${TABLE}.created_date
+    label: 'Created'
+    type: time
+    timeframes: [day_of_week, date, week, month]    
+    convert_tz: false
+    sql: TO_DATE(${TABLE}.created_date,'YYYY-MM-DD')
 
   - dimension: email_address
     type: string
     sql: ${TABLE}.email_address
 
   - dimension: modified_date
-    type: string
-    sql: ${TABLE}.modified_date
+    label: 'Updated'
+    type: time
+    timeframes: [day_of_week, date, week, month]    
+    convert_tz: false
+    sql: TO_DATE(${TABLE}.modified_date,'YYYY-MM-DD')
 
   - dimension: optin
     type: string
@@ -32,12 +38,18 @@
       END
 
   - dimension: optin_date
-    type: string
-    sql: ${TABLE}.optin_date
+    label: 'Optin'
+    type: time
+    timeframes: [day_of_week, date, week, month]    
+    convert_tz: false
+    sql: TO_DATE(${TABLE}.optin_date,'YYYY-MM-DD')
 
   - dimension: unsub_date
-    type: string
-    sql: ${TABLE}.unsub_date
+    label: 'Unsub'
+    type: time
+    timeframes: [day_of_week, date, week, month]    
+    convert_tz: false
+    sql: TO_DATE(${TABLE}.unsub_date,'YYYY-MM-DD')
 
   - measure: brand_optins
     label: 'Commercial/Marketing Optins'

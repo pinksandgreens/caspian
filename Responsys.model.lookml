@@ -63,6 +63,9 @@
       relationship: one_to_many
       sql_on: ${responsys_engaged_list.email_address} = ${responsys_brand_permissions.email_address}
       
+- explore: email_list
+  label: 'Testing - In Dev'
+  persist_for: 2 hour
       
   
     

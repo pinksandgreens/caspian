@@ -6,6 +6,10 @@
     type: sum
     sql: ${TABLE}.active_sessions
     
+  - measure: avg_active_sessions
+    type: avg
+    sql: ${TABLE}.active_sessions
+    
   - measure: total_sessions_today
     type: sum
     sql: ${TABLE}.total_sessions_today

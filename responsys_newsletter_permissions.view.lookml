@@ -477,7 +477,11 @@
     sql: TO_DATE(${TABLE}.unsub_date,'YYYY-MM-DD')
     
   - measure: newsletter_optins
-    type: count_distinct
-    sql: ${TABLE}.email_address
+    type: number
+    sql: COUNT(${TABLE}.email_address)
+      
+  - measure: newsletter_optins123test
+    type: sum
+    sql: ${newsletter_optins}
     filters:
       optin: '1'

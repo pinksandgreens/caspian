@@ -322,7 +322,7 @@
         WHEN ${TABLE}.brandcode = '418' THEN 'PAN'
         WHEN ${TABLE}.brandcode = '419' THEN 'GAN'
         WHEN ${TABLE}.brandcode = '420' THEN 'PPM'
-        WHEN ${TABLE}.brandcode = '421' THEN 'ABR'
+        WHEN ${TABLE}.brandcode = '421' THEN NULL
         WHEN ${TABLE}.brandcode = '422' THEN 'PLR'
         WHEN ${TABLE}.brandcode = '176' THEN 'BUT'
         WHEN ${TABLE}.brandcode = '2' THEN 'CLO'
@@ -429,10 +429,10 @@
         WHEN ${TABLE}.brandcode = '103' THEN '2F1'
         WHEN ${TABLE}.brandcode = '104' THEN 'TDG'
         WHEN ${TABLE}.brandcode = '105' THEN 'TRR'
-        ELSE ${TABLE}.brandcode
+        ELSE NULL
       END
       
-  - dimension: newsletter_id
+  - dimension: newsletter_id                 # 421 IS ABR FOR ABOVE DIMENSION
     type: string
     sql: ${TABLE}.brandcode
 

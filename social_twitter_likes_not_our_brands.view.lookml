@@ -40,6 +40,7 @@
         WHEN 'The Debrief' THEN 'The Debrief'
         WHEN 'Viking FM' THEN '96.9 Viking FM'
         WHEN 'eBay.co.uk' THEN 'Ebay UK'
+        WHEN 'MaybellineNY.UK' THEN 'Maybelline UK'
         ELSE ${TABLE}.name
       END
       

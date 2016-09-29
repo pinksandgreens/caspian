@@ -33,6 +33,7 @@
         WHEN 'Closer' THEN 'Closer Magazine'
         WHEN 'Grazia UK' THEN 'Grazia UK'
         WHEN 'The Debrief' THEN 'The Debrief'
+        WHEN 'MaybellineNYUK' THEN 'Maybelline UK'
         ELSE ${TABLE}.brand
       END
       

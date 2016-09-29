@@ -8,10 +8,11 @@
       CASE
         WHEN ${TABLE}.brandcode LIKE '%campaign_brand%' THEN NULL
         WHEN ${TABLE}.brandcode LIKE '%BRANDCODE%' THEN NULL
+        WHEN ${TABLE}.brandcode LIKE '%ABR%' THEN NULL
         ELSE ${TABLE}.brandcode
       END
       
-  - dimension: created_date
+  - dimension: created_date                   # HIDING ABR HERE ^
     label: 'Created'
     type: time
     timeframes: [day_of_week, date, week, month]    

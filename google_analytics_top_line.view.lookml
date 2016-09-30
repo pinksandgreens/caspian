@@ -5,7 +5,7 @@
   - measure: bounce_rate
     type: avg
     value_format: '#,##0.00"%"'
-    sql: ${TABLE}.bouncerate
+    sql: ${TABLE}.bouncerate::float
 
   - dimension: brand
     type: string

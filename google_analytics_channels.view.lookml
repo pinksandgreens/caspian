@@ -14,7 +14,7 @@
   - dimension: date
     label: 'Recorded'
     type: time
-    timeframes: [date, week, month]
+    timeframes: [date, week, month, month_num]
     convert_tz: false
     sql: TO_DATE(${TABLE}.date,'YYYY-MM-DD')
 

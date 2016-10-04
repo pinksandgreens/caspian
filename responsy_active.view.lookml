@@ -65,7 +65,7 @@
   - dimension_group: launch_date
     label: 'Sent'
     type: time
-    timeframes: [date, week, month]
+    timeframes: [date, week, month, month_num]
     sql: ${TABLE}.launch_date
 
   - dimension: open_date

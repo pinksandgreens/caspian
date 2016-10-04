@@ -18,7 +18,7 @@
   - dimension_group: created
     label: 'Created'
     type: time
-    timeframes: [time, date, week, month]
+    timeframes: [time, date, week, month, month_num]
     sql: ${TABLE}.created_date
 
   - dimension_group: created_week

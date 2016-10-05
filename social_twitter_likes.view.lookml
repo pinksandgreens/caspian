@@ -39,6 +39,11 @@
         WHEN 'Grazia UK' THEN 'Grazia UK'
         WHEN 'The Debrief' THEN 'The Debrief'
         WHEN 'Viking FM' THEN '96.9 Viking FM'
+        WHEN 'Top Sant? magazine' THEN 'Top Sante'
+        WHEN 'Kerrang! Magazine' THEN 'Kerrang'
+        WHEN 'Q Magazine' THEN 'Q'
+        WHEN 'MATCH Magazine' THEN 'Match'
+        WHEN 'Mother&Baby' THEN 'Mother & Baby'
         ELSE ${TABLE}.name
       END
       

@@ -47,6 +47,11 @@
         WHEN 'tayfm' THEN 'Tay FM'
         WHEN 'tfmradio' THEN 'TFM Radio'
         WHEN 'thedebrief' THEN 'The Debrief'
+        WHEN 'Top Sante' THEN 'Top Sante'
+        WHEN 'Kerrang' THEN 'Kerrang'
+        WHEN 'Q' THEN 'Q'
+        WHEN 'Match' THEN 'Match'
+        WHEN 'Mother & Baby' THEN 'Mother & Baby'
       ELSE ${TABLE}.names
       END
 

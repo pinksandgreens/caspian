@@ -33,6 +33,11 @@
         WHEN 'Closer' THEN 'Closer Magazine'
         WHEN 'Grazia UK' THEN 'Grazia UK'
         WHEN 'The Debrief' THEN 'The Debrief'
+        WHEN 'Top Sante' THEN 'Top Sante'
+        WHEN 'Kerrang' THEN 'Kerrang'
+        WHEN 'Q' THEN 'Q'
+        WHEN 'Match' THEN 'Match'
+        WHEN 'Mother & Baby' THEN 'Mother & Baby'
         ELSE ${TABLE}.brand
       END
       

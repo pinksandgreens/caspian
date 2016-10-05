@@ -58,6 +58,11 @@
         WHEN 'Parkers' THEN 'Parkers'
         WHEN 'heat' THEN 'Heat'
         WHEN 'CAR Magazine' THEN 'Car Magazine'
+        WHEN 'Top Sant? Magazine' THEN 'Top Sante'
+        WHEN 'Kerrang!' THEN 'Kerrang'
+        WHEN 'Q Magazine' THEN 'Q'
+        WHEN 'MATCH Magazine' THEN 'Match'
+        WHEN 'Mother&Baby' THEN 'Mother & Baby'
         ELSE ${TABLE}.name
       END
       

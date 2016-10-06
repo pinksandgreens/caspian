@@ -50,4 +50,15 @@
   label: 'Google Analytics - Devices'
   sql_table_name: publications.google_analytics_devices
   persist_for: 20 hour
+
+- explore: barnacletopline
+  label: 'Barnacle - Top Line'
+  sql_table_name: publications.barnacletopline
+  persist_for: 20 hour
+
+- explore: barnaclepages
+  label: 'Barnacle - Pages'
+  sql_table_name: publications.barnaclepages
+  persist_for: 20 hour
+
   

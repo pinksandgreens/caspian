@@ -322,7 +322,7 @@
         WHEN ${TABLE}.brandcode = '418' THEN 'PAN'
         WHEN ${TABLE}.brandcode = '419' THEN 'GAN'
         WHEN ${TABLE}.brandcode = '420' THEN 'PPM'
-        WHEN ${TABLE}.brandcode = '421' THEN NULL
+        WHEN ${TABLE}.brandcode = '421' THEN 'ABR'
         WHEN ${TABLE}.brandcode = '422' THEN 'PLR'
         WHEN ${TABLE}.brandcode = '176' THEN 'BUT'
         WHEN ${TABLE}.brandcode = '2' THEN 'CLO'

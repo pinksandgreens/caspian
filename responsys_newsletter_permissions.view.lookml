@@ -176,12 +176,6 @@
         WHEN ${TABLE}.brandcode = '272' THEN 'SAN'
         WHEN ${TABLE}.brandcode = '273' THEN 'SRA'
         WHEN ${TABLE}.brandcode = '274' THEN 'SRA'
-        WHEN ${TABLE}.brandcode = '275' THEN 'TDG'
-        WHEN ${TABLE}.brandcode = '276' THEN 'TDG'
-        WHEN ${TABLE}.brandcode = '277' THEN 'TDG'
-        WHEN ${TABLE}.brandcode = '278' THEN 'TDG'
-        WHEN ${TABLE}.brandcode = '279' THEN 'TDG'
-        WHEN ${TABLE}.brandcode = '280' THEN 'TDG'
         WHEN ${TABLE}.brandcode = '281' THEN 'TRL'
         WHEN ${TABLE}.brandcode = '282' THEN 'TRL'
         WHEN ${TABLE}.brandcode = '283' THEN 'TRR'
@@ -427,7 +421,6 @@
         WHEN ${TABLE}.brandcode = '101' THEN 'LSC'
         WHEN ${TABLE}.brandcode = '102' THEN 'PRS'
         WHEN ${TABLE}.brandcode = '103' THEN '2F1'
-        WHEN ${TABLE}.brandcode = '104' THEN 'TDG'
         WHEN ${TABLE}.brandcode = '105' THEN 'TRR'
         ELSE NULL
       END

@@ -387,3 +387,7 @@
     sql: ${TABLE}.individual_id
     drill_fields: [first_name, last_name]
 
+  - measure: Email_count_Subs_QA
+    type: count_distinct
+    sql: ${TABLE}.email_address
+  

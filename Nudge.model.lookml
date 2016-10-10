@@ -45,6 +45,10 @@
     relationship: one_to_one
     sql_on: ${nudge_individuals.email_address} = ${odin_newsletter_permission.email_address}
 
+  - join: odin_subs_raw
+    type: inner
+    relationship: one_to_one
+    sql_on: ${nudge_individuals.email_address} = ${odin_subs_raw.email_address}
     
     
     

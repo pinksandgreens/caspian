@@ -77,7 +77,10 @@
     convert_tz: false
     sql: ${TABLE}.updated_date
 
-  - measure: count
-    type: count
-    drill_fields: []
+  - measure: Unique_Email_Count
+    type: count_distinct
+    sql: ${TABLE}.email_address
+    
+    
+
 

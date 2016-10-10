@@ -76,16 +76,16 @@
     sql: ${TABLE}.users
     
   - measure: unique_users1
-    label: 'Avg Unique Web Users p/day'
+    label: 'Avg Unique Web Sessions p/day'
     type: avg
-    sql: ${TABLE}.users
+    sql: ${TABLE}.sessions
     filters:
       is_app: 'No'
       
   - measure: unique_users12
-    label: 'Avg Unique App Users p/day'
+    label: 'Avg Unique App Sessions p/day'
     type: avg
-    sql: ${TABLE}.users
+    sql: ${TABLE}.sessions
     filters:
       is_app: 'Yes'
     

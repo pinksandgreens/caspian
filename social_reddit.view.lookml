@@ -4,7 +4,7 @@
 
   - dimension: title
     type: string
-    sql: ${TABLE}.title
+    sql: LEFT(${TABLE}.title,70)
 
   - dimension: thread
     type: string

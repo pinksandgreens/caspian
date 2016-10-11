@@ -9,16 +9,19 @@
   persist_for: 20 hour
   
 - explore: google_analytics_pages
+  hidden: TRUE
   label: 'Google Analytics - Pages'
   sql_table_name: publications.google_analytics_pages
   persist_for: 20 hour
   
 - explore: google_analytics_channels
+  hidden: TRUE
   label: 'Google Analytics - Channels'
   sql_table_name: publications.google_analytics_channels
   persist_for: 20 hour
   
 - explore: integrated_ads
+  hidden: TRUE
   label: 'Advertisement Data'
   sql_table_name: publications.integrated_ads
   persist_for: 20 hour
@@ -39,24 +42,29 @@
   persist_for: 20 hour 
 
 - explore: audiometrix_realtime
+  hidden: TRUE
   label: 'Audiometrix - Realtime'
   sql_table_name: publications.audiometrix_realtime
   
 - explore: audiometrix_realtime_devices
+  hidden: TRUE
   label: 'Audiometrix - Realtime Devices'
   sql_table_name: publications.audiometrix_realtime_devices
   
 - explore: google_analytics_devices
+  hidden: TRUE
   label: 'Google Analytics - Devices'
   sql_table_name: publications.google_analytics_devices
   persist_for: 20 hour
 
 - explore: barnacletopline
+  hidden: TRUE
   label: 'Barnacle - Top Line'
   sql_table_name: publications.barnacletopline
   persist_for: 20 hour
 
 - explore: barnaclepages
+  hidden: TRUE
   label: 'Barnacle - Pages'
   sql_table_name: publications.barnaclepages
   persist_for: 20 hour

@@ -27,6 +27,7 @@
   persist_for: 20 hour
   
 - explore: google_analytics_dfp
+  hidden: TRUE
   label: 'Google Analytics - DFP'
   sql_table_name: publications.google_analytics_dfp
   persist_for: 20 hour

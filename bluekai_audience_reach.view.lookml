@@ -1,4 +1,4 @@
-- view: bluekai_reach
+- view: bluekai_audience_reach
   sql_table_name: publications.bluekai_reach
   fields:
 

@@ -26,7 +26,7 @@
     relationship: one_to_one
     sql_on: ${bk_swap_ids_gygia.gygia_id} = ${gigya_users.gigya_id}
 
-- view: bluekai_audience_reach
+- explore: bluekai_audience_reach
   label: 'Blue Kai Audience Reach'
   sql_table_name: publications.bluekai_reach
     

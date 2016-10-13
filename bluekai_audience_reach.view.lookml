@@ -21,8 +21,9 @@
   - dimension: path
     type: string
     sql: ${TABLE}.path
+    
+  - measure: reach
+    type: sum
+    sql: ${TABLE}.reach
 
-  - measure: count
-    type: count
-    drill_fields: [node_name]
 

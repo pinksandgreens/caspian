@@ -7,6 +7,7 @@
 # # and define the joins that connect them together.
 
 - explore: bk_swap_ids_gygia
+  hidden: true
   label: 'DMP Audience Data'
   persist_for: 1 hour
 
@@ -25,3 +26,8 @@
     type: inner
     relationship: one_to_one
     sql_on: ${bk_swap_ids_gygia.gygia_id} = ${gigya_users.gigya_id}
+
+- explore: bluekai_audience_reach
+  label: 'Blue Kai Audience Reach'
+  sql_table_name: publications.bluekai_reach
+    

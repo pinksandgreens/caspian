@@ -7,6 +7,7 @@
 # # and define the joins that connect them together.
 
 - explore: bk_swap_ids_gygia
+  hidden: true
   label: 'DMP Audience Data'
   persist_for: 1 hour
 

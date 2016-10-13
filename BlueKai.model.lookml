@@ -25,3 +25,8 @@
     type: inner
     relationship: one_to_one
     sql_on: ${bk_swap_ids_gygia.gygia_id} = ${gigya_users.gigya_id}
+
+  - join: bluekai_reach
+    type: inner
+    relationship: one_to_one
+    sql_on: ${bk_identity_categories.category_id} = ${bluekai_reach.category_id}

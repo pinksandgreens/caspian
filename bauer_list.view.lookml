@@ -629,8 +629,7 @@
     type: count_distinct
     sql_distinct_key: ${TABLE}.customer_id
     sql: ${TABLE}.customer_id
-    html: |
-       <font color="green">{{ rendered_value }}</font>
+
 
 #   - dimension: AGE_IS_NULL
 #     label: 'AGE IS NULL'

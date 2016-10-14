@@ -52,7 +52,7 @@
   - dimension: device
     label: 'Device Category'
     type: string
-    sql: ${TABLE}.deviceCategory
+    sql: INITCAP(${TABLE}.deviceCategory)
     
   - dimension: channelGrouping
     label: 'Channel'

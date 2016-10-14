@@ -9,32 +9,30 @@
 
   - dimension: brand
     type: string
-    sql: |
-      CASE
-        WHEN ${TABLE}.brand = 'am-online.com' THEN ''
-        WHEN ${TABLE}.brand = 'mojo4music.com' THEN ''
-        WHEN ${TABLE}.brand = 'qthemusic.com' THEN ''
-        WHEN ${TABLE}.brand = 'aloud.com' THEN ''
-        ELSE ${TABLE}.brand
-      END
+    sql: ${TABLE}.brand
     
   - dimension: market
     type: string
     sql: ${TABLE}.market
     
   - dimension: country
+    label: 'UK/Overseas'
     type: string
-    sql: ${TABLE}.country
     sql: |
       CASE ${TABLE}.country
         WHEN 'United Kingdom' THEN 'UK'
-        WHEN 'Non-UK' THEN 'Overseas'
+        ELSE 'Overseas'
       END
+      
+  - dimension: country_name
+    label: 'Country'
+    type: string
+    sql: ${TABLE}.country
 
-  - dimension: is_app
-    label: 'Is App Data'
+  - dimension: is_app #KEPT THIS NAME TO NOT BREAK ANYTHING, THIS IS ACTUALLY IS_WEB (YES/NO)
+    label: 'Is Web Data'
     type: yesno
-    sql: ${TABLE}.platform = 'App'
+    sql: ${TABLE}.platform = 'Web'
 
   - dimension: date
     label: 'Recorded'
@@ -47,15 +45,20 @@
     type: sum
     sql: ${TABLE}.pageviews
 
-  - measure: percent_newsessions
-    label: '% New Sessions'
-    type: number
-    value_format: '#,##0.00"%"'
-    sql: avg(${TABLE}.percentnewsessions::float)
-
   - dimension: platform
     type: string
     sql: ${TABLE}.platform
+    
+  - dimension: device
+    label: 'Device Category'
+    type: string
+    sql: INITCAP(${TABLE}.deviceCategory)
+    
+  - dimension: channelGrouping
+    label: 'Channel'
+    type: string
+    sql: ${TABLE}.channelGrouping
+
 
   - measure: session_duration
     type: sum
@@ -74,22 +77,25 @@
     label: 'Total Users'
     type: sum
     sql: ${TABLE}.users
+
     
   - measure: unique_users1
     label: 'Avg Unique Web Sessions p/day'
     type: avg
     sql: ${TABLE}.sessions
     filters:
-      is_app: 'No'
+      is_app: 'Yes'
       
   - measure: unique_users12
     label: 'Avg Unique App Sessions p/day'
     type: avg
     sql: ${TABLE}.sessions
     filters:
-      is_app: 'Yes'
+      is_app: 'No'
     
   - measure: average_session_duration
     type: number
     sql: (${session_duration}/${sessions})/60
+    
+    
 

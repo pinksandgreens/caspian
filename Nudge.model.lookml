@@ -50,5 +50,15 @@
     relationship: one_to_one
     sql_on: ${nudge_individuals.email_address} = ${odin_subs_raw.email_address}
     
+  - join: responsys_newsletter_permissions
+    type: left_outer
+    relationship: one_to_one
+    sql_on: ${nudge_individuals.email_address} = ${responsys_newsletter_permissions.email_address}
+
+  - join: responsys_brand_permissions
+    type: left_outer
+    relationship: one_to_one
+    sql_on: ${nudge_individuals.email_address} = ${responsys_brand_permissions.email_address}
+    
     
     

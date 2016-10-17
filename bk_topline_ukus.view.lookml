@@ -34,7 +34,8 @@
         WHEN bk_topline_ukus.path = 'Bauer DMP - Private > Sites > Specialist > Gardening' THEN 'Gardening'
         WHEN bk_topline_ukus.path = 'Bauer DMP - Private > Sites > Specialist > Leisure' THEN 'Leisure'
         WHEN bk_topline_ukus.path = 'Bauer DMP - Private > Sites > Specialist > Third Party' THEN 'Third Party'
-         ELSE 'Unknown'    
+        ELSE 'Unknown'  
+      END
 
   - dimension: reach
     type: number

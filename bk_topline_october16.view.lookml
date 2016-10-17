@@ -18,7 +18,10 @@
     type: number
     sql: ${TABLE}.reach
 
-  - measure: count
-    type: count
-    drill_fields: []
+  - measure: UK_Reach
+    label: 'BlueKai UK Audience Size'
+    type: number
+    sql: ${TABLE}.reach
+
+  
 

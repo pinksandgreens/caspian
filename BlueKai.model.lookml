@@ -44,4 +44,8 @@
 - explore: bk_topline_october16
   label: 'BlueKai Topline UK Reach'
   sql_table_name: publications.bk_topline_october16
+  
+- explore: bk_topline_ukus
+  label: 'BlueKai Topline Reach UK & US'
+  sql_table_name: publications.bk_topline_ukus
     

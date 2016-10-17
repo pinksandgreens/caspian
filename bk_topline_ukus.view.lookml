@@ -20,11 +20,11 @@
 
   - measure: total_reach
     label: 'Total Audience Reach'
-    type: number
+    type: sum
     sql: ${TABLE}.reach
 
   - measure: total_reach2
     label: 'UK Audience Reach'
-    type: number
+    type: sum
     sql: ${TABLE}."reach(2)"    
     

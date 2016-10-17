@@ -36,7 +36,7 @@
     sql: ${TABLE}.phoneoptin
     
   - dimension: phone_optin_null
-    hidden: FALSE
+    hidden: TRUE
     type: string
     sql: |
       CASE

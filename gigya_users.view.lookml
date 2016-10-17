@@ -404,7 +404,7 @@
       END
   
   - dimension: active_user
-    label: 'Is Active User'
+    label: 'Is Active User (~3 months)'
     type: yesno
     sql: DATEDIFF('month', ${TABLE}.last_login, CURRENT_DATE) >= 0  AND DATEDIFF('month', ${TABLE}.last_login, CURRENT_DATE) <= 3
 

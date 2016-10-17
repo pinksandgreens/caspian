@@ -28,6 +28,10 @@
     sql_on: ${bk_swap_ids_gygia.gygia_id} = ${gigya_users.gigya_id}
 
 - explore: bluekai_audience_reach
-  label: 'Blue Kai Audience Reach'
+  label: 'BlueKai Audience Reach'
   sql_table_name: publications.bluekai_reach
+  
+- explore: bk_topline_october16
+  label: 'BlueKai Topline UK Reach'
+  sql_table_name: publications.bk_topline_october16
     

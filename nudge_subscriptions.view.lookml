@@ -262,13 +262,15 @@
     type: number
     sql: ${TABLE}.total_unpaid_value
 
-  - measure: count
-    type: count
-    drill_fields: []
-    
-  - measure: Active_Subs_Count
+  - measure: number_of_individuals
     type: count_distinct
     sql: ${TABLE}.individual_id
+    
+  - measure: Active_Subs_Count
+    type: count
     filters:              
-     subscription_status: 'C'
+     subscription_status: 'C, I'
+     circulation_status: 'Q, R'
+     subscription_indicator: 'D, R, S'
+     
 

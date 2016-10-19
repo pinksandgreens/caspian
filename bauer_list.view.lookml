@@ -78,10 +78,15 @@
 
   - dimension: created_by
     hidden: FALSE
-    label: 'Data From (ES/Nudge/Gigya)'
+    label: 'Data From (Comp/Web/Subs)'
     type: string
-    sql: ${TABLE}.created_by
-    
+    sql: |
+      CASE
+        WHEN ${TABLE}.created_by = 'es' THEN 'Competitions'
+        WHEN ${TABLE}.created_by = 'gigya' THEN 'Web Registrations'
+        WHEN ${TABLE}.created_by = 'nudge' THEN 'Subscriptions'
+      END
+      
   - dimension: customer_id
     label: 'Customer ID'
     primary_key: TRUE

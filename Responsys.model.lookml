@@ -67,6 +67,30 @@
 #   label: 'Testing - In Dev'
 #   persist_for: 2 hour
       
+      
+- explore: responsys_engaged_list_overlap
+  label: 'Emailable Numbers - Overlap'
+  persist_for: 2 hour
+  joins:
   
-    
-    
+    - join: responsys_brand_permissions_overlap
+      type: left_outer 
+      relationship: one_to_many 
+      sql_on: ${responsys_engaged_list_overlap.email_address} = ${responsys_brand_permissions_overlap.email_address}
+      
+    - join: responsys_brand_permissions_overlap2
+      from: responsys_brand_permissions_overlap
+      type: left_outer 
+      relationship: many_to_one 
+      sql_on: ${responsys_brand_permissions_overlap.brandcode} = ${responsys_brand_permissions_overlap2.brandcode}
+
+
+
+
+
+
+
+
+
+
+

@@ -8,6 +8,12 @@
   sql_table_name: publications.google_analytics_top_line
   persist_for: 20 hour
   
+  joins:
+    - join: brand_lookup
+      type: inner
+      relationship: one_to_one
+      sql_on: ${brand_lookup.bra_code} = ${google_analytics_top_line.brand_code}
+  
 - explore: google_analytics_pages
   hidden: TRUE
   label: 'Google Analytics - Pages'

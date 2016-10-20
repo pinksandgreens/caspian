@@ -1,4 +1,4 @@
-- view: responsys_newsletter_permissions
+- view: responsys_newsletter_permissions_overlap
   sql_table_name: responsys.responsys_newsletter_permissions_temp
   fields:
 

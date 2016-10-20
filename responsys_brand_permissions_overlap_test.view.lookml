@@ -1,4 +1,4 @@
-- view: responsys_brand_permissions
+- view: responsys_brand_permissions_overlap2
   sql_table_name: responsys.responsys_brand_permissions_temp
   fields:
 
@@ -11,6 +11,7 @@
         WHEN ${TABLE}.brandcode LIKE '%ABR%' THEN NULL
         ELSE ${TABLE}.brandcode
       END
+
       
   - dimension: created_date                   # HIDING ABR HERE ^
     label: 'Created'

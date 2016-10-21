@@ -2,11 +2,21 @@
   sql_table_name: publications.google_analytics_prebid
   fields:
 
-  - measure: avgeventvalue
+  - measure: avg_bid_cpm
     type: avg
-    sql: ${TABLE}.avgeventvalue
+    sql: ${TABLE}.avg_bid_cpm
+
+  - measure: avg_bid_load_time
+    type: avg
+    sql: ${TABLE}.avg_bid_load_time
+
+  - measure: avg_win_cpm
+    type: avg
+    sql: ${TABLE}.avg_win_cpm
 
   - dimension: bidder
+    hidden: TRUE
+    label: 'Prebid.js'
     type: string
     sql: ${TABLE}.bidder
 
@@ -22,22 +32,39 @@
     sql: ${TABLE}.datehour::timestamp
 
   - dimension: eventaction
+    label: 'Event'
     type: string
     sql: ${TABLE}.eventaction
 
-  - dimension: eventcategory
+  - dimension: eventlabel
+    label: 'Bidder'
     type: string
-    sql: ${TABLE}.eventcategory
-
-  - measure: eventvalue
-    type: sum
-    sql: POWER((${TABLE}.eventvalue)*10,-6)
+    sql: ${TABLE}.eventlabel
 
   - dimension: market
     type: string
     sql: ${TABLE}.market
 
-  - measure: totalevents
+  - measure: number_of_bids
     type: sum
-    sql: ${TABLE}.totalevents
+    sql: ${TABLE}.number_of_bids
+
+  - measure: revenue
+    type: sum
+    value_format: '$0.00'
+    sql: (1.00)*(${TABLE}.revenue::float)
+
+  - measure: total_requests
+    type: sum
+    sql: ${TABLE}.total_requests
+
+  - measure: total_timeouts
+    type: sum
+    sql: ${TABLE}.total_timeouts
+
+  - measure: total_wins
+    type: sum
+    sql: ${TABLE}.total_wins
+
+
 

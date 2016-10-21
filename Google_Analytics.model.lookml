@@ -42,11 +42,23 @@
   label: 'Audiometrix Historical - by Countries'
   sql_table_name: publications.audiometrix_countries
   persist_for: 20 hour 
-
+  joins:
+  
+    - join: brand_lookup
+      type: inner
+      relationship: one_to_one
+      sql_on: ${audiometrix_countries.brand_code}=${brand_lookup.bra_code}
+      
 - explore: audiometrix_devices
   label: 'Audiometrix Historical - by Device'
   sql_table_name: publications.audiometrix_devices
   persist_for: 20 hour 
+  joins:
+  
+    - join: brand_lookup
+      type: inner
+      relationship: one_to_one
+      sql_on: ${audiometrix_devices.brand_code}=${brand_lookup.bra_code}
 
 - explore: audiometrix_realtime
   hidden: TRUE

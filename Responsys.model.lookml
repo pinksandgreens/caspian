@@ -63,6 +63,11 @@
       relationship: one_to_many
       sql_on: ${responsys_engaged_list.email_address} = ${responsys_brand_permissions.email_address}
       
+    - join: brand_lookup
+      type: inner
+      relationship: one_to_one
+      sql_on: ${responsys_newsletter_permissions.brandcode}=${brand_lookup.bra_code}
+        
 # - explore: email_list
 #   label: 'Testing - In Dev'
 #   persist_for: 2 hour

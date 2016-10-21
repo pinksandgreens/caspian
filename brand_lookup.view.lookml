@@ -1,5 +1,5 @@
 - view: brand_lookup
-  label: '1b. Brand Lookup'
+  label: 'Brand Lookup'
   sql_table_name: publications.brand_lookup
   fields:
 

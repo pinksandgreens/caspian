@@ -14,23 +14,23 @@
       relationship: one_to_one
       sql_on: ${brand_lookup.bra_code} = ${google_analytics_top_line.brand_code}
   
-- explore: google_analytics_pages
-  hidden: TRUE
-  label: 'Google Analytics - Pages'
-  sql_table_name: publications.google_analytics_pages
-  persist_for: 20 hour
+# - explore: google_analytics_pages
+#   hidden: TRUE
+#   label: 'Google Analytics - Pages'
+#   sql_table_name: publications.google_analytics_pages
+#   persist_for: 20 hour
   
-- explore: google_analytics_channels
-  hidden: TRUE
-  label: 'Google Analytics - Channels'
-  sql_table_name: publications.google_analytics_channels
-  persist_for: 20 hour
+# - explore: google_analytics_channels
+#   hidden: TRUE
+#   label: 'Google Analytics - Channels'
+#   sql_table_name: publications.google_analytics_channels
+  # persist_for: 20 hour
   
-- explore: integrated_ads
-  hidden: TRUE
-  label: 'Advertisement Data'
-  sql_table_name: publications.integrated_ads
-  persist_for: 20 hour
+# - explore: integrated_ads
+#   hidden: TRUE
+#   label: 'Advertisement Data'
+#   sql_table_name: publications.integrated_ads
+  # persist_for: 20 hour
   
 - explore: google_analytics_dfp
   hidden: TRUE
@@ -88,4 +88,8 @@
   sql_table_name: publications.barnaclepages
   persist_for: 20 hour
 
+- explore: google_analytics_prebid
+  label: 'Google Analytics - Prebid'
+  sql_table_name: publications.google_analytics_prebid
+  persist_for: 20 hour
   

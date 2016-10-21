@@ -18,12 +18,10 @@
     relationship: one_to_one
     sql_on: ${nudge_individuals.individual_id} = ${nudge_households.household_id} 
 
-
   - join: nudge_subscriptions
     type: inner
     relationship: one_to_one
     sql_on: ${nudge_individuals.individual_id} = ${nudge_subscriptions.individual_id} 
-    
     
   - join: nudge_interactions
     type: inner
@@ -59,6 +57,11 @@
     type: left_outer
     relationship: one_to_one
     sql_on: ${nudge_individuals.email_address} = ${responsys_brand_permissions.email_address}
+    
+  - join: brand_lookup
+    type: inner
+    relationship: one_to_one
+    sql_on: ${brand_lookup.bra_code} = ${nudge_subscriptions.magazine_code}
     
     
     

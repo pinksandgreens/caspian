@@ -93,3 +93,28 @@
   sql_table_name: publications.google_analytics_prebid
   persist_for: 20 hour
   
+- explore: bigquery_google_analytics
+  label: 'Google BigQuery'
+  sql_table_name: publications.bigquery_google_analytics
+  persist_for: 22 hour
+  joins:
+  
+    - join: bigquery_google_analytics_hits
+      foreign_key: bigquery_google_analytics.fullvisitorid
+
+    - join: bigquery_google_analytics_hits_customdimensions
+      foreign_key: bigquery_google_analytics.fullvisitorid
+
+  
+# foreign_key:
+
+#     - join: bigquery_google_analytics_hits
+#       type: inner
+#       relationship: one_to_many
+#       sql_on: ${bigquery_google_analytics.fullvisitorid}=${bigquery_google_analytics_hits.fullvisitorid}
+#       
+#     - join: bigquery_google_analytics_hits_customdimensions
+#       type: inner
+#       relationship: one_to_many
+#       sql_on: ${bigquery_google_analytics.fullvisitorid}=${bigquery_google_analytics_hits_customdimensions.fullvisitorid}
+  

@@ -7,6 +7,7 @@
     sql: ${TABLE}.avg_bid_cpm
 
   - measure: avg_bid_load_time
+    label: 'Average Bid Load Time (ms)'
     type: avg
     sql: ${TABLE}.avg_bid_load_time
 
@@ -65,6 +66,11 @@
   - measure: total_wins
     type: sum
     sql: ${TABLE}.total_wins
+    
+  - measure: timeout_rate
+    type: number
+    value_format: '#.##%'
+    sql: (${total_timeouts}/${total_requests})*100
 
 
 

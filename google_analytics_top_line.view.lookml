@@ -159,6 +159,7 @@
 
     
   - measure: unique_users1
+    hidden: TRUE
     label: 'Avg Unique Web Sessions p/day'
     type: avg
     sql: ${TABLE}.sessions
@@ -166,6 +167,7 @@
       is_app: 'Yes'
       
   - measure: unique_users12
+    hidden: TRUE
     label: 'Avg Unique App Sessions p/day'
     type: avg
     sql: ${TABLE}.sessions

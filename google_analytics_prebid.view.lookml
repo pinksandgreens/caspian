@@ -71,6 +71,18 @@
     type: number
     value_format: '#.##%'
     sql: (${total_timeouts}/${total_requests})*100
+    
+    
+  - measure: Avg_Bid_CPM_Revenue
+    type: sum
+    value_format: '$0.00'
+    sql: ((1.00)*(${TABLE}.avg_bid_cpm::float))/1000
+
+  - measure: Avg_Win_CPM_Revenue
+    type: sum
+    value_format: '$0.00'
+    sql: ((1.00)*(${TABLE}.avg_win_cpm::float))/1000
+
 
 
 

@@ -11,6 +11,16 @@
     type: avg
     sql: ${TABLE}.avg_bid_load_time
 
+  - dimension: banded_avg_bid_load_time
+    label: 'Banded Average Bid Load Time (ms)'
+    type: tier
+    tiers: [0-200,200-300,300-400,400-500,500-600,600-800,800-1000,1000-1200,1200-1500,1500-2000,2000-5000,5000-10000,10000-15000,15000-20000,20000-30000]
+    style: classic                # the default value, could be excluded
+    sql: ${TABLE}.avg_bid_load_time
+
+
+#0-200ms  200-300ms   300-400ms   400-500ms   500-600ms   600-800ms   800-1000ms  t2:1000-1200ms  t2:1200-1500ms  t2:1500-2000ms  t2:2000ms above 
+
   - measure: avg_win_cpm
     type: avg
     sql: ${TABLE}.avg_win_cpm

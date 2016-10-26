@@ -53,7 +53,7 @@
   - measure: revenue
     type: sum
     value_format: '$0.00'
-    sql: (1.00)*(${TABLE}.revenue::float)
+    sql: (1.00)*(${TABLE}.revenue::float)*10
 
   - measure: total_requests
     type: sum

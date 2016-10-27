@@ -1,11 +1,19 @@
 - view: bigquery_google_analytics_hits
+  label: 'User Page Interactions'
   sql_table_name: publications.bigquery_google_analytics_hits
   fields:
+  
+  - dimension: unique_id
+    hidden: FALSE
+    type: string
+    primary_key: TRUE
+    sql: |
+      ${TABLE}.fullvisitorid || cast(${TABLE}.hits_hitnumber as varchar) || cast(${TABLE}.hits_time as varchar) || 
+      cast(${TABLE}.hits_hour as varchar) || cast(${TABLE}.hits_minute as varchar) || ${TABLE}.hits_page_pagepath || ${TABLE}.visitnumber
 
   - dimension: fullvisitorid
     hidden: TRUE
     type: string
-    primary_key: TRUE
     sql: ${TABLE}.fullvisitorid
 
   - dimension: hits_appinfo_appid
@@ -136,7 +144,7 @@
     sql: ${TABLE}.hits_hitnumber
 
   - dimension: hits_hour
-    label: 'Hits - Hour of Hit'
+    label: 'Hits - Hit Hour'
     type: number
     sql: ${TABLE}.hits_hour
 
@@ -285,10 +293,132 @@
     type: number
     sql: ${TABLE}.hits_minute
 
+  - dimension: hits_page_hostname_pp1
+    hidden: FALSE
+    label: 'Brand Code'
+    type: string
+    sql: | 
+      CASE
+        WHEN ${hits_page_hostname_pp2} LIKE '%0.0.0.0%' THEN 'UKN'
+        WHEN ${hits_page_hostname_pp2} LIKE '%111.221.29.49%' THEN 'UKN'
+        WHEN ${hits_page_hostname_pp2} LIKE '%208.71.46.190%' THEN 'UKN'
+        WHEN ${hits_page_hostname_pp2} LIKE '%65.55.108.4%' THEN 'UKN'
+        WHEN ${hits_page_hostname_pp2} LIKE '%admin.parkers.co.uk%' THEN 'PCP'
+        WHEN ${hits_page_hostname_pp2} LIKE '%anonymouse.org%' THEN 'UKN'
+        WHEN ${hits_page_hostname_pp2} LIKE '%bauer-xcel-4jnx.squarespace.com%' THEN 'UKN'
+        WHEN ${hits_page_hostname_pp2} LIKE '%bauer-xcel-cynp.squarespace.com%' THEN 'UKN'
+        WHEN ${hits_page_hostname_pp2} LIKE '%bauer.radio.test.web.dadi.technology%' THEN 'UKN'
+        WHEN ${hits_page_hostname_pp2} LIKE '%bit.ly%' THEN 'UKN'
+        WHEN ${hits_page_hostname_pp2} LIKE '%brc.co%' THEN 'UKN'
+        WHEN ${hits_page_hostname_pp2} LIKE '%cc.bingj.com%' THEN 'UKN'
+        WHEN ${hits_page_hostname_pp2} LIKE '%creative.bauermedia.co.uk%' THEN 'UKN'
+        WHEN ${hits_page_hostname_pp2} LIKE '%demos.rezonence.com%' THEN 'UKN'
+        WHEN ${hits_page_hostname_pp2} LIKE '%doc-00-7g-adspreview.googleusercontent.com%' THEN 'UKN'
+        WHEN ${hits_page_hostname_pp2} LIKE '%doc-0o-ag-adspreview.googleusercontent.com%' THEN 'UKN'
+        WHEN ${hits_page_hostname_pp2} LIKE '%empireonline.bauercdn.com%' THEN 'UKN'
+        WHEN ${hits_page_hostname_pp2} LIKE '%empireonline.bauersecure.com%' THEN 'UKN'
+        WHEN ${hits_page_hostname_pp2} LIKE '%empireonline.com%' THEN 'EMP'
+        WHEN ${hits_page_hostname_pp2} LIKE '%fanyi.myyoudao.com%' THEN 'UKN'
+        WHEN ${hits_page_hostname_pp2} LIKE '%forum.practicalfishkeeping.co.uk%' THEN 'PFI'
+        WHEN ${hits_page_hostname_pp2} LIKE '%fr.blewpass.com%' THEN 'UKN'
+        WHEN ${hits_page_hostname_pp2} LIKE '%inst.webinstantservice.com%' THEN 'UKN'
+        WHEN ${hits_page_hostname_pp2} LIKE '%legacy.empireonline.com%' THEN 'EMP'
+        WHEN ${hits_page_pagepathlevel1} LIKE '%/grazia%' THEN 'GRA'
+        WHEN ${hits_page_pagepathlevel1} LIKE '%/closer%' THEN 'CLO'
+        WHEN ${hits_page_pagepathlevel1} LIKE '%/heat%' THEN 'HEA'
+        WHEN ${hits_page_hostname_pp2} LIKE '%localhost%' THEN 'UKN'
+        WHEN ${hits_page_hostname_pp2} LIKE '%m.youtube.com%' THEN 'UKN'
+        WHEN ${hits_page_hostname_pp2} LIKE '%phx.4everproxy.com%' THEN 'UKN'
+        WHEN ${hits_page_hostname_pp2} LIKE '%publisher-demos.sharethrough.com%' THEN 'UKN'
+        WHEN ${hits_page_hostname_pp2} LIKE '%publisher-demos.sharethrough.com.s3.amazonaws.com%' THEN 'UKN'
+        WHEN ${hits_page_hostname_pp2} LIKE '%radioplayer.magic.co.uk%' THEN 'MAG'
+        WHEN ${hits_page_hostname_pp2} LIKE '%radioplayer.magic.co.uk.googleweblight.com%' THEN 'MAG'
+        WHEN ${hits_page_hostname_pp2} LIKE '%radioplayer.magicabba-mammamia.co.uk%' THEN 'MAG'
+        WHEN ${hits_page_hostname_pp2} LIKE '%radioplayer.magicchilled.co.uk%' THEN 'MAG'
+        WHEN ${hits_page_hostname_pp2} LIKE '%radioplayer.magicsoul.co.uk%' THEN 'MAG'
+        WHEN ${hits_page_hostname_pp2} LIKE '%radioplayer.mellowmagic.co.uk%' THEN 'MAG'
+        WHEN ${hits_page_hostname_pp2} LIKE '%secure.parkers.co.uk%' THEN 'PCP'
+        WHEN ${hits_page_hostname_pp2} LIKE '%test.empireonline.com%' THEN 'EMP'
+        WHEN ${hits_page_hostname_pp2} LIKE '%test.planetradio.co.uk%' THEN 'PLA'
+        WHEN ${hits_page_hostname_pp2} LIKE '%testabba.sarla.cc%' THEN 'UKN'
+        WHEN ${hits_page_hostname_pp2} LIKE '%translate.googleusercontent.com%' THEN 'UKN'
+        WHEN ${hits_page_hostname_pp2} LIKE '%ukradioplayer.magic.co.uk%' THEN 'MAG'
+        WHEN ${hits_page_hostname_pp2} LIKE '%ukradioplayer.magicchilled.co.uk%' THEN 'MAG'
+        WHEN ${hits_page_hostname_pp2} LIKE '%web.archive.org%' THEN 'UKN'
+        WHEN ${hits_page_hostname_pp2} LIKE '%webcache.googleusercontent.com%' THEN 'UKN'
+        WHEN ${hits_page_hostname_pp2} LIKE '%www.anglingtimes.co.uk%' THEN 'ATI'
+        WHEN ${hits_page_hostname_pp2} LIKE '%www.anglingtimes.co.uk.googleweblight.com%' THEN 'ATI'
+        WHEN ${hits_page_hostname_pp2} LIKE '%www.bikemagazine.co.uk%' THEN 'BIK'
+        WHEN ${hits_page_hostname_pp2} LIKE '%www.birdwatching.co.uk%' THEN 'BWT'
+        WHEN ${hits_page_hostname_pp2} LIKE '%www.birdwatching.co.uk.googleweblight.com%' THEN 'BWT'
+        WHEN ${hits_page_hostname_pp2} LIKE '%www.brc.co%' THEN 'UKN'
+        WHEN ${hits_page_hostname_pp2} LIKE '%www.carmechanicsmag.co.uk%' THEN 'CMC'
+        WHEN ${hits_page_hostname_pp2} LIKE '%www.classicbike.co.uk%' THEN 'CLB'
+        WHEN ${hits_page_hostname_pp2} LIKE '%www.classiccarsmagazine.co.uk%' THEN 'CLC'
+        WHEN ${hits_page_hostname_pp2} LIKE '%www.classiccarweekly.co.uk%' THEN 'CCW'
+        WHEN ${hits_page_hostname_pp2} LIKE '%www.closeronline.co.uk%' THEN 'CLO'
+        WHEN ${hits_page_hostname_pp2} LIKE '%www.empireonline.com%' THEN 'EMP'
+        WHEN ${hits_page_hostname_pp2} LIKE '%www.empireonline.com.googleweblight.com%' THEN 'EMP'
+        WHEN ${hits_page_hostname_pp2} LIKE '%www.empireonline.com.prx.nl.teleport.to%' THEN 'EMP'
+        WHEN ${hits_page_hostname_pp2} LIKE '%www.empireonline.stfi.re%' THEN 'EMP'
+        WHEN ${hits_page_hostname_pp2} LIKE '%www.filterbypass.me%' THEN 'UKN'
+        WHEN ${hits_page_hostname_pp2} LIKE '%www.gardenanswersmagazine.co.uk%' THEN 'GAN'
+        WHEN ${hits_page_hostname_pp2} LIKE '%www.gardennewsmagazine.co.uk%' THEN 'GNW'
+        WHEN ${hits_page_hostname_pp2} LIKE '%www.google.co.uk%' THEN 'UKN'
+        WHEN ${hits_page_hostname_pp2} LIKE '%www.google.com%' THEN 'UKN'
+        WHEN ${hits_page_hostname_pp2} LIKE '%www.greatmagazines.co.uk%' THEN 'GTM'
+        WHEN ${hits_page_hostname_pp2} LIKE '%www.greatmagazines.co.uk.googleweblight.com%' THEN 'GTM'
+        WHEN ${hits_page_hostname_pp2} LIKE '%www.heatworld.com%' THEN 'HEA'
+        WHEN ${hits_page_hostname_pp2} LIKE '%www.landscapemagazine.co.uk%' THEN 'LSC'
+        WHEN ${hits_page_hostname_pp2} LIKE '%www.livefortheoutdoors.com%' THEN 'LFT'
+        WHEN ${hits_page_hostname_pp2} LIKE '%www.magic.co.uk%' THEN 'MAG'
+        WHEN ${hits_page_hostname_pp2} LIKE '%www.magic.co.uk.googleweblight.com%' THEN 'MAG'
+        WHEN ${hits_page_hostname_pp2} LIKE '%www.magicabba-mammamia.co.uk%' THEN 'MAG'
+        WHEN ${hits_page_hostname_pp2} LIKE '%www.magicchilled.co.uk%' THEN 'MAG'
+        WHEN ${hits_page_hostname_pp2} LIKE '%www.matchfootball.co.uk%' THEN 'MAT'
+        WHEN ${hits_page_hostname_pp2} LIKE '%www.mcnsport.co.uk%' THEN 'MCS'
+        WHEN ${hits_page_hostname_pp2} LIKE '%www.mellowmagic.co.uk%' THEN 'MAG'
+        WHEN ${hits_page_hostname_pp2} LIKE '%www.model-rail.co.uk%' THEN 'MDR'
+        WHEN ${hits_page_hostname_pp2} LIKE '%www.modernclassicsmagazine.co.uk%' THEN 'MOC'
+        WHEN ${hits_page_hostname_pp2} LIKE '%www.moderngardensmagazine.co.uk%' THEN 'MOG'
+        WHEN ${hits_page_hostname_pp2} LIKE '%www.motorcyclenews.com%' THEN 'MCN'
+        WHEN ${hits_page_hostname_pp2} LIKE '%www.parkers.co.uk%' THEN 'PCP'
+        WHEN ${hits_page_hostname_pp2} LIKE '%www.parkers.co.uk.googleweblight.com%' THEN 'PCP'
+        WHEN ${hits_page_hostname_pp2} LIKE '%www.performancebikes.co.uk%' THEN 'PBK'
+        WHEN ${hits_page_hostname_pp2} LIKE '%www.petproductmarketing.co.uk%' THEN 'PPM'
+        WHEN ${hits_page_hostname_pp2} LIKE '%www.practicalclassics.co.uk%' THEN 'PRC'
+        WHEN ${hits_page_hostname_pp2} LIKE '%www.practicalfishkeeping.co.uk%' THEN 'PFI'
+        WHEN ${hits_page_hostname_pp2} LIKE '%www.practicalfishkeeping.co.uk.googleweblight.com%' THEN 'PFI'
+        WHEN ${hits_page_hostname_pp2} LIKE '%www.practicalphotography.com%' THEN 'PFI'
+        WHEN ${hits_page_hostname_pp2} LIKE '%www.practicalsportsbikesmag.co.uk%' THEN 'PRS'
+        WHEN ${hits_page_hostname_pp2} LIKE '%www.ride.co.uk%' THEN 'RDE'
+        WHEN ${hits_page_hostname_pp2} LIKE '%www.rightmove.co.uk%' THEN 'UKN'
+        WHEN ${hits_page_hostname_pp2} LIKE '%www.seaangler.co.uk%' THEN 'SAN'
+        WHEN ${hits_page_hostname_pp2} LIKE '%www.seaangler.co.uk.googleweblight.com%' THEN 'SAN'
+        WHEN ${hits_page_hostname_pp2} LIKE '%www.steamrailway.co.uk%' THEN 'SRA'
+        WHEN ${hits_page_hostname_pp2} LIKE '%www.topsante.co.uk%' THEN 'TST'
+        WHEN ${hits_page_hostname_pp2} LIKE '%www.trailrunningmag.co.uk%' THEN 'TRR'
+        WHEN ${hits_page_hostname_pp2} LIKE '%www.troutandsalmon.com%' THEN 'TAS'
+        WHEN ${hits_page_hostname_pp2} LIKE '%www.troutfisherman.co.uk%' THEN 'TFI'
+        WHEN ${hits_page_hostname_pp2} LIKE '%www.webcitation.org%' THEN 'UKN'
+        WHEN ${hits_page_hostname_pp2} LIKE '%www.worldlingo.com%' THEN 'UKN'
+        WHEN ${hits_page_hostname_pp2} LIKE '%www.yourhorse.co.uk%' THEN 'YHS'
+        WHEN ${hits_page_hostname_pp2} LIKE '%www.youtube.com%' THEN 'UKN'
+        WHEN ${hits_page_hostname_pp2} LIKE '%wwwbmstaging.cdsglobal.co.uk%' THEN 'UKN'
+        WHEN ${hits_page_hostname_pp2} LIKE '%wwwbmtesting.cdsglobal.co.uk%' THEN 'UKN'
+        ELSE ${hits_page_hostname_pp2}
+      END  
+
   - dimension: hits_page_hostname
     label: 'Hits - Page Hostname'
     type: string
     sql: ${TABLE}.hits_page_hostname
+    
+  - dimension: hits_page_hostname_pp2
+    hidden: TRUE
+    label: 'Hits - Page Hostname'
+    type: string
+    sql: ${TABLE}.hits_page_hostname || ${TABLE}.hits_page_pagepathlevel1
 
   - dimension: hits_page_pagepath
     label: 'Hits - Page path'
@@ -628,6 +758,9 @@
     type: sum
     sql: ${TABLE}.visitnumber
 
+#   - measure: count
+#     description: "Count of orders"
+#     type: count
 
   # ----- Sets of fields for drilling ------
   sets:

@@ -100,10 +100,19 @@
   joins:
   
     - join: bigquery_google_analytics_hits
-      foreign_key: bigquery_google_analytics.fullvisitorid
-
+      type: inner
+      relationship: one_to_many
+      sql_on: ${bigquery_google_analytics.fullvisitorid}=${bigquery_google_analytics_hits.fullvisitorid}
+      
     - join: bigquery_google_analytics_hits_customdimensions
-      foreign_key: bigquery_google_analytics.fullvisitorid
+      type: inner
+      relationship: one_to_many
+      sql_on: ${bigquery_google_analytics.fullvisitorid}=${bigquery_google_analytics_hits_customdimensions.fullvisitorid}
+      
+    - join: brand_lookup
+      type: inner
+      relationship: one_to_one
+      sql_on: ${brand_lookup.bra_code} = ${bigquery_google_analytics_hits.hits_page_hostname_pp1}
 
   
 # foreign_key:
@@ -117,4 +126,13 @@
 #       type: inner
 #       relationship: one_to_many
 #       sql_on: ${bigquery_google_analytics.fullvisitorid}=${bigquery_google_analytics_hits_customdimensions.fullvisitorid}
+
+
+
+
+    # - join: bigquery_google_analytics_hits
+    #   foreign_key: bigquery_google_analytics.fullvisitorid
+
+    # - join: bigquery_google_analytics_hits_customdimensions
+    #   foreign_key: bigquery_google_analytics.fullvisitorid
   

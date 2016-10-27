@@ -1,13 +1,23 @@
 - view: bigquery_google_analytics
+  label: 'User Data'
   sql_table_name: publications.bigquery_google_analytics
   fields:
 
-  - dimension: fullvisitorid
+  - dimension: unique_id
     label: 'Unique User ID'
     type: string
     primary_key: TRUE
+    sql: ${TABLE}.fullvisitorid || ${TABLE}.visitnumber || ${TABLE}.date || ${TABLE}.visitid
+
+  - dimension: fullvisitorid
+    hidden: TRUE
+    label: 'Unique User ID'
+    type: string
     sql: ${TABLE}.fullvisitorid
     
+#   - measure: count
+#     type: count
+
   - measure: Unique_Users
     label: 'Unique Users'
     type: count_distinct
@@ -184,6 +194,7 @@
     sql: ${TABLE}.totals_hits
 
   - measure: totals_newvisits
+    label: 'Total New Sessions'
     type: sum
     sql: ${TABLE}.totals_newvisits
 
@@ -220,6 +231,7 @@
     sql: ${TABLE}.totals_uniquescreenviews
 
   - measure: totals_visits
+    label: 'Total Sessions'
     type: sum
     sql: ${TABLE}.totals_visits
 
@@ -330,9 +342,9 @@
     value_format_name: id
     sql: ${TABLE}.visitid
 
-  - dimension: visitnumber
+  - measure: visitnumber
     label: 'Number of Visits'
-    type: number
+    type: sum
     sql: ${TABLE}.visitnumber
 
   - dimension_group: visitstarttime

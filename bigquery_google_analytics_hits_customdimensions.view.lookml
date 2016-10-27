@@ -1,11 +1,17 @@
 - view: bigquery_google_analytics_hits_customdimensions
+  label: 'User Custom Dimensions'
   sql_table_name: publications.bigquery_google_analytics_hits_customdimensions
   fields:
+
+  - dimension: unique_id
+    hidden: TRUE
+    type: string
+    primary_key: TRUE
+    sql: ${TABLE}.fullvisitorid || ${TABLE}.visitid || ${TABLE}.index
 
   - dimension: fullvisitorid
     hidden: TRUE
     type: string
-    primary_key: TRUE
     sql: ${TABLE}.fullvisitorid
 
   - dimension_group: import

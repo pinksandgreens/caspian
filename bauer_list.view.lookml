@@ -40,7 +40,17 @@
   - dimension: age_banding
     label: 'Age Banding'
     type: string
-    sql: ${TABLE}.agebanding
+    sql: |
+       CASE 
+         WHEN ((${age_as_number} > 17) AND (${age_as_number} < 25)) THEN '18-24'
+         WHEN ((${age_as_number} > 24) AND (${age_as_number} < 35)) THEN '25-34'
+         WHEN ((${age_as_number} > 34) AND (${age_as_number} < 45)) THEN '35-44'
+         WHEN ((${age_as_number} > 44) AND (${age_as_number} < 55)) THEN '45-54'
+         WHEN ((${age_as_number} > 54) AND (${age_as_number} < 65)) THEN '55-64'
+         WHEN ((${age_as_number} > 64) AND (${age_as_number} < 75)) THEN '65-74'
+         WHEN ((${age_as_number} > 74) AND (${age_as_number} < 100)) THEN '75+'
+         ELSE 'Unknown'
+       END
 
 #   - dimension: birthday
 #     type: number

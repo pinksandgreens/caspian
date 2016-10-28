@@ -82,11 +82,23 @@
   sql_table_name: publications.barnacletopline
   persist_for: 20 hour
 
+  joins:
+    - join: brand_lookup
+      type: inner
+      relationship: one_to_one
+      sql_on: ${brand_lookup.bra_code} = ${barnacletopline.brand_code}
+
 - explore: barnaclepages
   hidden: TRUE
   label: 'Barnacle - Pages'
   sql_table_name: publications.barnaclepages
   persist_for: 20 hour
+  
+  joins:
+    - join: brand_lookup
+      type: inner
+      relationship: one_to_one
+      sql_on: ${brand_lookup.bra_code} = ${barnaclepages.brand_code}
 
 - explore: google_analytics_prebid
   label: 'Google Analytics - Prebid'

@@ -100,10 +100,31 @@
       relationship: one_to_one
       sql_on: ${brand_lookup.bra_code} = ${barnaclepages.brand_code}
 
+- explore: barnaclesessions
+  hidden: FALSE
+  label: 'Barnacle - Sessions'
+  sql_table_name: publications.barnaclesessions
+  persist_for: 20 hour
+  
+  joins:
+    - join: brand_lookup
+      type: inner
+      relationship: one_to_one
+      sql_on: ${brand_lookup.bra_code} = ${barnaclesessions.brand_code}
+
+
+
+
 - explore: google_analytics_prebid
   label: 'Google Analytics - Prebid'
   sql_table_name: publications.google_analytics_prebid
   persist_for: 20 hour
+
+  joins:
+    - join: brand_lookup
+      type: inner
+      relationship: one_to_one
+      sql_on: ${brand_lookup.bra_code} = ${google_analytics_prebid.brand_code}
   
 - explore: bigquery_google_analytics
   label: 'Google BigQuery'

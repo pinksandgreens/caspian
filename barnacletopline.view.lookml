@@ -105,6 +105,7 @@
     label: 'Unique Users'
     type: sum
     sql: ${TABLE}.users
+    # Need to add drill fields to this
     
   - measure: search_users
     label: 'Search Users'

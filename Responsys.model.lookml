@@ -52,7 +52,12 @@
   label: 'Emailable Numbers'
   persist_for: 2 hour
   joins:
-  
+
+    - join: bauer_list
+      type: inner
+      relationship: one_to_many
+      sql_on: ${responsys_engaged_list.email_address} = ${bauer_list.email_address}
+    
     - join: responsys_newsletter_permissions
       type: left_outer
       relationship: one_to_many

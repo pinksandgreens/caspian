@@ -41,7 +41,7 @@
         WHEN ${TABLE}.brandcode = '92' THEN 'PAN'
         WHEN ${TABLE}.brandcode = '93' THEN 'PBK'
         WHEN ${TABLE}.brandcode = '95' THEN 'PCP'
-        WHEN ${TABLE}.brandcode = 'n/a' THEN 'PCP'
+        WHEN ${TABLE}.brandcode = '94' THEN 'PCP'
         WHEN ${TABLE}.brandcode = '96' THEN 'PFI'
         WHEN ${TABLE}.brandcode = '154' THEN 'PFX'
         WHEN ${TABLE}.brandcode = '97' THEN 'PRC'

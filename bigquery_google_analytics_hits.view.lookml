@@ -11,6 +11,10 @@
       ${TABLE}.fullvisitorid || cast(${TABLE}.hits_hitnumber as varchar) || cast(${TABLE}.hits_time as varchar) || 
       cast(${TABLE}.hits_hour as varchar) || cast(${TABLE}.hits_minute as varchar) || ${TABLE}.hits_page_pagepath || ${TABLE}.visitnumber
 
+#    sql: |
+#      ${TABLE}.fullvisitorid || cast(${TABLE}.hits_hitnumber as varchar) || cast(${TABLE}.hits_time as varchar) || 
+#      cast(${TABLE}.hits_hour as varchar) || cast(${TABLE}.hits_minute as varchar) || ${TABLE}.hits_page_pagepath || ${TABLE}.visitnumber
+
   - dimension: fullvisitorid
     hidden: TRUE
     type: string

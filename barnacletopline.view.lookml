@@ -96,6 +96,7 @@
     timeframes: [date, week, month, month_num, day_of_month, day_of_week]
     convert_tz: false
     sql: TO_DATE(${TABLE}.date,'YYYY-MM-DD')
+#    drill_fields: [barnaclepages.pagetitle,barnaclepages.pageviews]
 
   - dimension: market
     type: string

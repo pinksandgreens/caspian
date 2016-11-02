@@ -110,10 +110,10 @@
     type: sum
     sql: ${TABLE}.pageviews
     
-  - measure: revenue
-    type: sum
-    value_format: '$0.00'
-    sql: (1.00)*(${TABLE}.dfprevenue::float)
+  # - measure: revenue
+  #   type: sum
+  #   value_format: '$0.00'
+  #   sql: (1.00)*(${TABLE}.dfprevenue::float)
 
   - measure: search_pageviews
     label: 'Search Pageviews'

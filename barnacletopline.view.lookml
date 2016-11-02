@@ -103,7 +103,7 @@
     sql: ${TABLE}.market
 
   - measure: users
-    label: 'Unique Users'
+    label: 'Sessions'
     type: sum
     sql: ${TABLE}.users
     # Need to add drill fields to this

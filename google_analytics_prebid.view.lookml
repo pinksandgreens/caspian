@@ -11,12 +11,35 @@
     type: avg
     sql: ${TABLE}.avg_bid_load_time
 
+#   - dimension: banded_avg_bid_load_time
+#     label: 'Banded Average Bid Load Time (ms)'
+#     type: tier
+#     tiers: [0-200,200-300,300-400,400-500,500-600,600-800,800-1000,1000-1200,1200-1500,1500-2000,2000-5000,5000-10000,10000-15000,15000-20000,20000-30000]
+#     style: classic                # the default value, could be excluded
+#     sql: ${TABLE}.avg_bid_load_time
+
   - dimension: banded_avg_bid_load_time
     label: 'Banded Average Bid Load Time (ms)'
-    type: tier
-    tiers: [0-200,200-300,300-400,400-500,500-600,600-800,800-1000,1000-1200,1200-1500,1500-2000,2000-5000,5000-10000,10000-15000,15000-20000,20000-30000]
-    style: classic                # the default value, could be excluded
-    sql: ${TABLE}.avg_bid_load_time
+    type: string
+    sql: |
+      CASE
+        WHEN ((${TABLE}.avg_bid_load_time > 0) AND (${TABLE}.avg_bid_load_time < 201)) THEN '0-200'
+        WHEN ((${TABLE}.avg_bid_load_time > 200) AND (${TABLE}.avg_bid_load_time < 301)) THEN '200-300'
+        WHEN ((${TABLE}.avg_bid_load_time > 300) AND (${TABLE}.avg_bid_load_time < 401)) THEN '300-400'
+        WHEN ((${TABLE}.avg_bid_load_time > 400) AND (${TABLE}.avg_bid_load_time < 501)) THEN '400-500'
+        WHEN ((${TABLE}.avg_bid_load_time > 500) AND (${TABLE}.avg_bid_load_time < 601)) THEN '500-600'
+        WHEN ((${TABLE}.avg_bid_load_time > 600) AND (${TABLE}.avg_bid_load_time < 701)) THEN '600-700'
+        WHEN ((${TABLE}.avg_bid_load_time > 700) AND (${TABLE}.avg_bid_load_time < 801)) THEN '700-800'
+        WHEN ((${TABLE}.avg_bid_load_time > 800) AND (${TABLE}.avg_bid_load_time < 901)) THEN '800-900'
+        WHEN ((${TABLE}.avg_bid_load_time > 900) AND (${TABLE}.avg_bid_load_time < 1001)) THEN '900-1000'
+        WHEN ((${TABLE}.avg_bid_load_time > 1000) AND (${TABLE}.avg_bid_load_time < 1201)) THEN '1000-1200'
+        WHEN ((${TABLE}.avg_bid_load_time > 1200) AND (${TABLE}.avg_bid_load_time < 1501)) THEN '1200-1500'
+        WHEN ((${TABLE}.avg_bid_load_time > 1500) AND (${TABLE}.avg_bid_load_time < 2001)) THEN '1500-2000'
+        WHEN ((${TABLE}.avg_bid_load_time > 2000) AND (${TABLE}.avg_bid_load_time < 5001)) THEN '2000-5000'
+        WHEN ((${TABLE}.avg_bid_load_time > 5000) AND (${TABLE}.avg_bid_load_time < 10001)) THEN '5000-10000'
+        WHEN ((${TABLE}.avg_bid_load_time > 10000) AND (${TABLE}.avg_bid_load_time < 15001)) THEN '10000-15000'
+        WHEN ${TABLE}.avg_bid_load_time > 15000 THEN '15000-20000+'
+      END
 
   - dimension: brand_code
     type: string
@@ -103,8 +126,8 @@
     sql: ${TABLE}.avg_win_cpm
 
   - dimension: bidder
-    hidden: TRUE
-    label: 'Prebid.js'
+    hidden: FALSE
+    label: 'Bidder'
     type: string
     sql: ${TABLE}.bidder
 
@@ -125,7 +148,7 @@
     sql: ${TABLE}.eventaction
 
   - dimension: eventlabel
-    label: 'Bidder'
+    label: 'Source'
     type: string
     sql: ${TABLE}.eventlabel
 

@@ -15,15 +15,25 @@
   - dimension: latitude
     hidden: FALSE
     type: string
-    sql: ${TABLE}.latitude
+    sql: |
+      CAST(CASE WHEN ${TABLE}.latitude IS NULL THEN '0'
+      WHEN LEN(${TABLE}.latitude) = 0 THEN '0'
+      ELSE ${TABLE}.latitude
+      END AS REAL)
     
   - dimension: longitude
     hidden: FALSE
     type: string
-    sql: ${TABLE}.longitude
+    sql: |
+      CAST(CASE WHEN ${TABLE}.longitude IS NULL THEN '0'
+      WHEN LEN(${TABLE}.longitude) = 0 THEN '0'
+      ELSE ${TABLE}.longitude
+      END AS REAL)
     
   - dimension: location
     label: 'Latitude/Longitude Location'
     type: location
-    sql_latitude: ROUND(${TABLE}.latitude,1)
-    sql_longitude: ROUND(${TABLE}.longitude,1)
+    sql_latitude: ${latitude}
+    sql_longitude: ${longitude}
+
+#(1.00)*(

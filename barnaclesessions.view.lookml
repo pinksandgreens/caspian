@@ -113,7 +113,7 @@
     sql: ${TABLE}.month
 
   - dimension: projectedsessions
-    type: avg
+    type: sum
     sql: ${TABLE}.projectedsessions
 
   - measure: sessions

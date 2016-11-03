@@ -20,30 +20,31 @@
 - include: "*.view.lookml"       # include all the views
 - include: "*.dashboard.lookml"  # include all the dashboards
 
-- explore: events
+- explore: google_analytics_top_line
+  hidden: TRUE
   persist_for: 24 hour
   label: 'Snowplow'
 
-  joins:
-    - join: gigya_users
-      type: left_outer
-      relationship: many_to_one
-      sql_on: ${events.user_id} = ${gigya_users.gigya_id}
+  # joins:
+  #   - join: gigya_users
+  #     type: left_outer
+  #     relationship: many_to_one
+  #     sql_on: ${events.user_id} = ${gigya_users.gigya_id}
     
-    - join: snowplow_clicks
-      type: inner
-      relationship: many_to_many
-      sql_on: ${events.event_id} = ${snowplow_clicks.root_id}
+  #   - join: snowplow_clicks
+  #     type: inner
+  #     relationship: many_to_many
+  #     sql_on: ${events.event_id} = ${snowplow_clicks.root_id}
       
-    - join: article_context
-      type: inner
-      relationship: one_to_one
-      sql_on: ${events.event_id} = ${article_context.root_id}
+  #   - join: article_context
+  #     type: inner
+  #     relationship: one_to_one
+  #     sql_on: ${events.event_id} = ${article_context.root_id}
       
-    - join: sessions
-      type: inner
-      relationship: one_to_many
-      sql_on: ${events.session_id} = ${sessions.session_id}
+  #   - join: sessions
+  #     type: inner
+  #     relationship: one_to_many
+  #     sql_on: ${events.session_id} = ${sessions.session_id}
     
       
       

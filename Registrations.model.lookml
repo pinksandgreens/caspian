@@ -42,4 +42,10 @@
     type: inner
     relationship: one_to_many
     sql_on: ${brand_preferences.idd_id} = ${identities.idd_id}
+    
+  - join: postcode_lookup
+    type: inner
+    relationship: many_to_many
+    sql_on: ${postcode_lookup.postcode} = ${bauer_list.postal_code}
+        
 

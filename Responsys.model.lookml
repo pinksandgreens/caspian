@@ -72,6 +72,11 @@
       type: inner
       relationship: one_to_one
       sql_on: ${responsys_newsletter_permissions.brandcode}=${brand_lookup.bra_code}
+      
+    - join: postcode_lookup
+      type: inner
+      relationship: many_to_many
+      sql_on: ${postcode_lookup.postcode} = ${bauer_list.postal_code}
         
 # - explore: email_list
 #   label: 'Testing - In Dev'
@@ -80,6 +85,7 @@
       
 - explore: responsys_engaged_list_overlap
   label: 'Emailable Numbers - Overlap'
+  hidden: TRUE
   persist_for: 2 hour
   joins:
   

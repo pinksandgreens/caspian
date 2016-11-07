@@ -16,3 +16,6 @@
 
 - explore: kipper
   sql_table_name: publications.kipper
+  
+- explore: kipper_historical
+  sql_table_name: publications.kipper_historical

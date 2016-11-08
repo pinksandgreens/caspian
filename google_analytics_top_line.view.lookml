@@ -153,6 +153,7 @@
     sql: ${TABLE}.uniquepageviews
     
   - measure: unique_users
+    hidden: TRUE
     label: 'Sum of Unique Users'
     type: sum
     sql: ${TABLE}.users

@@ -168,7 +168,7 @@
   - dimension: location
     label: 'Latitude/Longitude Location'
     type: location
-    sql_latitude: ROUND(CAST(${TABLE}.geoNetwork.latitude AS FLOAT))*
+    sql_latitude: ROUND(CAST(${TABLE}.geoNetwork.latitude AS FLOAT))
     sql_longitude: ROUND(CAST(${TABLE}.geoNetwork.longitude AS FLOAT))
 
   - dimension: geo_network__metro

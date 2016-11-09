@@ -1,5 +1,5 @@
 - view: audiometrix_realtime_devices
-  sql_table_name: publications.audiometrix_realtime_devices
+  sql_table_name: publications.audiometrix_realtime_devices_unique
   fields:
 
   - measure: active_sessions

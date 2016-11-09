@@ -1,6 +1,10 @@
 - view: audiometrix_realtime
-  sql_table_name: publications.audiometrix_realtime
+  sql_table_name: publications.audiometrix_realtime_unique
   fields:
+
+  - dimension: id
+    type: string
+    sql: ${TABLE}.id
 
   - measure: active_sessions
     type: sum
@@ -38,7 +42,7 @@
     sql: CONVERT_TIMEZONE('UTC','BST',${TABLE}.date::timestamp) # BST/GMT depending on date
 
   - dimension: image_file
-    hidden: TRUE
+    hidden: FALSE
     sql: ${TABLE}.image
     
   - dimension: Artist_Image
@@ -73,5 +77,8 @@
     sql: ${image_file4}
     html: <img src="{{ value }}" width="380" height="200"/>
     
+  - measure: count
+    type: count
+    drill_fields: []
     
 

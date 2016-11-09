@@ -63,12 +63,12 @@
 - explore: audiometrix_realtime
   hidden: TRUE
   label: 'Audiometrix - Realtime'
-  sql_table_name: publications.audiometrix_realtime
+  sql_table_name: publications.audiometrix_realtime_unique
   
 - explore: audiometrix_realtime_devices
   hidden: TRUE
   label: 'Audiometrix - Realtime Devices'
-  sql_table_name: publications.audiometrix_realtime_devices
+  sql_table_name: publications.audiometrix_realtime_devices_unique
   
 - explore: google_analytics_devices
   hidden: TRUE

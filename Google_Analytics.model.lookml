@@ -4,7 +4,7 @@
 - include: "*.dashboard.lookml"  # include all dashboards in this project
 
 - explore: google_analytics_top_line
-  label: 'Web Analytics'
+  label: 'Google Analytics - Top Line'
   sql_table_name: publications.google_analytics_top_line
   persist_for: 20 hour
   
@@ -128,6 +128,7 @@
   
 - explore: bigquery_google_analytics
   label: 'Google BigQuery'
+  hidden: TRUE
   sql_table_name: publications.bigquery_google_analytics
   persist_for: 22 hour
   joins:

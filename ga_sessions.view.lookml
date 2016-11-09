@@ -1319,6 +1319,11 @@
 
 ######### 
 
+  - dimension: uu_key
+    label: 'Unique Key'
+    hidden: TRUE
+    sql: GROUP_CONCAT(${full_visitor_id},${visit_id})
+
   - measure: Unique_Users
     label: 'Unique Users'
     type: count_distinct
@@ -1333,13 +1338,13 @@
   - measure: totals_newvisits
     label: 'Total New Sessions'
     type: sum_distinct
-    sql_distinct_key: ${full_visitor_id}
+    sql_distinct_key: ${uu_key}
     sql: ${TABLE}.totals.newVisits
     
   - measure: totals_visits
     label: 'Total Sessions'
     type: sum_distinct
-    sql_distinct_key: ${full_visitor_id}
+    sql_distinct_key: ${uu_key}
     sql: ${TABLE}.totals.visits
     
 #   - measure: totals_pageviews
@@ -1350,7 +1355,7 @@
   - measure: totals_pageviews
     label: 'Total Pageviews'
     type: sum_distinct
-    sql_distinct_key: ${full_visitor_id}
+    sql_distinct_key: ${uu_key}
     sql: ${TABLE}.totals.pageviews
     
   - measure: pages_p_session

@@ -1302,6 +1302,17 @@
     label: 'Total Sessions'
     type: sum
     sql: ${TABLE}.totals.visits
+    
+  - measure: totals_pageviews
+    label: 'Total Pageviews'
+    type: sum
+    sql: ${TABLE}.totals.pageviews
+    
+  - measure: pages_p_session
+    label: 'Pages per Session'
+    type: avg
+    value_format: '0.00'
+    sql: ${totals_pageviews}/${totals_visits}
 
   # ----- Sets of fields for drilling ------
   sets:

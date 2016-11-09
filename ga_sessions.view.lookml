@@ -1178,7 +1178,7 @@
     sql: ${TABLE}.userId
 
   - dimension: visit_id
-    type: number
+    type: string
     sql: ${TABLE}.visitId
 
   - dimension: visit_number
@@ -1322,7 +1322,7 @@
   - dimension: uu_key
     label: 'Unique Key'
     hidden: TRUE
-    sql: GROUP_CONCAT(${full_visitor_id},${visit_id})
+    sql: CONCAT(string(${TABLE}.fullVisitorId),"-",string(${TABLE}.visitId))
 
   - measure: Unique_Users
     label: 'Unique Users'
@@ -1360,7 +1360,7 @@
     
   - measure: pages_p_session
     label: 'Pages per Session'
-    type: avg
+    type: number
     value_format: '0.00'
     sql: ${totals_pageviews}/${totals_visits}
 

@@ -159,17 +159,17 @@
 
   - dimension: geo_network__latitude
     type: string
-    sql: ${TABLE}.geoNetwork.latitude
+    sql: CAST(${TABLE}.geoNetwork.latitude AS FLOAT64)
 
   - dimension: geo_network__longitude
     type: string
-    sql: ${TABLE}.geoNetwork.longitude
+    sql: CAST(${TABLE}.geoNetwork.longitude AS FLOAT64)
 
   - dimension: location
     label: 'Latitude/Longitude Location'
     type: location
-    sql_latitude: ROUND(${TABLE}.geoNetwork.latitude,1)
-    sql_longitude: ROUND(${TABLE}.geoNetwork.longitude,1)
+    sql_latitude: ROUND(CAST(${TABLE}.geoNetwork.latitude AS FLOAT))*
+    sql_longitude: ROUND(CAST(${TABLE}.geoNetwork.longitude AS FLOAT))
 
   - dimension: geo_network__metro
     type: string

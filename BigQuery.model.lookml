@@ -6,7 +6,7 @@
 - explore: ga_sessions
   label: 'BigQuery - Deep Dive'
   always_filter:
-    date_filter: 365 days #This will be the default date range.
+    date_filter: 15 days #This will be the default date range.
 #   joins:
 #   
 #     - join: brand_lookup

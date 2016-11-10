@@ -157,7 +157,7 @@
     
   - measure: Delivered_Rate
     label: 'Delivered Count'
-    type: sum
+    type: number
     sql: ${Uniqe_Send_Count}-${Bounce_Count}
     
   - measure: Uniqe_Send_Count_Without_Bounces

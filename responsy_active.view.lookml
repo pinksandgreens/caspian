@@ -156,7 +156,7 @@
     sql: ${TABLE}.concat_id
     
   - measure: Delivered_Rate
-    label: 'Delivered Rate'
+    label: 'Delivered Count'
     type: sum
     sql: ${Uniqe_Send_Count}-${Bounce_Count}
     

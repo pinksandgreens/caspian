@@ -155,6 +155,11 @@
     type: count_distinct
     sql: ${TABLE}.concat_id
     
+  - measure: Delivered_Rate
+    label: 'Delivered Rate'
+    type: sum
+    sql: ${Uniqe_Send_Count}-${Bounce_Count}
+    
   - measure: Uniqe_Send_Count_Without_Bounces
     hidden: TRUE
     label: 'Not for human eyes'

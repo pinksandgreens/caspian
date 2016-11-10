@@ -1,48 +1,52 @@
 - view: ga_sessions
   sql_table_name: |
-      ( SELECT * FROM {% table_date_range date_filter 114668488.ga_sessions_ %},
-        {% table_date_range date_filter 116749887.ga_sessions_ %},
-        {% table_date_range date_filter 117239363.ga_sessions_ %},
-        {% table_date_range date_filter 120878053.ga_sessions_ %},
-        {% table_date_range date_filter 127467161.ga_sessions_ %},
-        {% table_date_range date_filter 128574436.ga_sessions_ %},
-        {% table_date_range date_filter 128576144.ga_sessions_ %},
-        {% table_date_range date_filter 128580663.ga_sessions_ %},
-        {% table_date_range date_filter 18457891.ga_sessions_ %},
-        {% table_date_range date_filter 21699534.ga_sessions_ %},
-        {% table_date_range date_filter 22661559.ga_sessions_ %},
-        {% table_date_range date_filter 22925605.ga_sessions_ %},
-        {% table_date_range date_filter 24003361.ga_sessions_ %},
-        {% table_date_range date_filter 24003809.ga_sessions_ %},
-        {% table_date_range date_filter 24004037.ga_sessions_ %},
-        {% table_date_range date_filter 24089672.ga_sessions_ %},
-        {% table_date_range date_filter 25170071.ga_sessions_ %},
-        {% table_date_range date_filter 39081823.ga_sessions_ %},
-        {% table_date_range date_filter 40162614.ga_sessions_ %},
-        {% table_date_range date_filter 40742804.ga_sessions_ %},
-        {% table_date_range date_filter 40744371.ga_sessions_ %},
-        {% table_date_range date_filter 44760556.ga_sessions_ %},
-        {% table_date_range date_filter 457989.ga_sessions_ %},
-        {% table_date_range date_filter 49187927.ga_sessions_ %},
-        {% table_date_range date_filter 49238469.ga_sessions_ %},
-        {% table_date_range date_filter 53119312.ga_sessions_ %},
-        {% table_date_range date_filter 55259691.ga_sessions_ %},
-        {% table_date_range date_filter 57443485.ga_sessions_ %},
-        {% table_date_range date_filter 58200759.ga_sessions_ %},
-        {% table_date_range date_filter 58279538.ga_sessions_ %},
-        {% table_date_range date_filter 63446395.ga_sessions_ %},
-        {% table_date_range date_filter 63448481.ga_sessions_ %},
-        {% table_date_range date_filter 63450278.ga_sessions_ %},
-        {% table_date_range date_filter 63456167.ga_sessions_ %},
-        {% table_date_range date_filter 72255843.ga_sessions_ %},
-        {% table_date_range date_filter 773992.ga_sessions_ %},
-        {% table_date_range date_filter 93483324.ga_sessions_ %})
+      ( SELECT * FROM {% table_date_range date_filter 114668488.ga_sessions_ %})
+
 
 
 # - view: ga_sessions
 #   sql_table_name: |
 #       [uplifted-light-89310:114668488].ga_sessions_20160112
 
+        # {% table_date_range date_filter 21699534.ga_sessions_ %},
+        # {% table_date_range date_filter 22661559.ga_sessions_ %},
+        # {% table_date_range date_filter 24089672.ga_sessions_ %})
+        
+        # {% table_date_range date_filter 25170071.ga_sessions_ %}
+
+        # {% table_date_range date_filter 116749887.ga_sessions_ %},
+        # {% table_date_range date_filter 117239363.ga_sessions_ %},
+        # {% table_date_range date_filter 120878053.ga_sessions_ %},
+        # {% table_date_range date_filter 127467161.ga_sessions_ %},
+        # {% table_date_range date_filter 128574436.ga_sessions_ %},
+        # {% table_date_range date_filter 128576144.ga_sessions_ %},
+        # {% table_date_range date_filter 128580663.ga_sessions_ %},
+        # {% table_date_range date_filter 18457891.ga_sessions_ %},
+        # {% table_date_range date_filter 22925605.ga_sessions_ %},
+        # {% table_date_range date_filter 24003361.ga_sessions_ %},
+        # {% table_date_range date_filter 24003809.ga_sessions_ %},
+        # {% table_date_range date_filter 24004037.ga_sessions_ %},
+        # {% table_date_range date_filter 39081823.ga_sessions_ %},
+        # {% table_date_range date_filter 40162614.ga_sessions_ %},
+        # {% table_date_range date_filter 40742804.ga_sessions_ %},
+        # {% table_date_range date_filter 40744371.ga_sessions_ %},
+        # {% table_date_range date_filter 44760556.ga_sessions_ %},
+        # {% table_date_range date_filter 457989.ga_sessions_ %},
+        # {% table_date_range date_filter 49187927.ga_sessions_ %},
+        # {% table_date_range date_filter 49238469.ga_sessions_ %},
+        # {% table_date_range date_filter 53119312.ga_sessions_ %},
+        # {% table_date_range date_filter 55259691.ga_sessions_ %},
+        # {% table_date_range date_filter 57443485.ga_sessions_ %},
+        # {% table_date_range date_filter 58200759.ga_sessions_ %},
+        # {% table_date_range date_filter 58279538.ga_sessions_ %},
+        # {% table_date_range date_filter 63446395.ga_sessions_ %},
+        # {% table_date_range date_filter 63448481.ga_sessions_ %},
+        # {% table_date_range date_filter 63450278.ga_sessions_ %},
+        # {% table_date_range date_filter 63456167.ga_sessions_ %},
+        # {% table_date_range date_filter 72255843.ga_sessions_ %},
+        # {% table_date_range date_filter 773992.ga_sessions_ %},
+        # {% table_date_range date_filter 93483324.ga_sessions_ %})
+        # {% table_date_range date_filter 25170071.ga_sessions_ %}
   fields:
   - filter: date_filter
     type: date

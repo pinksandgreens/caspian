@@ -347,7 +347,7 @@
     label: 'Open Rate'
     type: number
     value_format: '0.00\%'
-    sql: (${Open_Count_Unique}/${Uniqe_Send_Count})*100
+    sql: (${Open_Count_Unique}/${Delivered_Rate})*100
     
   - measure: Click_Through_Rate
     label: 'Click Rate'

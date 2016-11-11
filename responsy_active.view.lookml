@@ -117,6 +117,15 @@
       {{ linked_value }}
       <a href="https://bauerxcel.looker.com/dashboards/54?Timeframe=21%20weeks&Campaign%20code:={{ value }}" target="_new">
       <img src="http://i.imgur.com/aJnF2oW.jpg" height=10 width=10></a)
+      
+  - dimension: email_type
+    type: string
+    sql: |
+      CASE
+        WHEN ${TABLE}.launch_name LIKE '%-E-B-%' THEN 'Newsletter'
+        WHEN ${TABLE}.launch_name LIKE '%-E-M-%' THEN 'Marketing'
+        WHEN ${TABLE}.launch_name LIKE '%-E-C-%' THEN 'Commercial'
+      END
     
   - dimension: Launch_Brand
     label: 'Brand Sent'

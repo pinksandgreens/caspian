@@ -1,13 +1,25 @@
 - view: responsy_active
   label: '2a. Email Data'
   sql_table_name: responsys.lm_ced_replacement_24h
+#   derived_table:
+#     sql: |
+#       SELECT 
+#         row_number() OVER(ORDER BY concat_id) AS prim_key, 
+#         *
+#       FROM responsys.lm_ced_replacement_24h 
+  
+#   sql_table_name: responsys.lm_ced_replacement_24h
+  
+  
   fields:
 
 
 
 
 #### Marketing Info
-
+#   - dimension: prim_key
+#     primary_key: true
+    
   - dimension: marketing_strategy
     type: string
     sql: |
@@ -80,15 +92,7 @@
     timeframes: [date, week, month]
     sql: ${TABLE}.click_date
 
-  - dimension: click_date_not_null
-    label: 'Unique Clicks'
-    hidden: TRUE
-    type: string
-    sql: |
-     CASE
-      WHEN ${TABLE}.click_date IS NULL THEN '0'
-      ELSE '1'
-     END
+
 
   - dimension: open_date_not_null
     label: 'Unique Opens'
@@ -124,9 +128,36 @@
 
   - dimension: concatid
     type: string
-    hidden: TRUE
-    primary_key: TRUE
+    hidden: FALSE
+    description: 'Non-Unique Indentifier'
     sql: ${TABLE}.concat_id
+    
+  - dimension: open_date_not_null2
+    label: 'Unique Clicks'
+    hidden: TRUE
+    type: string
+    sql: |
+     CASE
+      WHEN to_char(${TABLE}.open_date, 'YYYY-MM-DD') IS NULL THEN 'Null'
+      ELSE to_char(${TABLE}.open_date, 'YYYY-MM-DD')
+     END
+     
+  - dimension: click_date_not_null2
+    label: 'Unique Clicks'
+    hidden: TRUE
+    type: string
+    sql: |
+     CASE
+      WHEN to_char(${TABLE}.click_date, 'YYYY-MM-DD') IS NULL THEN 'Null'
+      ELSE to_char(${TABLE}.click_date, 'YYYY-MM-DD')
+     END
+
+  - dimension: unique_id
+    type: string
+    hidden: FALSE
+    primary_key: TRUE
+    description: 'Unique Indentifier'
+    sql: ${TABLE}.concat_id || '-' || ${TABLE}.launch_date || ${open_date_not_null2} || ${click_date_not_null2}
 
   - dimension: email_address
     type: string
@@ -151,7 +182,7 @@
 #     sql: ${Uniqe_Send_Count_Without_Bounces}
     
   - measure: Uniqe_Send_Count
-    label: 'Send Count Unique'
+    label: 'Unique Sends'
     type: count_distinct
     sql: ${TABLE}.concat_id
     
@@ -159,6 +190,18 @@
     label: 'Delivered Count'
     type: number
     sql: ${Uniqe_Send_Count}-${Bounce_Count}
+    
+#   - measure: Bounce_Rate
+#     label: 'Bounce Rate'
+#     type: number
+#     value_format: '0.00' 
+#     sql: ${Bounce_Count}/${Uniqe_Send_Count}
+    
+#   - measure: Delivered_Rate_Rate
+#     label: 'Delivered Rate'
+#     type: number
+#     value_format: '0.00\%'
+#     sql: (${Delivered_Rate}/${Uniqe_Send_Count})*100
     
   - measure: Uniqe_Send_Count_Without_Bounces
     hidden: TRUE
@@ -181,57 +224,132 @@
       CASE
         WHEN ${TABLE}.click_count >0 THEN ${TABLE}.click_count
       END
-
-  - measure: Open_Count_For_Individuals
-    hidden: TRUE
-    type: sum
-    sql: |
-      CASE
-        WHEN ${TABLE}.open_count IS NULL THEN '0'
-        WHEN ${TABLE}.open_count = '0' THEN '0'
-        ELSE ${TABLE}.open_count
-      END
       
-  - measure: Open_Count_TEST
-    type: sum
+      
+      
+      
+      
+      
+  - dimension: responder_clicks
+    label: 'Unique Clicks'
     hidden: TRUE
+    type: string
     sql: |
-      CASE
-        WHEN ${TABLE}.open_count >0 THEN ${TABLE}.open_count
-      END
+     CASE
+      WHEN ${TABLE}.click_date IS NULL THEN 0
+      ELSE 1
+     END      
+    
+  - measure: Responders
+    type: sum_distinct
+    sql_distinct_key: ${unique_id}
+    sql: ${responder_clicks}
+#     sql: |
+#       CASE
+#         WHEN ${responder_clicks} >0 THEN 1
+#         ELSE 0
+#       END
+#       
+      
+      
+      
+      
+  - dimension: responder_opens
+    label: 'Unique Opens'
+    hidden: TRUE
+    type: string
+    sql: |
+     CASE
+      WHEN ${TABLE}.open_count >0 THEN 1
+      WHEN ${TABLE}.open_count IS NULL THEN 0
+      ELSE 0
+     END      
+    
+  - measure: Open_Count_Unique
+    label: 'Unique Opens'
+    type: sum_distinct
+    sql_distinct_key: ${unique_id}
+    sql: ${responder_opens}
+#     sql: |
+#       CASE
+#         WHEN ${responder_opens} >0 THEN 1
+#         ELSE 0
+#       END
+      
+      
+      
+      
+      
+#   - measure: Responders
+#     type: count_distinct
+#     sql: ${unique_id}
+#     filters:
+#       open_date_not_null: 1
+      
+  
+
+    
+    
+    
+    
+    
+    
+  - dimension: click_date_not_null
+    label: 'Unique Clicks'
+    hidden: TRUE
+    type: string
+    sql: |
+     CASE
+      WHEN ${TABLE}.click_date IS NULL THEN '0'
+      ELSE '1'
+     END
+    
+    
     
   - measure: Click_Count_Unique
+    label: 'Unique Clicks'
     type: number
     sql: |
       CASE
         WHEN sum(${click_date_not_null}) >0 THEN sum(${click_date_not_null}) 
+        ELSE 0
       END
     
-  - measure: Open_Count_Unique
-    type: number
-    sql: |
-      CASE
-        WHEN sum(${open_date_not_null}) >0 THEN sum(${open_date_not_null})
-      END
+    
+    
+    
+    
+    
+#   - measure: Open_Count_Unique
+#     type: number
+#     sql: |
+#       CASE
+#         WHEN sum(${open_date_not_null}) >0 THEN sum(${open_date_not_null})
+#       END
  
   
   - measure: Click_to_Open_Rate
-    label: 'Click-to-Open Rate'
+    label: 'Responder-to-Open Rate'
     type: number
     value_format: '0.00\%'
     sql: (${Click_Count_Unique}/${Open_Count_Unique})*100
     
   - measure: Send_to_Open_Rate
-    label: 'Send-to-Open Rate'
+    label: 'Open Rate'
     type: number
     value_format: '0.00\%'
     sql: (${Open_Count_Unique}/${Uniqe_Send_Count})*100
     
   - measure: Click_Through_Rate
-    label: 'Click-Through-Rate'
+    label: 'Click Rate'
     type: number
     value_format: '0.00\%'
-    sql: (${Click_Count_Unique}/${Uniqe_Send_Count_Without_Bounces}) * 100
+    sql: (${Click_Count_Unique}/${Delivered_Rate})*100
+    
+  - measure: Clicks_Per_Responder
+    type: number
+    value_format: '0.00'
+    sql: (${Click_Count_Unique}/${Responders})
     
   - measure: Unsubscribe_Count
     type: sum
@@ -247,9 +365,18 @@
 #     type: count_distinct
 #     sql: ${TABLE}.concat_id 
 
-  - dimension: Is_Commercial         
-    type: yesno                       
-    sql: ${TABLE}.marketing_program = 'Commercial'
+
+
+
+
+
+  # - dimension: Is_Commercial         
+  #   type: yesno                       
+  #   sql: ${TABLE}.marketing_program = 'Commercial'
+    
+    
+    
+    
     
   - measure: Unique_Send_Count_Commercial
     hidden: TRUE

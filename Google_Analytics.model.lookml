@@ -80,7 +80,7 @@
   hidden: TRUE
   label: 'Barnacle - Top Line'
   sql_table_name: publications.barnacletopline
-  persist_for: 20 hour
+  persist_for: 2 hour
 
   joins:
     - join: brand_lookup
@@ -92,7 +92,7 @@
   hidden: TRUE
   label: 'Barnacle - Pages'
   sql_table_name: publications.barnaclepages
-  persist_for: 20 hour
+  persist_for: 2 hour
   
   joins:
     - join: brand_lookup

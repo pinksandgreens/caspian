@@ -4,9 +4,14 @@
 - include: "*.dashboard.lookml"  # include all dashboards in this project
 
 - explore: ga_sessions
-  label: 'BigQuery - Deep Dive'
+  label: 'BigQuery - Lifestyle/Empire'
   always_filter:
     date_filter: 15 days #This will be the default date range.
+    
+- explore: ga_sessions_parkers
+  label: 'BigQuery - Parkers'
+  always_filter:
+    date_filter: 15 days #This will be the default date range.    
 #   joins:
 #   
 #     - join: brand_lookup

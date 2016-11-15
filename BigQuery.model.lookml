@@ -7,6 +7,16 @@
   label: 'BigQuery - Lifestyle/Empire'
   always_filter:
     date_filter: 15 days #This will be the default date range.
+  joins:
+    - join: ga_sessions_lifestyle_crossover
+      type: inner
+      relationship: one_to_many
+      sql_on: ${ga_sessions_lifestyle_crossover.full_Visitor_Id} = ${ga_sessions.full_visitor_id}
+    
+# - explore: ga_sessions_lifestyle_crossover
+#   label: 'BigQuery - Lifestyle-Crossover'
+#   always_filter:
+#     date_filter: 200 days #This will be the default date range.
     
 - explore: ga_sessions_parkers
   label: 'BigQuery - Parkers'

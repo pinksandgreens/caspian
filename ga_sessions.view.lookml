@@ -1323,6 +1323,15 @@
 
 ######### 
 
+  - dimension: is_engaged
+    description: 'Based on having > 3 sessions'
+    type: string
+    sql: |
+      CASE
+        WHEN ${TABLE}.totals.pageviews > 2 THEN 'Engaged'
+        ELSE 'Not-Engaged'
+      END
+
   - dimension: uu_key
     label: 'Unique Key'
     hidden: TRUE

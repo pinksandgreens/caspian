@@ -33,13 +33,14 @@
     type: string
     sql: |
       CASE 
+        WHEN ((${TABLE}.hits__page__page_path_level1 LIKE '%closer%') AND (${TABLE}.hits__page__page_path_level1 LIKE'%grazia%') AND (${TABLE}.hits__page__page_path_level1 LIKE'%heat%')) THEN 'Closer/Grazia/Heat'
         WHEN ${TABLE}.hits__page__page_path_level1 LIKE '%grazia%' AND ${TABLE}.hits__page__page_path_level1 LIKE'%closer%' THEN 'Closer/Grazia'
         WHEN ${TABLE}.hits__page__page_path_level1 LIKE '%grazia%' AND ${TABLE}.hits__page__page_path_level1 LIKE'%heat%' THEN 'Heat/Grazia'
         WHEN ${TABLE}.hits__page__page_path_level1 LIKE '%heat%' AND ${TABLE}.hits__page__page_path_level1 LIKE'%closer%' THEN 'Heat/Closer'
         WHEN ${TABLE}.hits__page__page_path_level1 LIKE '%heat%' THEN 'Heat'
         WHEN ${TABLE}.hits__page__page_path_level1 LIKE '%closer%' THEN 'Closer'
         WHEN ${TABLE}.hits__page__page_path_level1 LIKE '%grazia%' THEN 'Grazia'
-        ELSE 'Unknown'
+        ELSE 'Non-Branded'
       END
 
     

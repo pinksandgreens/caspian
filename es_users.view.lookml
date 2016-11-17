@@ -56,7 +56,8 @@
     sql: ${TABLE}.gender
 
   - dimension: groupoptin
-    hidden: TRUE
+    label: 'Bauer Optin'
+    hidden: FALSE
     type: yesno
     sql: ${TABLE}.groupoptin
 
@@ -80,8 +81,8 @@
     type: string
     sql: ${TABLE}.mobilephonenumber
 
-  - dimension: optin
-    hidden: TRUE
+  - dimension: brand_optin
+    hidden: FALSE
     type: yesno
     sql: ${TABLE}.optin
 

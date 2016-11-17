@@ -1074,8 +1074,9 @@
     sql: ${TABLE}.totals.timeOnScreen
 
   - dimension: totals__time_on_site
+    description: 'Time on site in minutes'
     type: number
-    sql: ${TABLE}.totals.timeOnSite
+    sql: ${TABLE}.totals.timeOnSite/60
 
   - dimension: totals__total_transaction_revenue
     type: number
@@ -1377,6 +1378,24 @@
     value_format: '0.00'
     sql: ${totals_pageviews}/${totals_visits}
 
+  - measure: avg_time_on_site
+    label: 'Avg Time on Site per Session'
+    description: 'Avg ime on site in minutes'
+    type: number
+    sql: (SUM(${TABLE}.totals.timeOnSite/60))/(SUM(${TABLE}.totals.visits))
+ 
+  - measure: avg_dfp_clicks_per_session
+    label: 'Avg Ad Clicks Per Session'
+    description: 'Avg ime on site in minutes'
+    type: number
+    sql: (SUM(${TABLE}.hits.publisher.dfpClicks))/(SUM(${TABLE}.totals.visits))
+    
+  - measure: avg_dfp_impressions_per_session
+    label: 'Avg Ad Impessions Per Session'
+    description: 'Avg ime on site in minutes'
+    type: number
+    sql: (SUM(${TABLE}.hits.publisher.dfpImpressions))/(SUM(${TABLE}.totals.visits))
+    
   # ----- Sets of fields for drilling ------
   sets:
     detail:

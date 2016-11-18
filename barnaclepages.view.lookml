@@ -6,6 +6,20 @@
     type: string
     sql: ${TABLE}.brand
     
+  - dimension: author
+    type: string
+    sql: ${TABLE}.dimension1
+    
+  - dimension: date_published
+    type: time
+    timeframes: [date, week, month, month_num]
+    convert_tz: false
+    sql: TO_DATE(${TABLE}.dimension2,'YYYY-MM-DD')
+    
+  - measure: number_of_articles
+    type: count_distinct
+    sql: ${TABLE}.dimension1 || ${TABLE}.dimension2
+    
   - dimension: brand_code
     type: string
     sql: |

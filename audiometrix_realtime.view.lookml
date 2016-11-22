@@ -1,5 +1,5 @@
 - view: audiometrix_realtime
-  sql_table_name: publications.audiometrix_realtime_unique
+  sql_table_name: publications.audiometrix_view_unique
   fields:
 
   - dimension: id

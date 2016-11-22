@@ -1,6 +1,6 @@
-- view: ga_sessions
+- view: ga_sessions_empire
   sql_table_name: |
-      ( SELECT * FROM {% table_date_range date_filter 114668488.ga_sessions_ %})
+      ( SELECT * FROM {% table_date_range date_filter 21699534.ga_sessions_ %})
 
 
 

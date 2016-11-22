@@ -4,9 +4,9 @@
 - include: "*.dashboard.lookml"  # include all dashboards in this project
 
 - explore: ga_sessions
-  label: 'BigQuery - Lifestyle/Empire'
+  label: 'BigQuery - Lifestyle'
   always_filter:
-    date_filter: 15 days #This will be the default date range.
+    date_filter: 30 days #This will be the default date range.
   joins:
     - join: ga_sessions_lifestyle_crossover
       type: inner
@@ -21,7 +21,7 @@
 - explore: ga_sessions_parkers
   label: 'BigQuery - Parkers'
   always_filter:
-    date_filter: 15 days #This will be the default date range.    
+    date_filter: 30 days #This will be the default date range.    
 #   joins:
 #   
 #     - join: brand_lookup
@@ -34,3 +34,8 @@
 #   sql_table_name: 114668488
 #   persist_for: 20 hour
 # 
+
+- explore: ga_sessions_empire
+  label: 'BigQuery - Empire'
+  always_filter:
+    date_filter: 30 days #This will be the default date range.    

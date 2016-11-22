@@ -1193,6 +1193,12 @@
     type: number
     sql: ${TABLE}.visitStartTime
 
+  - dimension_group: start_time
+    type: time
+    sql: ${TABLE}.visitStartTime
+    datatype: epoch 
+    convert_tz: true
+
   - dimension: visitor_id
     type: number
     sql: ${TABLE}.visitorId

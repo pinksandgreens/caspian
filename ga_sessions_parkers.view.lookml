@@ -66,6 +66,12 @@
     sql: ${TABLE}.customDimensions.index
     fanout_on: customDimensions
 
+  - dimension_group: start_time
+    type: time
+    sql: ${TABLE}.visitStartTime
+    datatype: epoch 
+    convert_tz: true
+
   - dimension: custom_dimensions__value
     type: string
     sql: ${TABLE}.customDimensions.value

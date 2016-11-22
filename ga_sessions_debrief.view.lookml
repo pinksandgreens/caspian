@@ -1,6 +1,6 @@
-- view: ga_sessions_empire
+- view: ga_sessions_debrief
   sql_table_name: |
-      ( SELECT * FROM {% table_date_range date_filter 21699534.ga_sessions_ %})
+      ( SELECT * FROM {% table_date_range date_filter 82149182.ga_sessions_ %})
 
 
 
@@ -82,12 +82,6 @@
   - dimension: device__browser_version
     type: string
     sql: ${TABLE}.device.browserVersion
-
-  - dimension_group: start_time
-    type: time
-    sql: ${TABLE}.visitStartTime
-    datatype: epoch 
-    convert_tz: true
 
   - dimension: device__device_category
     type: string
@@ -1198,6 +1192,12 @@
   - dimension: visit_start_time
     type: number
     sql: ${TABLE}.visitStartTime
+
+  - dimension_group: start_time
+    type: time
+    sql: ${TABLE}.visitStartTime
+    datatype: epoch 
+    convert_tz: true
 
   - dimension: visitor_id
     type: number

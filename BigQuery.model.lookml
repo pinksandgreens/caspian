@@ -19,6 +19,11 @@
     date_filter: 30 days     
 
 
+- explore: ga_sessions_mcn_transactions
+  label: 'BigQuery - MCN ClassifiedsTransaction (BFS)'
+  always_filter:
+    date_filter: 30 days #This will be the default date range.  
+
 - explore: ga_sessions_empire
   label: 'BigQuery - Empire'
   always_filter:

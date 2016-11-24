@@ -1,4 +1,4 @@
-- view: ga_sessions
+- view: ga_sessions #lifestyle
   sql_table_name: |
       ( SELECT * FROM {% table_date_range date_filter 114668488.ga_sessions_ %})
 
@@ -171,8 +171,8 @@
   - dimension: location
     label: 'Latitude/Longitude Location'
     type: location
-    sql_latitude: ROUND(CAST(${TABLE}.geoNetwork.latitude AS FLOAT))
-    sql_longitude: ROUND(CAST(${TABLE}.geoNetwork.longitude AS FLOAT))
+    sql_latitude: ROUND(CAST(${TABLE}.geoNetwork.latitude AS FLOAT), 4)
+    sql_longitude: ROUND(CAST(${TABLE}.geoNetwork.longitude AS FLOAT), 4)
 
   - dimension: geo_network__metro
     type: string

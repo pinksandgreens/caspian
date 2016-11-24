@@ -538,7 +538,12 @@
     type: string
     sql: ${TABLE}.hits.page.pagePathLevel3
     fanout_on: hits
-
+    
+  - dimension: hits__page__page_path_level2_and_3
+    type: string
+    sql: CONCAT(${TABLE}.hits.page.pagePathLevel2,${TABLE}.hits.page.pagePathLevel3)
+    fanout_on: hits
+    
   - dimension: hits__page__page_path_level4
     type: string
     sql: ${TABLE}.hits.page.pagePathLevel4

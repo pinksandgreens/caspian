@@ -12,12 +12,11 @@
       type: inner
       relationship: one_to_many
       sql_on: ${ga_sessions_lifestyle_crossover.full_Visitor_Id} = ${ga_sessions.full_visitor_id}
-    
+
 - explore: ga_sessions_parkers
   label: 'BigQuery - Parkers'
   always_filter:
     date_filter: 30 days     
-
 
 - explore: ga_sessions_mcn_transactions
   label: 'BigQuery - MCN Transaction (BFS)'
@@ -33,5 +32,5 @@
 - explore: ga_sessions_debrief
   label: 'BigQuery - The Debrief'
   always_filter:
-    date_filter: 30 days 
+    date_filter: 30 days
   

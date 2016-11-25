@@ -26,8 +26,7 @@
 - explore: ga_sessions_empire
   label: 'BigQuery - Empire'
   always_filter:
-    date_filter: 30 days    
-    
+    date_filter: 30 days
     
 - explore: ga_sessions_debrief
   label: 'BigQuery - The Debrief'

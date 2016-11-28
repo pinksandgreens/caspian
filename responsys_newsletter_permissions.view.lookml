@@ -19,7 +19,7 @@
         WHEN ${TABLE}.brandcode = '78' THEN 'CLB'
         WHEN ${TABLE}.brandcode = '81' THEN 'CLC'
         WHEN ${TABLE}.brandcode = '148' THEN 'CMC'
-        WHEN ${TABLE}.brandcode = '87' THEN 'CWA'
+        WHEN ${TABLE}.brandcode = '(87)' THEN 'CWA'
         WHEN ${TABLE}.brandcode = '150' THEN 'GAN'
         WHEN ${TABLE}.brandcode = '83' THEN 'GNW'
         WHEN ${TABLE}.brandcode = '84' THEN 'GOF'

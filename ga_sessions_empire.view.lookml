@@ -1487,6 +1487,14 @@
     
 ################ H E A D E R  B I D D I N G #############
 
+# This is completely aids, http://prebid.org/dev-docs/analytics-ga.html#better-reports-within-ga
+# What we have to try to replicate: http://prebid.org/assets/images/dev-docs/GA-custom-report.png
+
+# The problem is that GA subsets it's data when you pull it from GA, so i'm here stuck trying to replicate how GA extract and analyse their data.
+# I'm basically a GA back-end data engineer at this point. Let's see what we can do with this messy data.
+
+# CASE DIMENSIONS INSTEAD OF FILTERING THEM:
+
   - dimension: Prebid_Bidder
     type: string
     sql: ${TABLE}.hits.eventInfo.eventLabel
@@ -1508,8 +1516,8 @@
 #       hits__event_info__event_category: 'Prebid.js Bids'
   
   - measure: Prebid_BidLoadTime
-    label: 'Prebid - Avg Bid Loadtime'
-    description: 'Average bid loadtime'
+    label: 'Prebid - Avg Bid Loadtime (ms)'
+    description: 'Average bid loadtime (ms)'
     type: avg
     value_format: '0.00'
     sql: ${TABLE}.hits.eventInfo.eventValue
@@ -1537,7 +1545,7 @@
     description: 'Avg Bid CPM'
     type: avg
     sql: ${TABLE}.hits.eventInfo.eventValue/1000000
-    value_format: '$0.0000'
+    value_format: '$0.000000'
     filters:
       hits__event_info__event_action: 'Bids'
       
@@ -1569,7 +1577,7 @@
     label: 'Prebid - Avg Win CPM'
     description: 'Average winning CPM'
     type: avg
-    value_format: '$0.0000'
+    value_format: '$0.000000'
     sql: ${TABLE}.hits.eventInfo.eventValue/1000000
     filters:
       hits__event_info__event_action: 'Wins'
@@ -1582,6 +1590,34 @@
     sql: ${TABLE}.hits.eventInfo.eventValue/1000000
     filters:
       hits__event_info__event_action: 'Wins'
+      
+#   - dimension: banded_avg_bid_load_time
+#     label: 'Prebid - Banded Average Bid Load Time (ms)'
+#     type: string
+#     sql: |
+#       CASE
+#         WHEN ((${TABLE}.hits.eventInfo.eventValue > 0) AND (${TABLE}.hits.eventInfo.eventValue < 201)) THEN '0-200'
+#         WHEN ((${TABLE}.hits.eventInfo.eventValue > 199) AND (${TABLE}.hits.eventInfo.eventValue < 301)) THEN '200-300'
+#         WHEN ((${TABLE}.hits.eventInfo.eventValue > 299) AND (${TABLE}.hits.eventInfo.eventValue < 401)) THEN '300-400'
+#         WHEN ((${TABLE}.hits.eventInfo.eventValue > 399) AND (${TABLE}.hits.eventInfo.eventValue < 501)) THEN '400-500'
+#         WHEN ((${TABLE}.hits.eventInfo.eventValue > 499) AND (${TABLE}.hits.eventInfo.eventValue < 601)) THEN '500-600'
+#         WHEN ((${TABLE}.hits.eventInfo.eventValue > 599) AND (${TABLE}.hits.eventInfo.eventValue < 701)) THEN '600-700'
+#         WHEN ((${TABLE}.hits.eventInfo.eventValue > 699) AND (${TABLE}.hits.eventInfo.eventValue < 801)) THEN '700-800'
+#         WHEN ((${TABLE}.hits.eventInfo.eventValue > 799) AND (${TABLE}.hits.eventInfo.eventValue < 901)) THEN '800-900'
+#         WHEN ((${TABLE}.hits.eventInfo.eventValue > 899) AND (${TABLE}.hits.eventInfo.eventValue < 1001)) THEN '900-1000'
+#         WHEN ((${TABLE}.hits.eventInfo.eventValue > 999) AND (${TABLE}.hits.eventInfo.eventValue < 1201)) THEN '1000-1200'
+#         WHEN ((${TABLE}.hits.eventInfo.eventValue > 1199) AND (${TABLE}.hits.eventInfo.eventValue < 1501)) THEN '1200-1500'
+#         WHEN ((${TABLE}.hits.eventInfo.eventValue > 1499) AND (${TABLE}.hits.eventInfo.eventValue < 2001)) THEN '1500-2000'
+#         WHEN ((${TABLE}.hits.eventInfo.eventValue > 1999) AND (${TABLE}.hits.eventInfo.eventValue < 5001)) THEN '2000-5000'
+#         WHEN ((${TABLE}.hits.eventInfo.eventValue > 4999) AND (${TABLE}.hits.eventInfo.eventValue < 10001)) THEN '5000-10000'
+#         WHEN ((${TABLE}.hits.eventInfo.eventValue > 9999) AND (${TABLE}.hits.eventInfo.eventValue < 15001)) THEN '10000-15000'
+#         WHEN ${TABLE}.hits.eventInfo.eventValue > 14999 THEN '15000-20000+'
+#         ELSE 'Timeout'
+#       END
+
+# NO FILTERS - can't band that
+#     filters:
+#       hits__event_info__event_action: 'Bids'
 
   # - dimension: hits__event_info__event_action
   #   type: string

@@ -2,8 +2,6 @@
   sql_table_name: |
       ( SELECT * FROM {% table_date_range date_filter 111489521.ga_sessions_ %})
 
-
-
 # - view: ga_sessions
 #   sql_table_name: |
 #       [uplifted-light-89310:114668488].ga_sessions_20160112
@@ -171,8 +169,8 @@
   - dimension: location
     label: 'Latitude/Longitude Location'
     type: location
-    sql_latitude: ROUND(CAST(${TABLE}.geoNetwork.latitude AS FLOAT))
-    sql_longitude: ROUND(CAST(${TABLE}.geoNetwork.longitude AS FLOAT))
+    sql_latitude: ROUND(CAST(${TABLE}.geoNetwork.latitude AS FLOAT), 4)
+    sql_longitude: ROUND(CAST(${TABLE}.geoNetwork.longitude AS FLOAT), 4)
 
   - dimension: geo_network__metro
     type: string
@@ -396,17 +394,20 @@
 
   - dimension: hits__item__item_quantity
     type: number
+    value_format: '$0.00'
     sql: ${TABLE}.hits.item.itemQuantity
     fanout_on: hits
 
   - dimension: hits__item__item_revenue
     type: number
-    sql: ${TABLE}.hits.item.itemRevenue
+    value_format: '$0.00'
+    sql: ${TABLE}.hits.item.itemRevenue/1000000
     fanout_on: hits
 
   - dimension: hits__item__local_item_revenue
     type: number
-    sql: ${TABLE}.hits.item.localItemRevenue
+    value_format: '$0.00'
+    sql: ${TABLE}.hits.item.localItemRevenue/1000000
     fanout_on: hits
 
   - dimension: hits__item__product_category
@@ -538,7 +539,12 @@
     type: string
     sql: ${TABLE}.hits.page.pagePathLevel3
     fanout_on: hits
-
+    
+  - dimension: hits__page__page_path_level2_and_3
+    type: string
+    sql: CONCAT(${TABLE}.hits.page.pagePathLevel2,${TABLE}.hits.page.pagePathLevel3)
+    fanout_on: hits
+    
   - dimension: hits__page__page_path_level4
     type: string
     sql: ${TABLE}.hits.page.pagePathLevel4
@@ -601,7 +607,8 @@
 
   - dimension: hits__product__local_product_revenue
     type: number
-    sql: ${TABLE}.hits.product.localProductRevenue
+    value_format: '$0.00'
+    sql: ${TABLE}.hits.product.localProductRevenue/1000000
     fanout_on: hits.product
 
   - dimension: hits__product__product_brand
@@ -636,7 +643,8 @@
 
   - dimension: hits__product__product_revenue
     type: number
-    sql: ${TABLE}.hits.product.productRevenue
+    value_format: '$0.00'
+    sql: ${TABLE}.hits.product.productRevenue/1000000
     fanout_on: hits.product
 
   - dimension: hits__product__product_sku
@@ -689,165 +697,177 @@
     sql: ${TABLE}.hits.promotionActionInfo.promoIsView
     fanout_on: hits
 
-  - dimension: hits__publisher__ads_clicked
-    type: number
-    sql: ${TABLE}.hits.publisher.adsClicked
-    fanout_on: hits
 
-  - dimension: hits__publisher__ads_pages_viewed
-    type: number
-    sql: ${TABLE}.hits.publisher.adsPagesViewed
-    fanout_on: hits
 
-  - dimension: hits__publisher__ads_revenue
-    type: number
-    sql: ${TABLE}.hits.publisher.adsRevenue
-    fanout_on: hits
 
-  - dimension: hits__publisher__ads_units_matched
-    type: number
-    sql: ${TABLE}.hits.publisher.adsUnitsMatched
-    fanout_on: hits
+# Not sure what use this is
 
-  - dimension: hits__publisher__ads_units_viewed
-    type: number
-    sql: ${TABLE}.hits.publisher.adsUnitsViewed
-    fanout_on: hits
+  # - dimension: hits__publisher__ads_clicked
+  #   type: number
+  #   sql: ${TABLE}.hits.publisher.adsClicked
+  #   fanout_on: hits
 
-  - dimension: hits__publisher__ads_viewed
-    type: number
-    sql: ${TABLE}.hits.publisher.adsViewed
-    fanout_on: hits
+  # - dimension: hits__publisher__ads_pages_viewed
+  #   type: number
+  #   sql: ${TABLE}.hits.publisher.adsPagesViewed
+  #   fanout_on: hits
 
-  - dimension: hits__publisher__adsense_backfill_dfp_clicks
-    type: number
-    sql: ${TABLE}.hits.publisher.adsenseBackfillDfpClicks
-    fanout_on: hits
+  # - dimension: hits__publisher__ads_revenue
+  #   type: number
+  #   value_format: '$0.00'
+  #   sql: ${TABLE}.hits.publisher.adsRevenue/1000000
+  #   fanout_on: hits
 
-  - dimension: hits__publisher__adsense_backfill_dfp_impressions
-    type: number
-    sql: ${TABLE}.hits.publisher.adsenseBackfillDfpImpressions
-    fanout_on: hits
+  # - dimension: hits__publisher__ads_units_matched
+  #   type: number
+  #   sql: ${TABLE}.hits.publisher.adsUnitsMatched
+  #   fanout_on: hits
 
-  - dimension: hits__publisher__adsense_backfill_dfp_matched_queries
-    type: number
-    sql: ${TABLE}.hits.publisher.adsenseBackfillDfpMatchedQueries
-    fanout_on: hits
+  # - dimension: hits__publisher__ads_units_viewed
+  #   type: number
+  #   sql: ${TABLE}.hits.publisher.adsUnitsViewed
+  #   fanout_on: hits
 
-  - dimension: hits__publisher__adsense_backfill_dfp_measurable_impressions
-    type: number
-    sql: ${TABLE}.hits.publisher.adsenseBackfillDfpMeasurableImpressions
-    fanout_on: hits
+  # - dimension: hits__publisher__ads_viewed
+  #   type: number
+  #   sql: ${TABLE}.hits.publisher.adsViewed
+  #   fanout_on: hits
+  
+  
+  
+  
+  
+  
 
-  - dimension: hits__publisher__adsense_backfill_dfp_pages_viewed
-    type: number
-    sql: ${TABLE}.hits.publisher.adsenseBackfillDfpPagesViewed
-    fanout_on: hits
+  # - dimension: hits__publisher__adsense_backfill_dfp_clicks
+  #   type: number
+  #   sql: ${TABLE}.hits.publisher.adsenseBackfillDfpClicks
+  #   fanout_on: hits
 
-  - dimension: hits__publisher__adsense_backfill_dfp_queries
-    type: number
-    sql: ${TABLE}.hits.publisher.adsenseBackfillDfpQueries
-    fanout_on: hits
+  # - dimension: hits__publisher__adsense_backfill_dfp_impressions
+  #   type: number
+  #   sql: ${TABLE}.hits.publisher.adsenseBackfillDfpImpressions
+  #   fanout_on: hits
 
-  - dimension: hits__publisher__adsense_backfill_dfp_revenue_cpc
-    type: number
-    sql: ${TABLE}.hits.publisher.adsenseBackfillDfpRevenueCpc
-    fanout_on: hits
+  # - dimension: hits__publisher__adsense_backfill_dfp_matched_queries
+  #   type: number
+  #   sql: ${TABLE}.hits.publisher.adsenseBackfillDfpMatchedQueries
+  #   fanout_on: hits
 
-  - dimension: hits__publisher__adsense_backfill_dfp_revenue_cpm
-    type: number
-    sql: ${TABLE}.hits.publisher.adsenseBackfillDfpRevenueCpm
-    fanout_on: hits
+  # - dimension: hits__publisher__adsense_backfill_dfp_measurable_impressions
+  #   type: number
+  #   sql: ${TABLE}.hits.publisher.adsenseBackfillDfpMeasurableImpressions
+  #   fanout_on: hits
 
-  - dimension: hits__publisher__adsense_backfill_dfp_viewable_impressions
-    type: number
-    sql: ${TABLE}.hits.publisher.adsenseBackfillDfpViewableImpressions
-    fanout_on: hits
+  # - dimension: hits__publisher__adsense_backfill_dfp_pages_viewed
+  #   type: number
+  #   sql: ${TABLE}.hits.publisher.adsenseBackfillDfpPagesViewed
+  #   fanout_on: hits
 
-  - dimension: hits__publisher__adx_backfill_dfp_clicks
-    type: number
-    sql: ${TABLE}.hits.publisher.adxBackfillDfpClicks
-    fanout_on: hits
+  # - dimension: hits__publisher__adsense_backfill_dfp_queries
+  #   type: number
+  #   sql: ${TABLE}.hits.publisher.adsenseBackfillDfpQueries
+  #   fanout_on: hits
 
-  - dimension: hits__publisher__adx_backfill_dfp_impressions
-    type: number
-    sql: ${TABLE}.hits.publisher.adxBackfillDfpImpressions
-    fanout_on: hits
+  # - dimension: hits__publisher__adsense_backfill_dfp_revenue_cpc
+  #   type: number
+  #   sql: ${TABLE}.hits.publisher.adsenseBackfillDfpRevenueCpc/1000000
+  #   fanout_on: hits
 
-  - dimension: hits__publisher__adx_backfill_dfp_matched_queries
-    type: number
-    sql: ${TABLE}.hits.publisher.adxBackfillDfpMatchedQueries
-    fanout_on: hits
+  # - dimension: hits__publisher__adsense_backfill_dfp_revenue_cpm
+  #   type: number
+  #   sql: ${TABLE}.hits.publisher.adsenseBackfillDfpRevenueCpm/1000000
+  #   fanout_on: hits
 
-  - dimension: hits__publisher__adx_backfill_dfp_measurable_impressions
-    type: number
-    sql: ${TABLE}.hits.publisher.adxBackfillDfpMeasurableImpressions
-    fanout_on: hits
+  # - dimension: hits__publisher__adsense_backfill_dfp_viewable_impressions
+  #   type: number
+  #   sql: ${TABLE}.hits.publisher.adsenseBackfillDfpViewableImpressions
+  #   fanout_on: hits
 
-  - dimension: hits__publisher__adx_backfill_dfp_pages_viewed
-    type: number
-    sql: ${TABLE}.hits.publisher.adxBackfillDfpPagesViewed
-    fanout_on: hits
+  # - dimension: hits__publisher__adx_backfill_dfp_clicks
+  #   type: number
+  #   sql: ${TABLE}.hits.publisher.adxBackfillDfpClicks
+  #   fanout_on: hits
 
-  - dimension: hits__publisher__adx_backfill_dfp_queries
-    type: number
-    sql: ${TABLE}.hits.publisher.adxBackfillDfpQueries
-    fanout_on: hits
+  # - dimension: hits__publisher__adx_backfill_dfp_impressions
+  #   type: number
+  #   sql: ${TABLE}.hits.publisher.adxBackfillDfpImpressions
+  #   fanout_on: hits
 
-  - dimension: hits__publisher__adx_backfill_dfp_revenue_cpc
-    type: number
-    sql: ${TABLE}.hits.publisher.adxBackfillDfpRevenueCpc
-    fanout_on: hits
+  # - dimension: hits__publisher__adx_backfill_dfp_matched_queries
+  #   type: number
+  #   sql: ${TABLE}.hits.publisher.adxBackfillDfpMatchedQueries
+  #   fanout_on: hits
 
-  - dimension: hits__publisher__adx_backfill_dfp_revenue_cpm
-    type: number
-    sql: ${TABLE}.hits.publisher.adxBackfillDfpRevenueCpm
-    fanout_on: hits
+  # - dimension: hits__publisher__adx_backfill_dfp_measurable_impressions
+  #   type: number
+  #   sql: ${TABLE}.hits.publisher.adxBackfillDfpMeasurableImpressions
+  #   fanout_on: hits
 
-  - dimension: hits__publisher__adx_backfill_dfp_viewable_impressions
-    type: number
-    sql: ${TABLE}.hits.publisher.adxBackfillDfpViewableImpressions
-    fanout_on: hits
+  # - dimension: hits__publisher__adx_backfill_dfp_pages_viewed
+  #   type: number
+  #   sql: ${TABLE}.hits.publisher.adxBackfillDfpPagesViewed
+  #   fanout_on: hits
 
-  - dimension: hits__publisher__adx_clicks
-    type: number
-    sql: ${TABLE}.hits.publisher.adxClicks
-    fanout_on: hits
+  # - dimension: hits__publisher__adx_backfill_dfp_queries
+  #   type: number
+  #   sql: ${TABLE}.hits.publisher.adxBackfillDfpQueries
+  #   fanout_on: hits
 
-  - dimension: hits__publisher__adx_impressions
-    type: number
-    sql: ${TABLE}.hits.publisher.adxImpressions
-    fanout_on: hits
+  # - dimension: hits__publisher__adx_backfill_dfp_revenue_cpc
+  #   type: number
+  #   sql: ${TABLE}.hits.publisher.adxBackfillDfpRevenueCpc/1000000
+  #   fanout_on: hits
 
-  - dimension: hits__publisher__adx_matched_queries
-    type: number
-    sql: ${TABLE}.hits.publisher.adxMatchedQueries
-    fanout_on: hits
+  # - dimension: hits__publisher__adx_backfill_dfp_revenue_cpm
+  #   type: number
+  #   sql: ${TABLE}.hits.publisher.adxBackfillDfpRevenueCpm/1000000
+  #   fanout_on: hits
 
-  - dimension: hits__publisher__adx_measurable_impressions
-    type: number
-    sql: ${TABLE}.hits.publisher.adxMeasurableImpressions
-    fanout_on: hits
+  # - dimension: hits__publisher__adx_backfill_dfp_viewable_impressions
+  #   type: number
+  #   sql: ${TABLE}.hits.publisher.adxBackfillDfpViewableImpressions
+  #   fanout_on: hits
 
-  - dimension: hits__publisher__adx_pages_viewed
-    type: number
-    sql: ${TABLE}.hits.publisher.adxPagesViewed
-    fanout_on: hits
+  # - dimension: hits__publisher__adx_clicks
+  #   type: number
+  #   sql: ${TABLE}.hits.publisher.adxClicks
+  #   fanout_on: hits
 
-  - dimension: hits__publisher__adx_queries
-    type: number
-    sql: ${TABLE}.hits.publisher.adxQueries
-    fanout_on: hits
+  # - dimension: hits__publisher__adx_impressions
+  #   type: number
+  #   sql: ${TABLE}.hits.publisher.adxImpressions
+  #   fanout_on: hits
 
-  - dimension: hits__publisher__adx_revenue
-    type: number
-    sql: ${TABLE}.hits.publisher.adxRevenue
-    fanout_on: hits
+  # - dimension: hits__publisher__adx_matched_queries
+  #   type: number
+  #   sql: ${TABLE}.hits.publisher.adxMatchedQueries
+  #   fanout_on: hits
 
-  - dimension: hits__publisher__adx_viewable_impressions
-    type: number
-    sql: ${TABLE}.hits.publisher.adxViewableImpressions
-    fanout_on: hits
+  # - dimension: hits__publisher__adx_measurable_impressions
+  #   type: number
+  #   sql: ${TABLE}.hits.publisher.adxMeasurableImpressions
+  #   fanout_on: hits
+
+  # - dimension: hits__publisher__adx_pages_viewed
+  #   type: number
+  #   sql: ${TABLE}.hits.publisher.adxPagesViewed
+  #   fanout_on: hits
+
+  # - dimension: hits__publisher__adx_queries
+  #   type: number
+  #   sql: ${TABLE}.hits.publisher.adxQueries
+  #   fanout_on: hits
+
+  # - dimension: hits__publisher__adx_revenue
+  #   type: number
+  #   sql: ${TABLE}.hits.publisher.adxRevenue/1000000
+  #   fanout_on: hits
+
+  # - dimension: hits__publisher__adx_viewable_impressions
+  #   type: number
+  #   sql: ${TABLE}.hits.publisher.adxViewableImpressions
+  #   fanout_on: hits
 
   - dimension: hits__publisher__dfp_ad_group
     type: string
@@ -859,23 +879,27 @@
     sql: ${TABLE}.hits.publisher.dfpAdUnits
     fanout_on: hits
 
-  - dimension: hits__publisher__dfp_clicks
-    type: number
+  - measure: hits__publisher__dfp_clicks
+    label: 'DFP Clicks'
+    type: sum
     sql: ${TABLE}.hits.publisher.dfpClicks
     fanout_on: hits
 
-  - dimension: hits__publisher__dfp_impressions
-    type: number
+  - measure: hits__publisher__dfp_impressions
+    label: 'DFP Impressions'
+    type: sum
     sql: ${TABLE}.hits.publisher.dfpImpressions
     fanout_on: hits
 
-  - dimension: hits__publisher__dfp_matched_queries
-    type: number
+  - measure: hits__publisher__dfp_matched_queries
+    label: 'DFP Matched Queries'
+    type: sum
     sql: ${TABLE}.hits.publisher.dfpMatchedQueries
     fanout_on: hits
 
-  - dimension: hits__publisher__dfp_measurable_impressions
-    type: number
+  - measure: hits__publisher__dfp_measurable_impressions
+    label: 'DFP Measurable Impressions'
+    type: sum
     sql: ${TABLE}.hits.publisher.dfpMeasurableImpressions
     fanout_on: hits
 
@@ -884,38 +908,54 @@
     sql: ${TABLE}.hits.publisher.dfpNetworkId
     fanout_on: hits
 
-  - dimension: hits__publisher__dfp_pages_viewed
-    type: number
+  - measure: hits__publisher__dfp_pages_viewed
+    label: 'DFP Pages Viewed'
+    type: sum
     sql: ${TABLE}.hits.publisher.dfpPagesViewed
     fanout_on: hits
 
-  - dimension: hits__publisher__dfp_queries
-    type: number
+  - measure: hits__publisher__dfp_queries
+    label: 'DFP Queries'
+    type: sum
     sql: ${TABLE}.hits.publisher.dfpQueries
     fanout_on: hits
 
-  - dimension: hits__publisher__dfp_revenue_cpc
-    type: number
-    sql: ${TABLE}.hits.publisher.dfpRevenueCpc
+  - measure: hits__publisher__dfp_revenue_cpc
+    label: 'DFP CPC - Testing'
+    type: avg
+    value_format: '$0.00'
+    sql: ${TABLE}.hits.publisher.dfpRevenueCpc/1000000
     fanout_on: hits
 
-  - dimension: hits__publisher__dfp_revenue_cpm
-    type: number
-    sql: ${TABLE}.hits.publisher.dfpRevenueCpm
+  - measure: hits__publisher__dfp_revenue_cpm
+    label: 'DFP CPM - Testing'
+    type: avg
+    value_format: '$0.00'
+    sql: ${TABLE}.hits.publisher.dfpRevenueCpm/1000000
     fanout_on: hits
+    
+  - measure: dfp_revenue
+    label: 'DFP Revenue'
+    description: 'DFP CPC * DFP Clicks'
+    type: sum
+    value_format: '$0.00'
+    sql: (${TABLE}.hits.publisher.dfpRevenueCpc/1000000)*(${TABLE}.hits.publisher.dfpClicks)
 
-  - dimension: hits__publisher__dfp_viewable_impressions
-    type: number
+  - measure: hits__publisher__dfp_viewable_impressions
+    label: 'DFP Viewable Impressions'
+    type: sum
     sql: ${TABLE}.hits.publisher.dfpViewableImpressions
     fanout_on: hits
 
-  - dimension: hits__publisher__measurable_ads_viewed
-    type: number
+  - measure: hits__publisher__measurable_ads_viewed
+    label: 'DFP Measurable Ads Viewed'
+    type: sum
     sql: ${TABLE}.hits.publisher.measurableAdsViewed
     fanout_on: hits
 
-  - dimension: hits__publisher__viewable_ads_viewed
-    type: number
+  - measure: hits__publisher__viewable_ads_viewed
+    label: 'DFP Viewable Ads Viewed'
+    type: sum
     sql: ${TABLE}.hits.publisher.viewableAdsViewed
     fanout_on: hits
 
@@ -924,15 +964,15 @@
     sql: ${TABLE}.hits.referer
     fanout_on: hits
 
-  - dimension: hits__refund__local_refund_amount
-    type: number
-    sql: ${TABLE}.hits.refund.localRefundAmount
-    fanout_on: hits
+  # - dimension: hits__refund__local_refund_amount
+  #   type: number
+  #   sql: ${TABLE}.hits.refund.localRefundAmount
+  #   fanout_on: hits
 
-  - dimension: hits__refund__refund_amount
-    type: number
-    sql: ${TABLE}.hits.refund.refundAmount
-    fanout_on: hits
+  # - dimension: hits__refund__refund_amount
+  #   type: number
+  #   sql: ${TABLE}.hits.refund.refundAmount
+  #   fanout_on: hits
 
   - dimension: hits__social__has_social_source_referral
     type: string
@@ -1001,7 +1041,8 @@
 
   - dimension: hits__transaction__local_transaction_revenue
     type: number
-    sql: ${TABLE}.hits.transaction.localTransactionRevenue
+    value_format: '$0.00'
+    sql: ${TABLE}.hits.transaction.localTransactionRevenue/1000000
     fanout_on: hits
 
   - dimension: hits__transaction__local_transaction_shipping
@@ -1026,7 +1067,8 @@
 
   - dimension: hits__transaction__transaction_revenue
     type: number
-    sql: ${TABLE}.hits.transaction.transactionRevenue
+    value_format: '$0.00'
+    sql: ${TABLE}.hits.transaction.transactionRevenue/1000000
     fanout_on: hits
 
   - dimension: hits__transaction__transaction_shipping
@@ -1048,25 +1090,25 @@
     type: string
     sql: ${TABLE}.socialEngagementType
 
-  - dimension: totals__bounces
-    type: number
-    sql: ${TABLE}.totals.bounces
+  # - dimension: totals__bounces
+  #   type: number
+  #   sql: ${TABLE}.totals.bounces
 
-  - dimension: totals__hits
-    type: number
-    sql: ${TABLE}.totals.hits
+  # - dimension: totals__hits
+  #   type: number
+  #   sql: ${TABLE}.totals.hits
 
-  - dimension: totals__new_visits
-    type: number
-    sql: ${TABLE}.totals.newVisits
+  # - dimension: totals__new_visits
+  #   type: number
+  #   sql: ${TABLE}.totals.newVisits
 
-  - dimension: totals__pageviews
-    type: number
-    sql: ${TABLE}.totals.pageviews
+  # - dimension: totals__pageviews
+  #   type: number
+  #   sql: ${TABLE}.totals.pageviews
 
-  - dimension: totals__screenviews
-    type: number
-    sql: ${TABLE}.totals.screenviews
+  # - dimension: totals__screenviews
+  #   type: number
+  #   sql: ${TABLE}.totals.screenviews
 
   - dimension: totals__time_on_screen
     type: number
@@ -1077,25 +1119,25 @@
     type: number
     sql: ${TABLE}.totals.timeOnSite/60
 
-  - dimension: totals__total_transaction_revenue
-    type: number
-    sql: ${TABLE}.totals.totalTransactionRevenue
+  # - dimension: totals__total_transaction_revenue
+  #   type: number
+  #   sql: ${TABLE}.totals.totalTransactionRevenue/1000000
 
-  - dimension: totals__transaction_revenue
-    type: number
-    sql: ${TABLE}.totals.transactionRevenue
+  # - dimension: totals__transaction_revenue
+  #   type: number
+  #   sql: ${TABLE}.totals.transactionRevenue/1000000
 
-  - dimension: totals__transactions
-    type: number
-    sql: ${TABLE}.totals.transactions
+  # - dimension: totals__transactions
+  #   type: number
+  #   sql: ${TABLE}.totals.transactions
 
-  - dimension: totals__unique_screenviews
-    type: number
-    sql: ${TABLE}.totals.uniqueScreenviews
+  # - dimension: totals__unique_screenviews
+  #   type: number
+  #   sql: ${TABLE}.totals.uniqueScreenviews
 
-  - dimension: totals__visits
-    type: number
-    sql: ${TABLE}.totals.visits
+  # - dimension: totals__visits
+  #   type: number
+  #   sql: ${TABLE}.totals.visits
 
   - dimension: traffic_source__ad_content
     type: string
@@ -1189,11 +1231,12 @@
     type: number
     sql: ${TABLE}.visitNumber
 
-  - dimension: visit_start_time
-    type: number
-    sql: ${TABLE}.visitStartTime
+  # - dimension: visit_start_time
+  #   type: number
+  #   sql: ${TABLE}.visitStartTime
 
   - dimension_group: start_time
+    label: ''
     type: time
     sql: ${TABLE}.visitStartTime
     datatype: epoch 
@@ -1348,11 +1391,11 @@
     type: count_distinct
     sql: ${TABLE}.fullVisitorId
 
-  - dimension: date
-    label: ''
-    type: time
-    timeframes: [date, week, month, month_num]
-    sql: ${TABLE}.date
+  # - dimension: date
+  #   label: ''
+  #   type: time
+  #   timeframes: [date, week, month, month_num]
+  #   sql: ${TABLE}.date
     
   - measure: totals_newvisits
     label: 'Total New Sessions'
@@ -1365,6 +1408,14 @@
     type: sum_distinct
     sql_distinct_key: ${uu_key}
     sql: ${TABLE}.totals.visits
+    
+  - measure: totals_social_visits
+    label: 'Total Social Sessions'
+    type: sum_distinct
+    sql_distinct_key: ${uu_key}
+    sql: ${TABLE}.totals.visits
+    filters:
+      hits__social__has_social_source_referral: 'Yes'
     
 #   - measure: totals_pageviews
 #     label: 'Total Pageviews'
@@ -1400,6 +1451,205 @@
     description: 'Avg ime on site in minutes'
     type: number
     sql: (SUM(${TABLE}.hits.publisher.dfpImpressions))/(SUM(${TABLE}.totals.visits))
+    
+  - measure: totals__total_transaction_revenue
+    label: 'Total Transaction Revenue ($)'
+    type: sum
+    value_format: '$0.00'
+    sql: ${TABLE}.totals.totalTransactionRevenue/1000000
+
+  # - measure: totals__transaction_revenue
+  #   label: 'Transaction Revenue'
+  #   type: sum
+  #   sql: ${TABLE}.totals.transactionRevenue/1000000
+
+  - measure: totals__transactions
+    label: 'Transaction Count'
+    type: sum
+    sql: ${TABLE}.totals.transactions
+
+  # - measure: totals__unique_screenviews
+  #   label: 'Screenviews'
+  #   type: sum
+  #   sql: ${TABLE}.totals.uniqueScreenviews
+    
+  - measure: totals__bounces
+    label: 'Bounce Count'
+    type: sum
+    sql: ${TABLE}.totals.bounces
+
+  - measure: totals__new_visits
+    label: 'New Visits Count'
+    type: sum
+    sql: ${TABLE}.totals.newVisits
+    
+  - dimension: is_new_visit
+    label: 'Is New Visit'
+    type: yesno
+    sql: ${TABLE}.totals.newVisits = 1
+    
+    
+    
+################ H E A D E R  B I D D I N G #############
+
+# This is completely aids, http://prebid.org/dev-docs/analytics-ga.html#better-reports-within-ga
+# What we have to try to replicate: http://prebid.org/assets/images/dev-docs/GA-custom-report.png
+
+# The problem is that GA subsets it's data when you pull it from GA, so i'm here stuck trying to replicate how GA extract and analyse their data.
+# I'm basically a GA back-end data engineer at this point. Let's see what we can do with this messy data.
+
+# CASE DIMENSIONS INSTEAD OF FILTERING THEM:
+
+  - dimension: Prebid_Bidder
+    type: string
+    sql: ${TABLE}.hits.eventInfo.eventLabel
+
+# 
+#   - dimension: Prebid_Action
+#     type: string
+#     description: 'Request/Timeout/Bid/Win etc'
+#     sql: ${TABLE}.hits.eventInfo.eventAction
+#     filters:
+#       hits__event_info__event_category: 'Prebid.js Bids'
+#   
+#   - dimension: Prebid_Action
+#     hidden: TRUE
+#     description: 'Prebid value, useless outside of measures'
+#     type: string
+#     sql: ${TABLE}.hits.eventInfo.eventValue
+#     filters:
+#       hits__event_info__event_category: 'Prebid.js Bids'
+  
+  - measure: Prebid_BidLoadTime
+    label: 'Prebid - Avg Bid Loadtime (ms)'
+    description: 'Average bid loadtime (ms)'
+    type: avg
+    value_format: '0.00'
+    sql: ${TABLE}.hits.eventInfo.eventValue
+    filters:
+      hits__event_info__event_action: 'Bid Load Time'
+      
+      
+      
+  - measure: Prebid_TotalBids
+    label: 'Prebid - Total Bids'
+    description: 'Total number of bids'
+    type: count
+    filters:
+      hits__event_info__event_action: 'Bids'
+      
+#     sql: |
+#       CASE
+#         WHEN ${TABLE}.hits.eventInfo.eventValue >0 THEN 1
+#         WHEN ${TABLE}.hits.eventInfo.eventValue <0 THEN 1
+#         WHEN ${TABLE}.hits.eventInfo.eventValue = 0 THEN 1
+#       END      
+      
+  - measure: Prebid_AvgBidCPM
+    label: 'Prebid - Avg Bid CPM'
+    description: 'Avg Bid CPM'
+    type: avg
+    sql: ${TABLE}.hits.eventInfo.eventValue/1000000
+    value_format: '$0.000000'
+    filters:
+      hits__event_info__event_action: 'Bids'
+      
+
+  - measure: Prebid_Requests
+    label: 'Prebid - Total Requests'
+    description: 'Total number of bid requests'
+    type: count
+    filters:
+      hits__event_info__event_action: 'Requests'
+      
+      
+  - measure: Prebid_Timeouts
+    label: 'Prebid - Total Timeouts'
+    description: 'Total number of timeouts'
+    type: count
+    filters:
+      hits__event_info__event_action: 'Timeouts'
+      
+      
+  - measure: Prebid_Wins
+    label: 'Prebid - Total Wins'
+    description: 'Total number of winning bids'
+    type: count
+    filters:
+      hits__event_info__event_action: 'Wins'
+      
+  - measure: Prebid_AvgWinCPM
+    label: 'Prebid - Avg Win CPM'
+    description: 'Average winning CPM'
+    type: avg
+    value_format: '$0.000000'
+    sql: ${TABLE}.hits.eventInfo.eventValue/1000000
+    filters:
+      hits__event_info__event_action: 'Wins'
+      
+  - measure: Prebid_AvgWinRevenue
+    label: 'Prebid - Revenue'
+    description: 'Winning Revenue CPM'
+    type: sum
+    value_format: '$0.00'
+    sql: ${TABLE}.hits.eventInfo.eventValue/1000000
+    filters:
+      hits__event_info__event_action: 'Wins'
+      
+#   - dimension: banded_avg_bid_load_time
+#     label: 'Prebid - Banded Average Bid Load Time (ms)'
+#     type: string
+#     sql: |
+#       CASE
+#         WHEN ((${TABLE}.hits.eventInfo.eventValue > 0) AND (${TABLE}.hits.eventInfo.eventValue < 201)) THEN '0-200'
+#         WHEN ((${TABLE}.hits.eventInfo.eventValue > 199) AND (${TABLE}.hits.eventInfo.eventValue < 301)) THEN '200-300'
+#         WHEN ((${TABLE}.hits.eventInfo.eventValue > 299) AND (${TABLE}.hits.eventInfo.eventValue < 401)) THEN '300-400'
+#         WHEN ((${TABLE}.hits.eventInfo.eventValue > 399) AND (${TABLE}.hits.eventInfo.eventValue < 501)) THEN '400-500'
+#         WHEN ((${TABLE}.hits.eventInfo.eventValue > 499) AND (${TABLE}.hits.eventInfo.eventValue < 601)) THEN '500-600'
+#         WHEN ((${TABLE}.hits.eventInfo.eventValue > 599) AND (${TABLE}.hits.eventInfo.eventValue < 701)) THEN '600-700'
+#         WHEN ((${TABLE}.hits.eventInfo.eventValue > 699) AND (${TABLE}.hits.eventInfo.eventValue < 801)) THEN '700-800'
+#         WHEN ((${TABLE}.hits.eventInfo.eventValue > 799) AND (${TABLE}.hits.eventInfo.eventValue < 901)) THEN '800-900'
+#         WHEN ((${TABLE}.hits.eventInfo.eventValue > 899) AND (${TABLE}.hits.eventInfo.eventValue < 1001)) THEN '900-1000'
+#         WHEN ((${TABLE}.hits.eventInfo.eventValue > 999) AND (${TABLE}.hits.eventInfo.eventValue < 1201)) THEN '1000-1200'
+#         WHEN ((${TABLE}.hits.eventInfo.eventValue > 1199) AND (${TABLE}.hits.eventInfo.eventValue < 1501)) THEN '1200-1500'
+#         WHEN ((${TABLE}.hits.eventInfo.eventValue > 1499) AND (${TABLE}.hits.eventInfo.eventValue < 2001)) THEN '1500-2000'
+#         WHEN ((${TABLE}.hits.eventInfo.eventValue > 1999) AND (${TABLE}.hits.eventInfo.eventValue < 5001)) THEN '2000-5000'
+#         WHEN ((${TABLE}.hits.eventInfo.eventValue > 4999) AND (${TABLE}.hits.eventInfo.eventValue < 10001)) THEN '5000-10000'
+#         WHEN ((${TABLE}.hits.eventInfo.eventValue > 9999) AND (${TABLE}.hits.eventInfo.eventValue < 15001)) THEN '10000-15000'
+#         WHEN ${TABLE}.hits.eventInfo.eventValue > 14999 THEN '15000-20000+'
+#         ELSE 'Timeout'
+#       END
+
+# NO FILTERS - can't band that
+#     filters:
+#       hits__event_info__event_action: 'Bids'
+
+  # - dimension: hits__event_info__event_action
+  #   type: string
+  #   sql: ${TABLE}.hits.eventInfo.eventAction
+  #   fanout_on: hits
+
+  # - dimension: hits__event_info__event_category
+  #   type: string
+  #   sql: ${TABLE}.hits.eventInfo.eventCategory
+  #   fanout_on: hits
+
+  # - dimension: hits__event_info__event_label
+  #   type: string
+  #   sql: ${TABLE}.hits.eventInfo.eventLabel
+  #   fanout_on: hits
+
+  # - dimension: hits__event_info__event_value
+  #   type: number
+  #   sql: ${TABLE}.hits.eventInfo.eventValue
+  #   fanout_on: hits
+    
+    
+    
+    
+    
+    
+    
     
   # ----- Sets of fields for drilling ------
   sets:

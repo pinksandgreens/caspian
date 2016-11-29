@@ -2,50 +2,6 @@
   sql_table_name: |
       ( SELECT * FROM {% table_date_range date_filter 114668488.ga_sessions_ %})
 
-
-
-# - view: ga_sessions
-#   sql_table_name: |
-#       [uplifted-light-89310:114668488].ga_sessions_20160112
-
-        # {% table_date_range date_filter 22661559.ga_sessions_ %},
-        # {% table_date_range date_filter 24089672.ga_sessions_ %})
-        
-        # {% table_date_range date_filter 25170071.ga_sessions_ %}
-
-        # {% table_date_range date_filter 116749887.ga_sessions_ %},
-        # {% table_date_range date_filter 117239363.ga_sessions_ %},
-        # {% table_date_range date_filter 120878053.ga_sessions_ %},
-        # {% table_date_range date_filter 127467161.ga_sessions_ %},
-        # {% table_date_range date_filter 128574436.ga_sessions_ %},
-        # {% table_date_range date_filter 128576144.ga_sessions_ %},
-        # {% table_date_range date_filter 128580663.ga_sessions_ %},
-        # {% table_date_range date_filter 18457891.ga_sessions_ %},
-        # {% table_date_range date_filter 22925605.ga_sessions_ %},
-        # {% table_date_range date_filter 24003361.ga_sessions_ %},
-        # {% table_date_range date_filter 24003809.ga_sessions_ %},
-        # {% table_date_range date_filter 24004037.ga_sessions_ %},
-        # {% table_date_range date_filter 39081823.ga_sessions_ %},
-        # {% table_date_range date_filter 40162614.ga_sessions_ %},
-        # {% table_date_range date_filter 40742804.ga_sessions_ %},
-        # {% table_date_range date_filter 40744371.ga_sessions_ %},
-        # {% table_date_range date_filter 44760556.ga_sessions_ %},
-        # {% table_date_range date_filter 457989.ga_sessions_ %},
-        # {% table_date_range date_filter 49187927.ga_sessions_ %},
-        # {% table_date_range date_filter 49238469.ga_sessions_ %},
-        # {% table_date_range date_filter 53119312.ga_sessions_ %},
-        # {% table_date_range date_filter 55259691.ga_sessions_ %},
-        # {% table_date_range date_filter 57443485.ga_sessions_ %},
-        # {% table_date_range date_filter 58200759.ga_sessions_ %},
-        # {% table_date_range date_filter 58279538.ga_sessions_ %},
-        # {% table_date_range date_filter 63446395.ga_sessions_ %},
-        # {% table_date_range date_filter 63448481.ga_sessions_ %},
-        # {% table_date_range date_filter 63450278.ga_sessions_ %},
-        # {% table_date_range date_filter 63456167.ga_sessions_ %},
-        # {% table_date_range date_filter 72255843.ga_sessions_ %},
-        # {% table_date_range date_filter 773992.ga_sessions_ %},
-        # {% table_date_range date_filter 93483324.ga_sessions_ %})
-        # {% table_date_range date_filter 25170071.ga_sessions_ %}
   fields:
   - filter: date_filter
     type: date
@@ -1430,6 +1386,14 @@
     sql_distinct_key: ${uu_key}
     sql: ${TABLE}.totals.pageviews
     
+  - measure: gallery_pageviews
+    label: 'Total Gallery Pageviews'
+    type: sum
+    sql: ${TABLE}.totals.pageviews
+    filters:
+      hits__event_info__event_category: 'Gallery'
+      
+    
   - measure: pages_p_session
     label: 'Pages per Session'
     type: number
@@ -1485,9 +1449,24 @@
     type: sum
     sql: ${TABLE}.totals.newVisits
     
+  - dimension: is_new_visit
+    label: 'Is New Visit'
+    type: yesno
+    sql: ${TABLE}.totals.newVisits = 1
+    
+    
+    
     
     
 ################ H E A D E R  B I D D I N G #############
+
+# This is completely aids, http://prebid.org/dev-docs/analytics-ga.html#better-reports-within-ga
+# What we have to try to replicate: http://prebid.org/assets/images/dev-docs/GA-custom-report.png
+
+# The problem is that GA subsets it's data when you pull it from GA, so i'm here stuck trying to replicate how GA extract and analyse their data.
+# I'm basically a GA back-end data engineer at this point. Let's see what we can do with this messy data.
+
+# CASE DIMENSIONS INSTEAD OF FILTERING THEM:
 
   - dimension: Prebid_Bidder
     type: string
@@ -1510,8 +1489,8 @@
 #       hits__event_info__event_category: 'Prebid.js Bids'
   
   - measure: Prebid_BidLoadTime
-    label: 'Prebid - Avg Bid Loadtime'
-    description: 'Average bid loadtime'
+    label: 'Prebid - Avg Bid Loadtime (ms)'
+    description: 'Average bid loadtime (ms)'
     type: avg
     value_format: '0.00'
     sql: ${TABLE}.hits.eventInfo.eventValue
@@ -1539,7 +1518,7 @@
     description: 'Avg Bid CPM'
     type: avg
     sql: ${TABLE}.hits.eventInfo.eventValue/1000000
-    value_format: '$0.0000'
+    value_format: '$0.000000'
     filters:
       hits__event_info__event_action: 'Bids'
       
@@ -1571,7 +1550,7 @@
     label: 'Prebid - Avg Win CPM'
     description: 'Average winning CPM'
     type: avg
-    value_format: '$0.0000'
+    value_format: '$0.000000'
     sql: ${TABLE}.hits.eventInfo.eventValue/1000000
     filters:
       hits__event_info__event_action: 'Wins'
@@ -1584,6 +1563,34 @@
     sql: ${TABLE}.hits.eventInfo.eventValue/1000000
     filters:
       hits__event_info__event_action: 'Wins'
+      
+#   - dimension: banded_avg_bid_load_time
+#     label: 'Prebid - Banded Average Bid Load Time (ms)'
+#     type: string
+#     sql: |
+#       CASE
+#         WHEN ((${TABLE}.hits.eventInfo.eventValue > 0) AND (${TABLE}.hits.eventInfo.eventValue < 201)) THEN '0-200'
+#         WHEN ((${TABLE}.hits.eventInfo.eventValue > 199) AND (${TABLE}.hits.eventInfo.eventValue < 301)) THEN '200-300'
+#         WHEN ((${TABLE}.hits.eventInfo.eventValue > 299) AND (${TABLE}.hits.eventInfo.eventValue < 401)) THEN '300-400'
+#         WHEN ((${TABLE}.hits.eventInfo.eventValue > 399) AND (${TABLE}.hits.eventInfo.eventValue < 501)) THEN '400-500'
+#         WHEN ((${TABLE}.hits.eventInfo.eventValue > 499) AND (${TABLE}.hits.eventInfo.eventValue < 601)) THEN '500-600'
+#         WHEN ((${TABLE}.hits.eventInfo.eventValue > 599) AND (${TABLE}.hits.eventInfo.eventValue < 701)) THEN '600-700'
+#         WHEN ((${TABLE}.hits.eventInfo.eventValue > 699) AND (${TABLE}.hits.eventInfo.eventValue < 801)) THEN '700-800'
+#         WHEN ((${TABLE}.hits.eventInfo.eventValue > 799) AND (${TABLE}.hits.eventInfo.eventValue < 901)) THEN '800-900'
+#         WHEN ((${TABLE}.hits.eventInfo.eventValue > 899) AND (${TABLE}.hits.eventInfo.eventValue < 1001)) THEN '900-1000'
+#         WHEN ((${TABLE}.hits.eventInfo.eventValue > 999) AND (${TABLE}.hits.eventInfo.eventValue < 1201)) THEN '1000-1200'
+#         WHEN ((${TABLE}.hits.eventInfo.eventValue > 1199) AND (${TABLE}.hits.eventInfo.eventValue < 1501)) THEN '1200-1500'
+#         WHEN ((${TABLE}.hits.eventInfo.eventValue > 1499) AND (${TABLE}.hits.eventInfo.eventValue < 2001)) THEN '1500-2000'
+#         WHEN ((${TABLE}.hits.eventInfo.eventValue > 1999) AND (${TABLE}.hits.eventInfo.eventValue < 5001)) THEN '2000-5000'
+#         WHEN ((${TABLE}.hits.eventInfo.eventValue > 4999) AND (${TABLE}.hits.eventInfo.eventValue < 10001)) THEN '5000-10000'
+#         WHEN ((${TABLE}.hits.eventInfo.eventValue > 9999) AND (${TABLE}.hits.eventInfo.eventValue < 15001)) THEN '10000-15000'
+#         WHEN ${TABLE}.hits.eventInfo.eventValue > 14999 THEN '15000-20000+'
+#         ELSE 'Timeout'
+#       END
+
+# NO FILTERS - can't band that
+#     filters:
+#       hits__event_info__event_action: 'Bids'
 
   # - dimension: hits__event_info__event_action
   #   type: string

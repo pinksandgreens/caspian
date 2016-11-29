@@ -1486,7 +1486,7 @@
   - dimension: is_new_visit
     label: 'Is New Visit'
     type: yesno
-    sql: ${TABLE}.totals.newVisits = '1'
+    sql: ${TABLE}.totals.newVisits = 1
     
     
     
@@ -1667,4 +1667,5 @@
     - hits__page__hostname
     - hits__promotion__promo_name
     - device__mobile_device_marketing_name
+
 

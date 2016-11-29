@@ -16,7 +16,12 @@
 - explore: ga_sessions_parkers
   label: 'BigQuery - Parkers'
   always_filter:
-    date_filter: 30 days     
+    date_filter: 30 days    
+  joins:
+    - join: ga_sessions_advcompsearch
+      type: inner
+      relationship: one_to_many
+      sql_on: ${ga_sessions_advcompsearch.full_Visitor_Id} = ${ga_sessions_parkers.full_visitor_id}
 
 - explore: ga_sessions_mcn_transactions
   label: 'BigQuery - MCN Transaction (BFS)'

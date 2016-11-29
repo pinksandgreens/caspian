@@ -1483,6 +1483,11 @@
     type: sum
     sql: ${TABLE}.totals.newVisits
     
+  - dimension: is_new_visit
+    label: 'Is New Visit'
+    type: yesno
+    sql: ${TABLE}.totals.newVisits = '1'
+    
     
     
 ################ H E A D E R  B I D D I N G #############

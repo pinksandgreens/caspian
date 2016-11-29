@@ -101,7 +101,7 @@
       sql_on: ${brand_lookup.bra_code} = ${barnaclepages.brand_code}
 
 - explore: barnaclesessions
-  hidden: FALSE
+  hidden: TRUE
   label: 'Barnacle - Sessions'
   sql_table_name: publications.barnaclesessions
   persist_for: 20 hour

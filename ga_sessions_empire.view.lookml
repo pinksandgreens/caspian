@@ -1686,6 +1686,16 @@
     
     
     
+  - measure: Prebid_Timeout_Rate
+    label: 'Prebid - Timeout Rate'
+    description: 'Timeout Rate'
+    type: number
+    value_format: '0.00"%"'
+    sql: ${Prebid_Timeouts}/${Prebid_Requests}
+    
+    
+    
+    
     
   # ----- Sets of fields for drilling ------
   sets:

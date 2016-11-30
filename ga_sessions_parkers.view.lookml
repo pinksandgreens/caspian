@@ -1558,7 +1558,7 @@
     description: 'Average bid loadtime (ms)'
     type: number
     value_format: '0.00'
-    sql: SUM(${BIDTIME_TOTAL_VALUE})/COUNT(${BIDTIME_TOTAL_EVENTS})
+    sql: (SUM(${BIDTIME_TOTAL_VALUE})/COUNT(${BIDTIME_TOTAL_EVENTS}))/10
       
       
       

@@ -1,6 +1,12 @@
 - view: ga_sessions_empire
   sql_table_name: |
-      ( SELECT * FROM {% table_date_range date_filter 21699534.ga_sessions_ %})
+      ( SELECT * FROM {% table_date_range date_filter 21699534.ga_sessions_ %},
+        {% table_date_range date_filter 21699534.ga_sessions_intraday_ %})
+
+
+
+
+# Works: SELECT * FROM TABLE_DATE_RANGE([uplifted-light-89310:21699534.ga_sessions_intraday_],DATE_ADD(CURRENT_TIMESTAMP(), -0, 'YEAR'),CURRENT_TIMESTAMP()))
 
 # - view: ga_sessions
 #   sql_table_name: |

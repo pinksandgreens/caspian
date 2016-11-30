@@ -1500,9 +1500,12 @@
 
   - dimension: Prebid_Bidder
     type: string
-    sql: ${TABLE}.hits.eventInfo.eventLabel
+    sql: |
+      CASE
+        WHEN ${TABLE}.hits.eventInfo.eventLabel IS NOT NULL THEN ${TABLE}.hits.eventInfo.eventLabel
+      END
 
-# 
+
 #   - dimension: Prebid_Action
 #     type: string
 #     description: 'Request/Timeout/Bid/Win etc'

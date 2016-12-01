@@ -1600,9 +1600,9 @@
     sql_distinct_key: ${uu_key2}
     sql: |
       CASE
-        WHEN ${TABLE}.hits.eventInfo.eventAction = 'Bids' THEN ${TABLE}.hits.eventInfo.eventValue/100
+        WHEN ${TABLE}.hits.eventInfo.eventAction = 'Bids' THEN (${TABLE}.hits.eventInfo.eventValue/100)*0.79136
       END
-    value_format: '$0.00'
+    value_format: '"£"0.00'
 
       
       
@@ -1752,14 +1752,14 @@
     description: 'Average winning eCPM'
     type: number
     sql: ((${Prebid_AvgWinRevenue}*100000)/(${Prebid_Wins}))/100
-    value_format: '$0.00'
+    value_format: '"£"0.00'
     
   - measure: Prebid_AvgWinCPM1
     label: 'Prebid - Avg Winning rCPM'
     description: 'Average winning rCPM'
     type: number
     sql: ((${Prebid_AvgWinRevenue}*10000)/(${Prebid_Wins}))/100
-    value_format: '$0.00'
+    value_format: '"£"0.00'
 
 #   - measure: Prebid_AvgWinRevenue
 #     label: 'Prebid - Revenue'
@@ -1779,8 +1779,8 @@
     label: 'Prebid - Revenue'
     description: 'Winning Revenue CPM'
     type: number
-    value_format: '$0.00'
-    sql: (${Prebid_Sum_Win_Value})/100000
+    value_format: '"£"0.00'
+    sql: (((${Prebid_Sum_Win_Value})/100000)*0.79136) #updated 01/12/2016
     
     
     

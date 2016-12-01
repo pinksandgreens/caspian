@@ -1498,15 +1498,9 @@
 # This is basically working out how Google does their backend data manipulation, it's actually quite inefficient but it works.
 
 # CASE DIMENSIONS INSTEAD OF FILTERING THEM:
+      
 
-  - dimension: Prebid_Bidder
-    type: string
-    sql: |
-      CASE
-        WHEN ${TABLE}.hits.eventInfo.eventLabel IS NOT NULL THEN ${TABLE}.hits.eventInfo.eventLabel
-      END
-
-
+# 
 #   - dimension: Prebid_Action
 #     type: string
 #     description: 'Request/Timeout/Bid/Win etc'
@@ -1587,15 +1581,23 @@
   - measure: Prebid_TotalBids
     label: 'Prebid - Total Bids'
     description: 'Total number of bids'
-    type: number
-    sql: COUNT(${BIDS_TOTAL_EVENTS})
+    type: sum_distinct
+    sql_distinct_key: ${uu_key2}
+    sql: |
+      CASE
+        WHEN ${TABLE}.hits.eventInfo.eventAction = 'Bids' THEN 1
+      END
 
   - measure: Prebid_AvgBidCPM
     label: 'Prebid - Avg Bid CPM'
     description: 'Avg Bid CPM'
-    type: number
-    sql: (SUM(${BIDS_TOTAL_VALUE})/COUNT(${BIDS_TOTAL_EVENTS}))/1000000
-    value_format: '$0.000000'
+    type: avg_distinct
+    sql_distinct_key: ${uu_key2}
+    sql: |
+      CASE
+        WHEN ${TABLE}.hits.eventInfo.eventAction = 'Bids' THEN (${TABLE}.hits.eventInfo.eventValue/100)*0.79136
+      END
+    value_format: '"£"0.00'
 
       
       
@@ -1641,20 +1643,18 @@
     
     
     
-    
-  - measure: Prebid_Timeout_Rate
-    label: 'Prebid - Timeout Rate'
-    description: 'Timeout Rate'
-    type: number
-    value_format: '0.00"%"'
-    sql: ${Prebid_Timeouts}/${Prebid_Requests}
-    
-    
-    
-    
-    
-    
-    
+  - dimension: uu_key_2
+    label: 'Unique Key 2'
+    hidden: TRUE
+    sql: CONCAT(string(${TABLE}.fullVisitorId),"-",string(${TABLE}.visitId),"-",string(${TABLE}.hits.type),"-",string(${TABLE}.hits.eventInfo.eventAction))
+
+  - dimension: Prebid_Bidder
+    label: 'Prebid - Bidder'
+    type: string
+    sql: |
+      CASE
+        WHEN ${TABLE}.hits.eventInfo.eventCategory = 'Prebid.js Bids' THEN ${TABLE}.hits.eventInfo.eventLabel
+      END
     
   - measure: WIN_TOTAL_EVENTS
     hidden: TRUE
@@ -1672,26 +1672,125 @@
         WHEN ${TABLE}.hits.eventInfo.eventAction = 'Wins' THEN ${TABLE}.hits.eventInfo.eventValue
       END
       
+#   - measure: Prebid_Wins
+#     label: 'Prebid - Paid Impressions'
+#     description: 'Total number of winning & paid for win'
+#     type: sum
+#     sql: |
+#       CASE
+#         WHEN (${TABLE}.hits.eventInfo.eventAction = 'Wins') THEN 1
+#       END
+      
+
+  - dimension: uu_key2
+    label: 'Unique Key2'
+    hidden: TRUE
+    sql: CONCAT(string(${TABLE}.fullVisitorId),string(${TABLE}.visitId),string(${TABLE}.hits.eventInfo.eventCategory),string(${TABLE}.hits.eventInfo.eventAction),string(${TABLE}.hits.eventInfo.eventLabel),string(${TABLE}.hits.hitNumber))     
+        
   - measure: Prebid_Wins
+    label: 'Prebid - Paid Impressions'
+    description: 'Total number of paid impressions (winning bids)'
+    type: sum_distinct
+    sql_distinct_key: ${uu_key2}
+    sql: |
+      CASE
+        WHEN ${TABLE}.hits.eventInfo.eventAction = 'Wins' THEN 1
+      END
+     
+  - measure: Prebid_Sum_Win_Value
+    hidden: TRUE
     label: 'Prebid - Total Wins'
     description: 'Total number of winning bids'
-    type: count
-    type: number
-    sql: COUNT(${WIN_TOTAL_EVENTS})
+    type: sum_distinct
+    sql_distinct_key: ${uu_key2}
+    sql: |
+      CASE
+        WHEN ${TABLE}.hits.eventInfo.eventAction = 'Wins' THEN ${TABLE}.hits.eventInfo.eventValue
+      END  
       
+  - measure: Prebid_Avg_Win_Value
+    hidden: TRUE
+    label: 'Prebid - Total Wins'
+    description: 'Total number of winning bids'
+    type: number
+    sql: ${Prebid_Wins}/${Prebid_Sum_Win_Value}
+      
+      
+      
+      
+      
+      
+      
+    
+#   - measure: Prebid_Wins
+#     label: 'Prebid - Total Wins'
+#     description: 'Total number of winning bids'
+#     type: sum
+#     sql: ${WIN_TOTAL_EVENTS}
+    
+#   - measure: Prebid_WinCPM
+#     label: 'Prebid - Total Wins'
+#     description: 'Total number of winning bids'
+#     type: sum
+#     type: number
+#     sql: ${WIN_TOTAL_VALUE}/1000
+      
+#   - measure: Prebid_AvgWinCPM
+#     label: 'Prebid - Avg Win CPM'
+#     description: 'Average winning CPM'
+#     type: number
+#     sql: ((SUM(${WIN_TOTAL_VALUE}))/(COUNT(${WIN_TOTAL_EVENTS})))/100
+#     value_format: '$0.000000'
+
   - measure: Prebid_AvgWinCPM
-    label: 'Prebid - Avg Win CPM'
-    description: 'Average winning CPM'
+    label: 'Prebid - Avg Winning eCPM'
+    description: 'Average winning eCPM'
     type: number
-    sql: (SUM(${BIDS_TOTAL_VALUE})/COUNT(${BIDS_TOTAL_EVENTS}))/1000000
-    value_format: '$0.000000'
-      
+    sql: ((${Prebid_AvgWinRevenue}*100000)/(${Prebid_Wins}))/100
+    value_format: '"£"0.00'
+    
+  - measure: Prebid_AvgWinCPM1
+    label: 'Prebid - Avg Winning rCPM'
+    description: 'Average winning rCPM'
+    type: number
+    sql: ((${Prebid_AvgWinRevenue}*10000)/(${Prebid_Wins}))/100
+    value_format: '"£"0.00'
+
+#   - measure: Prebid_AvgWinRevenue
+#     label: 'Prebid - Revenue'
+#     description: 'Winning Revenue CPM'
+#     type: sum
+#     value_format: '$0.00'
+#     sql: ((${Prebid_Wins})*(${Prebid_Sum_Win_Value}/${Prebid_Wins}))/100000
+  
+#   - measure: Prebid_AvgWinRevenue
+#     label: 'Prebid - Revenue'
+#     description: 'Winning Revenue CPM'
+#     type: number
+#     value_format: '$0.00'
+#     sql: (${Prebid_Wins}*${Prebid_Sum_Win_Value})/100000000000
+
   - measure: Prebid_AvgWinRevenue
     label: 'Prebid - Revenue'
     description: 'Winning Revenue CPM'
-    type: sum
-    value_format: '$0.00'
-    sql: ${Prebid_AvgWinCPM}*${Prebid_Wins}
+    type: number
+    value_format: '"£"0.00'
+    sql: (((${Prebid_Sum_Win_Value})/100000)*0.79136) #updated 01/12/2016
+    
+    
+    
+    
+    
+    
+    
+  - measure: Prebid_Timeout_Rate
+    label: 'Prebid - Timeout Rate'
+    description: 'Timeout Rate'
+    type: number
+    value_format: '0.00"%"'
+    sql: ${Prebid_Timeouts}/${Prebid_Requests}
+    
+    
     
     
     
@@ -1715,5 +1814,4 @@
     - hits__page__hostname
     - hits__promotion__promo_name
     - device__mobile_device_marketing_name
-
 

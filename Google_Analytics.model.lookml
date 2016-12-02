@@ -117,6 +117,7 @@
 
 - explore: google_analytics_prebid
   label: 'Google Analytics - Prebid'
+  hidden: TRUE
   sql_table_name: publications.google_analytics_prebid
   persist_for: 20 hour
 

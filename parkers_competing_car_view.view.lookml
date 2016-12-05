@@ -1,7 +1,7 @@
 - view: parkers_competing_car_view
   sql_table_name: |
       ( SELECT
-          COMPETITORCAROUTPUT.CAR,
+          COMPETITORCAROUTPUT.CAR AS CAR,
           COUNT(COMPETITORCAROUTPUT.CAR) AS VIEWS
         FROM
           (SELECT 
@@ -37,7 +37,7 @@
             ) AS FULLBIGQUERYTABLERESULTS
           ON BIGQUERYVISITORRESULTS.VisitorId = FULLBIGQUERYTABLERESULTS.VisitorId
           ) AS COMPETITORCAROUTPUT
-          GROUP BY COMPETITORCAROUTPUT.CAR
+          GROUP BY CAR
           ORDER BY VIEWS DESC)
 
   fields:
@@ -50,8 +50,8 @@
   - dimension: VIEWS
     sql: ${TABLE}.VIEWS
     
-  - dimension: competitorcaroutput_car
-    sql: ${TABLE}.COMPETITORCAROUTPUT_CAR
+  - dimension: CAR
+    sql: ${TABLE}.CAR
     
   sets:
     detail:

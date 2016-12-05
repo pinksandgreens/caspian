@@ -39,5 +39,10 @@
   label: 'BigQuery - The Debrief'
   always_filter:
     date_filter: 30 days
+    
+- explore: parkers_competing_car_view
+  label: 'BigQuery - Parkers Competing Car'
+  always_filter:
+    date_filter: 30 days
 
   

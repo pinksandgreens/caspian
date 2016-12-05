@@ -46,7 +46,7 @@
     type: date
   # TABLE_DATE_RANGE([uplifted-light-89310:114668488.ga_sessions_],DATE_ADD(CURRENT_TIMESTAMP(), -1, 'YEAR'),CURRENT_TIMESTAMP())
   - filter: car_filter 
-    label: 'FILTER Car'
+    label: 'FILTER by Car'
     
   - measure: VIEWS
     type: number
@@ -54,9 +54,5 @@
     
   - dimension: CAR
     sql: ${TABLE}.CAR
-    
-  sets:
-    detail:
-      - CAR
-      - VIEWS
+
 

@@ -47,11 +47,10 @@
   - filter: car_filter 
     label: 'FILTER Car'
     
-  - measure: VIEWS
-    type: count_distinct
+  - dimension: VIEWS
+    sql: ${TABLE}.VIEWS
     
   - dimension: competitorcaroutput_car
-    type: string
     sql: ${TABLE}.COMPETITORCAROUTPUT_CAR
     
   sets:

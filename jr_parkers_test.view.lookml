@@ -1,5 +1,5 @@
 
-- view: jr_parkers_test
+- view: parkers_competing_car_view
   label: 'z: Competitior Search'
   derived_table:
     sql: |

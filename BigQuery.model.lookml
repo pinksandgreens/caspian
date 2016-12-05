@@ -3,6 +3,8 @@
 - include: "*.view.lookml"       # include all views in this project
 - include: "*.dashboard.lookml"  # include all dashboards in this project
 
+- label: 'BigQuery - Brands'
+
 - explore: ga_sessions
   label: 'BigQuery - Lifestyle'
   always_filter:

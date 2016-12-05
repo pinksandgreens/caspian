@@ -1,7 +1,9 @@
-- view: ga_sessions #lifestyle
+- view: ga_sessions_header_bidding
   sql_table_name: |
       ( SELECT * FROM {% table_date_range date_filter 114668488.ga_sessions_ %},
-        {% table_date_range date_filter 114668488.ga_sessions_intraday_ %})
+        {% table_date_range date_filter 114668488.ga_sessions_intraday_ %},
+        {% table_date_range date_filter 21699534.ga_sessions_ %},
+        {% table_date_range date_filter 21699534.ga_sessions_intraday_ %})
 
   fields:
   - filter: date_filter

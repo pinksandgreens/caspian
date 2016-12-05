@@ -54,6 +54,6 @@
     
   - dimension: CAR
     primary_key: true
-    sql: ${TABLE}.CAR
+    sql: ${TABLE}.COMPETITORCAROUTPUT_CAR
 
 

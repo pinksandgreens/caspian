@@ -50,7 +50,7 @@
     
   - measure: VIEWS
     type: count_distinct
-    sql: ${TABLE}.COMPETITORCAROUTPUT.CAR
+    sql: ${TABLE}.COMPETITORCAROUTPUT_CAR
     
   - dimension: CAR
     primary_key: true

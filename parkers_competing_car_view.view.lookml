@@ -1,7 +1,7 @@
 - view: parkers_competing_car_view
   sql_table_name: |
       ( SELECT
-          COMPETITORCAROUTPUT.CAR,
+          COMPETITORCAROUTPUT.CAR AS CAR,
           COUNT(COMPETITORCAROUTPUT.CAR) AS VIEWS
         FROM
           (SELECT 
@@ -38,7 +38,8 @@
           ON BIGQUERYVISITORRESULTS.VisitorId = FULLBIGQUERYTABLERESULTS.VisitorId
           ) AS COMPETITORCAROUTPUT
           GROUP BY COMPETITORCAROUTPUT.CAR
-          ORDER BY VIEWS DESC)
+          ORDER BY VIEWS DESC
+          LIMIT 50)
 
   fields:
   - filter: date_filter
@@ -48,10 +49,11 @@
     label: 'FILTER by Car'
     
   - measure: VIEWS
-    type: number
-    sql: ${TABLE}.VIEWS
+    type: count_distinct
+    sql: ${TABLE}.COMPETITORCAROUTPUT.CAR
     
   - dimension: CAR
+    primary_key: true
     sql: ${TABLE}.COMPETITORCAROUTPUT_CAR
 
 

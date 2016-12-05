@@ -24,7 +24,7 @@
       type: inner
       relationship: one_to_many
       sql_on: ${ga_sessions_advcompsearch.full_Visitor_Id} = ${ga_sessions_parkers.full_visitor_id}
-    
+
 - explore: ga_sessions_mcn_transactions
   label: 'BigQuery - MCN Transaction (BFS)'
   always_filter:
@@ -39,10 +39,9 @@
   label: 'BigQuery - The Debrief'
   always_filter:
     date_filter: 30 days
-    
+
 - explore: parkers_competing_car_view
-  label: 'BigQuery - Parkers Competing Car'
+  label: 'BigQuery - Parkers - Find Competing Cars'
   always_filter:
     date_filter: 30 days
-
   

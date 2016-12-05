@@ -8,7 +8,7 @@
           REGEXP_EXTRACT(FULLBIGQUERYTABLERESULTS.pagePath, r'^.*\/(abarth|alfa-romeo|aston\-martin|audi|bentley|bmw|bugatti|caterham|citroën|dacia|ds|ferrari|fiat|ford|honda|hyundai|infiniti|jaguar|jeep|kia|lamborghini|land-rover|lexus|lotus|maserati|mazda|mclaren|mercedes\-benz|mg|mg-motor-uk|mini|mitsubishi|nissan|peugeot|porsche|renault|rolls\-royce|seat|skoda|smart|ssangyong|subaru|suzuki|tesla|toyota|vauxhall|volkswagen|volvo)\/(?:.+?)\/(?:.*)?') + ' ' + REGEXP_EXTRACT(FULLBIGQUERYTABLERESULTS.pagePath, r'^.*\/(?:abarth|alfa-romeo|aston\-martin|audi|bentley|bmw|bugatti|caterham|citroën|dacia|ds|ferrari|fiat|ford|honda|hyundai|infiniti|jaguar|jeep|kia|lamborghini|land-rover|lexus|lotus|maserati|mazda|mclaren|mercedes\-benz|mg|mg-motor-uk|mini|mitsubishi|nissan|peugeot|porsche|renault|rolls\-royce|seat|skoda|smart|ssangyong|subaru|suzuki|tesla|toyota|vauxhall|volkswagen|volvo)\/(.+?)\/(?:.*)?') AS CAR
         FROM
           (SELECT
-            fullVisitorId AS VisitorId, //BIGQUERYVISITORRESULTS.VisitorId
+            fullVisitorId AS VisitorId, 
           FROM
             FLATTEN(
               (SELECT
@@ -24,8 +24,8 @@
         JOIN
   
           (SELECT
-            fullVisitorId AS VisitorId, //FULLBIGQUERYTABLERESULTS.VisitorId
-            hits.page.pagePath AS pagePath //FULLBIGQUERYTABLERESULTS.pagePath
+            fullVisitorId AS VisitorId, 
+            hits.page.pagePath AS pagePath 
           FROM
             FLATTEN(
               (SELECT

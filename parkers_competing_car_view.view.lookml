@@ -2,7 +2,7 @@
   sql_table_name: |
       ( SELECT
           COMPETITORCAROUTPUT.CAR,
-          COUNT(COMPETITORCAROUTPUT.CAR) AS VIEWS
+          
         FROM
           (SELECT 
             REGEXP_EXTRACT(FULLBIGQUERYTABLERESULTS.pagePath, r'^.*\/(abarth|alfa-romeo|aston\-martin|audi|bentley|bmw|bugatti|caterham|citroën|dacia|ds|ferrari|fiat|ford|honda|hyundai|infiniti|jaguar|jeep|kia|lamborghini|land-rover|lexus|lotus|maserati|mazda|mclaren|mercedes\-benz|mg|mg-motor-uk|mini|mitsubishi|nissan|peugeot|porsche|renault|rolls\-royce|seat|skoda|smart|ssangyong|subaru|suzuki|tesla|toyota|vauxhall|volkswagen|volvo)\/(?:.+?)\/(?:.*)?') + ' ' + REGEXP_EXTRACT(FULLBIGQUERYTABLERESULTS.pagePath, r'^.*\/(?:abarth|alfa-romeo|aston\-martin|audi|bentley|bmw|bugatti|caterham|citroën|dacia|ds|ferrari|fiat|ford|honda|hyundai|infiniti|jaguar|jeep|kia|lamborghini|land-rover|lexus|lotus|maserati|mazda|mclaren|mercedes\-benz|mg|mg-motor-uk|mini|mitsubishi|nissan|peugeot|porsche|renault|rolls\-royce|seat|skoda|smart|ssangyong|subaru|suzuki|tesla|toyota|vauxhall|volkswagen|volvo)\/(.+?)\/(?:.*)?') AS CAR
@@ -49,10 +49,11 @@
     label: 'FILTER by Car'
     
   - measure: VIEWS
-    type: number
-    sql: ${TABLE}.VIEWS
+    type: count_distinct
+    sql: ${TABLE}.COMPETITORCAROUTPUT.CAR
     
   - dimension: CAR
+    primary_key: true
     sql: ${TABLE}.COMPETITORCAROUTPUT.CAR
 
 

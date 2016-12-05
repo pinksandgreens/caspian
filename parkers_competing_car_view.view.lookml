@@ -52,6 +52,6 @@
     sql: ${TABLE}.VIEWS
     
   - dimension: CAR
-    sql: ${TABLE}.CAR
+    sql: ${TABLE}.COMPETITORCAROUTPUT_CAR
 
 

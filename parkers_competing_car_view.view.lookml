@@ -1,7 +1,7 @@
 - view: parkers_competing_car_view
   sql_table_name: |
       ( SELECT
-          COMPETITORCAROUTPUT.CAR AS CAR,
+          COMPETITORCAROUTPUT.CAR,
           COUNT(COMPETITORCAROUTPUT.CAR) AS VIEWS
         FROM
           (SELECT 

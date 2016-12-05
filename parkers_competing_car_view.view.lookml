@@ -40,7 +40,7 @@
         ON BIGQUERYVISITORRESULTS.VisitorId = FULLBIGQUERYTABLERESULTS.VisitorId
         ) AS COMPETITORCAROUTPUT
       GROUP BY COMPETITORCAROUTPUT.CAR
-      ORDER BY VIEWS DESC)
+      ORDER BY VIEWS DESC) AS parkers_competing_car_view
 
   fields:
   - filter: date_filter

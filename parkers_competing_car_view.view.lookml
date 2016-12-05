@@ -55,6 +55,6 @@
     
   sets:
     detail:
-      - COMPETITORCAROUTPUT_CAR
+      - CAR
       - VIEWS
 

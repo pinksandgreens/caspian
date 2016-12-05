@@ -49,6 +49,7 @@
     label: 'FILTER Car'
     
   - measure: VIEWS
+    type: number
     sql: ${TABLE}.VIEWS
     
   - dimension: CAR

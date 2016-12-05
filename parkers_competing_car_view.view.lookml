@@ -49,8 +49,8 @@
     label: 'FILTER by Car'
     
   - measure: VIEWS
-    type: count_distinct
-    sql: ${TABLE}.CAR
+    type: number
+    sql: ${TABLE}.VIEWS
     
   - dimension: CAR
     primary_key: true

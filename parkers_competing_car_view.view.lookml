@@ -1,6 +1,6 @@
 - view: parkers_competing_car_view
   sql_table_name: |
-      (SELECT
+      SELECT
         COMPETITORCAROUTPUT.CAR,
         COUNT(COMPETITORCAROUTPUT.CAR) AS VIEWS
       FROM
@@ -40,7 +40,7 @@
         ON BIGQUERYVISITORRESULTS.VisitorId = FULLBIGQUERYTABLERESULTS.VisitorId
         ) AS COMPETITORCAROUTPUT
       GROUP BY COMPETITORCAROUTPUT.CAR
-      ORDER BY VIEWS DESC) AS parkers_competing_car_view
+      ORDER BY VIEWS DESC
 
   fields:
   - filter: date_filter

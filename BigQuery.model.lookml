@@ -21,6 +21,7 @@
     date_filter: 30 days    
   joins:
     - join: ga_sessions_advcompsearch
+      view_label: 'JR_TEST'
       type: inner
       relationship: one_to_many
       sql_on: ${ga_sessions_advcompsearch.full_Visitor_Id} = ${ga_sessions_parkers.full_visitor_id}

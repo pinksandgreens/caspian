@@ -5,7 +5,7 @@
 
 - label: 'BigQuery - Brands'
 
-- explore: ga_sessions
+- explore: ga_sessions # the view to start exploring from
   label: 'BigQuery - Lifestyle'
   always_filter:
     date_filter: 30 days #This will be the default date range.

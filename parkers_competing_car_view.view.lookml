@@ -47,7 +47,7 @@
   - filter: car_filter 
     label: 'FILTER Car'
     
-  - measure: count
+  - measure: VIEWS
     type: count_distinct
     
   - dimension: competitorcaroutput_car

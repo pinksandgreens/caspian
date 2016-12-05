@@ -1455,9 +1455,7 @@
     type: yesno
     sql: ${TABLE}.totals.newVisits = 1
     
-    
-    
-    
+  
     
 ################ H E A D E R  B I D D I N G #############
 
@@ -1757,6 +1755,64 @@
     type: number
     value_format: '0.00"%"'
     sql: ${Prebid_Timeouts}/${Prebid_Requests}
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+################ CUSTOM DIMENSIONS WRANGLING ##############    
+#     
+#   - dimension: Author
+#     label: 'Custom Dimensions - Author Name'
+#     type: string
+#     sql: |
+#       CASE
+#         WHEN string(${TABLE}.hits.customDimensions.index) = '1' THEN ${TABLE}.hits.customDimensions.value
+#       END  
+#       
+#   - dimension: Published_Date
+#     label: 'Custom Dimensions - Author Name'
+#     hidden: TRUE
+#     type: string
+#     sql: |
+#       CASE
+#         WHEN string(${TABLE}.hits.customDimensions.index) = '2' THEN ${TABLE}.hits.customDimensions.value
+#       END  
+#     
+#   - dimension: article_published
+#     label: 'Custom Dimensions - Author Name'
+#     type: time
+#     timeframes: [date, week, month, month_num]
+#     sql: ${Published_Date}
+#     
+#   - dimension: Author_Published_Date
+#     label: 'Custom Dimensions - Author & Published Date'
+#     type: string
+#     sql: CONCAT(string(${Author}),string(${Published_Date}))
+#     
+#     #string(${hits__page__page_path})
+#     
+#   - measure: No_articles
+#     label: 'Number of Articles Published'
+#     type: count_distinct
+#     sql: ${Author_Published_Date}
+     
+  
+    
     
     
     

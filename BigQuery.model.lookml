@@ -15,6 +15,13 @@
       relationship: one_to_many
       sql_on: ${ga_sessions_lifestyle_crossover.full_Visitor_Id} = ${ga_sessions.full_visitor_id}
 
+# Hidden until we get a data layer change      
+#     - join: ga_sessions_lifestyle_articles
+#       type: inner
+#       relationship: one_to_many
+#       sql_on: ${ga_sessions_lifestyle_articles.Unique_ID} = ${ga_sessions.full_visitor_id}
+      
+
 - explore: ga_sessions_parkers
   label: 'BigQuery - Parkers'
   always_filter:

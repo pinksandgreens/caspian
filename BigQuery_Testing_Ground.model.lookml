@@ -9,5 +9,3 @@
   label: 'BigQuery - Header Bidding Platform'
   always_filter:
     date_filter: 30 days #This will be the default date range.
-
-  

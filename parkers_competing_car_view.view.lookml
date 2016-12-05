@@ -38,7 +38,8 @@
           ON BIGQUERYVISITORRESULTS.VisitorId = FULLBIGQUERYTABLERESULTS.VisitorId
           ) AS COMPETITORCAROUTPUT
           GROUP BY CAR
-          ORDER BY VIEWS DESC)
+          ORDER BY VIEWS DESC
+          LIMIT 500)
 
   fields:
   - filter: date_filter

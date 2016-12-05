@@ -17,7 +17,7 @@
                 (SELECT * FROM {% table_date_range date_filter 24089672.ga_sessions_ %},{% table_date_range date_filter 114668488.ga_sessions_intraday_ %})
               )
             , hits)
-          WHERE hits.page.pagePath LIKE '%ford/fiesta%' AND geoNetwork.country = 'United Kingdom' AND hits.type = 'PAGE'
+          WHERE hits.page.pagePath LIKE {% condition car_filter %}{% endcondition %} AND geoNetwork.country = 'United Kingdom' AND hits.type = 'PAGE'
           GROUP BY VisitorId
           ) AS BIGQUERYVISITORRESULTS
     
@@ -46,7 +46,7 @@
   - filter: date_filter
     type: date
   # TABLE_DATE_RANGE([uplifted-light-89310:114668488.ga_sessions_],DATE_ADD(CURRENT_TIMESTAMP(), -1, 'YEAR'),CURRENT_TIMESTAMP())
-  - filter: car_filter
+  - filter: car_filter 
     type: string
   
   

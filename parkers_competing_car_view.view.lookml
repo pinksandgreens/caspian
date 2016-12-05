@@ -46,12 +46,10 @@
   # TABLE_DATE_RANGE([uplifted-light-89310:114668488.ga_sessions_],DATE_ADD(CURRENT_TIMESTAMP(), -1, 'YEAR'),CURRENT_TIMESTAMP())
   - filter: car_filter 
     label: 'FILTER Car'
-    suggest_dimension: competitorcaroutput_car
-  
+    
   - measure: count
     type: count_distinct
-    drill_fields: detail*
-
+    
   - dimension: competitorcaroutput_car
     type: string
     sql: ${TABLE}.COMPETITORCAROUTPUT_CAR

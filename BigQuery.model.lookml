@@ -38,6 +38,7 @@
       sql_on: ${ga_sessions_parkers_brandsearch.full_Visitor_Id} = ${ga_sessions_parkers.full_visitor_id}
       
 - explore: ga_sessions_mcn_transactions
+  hidden: TRUE
   label: 'BigQuery - MCN Transaction (BFS)'
   always_filter:
     date_filter: 30 days #This will be the default date range.  
@@ -53,11 +54,13 @@
     date_filter: 30 days
 
 - explore: parkers_competing_car_view
+  hidden: TRUE
   label: 'BigQuery - Parkers - Find Competing Cars'
   always_filter:
     date_filter: 30 days
     
 - explore: mcn_competing_bike_view
+  hidden: TRUE
   label: 'BigQuery - MCN - Find Competing Bikes'
   always_filter:
     date_filter: 30 days

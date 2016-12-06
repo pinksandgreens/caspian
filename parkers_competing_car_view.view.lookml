@@ -48,8 +48,8 @@
   - filter: car_filter 
     label: 'FILTER by Car'
     
-  - dimension: VIEWS
-    type: number
+  - measure: VIEWS
+    type: sum
     sql: ${TABLE}.VIEWS
     
   - dimension: CAR

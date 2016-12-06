@@ -67,7 +67,7 @@
     
 - explore: ccfs_competing_car_views
 #   hidden: TRUE
-  label: 'BigQuery - CCFS - Find Competing Bikes'
+  label: 'BigQuery - CCFS - Find Competing Classic Cars'
   always_filter:
     date_filter: 30 days
 

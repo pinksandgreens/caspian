@@ -1373,6 +1373,13 @@
 
 ######### 
 
+#   - dimension: Page_Path_Full
+#     description: 'Full user page path'
+#     type: string
+#     sql: |
+#       group_concat(UNIQUE(${TABLE}.hits.page.pagePath))
+#       GROUP BY ${TABLE}.fullVisitorId
+
   - dimension: is_engaged
     description: 'Based on having > 3 sessions'
     type: string

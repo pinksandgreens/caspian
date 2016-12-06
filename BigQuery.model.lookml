@@ -32,6 +32,11 @@
       relationship: one_to_many
       sql_on: ${ga_sessions_advcompsearch.full_Visitor_Id} = ${ga_sessions_parkers.full_visitor_id}
 
+    - join: ga_sessions_parkers_brandsearch
+      type: inner
+      relationship: one_to_many
+      sql_on: ${ga_sessions_parkers_brandsearch.full_Visitor_Id} = ${ga_sessions_parkers.full_visitor_id}
+      
 - explore: ga_sessions_mcn_transactions
   label: 'BigQuery - MCN Transaction (BFS)'
   always_filter:

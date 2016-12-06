@@ -15,3 +15,9 @@
     type: string_filter
     explore: mcn_competing_bike_view
     field: mcn_competing_bike_view.BIKE
+
+  - name: DATE_FILTER
+    title: 'Choose Focus Bike'
+    type: date_filter
+    explore: mcn_competing_bike_view
+    field: mcn_competing_bike_view.date_filter

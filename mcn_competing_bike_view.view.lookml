@@ -48,8 +48,8 @@
   - filter: bike_filter 
     label: 'FILTER by BIKE'
     
-  - dimension: VIEWS
-    type: number
+  - measure: VIEWS
+    type: sum
     sql: ${TABLE}.VIEWS
     
   - dimension: BIKE

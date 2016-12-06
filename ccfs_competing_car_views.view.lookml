@@ -1,4 +1,4 @@
-- view: ccfs_competing
+- view: ccfs_competing_car_views
   sql_table_name: |
       ( SELECT
           COMPETITORCAROUTPUT.CAR,

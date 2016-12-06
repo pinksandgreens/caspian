@@ -56,4 +56,10 @@
   label: 'BigQuery - Parkers - Find Competing Cars'
   always_filter:
     date_filter: 30 days
+    
+- explore: mcn_competing_bike_view
+  label: 'BigQuery - MCN - Find Competing Bikes'
+  always_filter:
+    date_filter: 30 days
+    
   

@@ -17,7 +17,7 @@
                   (SELECT * FROM {% table_date_range date_filter 53155378.ga_sessions_ %},{% table_date_range date_filter 53155378.ga_sessions_intraday_ %})
                 )
               , hits)
-            WHERE {% condition bike_filter %} hits.page.pagePath {% endcondition %} AND geoNetwork.country = 'United Kingdom' AND hits.type = 'PAGE'
+            WHERE {% condition car_filter %} hits.page.pagePath {% endcondition %} AND geoNetwork.country = 'United Kingdom' AND hits.type = 'PAGE'
             GROUP BY VisitorId
             ) AS BIGQUERYVISITORRESULTS
             JOIN
@@ -45,8 +45,8 @@
   - filter: date_filter
     type: date
   # TABLE_DATE_RANGE([uplifted-light-89310:114668488.ga_sessions_],DATE_ADD(CURRENT_TIMESTAMP(), -1, 'YEAR'),CURRENT_TIMESTAMP())
-  - filter: bike_filter 
-    label: 'FILTER by BIKE'
+  - filter: car_filter 
+    label: 'FILTER by CAR'
     
   - measure: VIEWS
     type: sum

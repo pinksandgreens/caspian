@@ -75,16 +75,24 @@
      END
     
     
+#   - measure: optin_count
+#     label: 'Optin Count'
+#     type: number
+#     sql: |
+#       CASE
+#         WHEN sum(${optin_count1}) >0 THEN sum(${optin_count1})
+#         ELSE 0
+#       END
+      
   - measure: optin_count
     label: 'Optin Count'
-    type: number
+    type: sum_distinct
+    sql_distinct_key: ${email_address}
     sql: |
       CASE
-        WHEN sum(${optin_count1}) >0 THEN sum(${optin_count1})
+        WHEN ${optin_count1}::smallint >0 THEN ${optin_count1}::smallint
         ELSE 0
-      END
-      
-    
+      END    
 
 
 
@@ -101,17 +109,25 @@
      END
     
     
+#   - measure: unsub_count
+#     label: 'Unsubscribe Count'
+#     type: number
+#     sql: |
+#       CASE
+#         WHEN sum(${unsub_count1}) >0 THEN sum(${unsub_count1})
+#         ELSE 0
+#       END
+    
+    
   - measure: unsub_count
-    label: 'Unsubscribe Count'
-    type: number
+    label: 'Unsubscribe Count - DISTINCT'
+    type: sum_distinct
+    sql_distinct_key: ${email_address}
     sql: |
       CASE
-        WHEN sum(${unsub_count1}) >0 THEN sum(${unsub_count1})
+        WHEN ${unsub_count1}::smallint >0 THEN ${unsub_count1}::smallint
         ELSE 0
       END
-    
-    
-    
     
     
     

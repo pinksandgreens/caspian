@@ -1,11 +1,11 @@
-- view: mcn_competing_bike_view
+- view: mother_baby_competing_products_view
   sql_table_name: |
       ( SELECT
-          COMPETITORBIKEOUTPUT.BIKE,
-          COUNT(COMPETITORBIKEOUTPUT.BIKE) AS VIEWS
+          COMPETING.PRODUCT,
+          COUNT(COMPETING.PRODUCT) AS VIEWS
         FROM
           (SELECT 
-            REGEXP_EXTRACT(FULLBIGQUERYTABLERESULTS.pagePath, r'^.*\/(ajp|ajs|aprilia|baotian|benelli|beta|bimota|bmw|bourget|bridgestone|bsa|buell|bullit|cagiva|can\-am|ccm|cpi|daelim|derbi|ducati|ebr|enfield|francis\-barnett|gas\-gas|gilera|hanway|harley\-davidson|herald|honda|honley|husaberg|husqvarna|hyosung|indian|jianshe|kawasaki|keeway|ktm|kymco|lambretta|laverda|lexmoto|lifan|lml|mash|montesa|morini|moto\-guzzi|moto\-roma|mv\-agusta|mz|new\-imperial|nippi|nipponia|norton|peugeot|piaggio|pulse|rickman|rieju|sachs|scorpa|sfm|sherco|sinnis|skyteam|stomp|superbyke|suzuki|swm|sym|tgb|triumph|ural|victory|vincent|vulcan|wk\-bikes|yamaha|zero|zongshen|zontes)\/(?:.+)\/(?:.+)?') + ' ' + REGEXP_EXTRACT(FULLBIGQUERYTABLERESULTS.pagePath, r'^.*\/(?:ajp|ajs|aprilia|baotian|benelli|beta|bimota|bmw|bourget|bridgestone|bsa|buell|bullit|cagiva|can\-am|ccm|cpi|daelim|derbi|ducati|ebr|enfield|francis\-barnett|gas\-gas|gilera|hanway|harley\-davidson|herald|honda|honley|husaberg|husqvarna|hyosung|indian|jianshe|kawasaki|keeway|ktm|kymco|lambretta|laverda|lexmoto|lifan|lml|mash|montesa|morini|moto\-guzzi|moto\-roma|mv\-agusta|mz|new\-imperial|nippi|nipponia|norton|peugeot|piaggio|pulse|rickman|rieju|sachs|scorpa|sfm|sherco|sinnis|skyteam|stomp|superbyke|suzuki|swm|sym|tgb|triumph|ural|victory|vincent|vulcan|wk\-bikes|yamaha|zero|zongshen|zontes)\/(.+)\/(?:.+)?') AS BIKE
+            REGEXP_EXTRACT(FULLBIGQUERYTABLERESULTS.pagePath, r'^.*\/(ajp|ajs|aprilia|baotian|benelli|beta|bimota|bmw|bourget|bridgestone|bsa|buell|bullit|cagiva|can\-am|ccm|cpi|daelim|derbi|ducati|ebr|enfield|francis\-barnett|gas\-gas|gilera|hanway|harley\-davidson|herald|honda|honley|husaberg|husqvarna|hyosung|indian|jianshe|kawasaki|keeway|ktm|kymco|lambretta|laverda|lexmoto|lifan|lml|mash|montesa|morini|moto\-guzzi|moto\-roma|mv\-agusta|mz|new\-imperial|nippi|nipponia|norton|peugeot|piaggio|pulse|rickman|rieju|sachs|scorpa|sfm|sherco|sinnis|skyteam|stomp|superbyke|suzuki|swm|sym|tgb|triumph|ural|victory|vincent|vulcan|wk\-bikes|yamaha|zero|zongshen|zontes)\/(?:.+?)\/(?:.*)?') + ' ' + REGEXP_EXTRACT(FULLBIGQUERYTABLERESULTS.pagePath, r'^.*\/(?:ajp|ajs|aprilia|baotian|benelli|beta|bimota|bmw|bourget|bridgestone|bsa|buell|bullit|cagiva|can\-am|ccm|cpi|daelim|derbi|ducati|ebr|enfield|francis\-barnett|gas\-gas|gilera|hanway|harley\-davidson|herald|honda|honley|husaberg|husqvarna|hyosung|indian|jianshe|kawasaki|keeway|ktm|kymco|lambretta|laverda|lexmoto|lifan|lml|mash|montesa|morini|moto\-guzzi|moto\-roma|mv\-agusta|mz|new\-imperial|nippi|nipponia|norton|peugeot|piaggio|pulse|rickman|rieju|sachs|scorpa|sfm|sherco|sinnis|skyteam|stomp|superbyke|suzuki|swm|sym|tgb|triumph|ural|victory|vincent|vulcan|wk\-bikes|yamaha|zero|zongshen|zontes)\/(.+?)\/(?:.*)?') AS PRODUCT
           FROM
             (SELECT
               fullVisitorId AS VisitorId, 
@@ -37,7 +37,7 @@
             ) AS FULLBIGQUERYTABLERESULTS
           ON BIGQUERYVISITORRESULTS.VisitorId = FULLBIGQUERYTABLERESULTS.VisitorId
           ) AS COMPETITORBIKEOUTPUT
-          GROUP BY COMPETITORBIKEOUTPUT.BIKE
+          GROUP BY COMPETING.PRODUCT
           ORDER BY VIEWS DESC
           LIMIT 50)
 
@@ -54,6 +54,6 @@
     
   - dimension: BIKE
     primary_key: true
-    sql: ${TABLE}.COMPETITORBIKEOUTPUT.BIKE
+    sql: ${TABLE}.COMPETING.PRODUCT
 
 

@@ -1,4 +1,4 @@
-- view: ga_sessions_advcompsearch
+- view: ga_sessions_mcn_advcompsearch
   label: 'x: User Journey'
   derived_table:
     sql: |
@@ -6,7 +6,7 @@
         fullVisitorId AS ga_sessions_full_visitor_id,
         group_concat(UNIQUE(hits.page.pagePath)) AS hits__page__page_path_level1
       FROM
-        ( SELECT * FROM {% table_date_range ga_sessions_parkers.date_filter 24089672.ga_sessions_ %})
+        ( SELECT * FROM {% table_date_range ga_sessions_mcn.date_filter 22661559.ga_sessions_ %})
       GROUP BY 1
       ORDER BY 1 
 
@@ -28,7 +28,7 @@
     sql: ${TABLE}.ga_sessions_full_visitor_id
     
   - dimension: Brands_Visited
-    label: 'Cars Visited'
+    label: 'Bikes Visited'
     description: 'In order to cars by users, filter this field and do "contains" and a make & model, for example "ford/focus/". Then include make & model fields from x: Make and Model Search' 
     type: string
     sql: ${TABLE}.hits__page__page_path_level1

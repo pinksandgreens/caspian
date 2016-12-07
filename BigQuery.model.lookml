@@ -75,5 +75,15 @@
   label: 'BigQuery - MCN'
   always_filter:
     date_filter: 30 days 
+  joins:
+    - join: ga_sessions_mcn_advcompsearch
+      type: inner
+      relationship: one_to_many
+      sql_on: ${ga_sessions_mcn_advcompsearch.full_Visitor_Id} = ${ga_sessions_mcn.full_visitor_id}
+
+    - join: ga_sessions_mcn_brandsearch
+      type: inner
+      relationship: one_to_many
+      sql_on: ${ga_sessions_mcn_brandsearch.full_Visitor_Id} = ${ga_sessions_mcn.full_visitor_id}
     
   

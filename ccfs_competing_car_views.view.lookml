@@ -1,7 +1,7 @@
 - view: ccfs_competing_car_views
   sql_table_name: |
       ( SELECT
-          COMPETITORCAROUTPUT.CAR,
+          REPLACE(COMPETITORCAROUTPUT.CAR,'+',' ') AS COMPETITORCAROUTPUT.CAR,
           COUNT(COMPETITORCAROUTPUT.CAR) AS VIEWS
         FROM
           (SELECT 

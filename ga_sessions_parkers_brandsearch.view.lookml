@@ -31,6 +31,20 @@
     label: 'Make & Model'
     type: string
     sql: ${TABLE}.CAR
+    
+  - dimension: Pages_Count1
+    label: 'Pageview Count'
+    hidden: TRUE
+    type: string
+    sql: |
+      CASE
+        WHEN ${TABLE}.CAR IS NOT NULL THEN 1
+      END
+      
+  - measure: Pages_Count
+    label: 'Pageview Count'
+    type: sum
+    sql: ${Pages_Count1}
  
   - dimension: Make
     type: string

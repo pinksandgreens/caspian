@@ -122,7 +122,7 @@
   - measure: unsub_count
     label: 'Unsubscribe Count - DISTINCT'
     type: sum_distinct
-    sql_distinct_key: ${email_address}
+    sql_distinct_key: ${email_address} || ${brandcode}
     sql: |
       CASE
         WHEN ${unsub_count1}::smallint >0 THEN ${unsub_count1}::smallint

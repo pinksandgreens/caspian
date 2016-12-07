@@ -66,7 +66,7 @@
     date_filter: 30 days
     
 - explore: ccfs_competing_car_views
-#   hidden: TRUE
+  hidden: TRUE
   label: 'BigQuery - CCFS - Find Competing Classic Cars'
   always_filter:
     date_filter: 30 days
@@ -86,4 +86,12 @@
       relationship: one_to_many
       sql_on: ${ga_sessions_mcn_brandsearch.full_Visitor_Id} = ${ga_sessions_mcn.full_visitor_id}
     
-  
+- explore: ga_sessions_motherandbaby
+  label: 'BigQuery - Mother & Baby'
+  always_filter:
+    date_filter: 30 days
+    
+- explore: ga_sessions_todaygolfer
+  label: 'BigQuery - Today''s Golfer'
+  always_filter:
+    date_filter: 30 days

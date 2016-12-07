@@ -60,3 +60,38 @@
     filters:
       optin: '1'
 
+  - dimension: unsub_count1
+    hidden: TRUE
+    label: 'Unsubscribe Count'
+    type: string
+    sql: |
+      CASE
+        WHEN ${TABLE}.unsub_date IS NOT NULL THEN 1
+      END
+      
+  - measure: unsub_count
+    label: 'Unsubscribe Count'
+    type: sum
+    sql: ${unsub_count1}
+    
+  - dimension: optin_count1
+    hidden: TRUE
+    label: 'Optin Count'
+    type: string
+    sql: |
+      CASE
+        WHEN ${TABLE}.optin_date IS NOT NULL THEN 1
+      END
+      
+  - measure: optin_count
+    label: 'Optin Count'
+    type: sum
+    sql: ${optin_count1}
+    
+    
+    
+    
+    
+    
+    
+    

@@ -79,7 +79,7 @@
 
   - dimension: optin_count1
     label: 'Optins sddsaasddsa'
-    hidden: FALSE
+    hidden: TRUE
     type: string
     sql: |
      CASE
@@ -116,7 +116,7 @@
     
   - dimension: unsub_count1
     label: 'Unsubs sddsaasddsa'
-    hidden: FALSE
+    hidden: TRUE
     type: string
     sql: |
      CASE

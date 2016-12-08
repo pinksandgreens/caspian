@@ -31,6 +31,18 @@
     convert_tz: false
     sql: TO_DATE(${TABLE}.modified_date,'YYYY-MM-DD')
 
+  - dimension: optin_date3223
+    hidden: TRUE
+    label: 'OPTINSDNSDL'
+    type: string
+    sql: ${TABLE}.optin_date
+    
+  - dimension: optin_date23233
+    hidden: TRUE
+    label: 'UNSUBSDHSDS'
+    type: string
+    sql: ${TABLE}.unsub_date
+
   - dimension: optin
     type: string
     sql: |
@@ -52,6 +64,7 @@
     timeframes: [day_of_week, date, week, month]    
     convert_tz: false
     sql: TO_DATE(${TABLE}.unsub_date,'YYYY-MM-DD')
+
 
   - measure: brand_optins
     label: 'Commercial/Marketing Optins'
@@ -122,12 +135,13 @@
   - measure: unsub_count
     label: 'Unsubscribe Count - DISTINCT'
     type: sum_distinct
-    sql_distinct_key: ${email_address} || ${brandcode}
+    sql_distinct_key: ${email_address} || ${brandcode} || ${optin}
     sql: |
       CASE
         WHEN ${unsub_count1}::smallint >0 THEN ${unsub_count1}::smallint
         ELSE 0
       END
+
     
     
     

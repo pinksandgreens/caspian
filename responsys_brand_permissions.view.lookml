@@ -85,8 +85,10 @@
      CASE
       WHEN ${TABLE}.optin_date IS NULL THEN '0'
       WHEN ${TABLE}.optin_date = ' ' THEN '0'
-      ELSE '1'
+      WHEN ((${TABLE}.optin_date IS NOT NULL) AND (${optin} = 1)) THEN '1'
      END
+     
+  
     
     
 #   - measure: optin_count
@@ -122,7 +124,7 @@
      CASE
       WHEN ${TABLE}.unsub_date IS NULL THEN '0'
       WHEN ${TABLE}.unsub_date = ' ' THEN '0'
-      ELSE '1'
+      WHEN ((${TABLE}.unsub_date IS NOT NULL) AND (${optin} = 0)) THEN '1'
      END
     
     

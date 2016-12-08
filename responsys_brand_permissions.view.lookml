@@ -78,12 +78,13 @@
 
 
   - dimension: optin_count1
-    label: 'Unsubs sddsaasddsa'
-    hidden: TRUE
+    label: 'Optins sddsaasddsa'
+    hidden: FALSE
     type: string
     sql: |
      CASE
       WHEN ${TABLE}.optin_date IS NULL THEN '0'
+      WHEN ${TABLE}.optin_date = ' ' THEN '0'
       ELSE '1'
      END
     
@@ -100,7 +101,7 @@
   - measure: optin_count
     label: 'Optin Count'
     type: sum_distinct
-    sql_distinct_key: ${email_address}
+    sql_distinct_key: ${email_address} || ${brandcode}
     sql: |
       CASE
         WHEN ${optin_count1}::smallint >0 THEN ${optin_count1}::smallint
@@ -109,15 +110,18 @@
 
 
 
+
+
     
     
   - dimension: unsub_count1
     label: 'Unsubs sddsaasddsa'
-    hidden: TRUE
+    hidden: FALSE
     type: string
     sql: |
      CASE
       WHEN ${TABLE}.unsub_date IS NULL THEN '0'
+      WHEN ${TABLE}.unsub_date = ' ' THEN '0'
       ELSE '1'
      END
     
@@ -133,15 +137,21 @@
     
     
   - measure: unsub_count
-    label: 'Unsubscribe Count - DISTINCT'
+    label: 'Unsubscribe Count'
     type: sum_distinct
-    sql_distinct_key: ${email_address} || ${brandcode} || ${optin}
+    sql_distinct_key: ${email_address} || ${brandcode}
     sql: |
       CASE
         WHEN ${unsub_count1}::smallint >0 THEN ${unsub_count1}::smallint
         ELSE 0
       END
 
+
+#   - measure: unsub_count
+#     type: count_distinct
+#     sql: ${TABLE}.email_address
+#     filters:
+#       unsub_count1: '1'
     
     
     

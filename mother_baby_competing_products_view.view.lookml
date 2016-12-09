@@ -1,7 +1,7 @@
 - view: mother_baby_competing_products_view
   sql_table_name: |
       (SELECT
-        REPLACE(REPLACE(FULLBIGQUERYTABLERESULTS.PRODUCT,'/',''),'-',' '),
+        REPLACE(REPLACE(FULLBIGQUERYTABLERESULTS.PRODUCT,'/',''),'-',' ') AS FULLBIGQUERYTABLERESULTS.PRODUCT,
         COUNT(FULLBIGQUERYTABLERESULTS.PRODUCT) AS VIEWS
       FROM
         (SELECT

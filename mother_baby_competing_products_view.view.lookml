@@ -1,8 +1,8 @@
 - view: mother_baby_competing_products_view
   sql_table_name: |
       ( SELECT
-        PRODUCT_OUTPUT.FULLBIGQUERYTABLERESULTS.PRODUCT,
-        COUNT(PRODUCT_OUTPUT.FULLBIGQUERYTABLERESULTS.PRODUCT) AS VIEWS
+        PRODUCT_OUTPUT.PRODUCT,
+        COUNT(PRODUCT_OUTPUT.PRODUCT) AS VIEWS
       FROM
         (SELECT
           fullVisitorId AS VisitorId, 
@@ -22,21 +22,21 @@
         JOIN
         
         (SELECT
-          REGEXP_EXTRACT(hits.page.pagePath, r'^www\.motherandbaby\.co\.uk(?:\/[A-Za-z0-9\+\-]+)?(?:\/[A-Za-z0-9\+\-]+)?(?:\/[A-Za-z0-9\+\-]+)?(\/[A-Za-z0-9\+\-]+)?') AS PRODUCT,
-          fullVisitorId AS VisitorId
-          FROM
-            FLATTEN(
-              (SELECT
-                *
-              FROM
-                (SELECT * FROM (TABLE_DATE_RANGE([8896222.ga_sessions_],TIMESTAMP(DATE_ADD(TIMESTAMP(CONCAT(CURRENT_DATE(), ' 00:00:00')), -89, 'DAY')),TIMESTAMP(DATE_ADD(DATE_ADD(DATE_ADD(TIMESTAMP(CONCAT(CURRENT_DATE(), ' 00:00:00')), -89, 'DAY'), 90, 'DAY'),-1, 'SECOND')))),
-                (TABLE_DATE_RANGE([8896222.ga_sessions_intraday_],TIMESTAMP(DATE_ADD(TIMESTAMP(CONCAT(CURRENT_DATE(), ' 00:00:00')), -89, 'DAY')),TIMESTAMP(DATE_ADD(DATE_ADD(DATE_ADD(TIMESTAMP(CONCAT(CURRENT_DATE(), ' 00:00:00')), -89, 'DAY'), 90, 'DAY'),-1, 'SECOND')))))
-              )
-            , hits)
-          WHERE hits.eventInfo.eventCategory LIKE '%link%' AND hits.page.pagePath != 'www.motherandbaby.co.uk/' AND REGEXP_EXTRACT(hits.page.pagePath, r'^www\.motherandbaby\.co\.uk(?:\/[A-Za-z0-9\+\-]+)?(?:\/[A-Za-z0-9\+\-]+)?(?:\/[A-Za-z0-9\+\-]+)?(\/[A-Za-z0-9\+\-]+)?') != ''
+          fullVisitorId AS VisitorId,
+          REGEXP_EXTRACT(hits.page.pagePath, r'^www\.motherandbaby\.co\.uk(?:\/[A-Za-z0-9\+\-]+)?(?:\/[A-Za-z0-9\+\-]+)?(?:\/[A-Za-z0-9\+\-]+)?(\/[A-Za-z0-9\+\-]+)?') AS PRODUCT
+        FROM
+          FLATTEN(
+            (SELECT
+              *
+            FROM
+              (SELECT * FROM (TABLE_DATE_RANGE([8896222.ga_sessions_],TIMESTAMP(DATE_ADD(TIMESTAMP(CONCAT(CURRENT_DATE(), ' 00:00:00')), -89, 'DAY')),TIMESTAMP(DATE_ADD(DATE_ADD(DATE_ADD(TIMESTAMP(CONCAT(CURRENT_DATE(), ' 00:00:00')), -89, 'DAY'), 90, 'DAY'),-1, 'SECOND')))),
+              (TABLE_DATE_RANGE([8896222.ga_sessions_intraday_],TIMESTAMP(DATE_ADD(TIMESTAMP(CONCAT(CURRENT_DATE(), ' 00:00:00')), -89, 'DAY')),TIMESTAMP(DATE_ADD(DATE_ADD(DATE_ADD(TIMESTAMP(CONCAT(CURRENT_DATE(), ' 00:00:00')), -89, 'DAY'), 90, 'DAY'),-1, 'SECOND')))))
+            )
+          , hits)
+        WHERE hits.eventInfo.eventCategory LIKE '%link%' AND hits.page.pagePath != 'www.motherandbaby.co.uk/' AND REGEXP_EXTRACT(hits.page.pagePath, r'^www\.motherandbaby\.co\.uk(?:\/[A-Za-z0-9\+\-]+)?(?:\/[A-Za-z0-9\+\-]+)?(?:\/[A-Za-z0-9\+\-]+)?(\/[A-Za-z0-9\+\-]+)?') != ''
         ) AS FULLBIGQUERYTABLERESULTS
-        ON BIGQUERYVISITORRESULTS.VisitorId = FULLBIGQUERYTABLERESULTS.VisitorId) AS PRODUCT_OUTPUT
-      GROUP BY PRODUCT_OUTPUT.FULLBIGQUERYTABLERESULTS.PRODUCT
+      ON BIGQUERYVISITORRESULTS.VisitorId = FULLBIGQUERYTABLERESULTS.VisitorId) AS PRODUCT_OUTPUT
+      GROUP BY PRODUCT_OUTPUT.PRODUCT
       ORDER BY VIEWS
       LIMIT 50)
 

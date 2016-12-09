@@ -1677,7 +1677,7 @@
   - measure: Prebid_AvgWinRevenue
     label: 'Prebid - Revenue'
     description: 'Winning Revenue CPM'
-    type: sum
+    type: number
     value_format: '$0.00'
     sql: ${Prebid_AvgWinCPM}*${Prebid_Wins}
     

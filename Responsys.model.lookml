@@ -77,6 +77,11 @@
       type: inner
       relationship: many_to_many
       sql_on: ${postcode_lookup.postcode} = ${bauer_list.postal_code}
+      
+    - join: responsy_active
+      type: inner
+      relationship: many_to_many
+      sql_on: ${responsy_active.email_address} = ${responsys_engaged_list.email_address}
         
 # - explore: email_list
 #   label: 'Testing - In Dev'

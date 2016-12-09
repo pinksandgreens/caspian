@@ -31,7 +31,7 @@
               (SELECT * FROM {% table_date_range date_filter 8896222.ga_sessions_ %},{% table_date_range date_filter 8896222.ga_sessions_intraday_ %})
             )
           , hits)
-        WHERE hits.eventInfo.eventCategory LIKE '%link%' AND hits.page.pagePath != 'www.motherandbaby.co.uk/' AND REGEXP_EXTRACT(hits.page.pagePath, r'^www\.motherandbaby\.co\.uk(?:\/[A-Za-z0-9\+\-]+)?(?:\/[A-Za-z0-9\+\-]+)?(?:\/[A-Za-z0-9\+\-]+)?(\/[A-Za-z0-9\+\-]+)?') != ''
+        WHERE /*hits.eventInfo.eventCategory LIKE '%link%' AND*/ hits.page.pagePath != 'www.motherandbaby.co.uk/' AND REGEXP_EXTRACT(hits.page.pagePath, r'^www\.motherandbaby\.co\.uk(?:\/[A-Za-z0-9\+\-]+)?(?:\/[A-Za-z0-9\+\-]+)?(?:\/[A-Za-z0-9\+\-]+)?(\/[A-Za-z0-9\+\-]+)?') != ''
         ) AS FULLBIGQUERYTABLERESULTS
       ON BIGQUERYVISITORRESULTS.VisitorId = FULLBIGQUERYTABLERESULTS.VisitorId
       GROUP BY FULLBIGQUERYTABLERESULTS.PRODUCT

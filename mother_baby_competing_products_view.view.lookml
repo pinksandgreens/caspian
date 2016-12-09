@@ -1,8 +1,8 @@
 - view: mother_baby_competing_products_view
   sql_table_name: |
       (SELECT
-        PRODUCT_OUTPUT.PRODUCT,
-        COUNT(PRODUCT_OUTPUT.PRODUCT) AS VIEWS
+        FULLBIGQUERYTABLERESULTS.PRODUCT,
+        COUNT(FULLBIGQUERYTABLERESULTS.PRODUCT) AS VIEWS
       FROM
         (SELECT
           fullVisitorId AS VisitorId, 
@@ -34,8 +34,7 @@
         WHERE hits.eventInfo.eventCategory LIKE '%link%' AND hits.page.pagePath != 'www.motherandbaby.co.uk/' AND REGEXP_EXTRACT(hits.page.pagePath, r'^www\.motherandbaby\.co\.uk(?:\/[A-Za-z0-9\+\-]+)?(?:\/[A-Za-z0-9\+\-]+)?(?:\/[A-Za-z0-9\+\-]+)?(\/[A-Za-z0-9\+\-]+)?') != ''
         ) AS FULLBIGQUERYTABLERESULTS
       ON BIGQUERYVISITORRESULTS.VisitorId = FULLBIGQUERYTABLERESULTS.VisitorId
-      ) AS PRODUCT_OUTPUT
-      GROUP BY PRODUCT_OUTPUT.PRODUCT
+      GROUP BY FULLBIGQUERYTABLERESULTS.PRODUCT
       ORDER BY VIEWS
       LIMIT 50)
 
@@ -52,6 +51,6 @@
     
   - dimension: PRODUCT
     primary_key: true
-    sql: ${TABLE}.PRODUCT_OUTPUT.PRODUCT
+    sql: ${TABLE}.FULLBIGQUERYTABLERESULTS.PRODUCT
 
 

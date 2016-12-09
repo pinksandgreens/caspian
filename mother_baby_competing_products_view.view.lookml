@@ -1,6 +1,6 @@
 - view: mother_baby_competing_products_view
   sql_table_name: |
-      (SELECT
+      ( SELECT
         PRODUCT_OUTPUT.PRODUCT,
         COUNT(PRODUCT_OUTPUT.PRODUCT) AS VIEWS
       FROM
@@ -45,7 +45,7 @@
   - filter: date_filter
     type: date
   # TABLE_DATE_RANGE([uplifted-light-89310:114668488.ga_sessions_],DATE_ADD(CURRENT_TIMESTAMP(), -1, 'YEAR'),CURRENT_TIMESTAMP())
-  - filter: bike_filter 
+  - filter: product_filter 
     label: 'FILTER by Product'
     
   - measure: VIEWS

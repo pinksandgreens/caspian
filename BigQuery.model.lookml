@@ -91,6 +91,11 @@
   always_filter:
     date_filter: 30 days
     
+- explore: mother_baby_competing_products_view
+  label: 'BigQuery - Mother & Baby - Competing Products'
+  always_filter:
+    date_filter: 30 days
+    
 - explore: ga_sessions_todaygolfer
   label: 'BigQuery - Today''s Golfer'
   always_filter:

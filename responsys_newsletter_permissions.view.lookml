@@ -214,7 +214,7 @@
      CASE
       WHEN ${TABLE}.unsub_date IS NULL THEN '0'
       WHEN ${TABLE}.unsub_date = ' ' THEN '0'
-      WHEN ((${TABLE}.unsub_date IS NOT NULL) AND (${optin} = 0)) THEN '1'
+      WHEN (((${TABLE}.unsub_date IS NOT NULL) AND (${optin} = 0)) AND (${TABLE}.optin_date != ' ')) THEN '1'
      END
     
     

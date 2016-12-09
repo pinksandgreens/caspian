@@ -1,6 +1,6 @@
 - view: mother_baby_competing_products_view
   sql_table_name: |
-      ( SELECT
+      (SELECT
         PRODUCT_OUTPUT.PRODUCT,
         COUNT(PRODUCT_OUTPUT.PRODUCT) AS VIEWS
       FROM
@@ -11,11 +11,10 @@
             (SELECT
               *
             FROM
-              (SELECT * FROM (TABLE_DATE_RANGE([8896222.ga_sessions_],TIMESTAMP(DATE_ADD(TIMESTAMP(CONCAT(CURRENT_DATE(), ' 00:00:00')), -89, 'DAY')),TIMESTAMP(DATE_ADD(DATE_ADD(DATE_ADD(TIMESTAMP(CONCAT(CURRENT_DATE(), ' 00:00:00')), -89, 'DAY'), 90, 'DAY'),-1, 'SECOND')))),
-                (TABLE_DATE_RANGE([8896222.ga_sessions_intraday_],TIMESTAMP(DATE_ADD(TIMESTAMP(CONCAT(CURRENT_DATE(), ' 00:00:00')), -89, 'DAY')),TIMESTAMP(DATE_ADD(DATE_ADD(DATE_ADD(TIMESTAMP(CONCAT(CURRENT_DATE(), ' 00:00:00')), -89, 'DAY'), 90, 'DAY'),-1, 'SECOND')))))
+              (SELECT * FROM {% table_date_range date_filter 8896222.ga_sessions_ %},{% table_date_range date_filter 8896222.ga_sessions_intraday_ %})
             )
           , hits)
-        WHERE {% condition product_filter %} hits.page.pagePath {% endcondition %} AND geoNetwork.country = 'United Kingdom' AND hits.type = 'PAGE'
+        WHERE {% condition product_filter %} hits.page.pagePath {% endcondition %} AND geoNetwork.country = 'United Kingdom'// AND hits.type = 'EVENT'
         GROUP BY VisitorId
         ) AS BIGQUERYVISITORRESULTS
         
@@ -29,13 +28,13 @@
             (SELECT
               *
             FROM
-              (SELECT * FROM (TABLE_DATE_RANGE([8896222.ga_sessions_],TIMESTAMP(DATE_ADD(TIMESTAMP(CONCAT(CURRENT_DATE(), ' 00:00:00')), -89, 'DAY')),TIMESTAMP(DATE_ADD(DATE_ADD(DATE_ADD(TIMESTAMP(CONCAT(CURRENT_DATE(), ' 00:00:00')), -89, 'DAY'), 90, 'DAY'),-1, 'SECOND')))),
-              (TABLE_DATE_RANGE([8896222.ga_sessions_intraday_],TIMESTAMP(DATE_ADD(TIMESTAMP(CONCAT(CURRENT_DATE(), ' 00:00:00')), -89, 'DAY')),TIMESTAMP(DATE_ADD(DATE_ADD(DATE_ADD(TIMESTAMP(CONCAT(CURRENT_DATE(), ' 00:00:00')), -89, 'DAY'), 90, 'DAY'),-1, 'SECOND')))))
+              (SELECT * FROM {% table_date_range date_filter 8896222.ga_sessions_ %},{% table_date_range date_filter 8896222.ga_sessions_intraday_ %})
             )
           , hits)
         WHERE hits.eventInfo.eventCategory LIKE '%link%' AND hits.page.pagePath != 'www.motherandbaby.co.uk/' AND REGEXP_EXTRACT(hits.page.pagePath, r'^www\.motherandbaby\.co\.uk(?:\/[A-Za-z0-9\+\-]+)?(?:\/[A-Za-z0-9\+\-]+)?(?:\/[A-Za-z0-9\+\-]+)?(\/[A-Za-z0-9\+\-]+)?') != ''
         ) AS FULLBIGQUERYTABLERESULTS
-      ON BIGQUERYVISITORRESULTS.VisitorId = FULLBIGQUERYTABLERESULTS.VisitorId) AS PRODUCT_OUTPUT
+      ON BIGQUERYVISITORRESULTS.VisitorId = FULLBIGQUERYTABLERESULTS.VisitorId
+      ) AS PRODUCT_OUTPUT
       GROUP BY PRODUCT_OUTPUT.PRODUCT
       ORDER BY VIEWS
       LIMIT 50)

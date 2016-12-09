@@ -22,7 +22,7 @@
         
         (SELECT
           fullVisitorId AS VisitorId,
-          REGEXP_EXTRACT(hits.page.pagePath, r'^www\.motherandbaby\.co\.uk(?:\/[A-Za-z0-9\+\-]+)?(?:\/[A-Za-z0-9\+\-]+)?(?:\/[A-Za-z0-9\+\-]+)?(\/[A-Za-z0-9\+\-]+)?') AS PRODUCT
+          REGEXP_EXTRACT(hits.page.pagePath, r'^www\.motherandbaby\.co\.uk(?:\/[A-Za-z0-9\+\-]+)?(?:\/[A-Za-z0-9\+\-]+)?(?:\/[A-Za-z0-9\+\-]+)?(?:\/([A-Za-z0-9\+\-]+))?') AS PRODUCT
         FROM
           FLATTEN(
             (SELECT

@@ -1,9 +1,10 @@
 - view: angling_times_content_consumed_by_article
   sql_table_name: |
         (SELECT
-          MASTERARTICLEOUTPUT.ARTICLE,
-          COUNT(MASTERARTICLEOUTPUT.ARTICLE) AS VIEWS
+          ARTICLEOUTPUT.ARTICLE,
+          COUNT(ARTICLEOUTPUT.ARTICLE) AS VIEWS
         FROM
+        
           (SELECT 
             REGEXP_EXTRACT(FULLBIGQUERYTABLERESULTS.pagePath, r'^.+\/(?:articles\/)([A-Za-z0-9\+\-]+)') AS ARTICLE
           FROM
@@ -41,8 +42,8 @@
           ON BIGQUERYVISITORRESULTS.VisitorId = FULLBIGQUERYTABLERESULTS.VisitorId
         
           ) AS ARTICLEOUTPUT
-        ) AS MASTERARTICLEOUTPUT  
-        GROUP BY MASTERARTICLEOUTPUT.ARTICLE
+        
+        GROUP BY ARTICLEOUTPUT.ARTICLE
         ORDER BY VIEWS DESC
         LIMIT 50)
 
@@ -59,6 +60,6 @@
     
   - dimension: ARTICLE
     primary_key: true
-    sql: ${TABLE}.MASTERARTICLEOUTPUT.ARTICLE
+    sql: ${TABLE}.ARTICLEOUTPUT.ARTICLE
 
 

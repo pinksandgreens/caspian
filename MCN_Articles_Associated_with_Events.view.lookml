@@ -37,7 +37,6 @@
     ORDER BY VIEWS
     LIMIT 500
     
-    
   fields:
   - filter: date_filter
     type: date
@@ -49,4 +48,3 @@
   - dimension: ARTICLES
     primary_key: true
     sql: ${TABLE}.ARTICLEOUTPUT.pageTitle
-    

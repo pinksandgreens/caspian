@@ -59,7 +59,7 @@
     sql: ${TABLE}.VIEWS
     
   - dimension: ARTICLE
-    primary_key: true
+    # primary_key: true
     sql: ${TABLE}.ARTICLEOUTPUT.ARTICLE
 
 

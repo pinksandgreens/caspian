@@ -101,3 +101,8 @@
   label: 'BigQuery - Today''s Golfer'
   always_filter:
     date_filter: 30 days
+    
+- explore: angling_times_content_consumed_by_article
+  label: 'BigQuery - Angling Times - Article Cohort Analysis'
+  always_filter:
+    date_filter: 30 days

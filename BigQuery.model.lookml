@@ -103,6 +103,12 @@
     date_filter: 30 days
     
 - explore: angling_times_content_consumed_by_article
+  hidden: TRUE
   label: 'BigQuery - Angling Times - Article Cohort Analysis'
+  always_filter:
+    date_filter: 30 days
+    
+- explore: mcn_most_popular_articles_by_content_consumption
+  label: 'BigQuery - MCN - SBS Articles'
   always_filter:
     date_filter: 30 days

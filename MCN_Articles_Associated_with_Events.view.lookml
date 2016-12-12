@@ -14,8 +14,9 @@
             (SELECT * FROM {% table_date_range date_filter 22661559.ga_sessions_ %},{% table_date_range date_filter 22661559.ga_sessions_intraday_ %})
           )
         , hits)
-      WHERE hits.type = 'EVENT' AND hits.eventInfo.eventCategory != 'Test Client ID' AND hits.eventInfo.eventLabel LIKE '%sportsbikeshop%'
-      GROUP BY VisitorId) AS BIGQUERYVISITORRESULTS
+      WHERE hits.eventInfo.eventLabel LIKE '%sportsbikeshop%'
+      GROUP BY VisitorId)
+    AS BIGQUERYVISITORRESULTS
     JOIN
       (SELECT
         fullVisitorId AS VisitorId, 
@@ -25,11 +26,10 @@
           (SELECT
             *
           FROM
-            
+            (SELECT * FROM {% table_date_range date_filter 22661559.ga_sessions_ %},{% table_date_range date_filter 22661559.ga_sessions_intraday_ %})
           )
         , hits)
-      WHERE REGEXP_MATCH(hits.page.pagePath,r'^.+\/((?:news|sport|product-reviews|bike-reviews|new-rider|insurance)\/.+(?:[A-Za-z0-9\+\-]+))[\/]+default.aspx')
-      AND geoNetwork.country = 'United Kingdom' AND hits.type = 'PAGE'
+      WHERE REGEXP_MATCH(hits.page.pagePath, r'^.+\/((?:news|sport|product-reviews|bike-reviews|new-rider|insurance)\/.+(?:[A-Za-z0-9\+\-]+))[\/]+default.aspx') AND geoNetwork.country = 'United Kingdom' AND hits.type = 'PAGE'
       ) AS FULLBIGQUERYTABLERESULTS
       ON BIGQUERYVISITORRESULTS.VisitorId = FULLBIGQUERYTABLERESULTS.VisitorId
     ) AS ARTICLEOUTPUT

@@ -32,7 +32,7 @@
                   (SELECT * FROM {% table_date_range date_filter 120878053.ga_sessions_ %},{% table_date_range date_filter 120878053.ga_sessions_intraday_ %})
                 )
               , hits)
-            WHERE (hits.page.pagePath LIKE '%/articles/%' AND geoNetwork.country = 'United Kingdom' AND hits.type = 'PAGE'
+            WHERE hits.page.pagePath LIKE '%/articles/%' AND geoNetwork.country = 'United Kingdom' AND hits.type = 'PAGE'
             ) AS FULLBIGQUERYTABLERESULTS
           ON BIGQUERYVISITORRESULTS.VisitorId = FULLBIGQUERYTABLERESULTS.VisitorId
         ) AS ARTICLEOUTPUT

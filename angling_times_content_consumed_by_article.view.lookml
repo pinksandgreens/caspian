@@ -1,12 +1,13 @@
 - view: angling_times_content_consumed_by_article
   sql_table_name: |
         (SELECT
-          ARTICLEOUTPUT.ARTICLE,
-          COUNT(ARTICLEOUTPUT.ARTICLE) AS VIEWS
+          MASTERARTICLEOUTPUT.ARTICLE,
+          COUNT(MASTERARTICLEOUTPUT.ARTICLE) AS VIEWS
         FROM
           (SELECT 
             REGEXP_EXTRACT(FULLBIGQUERYTABLERESULTS.pagePath, r'^.+\/(?:articles\/)([A-Za-z0-9\+\-]+)') AS ARTICLE
           FROM
+            
             (SELECT
               fullVisitorId AS VisitorId, 
             FROM
@@ -20,7 +21,9 @@
             WHERE {% condition article_filter %} hits.page.pagePath {% endcondition %} AND geoNetwork.country = 'United Kingdom' AND hits.type = 'PAGE'
             GROUP BY VisitorId
             ) AS BIGQUERYVISITORRESULTS
+          
           JOIN
+            
             (SELECT
               fullVisitorId AS VisitorId, 
               hits.page.pagePath AS pagePath 
@@ -34,9 +37,12 @@
               , hits)
             WHERE (hits.page.pagePath LIKE '%/articles/%' AND geoNetwork.country = 'United Kingdom' AND hits.type = 'PAGE'
             ) AS FULLBIGQUERYTABLERESULTS
+          
           ON BIGQUERYVISITORRESULTS.VisitorId = FULLBIGQUERYTABLERESULTS.VisitorId
-        ) AS ARTICLEOUTPUT
-        GROUP BY ARTICLEOUTPUT.ARTICLE
+        
+          ) AS ARTICLEOUTPUT
+        ) AS MASTERARTICLEOUTPUT  
+        GROUP BY MASTERARTICLEOUTPUT.ARTICLE
         ORDER BY VIEWS DESC
         LIMIT 50)
 
@@ -53,6 +59,6 @@
     
   - dimension: ARTICLE
     primary_key: true
-    sql: ${TABLE}.ARTICLEOUTPUT.ARTICLE
+    sql: ${TABLE}.MASTERARTICLEOUTPUT.ARTICLE
 
 

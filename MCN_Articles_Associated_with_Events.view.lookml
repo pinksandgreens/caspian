@@ -2,6 +2,7 @@
   sql_table_name: |
       ( SELECT
         FULLBIGQUERYTABLERESULTS.pageTitle,
+        FULLBIGQUERYTABLERESULTS.pagePath,
         COUNT(FULLBIGQUERYTABLERESULTS.pageTitle) AS VIEWS
       FROM
         (SELECT
@@ -19,7 +20,8 @@
         AS BIGQUERYVISITORRESULTS
       JOIN
         (SELECT
-          fullVisitorId AS VisitorId, 
+          fullVisitorId AS VisitorId,
+          hits.page.pagePath AS pagePath,
           hits.page.pageTitle AS pageTitle
         FROM
           FLATTEN(
@@ -32,7 +34,7 @@
         WHERE REGEXP_MATCH(hits.page.pagePath, r'^.+\/((?:news|sport|product-reviews|bike-reviews|new-rider|insurance)\/.+(?:[A-Za-z0-9\+\-]+))[\/]+default.aspx') AND geoNetwork.country = 'United Kingdom' AND hits.type = 'PAGE'
         ) AS FULLBIGQUERYTABLERESULTS
         ON BIGQUERYVISITORRESULTS.VisitorId = FULLBIGQUERYTABLERESULTS.VisitorId
-      GROUP BY FULLBIGQUERYTABLERESULTS.pageTitle
+      GROUP BY FULLBIGQUERYTABLERESULTS.pageTitle, FULLBIGQUERYTABLERESULTS.pagePath
       ORDER BY VIEWS DESC
       LIMIT 500)
     
@@ -45,5 +47,7 @@
     sql: ${TABLE}.VIEWS
     
   - dimension: ARTICLES
-    # primary_key: true
     sql: ${TABLE}.FULLBIGQUERYTABLERESULTS.pageTitle
+    
+  - dimension: pagePath
+    sql: ${TABLE}.FULLBIGQUERYTABLERESULTS.pagePath

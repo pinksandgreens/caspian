@@ -92,6 +92,7 @@
     date_filter: 30 days
     
 - explore: mother_baby_competing_products_view
+  hidden: TRUE
   label: 'BigQuery - Mother & Baby - Competing Products'
   always_filter:
     date_filter: 30 days

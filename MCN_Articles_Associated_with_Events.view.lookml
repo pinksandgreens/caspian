@@ -1,54 +1,52 @@
 - view: mcn_most_popular_articles_by_content_consumption
-  # # You can specify the table name if it's different from the view name:
-  # sql_table_name: my_schema_name.mcn_most_popular_articles_by_content_consumption
-  #
-  # # Define your dimensions and measures here, like this:
-  # fields:
-  #   - dimension: id
-  #     description: "The unique ID for each order"
-  #     type: number
-  #     sql: ${TABLE}.id
-  #
-  #   - dimension_group: created
-  #     description: "Transaction created date"
-  #     type: time
-  #     timeframes: [date, week, month, year]
-  #     sql: ${TABLE}.created_at
-  #
-  #   - measure: count
-  #     description: "Count of orders"
-  #     type: count
-
-# - view: mcn_most_popular_articles_by_content_consumption
-#   # Or, you could make this view a derived table, like this:
-#   derived_table:
-#     sql: |
-#       SELECT
-#         user_id as user_id
-#         , COUNT(*) as lifetime_orders
-#         , MAX(orders.created_at) as most_recent_purchase_at
-#       FROM orders
-#       GROUP BY user_id
-#
-#   # Define your dimensions and measures here, like this:
-#   fields:
-#     - dimension: user_id
-#       description: "Unique ID for each user that has ordered"
-#       type: number
-#       sql: ${TABLE}.user_id
-#
-#     - dimension: lifetime_orders
-#       description: "The total number of orders for each user"
-#       type: number
-#       sql: ${TABLE}.lifetime_orders
-#
-#     - dimension_group: most_recent_purchase
-#       description: "The date when each user last ordered"
-#       type: time
-#       timeframes: [date, week, month, year]
-#       sql: ${TABLE}.most_recent_purchase_at
-#
-#     - measure: total_lifetime_orders
-#       description: "Use this for counting lifetime orders across many users"
-#       type: sum
-#       sql: ${lifetime_orders}
+  sql_table_name: |
+    ( SELECT
+      ARTICLEOUTPUT.pageTitle,
+      COUNT(ARTICLEOUTPUT.pageTitle) AS VIEWS
+    FROM
+    ( SELECT
+        fullVisitorId AS VisitorId,
+      FROM
+        FLATTEN(
+          (SELECT
+            *
+          FROM
+            (SELECT * FROM {% table_date_range date_filter 22661559.ga_sessions_ %},{% table_date_range date_filter 22661559.ga_sessions_intraday_ %})
+          )
+        , hits)
+      WHERE hits.type = 'EVENT' AND hits.eventInfo.eventCategory != 'Test Client ID' AND hits.eventInfo.eventLabel LIKE '%sportsbikeshop%'
+      GROUP BY VisitorId) AS BIGQUERYVISITORRESULTS
+    JOIN
+      (SELECT
+        fullVisitorId AS VisitorId, 
+        hits.page.pageTitle AS pageTitle
+      FROM
+        FLATTEN(
+          (SELECT
+            *
+          FROM
+            
+          )
+        , hits)
+      WHERE REGEXP_MATCH(hits.page.pagePath,r'^.+\/((?:news|sport|product-reviews|bike-reviews|new-rider|insurance)\/.+(?:[A-Za-z0-9\+\-]+))[\/]+default.aspx')
+      AND geoNetwork.country = 'United Kingdom' AND hits.type = 'PAGE'
+      ) AS FULLBIGQUERYTABLERESULTS
+      ON BIGQUERYVISITORRESULTS.VisitorId = FULLBIGQUERYTABLERESULTS.VisitorId
+    ) AS ARTICLEOUTPUT
+    GROUP BY ARTICLEOUTPUT.pageTitle
+    ORDER BY VIEWS
+    LIMIT 500
+    
+    
+  fields:
+  - filter: date_filter
+    type: date
+  
+  - measure: VIEWS
+    type: sum
+    sql: ${TABLE}.VIEWS
+    
+  - dimension: ARTICLES
+    primary_key: true
+    sql: ${TABLE}.ARTICLEOUTPUT.pageTitle
+    

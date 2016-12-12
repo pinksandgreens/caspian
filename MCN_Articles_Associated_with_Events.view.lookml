@@ -34,7 +34,7 @@
         ON BIGQUERYVISITORRESULTS.VisitorId = FULLBIGQUERYTABLERESULTS.VisitorId
       GROUP BY FULLBIGQUERYTABLERESULTS.pageTitle
       ORDER BY VIEWS
-      LIMIT 500
+      LIMIT 500)
     
   fields:
   - filter: date_filter

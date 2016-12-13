@@ -109,6 +109,7 @@
     date_filter: 30 days
     
 - explore: mcn_most_popular_articles_by_content_consumption
+  hidden: TRUE
   label: 'BigQuery - MCN - SBS Articles'
   always_filter:
     date_filter: 30 days

@@ -7,9 +7,10 @@
     type: string
     sql: |
       CASE ${TABLE}.brand
+        WHEN 'AbsoluteRadio' THEN 'Absolute Radio'
         WHEN 'key103' THEN 'Key 103'
         WHEN 'radioaire' THEN 'Radio Aire'
-        WHEN 'MotorcycleNews' THEN 'Motor Cyclenews'
+        WHEN 'MotorcycleNews' THEN 'Motorcycle News'
         WHEN 'empiremagazine' THEN 'Empire'
         WHEN 'planetrockradio' THEN 'Planet Rock'
         WHEN 'cfmradio' THEN 'CFM Radio'
@@ -21,7 +22,7 @@
         WHEN 'clyde1' THEN 'Clyde 1'
         WHEN 'magicradio' THEN 'Magic'
         WHEN 'radiocity' THEN 'Radio City'
-        WHEN 'GraziaUK' THEN 'Grazia'
+        WHEN 'Grazia UK' THEN 'Grazia'
         WHEN 'kerrangmagazine' THEN 'Kerrang'
         WHEN 'officialcoolfm' THEN 'Cool FM'
         WHEN 'metroradiouk' THEN 'Metro Radio'

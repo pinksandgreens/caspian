@@ -1763,9 +1763,12 @@
     
     
     
-    
-    
-    
+  - measure: Prebid_Win_Rate
+    label: 'Prebid - Win Rate'
+    description: 'Win rate'
+    type: number
+    value_format: '0.00"%"'
+    sql: ${Prebid_TotalBids}/${Prebid_TotalBids}
     
     
   # ----- Sets of fields for drilling ------

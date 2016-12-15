@@ -99,4 +99,19 @@
     type: sum
     sql: ${TABLE}.post_wow
 
+  - dimension: image_filewow
+    hidden: FALSE
+    sql: ('http://i.imgur.com/pTHoxCy.png')
+    
+  - dimension: image_filesad
+    hidden: FALSE
+    sql: ('http://i.imgur.com/H6wvf3V.png')
+
+  - dimension: image_fileangry
+    hidden: FALSE
+    sql: ('http://i.imgur.com/jE0KGIz.png')
+    
+  - dimension: image_filehaha
+    hidden: FALSE
+    sql: ('http://i.imgur.com/QUKr7Bv.png')
 

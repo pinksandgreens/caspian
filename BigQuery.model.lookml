@@ -113,3 +113,13 @@
   label: 'BigQuery - MCN - SBS Articles'
   always_filter:
     date_filter: 30 days
+    
+- explore: ga_sessions_planetradio
+  label: 'BigQuery - Planet Radio'
+  always_filter:
+    date_filter: 30 days   
+    
+    
+    
+    
+    

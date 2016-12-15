@@ -22,7 +22,7 @@
         WHEN 'clyde1' THEN 'Clyde 1'
         WHEN 'magicradio' THEN 'Magic'
         WHEN 'radiocity' THEN 'Radio City'
-        WHEN 'Grazia UK' THEN 'Grazia'
+        WHEN 'GraziaUK' THEN 'Grazia'
         WHEN 'kerrangmagazine' THEN 'Kerrang'
         WHEN 'officialcoolfm' THEN 'Cool FM'
         WHEN 'metroradiouk' THEN 'Metro Radio'

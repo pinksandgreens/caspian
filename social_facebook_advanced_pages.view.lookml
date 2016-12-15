@@ -100,18 +100,34 @@
     sql: ${TABLE}.post_wow
 
   - dimension: image_filewow
-    hidden: FALSE
+    hidden: TRUE
     sql: ('http://i.imgur.com/pTHoxCy.png')
+  
+  - dimension: image_filewow2
+    sql: ${image_filewow}
+    html: <img src="{{ value }}" width="100" 0height="100"/> 
     
   - dimension: image_filesad
-    hidden: FALSE
+    hidden: TRUE
     sql: ('http://i.imgur.com/H6wvf3V.png')
+    
+  - dimension: image_filesad2
+    sql: ${image_filesad}
+    html: <img src="{{ value }}" width="100" 0height="100"/> 
 
   - dimension: image_fileangry
-    hidden: FALSE
+    hidden: TRUE
     sql: ('http://i.imgur.com/jE0KGIz.png')
+  
+  - dimension: image_fileangry2
+    sql: ${image_fileangry}
+    html: <img src="{{ value }}" width="100" 0height="100"/> 
     
   - dimension: image_filehaha
-    hidden: FALSE
+    hidden: TRUE
     sql: ('http://i.imgur.com/QUKr7Bv.png')
+  
+  - dimension: image_filehaha2
+    sql: ${image_filehaha}
+    html: <img src="{{ value }}" width="100" 0height="100"/> 
 

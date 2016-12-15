@@ -7,9 +7,10 @@
     type: string
     sql: |
       CASE ${TABLE}.brand
+        WHEN 'AbsoluteRadio' THEN 'Absolute Radio'
         WHEN 'key103' THEN 'Key 103'
         WHEN 'radioaire' THEN 'Radio Aire'
-        WHEN 'MotorcycleNews' THEN 'Motor Cyclenews'
+        WHEN 'MotorcycleNews' THEN 'Motorcycle News'
         WHEN 'empiremagazine' THEN 'Empire'
         WHEN 'planetrockradio' THEN 'Planet Rock'
         WHEN 'cfmradio' THEN 'CFM Radio'

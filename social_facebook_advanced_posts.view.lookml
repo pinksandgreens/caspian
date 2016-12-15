@@ -9,7 +9,11 @@
 
   - measure: angry_count
     type: sum
-    sql: ${TABLE}.angry_count
+    sql: |
+      CASE
+        WHEN ${TABLE}.angry_count = 'NA' THEN '0'
+        ELSE ${TABLE}.angry_count
+      END
 
   - measure: comments_count
     type: sum
@@ -62,19 +66,36 @@
 
   - measure: haha_count
     type: sum
-    sql: ${TABLE}.haha_count
+    sql: |
+      CASE
+        WHEN ${TABLE}.haha_count = 'NA' THEN '0'
+        ELSE ${TABLE}.haha_count
+      END
 
   - measure: likes_count
     type: sum
-    sql: ${TABLE}.likes_count
-
+    sql: |
+      CASE
+        WHEN ${TABLE}.likes_count = 'NA' THEN '0'
+        ELSE ${TABLE}.likes_count
+      END
+    
   - dimension: link
+    label: 'Link'
+    hidden: FALSE
     type: string
     sql: ${TABLE}.link
+    html: |
+      <a href="{{ value }}" target="_new">
+      <img src="http://i.imgur.com/aJnF2oW.jpg" height=10 width=10></a>
 
   - measure: love_count
     type: sum
-    sql: ${TABLE}.love_count
+    sql: |
+      CASE
+        WHEN ${TABLE}.love_count = 'NA' THEN '0'
+        ELSE ${TABLE}.love_count
+      END
 
   - dimension: message
     type: string
@@ -124,11 +145,19 @@
 
   - measure: sad_count
     type: sum
-    sql: ${TABLE}.sad_count
+    sql: |
+      CASE
+        WHEN ${TABLE}.sad_count = 'NA' THEN '0'
+        ELSE ${TABLE}.sad_count
+      END
 
   - measure: shares_count
     type: sum
-    sql: ${TABLE}.shares_count
+    sql: |
+      CASE
+        WHEN ${TABLE}.shares_count = 'NA' THEN '0'
+        ELSE ${TABLE}.shares_count
+      END
 
   - dimension: story
     type: string
@@ -140,6 +169,13 @@
 
   - measure: wow_count
     type: sum
-    sql: ${TABLE}.wow_count
+    sql: |
+      CASE
+        WHEN ${TABLE}.wow_count = 'NA' THEN '0'
+        ELSE ${TABLE}.wow_count
+      END
 
-
+  - measure: reactions_count
+    label: 'Reactions Total'
+    type: number
+    sql: (${wow_count})+(${sad_count})+(${angry_count})+(${haha_count})+(${likes_count})+(${love_count})

@@ -131,4 +131,21 @@
   - dimension: image_filehaha2
     sql: ${image_filehaha}
     html: <img src="{{ value }}" width="100" 0height="100"/> 
+    
+    
+  - dimension: image_filelove
+    hidden: TRUE
+    sql: ('http://i.imgur.com/uJMysxN.png')
+  
+  - dimension: image_filelove2
+    sql: ${image_filelove}
+    html: <img src="{{ value }}" width="100" 0height="100"/> 
+    
+  - dimension: image_filelike
+    hidden: TRUE
+    sql: ('http://i.imgur.com/Do2j40j.png')
+  
+  - dimension: image_filelike2
+    sql: ${image_filelike}
+    html: <img src="{{ value }}" width="100" 0height="100"/> 
 

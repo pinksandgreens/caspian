@@ -46,6 +46,7 @@
       sql_on: ${social_pinterest.brand} = ${social_facebook_likes.name} 
       
 - explore: social_facebook_likes_not_our_brands
+  hidden: TRUE
   label: 'Non-Brand Social Data'
   sql_table_name: publications.social_facebook_likes_not_our_brands
   persist_for: 24 hour
@@ -73,10 +74,22 @@
       sql_on: ${social_pinterest_not_our_brands.brand} = ${social_facebook_likes_not_our_brands.name} 
       
 - explore: social_facebook_posts
+  hidden: TRUE
   label: 'Facebook Posts'
   sql_table_name: publications.social_facebook_posts
   persist_for: 1 hour
   
+- explore: social_facebook_advanced_pages  
+  label: 'Facebook Pages'
+  sql_table_name: publications.social_facebook_advanced_pages  
+  persist_for: 1 hour  
+
+- explore: social_facebook_advanced_posts  
+  label: 'Facebook Posts'
+  sql_table_name: publications.social_facebook_advanced_posts
+  persist_for: 1 hour
+
+
 - explore: social_twitter_posts
   label: 'Twitter Posts'
   sql_table_name: publications.social_twitter_posts

@@ -393,17 +393,19 @@
     sql: ${TABLE}.hits.item.currencyCode
     fanout_on: hits
 
-  - dimension: hits__item__item_quantity
-    type: number
-    value_format: '$0.00'
+  - measure: hits__item__item_quantity
+    label: 'Item Quantity'
+    type: sum
     sql: ${TABLE}.hits.item.itemQuantity
     fanout_on: hits
 
-  - dimension: hits__item__item_revenue
-    type: number
-    value_format: '$0.00'
-    sql: ${TABLE}.hits.item.itemRevenue/1000000
+  - measure: hits__item__item_revenue
+    label: 'Item Revenue'
+    type: sum
+    value_format: '"£"0.00'
+    sql: ROUND(${TABLE}.hits.item.itemRevenue/1000000,2)
     fanout_on: hits
+    
 
   - dimension: hits__item__local_item_revenue
     type: number

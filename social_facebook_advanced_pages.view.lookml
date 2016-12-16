@@ -103,16 +103,19 @@
   - dimension: image_filewow
     hidden: TRUE
     sql: ('http://i.imgur.com/pTHoxCy.png')
-  
-  - dimension: image_filewow2
-    sql: ${image_filewow}
-    html: <img src="{{ value }}" width="100" 0height="100"/> 
     
+  - dimension: image_filewow2
+    hidden: TRUE
+    sql: ${image_filewow}
+    html: <img src="{{ value }}" width="100" 0height="100"/>
+  
+      
   - dimension: image_filesad
     hidden: TRUE
     sql: ('http://i.imgur.com/H6wvf3V.png')
     
   - dimension: image_filesad2
+    hidden: TRUE
     sql: ${image_filesad}
     html: <img src="{{ value }}" width="100" 0height="100"/> 
 
@@ -121,6 +124,7 @@
     sql: ('http://i.imgur.com/jE0KGIz.png')
   
   - dimension: image_fileangry2
+    hidden: TRUE
     sql: ${image_fileangry}
     html: <img src="{{ value }}" width="100" 0height="100"/> 
     
@@ -129,6 +133,7 @@
     sql: ('http://i.imgur.com/QUKr7Bv.png')
   
   - dimension: image_filehaha2
+    hidden: TRUE
     sql: ${image_filehaha}
     html: <img src="{{ value }}" width="100" 0height="100"/> 
     
@@ -138,6 +143,7 @@
     sql: ('http://i.imgur.com/uJMysxN.png')
   
   - dimension: image_filelove2
+    hidden: TRUE
     sql: ${image_filelove}
     html: <img src="{{ value }}" width="100" 0height="100"/> 
     
@@ -146,6 +152,17 @@
     sql: ('http://i.imgur.com/Do2j40j.png')
   
   - dimension: image_filelike2
+    hidden: TRUE
     sql: ${image_filelike}
     html: <img src="{{ value }}" width="100" 0height="100"/> 
+
+
+
+
+  - dimension: image_filewowgif
+    hidden: TRUE
+    sql: ('http://emojipedia-us.s3.amazonaws.com/content/2015/10/11/facebook-emoji-reactions.gif')
+  - dimension: image_filewowgif2
+    sql: ${image_filewowgif}
+    html: <img src="{{ value }}" width="1000" 0height="1000"/>
 

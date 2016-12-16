@@ -105,6 +105,7 @@
   - measure: post_clicks
     type: sum
     sql: ${TABLE}.post_clicks
+    drill_fields: [post_details*]
 
   - measure: post_org_reach
     type: sum
@@ -117,10 +118,12 @@
   - measure: post_reach
     type: sum
     sql: ${TABLE}.post_reach
+    drill_fields: [post_details*]
 
   - measure: post_reach_unique
     type: sum
     sql: ${TABLE}.post_reach_unique
+    drill_fields: [post_details*]
 
   - measure: post_video_avg_time_watched
     label: 'Post Avg Video View Time (sec)'
@@ -180,3 +183,23 @@
     label: 'Reactions Total'
     type: number
     sql: (${wow_count})+(${sad_count})+(${angry_count})+(${haha_count})+(${likes_count})+(${love_count})
+    
+  - measure: number_of_posts
+    type: count_distinct
+    sql: ${TABLE}.id
+    drill_fields: [post_details*]
+
+  sets:
+    post_details:
+      - created_time
+      - type
+      - link
+      - from_name
+      - message
+      - post_clicks
+      - likes_count
+      - comments_count
+      - shares_count
+      - post_reach
+      - post_reach_unique
+    

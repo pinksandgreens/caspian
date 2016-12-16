@@ -119,6 +119,11 @@
   always_filter:
     date_filter: 30 days   
     
+- explore: ga_sessions_greatmagazines
+  label: 'BigQuery - Great Magazines'
+  always_filter:
+    date_filter: 30 days  
+    
     
     
     

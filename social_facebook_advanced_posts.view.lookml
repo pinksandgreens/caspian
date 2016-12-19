@@ -14,10 +14,12 @@
         WHEN ${TABLE}.angry_count = 'NA' THEN '0'
         ELSE ${TABLE}.angry_count
       END
+    drill_fields: [post_details*]
 
   - measure: comments_count
     type: sum
     sql: ${TABLE}.comments_count
+    drill_fields: [post_details*]
 
     
   - dimension: created_time
@@ -72,6 +74,7 @@
         WHEN ${TABLE}.haha_count = 'NA' THEN '0'
         ELSE ${TABLE}.haha_count
       END
+    drill_fields: [post_details*]
 
   - measure: likes_count
     type: sum
@@ -80,6 +83,7 @@
         WHEN ${TABLE}.likes_count = 'NA' THEN '0'
         ELSE ${TABLE}.likes_count
       END
+    drill_fields: [post_details*]
     
   - dimension: link
     label: 'Link'
@@ -97,6 +101,7 @@
         WHEN ${TABLE}.love_count = 'NA' THEN '0'
         ELSE ${TABLE}.love_count
       END
+    drill_fields: [post_details*]
 
   - dimension: message
     type: string
@@ -110,10 +115,12 @@
   - measure: post_org_reach
     type: sum
     sql: ${TABLE}.post_org_reach
+    drill_fields: [post_details*]
 
   - measure: post_paid_reach
     type: sum
     sql: ${TABLE}.post_paid_reach
+    drill_fields: [post_details*]
 
   - measure: post_reach
     type: sum
@@ -146,6 +153,7 @@
   - measure: post_viral_reach
     type: sum
     sql: ${TABLE}.post_viral_reach
+    drill_fields: [post_details*]
 
   - measure: sad_count
     type: sum
@@ -154,6 +162,7 @@
         WHEN ${TABLE}.sad_count = 'NA' THEN '0'
         ELSE ${TABLE}.sad_count
       END
+    drill_fields: [post_details*]
 
   - measure: shares_count
     type: sum
@@ -162,6 +171,7 @@
         WHEN ${TABLE}.shares_count = 'NA' THEN '0'
         ELSE ${TABLE}.shares_count
       END
+    drill_fields: [post_details*]
 
   - dimension: story
     type: string
@@ -178,11 +188,13 @@
         WHEN ${TABLE}.wow_count = 'NA' THEN '0'
         ELSE ${TABLE}.wow_count
       END
+    drill_fields: [post_details*]
 
   - measure: reactions_count
     label: 'Reactions Total'
     type: number
     sql: (${wow_count})+(${sad_count})+(${angry_count})+(${haha_count})+(${likes_count})+(${love_count})
+    drill_fields: [post_details*]
     
   - measure: number_of_posts
     type: count_distinct
@@ -192,18 +204,22 @@
   - measure: post_clicks_video
     type: sum
     sql: ${TABLE}.post_clicks_video
+    drill_fields: [post_details*]
       
   - measure: post_clicks_other
     type: sum
     sql: ${TABLE}.post_clicks_other
+    drill_fields: [post_details*]
       
   - measure: post_clicks_photo
     type: sum
     sql: ${TABLE}.post_clicks_photo
+    drill_fields: [post_details*]
       
   - measure: post_clicks_link
     type: sum
     sql: ${TABLE}.post_clicks_link
+    drill_fields: [post_details*]
 
   sets:
     post_details:

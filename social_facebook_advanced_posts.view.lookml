@@ -189,6 +189,22 @@
     sql: ${TABLE}.id
     drill_fields: [post_details*]
 
+  - measure: post_clicks_video
+    type: sum
+    sql: ${TABLE}.post_clicks_video
+      
+  - measure: post_clicks_other
+    type: sum
+    sql: ${TABLE}.post_clicks_other
+      
+  - measure: post_clicks_photo
+    type: sum
+    sql: ${TABLE}.post_clicks_photo
+      
+  - measure: post_clicks_link
+    type: sum
+    sql: ${TABLE}.post_clicks_link
+
   sets:
     post_details:
       - created_time
@@ -197,6 +213,7 @@
       - from_name
       - message
       - post_clicks
+      - post_clicks_link
       - likes_count
       - comments_count
       - shares_count

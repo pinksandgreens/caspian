@@ -1,4 +1,5 @@
 - view: ga_sessions_lifestyle_crossover
+  label: 'x: Brand Overlap'
   derived_table:
     sql: |
       SELECT

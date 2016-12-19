@@ -15,6 +15,16 @@
       relationship: one_to_many
       sql_on: ${ga_sessions_lifestyle_crossover.full_Visitor_Id} = ${ga_sessions.full_visitor_id}
 
+    - join: ga_sessions_lifestyle_advcompsearch
+      type: inner
+      relationship: one_to_many
+      sql_on: ${ga_sessions_lifestyle_advcompsearch.full_Visitor_Id} = ${ga_sessions.full_visitor_id}
+
+    - join: ga_sessions_lifestyle_brandsearch
+      type: inner
+      relationship: one_to_many
+      sql_on: ${ga_sessions_lifestyle_brandsearch.full_Visitor_Id} = ${ga_sessions.full_visitor_id}
+
 # Hidden until we get a data layer change      
 #     - join: ga_sessions_lifestyle_articles
 #       type: inner

@@ -13,6 +13,11 @@
     relationship: one_to_many
     sql_on: ${bauer_list.email_address} = ${gigya_users.email}
   
+  - join: radio_login_data_20160820
+    type: full_outer
+    relationship: one_to_many
+    sql_on: ${radio_login_data_20160820.account_email} = ${gigya_users.email}
+  
   - join: identities
     type: inner
     relationship: one_to_one

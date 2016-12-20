@@ -33,7 +33,7 @@
     sql: |
         CASE      
           WHEN ${TABLE}.account_gender = 'm' THEN 'Male'
-          WHEN ${TABLE}.account_gender = 'f' THEN 'Male'
+          WHEN ${TABLE}.account_gender = 'f' THEN 'Female'
           WHEN ${TABLE}.account_gender IS NULL THEN 'Null'
           ELSE 'Unknown'
         END

@@ -28,10 +28,8 @@
     sql: ${TABLE}.VIEWS
     
   - dimension: Article
-    primary_key: true
     sql: ${TABLE}.Article
     
   - dimension: Category
-    primary_key: true
     sql: ${TABLE}.Category
     

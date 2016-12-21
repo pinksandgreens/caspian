@@ -134,7 +134,8 @@
   always_filter:
     date_filter: 30 days  
     
-    
-    
-    
-    
+- explore: articles_monthly_movers
+  hidden: TRUE
+  label: 'BigQuery - Lifestyle - Article Movers & Shakers'
+  always_filter:
+    date_filter: 30 days

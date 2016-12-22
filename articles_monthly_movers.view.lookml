@@ -20,6 +20,9 @@
   fields:
   - filter: date_filter1
     type: date
+    
+  - filter: date_filter2
+    type: date
 
   - filter: Brand_filter 
     label: 'FILTER by BRAND'

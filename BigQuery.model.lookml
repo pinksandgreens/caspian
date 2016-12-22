@@ -139,3 +139,4 @@
   label: 'BigQuery - Lifestyle - Article Movers & Shakers'
   always_filter:
     date_filter1: 30 days
+    date_filter2: 30 days

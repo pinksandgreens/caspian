@@ -13,8 +13,9 @@
           FLATTEN(
             (SELECT
               *
-            FROM
-              (SELECT * FROM `114668488.ga_sessions_20*`))
+            FROM 
+              (TABLE_QUERY([uplifted-light-89310:114668488],'table_id CONTAINS "ga_sessions"'))
+            )
           , hits) WHERE hits.page.pageTitle = V2_Period.Article AND hits.type = 'PAGE') AS Total_VIEWS
       FROM
         (SELECT

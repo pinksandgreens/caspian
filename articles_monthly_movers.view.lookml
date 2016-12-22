@@ -1,11 +1,11 @@
 - view: articles_monthly_movers
   sql_table_name: |
       (SELECT
-        COMPLETE_ARTICLE_RESULTS.V2_Period.Article,
-        COMPLETE_ARTICLE_RESULTS.V2_Period.VIEWS,
-        COMPLETE_ARTICLE_RESULTS.V1_Period.Article,
-        COMPLETE_ARTICLE_RESULTS.V1_Period.VIEWS,
-        COMPLETE_ARTICLE_RESULTS.V2_Period.CATEGORY
+        COMPLETE_ARTICLE_RESULTS.1,
+        COMPLETE_ARTICLE_RESULTS.3,
+        COMPLETE_ARTICLE_RESULTS.4,
+        COMPLETE_ARTICLE_RESULTS.6,
+        COMPLETE_ARTICLE_RESULTS.2
       FROM
       
       (SELECT
@@ -57,18 +57,18 @@
     
   - measure: VIEWS_V2
     type: sum
-    sql: ${TABLE}.COMPLETE_ARTICLE_RESULTS.V2_Period.VIEWS
+    sql: ${TABLE}.COMPLETE_ARTICLE_RESULTS.3
     
   - measure: VIEWS_V1
     type: sum
-    sql: ${TABLE}.COMPLETE_ARTICLE_RESULTS.V1_Period.VIEWS
+    sql: ${TABLE}.COMPLETE_ARTICLE_RESULTS.6
 
   - dimension: Article_V2
-    sql: ${TABLE}.COMPLETE_ARTICLE_RESULTS.V2_Period.Article
+    sql: ${TABLE}.COMPLETE_ARTICLE_RESULTS.1
     
   - dimension: Article_V1
-    sql: ${TABLE}.COMPLETE_ARTICLE_RESULTS.V1_Period.Article
+    sql: ${TABLE}.COMPLETE_ARTICLE_RESULTS.4
 
   - dimension: Category
-    sql: ${TABLE}.COMPLETE_ARTICLE_RESULTS.V2_Period.CATEGORY
+    sql: ${TABLE}.COMPLETE_ARTICLE_RESULTS.2
     

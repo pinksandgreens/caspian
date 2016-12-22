@@ -75,5 +75,13 @@
     type: number
     sql: ${VIEWS_V2} - ${VIEWS_V1}
     
+  - dimension: Article_Status
+    type: string
+    sql: |
+      CASE
+        WHEN ${TABLE}.V1_Period.Article IS NULL THEN 'NEW'
+        ELSE 'EXISTNG'
+      END
+    
     
     

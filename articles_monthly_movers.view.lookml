@@ -90,6 +90,6 @@
       END
   - dimension: First_Viewed
     type: date
-    sql: ${TABLE}.V2.First_Viewed
+    sql: ${TABLE}.V2_Period.First_Viewed
     
     

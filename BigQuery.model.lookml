@@ -135,8 +135,10 @@
     date_filter: 30 days  
     
 - explore: articles_monthly_movers
+  # access_filter_fields: [articles_monthly_movers.V2_Period, articles_monthly_movers.V1_Period]
   #   hidden: TRUE
   label: 'BigQuery - Lifestyle - Article Movers & Shakers'
   always_filter:
     V2_Period: this month
     V1_Period: last month
+  sql_always_where: ${V2_Period} = this month AND ${V1_Period} = last month

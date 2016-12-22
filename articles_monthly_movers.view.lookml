@@ -7,16 +7,7 @@
         V1_Period.VIEWS,
         V2_Period.Category,
         V2_Period.First_Viewed,
-        (SELECT
-          COUNT(hits.page.pagePath)
-        FROM
-          FLATTEN(
-            (SELECT
-              *
-            FROM 
-              (TABLE_QUERY([uplifted-light-89310:114668488],'table_id CONTAINS "ga_sessions"'))
-            )
-          , hits) WHERE hits.page.pageTitle = V2_Period.Article AND hits.type = 'PAGE') AS Total_VIEWS
+        B.Total_Views
       FROM
         (SELECT
           hits.page.pageTitle AS Article,
@@ -50,6 +41,16 @@
         WHERE REGEXP_MATCH(hits.page.pagePath, r'^\/grazia\/(fashion|hair-beauty|diet-body|news-real-life|celebrity|magazine|contact|feature|my)\/.+') AND hits.type = 'PAGE'
         GROUP BY Article, Category) AS V1_Period
         ON V2_Period.Article = V1_Period.Article
+        LEFT OUTER JOIN
+        (SELECT
+          hits.page.pageTitle AS Article,
+          COUNT(hits.page.pagePath) AS Total_Views
+        FROM 
+          (TABLE_QUERY([uplifted-light-89310:114668488],'table_id CONTAINS "ga_sessions"'))
+        WHERE REGEXP_MATCH(hits.page.pagePath, r'^\/grazia\/(fashion|hair-beauty|diet-body|news-real-life|celebrity|magazine|contact|feature|my)\/.+') AND hits.type = 'PAGE'
+        GROUP BY Article
+      ) AS B
+      ON V2_Period.Article = B.Article
       ORDER BY V2_Period.VIEWS DESC)
 
   fields:
@@ -105,4 +106,4 @@
     
   - dimension: Total_Views
     type: number
-    sql: ${TABLE}.Total_VIEWS
+    sql: ${TABLE}.B.Total_Views

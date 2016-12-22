@@ -67,3 +67,8 @@
   - dimension: Category_V2
     sql: ${TABLE}.V2_Period.Category
     
+  - measure: Variance
+    type: number
+    sql: ((${VIEWS_V2} / ${VIEWS_V1})-1) * 100.0
+    value_format: '0.00'
+    

@@ -15,7 +15,7 @@
               *
             FROM
               (SELECT * FROM `114668488.ga_sessions_*`))
-          , hits) WHERE hits.page.pageTitle = V2_Period.Article) AS Total_VIEWS
+          , hits) WHERE hits.page.pageTitle = V2_Period.Article AND hits.type = 'PAGE') AS Total_VIEWS
       FROM
         (SELECT
           hits.page.pageTitle AS Article,

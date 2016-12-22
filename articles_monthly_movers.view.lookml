@@ -71,3 +71,9 @@
     sql: ((${VIEWS_V2} / ${VIEWS_V1})-1)
     value_format: '0%'
     
+  - measure: View_Delta
+    type: number
+    sql: ${VIEWS_V2} - ${VIEWS_V1}
+    
+    
+    

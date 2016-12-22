@@ -9,7 +9,7 @@
           (SELECT
             *
           FROM
-            (SELECT * FROM {% table_date_range date_filter1 114668488.ga_sessions_ %},{% table_date_range date_filter1 114668488.ga_sessions_intraday_ %})
+            (SELECT * FROM {% table_date_range V2_Period 114668488.ga_sessions_ %},{% table_date_range V2_Period 114668488.ga_sessions_intraday_ %})
           )
         , hits)
       WHERE REGEXP_MATCH(hits.page.pagePath, r'^\/grazia\/(fashion|hair-beauty|diet-body|news-real-life|celebrity|magazine|contact|search|feature|my)\/.+') AND hits.type = 'PAGE'
@@ -18,10 +18,10 @@
       LIMIT 50)
 
   fields:
-  - filter: date_filter1
+  - filter: V2_Period
     type: date
     
-  - filter: date_filter2
+  - filter: V1_Period
     type: date
 
   - filter: Brand_filter 

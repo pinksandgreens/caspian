@@ -138,5 +138,5 @@
 #   hidden: TRUE
   label: 'BigQuery - Lifestyle - Article Movers & Shakers'
   always_filter:
-    date_filter1: this month
-    date_filter2: last month
+    V2_Period: this month
+    V1_Period: last month

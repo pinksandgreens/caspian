@@ -5,12 +5,14 @@
         V2_Period.VIEWS,
         V1_Period.Article,
         V1_Period.VIEWS,
-        V2_Period.Category
+        V2_Period.Category,
+        V2_Period.First_Viewed
       FROM
         (SELECT
           hits.page.pageTitle AS Article,
           REGEXP_EXTRACT(hits.page.pagePath, r'^\/grazia\/(fashion|hair-beauty|diet-body|news-real-life|celebrity|magazine|contact|feature|my)\/.+') AS Category,
-          COUNT(hits.page.pagePath) AS VIEWS
+          COUNT(hits.page.pagePath) AS VIEWS,
+          MIN(date) AS First_Viewed
         FROM
           FLATTEN(
             (SELECT
@@ -25,7 +27,8 @@
         (SELECT
           hits.page.pageTitle AS Article,
           REGEXP_EXTRACT(hits.page.pagePath, r'^\/grazia\/(fashion|hair-beauty|diet-body|news-real-life|celebrity|magazine|contact|feature|my)\/.+') AS Category,
-          COUNT(hits.page.pagePath) AS VIEWS
+          COUNT(hits.page.pagePath) AS VIEWS,
+          MIN(date) AS First_Viewed
         FROM
           FLATTEN(
             (SELECT
@@ -83,8 +86,10 @@
     sql: |
       CASE
         WHEN ${TABLE}.V1_Period.Article IS NULL THEN 'NEW'
-        ELSE 'EXISTNG'
+        ELSE 'LIVE'
       END
-    
+  - dimension: First_Viewed
+    type: date
+    sql: ${TABLE}.V2.First_Viewed
     
     

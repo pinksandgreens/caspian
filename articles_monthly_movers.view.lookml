@@ -6,7 +6,16 @@
         V1_Period.Article,
         V1_Period.VIEWS,
         V2_Period.Category,
-        V2_Period.First_Viewed
+        V2_Period.First_Viewed,
+        (SELECT
+          COUNT(hits.page.pagePath)
+        FROM
+          FLATTEN(
+            (SELECT
+              *
+            FROM
+              (SELECT * FROM 114668488))
+          , hits) WHERE hits.page.pageTitle = V2_Period.Article) AS Total_VIEWS
       FROM
         (SELECT
           hits.page.pageTitle AS Article,
@@ -88,8 +97,11 @@
         WHEN ${TABLE}.V1_Period.Article IS NULL THEN 'NEW'
         ELSE 'LIVE'
       END
+  
   - dimension: First_Viewed
     type: date
     sql: ${TABLE}.V2_Period.First_Viewed
     
-    
+  - dimension: Total_Views
+    type: number
+    sql: ${TABLE}.Total_VIEWS

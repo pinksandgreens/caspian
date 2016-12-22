@@ -49,6 +49,9 @@
   - filter: Brand_filter 
     label: 'FILTER by BRAND'
     
+  - filter: Article
+    type: string
+    
   - dimension: Article_V2
     sql: ${TABLE}.V2_Period.Article
   

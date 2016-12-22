@@ -4,7 +4,7 @@
         V2_Period.Article,
         V2_Period.VIEWS,
         V1_Period.Article,
-        V1_Period.VIEW,
+        V1_Period.VIEWS,
         V2_Period.Category
       FROM
         (SELECT

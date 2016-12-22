@@ -141,4 +141,4 @@
   always_filter:
     V2_Period: this month
     V1_Period: last month
-  sql_always_where: ${V2_Period} = this month AND ${V1_Period} = last month
+  

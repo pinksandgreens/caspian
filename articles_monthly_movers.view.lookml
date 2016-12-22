@@ -51,19 +51,19 @@
     label: 'FILTER by BRAND'
     
   - dimension: Article_V2
-    sql: ${TABLE}.COMPLETE_ARTICLE_RESULTS.Article_V2
+    sql: ${TABLE}.V2_Period.Article
   
   - measure: VIEWS_V2
     type: sum
-    sql: ${TABLE}.COMPLETE_ARTICLE_RESULTS.VIEWS_V2
+    sql: ${TABLE}.V2_Period.VIEWS
     
   - dimension: Article_V1
-    sql: ${TABLE}.COMPLETE_ARTICLE_RESULTS.Article_V1
+    sql: ${TABLE}.V1_Period.Article
 
   - measure: VIEWS_V1
     type: sum
-    sql: ${TABLE}.COMPLETE_ARTICLE_RESULTS.VIEWS_V1
+    sql: ${TABLE}.V1_Period.VIEWS
 
   - dimension: Category_V2
-    sql: ${TABLE}.COMPLETE_ARTICLE_RESULTS.Category_V2
+    sql: ${TABLE}.V2_Period.Category
     

@@ -37,8 +37,7 @@
         WHERE REGEXP_MATCH(hits.page.pagePath, r'^\/grazia\/(fashion|hair-beauty|diet-body|news-real-life|celebrity|magazine|contact|search|feature|my)\/.+') AND hits.type = 'PAGE'
         GROUP BY Article, Category) AS V1_Period
         ON V2_Period.Article = V1_Period.Article
-      ORDER BY V2_Period.VIEWS DESC
-      LIMIT 50)
+      ORDER BY V2_Period.VIEWS DESC)
 
   fields:
   - filter: V2_Period

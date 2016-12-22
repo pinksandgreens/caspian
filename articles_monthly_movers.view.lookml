@@ -69,6 +69,6 @@
     
   - measure: Variance
     type: number
-    sql: ((${VIEWS_V2} / ${VIEWS_V1})-1) * 100.0
+    sql: ((${VIEWS_V2} / ${VIEWS_V1})-1)
     value_format: '0%'
     

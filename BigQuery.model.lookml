@@ -135,8 +135,7 @@
     date_filter: 30 days  
     
 - explore: articles_monthly_movers
-  fields: [Article_V2, Article_V1, VIEWS_V2, VIEWS_V1, Category_V2]
-#   hidden: TRUE
+  #   hidden: TRUE
   label: 'BigQuery - Lifestyle - Article Movers & Shakers'
   always_filter:
     V2_Period: this month

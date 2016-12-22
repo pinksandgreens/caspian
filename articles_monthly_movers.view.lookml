@@ -1,17 +1,17 @@
 - view: articles_monthly_movers
   sql_table_name: |
       (SELECT
-        COMPLETE_ARTICLE_RESULTS.1,
-        COMPLETE_ARTICLE_RESULTS.3,
-        COMPLETE_ARTICLE_RESULTS.4,
-        COMPLETE_ARTICLE_RESULTS.6,
-        COMPLETE_ARTICLE_RESULTS.2
+        COMPLETE_ARTICLE_RESULTS.Article_V2,
+        COMPLETE_ARTICLE_RESULTS.VIEWS_V2,
+        COMPLETE_ARTICLE_RESULTS.Article_V1,
+        COMPLETE_ARTICLE_RESULTS.VIEW_V1,
+        COMPLETE_ARTICLE_RESULTS.Category_V2
       FROM
       
       (SELECT
-        hits.page.pageTitle AS Article,
-        REGEXP_EXTRACT(hits.page.pagePath, r'^\/grazia\/(fashion|hair-beauty|diet-body|news-real-life|celebrity|magazine|contact|search|feature|my)\/.+') AS Category,
-        COUNT(hits.page.pagePath) AS VIEWS
+        hits.page.pageTitle AS Article_V2,
+        REGEXP_EXTRACT(hits.page.pagePath, r'^\/grazia\/(fashion|hair-beauty|diet-body|news-real-life|celebrity|magazine|contact|search|feature|my)\/.+') AS Category_V2,
+        COUNT(hits.page.pagePath) AS VIEWS_V2
       FROM
       
         FLATTEN(
@@ -22,14 +22,14 @@
           )
         , hits)
       WHERE REGEXP_MATCH(hits.page.pagePath, r'^\/grazia\/(fashion|hair-beauty|diet-body|news-real-life|celebrity|magazine|contact|search|feature|my)\/.+') AND hits.type = 'PAGE'
-      GROUP BY Article, Category) AS V2_Period
+      GROUP BY Article_V2, Category_V2) AS V2_Period
       
       LEFT OUTER JOIN
       
       (SELECT
-        hits.page.pageTitle AS Article,
-        REGEXP_EXTRACT(hits.page.pagePath, r'^\/grazia\/(fashion|hair-beauty|diet-body|news-real-life|celebrity|magazine|contact|search|feature|my)\/.+') AS Category,
-        COUNT(hits.page.pagePath) AS VIEWS
+        hits.page.pageTitle AS Article_V1,
+        REGEXP_EXTRACT(hits.page.pagePath, r'^\/grazia\/(fashion|hair-beauty|diet-body|news-real-life|celebrity|magazine|contact|search|feature|my)\/.+') AS Category_V1,
+        COUNT(hits.page.pagePath) AS VIEWS_V1
       FROM
         FLATTEN(
           (SELECT
@@ -39,10 +39,12 @@
           )
         , hits)
       WHERE REGEXP_MATCH(hits.page.pagePath, r'^\/grazia\/(fashion|hair-beauty|diet-body|news-real-life|celebrity|magazine|contact|search|feature|my)\/.+') AND hits.type = 'PAGE'
-      GROUP BY Article, Category) AS V1_Period
+      GROUP BY Article_V1, Category_V1) AS V1_Period
       
-      ON Article.V2_Period = Article.V1_Period) AS COMPLETE_ARTICLE_RESULTS
-      ORDER BY COMPLETE_ARTICLE_RESULTS.V2_Period.VIEWS DESC
+      ON V2_Period.Article_V2 = V1_Period.Article_V1) AS COMPLETE_ARTICLE_RESULTS
+      
+      
+      ORDER BY COMPLETE_ARTICLE_RESULTS.VIEWS_V2 DESC
       LIMIT 50)
 
   fields:
@@ -55,20 +57,20 @@
   - filter: Brand_filter 
     label: 'FILTER by BRAND'
     
+  - dimension: Article_V2
+    sql: ${TABLE}.COMPLETE_ARTICLE_RESULTS.Article_V2
+  
   - measure: VIEWS_V2
     type: sum
-    sql: ${TABLE}.COMPLETE_ARTICLE_RESULTS.3
-    
-  - measure: VIEWS_V1
-    type: sum
-    sql: ${TABLE}.COMPLETE_ARTICLE_RESULTS.6
-
-  - dimension: Article_V2
-    sql: ${TABLE}.COMPLETE_ARTICLE_RESULTS.1
+    sql: ${TABLE}.COMPLETE_ARTICLE_RESULTS.VIEWS_V2
     
   - dimension: Article_V1
-    sql: ${TABLE}.COMPLETE_ARTICLE_RESULTS.4
+    sql: ${TABLE}.COMPLETE_ARTICLE_RESULTS.Article_V1
 
-  - dimension: Category
-    sql: ${TABLE}.COMPLETE_ARTICLE_RESULTS.2
+  - measure: VIEWS_V1
+    type: sum
+    sql: ${TABLE}.COMPLETE_ARTICLE_RESULTS.VIEWS_V1
+
+  - dimension: Category_V2
+    sql: ${TABLE}.COMPLETE_ARTICLE_RESULTS.Category_V2
     

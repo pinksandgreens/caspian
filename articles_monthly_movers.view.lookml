@@ -76,6 +76,7 @@
     sql: ${TABLE}.V2_Period.Brand
     
   - dimension: Age
+    type: number
     sql: ${TABLE}.V2_Period.Article_Age
   
   - dimension: Article_V2

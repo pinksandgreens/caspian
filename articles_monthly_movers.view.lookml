@@ -17,7 +17,7 @@
           hits.page.pageTitle AS Article,
           COUNT(hits.page.pagePath) AS VIEWS,
           MIN(date) AS First_Viewed,
-          DATEDIFF(TIMESTAMP(NOW()),TIMESTAMP(MIN(date))) AS Article_Age
+          DATEDIFF(CURRENT_DATE(),MIN(date)) AS Article_Age
         FROM
           FLATTEN(
             (SELECT

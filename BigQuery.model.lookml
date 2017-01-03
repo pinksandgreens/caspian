@@ -141,5 +141,5 @@
   always_filter:
     V2_Period: last month
     V1_Period: last 2 months
-    Brand_filter: 114668488
+    Brand_filter: 114668488.ga_sessions_
   

@@ -109,12 +109,9 @@
     sql: |
       CASE
         WHEN ${TABLE}.V1_Period.Article IS NULL THEN 'New'
-        ELSE 
-          CASE
-            WHEN ${TABLE}.V2_Period.Article_Age < 91 THEN 'Fresh'
-            WHEN ${TABLE}.V2_Period.Article_Age BETWEEN 91 AND 182 THEN 'Mature'
-            WHEN ${TABLE}.V2_Period.Article_Age > 182 THEN 'Vintage'
-          END
+        WHEN ${TABLE}.V2_Period.Article_Age < 91 THEN 'Fresh'
+        WHEN ${TABLE}.V2_Period.Article_Age BETWEEN 91 AND 182 THEN 'Mature'
+        WHEN ${TABLE}.V2_Period.Article_Age > 182 THEN 'Vintage'
       END
   
   - dimension: First_Viewed

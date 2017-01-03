@@ -74,8 +74,7 @@
   - dimension: Brand
     sql: ${TABLE}.V2_Period.Brand
     
-  - dimension: Age
-    type: number
+  - measure: Age
     sql: ${TABLE}.V2_Period.Article_Age
   
   - dimension: Article_V2
@@ -108,10 +107,11 @@
     type: string
     sql: |
       CASE
-        WHEN ${TABLE}.V1_Period.Article IS NULL THEN 'New'
-        WHEN ${TABLE}.V2_Period.Article_Age < 91 THEN 'Fresh'
-        WHEN ${TABLE}.V2_Period.Article_Age BETWEEN 91 AND 182 THEN 'Mature'
-        WHEN ${TABLE}.V2_Period.Article_Age > 182 THEN 'Vintage'
+        WHEN ${Article_V1} IS NULL THEN 'New'
+          ELSE
+            WHEN ${Age} < 91 THEN 'Fresh'
+            WHEN ${Age} BETWEEN 91 AND 182 THEN 'Mature'
+            WHEN ${Age} > 182 THEN 'Vintage'
       END
   
   - dimension: First_Viewed

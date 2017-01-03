@@ -112,6 +112,17 @@
       relationship: one_to_one
       sql_on: ${brand_lookup.bra_code} = ${barnaclesessions.brand_code}
 
+- explore: barnaclesessions_30day
+  hidden: TRUE
+  label: 'Barnacle - Sessions 30 Day'
+  sql_table_name: publications.barnaclesessions_30day
+  persist_for: 20 hour
+
+  joins:
+    - join: brand_lookup
+      type: inner
+      relationship: one_to_one
+      sql_on: ${brand_lookup.bra_code} = ${barnaclesessions_30day.brand_code}
 
 
 
@@ -148,6 +159,8 @@
       type: inner
       relationship: one_to_one
       sql_on: ${brand_lookup.bra_code} = ${bigquery_google_analytics_hits.hits_page_hostname_pp1}
+
+
 
   
 # foreign_key:

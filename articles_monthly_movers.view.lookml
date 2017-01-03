@@ -2,22 +2,20 @@
   sql_table_name: |
       (SELECT
         V2_Period.Brand,
-        V2_Period.Article_Age,
+        B.Article_Age,
         V2_Period.Article,
         V2_Period.VIEWS,
         V1_Period.Article,
         V1_Period.VIEWS,
         V2_Period.Section_Category,
-        V2_Period.First_Viewed,
+        B.First_Viewed,
         B.Total_Views
       FROM
         (SELECT
           RegEXP_EXTRACT(hits.page.pagePath, r'^\/(.+?)\/.+') AS Brand,
           REGEXP_EXTRACT(hits.page.pagePath, r'^\/.+?\/(celebrity|contact|diet-body|entertainment|family-money|fashion|feature|hair-beauty|heat-radio|magazine|my|news-real-life)\/.+') AS Section_Category,
           hits.page.pageTitle AS Article,
-          COUNT(hits.page.pagePath) AS VIEWS,
-          MIN(date) AS First_Viewed,
-          DATEDIFF(CURRENT_DATE(),MIN(date)) AS Article_Age
+          COUNT(hits.page.pagePath) AS VIEWS
         FROM
           FLATTEN(
             (SELECT
@@ -49,7 +47,9 @@
         LEFT OUTER JOIN
         (SELECT
           hits.page.pageTitle AS Article,
-          COUNT(hits.page.pagePath) AS Total_Views
+          COUNT(hits.page.pagePath) AS Total_Views,
+          MIN(date) AS First_Viewed,
+          DATEDIFF(CURRENT_DATE(),MIN(date)) AS Article_Age
         FROM 
           (TABLE_QUERY([uplifted-light-89310:114668488],'table_id CONTAINS "ga_sessions"'))
         WHERE {% condition Brand_filter %} RegEXP_EXTRACT(hits.page.pagePath, r'^\/(.+?)\/.+') {% endcondition %} AND hits.type = 'PAGE'
@@ -75,7 +75,7 @@
     sql: ${TABLE}.V2_Period.Brand
     
   - dimension: Age
-    sql: ${TABLE}.V2_Period.Article_Age
+    sql: ${TABLE}.B.Article_Age
   
   - dimension: Article_V2
     sql: ${TABLE}.V2_Period.Article
@@ -115,7 +115,7 @@
   
   - dimension: First_Viewed
     type: date
-    sql: ${TABLE}.V2_Period.First_Viewed
+    sql: ${TABLE}.B.First_Viewed
     
   - dimension: Total_Views
     type: number

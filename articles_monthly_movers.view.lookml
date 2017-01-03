@@ -2,18 +2,18 @@
   sql_table_name: |
       (SELECT
         V2_Period.Brand,
-        B.Article_Age,
+        V2_Period.Section_Category,
         V2_Period.Article,
         V2_Period.VIEWS,
         V1_Period.Article,
         V1_Period.VIEWS,
-        V2_Period.Section_Category,
         B.First_Viewed,
-        B.Total_Views
+        B.Total_Views,
+        B.Article_Age
       FROM
         (SELECT
           RegEXP_EXTRACT(hits.page.pagePath, r'^\/(.+?)\/.+') AS Brand,
-          REGEXP_EXTRACT(hits.page.pagePath, r'^\/.+?\/(celebrity|contact|diet-body|entertainment|family-money|fashion|feature|hair-beauty|heat-radio|magazine|my|news-real-life)\/.+') AS Section_Category,
+          REGEXP_EXTRACT(hits.page.pagePath, r'^\/.+?\/(celebrity|contact|diet-body|entertainment|family-money|fashion|feature|hair-beauty|heat-radio|magazine|my|news-real-life|news|sport|bikes-for-sale|bike-reviews|insurance|product-reviews|new-rider)\/.+') AS Section_Category,
           hits.page.pageTitle AS Article,
           COUNT(hits.page.pagePath) AS VIEWS
         FROM
@@ -21,7 +21,15 @@
             (SELECT
               *
             FROM
+              {% if Brand_filter == 'grazia' %}
               (SELECT * FROM {% table_date_range V2_Period 114668488.ga_sessions_ %},{% table_date_range V2_Period 114668488.ga_sessions_intraday_ %})
+              {% elsif Brand_filter == 'heat' %}
+              (SELECT * FROM {% table_date_range V2_Period 114668488.ga_sessions_ %},{% table_date_range V2_Period 114668488.ga_sessions_intraday_ %})
+              {% elsif Brand_filter == 'closer' %}
+              (SELECT * FROM {% table_date_range V2_Period 114668488.ga_sessions_ %},{% table_date_range V2_Period 114668488.ga_sessions_intraday_ %})
+              {% elsif Brand_filter == 'mcn' %}
+              (SELECT * FROM {% table_date_range V2_Period 22661559.ga_sessions_ %},{% table_date_range V2_Period 22661559.ga_sessions_intraday_ %})
+              {% endif %}
             )
           , hits)
         WHERE {% condition Brand_filter %} RegEXP_EXTRACT(hits.page.pagePath, r'^\/(.+?)\/.+') {% endcondition %} AND hits.type = 'PAGE'
@@ -29,7 +37,7 @@
         LEFT OUTER JOIN
         (SELECT
           RegEXP_EXTRACT(hits.page.pagePath, r'^\/(.+?)\/.+') AS Brand,
-          REGEXP_EXTRACT(hits.page.pagePath, r'^\/.+?\/(celebrity|contact|diet-body|entertainment|family-money|fashion|feature|hair-beauty|heat-radio|magazine|my|news-real-life)\/.+') AS Section_Category,
+          REGEXP_EXTRACT(hits.page.pagePath, r'^\/.+?\/(celebrity|contact|diet-body|entertainment|family-money|fashion|feature|hair-beauty|heat-radio|magazine|my|news-real-life|news|sport|bikes-for-sale|bike-reviews|insurance|product-reviews|new-rider)\/.+') AS Section_Category,
           hits.page.pageTitle AS Article,
           COUNT(hits.page.pagePath) AS VIEWS,
           MIN(date) AS First_Viewed
@@ -38,7 +46,15 @@
             (SELECT
               *
             FROM
+              {% if Brand_filter == 'grazia' %}
               (SELECT * FROM {% table_date_range V1_Period 114668488.ga_sessions_ %},{% table_date_range V1_Period 114668488.ga_sessions_intraday_ %})
+              {% elsif Brand_filter == 'heat' %}
+              (SELECT * FROM {% table_date_range V1_Period 114668488.ga_sessions_ %},{% table_date_range V1_Period 114668488.ga_sessions_intraday_ %})
+              {% elsif Brand_filter == 'closer' %}
+              (SELECT * FROM {% table_date_range V1_Period 114668488.ga_sessions_ %},{% table_date_range V1_Period 114668488.ga_sessions_intraday_ %})
+              {% elsif Brand_filter == 'mcn' %}
+              (SELECT * FROM {% table_date_range V1_Period 22661559.ga_sessions_ %},{% table_date_range V1_Period 22661559.ga_sessions_intraday_ %})
+              {% endif %}
             )
           , hits)
         WHERE {% condition Brand_filter %} RegEXP_EXTRACT(hits.page.pagePath, r'^\/(.+?)\/.+') {% endcondition %} AND hits.type = 'PAGE'
@@ -51,7 +67,15 @@
           MIN(date) AS First_Viewed,
           DATEDIFF(CURRENT_DATE(),MIN(date)) AS Article_Age
         FROM 
+          {% if Brand_filter == 'grazia' %}
           (TABLE_QUERY([uplifted-light-89310:114668488],'table_id CONTAINS "ga_sessions"'))
+          {% elsif Brand_filter == 'heat' %}
+          (TABLE_QUERY([uplifted-light-89310:114668488],'table_id CONTAINS "ga_sessions"'))
+          {% elsif Brand_filter == 'closer' %}
+          (TABLE_QUERY([uplifted-light-89310:114668488],'table_id CONTAINS "ga_sessions"'))
+          {% elsif Brand_filter == 'mcn' %}
+          (TABLE_QUERY([uplifted-light-89310:22661559],'table_id CONTAINS "ga_sessions"'))
+          {% endif %}
         WHERE {% condition Brand_filter %} RegEXP_EXTRACT(hits.page.pagePath, r'^\/(.+?)\/.+') {% endcondition %} AND hits.type = 'PAGE'
         GROUP BY Article
       ) AS B

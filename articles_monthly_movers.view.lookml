@@ -1,6 +1,8 @@
 - view: articles_monthly_movers
   sql_table_name: |
       (SELECT
+        V2_Period.Brand,
+        V2_Period.Article_Age,
         V2_Period.Article,
         V2_Period.VIEWS,
         V1_Period.Article,
@@ -14,7 +16,8 @@
           REGEXP_EXTRACT(hits.page.pagePath, r'^\/.+?\/(celebrity|contact|diet-body|entertainment|family-money|fashion|feature|hair-beauty|heat-radio|magazine|my|news-real-life)\/.+') AS Section_Category,
           hits.page.pageTitle AS Article,
           COUNT(hits.page.pagePath) AS VIEWS,
-          MIN(date) AS First_Viewed
+          MIN(date) AS First_Viewed,
+          DATEDIFF(NOW(),MIN(date) AS Article_Age
         FROM
           FLATTEN(
             (SELECT
@@ -69,6 +72,12 @@
   - filter: Article
     type: string
     
+  - dimension: Brand
+    sql: ${TABLE}.V2_Period.Brand
+    
+  - dimension: Age
+    sql: ${TABLE}.V2_Period.Article_Age
+  
   - dimension: Article_V2
     sql: ${TABLE}.V2_Period.Article
   
@@ -99,8 +108,13 @@
     type: string
     sql: |
       CASE
-        WHEN ${TABLE}.V1_Period.Article IS NULL THEN 'NEW'
-        ELSE 'EXISTING'
+        WHEN ${TABLE}.V1_Period.Article IS NULL THEN 'New'
+        ELSE 
+          CASE
+            WHEN ${TABLE}.V2_Period.Article_Age < 91 THEN 'Fresh'
+            WHEN ${TABLE}.V2_Period.Article_Age > 90 AND < 183 THEN 'Mature'
+            WHEN ${TABLE}.V2_Period.Article_Age > 182 THEN 'Vintage'
+          END
       END
   
   - dimension: First_Viewed

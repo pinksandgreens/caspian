@@ -100,7 +100,7 @@
     sql: |
       CASE
         WHEN ${TABLE}.V1_Period.Article IS NULL THEN 'NEW'
-        ELSE 'LIVE'
+        ELSE 'EXISTING'
       END
   
   - dimension: First_Viewed

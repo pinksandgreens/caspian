@@ -51,15 +51,7 @@
           MIN(date) AS First_Viewed,
           DATEDIFF(CURRENT_DATE(),MIN(date)) AS Article_Age
         FROM 
-          {% if Brand_filter == 'grazia' %}
           (TABLE_QUERY([uplifted-light-89310:114668488],'table_id CONTAINS "ga_sessions"'))
-          {% elsif Brand_filter == 'heat' %}
-          (TABLE_QUERY([uplifted-light-89310:114668488],'table_id CONTAINS "ga_sessions"'))
-          {% elsif Brand_filter == 'closer' %}
-          (TABLE_QUERY([uplifted-light-89310:114668488],'table_id CONTAINS "ga_sessions"'))
-          {% elsif Brand_filter == 'mcn' %}
-          (TABLE_QUERY([uplifted-light-89310:22661559],'table_id CONTAINS "ga_sessions"'))
-          {% endif %}
         WHERE {% condition Brand_filter %} RegEXP_EXTRACT(hits.page.pagePath, r'^\/(.+?)\/.+') {% endcondition %} AND hits.type = 'PAGE'
         GROUP BY Article
       ) AS B

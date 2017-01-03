@@ -22,7 +22,7 @@
               *
             FROM
               # (SELECT * FROM {% table_date_range V2_Period 114668488.ga_sessions_ %},{% table_date_range V2_Period 114668488.ga_sessions_intraday_ %})
-              (SELECT * FROM {% table_date_range V2_Period {% filter Brand_filter %}.ga_sessions_ %},{% table_date_range V2_Period {% filter Brand_filter %}.ga_sessions_intraday_ %})
+              (SELECT * FROM {% table_date_range V2_Period {% Brand_filter %}.ga_sessions_ %},{% table_date_range V2_Period {% Brand_filter %}.ga_sessions_intraday_ %})
             )
           , hits)
         WHERE {% condition Brand_filter %} RegEXP_EXTRACT(hits.page.pagePath, r'^\/(.+?)\/.+') {% endcondition %} AND hits.type = 'PAGE'
@@ -39,7 +39,7 @@
             (SELECT
               *
             FROM
-              (SELECT * FROM {% table_date_range V1_Period {% filter Brand_filter %}.ga_sessions_ %},{% table_date_range V1_Period {% filter Brand_filter %}.ga_sessions_intraday_ %})
+              (SELECT * FROM {% table_date_range V1_Period {% Brand_filter %}.ga_sessions_ %},{% table_date_range V1_Period {% Brand_filter %}.ga_sessions_intraday_ %})
             )
           , hits)
         WHERE {% condition Brand_filter %} RegEXP_EXTRACT(hits.page.pagePath, r'^\/(.+?)\/.+') {% endcondition %} AND hits.type = 'PAGE'

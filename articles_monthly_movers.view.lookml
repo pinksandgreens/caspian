@@ -5,13 +5,14 @@
         V2_Period.VIEWS,
         V1_Period.Article,
         V1_Period.VIEWS,
-        V2_Period.Category,
+        V2_Period.Section_Category,
         V2_Period.First_Viewed,
         B.Total_Views
       FROM
         (SELECT
+          RegEXP_EXTRACT(hits.page.pagePath, r'^\/(.+?)\/.+') AS Brand,
+          REGEXP_EXTRACT(hits.page.pagePath, r'^\/.+?\/(celebrity|contact|diet-body|entertainment|family-money|fashion|feature|hair-beauty|heat-radio|magazine|my|news-real-life)\/.+') AS Section_Category,
           hits.page.pageTitle AS Article,
-          REGEXP_EXTRACT(hits.page.pagePath, r'^\/grazia\/(fashion|hair-beauty|diet-body|news-real-life|celebrity|magazine|contact|feature|my)\/.+') AS Category,
           COUNT(hits.page.pagePath) AS VIEWS,
           MIN(date) AS First_Viewed
         FROM
@@ -22,12 +23,14 @@
               (SELECT * FROM {% table_date_range V2_Period 114668488.ga_sessions_ %},{% table_date_range V2_Period 114668488.ga_sessions_intraday_ %})
             )
           , hits)
-        WHERE REGEXP_MATCH(hits.page.pagePath, r'^\/grazia\/(fashion|hair-beauty|diet-body|news-real-life|celebrity|magazine|contact|feature|my)\/.+') AND hits.type = 'PAGE'
-        GROUP BY Article, Category) AS V2_Period
+        # WHERE REGEXP_MATCH(hits.page.pagePath, r'^\/grazia\/(fashion|hair-beauty|diet-body|news-real-life|celebrity|magazine|contact|feature|my)\/.+') OR REGEXP_MATCH(hits.page.pagePath, r'^\/heat\/(celebrity|entertainment|fashion|hair-beauty|heat-radio)\/.+') OR REGEXP_MATCH(hits.page.pagePath, r'^\/heat\/(celebrity|entertainment|fashion|hair-beauty|heat-radio)\/.+') AND hits.type = 'PAGE'
+          WHERE {% condition Brand_filter %} RegEXP_EXTRACT(hits.page.pagePath, r'^\/(.+?)\/.+') {% endcondition %} AND hits.type = 'PAGE'
+        GROUP BY Article, Brand, Section_Category) AS V2_Period
         LEFT OUTER JOIN
         (SELECT
+          RegEXP_EXTRACT(hits.page.pagePath, r'^\/(.+?)\/.+') AS Brand,
+          REGEXP_EXTRACT(hits.page.pagePath, r'^\/.+?\/(celebrity|contact|diet-body|entertainment|family-money|fashion|feature|hair-beauty|heat-radio|magazine|my|news-real-life)\/.+') AS Section_Category,
           hits.page.pageTitle AS Article,
-          REGEXP_EXTRACT(hits.page.pagePath, r'^\/grazia\/(fashion|hair-beauty|diet-body|news-real-life|celebrity|magazine|contact|feature|my)\/.+') AS Category,
           COUNT(hits.page.pagePath) AS VIEWS,
           MIN(date) AS First_Viewed
         FROM
@@ -38,8 +41,8 @@
               (SELECT * FROM {% table_date_range V1_Period 114668488.ga_sessions_ %},{% table_date_range V1_Period 114668488.ga_sessions_intraday_ %})
             )
           , hits)
-        WHERE REGEXP_MATCH(hits.page.pagePath, r'^\/grazia\/(fashion|hair-beauty|diet-body|news-real-life|celebrity|magazine|contact|feature|my)\/.+') AND hits.type = 'PAGE'
-        GROUP BY Article, Category) AS V1_Period
+        WHERE {% condition Brand_filter %} RegEXP_EXTRACT(hits.page.pagePath, r'^\/(.+?)\/.+') {% endcondition %} AND hits.type = 'PAGE'
+        GROUP BY Article, Brand, Section_Category) AS V1_Period
         ON V2_Period.Article = V1_Period.Article
         LEFT OUTER JOIN
         (SELECT
@@ -47,7 +50,7 @@
           COUNT(hits.page.pagePath) AS Total_Views
         FROM 
           (TABLE_QUERY([uplifted-light-89310:114668488],'table_id CONTAINS "ga_sessions"'))
-        WHERE REGEXP_MATCH(hits.page.pagePath, r'^\/grazia\/(fashion|hair-beauty|diet-body|news-real-life|celebrity|magazine|contact|feature|my)\/.+') AND hits.type = 'PAGE'
+        WHERE {% condition Brand_filter %} RegEXP_EXTRACT(hits.page.pagePath, r'^\/(.+?)\/.+') {% endcondition %} AND hits.type = 'PAGE'
         GROUP BY Article
       ) AS B
       ON V2_Period.Article = B.Article
@@ -80,8 +83,8 @@
     type: sum
     sql: ${TABLE}.V1_Period.VIEWS
 
-  - dimension: Category_V2
-    sql: ${TABLE}.V2_Period.Category
+  - dimension: Section_Category_V2
+    sql: ${TABLE}.V2_Period.Section_Category
     
   - measure: Variance
     type: number

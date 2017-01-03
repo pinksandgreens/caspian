@@ -21,15 +21,7 @@
             (SELECT
               *
             FROM
-              {% if Brand_filter == 'grazia' %}
-              (SELECT * FROM {% table_date_range V2_Period 114668488.ga_sessions_ %},{% table_date_range V2_Period 114668488.ga_sessions_intraday_ %})
-              {% elsif Brand_filter == 'heat' %}
-              (SELECT * FROM {% table_date_range V2_Period 114668488.ga_sessions_ %},{% table_date_range V2_Period 114668488.ga_sessions_intraday_ %})
-              {% elsif Brand_filter == 'closer' %}
-              (SELECT * FROM {% table_date_range V2_Period 114668488.ga_sessions_ %},{% table_date_range V2_Period 114668488.ga_sessions_intraday_ %})
-              {% elsif Brand_filter == 'mcn' %}
-              (SELECT * FROM {% table_date_range V2_Period 22661559.ga_sessions_ %},{% table_date_range V2_Period 22661559.ga_sessions_intraday_ %})
-              {% endif %}
+              (SELECT * FROM {% table_date_range V2_Period 114668488.ga_sessions_ %} , {% table_date_range V2_Period 114668488.ga_sessions_intraday %})
             )
           , hits)
         WHERE {% condition Brand_filter %} RegEXP_EXTRACT(hits.page.pagePath, r'^\/(.+?)\/.+') {% endcondition %} AND hits.type = 'PAGE'
@@ -46,15 +38,7 @@
             (SELECT
               *
             FROM
-              {% if Brand_filter == 'grazia' %}
-              (SELECT * FROM {% table_date_range V1_Period 114668488.ga_sessions_ %},{% table_date_range V1_Period 114668488.ga_sessions_intraday_ %})
-              {% elsif Brand_filter == 'heat' %}
-              (SELECT * FROM {% table_date_range V1_Period 114668488.ga_sessions_ %},{% table_date_range V1_Period 114668488.ga_sessions_intraday_ %})
-              {% elsif Brand_filter == 'closer' %}
-              (SELECT * FROM {% table_date_range V1_Period 114668488.ga_sessions_ %},{% table_date_range V1_Period 114668488.ga_sessions_intraday_ %})
-              {% elsif Brand_filter == 'mcn' %}
-              (SELECT * FROM {% table_date_range V1_Period 22661559.ga_sessions_ %},{% table_date_range V1_Period 22661559.ga_sessions_intraday_ %})
-              {% endif %}
+              (SELECT * FROM {% table_date_range V2_Period 114668488.ga_sessions_ %} , {% table_date_range V2_Period 114668488.ga_sessions_intraday %})
             )
           , hits)
         WHERE {% condition Brand_filter %} RegEXP_EXTRACT(hits.page.pagePath, r'^\/(.+?)\/.+') {% endcondition %} AND hits.type = 'PAGE'

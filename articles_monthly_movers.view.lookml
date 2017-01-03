@@ -112,7 +112,7 @@
         ELSE 
           CASE
             WHEN ${TABLE}.V2_Period.Article_Age < 91 THEN 'Fresh'
-            WHEN ${TABLE}.V2_Period.Article_Age > 90 AND < 183 THEN 'Mature'
+            WHEN ${TABLE}.V2_Period.Article_Age BETWEEN 91 AND 182 THEN 'Mature'
             WHEN ${TABLE}.V2_Period.Article_Age > 182 THEN 'Vintage'
           END
       END

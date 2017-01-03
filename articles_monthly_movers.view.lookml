@@ -17,7 +17,7 @@
           hits.page.pageTitle AS Article,
           COUNT(hits.page.pagePath) AS VIEWS,
           MIN(date) AS First_Viewed,
-          DATEDIFF(NOW(),MIN(date) AS Article_Age
+          DATEDIFF(TIMESTAMP(NOW()),TIMESTAMP(MIN(date))) AS Article_Age
         FROM
           FLATTEN(
             (SELECT
@@ -26,8 +26,7 @@
               (SELECT * FROM {% table_date_range V2_Period 114668488.ga_sessions_ %},{% table_date_range V2_Period 114668488.ga_sessions_intraday_ %})
             )
           , hits)
-        # WHERE REGEXP_MATCH(hits.page.pagePath, r'^\/grazia\/(fashion|hair-beauty|diet-body|news-real-life|celebrity|magazine|contact|feature|my)\/.+') OR REGEXP_MATCH(hits.page.pagePath, r'^\/heat\/(celebrity|entertainment|fashion|hair-beauty|heat-radio)\/.+') OR REGEXP_MATCH(hits.page.pagePath, r'^\/heat\/(celebrity|entertainment|fashion|hair-beauty|heat-radio)\/.+') AND hits.type = 'PAGE'
-          WHERE {% condition Brand_filter %} RegEXP_EXTRACT(hits.page.pagePath, r'^\/(.+?)\/.+') {% endcondition %} AND hits.type = 'PAGE'
+        WHERE {% condition Brand_filter %} RegEXP_EXTRACT(hits.page.pagePath, r'^\/(.+?)\/.+') {% endcondition %} AND hits.type = 'PAGE'
         GROUP BY Article, Brand, Section_Category) AS V2_Period
         LEFT OUTER JOIN
         (SELECT
@@ -75,7 +74,7 @@
   - dimension: Brand
     sql: ${TABLE}.V2_Period.Brand
     
-  - dimension: Age
+  - measure: Age
     type: number
     sql: ${TABLE}.V2_Period.Article_Age
   
@@ -109,10 +108,11 @@
     type: string
     sql: |
       CASE
-        WHEN ${TABLE}.V1_Period.Article IS NULL THEN 'New'
-        WHEN ${TABLE}.V2_Period.Article_Age < 91 THEN 'Fresh'
-        WHEN ${TABLE}.V2_Period.Article_Age BETWEEN 91 AND 182 THEN 'Mature'
-        WHEN ${TABLE}.V2_Period.Article_Age > 182 THEN 'Vintage'
+        WHEN ${Article_V1} IS NULL THEN 'New'
+          ELSE
+            WHEN ${Age} < 91 THEN 'Fresh'
+            WHEN ${Age} BETWEEN 91 AND 182 THEN 'Mature'
+            WHEN ${Age} > 182 THEN 'Vintage'
       END
   
   - dimension: First_Viewed

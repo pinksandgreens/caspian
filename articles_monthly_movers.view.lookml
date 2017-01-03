@@ -26,8 +26,7 @@
               (SELECT * FROM {% table_date_range V2_Period 114668488.ga_sessions_ %},{% table_date_range V2_Period 114668488.ga_sessions_intraday_ %})
             )
           , hits)
-        # WHERE REGEXP_MATCH(hits.page.pagePath, r'^\/grazia\/(fashion|hair-beauty|diet-body|news-real-life|celebrity|magazine|contact|feature|my)\/.+') OR REGEXP_MATCH(hits.page.pagePath, r'^\/heat\/(celebrity|entertainment|fashion|hair-beauty|heat-radio)\/.+') OR REGEXP_MATCH(hits.page.pagePath, r'^\/heat\/(celebrity|entertainment|fashion|hair-beauty|heat-radio)\/.+') AND hits.type = 'PAGE'
-          WHERE {% condition Brand_filter %} RegEXP_EXTRACT(hits.page.pagePath, r'^\/(.+?)\/.+') {% endcondition %} AND hits.type = 'PAGE'
+        WHERE {% condition Brand_filter %} RegEXP_EXTRACT(hits.page.pagePath, r'^\/(.+?)\/.+') {% endcondition %} AND hits.type = 'PAGE'
         GROUP BY Article, Brand, Section_Category) AS V2_Period
         LEFT OUTER JOIN
         (SELECT

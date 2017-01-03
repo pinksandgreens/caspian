@@ -17,7 +17,7 @@
           hits.page.pageTitle AS Article,
           COUNT(hits.page.pagePath) AS VIEWS,
           MIN(date) AS First_Viewed,
-          DATEDIFF(NOW(),MIN(date) AS Article_Age
+          DATEDIFF(TIMESTAMP(NOW()),TIMESTAMP(MIN(date))) AS Article_Age
         FROM
           FLATTEN(
             (SELECT
@@ -75,6 +75,7 @@
     sql: ${TABLE}.V2_Period.Brand
     
   - measure: Age
+    type: number
     sql: ${TABLE}.V2_Period.Article_Age
   
   - dimension: Article_V2

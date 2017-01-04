@@ -24,7 +24,7 @@
               (SELECT * FROM {% table_date_range V2_Period 22661559.ga_sessions_ %},{% table_date_range V2_Period 22661559.ga_sessions_intraday_ %})
             )
           , hits)
-        WHERE hits.type = 'PAGE' AND hits.page.pageTitle IS NOT NULL AND hits.page.pageTitle NOT LIKE '%Search results%'
+        WHERE hits.type = 'PAGE' AND hits.page.pageTitle IS NOT NULL AND hits.page.pageTitle NOT LIKE '%Search results%' AND REGEXP_MATCH(hits.page.pagePath, r'^www\.motorcyclenews\.com\/(celebrity|contact|diet-body|entertainment|family-money|fashion|feature|hair-beauty|heat-radio|magazine|my|news-real-life|news|sport|bikes-for-sale|bike-reviews|insurance|product-reviews|new-rider)\/.+')
         GROUP BY Article, Brand, Section_Category) AS V2_Period
         LEFT OUTER JOIN
         (SELECT
@@ -41,7 +41,7 @@
               (SELECT * FROM {% table_date_range V2_Period 22661559.ga_sessions_ %},{% table_date_range V2_Period 22661559.ga_sessions_intraday_ %})
             )
           , hits)
-        WHERE hits.type = 'PAGE' AND hits.page.pageTitle IS NOT NULL AND hits.page.pageTitle NOT LIKE '%Search results%'
+        WHERE hits.type = 'PAGE' AND hits.page.pageTitle IS NOT NULL AND hits.page.pageTitle NOT LIKE '%Search results%' AND REGEXP_MATCH(hits.page.pagePath, r'^www\.motorcyclenews\.com\/(celebrity|contact|diet-body|entertainment|family-money|fashion|feature|hair-beauty|heat-radio|magazine|my|news-real-life|news|sport|bikes-for-sale|bike-reviews|insurance|product-reviews|new-rider)\/.+')
         GROUP BY Article, Brand, Section_Category) AS V1_Period
         ON V2_Period.Article = V1_Period.Article
         LEFT OUTER JOIN
@@ -52,7 +52,7 @@
           DATEDIFF(CURRENT_DATE(),MIN(date)) AS Article_Age
         FROM 
           (TABLE_QUERY([uplifted-light-89310:22661559],'table_id CONTAINS "ga_sessions"'))
-        WHERE hits.type = 'PAGE' AND hits.page.pageTitle NOT LIKE '%Search results%'
+        WHERE hits.type = 'PAGE' AND hits.page.pageTitle IS NOT NULL AND hits.page.pageTitle NOT LIKE '%Search results%' AND REGEXP_MATCH(hits.page.pagePath, r'^www\.motorcyclenews\.com\/(celebrity|contact|diet-body|entertainment|family-money|fashion|feature|hair-beauty|heat-radio|magazine|my|news-real-life|news|sport|bikes-for-sale|bike-reviews|insurance|product-reviews|new-rider)\/.+')
         GROUP BY Article
       ) AS B
       ON V2_Period.Article = B.Article

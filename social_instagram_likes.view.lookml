@@ -32,7 +32,7 @@
         WHEN 'vikingfmvideos' THEN '96.9 Viking FM'
         WHEN 'MCN - Motorcyclenews.com' THEN 'Motorcycle News'
         WHEN 'Closer Magazine' THEN 'Closer'
-        WHEN 'Grazia UK' THEN 'Grazia UK'
+        WHEN 'Grazia UK' THEN 'Grazia'
         WHEN 'The Debrief' THEN 'The Debrief'
         WHEN 'Top Sante' THEN 'Top Sante'
         WHEN 'Kerrang' THEN 'Kerrang'

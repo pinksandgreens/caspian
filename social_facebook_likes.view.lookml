@@ -65,6 +65,7 @@
         WHEN 'Q Magazine' THEN 'Q'
         WHEN 'MATCH Magazine' THEN 'Match'
         WHEN 'Mother&Baby' THEN 'Mother & Baby'
+        WHEN 'Grazia UK' THEN 'Grazia'
         ELSE ${TABLE}.name
       END
       

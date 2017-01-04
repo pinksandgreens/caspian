@@ -29,7 +29,7 @@
         WHEN 'officialcoolfm' THEN 'Cool FM'
         WHEN 'empiremagazine' THEN 'Empire'
         WHEN 'forthone' THEN 'Forth 1'
-        WHEN 'GraziaUK' THEN 'Grazia UK'
+        WHEN 'GraziaUK' THEN 'Grazia'
         WHEN 'hallamfm' THEN 'Hallam FM'
         WHEN 'heatworld' THEN 'Heat'
         WHEN 'key103' THEN 'Key 103'

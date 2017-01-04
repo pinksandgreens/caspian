@@ -9,6 +9,7 @@
         WHEN 'Key103' THEN 'Key 103'
         WHEN 'Northsound 1' THEN 'Northsound 1'
         WHEN 'KISS FM UK' THEN 'Kiss'
+        WHEN 'Kiss' THEN 'Kiss'
         WHEN 'Radio Aire' THEN 'Radio Aire'
         WHEN 'Radio Borders' THEN 'Radio Borders'
         WHEN 'Radio City 96.7' THEN 'Radio City'

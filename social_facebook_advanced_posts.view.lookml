@@ -49,6 +49,7 @@
         WHEN 'Kerrang! Radio' THEN 'Kerrang! 105.2'
         WHEN 'Key103' THEN 'Key 103'
         WHEN 'Kiss FM (UK)' THEN 'Kiss'
+        WHEN 'KISS FM (UK)' THEN 'Kiss'
         WHEN 'Magic Radio' THEN 'Magic'
         WHEN 'Metro Radio' THEN 'Metro Radio'
         WHEN 'MFR' THEN 'MFR'

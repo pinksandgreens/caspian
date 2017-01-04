@@ -106,6 +106,7 @@
   - measure: V2_Views_vs_TotalViews
     type: number
     sql: ${VIEWS_V2} / ${Total_Views}
+    value_format: '0%'
     
   - dimension: Article_Status
     type: string

@@ -160,6 +160,16 @@
       relationship: one_to_one
       sql_on: ${brand_lookup.bra_code} = ${bigquery_google_analytics_hits.hits_page_hostname_pp1}
 
+- explore: google_analytics_yearly
+  label: 'Google Analytics - By Month'
+  sql_table_name: publications.google_analytics_yearly
+  persist_for: 20 hour
+  
+  joins:
+    - join: brand_lookup
+      type: inner
+      relationship: one_to_one
+      sql_on: ${brand_lookup.bra_code} = ${google_analytics_yearly.brand_code}
 
 
   

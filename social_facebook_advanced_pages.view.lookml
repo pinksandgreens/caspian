@@ -162,7 +162,9 @@
   - dimension: image_filewowgif
     hidden: TRUE
     sql: ('http://emojipedia-us.s3.amazonaws.com/content/2015/10/11/facebook-emoji-reactions.gif')
+    
   - dimension: image_filewowgif2
+    hidden: TRUE
     sql: ${image_filewowgif}
     html: <img src="{{ value }}" width="1000" 0height="1000"/>
 

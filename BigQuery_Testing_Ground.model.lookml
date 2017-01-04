@@ -9,3 +9,10 @@
   label: 'BigQuery - Header Bidding Platform'
   always_filter:
     date_filter: 30 days #This will be the default date range.
+
+- explore: ga_sessions_quarterly_reports
+  hidden: TRUE
+  label: 'BigQuery - Quarterly Reports'
+  always_filter:
+    date_filter: 30 days #This will be the default date range.
+

@@ -1,15 +1,13 @@
-- view: ga_sessions_quarterly_reports #lifestyle
+- view: ga_sessions_quarterly_reports #lifestyle & specialist 
   sql_table_name: |
       ( SELECT * FROM {% table_date_range date_filter 114668488.ga_sessions_ %},
-        {% table_date_range date_filter 114668488.ga_sessions_intraday_ %},
-        {% table_date_range date_filter 21699534.ga_sessions_ %},
-        {% table_date_range date_filter 21699534.ga_sessions_intraday_ %},
-        {% table_date_range date_filter 82149182.ga_sessions_ %},
-        {% table_date_range date_filter 82149182.ga_sessions_intraday_ %},
-        {% table_date_range date_filter x.ga_sessions_ %},
-        {% table_date_range date_filter x.ga_sessions_intraday_ %},
-        {% table_date_range date_filter x.ga_sessions_ %},
-        {% table_date_range date_filter x.ga_sessions_intraday_ %})
+                      {% table_date_range date_filter 21699534.ga_sessions_ %},
+                      {% table_date_range date_filter 82149182.ga_sessions_ %},
+                      {% table_date_range date_filter 22661559.ga_sessions_ %},
+                      {% table_date_range date_filter 46993019.ga_sessions_ %},
+                      {% table_date_range date_filter 24089672.ga_sessions_ %},
+                      {% table_date_range date_filter 25170071.ga_sessions_ %},
+                      {% table_date_range date_filter 5914452.ga_sessions_ %})
 
   fields:
   - filter: date_filter
@@ -1650,13 +1648,6 @@
     type: number
     sql: (SUM(${BIDS_TOTAL_VALUE})/COUNT(${BIDS_TOTAL_EVENTS}))/1000000
     value_format: '$0.000000'
-      
-  - measure: Prebid_AvgWinRevenue
-    label: 'Prebid - Revenue'
-    description: 'Winning Revenue CPM'
-    type: sum
-    value_format: '$0.00'
-    sql: ${Prebid_AvgWinCPM}*${Prebid_Wins}
     
     
     

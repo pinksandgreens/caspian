@@ -112,7 +112,7 @@
     type: string
     sql: ${TABLE}.month
 
-  - dimension: projectedsessions
+  - measure: projectedsessions
     type: sum
     sql: ${TABLE}.projectedsessions
 

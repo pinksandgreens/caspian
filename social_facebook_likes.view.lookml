@@ -38,11 +38,13 @@
       CASE ${TABLE}.name
         WHEN 'Key103' THEN 'Key 103'
         WHEN 'Northsound 1' THEN 'Northsound 1'
-        WHEN 'Kiss FM (UK)' THEN 'Kiss'
+        WHEN 'KISS FM (UK)' THEN 'Kiss'
+        WHEN 'KissFMUK' THEN 'Kiss'
         WHEN '96.3 Radio Aire' THEN 'Radio Aire'
         WHEN 'Radio Borders' THEN 'Radio Borders'
         WHEN 'Radio City 96.7' THEN 'Radio City'
         WHEN '97.4 Rock FM' THEN 'Rock FM'
+        WHEN 'Closer Magazine' THEN 'Closer'
         WHEN 'Clyde 1' THEN 'Clyde 1'
         WHEN 'Cool FM' THEN 'Cool FM'
         WHEN 'Forth 1' THEN 'Forth 1'
@@ -63,6 +65,7 @@
         WHEN 'Q Magazine' THEN 'Q'
         WHEN 'MATCH Magazine' THEN 'Match'
         WHEN 'Mother&Baby' THEN 'Mother & Baby'
+        WHEN 'Grazia UK' THEN 'Grazia'
         ELSE ${TABLE}.name
       END
       

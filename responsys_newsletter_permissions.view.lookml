@@ -172,9 +172,13 @@
     convert_tz: false
     sql: TO_DATE(${TABLE}.unsub_date,'YYYY-MM-DD')
     
+  - dimension: uukey123
+    type: string
+    sql: ${TABLE}.email_address || ${TABLE}.brandcode || ${TABLE}.modified_date || ${TABLE}.created_date || ${TABLE}.optin || ${TABLE}.unsub_date
+    
   - measure: newsletter_optins
     type: count_distinct
-    sql: ${TABLE}.email_address
+    sql: ${uukey123}
     filters:
       optin: '1'
       responsys_brand_permissions.optin: '1'

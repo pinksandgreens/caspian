@@ -174,7 +174,7 @@
     
   - measure: newsletter_optins
     type: count_distinct
-    sql: ${TABLE}.email_address || ${TABLE}.brandcode
+    sql: ${TABLE}.email_address
     filters:
       optin: '1'
       responsys_brand_permissions.optin: '1'

@@ -31,7 +31,7 @@
         WHEN 'CARmagazineTV' THEN 'Car Magazine'
         WHEN 'vikingfmvideos' THEN '96.9 Viking FM'
         WHEN 'MCN - Motorcyclenews.com' THEN 'Motorcycle News'
-        WHEN 'Closer' THEN 'Closer Magazine'
+        WHEN 'Closer Magazine' THEN 'Closer'
         WHEN 'Grazia UK' THEN 'Grazia UK'
         WHEN 'The Debrief' THEN 'The Debrief'
         WHEN 'Top Sante' THEN 'Top Sante'

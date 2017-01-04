@@ -37,7 +37,7 @@
         WHEN 'heat & heatworld.com' THEN 'Heat'
         WHEN 'CAR magazine' THEN 'Car Magazine'
         WHEN 'Motorcycle News' THEN 'Motorcycle News'
-        WHEN 'Closer Mag & Online' THEN 'Closer Magazine'
+        WHEN 'Closer Mag & Online' THEN 'Closer'
         WHEN 'Grazia UK' THEN 'Grazia UK'
         WHEN 'The Debrief' THEN 'The Debrief'
         WHEN 'Viking FM' THEN '96.9 Viking FM'

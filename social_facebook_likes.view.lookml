@@ -44,6 +44,7 @@
         WHEN 'Radio Borders' THEN 'Radio Borders'
         WHEN 'Radio City 96.7' THEN 'Radio City'
         WHEN '97.4 Rock FM' THEN 'Rock FM'
+        WHEN 'Closer Magazine' THEN 'Closer'
         WHEN 'Clyde 1' THEN 'Clyde 1'
         WHEN 'Cool FM' THEN 'Cool FM'
         WHEN 'Forth 1' THEN 'Forth 1'

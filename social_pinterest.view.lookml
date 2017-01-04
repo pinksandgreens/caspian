@@ -24,7 +24,7 @@
         WHEN 'AbsoluteRadio' THEN 'Absolute Radio'
         WHEN 'CARmagazine' THEN 'Car Magazine'
         WHEN 'cfmradio' THEN 'CFM Radio'
-        WHEN 'closermag' THEN 'Closer Magazine'
+        WHEN 'closermag' THEN 'Closer'
         WHEN 'clyde1' THEN 'Clyde 1'
         WHEN 'officialcoolfm' THEN 'Cool FM'
         WHEN 'empiremagazine' THEN 'Empire'

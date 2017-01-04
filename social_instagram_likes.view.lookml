@@ -45,8 +45,16 @@
     type: sum
     sql: ${TABLE}.followers
 
+  - dimension: Number_of_Posts2
+    type: string
+    sql: |
+      CASE
+        WHEN ${TABLE}.media = 'NA' THEN '0'
+        ELSE ${TABLE}.media
+      END
+
   - measure: Number_of_Posts
     type: sum
-    sql: ${TABLE}.media
+    sql: ${Number_of_Posts2}
 
 

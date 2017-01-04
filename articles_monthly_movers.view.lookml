@@ -21,18 +21,10 @@
             (SELECT
               *
             FROM
-              {% if Brand_filter == 'grazia' %}
               (SELECT * FROM {% table_date_range V2_Period 114668488.ga_sessions_ %},{% table_date_range V2_Period 114668488.ga_sessions_intraday_ %})
-              {% elsif Brand_filter == 'heat' %}
-              (SELECT * FROM {% table_date_range V2_Period 114668488.ga_sessions_ %},{% table_date_range V2_Period 114668488.ga_sessions_intraday_ %})
-              {% elsif Brand_filter == 'closer' %}
-              (SELECT * FROM {% table_date_range V2_Period 114668488.ga_sessions_ %},{% table_date_range V2_Period 114668488.ga_sessions_intraday_ %})
-              {% elsif Brand_filter == 'mcn' %}
-              (SELECT * FROM {% table_date_range V2_Period 22661559.ga_sessions_ %},{% table_date_range V2_Period 22661559.ga_sessions_intraday_ %})
-              {% endif %}
             )
           , hits)
-        WHERE {% condition Brand_filter %} RegEXP_EXTRACT(hits.page.pagePath, r'^\/(.+?)\/.+') {% endcondition %} AND hits.type = 'PAGE'
+        WHERE {% condition Brand_filter %} RegEXP_EXTRACT(hits.page.pagePath, r'^\/(.+?)\/.+') {% endcondition %} AND hits.type = 'PAGE' AND hits.page.pageTitle IS NOT NULL
         GROUP BY Article, Brand, Section_Category) AS V2_Period
         LEFT OUTER JOIN
         (SELECT
@@ -46,18 +38,10 @@
             (SELECT
               *
             FROM
-              {% if Brand_filter == 'grazia' %}
-              (SELECT * FROM {% table_date_range V1_Period 114668488.ga_sessions_ %},{% table_date_range V1_Period 114668488.ga_sessions_intraday_ %})
-              {% elsif Brand_filter == 'heat' %}
-              (SELECT * FROM {% table_date_range V1_Period 114668488.ga_sessions_ %},{% table_date_range V1_Period 114668488.ga_sessions_intraday_ %})
-              {% elsif Brand_filter == 'closer' %}
-              (SELECT * FROM {% table_date_range V1_Period 114668488.ga_sessions_ %},{% table_date_range V1_Period 114668488.ga_sessions_intraday_ %})
-              {% elsif Brand_filter == 'mcn' %}
-              (SELECT * FROM {% table_date_range V1_Period 22661559.ga_sessions_ %},{% table_date_range V1_Period 22661559.ga_sessions_intraday_ %})
-              {% endif %}
+              (SELECT * FROM {% table_date_range V2_Period 114668488.ga_sessions_ %},{% table_date_range V2_Period 114668488.ga_sessions_intraday_ %})
             )
           , hits)
-        WHERE {% condition Brand_filter %} RegEXP_EXTRACT(hits.page.pagePath, r'^\/(.+?)\/.+') {% endcondition %} AND hits.type = 'PAGE'
+        WHERE {% condition Brand_filter %} RegEXP_EXTRACT(hits.page.pagePath, r'^\/(.+?)\/.+') {% endcondition %} AND hits.type = 'PAGE' AND hits.page.pageTitle IS NOT NULL
         GROUP BY Article, Brand, Section_Category) AS V1_Period
         ON V2_Period.Article = V1_Period.Article
         LEFT OUTER JOIN
@@ -67,15 +51,7 @@
           MIN(date) AS First_Viewed,
           DATEDIFF(CURRENT_DATE(),MIN(date)) AS Article_Age
         FROM 
-          {% if Brand_filter == 'grazia' %}
           (TABLE_QUERY([uplifted-light-89310:114668488],'table_id CONTAINS "ga_sessions"'))
-          {% elsif Brand_filter == 'heat' %}
-          (TABLE_QUERY([uplifted-light-89310:114668488],'table_id CONTAINS "ga_sessions"'))
-          {% elsif Brand_filter == 'closer' %}
-          (TABLE_QUERY([uplifted-light-89310:114668488],'table_id CONTAINS "ga_sessions"'))
-          {% elsif Brand_filter == 'mcn' %}
-          (TABLE_QUERY([uplifted-light-89310:22661559],'table_id CONTAINS "ga_sessions"'))
-          {% endif %}
         WHERE {% condition Brand_filter %} RegEXP_EXTRACT(hits.page.pagePath, r'^\/(.+?)\/.+') {% endcondition %} AND hits.type = 'PAGE'
         GROUP BY Article
       ) AS B
@@ -127,6 +103,11 @@
     type: number
     sql: ${VIEWS_V2} - ${VIEWS_V1}
     
+  - measure: V2_Views_vs_TotalViews
+    type: number
+    sql: ${VIEWS_V2} / ${Total_Views}
+    value_format: '0%'
+    
   - dimension: Article_Status
     type: string
     sql: |
@@ -141,6 +122,7 @@
     type: date
     sql: ${TABLE}.B.First_Viewed
     
-  - dimension: Total_Views
-    type: number
+  - measure: Total_Views
+    type: sum
     sql: ${TABLE}.B.Total_Views
+    

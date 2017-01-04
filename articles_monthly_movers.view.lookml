@@ -48,6 +48,21 @@
         (SELECT
           hits.page.pageTitle AS Article,
           COUNT(hits.page.pagePath) AS Total_Views,
+          CASE Month(date)
+            WHEN 1 THEN COUNT(Month(date)+Year(date)
+            WHEN 2 THEN COUNT(Month(date)+Year(date)
+            WHEN 3 THEN COUNT(Month(date)+Year(date)
+            WHEN 4 THEN COUNT(Month(date)+Year(date)
+            WHEN 5 THEN COUNT(Month(date)+Year(date)
+            WHEN 6 THEN COUNT(Month(date)+Year(date)
+            WHEN 7 THEN COUNT(Month(date)+Year(date)
+            WHEN 8 THEN COUNT(Month(date)+Year(date)
+            WHEN 9 THEN COUNT(Month(date)+Year(date)
+            WHEN 10 THEN COUNT(Month(date)+Year(date)
+            WHEN 11 THEN COUNT(Month(date)+Year(date)
+            WHEN 12 THEN COUNT(Month(date)+Year(date)
+          END AS Article_Monthly_Views,
+        
           MIN(date) AS First_Viewed,
           DATEDIFF(CURRENT_DATE(),MIN(date)) AS Article_Age
         FROM 
@@ -113,7 +128,7 @@
     type: string
     sql: |
       CASE
-        WHEN ${Age} < 30 THEN 'New'
+        WHEN ${Age} <= 30 THEN 'New'
         WHEN ${Age} BETWEEN 31 AND 90 THEN 'Fresh'
         WHEN ${Age} BETWEEN 91 AND 182 THEN 'Mature'
         WHEN ${Age} > 182 THEN 'Vintage'
@@ -127,3 +142,6 @@
     type: sum
     sql: ${TABLE}.B.Total_Views
     
+  - measure: Article_Monthly_Views
+    type: sum
+    sql: ${TABLE}.B.Article_Monthly_Views

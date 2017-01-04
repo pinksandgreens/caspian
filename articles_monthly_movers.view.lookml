@@ -103,6 +103,10 @@
     type: number
     sql: ${VIEWS_V2} - ${VIEWS_V1}
     
+  - measure: V2_Views_vs_TotalViews
+    type: number
+    sql: ${VIEWS_V2} / ${Total_Views}
+    
   - dimension: Article_Status
     type: string
     sql: |
@@ -117,7 +121,7 @@
     type: date
     sql: ${TABLE}.B.First_Viewed
     
-  - dimension: Total_Views
+  - measure: Total_Views
     type: number
     sql: ${TABLE}.B.Total_Views
     

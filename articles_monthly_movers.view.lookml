@@ -129,6 +129,6 @@
     type: sum
     sql: ${TABLE}.B.Total_Views
     
-  - measure: Article_Monthly_Views
+  - measure: TEMP
     type: sum
-    sql: ${TABLE}.B.Article_Monthly_Views
+    sql: ${TABLE}.B.TEMP

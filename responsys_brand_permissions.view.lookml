@@ -69,7 +69,7 @@
   - measure: brand_optins
     label: 'Commercial/Marketing Optins'
     type: count_distinct
-    sql: ${TABLE}.email_address
+    sql: ${TABLE}.email_address || ${TABLE}.brandcode
     filters:
       optin: '1'
 

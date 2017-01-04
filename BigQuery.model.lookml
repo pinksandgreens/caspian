@@ -143,3 +143,11 @@
     V1_Period: last 2 months
     Brand_filter: grazia
   
+- explore: mcn_article_monthly_movers
+  # access_filter_fields: [articles_monthly_movers.V2_Period, articles_monthly_movers.V1_Period]
+  #   hidden: TRUE
+  label: 'BigQuery - MCN - Article Movers & Shakers'
+  always_filter:
+    V2_Period: last month
+    V1_Period: last 2 months
+    Brand_filter: www.motorcyclenews.com

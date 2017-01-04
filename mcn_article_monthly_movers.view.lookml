@@ -1,4 +1,4 @@
-- view: articles_monthly_movers
+- view: mcn_article_monthly_movers
   sql_table_name: |
       (SELECT
         V2_Period.Brand,
@@ -21,7 +21,7 @@
             (SELECT
               *
             FROM
-              (SELECT * FROM {% table_date_range V2_Period 114668488.ga_sessions_ %},{% table_date_range V2_Period 114668488.ga_sessions_intraday_ %})
+              (SELECT * FROM {% table_date_range V2_Period 22661559.ga_sessions_ %},{% table_date_range V2_Period 22661559.ga_sessions_intraday_ %})
             )
           , hits)
         WHERE {% condition Brand_filter %} RegEXP_EXTRACT(hits.page.pagePath, r'^\/(.+?)\/.+') {% endcondition %} AND hits.type = 'PAGE' AND hits.page.pageTitle IS NOT NULL
@@ -38,7 +38,7 @@
             (SELECT
               *
             FROM
-              (SELECT * FROM {% table_date_range V2_Period 114668488.ga_sessions_ %},{% table_date_range V2_Period 114668488.ga_sessions_intraday_ %})
+              (SELECT * FROM {% table_date_range V2_Period 22661559.ga_sessions_ %},{% table_date_range V2_Period 22661559.ga_sessions_intraday_ %})
             )
           , hits)
         WHERE {% condition Brand_filter %} RegEXP_EXTRACT(hits.page.pagePath, r'^\/(.+?)\/.+') {% endcondition %} AND hits.type = 'PAGE' AND hits.page.pageTitle IS NOT NULL
@@ -51,7 +51,7 @@
           MIN(date) AS First_Viewed,
           DATEDIFF(CURRENT_DATE(),MIN(date)) AS Article_Age
         FROM 
-          (TABLE_QUERY([uplifted-light-89310:114668488],'table_id CONTAINS "ga_sessions"'))
+          (TABLE_QUERY([uplifted-light-89310:22661559],'table_id CONTAINS "ga_sessions"'))
         WHERE {% condition Brand_filter %} RegEXP_EXTRACT(hits.page.pagePath, r'^\/(.+?)\/.+') {% endcondition %} AND hits.type = 'PAGE'
         GROUP BY Article
       ) AS B

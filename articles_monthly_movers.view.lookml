@@ -122,6 +122,6 @@
     sql: ${TABLE}.B.First_Viewed
     
   - measure: Total_Views
-    type: number
+    type: sum
     sql: ${TABLE}.B.Total_Views
     

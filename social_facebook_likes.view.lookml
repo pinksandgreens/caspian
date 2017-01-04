@@ -38,7 +38,7 @@
       CASE ${TABLE}.name
         WHEN 'Key103' THEN 'Key 103'
         WHEN 'Northsound 1' THEN 'Northsound 1'
-        WHEN 'Kiss FM (UK)' THEN 'Kiss'
+        WHEN 'KISS FM (UK)' THEN 'Kiss'
         WHEN 'KissFMUK' THEN 'Kiss'
         WHEN '96.3 Radio Aire' THEN 'Radio Aire'
         WHEN 'Radio Borders' THEN 'Radio Borders'

@@ -1,6 +1,7 @@
 - view: lifestyle_content_analysis
   sql_table_name: |
       (SELECT
+        V2_Period.Norm_pagePath,
         V2_Period.Brand,
         V2_Period.Section_Category,
         V2_Period.Article,
@@ -15,8 +16,8 @@
           Norm_pagePath,
           
           Article,
-          REGEXP_EXTRACT(Original_pagePath, r'^\/(.+?)\/.+') AS Brand,
-          REGEXP_EXTRACT(Original_pagePath, r'^\/.+?\/(celebrity|contact|diet-body|entertainment|family-money|fashion|feature|hair-beauty|heat-radio|magazine|my|news-real-life|news|sport|bikes-for-sale|bike-reviews|insurance|product-reviews|new-rider)\/.+') AS Section_Category,
+          REGEXP_EXTRACT(Norm_pagePath, r'^\/(.+?)\/.+') AS Brand,
+          REGEXP_EXTRACT(Norm_pagePath, r'^\/.+?\/(celebrity|contact|diet-body|entertainment|family-money|fashion|feature|hair-beauty|heat-radio|magazine|my|news-real-life|news|sport|bikes-for-sale|bike-reviews|insurance|product-reviews|new-rider)\/.+') AS Section_Category,
           COUNT(REGEXP_EXTRACT(Norm_pagePath, r'^(\/[A-Za-z0-9\/-]+)')) AS VIEWS
         FROM
           FLATTEN(
@@ -29,7 +30,7 @@
               (SELECT * FROM {% table_date_range V2_Period 114668488.ga_sessions_ %},{% table_date_range V2_Period 114668488.ga_sessions_intraday_ %})
             )
           , hits)
-        WHERE {% condition Brand_filter %} RegEXP_EXTRACT(Original_pagePath, r'^\/(.+?)\/.+') {% endcondition %} AND hits.type = 'PAGE' AND REGEXP_MATCH(Original_pagePath, r'^\/.+?\/(celebrity|contact|diet-body|entertainment|family-money|fashion|feature|hair-beauty|heat-radio|magazine|my|news-real-life|news|sport|bikes-for-sale|bike-reviews|insurance|product-reviews|new-rider)\/.+')
+        WHERE {% condition Brand_filter %} RegEXP_EXTRACT(Norm_pagePath, r'^\/(.+?)\/.+') {% endcondition %} AND hits.type = 'PAGE' AND REGEXP_MATCH(Norm_pagePath, r'^\/.+?\/(celebrity|contact|diet-body|entertainment|family-money|fashion|feature|hair-beauty|heat-radio|magazine|my|news-real-life|news|sport|bikes-for-sale|bike-reviews|insurance|product-reviews|new-rider)\/.+')
         GROUP BY Norm_pagePath, Article, Brand, Section_Category) AS V2_Period
         
         LEFT OUTER JOIN
@@ -38,8 +39,8 @@
           Norm_pagePath,
           
           Article,
-          REGEXP_EXTRACT(Original_pagePath, r'^\/(.+?)\/.+') AS Brand,
-          REGEXP_EXTRACT(Original_pagePath, r'^\/.+?\/(celebrity|contact|diet-body|entertainment|family-money|fashion|feature|hair-beauty|heat-radio|magazine|my|news-real-life|news|sport|bikes-for-sale|bike-reviews|insurance|product-reviews|new-rider)\/.+') AS Section_Category,
+          REGEXP_EXTRACT(Norm_pagePath, r'^\/(.+?)\/.+') AS Brand,
+          REGEXP_EXTRACT(Norm_pagePath, r'^\/.+?\/(celebrity|contact|diet-body|entertainment|family-money|fashion|feature|hair-beauty|heat-radio|magazine|my|news-real-life|news|sport|bikes-for-sale|bike-reviews|insurance|product-reviews|new-rider)\/.+') AS Section_Category,
           COUNT(REGEXP_EXTRACT(Norm_pagePath, r'^(\/[A-Za-z0-9\/-]+)')) AS VIEWS
           
         FROM
@@ -55,7 +56,7 @@
             )
           , hits)
           
-        WHERE {% condition Brand_filter %} RegEXP_EXTRACT(Original_pagePath, r'^\/(.+?)\/.+') {% endcondition %} AND hits.type = 'PAGE' AND REGEXP_MATCH(Original_pagePath, r'^\/.+?\/(celebrity|contact|diet-body|entertainment|family-money|fashion|feature|hair-beauty|heat-radio|magazine|my|news-real-life|news|sport|bikes-for-sale|bike-reviews|insurance|product-reviews|new-rider)\/.+')
+        WHERE {% condition Brand_filter %} RegEXP_EXTRACT(Norm_pagePath, r'^\/(.+?)\/.+') {% endcondition %} AND hits.type = 'PAGE' AND REGEXP_MATCH(Norm_pagePath, r'^\/.+?\/(celebrity|contact|diet-body|entertainment|family-money|fashion|feature|hair-beauty|heat-radio|magazine|my|news-real-life|news|sport|bikes-for-sale|bike-reviews|insurance|product-reviews|new-rider)\/.+')
         
         GROUP BY Norm_pagePath, Article, Brand, Section_Category) AS V1_Period
         
@@ -84,7 +85,7 @@
             )
           , hits)
           
-        WHERE {% condition Brand_filter %} RegEXP_EXTRACT(Original_pagePath, r'^\/(.+?)\/.+') {% endcondition %} AND hits.type = 'PAGE' AND REGEXP_MATCH(Original_pagePath, r'^\/.+?\/(celebrity|contact|diet-body|entertainment|family-money|fashion|feature|hair-beauty|heat-radio|magazine|my|news-real-life|news|sport|bikes-for-sale|bike-reviews|insurance|product-reviews|new-rider)\/.+')
+        WHERE {% condition Brand_filter %} RegEXP_EXTRACT(Norm_pagePath, r'^\/(.+?)\/.+') {% endcondition %} AND hits.type = 'PAGE' AND REGEXP_MATCH(Norm_pagePath, r'^\/.+?\/(celebrity|contact|diet-body|entertainment|family-money|fashion|feature|hair-beauty|heat-radio|magazine|my|news-real-life|news|sport|bikes-for-sale|bike-reviews|insurance|product-reviews|new-rider)\/.+')
         GROUP BY Norm_pagePath, Article
       ) AS B
       ON V2_Period.Norm_pagePath = B.Norm_pagePath
@@ -155,4 +156,7 @@
   - measure: Total_Views
     type: sum
     sql: ${TABLE}.B.Total_Views
+    
+  - dimension: pagePath
+    sql: ${TABLE}.V2_Period.Norm_pagePath
     

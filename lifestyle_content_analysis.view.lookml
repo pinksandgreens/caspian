@@ -59,7 +59,7 @@
         
         GROUP BY Norm_pagePath, Original_pagePath, Article, Brand, Section_Category) AS V1_Period
         
-        ON V2_Norm_pagePath = V1_Norm_pagePath
+        ON V2_Period.Norm_pagePath = V1_Period.Norm_pagePath
         
         LEFT OUTER JOIN
         
@@ -87,7 +87,7 @@
         WHERE {% condition Brand_filter %} RegEXP_EXTRACT(Original_pagePath, r'^\/(.+?)\/.+') {% endcondition %} AND hits.type = 'PAGE' AND REGEXP_MATCH(Original_pagePath, r'^\/.+?\/(celebrity|contact|diet-body|entertainment|family-money|fashion|feature|hair-beauty|heat-radio|magazine|my|news-real-life|news|sport|bikes-for-sale|bike-reviews|insurance|product-reviews|new-rider)\/.+')
         GROUP BY Norm_pagePath, Original_pagePath, Article
       ) AS B
-      ON V2_Norm_pagePath = B.Norm_pagePath
+      ON V2_Period.Norm_pagePath = B.Norm_pagePath
       ORDER BY V2_Period.VIEWS DESC)
 
   fields:

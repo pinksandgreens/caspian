@@ -128,5 +128,5 @@
     sql: ${TABLE}.B.Total_Views
     
   - dimension: pagePath
-    sql: ${TABLE}.V2_Period.Norm_pagePath
+    sql: ${TABLE}.V2_Period.hits.page.pagePath
     

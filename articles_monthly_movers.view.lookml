@@ -21,12 +21,13 @@
           FLATTEN(
             (SELECT
               hits.page.pagePath AS pagePath,
-              CASE
-                WHEN hits.page.pageTitle IS NULL THEN FIRST_VALUE(hits.page.pageTitle) OVER (PARTITION BY hits.page.pageTitle 
-                    ORDER BY CASE WHEN hits.page.pageTitle IS NULL then 0 ELSE 1 END DESC, TIMESTAMP)
-                ELSE
-                  hits.page.pageTitle
-              END AS Article,
+              # CASE
+              #   WHEN hits.page.pageTitle IS NULL THEN FIRST_VALUE(hits.page.pageTitle) OVER (PARTITION BY hits.page.pageTitle 
+              #       ORDER BY CASE WHEN hits.page.pageTitle IS NULL then 0 ELSE 1 END DESC, TIMESTAMP)
+              #   ELSE
+              #     hits.page.pageTitle
+              # END AS Article,
+              hits.page.pageTitle AS Article,
               hits.type
             FROM
               (SELECT * FROM {% table_date_range V2_Period 114668488.ga_sessions_ %},{% table_date_range V2_Period 114668488.ga_sessions_intraday_ %})
@@ -45,13 +46,14 @@
           FLATTEN(
             (SELECT
               hits.page.pagePath AS pagePath,
-              CASE
-                WHEN hits.page.pageTitle IS NULL THEN FIRST_VALUE(hits.page.pageTitle) OVER (PARTITION BY hits.page.pageTitle 
-                    ORDER BY CASE WHEN hits.page.pageTitle IS NULL then 0 ELSE 1 END DESC, TIMESTAMP)
-                  )
-                ELSE
-                  hits.page.pageTitle
-              END AS Article,
+              # CASE
+              #   WHEN hits.page.pageTitle IS NULL THEN FIRST_VALUE(hits.page.pageTitle) OVER (PARTITION BY hits.page.pageTitle 
+              #       ORDER BY CASE WHEN hits.page.pageTitle IS NULL then 0 ELSE 1 END DESC, TIMESTAMP)
+              #     )
+              #   ELSE
+              #     hits.page.pageTitle
+              # END AS Article,
+              hits.page.pageTitle AS Article,
               hits.type
             FROM
               (SELECT * FROM {% table_date_range V1_Period 114668488.ga_sessions_ %},{% table_date_range V1_Period 114668488.ga_sessions_intraday_ %})
@@ -62,13 +64,14 @@
         ON V2_Period.Article = V1_Period.Article
         LEFT OUTER JOIN
         (SELECT
-          CASE
-            WHEN hits.page.pageTitle IS NULL THEN FIRST_VALUE(hits.page.pageTitle) OVER (PARTITION BY hits.page.pageTitle 
-                ORDER BY CASE WHEN hits.page.pageTitle IS NULL then 0 ELSE 1 END DESC, TIMESTAMP)
-              )
-            ELSE
-              hits.page.pageTitle
-            END AS Article,
+          # CASE
+          #   WHEN hits.page.pageTitle IS NULL THEN FIRST_VALUE(hits.page.pageTitle) OVER (PARTITION BY hits.page.pageTitle 
+          #       ORDER BY CASE WHEN hits.page.pageTitle IS NULL then 0 ELSE 1 END DESC, TIMESTAMP)
+          #     )
+          #   ELSE
+          #     hits.page.pageTitle
+          #   END AS Article,
+          hits.page.pageTitle AS Article,
           hits.page.pagePath AS pagePath,
           COUNT(REGEXP_EXTRACT(hits.page.pagePath, r'^(\/[A-Za-z0-9\/-]+)')) AS VIEWS AS Total_Views,
           MIN(date) AS First_Viewed,

@@ -9,7 +9,7 @@
           hits.page.pageTitle
         END AS Article,
         hits.page.pagePath AS pagePath,
-        COUNT(hits.page.pagePath) AS VIEWS
+        COUNT(REGEX_EXTRACT(hits.page.pagePath, r'^\/[A-Za-z0-9\/-]+') AS VIEWS
       FROM
         FLATTEN(
           (SELECT

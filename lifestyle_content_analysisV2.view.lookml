@@ -8,7 +8,7 @@
         V1_Period.VIEWS,
         B.First_Viewed,
         B.Total_Views,
-        B.Article_Age,
+        B.Article_Age
         FROM
         (SELECT
           hits.page.pagePath,
@@ -17,7 +17,6 @@
           FLATTEN(
             (SELECT
               REGEXP_EXTRACT(hits.page.pagePath, r'^(\/[A-Za-z0-9\/-]+)') AS hits.page.pagePath,
-              hits.type
             FROM
               (SELECT * FROM {% table_date_range V2_Period 114668488.ga_sessions_ %},{% table_date_range V2_Period 114668488.ga_sessions_intraday_ %})
             )
@@ -36,7 +35,6 @@
           FLATTEN(
             (SELECT
               REGEXP_EXTRACT(hits.page.pagePath, r'^(\/[A-Za-z0-9\/-]+)') AS hits.page.pagePath,
-              hits.type
             FROM
               (SELECT * FROM {% table_date_range V1_Period 114668488.ga_sessions_ %},{% table_date_range V1_Period 114668488.ga_sessions_intraday_ %})
             )
@@ -61,7 +59,6 @@
             (SELECT
               
               REGEXP_EXTRACT(hits.page.pagePath, r'^(\/[A-Za-z0-9\/-]+)') AS hits.page.pagePath,
-              hits.type,
               date
             FROM
               (SELECT * FROM (TABLE_QUERY([uplifted-light-89310:114668488],'table_id CONTAINS "ga_sessions"')))
@@ -69,7 +66,7 @@
           , hits)
           
         WHERE {% condition Brand_filter %} RegEXP_EXTRACT(hits.page.pagePath, r'^\/(.+?)\/.+') {% endcondition %} AND hits.type = 'PAGE' AND REGEXP_MATCH(hits.page.pagePath, r'^\/.+?\/(celebrity|contact|diet-body|entertainment|family-money|fashion|feature|hair-beauty|heat-radio|magazine|my|news-real-life|news|sport|bikes-for-sale|bike-reviews|insurance|product-reviews|new-rider)\/.+')
-        GROUP BY Norm_pagePath
+        GROUP BY hits.page.pagePath
       ) AS B
       ON V2_Period.hits.page.pagePath = B.hits.page.pagePath
       ORDER BY V2_Period.VIEWS DESC)

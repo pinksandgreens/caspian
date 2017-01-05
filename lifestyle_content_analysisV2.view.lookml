@@ -77,22 +77,16 @@
   - dimension: Age
     sql: ${TABLE}.B.Article_Age
   
-  - dimension: Article_V2
-    sql: ${TABLE}.V2_Period.Article
-  
   - measure: VIEWS_V2
     type: sum
     sql: ${TABLE}.V2_Period.VIEWS
     
-  - dimension: Article_V1
-    sql: ${TABLE}.V1_Period.Article
-
   - measure: VIEWS_V1
     type: sum
     sql: ${TABLE}.V1_Period.VIEWS
 
   - dimension: Section_Category_V2
-    sql: ${TABLE}.V2_Period.Section_Category
+    sql: ${TABLE}.
     
   - measure: Variance
     type: number

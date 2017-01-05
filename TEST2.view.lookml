@@ -19,3 +19,16 @@
   fields:
   - filter: Brand_filter 
     label: 'FILTER by BRAND'
+    
+  - dimension: Brand
+    sql: ${TABLE}.Brand
+    
+  - dimension: Section_Category
+    sql: ${TABLE}.Section_Category
+    
+  - filter: Article
+    type: string
+    
+  - measure: VIEWS
+    type: sum
+    sql: ${TABLE}.VIEWS

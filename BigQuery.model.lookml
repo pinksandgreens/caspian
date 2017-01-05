@@ -151,3 +151,10 @@
     V2_Period: last month
     V1_Period: last 2 months
     Brand_filter: www.motorcyclenews.com
+    
+- explore: test2
+  # access_filter_fields: [articles_monthly_movers.V2_Period, articles_monthly_movers.V1_Period]
+  #   hidden: TRUE
+  label: 'BigQuery - Lifestyle - TEST'
+  always_filter:
+    Brand_filter: grazia

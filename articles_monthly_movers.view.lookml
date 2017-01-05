@@ -141,6 +141,3 @@
     type: sum
     sql: ${TABLE}.B.Total_Views
     
-  - measure: TEMP
-    type: sum
-    sql: ${TABLE}.B.TEMP

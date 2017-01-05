@@ -4,7 +4,7 @@
         RegEXP_EXTRACT(hits.page.pagePath, r'^\/(.+?)\/.+') AS Brand,
         REGEXP_EXTRACT(hits.page.pagePath, r'^\/.+?\/(celebrity|contact|diet-body|entertainment|family-money|fashion|feature|hair-beauty|heat-radio|magazine|my|news-real-life|news|sport|bikes-for-sale|bike-reviews|insurance|product-reviews|new-rider)\/.+') AS Section_Category,
         hits.page.pageTitle AS Article,
-        hits.page.pagePath AS pagePath
+        hits.page.pagePath AS pagePath,
         COUNT(hits.page.pagePath) AS VIEWS
       FROM
         FLATTEN(

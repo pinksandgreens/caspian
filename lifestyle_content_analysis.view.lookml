@@ -12,75 +12,82 @@
         B.Article_Age
       FROM
         (SELECT
+          Norm_pagePath,
+          Original_pagePath,
           Article,
-          RegEXP_EXTRACT(pagePath, r'^\/(.+?)\/.+') AS Brand,
-          REGEXP_EXTRACT(pagePath, r'^\/.+?\/(celebrity|contact|diet-body|entertainment|family-money|fashion|feature|hair-beauty|heat-radio|magazine|my|news-real-life|news|sport|bikes-for-sale|bike-reviews|insurance|product-reviews|new-rider)\/.+') AS Section_Category,
-          pagePath,
-          COUNT(REGEXP_EXTRACT(hits.page.pagePath, r'^(\/[A-Za-z0-9\/-]+)')) AS VIEWS
+          REGEXP_EXTRACT(Original_pagePath, r'^\/(.+?)\/.+') AS Brand,
+          REGEXP_EXTRACT(Original_pagePath, r'^\/.+?\/(celebrity|contact|diet-body|entertainment|family-money|fashion|feature|hair-beauty|heat-radio|magazine|my|news-real-life|news|sport|bikes-for-sale|bike-reviews|insurance|product-reviews|new-rider)\/.+') AS Section_Category,
+          COUNT(REGEXP_EXTRACT(Norm_pagePath, r'^(\/[A-Za-z0-9\/-]+)')) AS VIEWS
         FROM
           FLATTEN(
             (SELECT
-              hits.page.pagePath AS pagePath,
-              # CASE
-              #   WHEN hits.page.pageTitle IS NULL THEN FIRST_VALUE(hits.page.pageTitle) OVER (PARTITION BY hits.page.pageTitle 
-              #       ORDER BY CASE WHEN hits.page.pageTitle IS NULL then 0 ELSE 1 END DESC, TIMESTAMP)
-              #   ELSE
-              #     hits.page.pageTitle
-              # END AS Article,
+              hits.page.pagePath AS Original_pagePath,
+              REGEXP_EXTRACT(hits.page.pagePath, r'^(\/[A-Za-z0-9\/-]+)') AS Norm_pagePath,
               hits.page.pageTitle AS Article,
               hits.type
             FROM
               (SELECT * FROM {% table_date_range V2_Period 114668488.ga_sessions_ %},{% table_date_range V2_Period 114668488.ga_sessions_intraday_ %})
             )
           , hits)
-        WHERE {% condition Brand_filter %} RegEXP_EXTRACT(pagePath, r'^\/(.+?)\/.+') {% endcondition %} AND hits.type = 'PAGE' AND REGEXP_MATCH(pagePath, r'^\/.+?\/(celebrity|contact|diet-body|entertainment|family-money|fashion|feature|hair-beauty|heat-radio|magazine|my|news-real-life|news|sport|bikes-for-sale|bike-reviews|insurance|product-reviews|new-rider)\/.+')
-        GROUP BY Article, Brand, Section_Category, pagePath) AS V2_Period
+        WHERE {% condition Brand_filter %} RegEXP_EXTRACT(Original_pagePath, r'^\/(.+?)\/.+') {% endcondition %} AND hits.type = 'PAGE' AND REGEXP_MATCH(Original_pagePath, r'^\/.+?\/(celebrity|contact|diet-body|entertainment|family-money|fashion|feature|hair-beauty|heat-radio|magazine|my|news-real-life|news|sport|bikes-for-sale|bike-reviews|insurance|product-reviews|new-rider)\/.+')
+        GROUP BY Norm_pagePath, Original_pagePath, Article, Brand, Section_Category) AS V2_Period
+        
         LEFT OUTER JOIN
+        
         (SELECT
+          Norm_pagePath,
+          Original_pagePath,
           Article,
-          RegEXP_EXTRACT(pagePath, r'^\/(.+?)\/.+') AS Brand,
-          REGEXP_EXTRACT(pagePath, r'^\/.+?\/(celebrity|contact|diet-body|entertainment|family-money|fashion|feature|hair-beauty|heat-radio|magazine|my|news-real-life|news|sport|bikes-for-sale|bike-reviews|insurance|product-reviews|new-rider)\/.+') AS Section_Category,
-          pagePath,
-          COUNT(REGEXP_EXTRACT(hits.page.pagePath, r'^(\/[A-Za-z0-9\/-]+)')) AS VIEWS
+          REGEXP_EXTRACT(Original_pagePath, r'^\/(.+?)\/.+') AS Brand,
+          REGEXP_EXTRACT(Original_pagePath, r'^\/.+?\/(celebrity|contact|diet-body|entertainment|family-money|fashion|feature|hair-beauty|heat-radio|magazine|my|news-real-life|news|sport|bikes-for-sale|bike-reviews|insurance|product-reviews|new-rider)\/.+') AS Section_Category,
+          COUNT(REGEXP_EXTRACT(Norm_pagePath, r'^(\/[A-Za-z0-9\/-]+)')) AS VIEWS
+          
         FROM
+        
           FLATTEN(
             (SELECT
-              hits.page.pagePath AS pagePath,
-              # CASE
-              #   WHEN hits.page.pageTitle IS NULL THEN FIRST_VALUE(hits.page.pageTitle) OVER (PARTITION BY hits.page.pageTitle 
-              #       ORDER BY CASE WHEN hits.page.pageTitle IS NULL then 0 ELSE 1 END DESC, TIMESTAMP)
-              #     )
-              #   ELSE
-              #     hits.page.pageTitle
-              # END AS Article,
+              hits.page.pagePath AS Original_pagePath,
+              REGEXP_EXTRACT(hits.page.pagePath, r'^(\/[A-Za-z0-9\/-]+)') AS Norm_pagePath,
               hits.page.pageTitle AS Article,
               hits.type
             FROM
               (SELECT * FROM {% table_date_range V1_Period 114668488.ga_sessions_ %},{% table_date_range V1_Period 114668488.ga_sessions_intraday_ %})
             )
           , hits)
-        WHERE {% condition Brand_filter %} RegEXP_EXTRACT(pagePath, r'^\/(.+?)\/.+') {% endcondition %} AND hits.type = 'PAGE' AND REGEXP_MATCH(pagePath, r'^\/.+?\/(celebrity|contact|diet-body|entertainment|family-money|fashion|feature|hair-beauty|heat-radio|magazine|my|news-real-life|news|sport|bikes-for-sale|bike-reviews|insurance|product-reviews|new-rider)\/.+')
-        GROUP BY Article, Brand, Section_Category, pagePath) AS V1_Period
-        ON V2_Period.Article = V1_Period.Article
+          
+        WHERE {% condition Brand_filter %} RegEXP_EXTRACT(Original_pagePath, r'^\/(.+?)\/.+') {% endcondition %} AND hits.type = 'PAGE' AND REGEXP_MATCH(Original_pagePath, r'^\/.+?\/(celebrity|contact|diet-body|entertainment|family-money|fashion|feature|hair-beauty|heat-radio|magazine|my|news-real-life|news|sport|bikes-for-sale|bike-reviews|insurance|product-reviews|new-rider)\/.+')
+        
+        GROUP BY Norm_pagePath, Original_pagePath, Article, Brand, Section_Category) AS V1_Period
+        
+        ON V2_Norm_pagePath = V1_Norm_pagePath
+        
         LEFT OUTER JOIN
+        
         (SELECT
-          # CASE
-          #   WHEN hits.page.pageTitle IS NULL THEN FIRST_VALUE(hits.page.pageTitle) OVER (PARTITION BY hits.page.pageTitle 
-          #       ORDER BY CASE WHEN hits.page.pageTitle IS NULL then 0 ELSE 1 END DESC, TIMESTAMP)
-          #     )
-          #   ELSE
-          #     hits.page.pageTitle
-          #   END AS Article,
-          hits.page.pageTitle AS Article,
-          COUNT(REGEXP_EXTRACT(hits.page.pagePath, r'^(\/[A-Za-z0-9\/-]+)')) AS Total_Views,
+          Norm_pagePath,
+          Original_pagePath,
+          Article,
+          COUNT(REGEXP_EXTRACT(Norm_pagePath, r'^(\/[A-Za-z0-9\/-]+)')) AS Total_Views,
           MIN(date) AS First_Viewed,
           DATEDIFF(CURRENT_DATE(),MIN(date)) AS Article_Age,
-        FROM 
-          (TABLE_QUERY([uplifted-light-89310:114668488],'table_id CONTAINS "ga_sessions"'))
-        WHERE {% condition Brand_filter %} RegEXP_EXTRACT(hits.page.pagePath, r'^\/(.+?)\/.+') {% endcondition %} AND hits.type = 'PAGE' AND REGEXP_MATCH(hits.page.pagePath, r'^\/.+?\/(celebrity|contact|diet-body|entertainment|family-money|fashion|feature|hair-beauty|heat-radio|magazine|my|news-real-life|news|sport|bikes-for-sale|bike-reviews|insurance|product-reviews|new-rider)\/.+')
-        GROUP BY Article
+        FROM
+          
+          FLATTEN(
+            (SELECT
+              hits.page.pagePath AS Original_pagePath,
+              REGEXP_EXTRACT(hits.page.pagePath, r'^(\/[A-Za-z0-9\/-]+)') AS Norm_pagePath,
+              hits.page.pageTitle AS Article,
+              hits.type,
+              date
+            FROM
+              (SELECT * FROM (TABLE_QUERY([uplifted-light-89310:114668488],'table_id CONTAINS "ga_sessions"')))
+            )
+          , hits)
+          
+        WHERE {% condition Brand_filter %} RegEXP_EXTRACT(Original_pagePath, r'^\/(.+?)\/.+') {% endcondition %} AND hits.type = 'PAGE' AND REGEXP_MATCH(Original_pagePath, r'^\/.+?\/(celebrity|contact|diet-body|entertainment|family-money|fashion|feature|hair-beauty|heat-radio|magazine|my|news-real-life|news|sport|bikes-for-sale|bike-reviews|insurance|product-reviews|new-rider)\/.+')
+        GROUP BY Norm_pagePath, Original_pagePath, Article
       ) AS B
-      ON V2_Period.Article = B.Article
+      ON V2_Norm_pagePath = B.Norm_pagePath
       ORDER BY V2_Period.VIEWS DESC)
 
   fields:

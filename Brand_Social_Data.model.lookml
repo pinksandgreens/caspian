@@ -100,6 +100,11 @@
   sql_table_name: publications.social_youtube_videos
   persist_for: 1 hour
   
+- explore: social_twitter_trending_adv
+  label: 'Twitter Trending'
+  sql_table_name: publications.social_twitter_trending_adv
+  persist_for: 1 hour
+  
 #     - join: ga_radio_twitter_data
 #       type: inner
 #       relationship: many_to_many

@@ -22,13 +22,10 @@
             (SELECT
               hits.page.pagePath AS pagePath,
               CASE
-                WHEN hits.page.pageTitle IS NULL THEN 
-                  (SELECT FIRST_VALUE(hits.page.pageTitle) 
-                    OVER (PARTITION BY hits.page.pageTitle 
+                WHEN hits.page.pageTitle IS NULL THEN FIRST_VALUE(hits.page.pageTitle) OVER (PARTITION BY hits.page.pageTitle 
                     ORDER BY CASE WHEN hits.page.pageTitle IS NULL then 0 ELSE 1 END DESC, TIMESTAMP)
-                  )
                 ELSE
-                  hits.page.pagePath
+                  hits.page.pageTitle
               END AS Article
             FROM
               (SELECT * FROM {% table_date_range V2_Period 114668488.ga_sessions_ %},{% table_date_range V2_Period 114668488.ga_sessions_intraday_ %})
@@ -48,13 +45,11 @@
             (SELECT
               hits.page.pagePath AS pagePath,
               CASE
-                WHEN hits.page.pageTitle IS NULL THEN 
-                  (SELECT FIRST_VALUE(hits.page.pageTitle) 
-                    OVER (PARTITION BY hits.page.pageTitle 
+                WHEN hits.page.pageTitle IS NULL THEN FIRST_VALUE(hits.page.pageTitle) OVER (PARTITION BY hits.page.pageTitle 
                     ORDER BY CASE WHEN hits.page.pageTitle IS NULL then 0 ELSE 1 END DESC, TIMESTAMP)
                   )
                 ELSE
-                  hits.page.pagePath
+                  hits.page.pageTitle
               END AS Article
             FROM
               (SELECT * FROM {% table_date_range V1_Period 114668488.ga_sessions_ %},{% table_date_range V1_Period 114668488.ga_sessions_intraday_ %})
@@ -66,13 +61,11 @@
         LEFT OUTER JOIN
         (SELECT
           CASE
-            WHEN hits.page.pageTitle IS NULL THEN 
-              (SELECT FIRST_VALUE(hits.page.pageTitle) 
-                OVER (PARTITION BY hits.page.pageTitle 
+            WHEN hits.page.pageTitle IS NULL THEN FIRST_VALUE(hits.page.pageTitle) OVER (PARTITION BY hits.page.pageTitle 
                 ORDER BY CASE WHEN hits.page.pageTitle IS NULL then 0 ELSE 1 END DESC, TIMESTAMP)
               )
             ELSE
-              hits.page.pagePath
+              hits.page.pageTitle
             END AS Article,
           hits.page.pagePath AS pagePath,
           COUNT(Article) AS Total_Views,

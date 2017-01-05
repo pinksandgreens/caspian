@@ -16,7 +16,7 @@
           RegEXP_EXTRACT(pagePath, r'^\/(.+?)\/.+') AS Brand,
           REGEXP_EXTRACT(pagePath, r'^\/.+?\/(celebrity|contact|diet-body|entertainment|family-money|fashion|feature|hair-beauty|heat-radio|magazine|my|news-real-life|news|sport|bikes-for-sale|bike-reviews|insurance|product-reviews|new-rider)\/.+') AS Section_Category,
           pagePath,
-          COUNT(REGEXP_EXTRACT(pagePath, r'^\/[A-Za-z0-9\/-]+')) AS VIEWS
+          COUNT(REGEXP_EXTRACT(hits.page.pagePath, r'^(\/[A-Za-z0-9\/-]+)')) AS VIEWS
         FROM
           FLATTEN(
             (SELECT
@@ -39,7 +39,7 @@
           RegEXP_EXTRACT(pagePath, r'^\/(.+?)\/.+') AS Brand,
           REGEXP_EXTRACT(pagePath, r'^\/.+?\/(celebrity|contact|diet-body|entertainment|family-money|fashion|feature|hair-beauty|heat-radio|magazine|my|news-real-life|news|sport|bikes-for-sale|bike-reviews|insurance|product-reviews|new-rider)\/.+') AS Section_Category,
           pagePath,
-          COUNT(REGEXP_EXTRACT(pagePath, r'^\/[A-Za-z0-9\/-]+')) AS VIEWS
+          COUNT(REGEXP_EXTRACT(hits.page.pagePath, r'^(\/[A-Za-z0-9\/-]+)')) AS VIEWS
         FROM
           FLATTEN(
             (SELECT
@@ -68,7 +68,7 @@
               hits.page.pageTitle
             END AS Article,
           hits.page.pagePath AS pagePath,
-          COUNT(REGEXP_EXTRACT(pagePath, r'^\/[A-Za-z0-9\/-]+')) AS Total_Views,
+          COUNT(REGEXP_EXTRACT(hits.page.pagePath, r'^(\/[A-Za-z0-9\/-]+)')) AS VIEWS AS Total_Views,
           MIN(date) AS First_Viewed,
           DATEDIFF(CURRENT_DATE(),MIN(date)) AS Article_Age
         FROM 

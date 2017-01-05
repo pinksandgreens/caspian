@@ -26,7 +26,8 @@
                     ORDER BY CASE WHEN hits.page.pageTitle IS NULL then 0 ELSE 1 END DESC, TIMESTAMP)
                 ELSE
                   hits.page.pageTitle
-              END AS Article
+              END AS Article,
+              hits.type
             FROM
               (SELECT * FROM {% table_date_range V2_Period 114668488.ga_sessions_ %},{% table_date_range V2_Period 114668488.ga_sessions_intraday_ %})
             )
@@ -50,7 +51,8 @@
                   )
                 ELSE
                   hits.page.pageTitle
-              END AS Article
+              END AS Article,
+              hits.type
             FROM
               (SELECT * FROM {% table_date_range V1_Period 114668488.ga_sessions_ %},{% table_date_range V1_Period 114668488.ga_sessions_intraday_ %})
             )
@@ -70,7 +72,8 @@
           hits.page.pagePath AS pagePath,
           COUNT(REGEXP_EXTRACT(hits.page.pagePath, r'^(\/[A-Za-z0-9\/-]+)')) AS VIEWS AS Total_Views,
           MIN(date) AS First_Viewed,
-          DATEDIFF(CURRENT_DATE(),MIN(date)) AS Article_Age
+          DATEDIFF(CURRENT_DATE(),MIN(date)) AS Article_Age,
+          hits.type
         FROM 
           (TABLE_QUERY([uplifted-light-89310:114668488],'table_id CONTAINS "ga_sessions"'))
         WHERE {% condition Brand_filter %} RegEXP_EXTRACT(hits.page.pagePath, r'^\/(.+?)\/.+') {% endcondition %} AND hits.type = 'PAGE' AND REGEXP_MATCH(hits.page.pagePath, r'^\/.+?\/(celebrity|contact|diet-body|entertainment|family-money|fashion|feature|hair-beauty|heat-radio|magazine|my|news-real-life|news|sport|bikes-for-sale|bike-reviews|insurance|product-reviews|new-rider)\/.+')

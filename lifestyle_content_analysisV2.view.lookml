@@ -17,6 +17,7 @@
           FLATTEN(
             (SELECT
               REGEXP_EXTRACT(hits.page.pagePath, r'^(\/[A-Za-z0-9\/-]+)') AS hits.page.pagePath,
+              hits.type
             FROM
               (SELECT * FROM {% table_date_range V2_Period 114668488.ga_sessions_ %},{% table_date_range V2_Period 114668488.ga_sessions_intraday_ %})
             )
@@ -30,7 +31,8 @@
         FROM
           FLATTEN(
             (SELECT
-              REGEXP_EXTRACT(hits.page.pagePath, r'^(\/[A-Za-z0-9\/-]+)') AS hits.page.pagePath,
+              REGEXP_EXTRACT(hits.page.pagePath, r'^(\/[A-Za-z0-9\/-]+)') AS hits.page.pagePath
+              hits.type
             FROM
               (SELECT * FROM {% table_date_range V1_Period 114668488.ga_sessions_ %},{% table_date_range V1_Period 114668488.ga_sessions_intraday_ %})
             )
@@ -48,6 +50,7 @@
           FLATTEN(
             (SELECT
               REGEXP_EXTRACT(hits.page.pagePath, r'^(\/[A-Za-z0-9\/-]+)') AS hits.page.pagePath,
+              hits.type
               date
             FROM
               (SELECT * FROM (TABLE_QUERY([uplifted-light-89310:114668488],'table_id CONTAINS "ga_sessions"')))

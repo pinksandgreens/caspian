@@ -73,7 +73,7 @@
           #   END AS Article,
           hits.page.pageTitle AS Article,
           hits.page.pagePath AS pagePath,
-          COUNT(REGEXP_EXTRACT(hits.page.pagePath, r'^(\/[A-Za-z0-9\/-]+)')) AS VIEWS AS Total_Views,
+          COUNT(REGEXP_EXTRACT(hits.page.pagePath, r'^(\/[A-Za-z0-9\/-]+)')) AS Total_Views,
           MIN(date) AS First_Viewed,
           DATEDIFF(CURRENT_DATE(),MIN(date)) AS Article_Age,
           hits.type

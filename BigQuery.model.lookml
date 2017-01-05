@@ -134,7 +134,7 @@
   always_filter:
     date_filter: 30 days  
     
-- explore: lifestyle_content_analysis
+- explore: lifestyle_content_analysisV2
   # access_filter_fields: [articles_monthly_movers.V2_Period, articles_monthly_movers.V1_Period]
   #   hidden: TRUE
   label: 'BigQuery - Lifestyle - Article Movers & Shakers'

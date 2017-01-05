@@ -140,7 +140,7 @@
   label: 'BigQuery - Lifestyle - Article Movers & Shakers'
   always_filter:
     V2_Period: last month
-    V1_Period: last 2 months
+    V1_Period: 2 months ago
     Brand_filter: grazia
   
 - explore: mcn_article_monthly_movers
@@ -149,7 +149,7 @@
   label: 'BigQuery - MCN - Article Movers & Shakers'
   always_filter:
     V2_Period: last month
-    V1_Period: last 2 months
+    V1_Period: 2 months ago
     Brand_filter: www.motorcyclenews.com
     
 - explore: test2

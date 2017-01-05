@@ -12,56 +12,70 @@
         B.Article_Age
       FROM
         (SELECT
-          RegEXP_EXTRACT(hits.page.pagePath, r'^\/(.+?)\/.+') AS Brand,
-          REGEXP_EXTRACT(hits.page.pagePath, r'^\/.+?\/(celebrity|contact|diet-body|entertainment|family-money|fashion|feature|hair-beauty|heat-radio|magazine|my|news-real-life|news|sport|bikes-for-sale|bike-reviews|insurance|product-reviews|new-rider)\/.+') AS Section_Category,
-          CASE
-            WHEN hits.page.pageTitle IS NULL THEN hits.page.pagePath
-          ELSE
-            hits.page.pageTitle
-          END AS Article,
-          hits.page.pagePath AS pagePath,
-          COUNT(hits.page.pagePath) AS VIEWS
+          Article,
+          RegEXP_EXTRACT(pagePath, r'^\/(.+?)\/.+') AS Brand,
+          REGEXP_EXTRACT(pagePath, r'^\/.+?\/(celebrity|contact|diet-body|entertainment|family-money|fashion|feature|hair-beauty|heat-radio|magazine|my|news-real-life|news|sport|bikes-for-sale|bike-reviews|insurance|product-reviews|new-rider)\/.+') AS Section_Category,
+          pagePath,
+          COUNT(pagePath) AS VIEWS
         FROM
           FLATTEN(
             (SELECT
-              *
+              hits.page.pagePath AS pagePath,
+              CASE
+                WHEN hits.page.pageTitle IS NULL THEN 
+                  (SELECT FIRST_VALUE(hits.page.pageTitle) 
+                    OVER (PARTITION BY hits.page.pageTitle 
+                    ORDER BY CASE WHEN hits.page.pageTitle IS NULL then 0 ELSE 1 END DESC, TIMESTAMP)
+                  )
+                ELSE
+                  hits.page.pagePath
+              END AS Article
             FROM
               (SELECT * FROM {% table_date_range V2_Period 114668488.ga_sessions_ %},{% table_date_range V2_Period 114668488.ga_sessions_intraday_ %})
             )
           , hits)
-        WHERE {% condition Brand_filter %} RegEXP_EXTRACT(hits.page.pagePath, r'^\/(.+?)\/.+') {% endcondition %} AND hits.type = 'PAGE' AND REGEXP_MATCH(hits.page.pagePath, r'^\/.+?\/(celebrity|contact|diet-body|entertainment|family-money|fashion|feature|hair-beauty|heat-radio|magazine|my|news-real-life|news|sport|bikes-for-sale|bike-reviews|insurance|product-reviews|new-rider)\/.+')
+        WHERE {% condition Brand_filter %} RegEXP_EXTRACT(pagePath, r'^\/(.+?)\/.+') {% endcondition %} AND hits.type = 'PAGE' AND REGEXP_MATCH(pagePath, r'^\/.+?\/(celebrity|contact|diet-body|entertainment|family-money|fashion|feature|hair-beauty|heat-radio|magazine|my|news-real-life|news|sport|bikes-for-sale|bike-reviews|insurance|product-reviews|new-rider)\/.+')
         GROUP BY Article, Brand, Section_Category, pagePath) AS V2_Period
         LEFT OUTER JOIN
         (SELECT
-          RegEXP_EXTRACT(hits.page.pagePath, r'^\/(.+?)\/.+') AS Brand,
-          REGEXP_EXTRACT(hits.page.pagePath, r'^\/.+?\/(celebrity|contact|diet-body|entertainment|family-money|fashion|feature|hair-beauty|heat-radio|magazine|my|news-real-life|news|sport|bikes-for-sale|bike-reviews|insurance|product-reviews|new-rider)\/.+') AS Section_Category,
-          CASE
-            WHEN hits.page.pageTitle IS NULL THEN hits.page.pagePath
-          ELSE
-            hits.page.pageTitle
-          END AS Article,
-          hits.page.pagePath AS pagePath,
+          Article,
+          RegEXP_EXTRACT(pagePath, r'^\/(.+?)\/.+') AS Brand,
+          REGEXP_EXTRACT(pagePath, r'^\/.+?\/(celebrity|contact|diet-body|entertainment|family-money|fashion|feature|hair-beauty|heat-radio|magazine|my|news-real-life|news|sport|bikes-for-sale|bike-reviews|insurance|product-reviews|new-rider)\/.+') AS Section_Category,
+          pagePath,
           COUNT(hits.page.pagePath) AS VIEWS,
         FROM
           FLATTEN(
             (SELECT
-              *
+              hits.page.pagePath AS pagePath,
+              CASE
+                WHEN hits.page.pageTitle IS NULL THEN 
+                  (SELECT FIRST_VALUE(hits.page.pageTitle) 
+                    OVER (PARTITION BY hits.page.pageTitle 
+                    ORDER BY CASE WHEN hits.page.pageTitle IS NULL then 0 ELSE 1 END DESC, TIMESTAMP)
+                  )
+                ELSE
+                  hits.page.pagePath
+              END AS Article
             FROM
               (SELECT * FROM {% table_date_range V1_Period 114668488.ga_sessions_ %},{% table_date_range V1_Period 114668488.ga_sessions_intraday_ %})
             )
           , hits)
-        WHERE {% condition Brand_filter %} RegEXP_EXTRACT(hits.page.pagePath, r'^\/(.+?)\/.+') {% endcondition %} AND hits.type = 'PAGE' AND REGEXP_MATCH(hits.page.pagePath, r'^\/.+?\/(celebrity|contact|diet-body|entertainment|family-money|fashion|feature|hair-beauty|heat-radio|magazine|my|news-real-life|news|sport|bikes-for-sale|bike-reviews|insurance|product-reviews|new-rider)\/.+')
+        WHERE {% condition Brand_filter %} RegEXP_EXTRACT(pagePath, r'^\/(.+?)\/.+') {% endcondition %} AND hits.type = 'PAGE' AND REGEXP_MATCH(pagePath, r'^\/.+?\/(celebrity|contact|diet-body|entertainment|family-money|fashion|feature|hair-beauty|heat-radio|magazine|my|news-real-life|news|sport|bikes-for-sale|bike-reviews|insurance|product-reviews|new-rider)\/.+')
         GROUP BY Article, Brand, Section_Category, pagePath) AS V1_Period
-        ON V2_Period.pagePath = V1_Period.pagePath
+        ON V2_Period.Article = V1_Period.Article
         LEFT OUTER JOIN
         (SELECT
           CASE
-            WHEN hits.page.pageTitle IS NULL THEN hits.page.pagePath
-          ELSE
-            hits.page.pageTitle
-          END AS Article,
+            WHEN hits.page.pageTitle IS NULL THEN 
+              (SELECT FIRST_VALUE(hits.page.pageTitle) 
+                OVER (PARTITION BY hits.page.pageTitle 
+                ORDER BY CASE WHEN hits.page.pageTitle IS NULL then 0 ELSE 1 END DESC, TIMESTAMP)
+              )
+            ELSE
+              hits.page.pagePath
+            END AS Article,
           hits.page.pagePath AS pagePath,
-          COUNT(hits.page.pagePath) AS Total_Views,
+          COUNT(Article) AS Total_Views,
           MIN(date) AS First_Viewed,
           DATEDIFF(CURRENT_DATE(),MIN(date)) AS Article_Age
         FROM 
@@ -69,7 +83,7 @@
         WHERE {% condition Brand_filter %} RegEXP_EXTRACT(hits.page.pagePath, r'^\/(.+?)\/.+') {% endcondition %} AND hits.type = 'PAGE' AND REGEXP_MATCH(hits.page.pagePath, r'^\/.+?\/(celebrity|contact|diet-body|entertainment|family-money|fashion|feature|hair-beauty|heat-radio|magazine|my|news-real-life|news|sport|bikes-for-sale|bike-reviews|insurance|product-reviews|new-rider)\/.+')
         GROUP BY Article, pagePath
       ) AS B
-      ON V2_Period.pagePath = B.pagePath
+      ON V2_Period.Article = B.Article
       ORDER BY V2_Period.VIEWS DESC)
 
   fields:

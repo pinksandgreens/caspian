@@ -11,12 +11,12 @@
         B.Article_Age
         FROM
         (SELECT
-          hits.page.pagePath,
-          COUNT(hits.page.pagePath) AS VIEWS
+          REGEXP_EXTRACT(hits.page.pagePath, r'^(\/[A-Za-z0-9\/-]+)') AS hits.page.pagePath,
+          COUNT(REGEXP_EXTRACT(hits.page.pagePath, r'^(\/[A-Za-z0-9\/-]+)')) AS VIEWS
         FROM
           FLATTEN(
             (SELECT
-              REGEXP_EXTRACT(hits.page.pagePath, r'^(\/[A-Za-z0-9\/-]+)') AS hits.page.pagePath,
+              hits.page.pagePath,
               hits.type
             FROM
               (SELECT * FROM {% table_date_range V2_Period 114668488.ga_sessions_ %},{% table_date_range V2_Period 114668488.ga_sessions_intraday_ %})
@@ -26,12 +26,12 @@
         GROUP BY hits.page.pagePath) AS V2_Period
         LEFT OUTER JOIN
         (SELECT
-          hits.page.pagePath,
-          COUNT(hits.page.pagePath) AS VIEWS
+          REGEXP_EXTRACT(hits.page.pagePath, r'^(\/[A-Za-z0-9\/-]+)') AS hits.page.pagePath,
+          COUNT(REGEXP_EXTRACT(hits.page.pagePath, r'^(\/[A-Za-z0-9\/-]+)')) AS VIEWS
         FROM
           FLATTEN(
             (SELECT
-              REGEXP_EXTRACT(hits.page.pagePath, r'^(\/[A-Za-z0-9\/-]+)') AS hits.page.pagePath,
+              hits.page.pagePath,
               hits.type
             FROM
               (SELECT * FROM {% table_date_range V1_Period 114668488.ga_sessions_ %},{% table_date_range V1_Period 114668488.ga_sessions_intraday_ %})
@@ -42,14 +42,14 @@
         ON V2_Period.hits.page.pagePath = V1_Period.hits.page.pagePath
         LEFT OUTER JOIN
         (SELECT
-          hits.page.pagePath,
-          COUNT(hits.page.pagePath) AS Total_Views,
+          REGEXP_EXTRACT(hits.page.pagePath, r'^(\/[A-Za-z0-9\/-]+)') AS hits.page.pagePath,
+          COUNT(REGEXP_EXTRACT(hits.page.pagePath, r'^(\/[A-Za-z0-9\/-]+)')) AS Total_Views,
           MIN(date) AS First_Viewed,
           DATEDIFF(CURRENT_DATE(),MIN(date)) AS Article_Age
         FROM
           FLATTEN(
             (SELECT
-              REGEXP_EXTRACT(hits.page.pagePath, r'^(\/[A-Za-z0-9\/-]+)') AS hits.page.pagePath,
+              hits.page.pagePath,
               hits.type,
               date
             FROM
@@ -86,7 +86,7 @@
     sql: ${TABLE}.V1_Period.VIEWS
 
   - dimension: Section_Category_V2
-    sql: ${TABLE}.
+    sql: ${TABLE}.V2_Period.Section_Category
     
   - measure: Variance
     type: number

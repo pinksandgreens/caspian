@@ -31,8 +31,8 @@
   - dimension: Section_Category
     sql: ${TABLE}.Section_Category
     
-  - filter: Article
-    type: string
+  - dimension: Article
+    sql: ${TABLE}.Article
     
   - measure: VIEWS
     type: sum

@@ -14,7 +14,11 @@
         (SELECT
           RegEXP_EXTRACT(hits.page.pagePath, r'^\/(.+?)\/.+') AS Brand,
           REGEXP_EXTRACT(hits.page.pagePath, r'^\/.+?\/(celebrity|contact|diet-body|entertainment|family-money|fashion|feature|hair-beauty|heat-radio|magazine|my|news-real-life|news|sport|bikes-for-sale|bike-reviews|insurance|product-reviews|new-rider)\/.+') AS Section_Category,
-          hits.page.pageTitle AS Article,
+          CASE
+            WHEN hits.page.pageTitle IS NULL THEN hits.page.pagePath
+          ELSE
+            hits.page.pageTitle
+          END AS Article,
           COUNT(hits.page.pagePath) AS VIEWS
         FROM
           FLATTEN(
@@ -30,7 +34,11 @@
         (SELECT
           RegEXP_EXTRACT(hits.page.pagePath, r'^\/(.+?)\/.+') AS Brand,
           REGEXP_EXTRACT(hits.page.pagePath, r'^\/.+?\/(celebrity|contact|diet-body|entertainment|family-money|fashion|feature|hair-beauty|heat-radio|magazine|my|news-real-life|news|sport|bikes-for-sale|bike-reviews|insurance|product-reviews|new-rider)\/.+') AS Section_Category,
-          hits.page.pageTitle AS Article,
+          CASE
+            WHEN hits.page.pageTitle IS NULL THEN hits.page.pagePath
+          ELSE
+            hits.page.pageTitle
+          END AS Article,
           COUNT(hits.page.pagePath) AS VIEWS,
           MIN(date) AS First_Viewed
         FROM
@@ -46,7 +54,11 @@
         ON V2_Period.Article = V1_Period.Article
         LEFT OUTER JOIN
         (SELECT
-          hits.page.pageTitle AS Article,
+          CASE
+            WHEN hits.page.pageTitle IS NULL THEN hits.page.pagePath
+          ELSE
+            hits.page.pageTitle
+          END AS Article,
           COUNT(hits.page.pagePath) AS Total_Views,
           SUM(MONTH(date)+YEAR(date)) OVER (ORDER BY MONTH(date)+YEAR(date)) AS TEMP,
         

@@ -15,9 +15,13 @@
     type: string
     sql: ${TABLE}.trend
 
-  - dimension: tweet_volume
+  - measure: tweet_volume
     type: sum
-    sql: ${TABLE}.tweet_volume
+    sql: |
+      CASE
+        WHEN ${TABLE}.tweet_volume = 'NA' THEN '10000'
+        ELSE ${TABLE}.tweet_volume
+      END
 
   - dimension: url
     type: string

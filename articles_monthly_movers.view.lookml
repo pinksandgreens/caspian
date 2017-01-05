@@ -72,15 +72,13 @@
           #     hits.page.pageTitle
           #   END AS Article,
           hits.page.pageTitle AS Article,
-          hits.page.pagePath AS pagePath,
           COUNT(REGEXP_EXTRACT(hits.page.pagePath, r'^(\/[A-Za-z0-9\/-]+)')) AS Total_Views,
           MIN(date) AS First_Viewed,
           DATEDIFF(CURRENT_DATE(),MIN(date)) AS Article_Age,
-          hits.type
         FROM 
           (TABLE_QUERY([uplifted-light-89310:114668488],'table_id CONTAINS "ga_sessions"'))
-        WHERE {% condition Brand_filter %} RegEXP_EXTRACT(pagePath, r'^\/(.+?)\/.+') {% endcondition %} AND hits.type = 'PAGE' AND REGEXP_MATCH(pagePath, r'^\/.+?\/(celebrity|contact|diet-body|entertainment|family-money|fashion|feature|hair-beauty|heat-radio|magazine|my|news-real-life|news|sport|bikes-for-sale|bike-reviews|insurance|product-reviews|new-rider)\/.+')
-        GROUP BY Article, pagePath, hits.type
+        WHERE {% condition Brand_filter %} RegEXP_EXTRACT(hits.page.pagePath, r'^\/(.+?)\/.+') {% endcondition %} AND hits.type = 'PAGE' AND REGEXP_MATCH(hits.page.pagePath, r'^\/.+?\/(celebrity|contact|diet-body|entertainment|family-money|fashion|feature|hair-beauty|heat-radio|magazine|my|news-real-life|news|sport|bikes-for-sale|bike-reviews|insurance|product-reviews|new-rider)\/.+')
+        GROUP BY Article, pagePath
       ) AS B
       ON V2_Period.Article = B.Article
       ORDER BY V2_Period.VIEWS DESC)

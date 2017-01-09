@@ -14,6 +14,7 @@
     label: 'Filter by Brand (Grazia, Heat, Closer, Empire)'
   
   - dimension: Page
+    hidden: TRUE
     sql: ${TABLE}.Key
     
   - dimension: queryString

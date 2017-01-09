@@ -135,47 +135,21 @@
     date_filter: 30 days  
     
 - explore: jr_lifestyle_content_analysis
-  # access_filter_fields: [articles_monthly_movers.V2_Period, articles_monthly_movers.V1_Period]
-  #   hidden: TRUE
   label: 'BigQuery - Lifestyle - Article Movers & Shakers'
+  joins:
+    - join: jr_lifestyle_agg_content_views_monthly
+      type: left_outer
+      relationship: one_to_many
+      sql_on: ${jr_lifestyle_agg_content_views_monthly.Page} = ${jr_lifestyle_content_analysis.Page}
+    - join: jr_lifestyle_pagetitle
+      type: left_outer
+      relationship: one_to_many
+      sql_on: ${${jr_lifestyle_pagetitle.Page} = ${jr_lifestyle_content_analysis.Page}
+    - join: jr_lifestyle_queryString
+      type: left_outer
+      relationship: one_to_many
+      sql_on: ${jr_lifestyle_queryString.Page} = ${jr_lifestyle_content_analysis.Page}
   always_filter:
     V2: last month
     V1: 2 months ago
-    brand_filter: grazia
-  
-- explore: mcn_article_monthly_movers
-  # access_filter_fields: [articles_monthly_movers.V2_Period, articles_monthly_movers.V1_Period]
-  #   hidden: TRUE
-  label: 'BigQuery - MCN - Article Movers & Shakers'
-  always_filter:
-    V2_Period: last month
-    V1_Period: 2 months ago
-    Brand_filter: www.motorcyclenews.com
-    
-- explore: test2
-  # access_filter_fields: [articles_monthly_movers.V2_Period, articles_monthly_movers.V1_Period]
-  #   hidden: TRUE
-  label: 'BigQuery - Lifestyle - TEST'
-  always_filter:
-    Brand_filter: grazia
-    
-- explore: jr_lifestyle_queryString
-  # access_filter_fields: [articles_monthly_movers.V2_Period, articles_monthly_movers.V1_Period]
-  #   hidden: TRUE
-  label: 'BigQuery - TEST - QueryString'
-  always_filter:
-    brand_filter: grazia
-    
-- explore: jr_lifestyle_agg_content_views_monthly
-  # access_filter_fields: [articles_monthly_movers.V2_Period, articles_monthly_movers.V1_Period]
-  #   hidden: TRUE
-  label: 'BigQuery - TEST - Monthly Article Views'
-  always_filter:
-    brand_filter: grazia
-    
-- explore: jr_lifestyle_pagetitle
-  # access_filter_fields: [articles_monthly_movers.V2_Period, articles_monthly_movers.V1_Period]
-  #   hidden: TRUE
-  label: 'BigQuery - TEST - pageTitle'
-  always_filter:
     brand_filter: grazia

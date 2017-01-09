@@ -1,5 +1,6 @@
 - view: jr_lifestyle_content_analysis
-  sql_table_name: |
+  derived_table:
+    sql: |
       (SELECT
         V2.Key AS Key,
         REGEXP_EXTRACT(V2.Key, r'^\/(.+?)\/.+') AS V2.Brand,
@@ -72,14 +73,15 @@
     label: 'Time Period (V1)'
     type: date
 
-  - filter: brand_filter 
-    label: 'Filter by Brand'
+  - filter: brand_filter
+    label: 'Filter by Brand (Grazia, Heat, Closer, Empire)'
     
   - dimension: Brand
     label: 'Brand'
     sql: ${TABLE}.V2.Brand
   
   - dimension: Page
+    primary_key: true
     label: 'Article'
     sql: ${TABLE}.Key
     

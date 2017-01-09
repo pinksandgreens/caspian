@@ -1,5 +1,6 @@
 - view: jr_lifestyle_queryString
-  sql_table_name: |
+  derived_table: 
+    sql: |
       (SELECT
         REGEXP_EXTRACT(hits.page.pagePath, r'^(\/[A-Za-z0-9\/-]+)') AS Key,
         REGEXP_EXTRACT(hits.page.pagePath, r'^\/.+?\?(.+)') AS queryString
@@ -10,10 +11,12 @@
       ORDER BY Key)
       
   fields:
-  - filter: brand_filter 
+
+  - filter: brand_filter
     label: 'Filter by Brand (Grazia, Heat, Closer, Empire)'
   
   - dimension: Page
+    primary_key: true
     hidden: TRUE
     sql: ${TABLE}.Key
     

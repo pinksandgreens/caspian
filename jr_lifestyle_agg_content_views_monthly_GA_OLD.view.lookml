@@ -24,8 +24,6 @@
                  (SELECT
                    REGEXP_EXTRACT(hits.page.pagePath, r'^(\/[A-Za-z0-9\/-]+)') AS Key
                   FROM
-                   (SELECT * FROM TABLE_QUERY([uplifted-light-89310:33837059],'table_id CONTAINS "ga_sessions"') WHERE {% condition brand_filter %} RegEXP_EXTRACT(hits.page.pagePath, r'^\/(.+?)\/.+') {% endcondition %} AND hits.type = 'PAGE'),
-                   (SELECT * FROM TABLE_QUERY([uplifted-light-89310:24238224],'table_id CONTAINS "ga_sessions"') WHERE {% condition brand_filter %} RegEXP_EXTRACT(hits.page.pagePath, r'^\/(.+?)\/.+') {% endcondition %} AND hits.type = 'PAGE'),
                    (SELECT * FROM TABLE_QUERY([uplifted-light-89310:24045694],'table_id CONTAINS "ga_sessions"') WHERE {% condition brand_filter %} RegEXP_EXTRACT(hits.page.pagePath, r'^\/(.+?)\/.+') {% endcondition %} AND hits.type = 'PAGE')
                  WHERE {% condition brand_filter %} RegEXP_EXTRACT(hits.page.pagePath, r'^\/(.+?)\/.+') {% endcondition %} AND hits.type = 'PAGE'
                  GROUP BY Key
@@ -49,8 +47,6 @@
                INTEGER(LEFT(date,6)) AS month_index,
                COUNT(LEFT(date,6)) AS value,
                FROM
-                 (SELECT * FROM TABLE_QUERY([uplifted-light-89310:33837059],'table_id CONTAINS "ga_sessions"') WHERE {% condition brand_filter %} RegEXP_EXTRACT(hits.page.pagePath, r'^\/(.+?)\/.+') {% endcondition %} AND hits.type = 'PAGE'),
-                 (SELECT * FROM TABLE_QUERY([uplifted-light-89310:24238224],'table_id CONTAINS "ga_sessions"') WHERE {% condition brand_filter %} RegEXP_EXTRACT(hits.page.pagePath, r'^\/(.+?)\/.+') {% endcondition %} AND hits.type = 'PAGE'),
                  (SELECT * FROM TABLE_QUERY([uplifted-light-89310:24045694],'table_id CONTAINS "ga_sessions"') WHERE {% condition brand_filter %} RegEXP_EXTRACT(hits.page.pagePath, r'^\/(.+?)\/.+') {% endcondition %} AND hits.type = 'PAGE')
                WHERE REGEXP_EXTRACT(hits.page.pagePath, r'^\/(.+?)\/.+') = 'grazia' AND hits.type = 'PAGE'
                GROUP BY Key, month_index

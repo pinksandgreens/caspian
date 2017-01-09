@@ -158,3 +158,8 @@
   label: 'BigQuery - Lifestyle - TEST'
   always_filter:
     Brand_filter: grazia
+    
+- explore: jr_lifestyle_queryString
+  # access_filter_fields: [articles_monthly_movers.V2_Period, articles_monthly_movers.V1_Period]
+  #   hidden: TRUE
+  label: 'BigQuery - TEST'

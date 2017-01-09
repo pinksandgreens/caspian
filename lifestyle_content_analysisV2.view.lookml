@@ -124,3 +124,66 @@
   - dimension: pagePath
     sql: ${TABLE}.V2_Period.hits.page.pagePath
     
+    
+#   SELECT
+# B.Article AS Article,
+# B.QueryString AS QueryString,
+# FIRST(B.Monthly_Views_History) AS Monthly_Views_History
+# FROM
+#   (SELECT
+#     A.Article AS Article,
+#     A.QueryString AS QueryString,
+#     GROUP_CONCAT(CONCAT(STRING(A.month_index),':',STRING(A.Article_Views)), '|') OVER
+#     (PARTITION BY A.Article
+#     ORDER BY A.month_index ASC
+#     ROWS BETWEEN UNBOUNDED PRECEDING AND UNBOUNDED FOLLOWING) AS Monthly_Views_History
+#     FROM
+#       (SELECT
+#         Distinct_Article_Template.Article AS Article,
+#         Distinct_Article_Template.QueryString AS QueryString,
+#         Distinct_Article_Template.month_index AS Month_Index,
+#         IF(Actual_Article_Views_by_Month.Value IS NULL, 0, Actual_Article_Views_by_Month.Value) AS Article_Views
+#       FROM
+#         (SELECT
+#           Distinct_Articles.Article AS Article,
+#           Distinct_Articles.QueryString AS QueryString,
+#           Month_Calendar_Table.month_index AS month_index
+#           -- Month_Calendar_Table.VIEWS AS Views
+#           FROM  
+#             (SELECT
+#               REGEXP_EXTRACT(hits.page.pagePath, r'^(\/[A-Za-z0-9\/-]+)') AS Article,
+#               REGEXP_EXTRACT(hits.page.pagePath, r'^\/.+?\?(.+)') AS QueryString
+#             FROM
+#               (SELECT * FROM TABLE_QUERY([uplifted-light-89310:114668488],'table_id CONTAINS "ga_sessions"'))
+#             WHERE REGEXP_EXTRACT(hits.page.pagePath, r'^\/(.+?)\/.+') = 'grazia' AND hits.type = 'PAGE'
+#             GROUP BY Article, QueryString
+#             ORDER BY Article
+#             ) AS Distinct_Articles
+#           CROSS JOIN
+#             (SELECT
+#               month_index,
+#               FROM
+#               (SELECT 201501 AS month_index),(SELECT 201502 AS month_index),(SELECT 201503 AS month_index),(SELECT 201504 AS month_index),(SELECT 201505 AS month_index),(SELECT 201506 AS month_index),(SELECT 201507 AS month_index),(SELECT 201508 AS month_index),(SELECT 201509 AS month_index),(SELECT 201510 AS month_index),(SELECT 201511 AS month_index),(SELECT 201512 AS month_index),
+#               (SELECT 201601 AS month_index),(SELECT 201602 AS month_index),(SELECT 201603 AS month_index),(SELECT 201604 AS month_index),(SELECT 201605 AS month_index),(SELECT 201606 AS month_index),(SELECT 201607 AS month_index),(SELECT 201608 AS month_index),(SELECT 201609 AS month_index),(SELECT 201610 AS month_index),(SELECT 201611 AS month_index),(SELECT 201612 AS month_index),
+#               (SELECT 201701 AS month_index),(SELECT 201702 AS month_index),(SELECT 201703 AS month_index),(SELECT 201704 AS month_index),(SELECT 201705 AS month_index),(SELECT 201706 AS month_index),(SELECT 201707 AS month_index),(SELECT 201708 AS month_index),(SELECT 201709 AS month_index),(SELECT 201710 AS month_index),(SELECT 201711 AS month_index),(SELECT 201712 AS month_index),
+#               (SELECT 201801 AS month_index),(SELECT 201802 AS month_index),(SELECT 201803 AS month_index),(SELECT 201804 AS month_index),(SELECT 201805 AS month_index),(SELECT 201806 AS month_index),(SELECT 201807 AS month_index),(SELECT 201808 AS month_index),(SELECT 201809 AS month_index),(SELECT 201810 AS month_index),(SELECT 201811 AS month_index),(SELECT 201812 AS month_index),
+#               (SELECT 201901 AS month_index),(SELECT 201902 AS month_index),(SELECT 201903 AS month_index),(SELECT 201904 AS month_index),(SELECT 201905 AS month_index),(SELECT 201906 AS month_index),(SELECT 201907 AS month_index),(SELECT 201908 AS month_index),(SELECT 201909 AS month_index),(SELECT 201910 AS month_index),(SELECT 201911 AS month_index),(SELECT 201912 AS month_index)
+#               ORDER BY month_index
+#             ) AS Month_Calendar_Table
+#           ) AS Distinct_Article_Template
+#         LEFT OUTER JOIN
+#           (SELECT
+#           REGEXP_EXTRACT(hits.page.pagePath, r'^(\/[A-Za-z0-9\/-]+)') AS Article,
+#           INTEGER(LEFT(date,6)) AS month_index,
+#           COUNT(LEFT(date,6)) AS value,
+#           FROM
+#           (SELECT * FROM TABLE_QUERY([uplifted-light-89310:114668488],'table_id CONTAINS "ga_sessions"'))
+#           WHERE REGEXP_EXTRACT(hits.page.pagePath, r'^\/(.+?)\/.+') = 'grazia' AND hits.type = 'PAGE'
+#           GROUP BY Article, month_index
+#           ORDER BY Article, month_index
+#           ) AS Actual_Article_Views_by_Month
+#       ON Distinct_Article_Template.Article = Actual_Article_Views_by_Month.Article AND Distinct_Article_Template.month_index = Actual_Article_Views_by_Month.month_index
+#       ) AS A
+#     ) AS B
+#   GROUP BY Article, QueryString
+#   ORDER BY Article

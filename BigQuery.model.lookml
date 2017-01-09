@@ -134,14 +134,14 @@
   always_filter:
     date_filter: 30 days  
     
-- explore: lifestyle_content_analysisV2
+- explore: jr_lifestyle_content_analysis
   # access_filter_fields: [articles_monthly_movers.V2_Period, articles_monthly_movers.V1_Period]
   #   hidden: TRUE
   label: 'BigQuery - Lifestyle - Article Movers & Shakers'
   always_filter:
-    V2_Period: last month
-    V1_Period: 2 months ago
-    Brand_filter: grazia
+    V2: last month
+    V1: 2 months ago
+    brand_filter: grazia
   
 - explore: mcn_article_monthly_movers
   # access_filter_fields: [articles_monthly_movers.V2_Period, articles_monthly_movers.V1_Period]

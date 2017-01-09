@@ -1,6 +1,6 @@
 - view: jr_lifestyle_agg_content_views_monthly
   sql_table_name: |
-    SELECT
+    (SELECT
     B.Key AS Key,
     FIRST(B.Monthly_Views) AS Monthly_Views
     FROM

@@ -22,16 +22,16 @@
                   Month_Calendar_Table.month_index AS month_index
                 FROM  
                  (SELECT
-                   REGEXP_EXTRACT(hits.page.pagePath, r'^(\/[A-Za-z0-9\/-]+)') AS Key
+                   CONCAT('/grazia',REGEXP_EXTRACT(hits.page.pagePath, r'^(\/[A-Za-z0-9\/-]+)')) AS Key
                   FROM
                    (SELECT * FROM TABLE_QUERY([uplifted-light-89310:24045694],'table_id CONTAINS "ga_sessions"'))
-                  WHERE hits.type = 'PAGE' AND REGEXP_EXTRACT(hits.page.pagePath, r'^(\/[A-Za-z0-9\/-]+)') IS NOT NULL
-                 GROUP BY Key
+                  WHERE {% condition brand_filter %} CONCAT('/grazia',REGEXP_EXTRACT(hits.page.pagePath, r'^(\/[A-Za-z0-9\/-]+)')) {% endcondition %} AND hits.type = 'PAGE'
+                 GROUP BY Key # Return Distinct Values
                  ORDER BY Key
                  ) AS Distinct_Keys
                CROSS JOIN
                  (SELECT
-                   month_index,
+                   month_index
                   FROM
                    (SELECT 201501 AS month_index),(SELECT 201502 AS month_index),(SELECT 201503 AS month_index),(SELECT 201504 AS month_index),(SELECT 201505 AS month_index),(SELECT 201506 AS month_index),(SELECT 201507 AS month_index),(SELECT 201508 AS month_index),(SELECT 201509 AS month_index),(SELECT 201510 AS month_index),(SELECT 201511 AS month_index),(SELECT 201512 AS month_index),
                    (SELECT 201601 AS month_index),(SELECT 201602 AS month_index),(SELECT 201603 AS month_index),(SELECT 201604 AS month_index),(SELECT 201605 AS month_index),(SELECT 201606 AS month_index),(SELECT 201607 AS month_index),(SELECT 201608 AS month_index),(SELECT 201609 AS month_index),(SELECT 201610 AS month_index),(SELECT 201611 AS month_index),(SELECT 201612 AS month_index),
@@ -43,12 +43,12 @@
                ) AS Distinct_Key_Template
              LEFT OUTER JOIN
                (SELECT
-               REGEXP_EXTRACT(hits.page.pagePath, r'^(\/[A-Za-z0-9\/-]+)') AS Key,
+               CONCAT('/grazia',REGEXP_EXTRACT(hits.page.pagePath, r'^(\/[A-Za-z0-9\/-]+)')) AS Key,
                INTEGER(LEFT(date,6)) AS month_index,
-               COUNT(LEFT(date,6)) AS value,
+               COUNT(LEFT(date,6)) AS value
                FROM
                  (SELECT * FROM TABLE_QUERY([uplifted-light-89310:24045694],'table_id CONTAINS "ga_sessions"'))
-              WHERE hits.type = 'PAGE' AND REGEXP_EXTRACT(hits.page.pagePath, r'^(\/[A-Za-z0-9\/-]+)') IS NOT NULL
+              WHERE {% condition brand_filter %} CONCAT('/grazia',REGEXP_EXTRACT(hits.page.pagePath, r'^(\/[A-Za-z0-9\/-]+)')) {% endcondition %} AND hits.type = 'PAGE'
               GROUP BY Key, month_index
               ORDER BY Key, month_index
                ) AS Actual_Key_Views_by_Month
@@ -59,6 +59,9 @@
         ORDER BY Key)
     
   fields:
+
+  - filter: brand_filter
+    label: 'Filter by Brand (Grazia, Heat, Closer, Empire)'
 
   - dimension: Page
     primary_key: true

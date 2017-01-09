@@ -31,7 +31,7 @@
                  ) AS Distinct_Keys
                CROSS JOIN
                  (SELECT
-                   month_index,
+                   month_index
                   FROM
                    (SELECT 201501 AS month_index),(SELECT 201502 AS month_index),(SELECT 201503 AS month_index),(SELECT 201504 AS month_index),(SELECT 201505 AS month_index),(SELECT 201506 AS month_index),(SELECT 201507 AS month_index),(SELECT 201508 AS month_index),(SELECT 201509 AS month_index),(SELECT 201510 AS month_index),(SELECT 201511 AS month_index),(SELECT 201512 AS month_index),
                    (SELECT 201601 AS month_index),(SELECT 201602 AS month_index),(SELECT 201603 AS month_index),(SELECT 201604 AS month_index),(SELECT 201605 AS month_index),(SELECT 201606 AS month_index),(SELECT 201607 AS month_index),(SELECT 201608 AS month_index),(SELECT 201609 AS month_index),(SELECT 201610 AS month_index),(SELECT 201611 AS month_index),(SELECT 201612 AS month_index),
@@ -45,7 +45,7 @@
                (SELECT
                REGEXP_EXTRACT(hits.page.pagePath, r'^(\/[A-Za-z0-9\/-]+)') AS Key,
                INTEGER(LEFT(date,6)) AS month_index,
-               COUNT(LEFT(date,6)) AS value,
+               COUNT(LEFT(date,6)) AS value
                FROM
                (SELECT * FROM TABLE_QUERY([uplifted-light-89310:114668488],'table_id CONTAINS "ga_sessions"'))
                WHERE REGEXP_EXTRACT(hits.page.pagePath, r'^\/(.+?)\/.+') = 'grazia' AND hits.type = 'PAGE'

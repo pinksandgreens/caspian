@@ -81,7 +81,7 @@
   
   - dimension: Page
     label: 'Article'
-    sql: ${TABLE}.V2.Key
+    sql: ${TABLE}.Key
     
   - dimension: Age
     label: 'Article Age (in Days)'

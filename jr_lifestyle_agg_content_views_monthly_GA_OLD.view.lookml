@@ -24,7 +24,7 @@
                  (SELECT
                    REGEXP_EXTRACT(hits.page.pagePath, r'^(\/[A-Za-z0-9\/-]+)') AS Key
                   FROM
-                   (SELECT * FROM TABLE_QUERY([uplifted-light-89310:24045694],'table_id CONTAINS "ga_sessions"') WHERE hits.type = 'PAGE')
+                   (SELECT * FROM TABLE_QUERY([uplifted-light-89310:24045694],'table_id CONTAINS "ga_sessions"') WHERE hits.type = 'PAGE' AND REGEXP_EXTRACT(hits.page.pagePath, r'^(\/[A-Za-z0-9\/-]+)') IS NOT NULL)
                  GROUP BY Key
                  ORDER BY Key
                  ) AS Distinct_Keys
@@ -46,7 +46,7 @@
                INTEGER(LEFT(date,6)) AS month_index,
                COUNT(LEFT(date,6)) AS value,
                FROM
-                 (SELECT * FROM TABLE_QUERY([uplifted-light-89310:24045694],'table_id CONTAINS "ga_sessions"') WHERE hits.type = 'PAGE')
+                 (SELECT * FROM TABLE_QUERY([uplifted-light-89310:24045694],'table_id CONTAINS "ga_sessions"') WHERE hits.type = 'PAGE' AND REGEXP_EXTRACT(hits.page.pagePath, r'^(\/[A-Za-z0-9\/-]+)') IS NOT NULL)
               GROUP BY Key, month_index
               ORDER BY Key, month_index
                ) AS Actual_Key_Views_by_Month

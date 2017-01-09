@@ -153,3 +153,6 @@
     V2: last month
     V1: 2 months ago
     brand_filter: grazia
+    
+- explore: jr_lifestyle_agg_content_views_monthly_ga_old
+  label: 'BigQuery - Lifestyle - TEST'

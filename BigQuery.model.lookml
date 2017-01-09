@@ -163,3 +163,5 @@
   # access_filter_fields: [articles_monthly_movers.V2_Period, articles_monthly_movers.V1_Period]
   #   hidden: TRUE
   label: 'BigQuery - TEST'
+  always_filter:
+    brand_filter: grazia

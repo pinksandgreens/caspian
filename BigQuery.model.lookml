@@ -162,6 +162,13 @@
 - explore: jr_lifestyle_queryString
   # access_filter_fields: [articles_monthly_movers.V2_Period, articles_monthly_movers.V1_Period]
   #   hidden: TRUE
-  label: 'BigQuery - TEST'
+  label: 'BigQuery - TEST - QueryString'
+  always_filter:
+    brand_filter: grazia
+    
+- explore: jr_lifestyle_agg_content_views_monthly
+  # access_filter_fields: [articles_monthly_movers.V2_Period, articles_monthly_movers.V1_Period]
+  #   hidden: TRUE
+  label: 'BigQuery - TEST - Monthly Article Views'
   always_filter:
     brand_filter: grazia

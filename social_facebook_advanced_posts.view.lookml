@@ -193,7 +193,7 @@
 
   - measure: reactions_count
     label: 'Reactions Total'
-    type: number
+    type: sum
     sql: ${TABLE}.reactions_total
     drill_fields: [post_details*]
     

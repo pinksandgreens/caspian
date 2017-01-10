@@ -172,6 +172,16 @@
       sql_on: ${brand_lookup.bra_code} = ${google_analytics_yearly.brand_code}
 
 
+- explore: ga_demographics
+  label: 'Google Analytics - Demographics'
+  sql_table_name: publications.ga_demographics
+  persist_for: 20 hour
+  
+  joins:
+    - join: brand_lookup
+      type: inner
+      relationship: one_to_one
+      sql_on: ${brand_lookup.bra_code} = ${ga_demographics.brand_code}
   
 # foreign_key:
 

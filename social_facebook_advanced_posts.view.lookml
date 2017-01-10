@@ -221,6 +221,18 @@
     type: sum
     sql: ${TABLE}.post_clicks_link
     drill_fields: [post_details*]
+    
+  - dimension: image_filewow
+    hidden: TRUE
+    sql: ${TABLE}.picture
+
+  - dimension: image_filelike2
+    label: 'Image'
+    hidden: FALSE
+    sql: ${image_filewow}
+    html: <img src="{{ value }}" width="40" 0height="40"/>
+    
+
 
   sets:
     post_details:

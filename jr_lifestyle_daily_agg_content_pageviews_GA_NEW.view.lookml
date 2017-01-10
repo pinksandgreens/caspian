@@ -74,13 +74,13 @@
                FROM
                 (SELECT * FROM TABLE_QUERY([uplifted-light-89310:114668488],'table_id CONTAINS "ga_sessions"'))
                WHERE {% condition brand_filter %} RegEXP_EXTRACT(hits.page.pagePath, r'^\/(.+?)\/.+') {% endcondition %} AND hits.type = 'PAGE'
-               GROUP BY Key, day_index
-              
-               ) AS Actual_Key_Views_by_Month
+               GROUP BY Key, day_index) AS Actual_Key_Views_by_Month
             ON Distinct_Key_Template.Key = Actual_Key_Views_by_Month.Key AND Distinct_Key_Template.day_index = Actual_Key_Views_by_Month.day_index
+           GROUP BY Key
            ) AS A
+          GROUP BY Key
          ) AS B
-        GROUP BY Key
+        GROUP BY Key)
         
     
   fields:

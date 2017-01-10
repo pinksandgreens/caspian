@@ -22,8 +22,8 @@
     type: string
     sql: ${TABLE}.operatingsystem
 
-  - dimension: pageviews
-    type: string
+  - measure: pageviews
+    type: sum
     sql: ${TABLE}.pageviews
 
   - dimension: platform
@@ -128,6 +128,6 @@
   - dimension: date
     label: 'Recorded'
     type: time
-    timeframes: []
+    timeframes: [month]
     convert_tz: false
     sql: TO_DATE(${TABLE}.yearmonth,'YYYYMM')

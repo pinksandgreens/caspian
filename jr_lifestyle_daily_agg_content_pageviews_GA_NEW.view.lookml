@@ -69,7 +69,7 @@
              LEFT OUTER JOIN
                (SELECT
                 REGEXP_EXTRACT(hits.page.pagePath, r'^(\/[A-Za-z0-9\/-]+)') AS Key,
-                date AS day_index,
+                INTEGER(date) AS day_index,
                 COUNT(date) AS value
                FROM
                 (SELECT * FROM TABLE_QUERY([uplifted-light-89310:114668488],'table_id CONTAINS "ga_sessions"'))

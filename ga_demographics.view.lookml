@@ -11,6 +11,7 @@
     sql: INITCAP(${TABLE}.devicecategory)
 
   - dimension: interestinmarketcategory
+    label: 'In-Market'
     type: string
     sql: ${TABLE}.interestinmarketcategory
 
@@ -31,10 +32,12 @@
     sql: ${TABLE}.platform
 
   - dimension: useragebracket
+    label: 'Age Banding'
     type: string
     sql: ${TABLE}.useragebracket
 
   - dimension: usergender
+    label: 'Gender'
     type: string
     sql: INITCAP(${TABLE}.usergender)
 

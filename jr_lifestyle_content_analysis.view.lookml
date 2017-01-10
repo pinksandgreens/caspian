@@ -1,4 +1,5 @@
 - view: jr_lifestyle_content_analysis
+  label: Lifestyle
   derived_table:
     sql: |
       (SELECT

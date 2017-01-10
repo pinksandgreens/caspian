@@ -1,4 +1,5 @@
 - view: jr_lifestyle_agg_content_views_monthly
+  label: Lifestyle
   derived_table: 
     sql: |
         (SELECT
@@ -52,18 +53,21 @@
             ON Distinct_Key_Template.Key = Actual_Key_Views_by_Month.Key AND Distinct_Key_Template.month_index = Actual_Key_Views_by_Month.month_index
            ) AS A
          ) AS B
-        GROUP BY Key
-        ORDER BY Key)
+        GROUP BY Key)
     
   fields:
 
   - filter: brand_filter
+    hidden: true
     label: 'Filter by Brand (Grazia, Heat, Closer, Empire)'
   
   - dimension: Page
+    hidden: true
     primary_key: true
     sql: ${TABLE}.Key
     
   - dimension: Monthly_Views
+    group_label: 'Events by Period'
+    view_label: Lifestyle
     label: 'Monthly'
     sql: ${TABLE}.Monthly_Views

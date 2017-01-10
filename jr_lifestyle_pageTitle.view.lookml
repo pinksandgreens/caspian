@@ -1,4 +1,5 @@
 - view: jr_lifestyle_pagetitle
+  label: Lifestyle
   derived_table: 
     sql: |
       (SELECT
@@ -13,6 +14,7 @@
   fields:
 
   - filter: brand_filter
+    hidden: true
     label: 'Filter by Brand (Grazia, Heat, Closer, Empire)'
   
   - dimension: Page

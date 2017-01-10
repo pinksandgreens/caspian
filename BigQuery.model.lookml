@@ -153,10 +153,15 @@
       type: left_outer
       relationship: one_to_many
       sql_on: ${jr_lifestyle_daily_agg_content_pageviews_GA_NEW.Page} = ${jr_lifestyle_content_analysis.Page}
+    - join: jr_lifestyle_weekly_agg_content_pageviews_GA_NEW
+      type: left_outer
+      relationship: one_to_many
+      sql_on: ${jr_lifestyle_weekly_agg_content_pageviews_GA_NEW.Page} = ${jr_lifestyle_content_analysis.Page}
   always_filter:
     V2: last month
     V1: 2 months ago
     brand_filter: grazia
+    
     
 - explore: jr_lifestyle_agg_content_views_monthly_ga_old
   label: 'BigQuery - Lifestyle - TEST'

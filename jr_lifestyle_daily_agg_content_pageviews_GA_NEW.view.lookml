@@ -1,4 +1,5 @@
 - view: jr_lifestyle_daily_agg_content_pageviews_GA_NEW
+  label: Lifestyle
   derived_table: 
     sql: |
         (SELECT
@@ -11,7 +12,7 @@
             FROM
               (SELECT
                 Distinct_Key_Template.Key AS Key,
-                Distinct_Key_Template.day_index AS day_Index,
+                Distinct_Key_Template.day_index AS day_index,
                 IF(Actual_Key_Views_by_Month.Value IS NULL, 0, Actual_Key_Views_by_Month.Value) AS Key_Views
               FROM
                 (SELECT
@@ -24,7 +25,6 @@
                    (SELECT * FROM TABLE_QUERY([uplifted-light-89310:114668488],'table_id CONTAINS "ga_sessions"'))
                  WHERE {% condition brand_filter %} RegEXP_EXTRACT(hits.page.pagePath, r'^\/(.+?)\/.+') {% endcondition %} AND hits.type = 'PAGE'
                  GROUP BY Key
-                
                  ) AS Distinct_Keys
                CROSS JOIN
                  (SELECT
@@ -68,30 +68,35 @@
                ) AS Distinct_Key_Template
              LEFT OUTER JOIN
                (SELECT
-                REGEXP_EXTRACT(hits.page.pagePath, r'^(\/[A-Za-z0-9\/-]+)') AS Key,
-                INTEGER(date) AS day_index,
-                COUNT(date) AS value
-               FROM
-                (SELECT * FROM TABLE_QUERY([uplifted-light-89310:114668488],'table_id CONTAINS "ga_sessions"'))
-               WHERE {% condition brand_filter %} RegEXP_EXTRACT(hits.page.pagePath, r'^\/(.+?)\/.+') {% endcondition %} AND hits.type = 'PAGE'
-               GROUP BY Key, day_index) AS Actual_Key_Views_by_Month
-            ON Distinct_Key_Template.Key = Actual_Key_Views_by_Month.Key AND Distinct_Key_Template.day_index = Actual_Key_Views_by_Month.day_index
-           GROUP BY Key
-           ) AS A
+                  REGEXP_EXTRACT(hits.page.pagePath, r'^(\/[A-Za-z0-9\/-]+)') AS Key,
+                  INTEGER(date) AS day_index,
+                  COUNT(date) AS value
+                FROM
+                  (SELECT * FROM TABLE_QUERY([uplifted-light-89310:114668488],'table_id CONTAINS "ga_sessions"'))
+                WHERE {% condition brand_filter %} RegEXP_EXTRACT(hits.page.pagePath, r'^\/(.+?)\/.+') {% endcondition %} AND hits.type = 'PAGE'
+                GROUP BY Key, day_index
+                ORDER BY Key, day_index
+                ) AS Actual_Key_Views_by_Month
+              ON Distinct_Key_Template.Key = Actual_Key_Views_by_Month.Key AND Distinct_Key_Template.day_index = Actual_Key_Views_by_Month.day_index
+              ) AS A
+            ) AS B
           GROUP BY Key
-         ) AS B
-        GROUP BY Key)
+          )
         
     
   fields:
 
   - filter: brand_filter
+    hidden: true
     label: 'Filter by Brand (Grazia, Heat, Closer, Empire)'
   
   - dimension: Page
+    hidden: true
     primary_key: true
     sql: ${TABLE}.Key
     
   - dimension: daily_Views
+    group_label: 'Events by Period'
+    view_label: Lifestyle
     label: 'Daily'
     sql: ${TABLE}.daily_Views

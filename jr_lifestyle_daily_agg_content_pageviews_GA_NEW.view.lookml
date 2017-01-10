@@ -80,7 +80,7 @@
            ) AS A
           GROUP BY Key
          ) AS B
-        GROUP BY Key
+        GROUP BY Key)
         
     
   fields:

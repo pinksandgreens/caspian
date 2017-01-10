@@ -240,6 +240,8 @@
       - type
       - from_name
       - message
+      - image_filelike2
+      - link
       - post_clicks
       - post_clicks_link
       - reactions_count

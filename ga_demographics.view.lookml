@@ -11,7 +11,7 @@
     sql: INITCAP(${TABLE}.devicecategory)
 
   - dimension: interestinmarketcategory
-    label: 'In-Market'
+    label: 'In-Market - All levels'
     type: string
     sql: ${TABLE}.interestinmarketcategory
 
@@ -134,3 +134,33 @@
     timeframes: [month]
     convert_tz: false
     sql: TO_DATE(${TABLE}.yearmonth,'YYYYMM')
+    
+  - dimension: level_1
+    label: 'In-Market - Level 1'
+    type: string
+    sql: split_part(${TABLE}.interestinmarketcategory,'/',1)
+
+  - dimension: level_2
+    label: 'In-Market - Level 2'
+    type: string
+    sql: split_part(${TABLE}.interestinmarketcategory,'/',2)
+
+  - dimension: level_3
+    label: 'In-Market - Level 3'
+    type: string
+    sql: split_part(${TABLE}.interestinmarketcategory,'/',3)
+    
+  - dimension: level_4
+    label: 'In-Market - Level 4'
+    type: string
+    sql: split_part(${TABLE}.interestinmarketcategory,'/',4)
+    
+  - dimension: level_5
+    label: 'In-Market - Level 5'
+    type: string
+    sql: split_part(${TABLE}.interestinmarketcategory,'/',5)
+    
+#   - dimension: level_6
+#     label: 'In-Market - Level 6'
+#     type: string
+#     sql: split_part(${TABLE}.interestinmarketcategory,'/',6)

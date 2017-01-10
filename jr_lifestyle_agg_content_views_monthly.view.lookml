@@ -7,10 +7,7 @@
         FROM
           (SELECT
             A.Key AS Key,
-            GROUP_CONCAT(CONCAT(STRING(A.month_index),':',STRING(A.Key_Views)), '|') OVER
-            (PARTITION BY A.Key
-            ORDER BY A.month_index ASC
-            ROWS BETWEEN UNBOUNDED PRECEDING AND UNBOUNDED FOLLOWING) AS Monthly_Views
+            GROUP_CONCAT(CONCAT(STRING(A.month_index),':',STRING(A.Key_Views)), '|') OVER (PARTITION BY A.Key ORDER BY A.month_index ASC ROWS BETWEEN UNBOUNDED PRECEDING AND UNBOUNDED FOLLOWING) AS Monthly_Views
             FROM
               (SELECT
                 Distinct_Key_Template.Key AS Key,
@@ -43,16 +40,16 @@
                ) AS Distinct_Key_Template
              LEFT OUTER JOIN
                (SELECT
-               REGEXP_EXTRACT(hits.page.pagePath, r'^(\/[A-Za-z0-9\/-]+)') AS Key,
-               INTEGER(LEFT(date,6)) AS month_index,
-               COUNT(LEFT(date,6)) AS value
+                REGEXP_EXTRACT(hits.page.pagePath, r'^(\/[A-Za-z0-9\/-]+)') AS Key,
+                INTEGER(LEFT(date,6)) AS month_index,
+                COUNT(LEFT(date,6)) AS value
                FROM
-               (SELECT * FROM TABLE_QUERY([uplifted-light-89310:114668488],'table_id CONTAINS "ga_sessions"'))
-               WHERE REGEXP_EXTRACT(hits.page.pagePath, r'^\/(.+?)\/.+') = 'grazia' AND hits.type = 'PAGE'
+                (SELECT * FROM TABLE_QUERY([uplifted-light-89310:114668488],'table_id CONTAINS "ga_sessions"'))
+               WHERE {% condition brand_filter %} RegEXP_EXTRACT(hits.page.pagePath, r'^\/(.+?)\/.+') {% endcondition %} AND hits.type = 'PAGE'
                GROUP BY Key, month_index
                ORDER BY Key, month_index
                ) AS Actual_Key_Views_by_Month
-           ON Distinct_Key_Template.Key = Actual_Key_Views_by_Month.Key AND Distinct_Key_Template.month_index = Actual_Key_Views_by_Month.month_index
+            ON Distinct_Key_Template.Key = Actual_Key_Views_by_Month.Key AND Distinct_Key_Template.month_index = Actual_Key_Views_by_Month.month_index
            ) AS A
          ) AS B
         GROUP BY Key

@@ -59,7 +59,7 @@
 
   - filter: brand_filter
     hidden: true
-    label: 'Filter by Brand (Grazia, Heat, Closer, Empire)'
+    label: 'Brand'
   
   - dimension: Page
     hidden: true

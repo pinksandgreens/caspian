@@ -75,16 +75,16 @@
     type: date
 
   - filter: brand_filter
-    label: 'Filter by Brand (Grazia, Heat, Closer, Empire)'
+    label: 'Brand'
     
   - dimension: Brand
     label: 'Brand'
     sql: ${TABLE}.V2.Brand
   
-  - dimension: Page
-    primary_key: true
-    label: 'Article'
-    sql: ${TABLE}.Key
+  # - dimension: Page
+  #   primary_key: true
+  #   label: 'Article'
+  #   sql: ${TABLE}.Key
     
   - dimension: Age
     label: 'Article Age (in Days)'

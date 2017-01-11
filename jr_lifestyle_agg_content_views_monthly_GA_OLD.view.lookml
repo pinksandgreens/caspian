@@ -61,7 +61,7 @@
   fields:
 
   - filter: brand_filter
-    label: 'Filter by Brand (Grazia, Heat, Closer, Empire)'
+    label: 'Brand'
 
   - dimension: Page
     primary_key: true

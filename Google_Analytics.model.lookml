@@ -182,7 +182,18 @@
       type: inner
       relationship: one_to_one
       sql_on: ${brand_lookup.bra_code} = ${ga_demographics.brand_code}
+
+- explore: google_analytics_weekly_demogs
+  label: 'Google Analytics - Weekly Demographics'
+  sql_table_name: publications.google_analytics_weekly_demogs
+  persist_for: 20 hour
   
+  joins:
+    - join: brand_lookup
+      type: inner
+      relationship: one_to_one
+      sql_on: ${brand_lookup.bra_code} = ${google_analytics_weekly_demogs.brand_code}
+
 # foreign_key:
 
 #     - join: bigquery_google_analytics_hits

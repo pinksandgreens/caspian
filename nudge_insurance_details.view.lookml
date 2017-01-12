@@ -161,6 +161,5 @@
 
   - measure: insurance_count
     type: count
-    drill_fields: []
 
 

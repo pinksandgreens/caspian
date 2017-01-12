@@ -37,9 +37,14 @@
         # END
 
   - dimension: link
+    label: 'Link'
+    hidden: FALSE
     type: string
     sql: ${TABLE}.link
-  
+    html: |
+      <a href="{{ value }}" target="_new">
+      <img src="http://i.imgur.com/aJnF2oW.jpg" height=10 width=10></a>
+
   - dimension: type
     type: string
     sql: ${TABLE}.category

@@ -11,8 +11,13 @@
     sql: ${TABLE}.thread
     
   - dimension: reddit_url
+    label: 'Link'
+    hidden: FALSE
     type: string
     sql: ${TABLE}.reddit_url
+    html: |
+      <a href="{{ value }}" target="_new">
+      <img src="http://i.imgur.com/aJnF2oW.jpg" height=10 width=10></a>    
     
   - dimension: url
     type: string

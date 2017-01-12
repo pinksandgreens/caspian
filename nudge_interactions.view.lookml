@@ -9,6 +9,11 @@
   - dimension: individual_id
     type: number
     sql: ${TABLE}.individual_id
+    
+  - dimension: unique_table_id
+    type: string
+    primary_key: TRUE
+    sql: ${TABLE}.source_key || ${TABLE}.individual_id
 
   - dimension: magazine_code
     type: string

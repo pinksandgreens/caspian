@@ -63,5 +63,20 @@
     relationship: one_to_one
     sql_on: ${brand_lookup.bra_code} = ${nudge_subscriptions.magazine_code}
     
+  - join: nudge_transactions
+    type: inner
+    relationship: one_to_many
+    sql_on: ${nudge_individuals.individual_id} = ${nudge_transactions.individual_id}    
+
+# individual_id - base id for interactions
+# unique_table_id - concat id for interactions
+
+  - join: nudge_insurance_details
+    type: inner
+    relationship: many_to_many
+    sql_on: ${nudge_interactions.source_key} = ${nudge_insurance_details.transaction_id}
     
-    
+  - join: nudge_mcn_taxonomy
+    type: inner
+    relationship: many_to_one
+    sql_on: ${nudge_insurance_details.id} = ${nudge_mcn_taxonomy.id}   

@@ -5,18 +5,39 @@
   - dimension: title
     type: string
     sql: ${TABLE}.title
-    
+        
   - dimension: thread
     type: string
     sql: ${TABLE}.thread
+
     
-  - dimension: reddit_url
-    type: string
+  - dimension: link1
+    label: 'Link'
+    hidden: FALSE
     sql: ${TABLE}.reddit_url
-    
+    html: |
+      <a href="{{ value }}" target="_new">
+      <img src="http://i.imgur.com/aJnF2oW.jpg" height=10 width=10></a>  
+
   - dimension: url
     type: string
     sql: ${TABLE}.url
+    
+#     dimension: subreddit
+#         link:
+#         label: "{{value}}"
+#         url:"https://www.reddit.com/r/{{ value }}"
+#         sql: ${TABLE}.subr
+
+#       links:
+#         - label: Google
+#           url: http://www.google.com/search?q={{ value }}
+#           icon_url: http://google.com/favicon.ico
+#     sql: ${TABLE}.reddit_url
+#     html: |
+#       <a href="{{ value }}" target="_new">
+#       <img src="http://i.imgur.com/aJnF2oW.jpg" height=10 width=10></a>    
+    
     
   - measure: score
     type: sum

@@ -63,5 +63,8 @@
     relationship: one_to_one
     sql_on: ${brand_lookup.bra_code} = ${nudge_subscriptions.magazine_code}
     
-    
+  - join: nudge_transactions
+    type: inner
+    relationship: one_to_many
+    sql_on: ${nudge_individuals.individual_id} = ${nudge_transactions.individual_id}    
     

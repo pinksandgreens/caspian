@@ -159,7 +159,7 @@
     type: string
     sql: ${TABLE}.year_of_manufact
 
-  - measure: count
+  - measure: insurance_count
     type: count
     drill_fields: []
 

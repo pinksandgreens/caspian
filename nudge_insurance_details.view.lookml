@@ -2,6 +2,10 @@
   sql_table_name: publications.nudge_insurance_details
   fields:
 
+  - dimension: id
+    type: string
+    sql: ${TABLE}.manufacturer || '-' || ${TABLE}.model
+
   - dimension: abi_code
     type: string
     sql: ${TABLE}.abi_code

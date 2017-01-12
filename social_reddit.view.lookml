@@ -15,10 +15,14 @@
     label: 'Link'
     hidden: FALSE
     sql: ${TABLE}.reddit_url
-#     html: |
-#       <a href="{{ value }}" target="_new">
-#       <img src="http://i.imgur.com/aJnF2oW.jpg" height=10 width=10></a>    
+    html: |
+      <a href="{{ value }}" target="_new">
+      <img src="http://i.imgur.com/aJnF2oW.jpg" height=10 width=10></a>  
 
+  - dimension: url
+    type: string
+    sql: ${TABLE}.url
+    
 #     dimension: subreddit
 #         link:
 #         label: "{{value}}"
@@ -34,9 +38,6 @@
 #       <a href="{{ value }}" target="_new">
 #       <img src="http://i.imgur.com/aJnF2oW.jpg" height=10 width=10></a>    
     
-  - dimension: url
-    type: string
-    sql: ${TABLE}.url
     
   - measure: score
     type: sum

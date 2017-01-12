@@ -67,7 +67,12 @@
 
   - dimension: uukey123
     type: string
-    sql: ${TABLE}.email_address || ${TABLE}.brandcode
+    sql: ${TABLE}.email_address
+
+#   - dimension: uukey123
+#     type: string
+#     sql: ${TABLE}.email_address || ${TABLE}.brandcode
+
 
   - measure: brand_optins
     label: 'Commercial/Marketing Optins'

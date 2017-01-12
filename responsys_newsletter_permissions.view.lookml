@@ -174,7 +174,11 @@
     
   - dimension: uukey123
     type: string
-    sql: ${TABLE}.email_address || ${TABLE}.brandcode
+    sql: ${TABLE}.email_address
+    
+#   - dimension: uukey123
+#     type: string
+#     sql: ${TABLE}.email_address || ${TABLE}.brandcode
     
   - measure: newsletter_optins
     type: count_distinct

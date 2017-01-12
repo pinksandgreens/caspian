@@ -67,4 +67,8 @@
     type: inner
     relationship: one_to_many
     sql_on: ${nudge_individuals.individual_id} = ${nudge_transactions.individual_id}    
-    
+
+  - join: nudge_insurance_details
+    type: inner
+    relationship: many_to_many
+    sql_on: ${nudge_interactions.source_key} = ${nudge_insurance_details.transaction_id}   

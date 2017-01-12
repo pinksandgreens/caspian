@@ -10,14 +10,29 @@
     type: string
     sql: ${TABLE}.thread
     
-  - dimension: reddit_url
+  - dimension: link1
     label: 'Link'
     hidden: FALSE
-    type: string
     sql: ${TABLE}.reddit_url
     html: |
       <a href="{{ value }}" target="_new">
       <img src="http://i.imgur.com/aJnF2oW.jpg" height=10 width=10></a>    
+
+  - dimension: link
+    links:
+      - label: 'Link link'
+        url: test{{value}}
+        icon_url: http://i.imgur.com/aJnF2oW.jpg
+    sql: ${TABLE}.reddit_url
+
+#       links:
+#         - label: Google
+#           url: http://www.google.com/search?q={{ value }}
+#           icon_url: http://google.com/favicon.ico
+#     sql: ${TABLE}.reddit_url
+#     html: |
+#       <a href="{{ value }}" target="_new">
+#       <img src="http://i.imgur.com/aJnF2oW.jpg" height=10 width=10></a>    
     
   - dimension: url
     type: string

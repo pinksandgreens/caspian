@@ -36,7 +36,7 @@
         #   ELSE NULL
         # END
 
-  - dimension: link
+  - dimension: link1
     label: 'Link'
     hidden: FALSE
     type: string

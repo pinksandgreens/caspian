@@ -66,5 +66,5 @@
   - join: nudge_transactions
     type: inner
     relationship: one_to_many
-    sql_on: ${nudge_individuals.individual_id} = ${nudge_registrations.individual_id}    
+    sql_on: ${nudge_individuals.individual_id} = ${nudge_transactions.individual_id}    
     

@@ -15,12 +15,20 @@
   - dimension: accountbirthdate
     label: 'Birth'
     type: time
-    sql: ${TABLE}."x.accountbirthdate."::timestamp
+    sql: | 
+      CASE 
+        WHEN ${TABLE}."x.accountbirthdate." = 'NULL' THEN NULL
+        ELSE ${TABLE}."x.accountbirthdate."::timestamp
+      END
 
   - dimension: accountconfirmdate
     label: 'Reg Confirm'
     type: time
-    sql: ${TABLE}."x.accountconfirmdate."::timestamp
+    sql: | 
+      CASE 
+        WHEN ${TABLE}."x.accountconfirmdate." = 'NULL' THEN NULL
+        ELSE ${TABLE}."x.accountconfirmdate."::timestamp
+      END
 
   - dimension: accountemail
     label: 'Email Address'
@@ -60,8 +68,12 @@
   - dimension: accountregisterdate
     label: 'Register Date'
     type: time
-    sql: ${TABLE}."x.accountregisterdate."::timestamp
-
+    sql: | 
+      CASE 
+        WHEN ${TABLE}."x.accountregisterdate." = 'NULL' THEN NULL
+        ELSE ${TABLE}."x.accountregisterdate."::timestamp
+      END
+        
   - dimension: accountsecurityid
     label: 'Security ID'
     type: string

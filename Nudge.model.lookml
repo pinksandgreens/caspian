@@ -77,6 +77,6 @@
     sql_on: ${nudge_interactions.source_key} = ${nudge_insurance_details.transaction_id}
     
   - join: nudge_mcn_taxonomy
-    type: inner
+    type: left_outer
     relationship: many_to_one
     sql_on: ${nudge_insurance_details.id} = ${nudge_mcn_taxonomy.id}   

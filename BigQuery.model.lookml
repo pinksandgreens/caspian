@@ -170,17 +170,54 @@
 #   #   V1: 2 months ago
 #       brand_filter: grazia
 
-- explore: jr_lifestyle_parent_key1
+- explore: jr_lifestyle_parent_TP1
   label: 'BigQuery - Lifestyle - Content Analysis'
   joins:
-    - join: jr_lifestyle_parent_key2
+    - join: jr_lifestyle_parent_TP2
       type: left_outer
       relationship: one_to_many
-      sql_on: ${jr_lifestyle_parent_key2.Key2} = ${jr_lifestyle_parent_key1.Key1}
+      sql_on: ${jr_lifestyle_parent_TP2.Key} = ${jr_lifestyle_parent_TP1.Key}
+      
+    - join: jr_lifestyle_parent_TP12
+      type: left_outer
+      relationship: one_to_many
+      sql_on: ${jr_lifestyle_parent_TP12.Key} = ${jr_lifestyle_parent_TP1.Key}
+      
+    - join: jr_lifestyle_pageviews_TP1
+      type: left_outer
+      relationship: one_to_many
+      sql_on: ${jr_lifestyle_pageviews_TP1.Key} = ${jr_lifestyle_parent_TP1.Key}
+      
+    - join: jr_lifestyle_pageviews_TP2
+      type: left_outer
+      relationship: one_to_many
+      sql_on: ${jr_lifestyle_pageviews_TP2.Key} = ${jr_lifestyle_parent_TP2.Key}
+      
+    - join: jr_lifestyle_pageviews_TP12
+      type: left_outer
+      relationship: one_to_many
+      sql_on: ${jr_lifestyle_pageviews_TP12.Key} = ${jr_lifestyle_parent_TP2.Key}
+    
+    - join: jr_lifestyle_pagetitle
+      type: left_outer
+      relationship: one_to_many
+      sql_on: ${jr_lifestyle_pagetitle.Key} = ${jr_lifestyle_parent_TP1.Key}
+      
+    - join: jr_lifestyle_queryString
+      type: left_outer
+      relationship: one_to_many
+      sql_on: ${jr_lifestyle_queryString.Key} = ${jr_lifestyle_parent_TP1.Key}
+      
+    - join: jr_lifestyle_date_expressions
+      type: left_outer
+      relationship: one_to_many
+      sql_on: ${jr_lifestyle_date_expressions.Key} = ${jr_lifestyle_parent_TP1.Key}
+      
   always_filter:
-      jr_lifestyle_parent_key1.V2: last month
-      jr_lifestyle_parent_key2.V1: 2 months ago
-      brand_filter: grazia
+      jr_lifestyle_parent_TP1.TP1: last month
+      jr_lifestyle_parent_TP2.TP2: 2 months ago
+      jr_lifestyle_parent_TP1.brand_filter: grazia
+      jr_lifestyle_parent_TP1.TP12: 12 months ago
 
     
     

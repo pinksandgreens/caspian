@@ -6,6 +6,11 @@
     type: string
     sql: ${TABLE}.manufacturer || '-' || ${TABLE}.model
 
+  - dimension: unique_id_key
+    primary_key: TRUE
+    type: string
+    sql: ${TABLE}.transaction_id || '-' || ${TABLE}.abi_code
+    
   - dimension: abi_code
     type: string
     sql: ${TABLE}.abi_code

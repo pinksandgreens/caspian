@@ -14,8 +14,8 @@
 
   - dimension: accountbirthdate
     label: 'Birth'
-    type: string
-    sql: ${TABLE}."x.accountbirthdate."
+    type: time
+    sql: ${TABLE}."x.accountbirthdate."::timestamp
 
   - dimension: accountconfirmdate
     label: 'Reg Confirm'
@@ -59,7 +59,7 @@
 
   - dimension: accountregisterdate
     label: 'Register Date'
-    type: string
+    type: time
     sql: ${TABLE}."x.accountregisterdate."::timestamp
 
   - dimension: accountsecurityid

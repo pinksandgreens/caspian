@@ -13,7 +13,7 @@
   - dimension: unique_table_id
     type: string
     primary_key: TRUE
-    sql: ${TABLE}.source_key || ${TABLE}.individual_id
+    sql: ${TABLE}.source_key || ${TABLE}.individual_id || ${TABLE}.magazine_code || ${TABLE}.response_date
 
   - dimension: magazine_code
     type: string

@@ -66,7 +66,7 @@
     sql: ${TABLE}."x.accountpasswordreset."
 
   - dimension: accountregisterdate
-    label: 'Register Date'
+    label: 'Register'
     type: time
     sql: | 
       CASE 

@@ -134,42 +134,6 @@
   always_filter:
     date_filter: 30 days  
     
-# - explore: jr_lifestyle_content_analysis
-#   label: 'BigQuery - Lifestyle - Content Analysis'
-#   joins:
-#     - join: jr_lifestyle_agg_content_views_monthly
-#       type: left_outer
-#       relationship: one_to_many
-#       sql_on: ${jr_lifestyle_agg_content_views_monthly.Page} = ${jr_lifestyle_content_analysis.Page}
-#     - join: jr_lifestyle_pagetitle
-#       type: left_outer
-#       relationship: one_to_many
-#       sql_on: ${${jr_lifestyle_pagetitle.Page} = ${jr_lifestyle_content_analysis.Page}
-#     - join: jr_lifestyle_queryString
-#       type: left_outer
-#       relationship: one_to_many
-#       sql_on: ${jr_lifestyle_queryString.Page} = ${jr_lifestyle_content_analysis.Page}
-#     - join: jr_lifestyle_daily_agg_content_pageviews_GA_NEW
-#       type: left_outer
-#       relationship: one_to_many
-#       sql_on: ${jr_lifestyle_daily_agg_content_pageviews_GA_NEW.Page} = ${jr_lifestyle_content_analysis.Page}
-#     - join: jr_lifestyle_weekly_agg_content_pageviews_GA_NEW
-#       type: left_outer
-#       relationship: one_to_many
-#       sql_on: ${jr_lifestyle_weekly_agg_content_pageviews_GA_NEW.Page} = ${jr_lifestyle_content_analysis.Page}
-#     - join: jr_lifestyle_referral_source_medium
-#       type: left_outer
-#       relationship: one_to_many
-#       sql_on: ${jr_lifestyle_referral_source_medium.Page} = ${jr_lifestyle_content_analysis.Page}
-#     - join: jr_lifestyle_articles_user_defined_date_range
-#       type: left_outer
-#       relationship: one_to_many
-#       sql_on: ${jr_lifestyle_articles_user_defined_date_range.Page} = ${jr_lifestyle_content_analysis.Page} 
-#   always_filter:
-#   #   V2: last month
-#   #   V1: 2 months ago
-#       brand_filter: grazia
-
 - explore: jr_lifestyle_parent_TP1
   label: 'BigQuery - Lifestyle - Content Analysis'
   joins:
@@ -218,8 +182,3 @@
       jr_lifestyle_parent_TP2.TP2: 2 months ago
       jr_lifestyle_parent_TP1.brand_filter: grazia
       jr_lifestyle_parent_TP1.TP12: 12 months ago
-
-    
-    
-- explore: jr_lifestyle_agg_content_views_monthly_ga_old
-  label: 'BigQuery - Lifestyle - TEST'

@@ -159,6 +159,10 @@
     type: string
     sql: ${TABLE}.year_of_manufact
 
+  - measure: Unique_Transaction_Count
+    type: count_distinct
+    sql: ${TABLE}.transaction_id
+
   - measure: count
     type: count
     drill_fields: []

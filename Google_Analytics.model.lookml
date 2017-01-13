@@ -194,6 +194,8 @@
       relationship: one_to_one
       sql_on: ${brand_lookup.bra_code} = ${google_analytics_weekly_demogs.brand_code}
 
+
+
 # foreign_key:
 
 #     - join: bigquery_google_analytics_hits

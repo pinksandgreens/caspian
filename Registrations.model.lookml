@@ -53,4 +53,7 @@
     relationship: many_to_many
     sql_on: ${postcode_lookup.postcode} = ${bauer_list.postal_code}
         
-
+- explore: radio_login
+  label: 'Audio - Non AR Login'
+  sql_table_name: publications.radio_login
+  persist_for: 20 hour

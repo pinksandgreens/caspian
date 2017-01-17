@@ -5,36 +5,6 @@
   - dimension: title
     type: string
     sql: ${TABLE}.title
-    
-        # CASE
-        #   WHEN ${TABLE}.title ILIKE '%a%' THEN ${TABLE}.title
-        #   WHEN ${TABLE}.title ILIKE '%b%' THEN ${TABLE}.title
-        #   WHEN ${TABLE}.title ILIKE '%c%' THEN ${TABLE}.title
-        #   WHEN ${TABLE}.title ILIKE '%d%' THEN ${TABLE}.title
-        #   WHEN ${TABLE}.title ILIKE '%e%' THEN ${TABLE}.title
-        #   WHEN ${TABLE}.title ILIKE '%f%' THEN ${TABLE}.title
-        #   WHEN ${TABLE}.title ILIKE '%g%' THEN ${TABLE}.title
-        #   WHEN ${TABLE}.title ILIKE '%h%' THEN ${TABLE}.title
-        #   WHEN ${TABLE}.title ILIKE '%i%' THEN ${TABLE}.title
-        #   WHEN ${TABLE}.title ILIKE '%j%' THEN ${TABLE}.title
-        #   WHEN ${TABLE}.title ILIKE '%k%' THEN ${TABLE}.title
-        #   WHEN ${TABLE}.title ILIKE '%l%' THEN ${TABLE}.title
-        #   WHEN ${TABLE}.title ILIKE '%m%' THEN ${TABLE}.title
-        #   WHEN ${TABLE}.title ILIKE '%n%' THEN ${TABLE}.title
-        #   WHEN ${TABLE}.title ILIKE '%o%' THEN ${TABLE}.title
-        #   WHEN ${TABLE}.title ILIKE '%p%' THEN ${TABLE}.title
-        #   WHEN ${TABLE}.title ILIKE '%q%' THEN ${TABLE}.title
-        #   WHEN ${TABLE}.title ILIKE '%r%' THEN ${TABLE}.title
-        #   WHEN ${TABLE}.title ILIKE '%s%' THEN ${TABLE}.title
-        #   WHEN ${TABLE}.title ILIKE '%t%' THEN ${TABLE}.title
-        #   WHEN ${TABLE}.title ILIKE '%u%' THEN ${TABLE}.title
-        #   WHEN ${TABLE}.title ILIKE '%v%' THEN ${TABLE}.title
-        #   WHEN ${TABLE}.title ILIKE '%w%' THEN ${TABLE}.title
-        #   WHEN ${TABLE}.title ILIKE '%x%' THEN ${TABLE}.title
-        #   WHEN ${TABLE}.title ILIKE '%y%' THEN ${TABLE}.title
-        #   WHEN ${TABLE}.title ILIKE '%z%' THEN ${TABLE}.title
-        #   ELSE NULL
-        # END
 
   - dimension: link1
     label: 'Link'

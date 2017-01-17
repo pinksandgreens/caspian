@@ -36,8 +36,9 @@
   - join: brand_lookup
     type: inner
     relationship: one_to_many
-    sql_on: ${brand_lookup.bra_code} = ${bauer_list.regsource}
-#     sql_on: ${brand_lookup.bra_code} = ${gigya_brand_optin.brand_code}
+    sql_on: ${brand_lookup.bra_code} = ${gigya_brand_optin.brand_code}
+#    sql_on: ${brand_lookup.bra_code} = ${bauer_list.regsource}
+
   
   - join: gigya_social_identities
     type: inner

@@ -159,6 +159,16 @@
     type: string
     sql: ${TABLE}.geoNetwork.country
 
+  - dimension: UK_RoW
+    label: 'UK/RoW'
+    type: string
+    sql: |
+      CASE
+        WHEN ${TABLE}.geoNetwork.country = 'United Kingdom' THEN 'United Kingdom'
+        WHEN ${TABLE}.geoNetwork.country = '(not set)' THEN 'Unknown'
+        ELSE 'RoW'
+      END
+
   - dimension: geo_network__latitude
     type: string
     sql: CAST(${TABLE}.geoNetwork.latitude AS FLOAT64)

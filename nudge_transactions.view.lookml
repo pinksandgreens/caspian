@@ -174,3 +174,7 @@
     type: count
     drill_fields: [first_name, middle_name, last_name, publication_name]
 
+  - measure: Trans_Unique_Email_Count
+    type: count_distinct
+    sql: ${TABLE}.
+

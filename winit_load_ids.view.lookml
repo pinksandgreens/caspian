@@ -6,7 +6,7 @@
     type: number
     sql: ${TABLE}.par_individual_id
 
-  - measure: count
-    type: count
+  - measure: WINIT_count
+    type: count_distinct
     drill_fields: []
 

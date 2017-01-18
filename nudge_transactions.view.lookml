@@ -176,5 +176,5 @@
 
   - measure: Trans_Unique_Email_Count
     type: count_distinct
-    sql: ${TABLE}.
+    sql: ${TABLE}.email_address
 

@@ -527,8 +527,9 @@
     type: string
     sql: |
       CASE
-        WHEN ${TABLE}.regsource = 'NDG' THEN NULL
-      ELSE ${TABLE}.regsource
+        WHEN ${TABLE}.regsource = 'NDG' THEN 'UKN'
+        WHEN ${TABLE}.regsource IS NULL THEN 'UKN'
+        ELSE ${TABLE}.regsource
       END
 
   - dimension: state

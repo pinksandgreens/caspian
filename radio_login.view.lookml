@@ -32,6 +32,7 @@
 
   - dimension: accountemail
     label: 'Email Address'
+    hidden: TRUE
     type: string
     sql: ${TABLE}."x.accountemail."
 
@@ -91,7 +92,7 @@
     
   - measure: Unique_Users
     type: count_distinct
-    sql: ${TABLE}."x.accountemail."
+    sql: ${accountemail}
     
     
     

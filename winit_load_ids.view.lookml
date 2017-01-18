@@ -8,5 +8,6 @@
 
   - measure: WINIT_count
     type: count_distinct
-    drill_fields: []
+    sql: ${TABLE}.par_individual_id
+
 

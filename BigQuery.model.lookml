@@ -176,9 +176,18 @@
       type: left_outer
       relationship: one_to_many
       sql_on: ${jr_lifestyle_date_expressions.Key} = ${jr_lifestyle_parent_TP1.Key}
-      
   always_filter:
       jr_lifestyle_parent_TP1.TP1: last month
       jr_lifestyle_parent_TP2.TP2: 2 months ago
       jr_lifestyle_parent_TP1.brand_filter: grazia
       jr_lifestyle_parent_TP1.TP12: 12 months ago
+
+- explore: ga_sessions_kiss
+  label: 'BigQuery - Kiss'
+  always_filter:
+    date_filter: 30 days
+    
+- explore: ga_sessions_magic
+  label: 'BigQuery - Magic'
+  always_filter:
+    date_filter: 30 days

@@ -22,6 +22,11 @@
     type: inner
     relationship: one_to_one
     sql_on: ${identities.email} = ${bauer_list.email_address}
+
+  - join: identities_keys
+    type: inner
+    relationship: one_to_one
+    sql_on: ${identities.idd_id} = ${identities_keys.idd_key_id}
   
   - join: gigya_brand_optin
     type: left_outer

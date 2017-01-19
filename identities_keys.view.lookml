@@ -3,28 +3,28 @@
   fields:
 
   - dimension: idd_key_id
-    hidden: TRUE
+    hidden: FALSE
     type: number
     sql: ${TABLE}.idd_key_id
 
   - dimension_group: last_updated
-    hidden: TRUE
+    hidden: FALSE
     type: time
     timeframes: [time, date, week, month]
     sql: ${TABLE}.last_updated
 
   - dimension: type
-    hidden: TRUE
+    hidden: FALSE
     type: string
     sql: ${TABLE}.type
 
   - dimension: value
-    hidden: TRUE
+    hidden: FALSE
     type: string
     sql: ${TABLE}.value
 
-  - measure: count
-    hidden: TRUE
+  - measure: Unique_IDKEYS_Count
+    hidden: FALSE
     type: count
-    drill_fields: []
+
 

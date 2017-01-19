@@ -72,6 +72,16 @@
     type: inner
     relationship: one_to_one
     sql_on: ${nudge_individuals.individual_id} = ${winit_load_ids.par_individual_id} 
+    
+  - join: identities
+    type: inner
+    relationship: one_to_one
+    sql_on: ${nudge_individuals.individual_id}= ${identities.idd_id}
+
+  - join: identities_keys
+    type: inner
+    relationship: one_to_one
+    sql_on: ${nudge_individuals.individual_id}= ${identities_keys.idd_key_id} 
 
 # individual_id - base id for interactions
 # unique_table_id - concat id for interactions

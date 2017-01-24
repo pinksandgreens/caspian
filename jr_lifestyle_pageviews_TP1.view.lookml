@@ -23,9 +23,9 @@
     hidden: TRUE
   
   - dimension: Views
-    view_label: Lifestyle
-    group_label: 'Article Measures.1'
-    label: 'TP1 - Views'  
+    view_label: Content
+    group_label: 'Article Measures'
+    label: '*TP1 - Views'  
     type: number
     sql: ${TABLE}.Views
     description: 'Total Views, by Article, for the user defined time period: 1'

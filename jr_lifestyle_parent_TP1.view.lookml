@@ -34,7 +34,7 @@
     label: 'Brand'
   
   - dimension: Key
-    view_label: Lifestyle
+    view_label: Content
     group_label: 'Article Dimensions'
     label: 'TP1 - Articles Viewed'
     primary_key: true
@@ -42,7 +42,7 @@
     description: 'Article Results from user defined time period: 1'
     
   - dimension: Category
-    view_label: Lifestyle
+    view_label: Content
     group_label: 'Article Dimensions'
     label: 'Site Category'
     sql: ${TABLE}.Section_Category

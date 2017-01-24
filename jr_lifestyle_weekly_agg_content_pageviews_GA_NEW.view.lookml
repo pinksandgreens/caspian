@@ -63,29 +63,29 @@
   fields:
 
   - dimension: Key
-    view_label: Lifestyle
+    view_label: Content
     hidden: true
     sql: ${TABLE}.Key
     
   - dimension: Max_Consecutive_Weekly_Consumption_Interval
     type: number
-    view_label: Lifestyle
-    group_label: 'Article Measures.7'
+    view_label: Content
+    group_label: 'Article Measures'
     label: 'Max Interval'
     sql: ${TABLE}.max_interval
     description: 'Derive the maximum interval of consecutive weekly Article views'
     
   - dimension: Max_Interval_Total_Views
     type: number
-    view_label: Lifestyle
-    group_label: 'Article Measures.8'
+    view_label: Content
+    group_label: 'Article Measures'
     label: 'Max Interval: Total Views'
     sql: ${TABLE}.Views
     description: 'Derive total Article view count during the maximum interval of consecutive weekly views'
     
   - dimension: Article_Type2
     type: string
-    view_label: Lifestyle
+    view_label: Content
     group_label: 'Article Dimensions'
     label: 'Content Code'
     sql: |
@@ -99,9 +99,9 @@
         
   - dimension: Interval_Views_VS_Total_Views
     type: number
-    view_label: Lifestyle
-    label: '% Lifetime Views'
-    group_label: 'Article Measures.9'
+    view_label: Content
+    label: '% Lifetime Views (Max Interval)'
+    group_label: 'Article Measures'
     sql: ${Max_Interval_Total_Views} / ${jr_lifestyle_date_expressions.Views}
     value_format: '0%'
     description: 'Derive maximum interval Article view count as a percentage of total lifetime Article views'

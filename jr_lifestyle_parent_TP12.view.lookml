@@ -20,9 +20,9 @@
   fields:
     
   - dimension: Key
-    view_label: Lifestyle
+    view_label: Content
     group_label: 'Article Dimensions'
-    label: 'TP13 - Articles Viewed'
+    label: 'TP_13 - Articles Viewed'
     primary_key: true
     sql: ${TABLE}.Key
     description: 'Article Results using the same user defined time period (TP): 1 for last year'

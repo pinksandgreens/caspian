@@ -19,14 +19,14 @@
     sql: ${TABLE}.Key
     
   - dimension: queryString
-    view_label: Lifestyle
+    view_label: Content
     group_label: 'Misc'
     label: 'Query String (?)'
     sql: ${TABLE}.queryString
     description: 'Query String parameters'
     
   - dimension: url_Fragment
-    view_label: Lifestyle
+    view_label: Content
     group_label: 'Misc'
     label: 'Fragment (#)'
     sql: ${TABLE}.urlFragment

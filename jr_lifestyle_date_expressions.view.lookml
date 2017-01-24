@@ -27,7 +27,7 @@
     sql: ${TABLE}.Key
   
   - dimension: 1st_Viewed
-    view_label: Lifestyle
+    view_label: Content
     group_label: 'Article Measures'
     label: 'First Viewed'
     type: string
@@ -35,24 +35,24 @@
     description: 'The date when the Article was first viewed'
   
   - dimension: Views
-    view_label: Lifestyle
+    view_label: Content
     group_label: 'Article Measures'
-    label: 'Lifetime Views.3'
+    label: 'Lifetime Views'
     type: number
     sql: ${TABLE}.Total_Views
     description: 'Total lifetime Article views'
     
   - dimension: Age
-    view_label: Lifestyle
+    view_label: Content
     group_label: 'Article Measures'
     label: 'Age'  
     sql: ${TABLE}.Article_Age
     description: 'Total Article age (in days)'
     
   - dimension: TP1_Views_over_TotalViews
-    view_label: Lifestyle
+    view_label: Content
     group_label: 'Article Measures'
-    label: 'TP1%: Lifetime Views'
+    label: '% Lifetime Views - TP1'
     type: number
     sql:  CASE
             WHEN ${Views} != 0 THEN ${jr_lifestyle_pageviews_TP1.Views} / ${Views}
@@ -62,9 +62,9 @@
     description: 'Article Views during user defined time period: 1 as a percentage of Article lifetime views'
     
   - dimension: TP2_Views_over_TotalViews
-    view_label: Lifestyle
+    view_label: Content
     group_label: 'Article Measures'
-    label: 'TP2%: Lifetime Views'
+    label: '% Lifetime Views - TP2'
     type: number
     sql:  CASE
             WHEN ${Views} != 0 THEN ${jr_lifestyle_pageviews_TP2.Views} / ${Views}
@@ -74,17 +74,17 @@
     description: 'Article Views during user defined time period: 2 as a percentage of Article lifetime views'
     
   - dimension: TP1_Views_delta_TP2_Views
-    view_label: Lifestyle
+    view_label: Content
     group_label: 'Article Measures'
-    label: 'TP1 vs TP2: Views'
+    label: '*TP1 vs TP2: Views'
     type: number
     sql:  (${jr_lifestyle_pageviews_TP1.Views} - ${jr_lifestyle_pageviews_TP2.Views})
     description: 'Compare Article View Delta between user defined time period: 1 and 2'
     
   - dimension: Percentage_Growth
-    view_label: Lifestyle
+    view_label: Content
     group_label: 'Article Measures'
-    label: 'TP1 vs TP2: % Growth'
+    label: '% TP1 vs TP2: Growth'
     type: number
     sql:  CASE
             WHEN ${jr_lifestyle_pageviews_TP2.Views} = 0 THEN 1
@@ -95,9 +95,9 @@
     description: 'Derive Article View Percentage Growth by comparing Views during user defined time period 1 to time period 2'
     
   - dimension: YoYPercentage_Growth
-    view_label: Lifestyle
+    view_label: Content
     group_label: 'Article Measures'
-    label: 'YoY % Growth'
+    label: '% YoY Growth'
     type: number
     sql:  CASE
             WHEN ${jr_lifestyle_pageviews_TP12.Views} = 0 THEN 1
@@ -108,7 +108,7 @@
     description: 'Derive Article View Percentage Growth by comparing Views during user defined time period 1 to the same time period last year'
     
   - dimension: Article_Status
-    view_label: Lifestyle
+    view_label: Content
     group_label: 'Article Dimensions'
     label: 'Shelf Label'
     type: string

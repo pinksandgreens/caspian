@@ -24,7 +24,7 @@
     type: date
 
   - dimension: Key
-    view_label: Lifestyle
+    view_label: Content
     group_label: 'Article Dimensions'
     label: 'TP2 - Articles Viewed'
     sql: ${TABLE}.Key

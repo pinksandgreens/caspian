@@ -23,9 +23,9 @@
     hidden: TRUE
   
   - dimension: Views
-    view_label: Lifestyle
+    view_label: Content
     group_label: 'Article Measures'
-    label: 'TP13 - Articles Viewed'  
+    label: '*TP_13 - Views'  
     type: number
     sql: ${TABLE}.Views
-    description: 'Article Results defined by using the same user defined time period: 1 for last year'
+    description: 'Article Results for same period (TP1) last year'

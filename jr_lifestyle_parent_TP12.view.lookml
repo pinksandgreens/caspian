@@ -20,6 +20,9 @@
   fields:
     
   - dimension: Key
-    label: 'zTP12: Articles'
+    view_label: Lifestyle
+    group_label: 'Article Dimensions'
+    label: 'TP13 - Articles Viewed'
     primary_key: true
     sql: ${TABLE}.Key
+    description: 'Article Results using the same user defined time period (TP): 1 for last year'

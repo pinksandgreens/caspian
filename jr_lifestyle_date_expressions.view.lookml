@@ -119,4 +119,4 @@
         WHEN ${Age} BETWEEN 91 AND 182 THEN 'Mature'
         WHEN ${Age} > 182 THEN 'Vintage'
       END
-    description: 'Derive Article View Percentage Growth by comparing Views during user defined time period 1 to the same time period last year'
+    description: 'Article ID by shelf life: <= 30 Days: New|31-90 Days: Fresh|91-192 Days: Mature|182+ Days: Vintage'

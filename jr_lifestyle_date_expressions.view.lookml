@@ -119,4 +119,4 @@
         WHEN ${Age} BETWEEN 91 AND 182 THEN 'Mature'
         WHEN ${Age} > 182 THEN 'Vintage'
       END
-    description: 'Article ID by shelf life: <= 30 Days: New|31-90 Days: Fresh|91-192 Days: Mature|182+ Days: Vintage'
+    description: 'Article Age (in Days) since Publication: <= 30: New|31-90: Fresh|91-182: Mature|183+: Vintage'

@@ -192,7 +192,7 @@
       jr_lifestyle_parent_TP2.TP2: 2 months ago
       jr_lifestyle_parent_TP1.TP12: 13 months ago
       jr_lifestyle_parent_TP1.brand_filter: grazia
-      jr_lifestyle_referral_source_medium.referral_source_Medium_filter: referral, organic, social, cpc, email, Social, twitter, Chat, cpm, (none)
+      jr_lifestyle_referral_source_medium.referral_source_Medium_filter: referral, organic, social, cpc, email, Social, twitter, Chat, cpm, "(none)"
       
 
 - explore: ga_sessions_kiss

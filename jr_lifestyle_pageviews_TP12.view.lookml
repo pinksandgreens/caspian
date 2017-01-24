@@ -19,11 +19,10 @@
   
   fields:
   - dimension: Key
-    primary_key: true
     sql: ${TABLE}.Key
     hidden: TRUE
   
-  - measure: Views
+  - dimension: Views
     label: 'zTP12: Views'  
-    type: sum
+    type: number
     sql: ${TABLE}.Views

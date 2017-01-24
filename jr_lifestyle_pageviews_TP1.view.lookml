@@ -19,13 +19,15 @@
   
   fields:
   - dimension: Key
-    primary_key: true
     sql: ${TABLE}.Key
     hidden: TRUE
   
-  - measure: Views
-    label: 'TP1: Views'  
-    type: sum
+  - dimension: Views
+    view_label: Lifestyle
+    group_label: 'Article Measures.1'
+    label: 'TP1 - Views'  
+    type: number
     sql: ${TABLE}.Views
+    description: 'Total Views, by Article, for the user defined time period: 1'
     
   

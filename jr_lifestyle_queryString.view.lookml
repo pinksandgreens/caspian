@@ -14,19 +14,20 @@
       
   fields:
 
-  - filter: brand_filter
-    hidden: true
-    label: 'Brand'
-  
   - dimension: Key
-    primary_key: true
     hidden: TRUE
     sql: ${TABLE}.Key
     
   - dimension: queryString
+    view_label: Lifestyle
+    group_label: 'Misc'
     label: 'Query String (?)'
     sql: ${TABLE}.queryString
+    description: 'Query String parameters'
     
   - dimension: url_Fragment
+    view_label: Lifestyle
+    group_label: 'Misc'
     label: 'Fragment (#)'
     sql: ${TABLE}.urlFragment
+    description: 'URL fragment'

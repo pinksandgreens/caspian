@@ -19,10 +19,13 @@
   fields:
   
   - filter: TP2 
-    label: '2nd Time Period'
+    label: '2. 2 Months Ago'
     hidden: True
     type: date
 
   - dimension: Key
-    label: 'TP2: Articles'
+    view_label: Lifestyle
+    group_label: 'Article Dimensions'
+    label: 'TP2 - Articles Viewed'
     sql: ${TABLE}.Key
+    description: 'Article Results from user defined time period: 2'

@@ -16,7 +16,7 @@
             MAX(date) AS index
           FROM
             (SELECT * FROM TABLE_QUERY([uplifted-light-89310:114668488],'table_id CONTAINS "ga_sessions"'))
-          WHERE RegEXP_EXTRACT(hits.page.pagePath, r'^\/(.+?)\/.+') = 'grazia' AND hits.type = 'PAGE'
+          WHERE {% condition jr_lifestyle_parent_TP1.brand_filter %} RegEXP_EXTRACT(Key, r'^\/(.+?)\/.+') {% endcondition %} AND hits.type = 'PAGE' AND REGEXP_MATCH(Key, r'^\/.+?\/(celebrity|contact|diet-body|entertainment|family-money|fashion|feature|hair-beauty|heat-radio|magazine|my|news-real-life|news|sport|bikes-for-sale|bike-reviews|insurance|product-reviews|new-rider)\/.+')
           GROUP BY Key, pageTitle
           )
         )
@@ -24,15 +24,14 @@
       
   fields:
 
-  - filter: brand_filter
-    hidden: true
-    label: 'Brand'
-  
   - dimension: Key
-    primary_key: true
     hidden: TRUE
     sql: ${TABLE}.Key
     
   - dimension: pageTitle
-    label: 'Article Title'
+    view_label: Lifestyle
+    group_label: 'Article Dimensions'
+    label: 'Title'
+    type: string
     sql: ${TABLE}.pageTitle
+    description: 'The title of the Article'

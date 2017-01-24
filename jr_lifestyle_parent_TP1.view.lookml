@@ -20,12 +20,12 @@
   fields:
   
   - filter: TP1
-    label: '1st Time Period'
+    label: '1. Last Month'
     hidden: True
     type: date
     
   - filter: TP12
-    label: 'YoY Period'
+    label: '3. 13 Month ago'
     hidden: True
     type: date
 
@@ -34,10 +34,16 @@
     label: 'Brand'
   
   - dimension: Key
-    label: 'TP1: Articles'
+    view_label: Lifestyle
+    group_label: 'Article Dimensions'
+    label: 'TP1 - Articles Viewed'
     primary_key: true
     sql: ${TABLE}.Key
+    description: 'Article Results from user defined time period: 1'
     
   - dimension: Category
+    view_label: Lifestyle
+    group_label: 'Article Dimensions'
     label: 'Site Category'
     sql: ${TABLE}.Section_Category
+    description: 'The site category - where on the site you will find the Article'

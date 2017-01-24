@@ -177,8 +177,14 @@
       relationship: one_to_many
       sql_on: ${jr_lifestyle_date_expressions.Key} = ${jr_lifestyle_parent_TP1.Key}
       
+    - join: jr_lifestyle_weekly_agg_content_pageviews_GA_NEW
+      type: left_outer
+      relationship: one_to_many
+      sql_on: ${jr_lifestyle_weekly_agg_content_pageviews_GA_NEW.Key} = ${jr_lifestyle_parent_TP1.Key}  
+      
   always_filter:
       jr_lifestyle_parent_TP1.TP1: last month
       jr_lifestyle_parent_TP2.TP2: 2 months ago
+      jr_lifestyle_parent_TP1.TP12: 13 months ago
       jr_lifestyle_parent_TP1.brand_filter: grazia
-      jr_lifestyle_parent_TP1.TP12: 12 months ago
+      

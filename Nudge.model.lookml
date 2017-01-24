@@ -66,7 +66,12 @@
   - join: nudge_transactions
     type: inner
     relationship: one_to_many
-    sql_on: ${nudge_individuals.individual_id} = ${nudge_transactions.individual_id}    
+    sql_on: ${nudge_individuals.individual_id} = ${nudge_transactions.individual_id}   
+
+  - join: winit_load_ids
+    type: inner
+    relationship: one_to_one
+    sql_on: ${nudge_individuals.individual_id} = ${winit_load_ids.par_individual_id} 
 
 # individual_id - base id for interactions
 # unique_table_id - concat id for interactions
@@ -80,3 +85,6 @@
     type: left_outer
     relationship: many_to_one
     sql_on: ${nudge_insurance_details.id} = ${nudge_mcn_taxonomy.id}   
+    
+ 
+

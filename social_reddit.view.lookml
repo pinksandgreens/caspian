@@ -6,18 +6,16 @@
     type: string
     sql: ${TABLE}.title
         
-  - dimension: thread
-    type: string
-    sql: ${TABLE}.thread
-
-    
   - dimension: link1
     label: 'Link'
     hidden: FALSE
+    type: string
     sql: ${TABLE}.reddit_url
-    html: |
-      <a href="{{ value }}" target="_new">
-      <img src="http://i.imgur.com/aJnF2oW.jpg" height=10 width=10></a>  
+    html: <a href="{{ value }}" target="_new"><img src="http://i.imgur.com/aJnF2oW.jpg" height=10 width=10></a>   
+        
+  - dimension: thread
+    type: string
+    sql: ${TABLE}.thread
 
   - dimension: url
     type: string

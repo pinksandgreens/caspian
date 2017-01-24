@@ -6,6 +6,11 @@
     type: string
     sql: ${TABLE}.manufacturer || '-' || ${TABLE}.model
 
+  - dimension: unique_id_key
+    primary_key: TRUE
+    type: string
+    sql: ${TABLE}.transaction_id || '-' || ${TABLE}.abi_code
+    
   - dimension: abi_code
     type: string
     sql: ${TABLE}.abi_code
@@ -158,6 +163,14 @@
   - dimension: year_of_manufact
     type: string
     sql: ${TABLE}.year_of_manufact
+
+#   - measure: Unique_Transaction_Count
+#     type: count_distinct
+#     sql: ${TABLE}.transaction_id
+
+  - measure: Unique_Transaction_Count
+    type: count_distinct
+    sql: ${TABLE}.transaction_id
 
   - measure: count
     type: count

@@ -37,7 +37,7 @@
     sql: ${TABLE}.date_of_birth
 
   - dimension: email_address
-    hidden: TRUE
+    hidden: FALSE
     type: string
     sql: ${TABLE}.email_address
 

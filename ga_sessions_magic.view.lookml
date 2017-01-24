@@ -1,7 +1,12 @@
-- view: ga_sessions_debrief
+- view: ga_sessions_magic
   sql_table_name: |
-      ( SELECT * FROM {% table_date_range date_filter 82149182.ga_sessions_ %},
-        {% table_date_range date_filter 114668488.ga_sessions_intraday_ %})
+      ( SELECT * FROM {% table_date_range date_filter 25170071.ga_sessions_ %},
+        {% table_date_range date_filter 25170071.ga_sessions_intraday_ %})
+
+
+
+
+# Works: SELECT * FROM TABLE_DATE_RANGE([uplifted-light-89310:21699534.ga_sessions_intraday_],DATE_ADD(CURRENT_TIMESTAMP(), -0, 'YEAR'),CURRENT_TIMESTAMP()))
 
 # - view: ga_sessions
 #   sql_table_name: |
@@ -158,16 +163,6 @@
   - dimension: geo_network__country
     type: string
     sql: ${TABLE}.geoNetwork.country
-
-  - dimension: UK_RoW
-    label: 'UK/RoW'
-    type: string
-    sql: |
-      CASE
-        WHEN ${TABLE}.geoNetwork.country = 'United Kingdom' THEN 'United Kingdom'
-        WHEN ${TABLE}.geoNetwork.country = '(not set)' THEN 'Unknown'
-        ELSE 'RoW'
-      END
 
   - dimension: geo_network__latitude
     type: string
@@ -1824,6 +1819,5 @@
     - hits__page__hostname
     - hits__promotion__promo_name
     - device__mobile_device_marketing_name
-
 
 

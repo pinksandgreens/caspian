@@ -176,7 +176,7 @@
       type: left_outer
       relationship: one_to_many
       sql_on: ${jr_lifestyle_date_expressions.Key} = ${jr_lifestyle_parent_TP1.Key}
-      
+
     - join: jr_lifestyle_weekly_agg_content_pageviews_GA_NEW
       type: left_outer
       relationship: one_to_many
@@ -188,3 +188,13 @@
       jr_lifestyle_parent_TP1.TP12: 13 months ago
       jr_lifestyle_parent_TP1.brand_filter: grazia
       
+
+- explore: ga_sessions_kiss
+  label: 'BigQuery - Kiss'
+  always_filter:
+    date_filter: 30 days
+    
+- explore: ga_sessions_magic
+  label: 'BigQuery - Magic'
+  always_filter:
+    date_filter: 30 days

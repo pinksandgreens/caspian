@@ -35,8 +35,10 @@
     
   - join: brand_lookup
     type: inner
-    relationship: one_to_one
+    relationship: one_to_many
     sql_on: ${brand_lookup.bra_code} = ${gigya_brand_optin.brand_code}
+#    sql_on: ${brand_lookup.bra_code} = ${bauer_list.regsource}
+
   
   - join: gigya_social_identities
     type: inner
@@ -53,4 +55,7 @@
     relationship: many_to_many
     sql_on: ${postcode_lookup.postcode} = ${bauer_list.postal_code}
         
-
+- explore: radio_login
+  label: 'Audio - Non AR Login'
+  sql_table_name: publications.radio_login
+  persist_for: 20 hour

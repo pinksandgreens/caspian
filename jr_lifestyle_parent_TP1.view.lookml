@@ -23,7 +23,7 @@
     type: date
 
   - filter: brand_filter 
-    hidden: True
+    # hidden: True
     label: 'Brand'
   
   - dimension: Key

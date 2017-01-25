@@ -25,7 +25,6 @@
     
   - dimension: referral_source_Medium
     view_label: Acquisition
-    group_label: Source/Medium
     label: 'Medium'
     sql: ${TABLE}.medium
     

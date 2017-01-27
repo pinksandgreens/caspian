@@ -23,7 +23,9 @@
                    REGEXP_EXTRACT(hits.page.pagePath, r'^(\/[A-Za-z0-9\/-]+)') AS Key
                   FROM
                    (SELECT * FROM TABLE_QUERY([uplifted-light-89310:114668488],'table_id CONTAINS "ga_sessions"'))
-                 WHERE {% condition brand_filter %} RegEXP_EXTRACT(hits.page.pagePath, r'^\/(.+?)\/.+') {% endcondition %} AND hits.type = 'PAGE'
+                 WHERE {% condition brand_filter %} RegEXP_EXTRACT(hits.page.pagePath, r'^\/(.+?)\/.+') {% endcondition %} 
+                 AND hits.type = 'PAGE'
+                 AND geoNetwork.country = 'United Kingdom'
                  GROUP BY Key
                  ) AS Distinct_Keys
                CROSS JOIN
@@ -73,7 +75,9 @@
                   COUNT(date) AS value
                 FROM
                   (SELECT * FROM TABLE_QUERY([uplifted-light-89310:114668488],'table_id CONTAINS "ga_sessions"'))
-                WHERE {% condition brand_filter %} RegEXP_EXTRACT(hits.page.pagePath, r'^\/(.+?)\/.+') {% endcondition %} AND hits.type = 'PAGE'
+                WHERE {% condition brand_filter %} RegEXP_EXTRACT(hits.page.pagePath, r'^\/(.+?)\/.+') {% endcondition %} 
+                AND hits.type = 'PAGE'
+                AND geoNetwork.country = 'United Kingdom'
                 GROUP BY Key, day_index
                 ORDER BY Key, day_index
                 ) AS Actual_Key_Views_by_Month

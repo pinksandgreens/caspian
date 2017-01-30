@@ -8,7 +8,9 @@
         REGEXP_EXTRACT(hits.page.pagePath, r'^\/.+?\#(.+)') AS urlFragment
       FROM 
         TABLE_QUERY([uplifted-light-89310:114668488],'table_id CONTAINS "ga_sessions"')
-      WHERE {% condition jr_lifestyle_parent_TP1.brand_filter %} RegEXP_EXTRACT(hits.page.pagePath, r'^\/(.+?)\/.+') {% endcondition %} AND hits.type = 'PAGE'
+      WHERE {% condition jr_lifestyle_parent_TP1.brand_filter %} RegEXP_EXTRACT(hits.page.pagePath, r'^\/(.+?)\/.+') {% endcondition %} 
+      AND hits.type = 'PAGE'
+      AND geoNetwork.country = 'United Kingdom'
       GROUP BY Key, queryString, urlFragment
       
   fields:

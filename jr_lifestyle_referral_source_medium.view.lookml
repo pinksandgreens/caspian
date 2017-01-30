@@ -8,7 +8,10 @@
           COUNT(trafficSource.medium) AS Views_Medium
         FROM 
           {% table_date_range jr_lifestyle_parent_TP1.TP1 114668488.ga_sessions_ %},{% table_date_range jr_lifestyle_parent_TP1.TP1 114668488.ga_sessions_intraday_ %}
-        WHERE {% condition jr_lifestyle_parent_TP1.brand_filter %} RegEXP_EXTRACT(hits.page.pagePath, r'^\/(.+?)\/.+') {% endcondition %} AND {% condition jr_lifestyle_referral_source_medium.referral_source_Medium_filter %} trafficSource.medium {% endcondition %} AND hits.type = 'PAGE'
+        WHERE {% condition jr_lifestyle_parent_TP1.brand_filter %} RegEXP_EXTRACT(hits.page.pagePath, r'^\/(.+?)\/.+') {% endcondition %} 
+        AND {% condition jr_lifestyle_referral_source_medium.referral_source_Medium_filter %} trafficSource.medium {% endcondition %} 
+        AND hits.type = 'PAGE'
+        AND geoNetwork.country = 'United Kingdom'
         GROUP BY Key, medium
         
       

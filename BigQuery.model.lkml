@@ -230,6 +230,13 @@ explore: ga_sessions_planetradio {
       value: "30 days"
     }
   }
+
+  join: ga_sessions_planetradio_advcompsearch {
+    type: inner
+    relationship: one_to_many
+    sql_on: ${ga_sessions_planetradio_advcompsearch.full_Visitor_Id} = ${ga_sessions_planetradio.full_visitor_id} ;;
+  }
+
 }
 
 explore: ga_sessions_greatmagazines {

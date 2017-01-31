@@ -1502,8 +1502,8 @@ view: ga_sessions_planetradio {
           WHEN ${TABLE}.hits.page.pagePath LIKE '%/free/%' THEN 'Free'
           WHEN ${TABLE}.hits.page.pagePath LIKE '%/free-80/%' THEN 'Free 80s'
           WHEN ${TABLE}.hits.page.pagePath LIKE '%/free-80s/%' THEN 'Free 80s'
-          WHEN ${TABLE}.hits.page.pagePath LIKE '%/free-coventry/%' THEN 'Free Coventry'
-          WHEN ${TABLE}.hits.page.pagePath LIKE '%/free-cov/%' THEN 'Free Coventry'
+          WHEN ${TABLE}.hits.page.pagePath LIKE '%/free-coventry/%' THEN 'Free'
+          WHEN ${TABLE}.hits.page.pagePath LIKE '%/free-cov/%' THEN 'Free'
           WHEN ${TABLE}.hits.page.pagePath LIKE '%/freeradio/%' THEN 'Free'
           WHEN ${TABLE}.hits.page.pagePath LIKE '%/gem-106/%' THEN 'Gem'
           WHEN ${TABLE}.hits.page.pagePath LIKE '%/gem106/%' THEN 'Gem'
@@ -1769,7 +1769,7 @@ view: ga_sessions_planetradio {
           WHEN ${TABLE}.hits.page.pagePath LIKE '%radioplayer.metro2radio%' THEN 'Metro'
           WHEN ${TABLE}.hits.page.pagePath LIKE '%radioplayer.tfm2%' THEN 'TFM'
           WHEN ${TABLE}.hits.page.pagePath LIKE '%radioplayer.forth3%' THEN 'Forth'
-          WHEN ${TABLE}.hits.page.pagePath LIKE '%radioplayer.tay3%' THEN 'Tay'
+          WHEN ${TABLE}.hits.page.pagePath LIKE '%radioplayer.tay3%' THEN 'Tay 3'
           WHEN ${TABLE}.hits.page.pagePath LIKE '%radioplayer.key3radio%' THEN 'Key'
           WHEN ${TABLE}.hits.page.pagePath LIKE '%radioplayer.viking3%' THEN 'Viking'
           WHEN ${TABLE}.hits.page.pagePath LIKE '%radioplayer.radioaire3%' THEN 'Aire'
@@ -1796,6 +1796,175 @@ view: ga_sessions_planetradio {
         END
          ;;
   }
+
+
+  dimension: Brand_Network {
+    hidden: no
+    label: "Brand Network"
+    type: string
+    sql: CASE
+          WHEN ${TABLE}.hits.page.pagePath LIKE '%/kiss/%' THEN 'Kiss Network'
+          WHEN ${TABLE}.hits.page.pagePath LIKE '%/hits/%' THEN 'BCN 3'
+          WHEN ${TABLE}.hits.page.pagePath LIKE '%/kerrang/%' THEN 'Kerrang Network'
+          WHEN ${TABLE}.hits.page.pagePath LIKE '%/magic/%' THEN 'Magic Network'
+          WHEN ${TABLE}.hits.page.pagePath LIKE '%/absolute-80s/%' THEN 'Absolute Network'
+          WHEN ${TABLE}.hits.page.pagePath LIKE '%/absolute-classic-rock/%' THEN 'Absolute Network'
+          WHEN ${TABLE}.hits.page.pagePath LIKE '%/absolute-radio-00s/%' THEN 'Absolute Network'
+          WHEN ${TABLE}.hits.page.pagePath LIKE '%/absolute-radio-60s/%' THEN 'Absolute Network'
+          WHEN ${TABLE}.hits.page.pagePath LIKE '%/absolute-radio-70s/%' THEN 'Absolute Network'
+          WHEN ${TABLE}.hits.page.pagePath LIKE '%/absolute-radio-90s/%' THEN 'Absolute Network'
+          WHEN ${TABLE}.hits.page.pagePath LIKE '%/absolute-radio/%' THEN 'Absolute Network'
+          WHEN ${TABLE}.hits.page.pagePath LIKE '%/absolute/%' THEN 'Absolute Network'
+          WHEN ${TABLE}.hits.page.pagePath LIKE '%/absoluteradio/%' THEN 'Absolute Network'
+          WHEN ${TABLE}.hits.page.pagePath LIKE '%/aire-2/%' THEN 'BCN 2'
+          WHEN ${TABLE}.hits.page.pagePath LIKE '%/aire2/%' THEN 'BCN 2'
+          WHEN ${TABLE}.hits.page.pagePath LIKE '%/aire-3/%' THEN 'BCN 3'
+          WHEN ${TABLE}.hits.page.pagePath LIKE '%/aire3/%' THEN 'BCN 3'
+          WHEN ${TABLE}.hits.page.pagePath LIKE '%/aire/%' THEN 'BCN'
+          WHEN ${TABLE}.hits.page.pagePath LIKE '%/borders/%' THEN 'BCN'
+          WHEN ${TABLE}.hits.page.pagePath LIKE '%/cfm/%' THEN 'BCN'
+          WHEN ${TABLE}.hits.page.pagePath LIKE '%/city-2/%' THEN 'BCN 2'
+          WHEN ${TABLE}.hits.page.pagePath LIKE '%/city-3/%' THEN 'BCN 3'
+          WHEN ${TABLE}.hits.page.pagePath LIKE '%/city2/%' THEN 'BCN 2'
+          WHEN ${TABLE}.hits.page.pagePath LIKE '%/city3/%' THEN 'BCN 3'
+          WHEN ${TABLE}.hits.page.pagePath LIKE '%/city-talk/%' THEN 'BCN Ext'
+          WHEN ${TABLE}.hits.page.pagePath LIKE '%/city/%' THEN 'BCN'
+          WHEN ${TABLE}.hits.page.pagePath LIKE '%/clyde-1/%' THEN 'BCN'
+          WHEN ${TABLE}.hits.page.pagePath LIKE '%/clyde1/%' THEN 'BCN'
+          WHEN ${TABLE}.hits.page.pagePath LIKE '%/citytalk/%' THEN 'BCN'
+          WHEN ${TABLE}.hits.page.pagePath LIKE '%/clyde-2/%' THEN 'BCN 2'
+          WHEN ${TABLE}.hits.page.pagePath LIKE '%/clyde2/%' THEN 'BCN 2'
+          WHEN ${TABLE}.hits.page.pagePath LIKE '%/clyde-3/%' THEN 'BCN 3'
+          WHEN ${TABLE}.hits.page.pagePath LIKE '%/clyde3/%' THEN 'BCN 3'
+          WHEN ${TABLE}.hits.page.pagePath LIKE '%/clyde/%' THEN 'BCN'
+          WHEN ${TABLE}.hits.page.pagePath LIKE '%/cool-fm/%' THEN 'BCN Ext'
+          WHEN ${TABLE}.hits.page.pagePath LIKE '%/coolfm/%' THEN 'BCN Ext'
+          WHEN ${TABLE}.hits.page.pagePath LIKE '%/downtown/%' THEN 'BCN Ext'
+          WHEN ${TABLE}.hits.page.pagePath LIKE '%/downtown-country/%' THEN 'BCN Ext'
+          WHEN ${TABLE}.hits.page.pagePath LIKE '%/forth-2/%' THEN 'BCN 2'
+          WHEN ${TABLE}.hits.page.pagePath LIKE '%/forth2/%' THEN 'BCN 2'
+          WHEN ${TABLE}.hits.page.pagePath LIKE '%/forth-1/%' THEN 'BCN'
+          WHEN ${TABLE}.hits.page.pagePath LIKE '%/forth1/%' THEN 'BCN'
+          WHEN ${TABLE}.hits.page.pagePath LIKE '%/forth-3/%' THEN 'BCN 3'
+          WHEN ${TABLE}.hits.page.pagePath LIKE '%/forth/%' THEN 'BCN'
+          WHEN ${TABLE}.hits.page.pagePath LIKE '%/forth3/%' THEN 'BCN'
+          WHEN ${TABLE}.hits.page.pagePath LIKE '%/free-radio/%' THEN 'BCN Ext'
+          WHEN ${TABLE}.hits.page.pagePath LIKE '%/free/%' THEN 'BCN Ext'
+          WHEN ${TABLE}.hits.page.pagePath LIKE '%/free-80/%' THEN 'BCN Ext'
+          WHEN ${TABLE}.hits.page.pagePath LIKE '%/free-80s/%' THEN 'BCN Ext'
+          WHEN ${TABLE}.hits.page.pagePath LIKE '%/free-coventry/%' THEN 'BCN Ext'
+          WHEN ${TABLE}.hits.page.pagePath LIKE '%/free-cov/%' THEN 'BCN Ext'
+          WHEN ${TABLE}.hits.page.pagePath LIKE '%/freeradio/%' THEN 'BCN Ext'
+          WHEN ${TABLE}.hits.page.pagePath LIKE '%/gem-106/%' THEN 'BCN Ext'
+          WHEN ${TABLE}.hits.page.pagePath LIKE '%/gem106/%' THEN 'BCN Ext'
+          WHEN ${TABLE}.hits.page.pagePath LIKE '%/gem/%' THEN 'BCN Ext'
+          WHEN ${TABLE}.hits.page.pagePath LIKE '%/hallam-2/%' THEN 'BCN 2'
+          WHEN ${TABLE}.hits.page.pagePath LIKE '%/hallam2/%' THEN 'BCN 2'
+          WHEN ${TABLE}.hits.page.pagePath LIKE '%/hallam-3/%' THEN 'BCN 3'
+          WHEN ${TABLE}.hits.page.pagePath LIKE '%/hallam3/%' THEN 'BCN 3'
+          WHEN ${TABLE}.hits.page.pagePath LIKE '%/hallam-fm/%' THEN 'BCN'
+          WHEN ${TABLE}.hits.page.pagePath LIKE '%/hallam/%' THEN 'BCN'
+          WHEN ${TABLE}.hits.page.pagePath LIKE '%/hallamfm/%' THEN 'BCN'
+          WHEN ${TABLE}.hits.page.pagePath LIKE '%/heat/%' THEN 'Heat Network'
+          WHEN ${TABLE}.hits.page.pagePath LIKE '%/key-2/%' THEN 'BCN 2'
+          WHEN ${TABLE}.hits.page.pagePath LIKE '%/key2/%' THEN 'BCN 2'
+          WHEN ${TABLE}.hits.page.pagePath LIKE '%/key-3/%' THEN 'BCN 3'
+          WHEN ${TABLE}.hits.page.pagePath LIKE '%/key3/%' THEN 'BCN 3'
+          WHEN ${TABLE}.hits.page.pagePath LIKE '%/key-103/%' THEN 'BCN'
+          WHEN ${TABLE}.hits.page.pagePath LIKE '%/key/%' THEN 'BCN'
+          WHEN ${TABLE}.hits.page.pagePath LIKE '%/key103/%' THEN 'BCN'
+          WHEN ${TABLE}.hits.page.pagePath LIKE '%/kiss-fresh/%' THEN 'Kiss Network'
+          WHEN ${TABLE}.hits.page.pagePath LIKE '%/kisstory/%' THEN 'Kiss Network'
+          WHEN ${TABLE}.hits.page.pagePath LIKE '%/magic-chilled/%' THEN 'Magic Network'
+          WHEN ${TABLE}.hits.page.pagePath LIKE '%/mellow-magic/%' THEN 'Magic Network'
+          WHEN ${TABLE}.hits.page.pagePath LIKE '%/magic-mellow/%' THEN 'Magic Network'
+          WHEN ${TABLE}.hits.page.pagePath LIKE '%/magic-soul/%' THEN 'Magic Network'
+          WHEN ${TABLE}.hits.page.pagePath LIKE '%/metro-2/%' THEN 'BCN 2'
+          WHEN ${TABLE}.hits.page.pagePath LIKE '%/metro/%' THEN 'BCN'
+          WHEN ${TABLE}.hits.page.pagePath LIKE '%/metro-3/%' THEN 'BCN 3'
+          WHEN ${TABLE}.hits.page.pagePath LIKE '%/mfr-2/%' THEN 'BCN 2'
+          WHEN ${TABLE}.hits.page.pagePath LIKE '%/mfr-3/%' THEN 'BCN 3'
+          WHEN ${TABLE}.hits.page.pagePath LIKE '%/mfr/%' THEN 'BCN'
+          WHEN ${TABLE}.hits.page.pagePath LIKE '%/northsound-1/%' THEN 'BCN'
+          WHEN ${TABLE}.hits.page.pagePath LIKE '%/northsound-2/%' THEN 'BCN 2'
+          WHEN ${TABLE}.hits.page.pagePath LIKE '%/northsound/%' THEN 'BCN'
+          WHEN ${TABLE}.hits.page.pagePath LIKE '%/planet-rock/%' THEN 'Planet Rock Network'
+          WHEN ${TABLE}.hits.page.pagePath LIKE '%/tfm/%' THEN 'BCN'
+          WHEN ${TABLE}.hits.page.pagePath LIKE '%/tfm-3/%' THEN 'BCN 3'
+          WHEN ${TABLE}.hits.page.pagePath LIKE '%/rock-fm/%' THEN 'BCN'
+          WHEN ${TABLE}.hits.page.pagePath LIKE '%/rockfm/' THEN 'BCN'
+          WHEN ${TABLE}.hits.page.pagePath LIKE '%/west/%' THEN 'BCN'
+          WHEN ${TABLE}.hits.page.pagePath LIKE '%/wave-105/%' THEN 'BCN Ext'
+          WHEN ${TABLE}.hits.page.pagePath LIKE '%/wave/%' THEN 'BCN Ext'
+          WHEN ${TABLE}.hits.page.pagePath LIKE '%/wave105/%' THEN 'BCN Ext'
+          WHEN ${TABLE}.hits.page.pagePath LIKE '%/viking/%' THEN 'BCN'
+          WHEN ${TABLE}.hits.page.pagePath LIKE '%/viking-3/%' THEN 'BCN 3'
+          WHEN ${TABLE}.hits.page.pagePath LIKE '%/viking-2/%' THEN 'BCN 2'
+          WHEN ${TABLE}.hits.page.pagePath LIKE '%/tay/%' THEN 'BCN'
+          WHEN ${TABLE}.hits.page.pagePath LIKE '%/tay-2/%' THEN 'BCN 2'
+          WHEN ${TABLE}.hits.page.pagePath LIKE '%/westsound/%' THEN 'BCN 2'
+          WHEN ${TABLE}.hits.page.pagePath LIKE '%/westsound-fm/%' THEN 'BCN 2'
+          WHEN ${TABLE}.hits.page.pagePath LIKE '%/tfm-2/%' THEN 'BCN 2'
+          WHEN ${TABLE}.hits.page.pagePath LIKE '%/rock/%' THEN 'BCN'
+          WHEN ${TABLE}.hits.page.pagePath LIKE '%/tay-3/%' THEN 'BCN 3'
+          WHEN ${TABLE}.hits.page.pagePath LIKE '%/radioborders/%' THEN 'BCN'
+          WHEN ${TABLE}.hits.page.pagePath LIKE '%/free80s/%' THEN 'BCN Ext'
+          WHEN ${TABLE}.hits.page.pagePath LIKE '%/rock-fm-2/%' THEN 'BCN 2'
+          WHEN ${TABLE}.hits.page.pagePath LIKE '%/rock-fm-3/%' THEN 'BCN 3'
+
+          WHEN ${TABLE}.hits.page.pagePath LIKE '%radioplayer.magic%' THEN 'Magic Network'
+          WHEN ${TABLE}.hits.page.pagePath LIKE '%radioplayer.planetrock%' THEN 'Planet Rock Network'
+          WHEN ${TABLE}.hits.page.pagePath LIKE '%radioplayer.coolfm%' THEN 'BCN Ext'
+          WHEN ${TABLE}.hits.page.pagePath LIKE '%radioplayer.kerrangradio%' THEN 'Kerrang Network'
+          WHEN ${TABLE}.hits.page.pagePath LIKE '%radioplayer.forth1%' THEN 'BCN'
+          WHEN ${TABLE}.hits.page.pagePath LIKE '%radioplayer.wave105%' THEN 'BCN Ext'
+          WHEN ${TABLE}.hits.page.pagePath LIKE '%radioplayer.mellowmagic%' THEN 'Magic Network'
+          WHEN ${TABLE}.hits.page.pagePath LIKE '%radioplayer.key103%' THEN 'BCN'
+          WHEN ${TABLE}.hits.page.pagePath LIKE '%radioplayer.radiocity%' THEN 'BCN'
+          WHEN ${TABLE}.hits.page.pagePath LIKE '%radioplayer.magicchilled%' THEN ' Network'
+          WHEN ${TABLE}.hits.page.pagePath LIKE '%radioplayer.metroradio%' THEN 'BCN'
+          WHEN ${TABLE}.hits.page.pagePath LIKE '%radioplayer.metro3radio%' THEN 'BCN 3'
+          WHEN ${TABLE}.hits.page.pagePath LIKE '%radioplayer.rockfm%' THEN 'BCN'
+          WHEN ${TABLE}.hits.page.pagePath LIKE '%radioplayer.heatworld%' THEN 'Heat Network'
+          WHEN ${TABLE}.hits.page.pagePath LIKE '%radioplayer.hallamfm%' THEN 'BCN'
+          WHEN ${TABLE}.hits.page.pagePath LIKE '%radioplayer.hallam3%' THEN 'BCN 3'
+          WHEN ${TABLE}.hits.page.pagePath LIKE '%radioplayer.thehitsradio%' THEN 'BCN 3'
+          WHEN ${TABLE}.hits.page.pagePath LIKE '%radioplayer.kissfmuk%' THEN 'Kiss Network'
+          WHEN ${TABLE}.hits.page.pagePath LIKE '%kisstory.kissfmuk%' THEN 'Kiss Network'
+          WHEN ${TABLE}.hits.page.pagePath LIKE '%kissfresh.kissfmuk%' THEN 'Kiss Network'
+          WHEN ${TABLE}.hits.page.pagePath LIKE '%radioplayer.northsound1%' THEN 'BCN'
+          WHEN ${TABLE}.hits.page.pagePath LIKE '%radioplayer.downtown%' THEN 'BCN Ext'
+          WHEN ${TABLE}.hits.page.pagePath LIKE '%radioplayer.tayfm%' THEN 'BCN'
+          WHEN ${TABLE}.hits.page.pagePath LIKE '%radioplayer.mfr%' THEN 'BCN'
+          WHEN ${TABLE}.hits.page.pagePath LIKE '%radioplayer.westfm%' THEN 'BCN'
+          WHEN ${TABLE}.hits.page.pagePath LIKE '%radioplayer.vikingfm%' THEN 'BCN'
+          WHEN ${TABLE}.hits.page.pagePath LIKE '%radioplayer.cfmradio%' THEN 'BCN'
+          WHEN ${TABLE}.hits.page.pagePath LIKE '%radioplayer.tfmradio%' THEN 'BCN'
+          WHEN ${TABLE}.hits.page.pagePath LIKE '%radioplayer.downtowncountry%' THEN 'BCN Ect'
+          WHEN ${TABLE}.hits.page.pagePath LIKE '%radioplayer.radioborders%' THEN 'BCN'
+          WHEN ${TABLE}.hits.page.pagePath LIKE '%radioplayer.westsound%' THEN 'BCN 2'
+          WHEN ${TABLE}.hits.page.pagePath LIKE '%radioplayer.tay2%' THEN 'BCN 2'
+          WHEN ${TABLE}.hits.page.pagePath LIKE '%radioplayer.hallam2%' THEN 'BCN 2'
+          WHEN ${TABLE}.hits.page.pagePath LIKE '%radioplayer.radioaire2%' THEN 'BCN 2'
+          WHEN ${TABLE}.hits.page.pagePath LIKE '%radioplayer.northsound2%' THEN 'BCN 2'
+          WHEN ${TABLE}.hits.page.pagePath LIKE '%radioplayer.key2radio%' THEN 'BCN 2'
+          WHEN ${TABLE}.hits.page.pagePath LIKE '%radioplayer.viking2%' THEN 'BCN 2'
+          WHEN ${TABLE}.hits.page.pagePath LIKE '%radioplayer.metro2radio%' THEN 'BCN 2'
+          WHEN ${TABLE}.hits.page.pagePath LIKE '%radioplayer.tfm2%' THEN 'BCN 2'
+          WHEN ${TABLE}.hits.page.pagePath LIKE '%radioplayer.forth3%' THEN 'BCN 3'
+          WHEN ${TABLE}.hits.page.pagePath LIKE '%radioplayer.tay3%' THEN 'BCN 3'
+          WHEN ${TABLE}.hits.page.pagePath LIKE '%radioplayer.key3radio%' THEN 'BCN 3'
+          WHEN ${TABLE}.hits.page.pagePath LIKE '%radioplayer.viking3%' THEN 'BCN 3'
+          WHEN ${TABLE}.hits.page.pagePath LIKE '%radioplayer.radioaire3%' THEN 'BCN 3'
+          WHEN ${TABLE}.hits.page.pagePath LIKE '%radioplayer.tfm3%' THEN 'BCN 3'
+          WHEN ${TABLE}.hits.page.pagePath LIKE '%radioplayer.clyde1%' THEN 'BCN'
+          WHEN ${TABLE}.hits.page.pagePath LIKE '%radioplayer.clyde2%' THEN 'BCN 2'
+          WHEN ${TABLE}.hits.page.pagePath LIKE '%radioplayer.clyde3%' THEN 'BCN 3'
+          ELSE 'Planet Radio'
+        END
+         ;;
+  }
+
 
 # ELSE ${TABLE}.hits.page.pagePath
 
@@ -1872,6 +2041,24 @@ view: ga_sessions_planetradio {
       type: sum_distinct
       sql_distinct_key: ${uu_key} ;;
       sql: ${TABLE}.totals.pageviews ;;
+      drill_fields: [detail*]
+    }
+
+    dimension: totals_pageviews2 {
+      label: "Total Pageviews TEST"
+      type: string
+      hidden:  yes
+      sql: CASE
+        WHEN ${TABLE}.totals.pageviews IS NOT NULL THEN 1
+        ELSE NULL
+        END;;
+    }
+
+    measure: totals_pageviews3 {
+      label: "Individual Page Pageviews"
+      type: sum
+      hidden:  no
+      sql: ${totals_pageviews2};;
     }
 
     measure: pages_p_session {
@@ -2233,19 +2420,9 @@ view: ga_sessions_planetradio {
     # ----- Sets of fields for drilling ------
     set: detail {
       fields: [
-        hits__app_info__landing_screen_name,
-        hits__app_info__exit_screen_name,
-        hits__app_info__app_name,
-        hits__app_info__name,
-        hits__app_info__screen_name,
-        hits__custom_variables__custom_var_name,
-        hits__source_property_info__source_property_display_name,
-        hits__item__product_name,
-        hits__product__product_list_name,
-        hits__product__v2_product_name,
-        hits__page__hostname,
-        hits__promotion__promo_name,
-        device__mobile_device_marketing_name
+        hits__page__page_path,
+        Unique_Users,
+        totals_pageviews3
       ]
     }
   }

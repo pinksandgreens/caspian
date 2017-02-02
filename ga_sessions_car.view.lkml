@@ -1,7 +1,7 @@
 #lifestyle
-view: ga_sessions {
-  sql_table_name: ( SELECT * FROM {% table_date_range date_filter 114668488.ga_sessions_ %},
-      {% table_date_range date_filter 114668488.ga_sessions_intraday_ %})
+view: ga_sessions_car {
+  sql_table_name: ( SELECT * FROM {% table_date_range date_filter 24931796.ga_sessions_ %},
+      {% table_date_range date_filter 24931796.ga_sessions_intraday_ %})
      ;;
 
     filter: date_filter {

@@ -362,3 +362,14 @@ explore: ga_sessions_magic {
     }
   }
 }
+
+explore: ga_sessions_car {
+  label: "BigQuery - Car Magazine"
+
+  always_filter: {
+    filters: {
+      field: date_filter
+      value: "30 days"
+    }
+  }
+}

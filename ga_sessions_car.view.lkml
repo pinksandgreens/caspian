@@ -1596,6 +1596,7 @@ view: ga_sessions_car {
       type: sum_distinct
       sql_distinct_key: ${uu_key} ;;
       sql: ${TABLE}.totals.pageviews ;;
+      drill_fields: [detail*]
     }
 
     measure: gallery_pageviews {
@@ -2018,7 +2019,3 @@ view: ga_sessions_car {
       ]
     }
   }
-
-
-
-

@@ -1641,6 +1641,7 @@ view: ga_sessions_motherandbaby {
       type: sum_distinct
       sql_distinct_key: ${uu_key} ;;
       sql: ${TABLE}.totals.pageviews ;;
+      drill_fields: [detail*]
     }
 
     measure: pages_p_session {
@@ -1999,22 +2000,14 @@ view: ga_sessions_motherandbaby {
       sql: ${Prebid_Timeouts}/${Prebid_Requests} ;;
     }
 
-    # ----- Sets of fields for drilling ------
-    set: detail {
-      fields: [
-        hits__app_info__landing_screen_name,
-        hits__app_info__exit_screen_name,
-        hits__app_info__app_name,
-        hits__app_info__name,
-        hits__app_info__screen_name,
-        hits__custom_variables__custom_var_name,
-        hits__source_property_info__source_property_display_name,
-        hits__item__product_name,
-        hits__product__product_list_name,
-        hits__product__v2_product_name,
-        hits__page__hostname,
-        hits__promotion__promo_name,
-        device__mobile_device_marketing_name
-      ]
-    }
+  # ----- Sets of fields for drilling ------
+  set: detail {
+    fields: [
+      hits__page__page_title,
+      hits__page__page_path,
+      totals_pageviews,
+      totals__new_visits,
+      Unique_Users
+    ]
   }
+}

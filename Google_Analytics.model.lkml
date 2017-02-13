@@ -225,6 +225,17 @@ explore: google_analytics_weekly_demogs {
 #       sql_on: ${bigquery_google_analytics.fullvisitorid}=${bigquery_google_analytics_hits_customdimensions.fullvisitorid}
 
 
+explore: google_analytics_demographics30days {
+  label: "Google Analytics - 30 Day Demographics"
+  sql_table_name: publications.google_analytics_demographics30days ;;
+  persist_for: "20 hour"
+
+  join: brand_lookup {
+    type: inner
+    relationship: one_to_one
+    sql_on: ${brand_lookup.bra_code} = ${google_analytics_demographics30days.brand_code} ;;
+  }
+}
 
 
 # - join: bigquery_google_analytics_hits

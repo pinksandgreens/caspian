@@ -111,6 +111,12 @@ view: es_users {
     sql: ${TABLE}.optin ;;
   }
 
+#   dimension: brand_optin_value{
+#     hidden: no
+#     type: string
+#     sql: ${TABLE}.optin ;;
+#   }
+
   dimension: phone {
     hidden: yes
     type: string

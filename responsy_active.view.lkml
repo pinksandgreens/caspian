@@ -153,7 +153,7 @@ view: responsy_active {
 
   dimension: riid {
     type: string
-    hidden: yes
+    hidden: no
     sql: ${TABLE}.riid ;;
   }
 

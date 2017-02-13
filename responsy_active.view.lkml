@@ -208,6 +208,12 @@ view: responsy_active {
        ;;
   }
 
+  measure: unique_users {
+    type: count_distinct
+    hidden: no
+    sql: ${TABLE}.email_address ;;
+  }
+
   measure: Responders {
     type: sum_distinct
     sql_distinct_key: ${unique_id} ;;

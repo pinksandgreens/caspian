@@ -153,7 +153,7 @@ view: responsy_active {
 
   dimension: riid {
     type: string
-    hidden: yes
+    hidden: no
     sql: ${TABLE}.riid ;;
   }
 
@@ -206,6 +206,12 @@ view: responsy_active {
        ELSE 1
       END
        ;;
+  }
+
+  measure: unique_users {
+    type: count_distinct
+    hidden: no
+    sql: ${TABLE}.email_address ;;
   }
 
   measure: Responders {

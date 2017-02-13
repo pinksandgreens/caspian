@@ -74,8 +74,8 @@ explore: gigya_users {
   }
 }
 
-explore: radio_login {
-  label: "Audio - Non AR Login"
-  sql_table_name: publications.radio_login ;;
-  persist_for: "20 hour"
-}
+# explore: radio_login {
+#   label: "Audio - Non AR Login"
+#   sql_table_name: publications.radio_login ;;
+#   persist_for: "20 hour"
+# }

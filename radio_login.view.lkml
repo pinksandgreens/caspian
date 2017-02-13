@@ -42,6 +42,7 @@ view: radio_login {
 
   dimension: accountfullname {
     label: "Full Name"
+    hidden: yes
     type: string
     sql: ${TABLE}."x.accountfullname." ;;
   }

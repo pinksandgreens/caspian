@@ -65,7 +65,7 @@ view: social_facebook_advanced_posts {
         WHEN 'TFM' THEN 'TFM Radio'
         WHEN 'The Debrief' THEN 'The Debrief'
         WHEN '96.9 Viking FM' THEN 'Viking FM'
-        WHEN 'TheTodaysGolfer' THEN 'Todays Golfer'
+        WHEN 'Today''s Golfer' THEN 'Todays Golfer'
         ELSE ${TABLE}.from_name
       END
        ;;

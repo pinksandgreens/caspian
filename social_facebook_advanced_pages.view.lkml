@@ -37,6 +37,7 @@ view: social_facebook_advanced_pages {
         WHEN 'tfmradio' THEN 'TFM Radio'
         WHEN 'heatworld' THEN 'Heat'
         WHEN 'wearefreeradio' THEN 'Free'
+        WHEN 'TheTodaysGolfer' THEN 'Todays Golfer'
         ELSE ${TABLE}.brand
       END
        ;;

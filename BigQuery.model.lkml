@@ -341,6 +341,17 @@ explore: jr_lifestyle_parent_TP1 {
   }
 }
 
+explore: jr_mcn_tx_source_attribution {
+  label: "BigQuery - MCN - Tx Source Analysis"
+  always_filter: {
+    filters: {
+      field: jr_mcn_tx_source_attribution.date_filter
+      value: "last month"
+    }
+  }
+}
+
+
 explore: ga_sessions_kiss {
   label: "BigQuery - Kiss"
 

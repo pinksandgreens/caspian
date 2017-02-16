@@ -237,6 +237,12 @@ explore: google_analytics_demographics30days {
   }
 }
 
+explore: google_analytics_trafficreport {
+  label: "Google Analytics - Traffic Report"
+  sql_table_name: publications.google_analytics_trafficreport ;;
+  persist_for: "20 hour"
+}
+
 
 # - join: bigquery_google_analytics_hits
 #   foreign_key: bigquery_google_analytics.fullvisitorid

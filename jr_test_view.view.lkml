@@ -1,15 +1,14 @@
-- view: jr_test_view
-  derived_table: 
-    sql: |
-      SELECT
+view: jr_test_view {
+  derived_table: {
+    sql: SELECT
         hits.page.pagePath AS Key,
-        
+
       FROM
-        
+
         IF({% condition jr_lifestyle_parent_TP1.brand_filter %} 'grazia' {% endcondition %},
         (SELECT
           hits.page.pagePath
-        FROM 
+        FROM
           {% table_date_range jr_lifestyle_parent_TP1.TP1 114668488.ga_sessions_ %},{% table_date_range jr_lifestyle_parent_TP1.TP1 114668488.ga_sessions_intraday_ %}
         WHERE {% condition jr_lifestyle_parent_TP1.brand_filter %} RegEXP_EXTRACT(hits.page.pagePath, r'^\/(.+?)\/.+') {% endcondition %}
         AND hits.type = 'PAGE'
@@ -20,6 +19,6 @@
         hits.page.pagePath = 'FAIL'
         )
         LIMIT 1
-        
-      
-      
+       ;;
+  }
+}

@@ -1781,7 +1781,7 @@ view: ga_sessions_planetradio {
           WHEN ${TABLE}.hits.page.pagePath LIKE '%radioplayer.metro2radio%' THEN 'Metro'
           WHEN ${TABLE}.hits.page.pagePath LIKE '%radioplayer.tfm2%' THEN 'TFM'
           WHEN ${TABLE}.hits.page.pagePath LIKE '%radioplayer.forth3%' THEN 'Forth'
-          WHEN ${TABLE}.hits.page.pagePath LIKE '%radioplayer.tay3%' THEN 'Tay 3'
+          WHEN ${TABLE}.hits.page.pagePath LIKE '%radioplayer.tay3%' THEN 'Tay FM'
           WHEN ${TABLE}.hits.page.pagePath LIKE '%radioplayer.key3radio%' THEN 'Key'
           WHEN ${TABLE}.hits.page.pagePath LIKE '%radioplayer.viking3%' THEN 'Viking'
           WHEN ${TABLE}.hits.page.pagePath LIKE '%radioplayer.radioaire3%' THEN 'Aire'

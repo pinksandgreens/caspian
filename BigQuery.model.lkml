@@ -359,6 +359,10 @@ explore: ga_sessions_kiss {
     filters: {
       field: date_filter
       value: "30 days"
+      }
+    filters: {
+      field: date_filter_premigration
+      value: "30 days"
     }
   }
 }

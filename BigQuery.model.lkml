@@ -384,3 +384,20 @@ explore: ga_sessions_car {
     }
   }
 }
+
+
+explore: jr_mcn_syb_tx_source_attribution_part3 {
+  label: "BigQuery - MCN SYB Tx Source Analysis - Part3"
+
+  always_filter: {
+    filters: {
+      field: jr_mcn_syb_tx_source_attribution_part3.date_filter
+      value: "last month"
+    }
+
+    filters: {
+      field: jr_mcn_syb_tx_source_attribution_part3.date_filter2
+      value: "last 2 months"
+    }
+  }
+}

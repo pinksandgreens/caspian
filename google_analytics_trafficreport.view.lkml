@@ -53,17 +53,29 @@ view: google_analytics_trafficreport {
 
   measure: uk_pageviews {
     type: sum
-    sql: ${TABLE}.uk_pageviews ;;
+    sql: CASE
+        WHEN ${TABLE}.uk_pageviews = 'NA' THEN 0
+        ELSE ${TABLE}.uk_pageviews::INT
+        END
+        ;;
   }
 
   measure: uk_sessions {
     type: sum
-    sql: ${TABLE}.uk_sessions ;;
+    sql: CASE
+        WHEN ${TABLE}.uk_sessions = 'NA' THEN 0
+        ELSE ${TABLE}.uk_sessions::INT
+        END
+        ;;
   }
 
   measure: uk_users {
     type: sum
-    sql: ${TABLE}.uk_users ;;
+    sql: CASE
+        WHEN ${TABLE}.uk_users = 'NA' THEN 0
+        ELSE ${TABLE}.uk_users::INT
+        END
+        ;;
   }
 
   measure: users {

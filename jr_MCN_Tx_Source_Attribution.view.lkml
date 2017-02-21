@@ -17,7 +17,7 @@ view: jr_mcn_tx_source_attribution {
         WHEN CONCAT(trafficSource.source,'|',trafficSource.medium) = 'couponfollow.com|referral' THEN 'couponfollow.com|referral'
         WHEN CONCAT(trafficSource.source,'|',trafficSource.medium) = 'motorcyclenews|Email' THEN 'MCN Newsletter'
       END AS Referral_Source,
-      COUNT(hits.page.pagePath) AS Total_Tx
+      COUNT(hits.type) AS Total_Tx
 
     FROM
     {% table_date_range jr_mcn_tx_source_attribution.date_filter 111489521.ga_sessions_ %},{% table_date_range jr_mcn_tx_source_attribution.date_filter 111489521.ga_sessions_intraday_ %}
@@ -39,17 +39,17 @@ view: jr_mcn_tx_source_attribution {
   }
 
   dimension: Referral_Source {
-  label: "Referral Source"
-  sql: ${TABLE}.Referral_Source ;;
-  description: "SYB Transaction Referral Source"
+    label: "Referral Source"
+    sql: ${TABLE}.Referral_Source ;;
+    description: "SYB Transaction Referral Source"
   }
 
-  dimension: Total_Tx {
-    label: "Total Tx"
-    type:  number
-    sql: ${TABLE}.Total_Tx ;;
-    description: "Total Number of SYB Transactions"
-  }
+#   measure: Total_Tx {
+#     label: "Total Tx"
+#     type:  count
+#     sql: ${TABLE}.Total_Tx ;;
+#     description: "Total Number of SYB Transactions"
+#   }
 
   # dimension: SessionId {
   #   label: "MCN Visit Number"

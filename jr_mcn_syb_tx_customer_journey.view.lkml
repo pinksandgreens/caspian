@@ -1,20 +1,20 @@
-view: jr_mcn_syb_tx_source_attribution_part3 {
-  label: "MCN"
+view: jr_mcn_syb_tx_customer_journey {
+  label: "MCN SYB Customer Journey"
 
   derived_table: {
     sql:
     SELECT
       Referral_Source,
       ClientID,
-      xClientId,
+      xClientID,
       Session_Id,
       Session_Number,
       pagePath,
       Sequenced_Hit_Number,
-      Hit_Time_into_Session,
       Hit_Type,
-      Session_Date,
-      SessionStartDateTime
+      SessionStartDateTime,
+      actual_date,
+      Hit_Time
     FROM
       ${jr_mcn_syb_tx_source_attribution_part1.SQL_TABLE_NAME},
       ${jr_mcn_syb_tx_source_attribution_part2.SQL_TABLE_NAME}
@@ -47,8 +47,8 @@ view: jr_mcn_syb_tx_source_attribution_part3 {
     }
 
     dimension: xClientId {
-      label: "Client Id by Domain"
-      sql: ${TABLE}.xClientId ;;
+      label: "Domain"
+      sql: ${TABLE}.xClientID ;;
 #         description: "BFS Domain: Client Id"
     }
 
@@ -70,24 +70,13 @@ view: jr_mcn_syb_tx_source_attribution_part3 {
 #         description: "BFS Domain: SYB Transaction Referral Source"
     }
 
-    dimension: Session_Date {
-      label: "Date of Session"
-      sql: ${TABLE}.Session_Date ;;
-#         description: "BFS Domain: SYB Transaction Referral Source"
-    }
-
     dimension: Sequenced_Hit_Number {
       label: "Session Hit Number Sequence"
       type: number
       sql: ${TABLE}.Sequenced_Hit_Number ;;
 #         description: "BFS Domain: SYB Transaction Referral Source"
     }
-    dimension: Hit_Time_into_Session {
-      label: "Hit Time into Session"
-      type: number
-      sql: ${TABLE}.Hit_Time_into_Session ;;
-#         description: "BFS Domain: SYB Transaction Referral Source"
-    }
+
     dimension: Hit_Type {
       label: "Hit Type"
       sql: ${TABLE}.Hit_Type ;;
@@ -98,6 +87,18 @@ view: jr_mcn_syb_tx_source_attribution_part3 {
       label: "Session Start Date/Time"
       sql: ${TABLE}.SessionStartDateTime ;;
 #         description: "BFS Domain: SYB Transaction Referral Source"
+    }
+
+    dimension: Actual_Date {
+    label: "Date"
+    sql: ${TABLE}.actual_date ;;
+#         description: "BFS Domain: SYB Transaction Referral Source"
+  }
+
+    dimension: Hit_Time {
+    label: "Hit Time"
+    sql: ${TABLE}.Hit_Time ;;
+  #         description: "BFS Domain: SYB Transaction Referral Source"
     }
 
   }

@@ -341,17 +341,6 @@ explore: jr_lifestyle_parent_TP1 {
   }
 }
 
-explore: jr_mcn_tx_source_attribution {
-  label: "BigQuery - MCN - Tx Source Analysis"
-  always_filter: {
-    filters: {
-      field: jr_mcn_tx_source_attribution.date_filter
-      value: "last month"
-    }
-  }
-}
-
-
 explore: ga_sessions_kiss {
   label: "BigQuery - Kiss"
 
@@ -386,18 +375,27 @@ explore: ga_sessions_car {
 }
 
 
-explore: jr_mcn_syb_tx_source_attribution_part3 {
-  label: "BigQuery - MCN SYB Tx Source Analysis - Part3"
+explore: jr_mcn_syb_tx_customer_journey {
+  label: "BigQuery - MCN SYB Customer Journey"
 
+}
+
+explore: jr_mcn_syb_tx_customer_journey_source_rollup {
+  label: "BigQuery - MCN SYB Source Rollup"
+
+}
+
+explore: jr_mcn_syb_tx_source_attribution_part1 {
+  label: "BigQuery - MCN SYB TEST"
+
+}
+
+explore: jr_mcn_tx_source_attribution {
+  label: "BigQuery - MCN - Tx Source Analysis"
   always_filter: {
     filters: {
-      field: jr_mcn_syb_tx_source_attribution_part3.date_filter
+      field: jr_mcn_tx_source_attribution.date_filter
       value: "last month"
-    }
-
-    filters: {
-      field: jr_mcn_syb_tx_source_attribution_part3.date_filter2
-      value: "last 2 months"
     }
   }
 }

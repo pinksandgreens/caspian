@@ -244,6 +244,15 @@ explore: google_analytics_trafficreport {
 }
 
 
+explore: google_analytics_marconi {
+  label: "Google Analytics - Marconi Tracker"
+  sql_table_name: publications.google_analytics_marconi ;;
+  persist_for: "20 hour"
+}
+
+
+
+
 # - join: bigquery_google_analytics_hits
 #   foreign_key: bigquery_google_analytics.fullvisitorid
 

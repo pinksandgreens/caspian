@@ -1,6 +1,6 @@
 view: ga_sessions_kiss {
-  sql_table_name: ( SELECT * FROM {% table_date_range date_filter 5914452.ga_sessions_ %},
-      {% table_date_range date_filter 5914452.ga_sessions_intraday_ %})
+  sql_table_name: ( SELECT * FROM {% table_date_range date_filter_premigration 5914452.ga_sessions_ %},
+      {% table_date_range date_filter 127467161.ga_sessions_ %})
      ;;
      # Works: SELECT * FROM TABLE_DATE_RANGE([uplifted-light-89310:21699534.ga_sessions_intraday_],DATE_ADD(CURRENT_TIMESTAMP(), -0, 'YEAR'),CURRENT_TIMESTAMP()))
 
@@ -46,7 +46,12 @@ view: ga_sessions_kiss {
              # {% table_date_range date_filter 773992.ga_sessions_ %},
              # {% table_date_range date_filter 93483324.ga_sessions_ %})
              # {% table_date_range date_filter 25170071.ga_sessions_ %}
+
     filter: date_filter {
+      type: date
+    }
+
+    filter: date_filter_premigration {
       type: date
     }
 
@@ -1565,6 +1570,7 @@ view: ga_sessions_kiss {
           WHEN ${TABLE}.hits.page.hostname LIKE '%www.youtube.com%' THEN 'UKN'
           WHEN ${TABLE}.hits.page.hostname LIKE '%wwwbmstaging.cdsglobal.co.uk%' THEN 'UKN'
           WHEN ${TABLE}.hits.page.hostname LIKE '%wwwbmtesting.cdsglobal.co.uk%' THEN 'UKN'
+          WHEN ${TABLE}.hits.page.hostname LIKE '%0.0.0.0%' THEN 'UKN'
           ELSE 'UKN'
         END
          ;;
@@ -1636,6 +1642,7 @@ view: ga_sessions_kiss {
       type: sum_distinct
       sql_distinct_key: ${uu_key} ;;
       sql: ${TABLE}.totals.pageviews ;;
+      drill_fields: [detail*]
     }
 
     measure: pages_p_session {
@@ -1995,21 +2002,13 @@ view: ga_sessions_kiss {
     }
 
     # ----- Sets of fields for drilling ------
-    set: detail {
-      fields: [
-        hits__app_info__landing_screen_name,
-        hits__app_info__exit_screen_name,
-        hits__app_info__app_name,
-        hits__app_info__name,
-        hits__app_info__screen_name,
-        hits__custom_variables__custom_var_name,
-        hits__source_property_info__source_property_display_name,
-        hits__item__product_name,
-        hits__product__product_list_name,
-        hits__product__v2_product_name,
-        hits__page__hostname,
-        hits__promotion__promo_name,
-        device__mobile_device_marketing_name
-      ]
-    }
+  set: detail {
+    fields: [
+      hits__page__page_title,
+      hits__page__page_path,
+      totals_pageviews,
+      totals__new_visits,
+      Unique_Users
+    ]
+  }
   }

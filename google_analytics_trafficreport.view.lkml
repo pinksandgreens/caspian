@@ -88,8 +88,29 @@ view: google_analytics_trafficreport {
     sql: ${TABLE}.yearmonth ;;
   }
 
-  measure: count {
-    type: count
-    drill_fields: [brand_name]
+
+  measure: uk_pageviews1 {
+    type: number
+    hidden: yes
+    sql: ${uk_pageviews}::float ;;
   }
+
+  measure: uk_sessions1 {
+    type: number
+    hidden: yes
+    sql: ${uk_sessions}::float ;;
+  }
+
+  measure: uk_pages_per_session {
+    type: number
+    value_format: "0.00"
+    sql: ${uk_pageviews1}/${uk_sessions1} ;;
+  }
+
+  measure: pages_per_session {
+    type: number
+    value_format: "0.00"
+    sql: ${pageviews}/${sessions} ;;
+  }
+
 }

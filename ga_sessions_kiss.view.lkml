@@ -1570,6 +1570,7 @@ view: ga_sessions_kiss {
           WHEN ${TABLE}.hits.page.hostname LIKE '%www.youtube.com%' THEN 'UKN'
           WHEN ${TABLE}.hits.page.hostname LIKE '%wwwbmstaging.cdsglobal.co.uk%' THEN 'UKN'
           WHEN ${TABLE}.hits.page.hostname LIKE '%wwwbmtesting.cdsglobal.co.uk%' THEN 'UKN'
+          WHEN ${TABLE}.hits.page.hostname LIKE '%0.0.0.0%' THEN 'UKN'
           ELSE 'UKN'
         END
          ;;

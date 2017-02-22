@@ -1,5 +1,5 @@
 view: audiometrix_realtime_devices {
-  sql_table_name: publications.audiometrix_view_devices_unique ;;
+  sql_table_name: publications.audiometrix_realtime_devices ;;
 
   measure: active_sessions {
     type: sum

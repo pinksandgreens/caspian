@@ -22,7 +22,7 @@ view: bauer_list {
     label: "Age"
     type: number
     sql: CASE
-        WHEN ((${age_as_number} < 99) AND (${age_as_number} > 17)) THEN ${TABLE}.age
+        WHEN ((${age_as_number} < 99) AND (${age_as_number} > 11)) THEN ${TABLE}.age
         WHEN ${age_as_number} IS NULL THEN 'Unknown'
       END
        ;;

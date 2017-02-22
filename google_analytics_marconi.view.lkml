@@ -24,7 +24,7 @@ view: google_analytics_marconi {
   dimension_group: date {
     label: "Recorded"
     type: time
-    timeframes: [date, week, month, month_num, month_name, year, quarter]
+    timeframes: [date, week, week_of_year, month, month_num, month_name, year, quarter]
     convert_tz: no
     sql: TO_DATE(${TABLE}.date,'YYYY-MM-DD') ;;
   }

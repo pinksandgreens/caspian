@@ -61,9 +61,12 @@ view: dfp_devices {
     sql: ${TABLE}."dimension.creative_size" ;;
   }
 
-  dimension: dimension_date {
-    type: string
-    sql: ${TABLE}."dimension.date" ;;
+  dimension_group: date {
+    type: time
+    label: ""
+    timeframes: []
+    convert_tz: no
+    sql: TO_DATE(${TABLE}."dimension.date",'YYYY-MM-DD') ;;
   }
 
   dimension: dimension_device_category_id {

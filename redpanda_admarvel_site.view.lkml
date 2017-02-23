@@ -11,9 +11,11 @@ view: admarvel_site {
     sql: ${TABLE}.ctr ;;
   }
 
-  dimension: date {
-    type: string
-    sql: ${TABLE}.date ;;
+  dimension_group: date {
+    type: time
+    timeframes: []
+    convert_tz: no
+    sql: TO_DATE(${TABLE}.date,'MM-DD-YYYY') ;;
   }
 
   dimension: ecpm {

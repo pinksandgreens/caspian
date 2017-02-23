@@ -61,9 +61,12 @@ view: adsense {
     sql: ${TABLE}.country_name ;;
   }
 
-  dimension: date {
-    type: string
-    sql: ${TABLE}.date ;;
+  dimension_group: date {
+    type: time
+    label: ""
+    timeframes: []
+    convert_tz: no
+    sql: TO_DATE(${TABLE}.date,'YYYY-MM-DD') ;;
   }
 
   dimension: earnings_gbp {

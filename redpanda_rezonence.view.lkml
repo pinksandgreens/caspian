@@ -21,10 +21,14 @@ view: rezonence {
     sql: ${TABLE}.creative_id ;;
   }
 
-  dimension: date {
-    type: string
-    sql: ${TABLE}.date ;;
+  dimension_group: date {
+    type: time
+    label: ""
+    timeframes: []
+    convert_tz: no
+    sql: TO_DATE(${TABLE}.date,'DD/MM/YYYY') ;;
   }
+
 
   dimension: engagements {
     type: string

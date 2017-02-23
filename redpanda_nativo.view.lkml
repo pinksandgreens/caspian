@@ -96,9 +96,12 @@ view: nativo {
     sql: ${TABLE}.ctr ;;
   }
 
-  dimension: date {
-    type: string
-    sql: ${TABLE}.date ;;
+  dimension_group: date {
+    type: time
+    label: ""
+    timeframes: []
+    convert_tz: no
+    sql: TO_DATE(SPLIT_PART(${TABLE}.date, 'T', 1),'YYYY-MM-DD') ;;
   }
 
   dimension: device_id {

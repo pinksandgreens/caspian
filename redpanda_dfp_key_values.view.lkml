@@ -56,9 +56,12 @@ view: dfp_key_values {
     sql: ${TABLE}."dimension.custom_targeting_value_id" ;;
   }
 
-  dimension: dimension_date {
-    type: string
-    sql: ${TABLE}."dimension.date" ;;
+  dimension_group: date {
+    type: time
+    label: ""
+    timeframes: []
+    convert_tz: no
+    sql: TO_DATE(${TABLE}."dimension.date",'YYYY-MM-DD') ;;
   }
 
   dimension: dimension_line_item_id {

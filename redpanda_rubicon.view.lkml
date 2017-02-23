@@ -31,10 +31,14 @@ view: rubicon {
     sql: ${TABLE}.country ;;
   }
 
-  dimension: date {
-    type: string
-    sql: ${TABLE}.date ;;
+  dimension_group: date {
+    type: time
+    label: ""
+    timeframes: []
+    convert_tz: no
+    sql: TO_DATE(${TABLE}.date,'YYYY-MM-DD') ;;
   }
+
 
   dimension: deal {
     type: string

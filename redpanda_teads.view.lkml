@@ -21,9 +21,12 @@ view: teads {
     sql: ${TABLE}."click-rate" ;;
   }
 
-  dimension: day {
-    type: string
-    sql: ${TABLE}.day ;;
+  dimension_group: date {
+    type: time
+    label: ""
+    timeframes: []
+    convert_tz: no
+    sql: TO_DATE(${TABLE}.day,'YYYY/MM/DD') ;;
   }
 
   dimension: impression {

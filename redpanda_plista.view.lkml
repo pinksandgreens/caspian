@@ -21,9 +21,12 @@ view: plista {
     sql: ${TABLE}."data.advertisements.ctr" ;;
   }
 
-  dimension: data_advertisements_date {
-    type: string
-    sql: ${TABLE}."data.advertisements.date" ;;
+  dimension_group: date {
+    type: time
+    label: ""
+    timeframes: []
+    convert_tz: no
+    sql: TO_DATE(${TABLE}."data.advertisements.date",'YYYY-MM-DD') ;;
   }
 
   dimension: data_advertisements_ecpm {

@@ -3,7 +3,15 @@ view: media_net {
 
   dimension: adtagid {
     type: string
-    sql: ${TABLE}.adtagid ;;
+    sql: SPLIT_PART(${TABLE}.adtagid, '|', 1) ;;
+  }
+
+  dimension_group: date {
+    type: time
+    label: ""
+    timeframes: []
+    convert_tz: no
+    sql: TO_DATE(SPLIT_PART(${TABLE}.adtagid, '|', 2),'YYYY-MM-DD') ;;
   }
 
   dimension: adunitname {

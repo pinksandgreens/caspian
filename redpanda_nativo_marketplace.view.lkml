@@ -202,13 +202,13 @@ view: nativo_marketplace {
   # ----- Sets of fields for drilling ------
   set: detail {
     fields: [
+      advertiser_name,
       campaign_name,
       ad_name,
+      publisher_name,
       publication_name,
       placement_name,
-      advertiser_name,
-      device_name,
-      publisher_name
+      device_name
     ]
   }
 }

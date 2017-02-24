@@ -282,15 +282,15 @@ view: nativo {
   # ----- Sets of fields for drilling ------
   set: detail {
     fields: [
-      device_name,
-      campaign_name,
-      placement_name,
-      publication_name,
-      ad_name,
-      publisher_name,
       advertiser_name,
+      campaign_name,
+      budget_name,
+      ad_name,
       category_name,
-      budget_name
+      publisher_name,
+      publication_name,
+      placement_name,
+      device_name
     ]
   }
 }

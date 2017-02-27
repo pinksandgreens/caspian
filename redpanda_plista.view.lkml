@@ -34,9 +34,9 @@ view: plista {
     sql: ${TABLE}."data.advertisements.ecpm" ;;
   }
 
-  dimension: data_advertisements_revenue {
-    type: string
-    sql: ${TABLE}."data.advertisements.revenue" ;;
+  measure: data_advertisements_revenue {
+    type: sum
+    sql: ${TABLE}."data.advertisements.revenue"::float ;;
   }
 
   dimension: data_advertisements_vecpm {

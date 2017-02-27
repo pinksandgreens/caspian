@@ -1,14 +1,18 @@
 view: nativo {
   sql_table_name: ad_platform.nativo ;;
 
-  dimension: actual_end_date {
-    type: string
-    sql: ${TABLE}."actual.end.date" ;;
+  dimension_group: actual_end_date {
+      type: time
+      timeframes: []
+      convert_tz: no
+    sql: TO_DATE(SPLIT_PART(${TABLE}."actual.end.date", 'T', 1),'YYYY-MM-DD');;
   }
 
-  dimension: actual_start_date {
-    type: string
-    sql: ${TABLE}."actual.start.date" ;;
+  dimension_group: actual_start_date {
+    type: time
+    timeframes: []
+    convert_tz: no
+    sql: TO_DATE(SPLIT_PART(${TABLE}."actual.start.date", 'T', 1),'YYYY-MM-DD');;
   }
 
   dimension: ad_id {
@@ -31,9 +35,10 @@ view: nativo {
     sql: ${TABLE}."advertiser.name" ;;
   }
 
-  dimension: avg_time_on_content {
-    type: string
-    sql: ${TABLE}."avg.time.on.content" ;;
+  measure: avg_time_on_content {
+    type: average
+    value_format: "0.00\%"
+    sql: ${TABLE}."avg.time.on.content"::float*100 ;;
   }
 
   dimension: budget_id {
@@ -66,8 +71,8 @@ view: nativo {
     sql: ${TABLE}."category.name" ;;
   }
 
-  dimension: clicks {
-    type: string
+  measure: clicks {
+    type: sum
     sql: ${TABLE}.clicks ;;
   }
 
@@ -76,24 +81,26 @@ view: nativo {
     sql: ${TABLE}.cpm ;;
   }
 
-  dimension: cpm_impressions {
-    type: string
+  measure: cpm_impressions {
+    type: sum
     sql: ${TABLE}."cpm.impressions" ;;
   }
 
-  dimension: cta {
-    type: string
+  measure: cta {
+    type: sum
     sql: ${TABLE}.cta ;;
   }
 
   dimension: cta_rate {
     type: string
-    sql: ${TABLE}."cta.rate" ;;
+    value_format: "0.00\%"
+    sql: ${TABLE}."cta.rate"::float*100 ;;
   }
 
-  dimension: ctr {
-    type: string
-    sql: ${TABLE}.ctr ;;
+  measure: ctr {
+    type: average
+    value_format: "0.00\%"
+    sql: ${TABLE}.ctr::float*100 ;;
   }
 
   dimension_group: date {
@@ -114,24 +121,26 @@ view: nativo {
     sql: ${TABLE}."device.name" ;;
   }
 
-  dimension: direct_views {
-    type: string
+  measure: direct_views {
+    type: sum
     sql: ${TABLE}."direct.views" ;;
   }
 
-  dimension: earned_views {
-    type: string
+  measure: earned_views {
+    type: sum
     sql: ${TABLE}."earned.views" ;;
   }
 
-  dimension: engaged_ctr {
-    type: string
-    sql: ${TABLE}."engaged.ctr" ;;
+  measure: engaged_ctr {
+    type: average
+    value_format: "0.00\%"
+    sql: ${TABLE}."engaged.ctr"::float*100 ;;
   }
 
-  dimension: engagement_rate {
-    type: string
-    sql: ${TABLE}."engagement.rate" ;;
+  measure: engagement_rate {
+    type: average
+    value_format: "0.00\%"
+    sql: ${TABLE}."engagement.rate"::float*100 ;;
   }
 
   dimension: engagements {
@@ -139,14 +148,19 @@ view: nativo {
     sql: ${TABLE}.engagements ;;
   }
 
-  dimension: flight_end_date {
-    type: string
-    sql: ${TABLE}."flight.end.date" ;;
+  dimension_group: flight_end_date {
+      type: time
+      timeframes: []
+      convert_tz: no
+    sql: TO_DATE(SPLIT_PART(${TABLE}."flight.end.date", 'T', 1),'YYYY-MM-DD');;
+
   }
 
-  dimension: flight_start_date {
-    type: string
-    sql: ${TABLE}."flight.start.date" ;;
+  dimension_group: flight_start_date {
+    type: time
+    timeframes: []
+    convert_tz: no
+    sql: TO_DATE(SPLIT_PART(${TABLE}."flight.start.date", 'T', 1),'YYYY-MM-DD');;
   }
 
   dimension: gross_budget_spent {
@@ -154,19 +168,20 @@ view: nativo {
     sql: ${TABLE}."gross.budget.spent" ;;
   }
 
-  dimension: impressions {
-    type: string
+  measure: impressions {
+    type: sum
     sql: ${TABLE}.impressions ;;
   }
 
-  dimension: page_views {
-    type: string
+  measure: page_views {
+    type: sum
     sql: ${TABLE}."page.views" ;;
   }
 
-  dimension: page_views_rate {
-    type: string
-    sql: ${TABLE}."page.views.rate" ;;
+  measure: page_views_rate {
+    type: average
+    value_format: "0.00\%"
+    sql: ${TABLE}."page.views.rate"::float*100 ;;
   }
 
   dimension: placement_id {
@@ -201,77 +216,82 @@ view: nativo {
 
   dimension: rownum {
     type: string
+    hidden: yes
     sql: ${TABLE}.rownum ;;
   }
 
-  dimension: shares {
-    type: string
+  measure: shares {
+    type: sum
     sql: ${TABLE}.shares ;;
   }
 
-  dimension: slide_views {
-    type: string
+  measure: slide_views {
+    type: sum
     sql: ${TABLE}."slide.views" ;;
   }
 
-  dimension: time_on_content {
-    type: string
+  measure: time_on_content {
+    type: sum
     sql: ${TABLE}."time.on.content" ;;
   }
 
-  dimension: vcpm_impressions {
-    type: string
+  measure: vcpm_impressions {
+    type: sum
     sql: ${TABLE}."vcpm.impressions" ;;
   }
 
-  dimension: video_completion_rate {
-    type: string
-    sql: ${TABLE}."video.completion.rate" ;;
+  measure: video_completion_rate {
+    type: average
+    value_format: "0.00\%"
+    sql: ${TABLE}."video.completion.rate"::float*100 ;;
   }
 
-  dimension: video_views {
-    type: string
+  measure: video_views {
+    type: sum
     sql: ${TABLE}."video.views" ;;
   }
 
-  dimension: video_views_to_100_ {
-    type: string
+  measure: video_views_to_100_ {
+    type: sum
     sql: ${TABLE}."video.views.to.100." ;;
   }
 
-  dimension: video_views_to_25_ {
-    type: string
+  measure: video_views_to_25_ {
+    type: sum
     sql: ${TABLE}."video.views.to.25." ;;
   }
 
-  dimension: video_views_to_50_ {
-    type: string
+  measure: video_views_to_50_ {
+    type: sum
     sql: ${TABLE}."video.views.to.50." ;;
   }
 
-  dimension: video_views_to_75_ {
-    type: string
+  measure: video_views_to_75_ {
+    type: sum
     sql: ${TABLE}."video.views.to.75." ;;
   }
 
-  dimension: views_to_15_seconds {
-    type: string
+  measure: views_to_15_seconds {
+    type: sum
     sql: ${TABLE}."views.to.15.seconds" ;;
   }
 
-  dimension: views_to_30_seconds {
-    type: string
+  measure: views_to_30_seconds {
+    type: sum
     sql: ${TABLE}."views.to.30.seconds" ;;
   }
 
-  dimension: vtr {
-    type: string
-    sql: ${TABLE}.vtr ;;
+  measure: vtr {
+    type: average
+    value_format: "0.00\%"
+    sql: ${TABLE}.vtr::float*100 ;;
   }
 
-  dimension: x__gross_budget_spent {
-    type: string
-    sql: ${TABLE}."x..gross.budget.spent" ;;
+  measure: x__gross_budget_spent {
+    type: average
+    value_format: "0.00\%"
+    label: "% Gross Budget Spent"
+    sql: ${TABLE}."x..gross.budget.spent"::float*100 ;;
   }
 
   measure: count {

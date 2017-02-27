@@ -6,18 +6,19 @@ view: rubicon {
     sql: ${TABLE}.advertiser ;;
   }
 
-  dimension: auction_revenue {
-    type: string
-    sql: ${TABLE}.auction_revenue ;;
+  measure: auction_revenue {
+    type: sum
+    value_format: "0.00"
+    sql: ${TABLE}.auction_revenue::float ;;
   }
 
-  dimension: auctions {
-    type: string
+  measure: auctions {
+    type: sum
     sql: ${TABLE}.auctions ;;
   }
 
-  dimension: auctions_won {
-    type: string
+  measure: auctions_won {
+    type: sum
     sql: ${TABLE}.auctions_won ;;
   }
 
@@ -45,8 +46,8 @@ view: rubicon {
     sql: ${TABLE}.deal ;;
   }
 
-  dimension: paid_impression {
-    type: string
+  measure: paid_impression {
+    type: sum
     sql: ${TABLE}.paid_impression ;;
   }
 
@@ -55,9 +56,10 @@ view: rubicon {
     sql: ${TABLE}.partner ;;
   }
 
-  dimension: revenue {
-    type: string
-    sql: ${TABLE}.revenue ;;
+  measure: revenue {
+    type: sum
+    value_format: "0.00"
+    sql: ${TABLE}.revenue::float ;;
   }
 
   dimension: revenue_source {
@@ -67,6 +69,7 @@ view: rubicon {
 
   dimension: rownum {
     type: string
+    hidden: yes
     sql: ${TABLE}.rownum ;;
   }
 

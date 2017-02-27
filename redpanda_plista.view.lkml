@@ -36,11 +36,12 @@ view: plista {
 
   measure: data_advertisements_revenue {
     type: sum
+    value_format: "0.00"
     sql: ${TABLE}."data.advertisements.revenue"::float ;;
   }
 
-  dimension: data_advertisements_vecpm {
-    type: string
+  measure: data_advertisements_vecpm {
+    type: average
     sql: ${TABLE}."data.advertisements.vecpm" ;;
   }
 

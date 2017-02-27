@@ -53,7 +53,7 @@ view: plista {
     type: average
     label: "veCPM"
     value_format: "0.00"
-    sql: ${TABLE}."data.advertisements.vecpm"::float*100 ;;
+    sql: ${TABLE}."data.advertisements.vecpm"::float ;;
   }
 
   measure: data_advertisements_visibility {

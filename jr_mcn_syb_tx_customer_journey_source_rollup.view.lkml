@@ -55,8 +55,8 @@ view: jr_mcn_syb_tx_customer_journey_source_rollup {
         ELSE 0
       END) AS Referral_Source_Flag
     FROM
-      ${jr_mcn_syb_tx_source_attribution_part1.SQL_TABLE_NAME},
-      ${jr_mcn_syb_tx_source_attribution_part2.SQL_TABLE_NAME}
+      ${jr_mcn_syb_tx_source_attribution_MCNClassifieds_part1.SQL_TABLE_NAME},
+      ${jr_mcn_syb_tx_source_attribution_MCN_part1.SQL_TABLE_NAME}
     GROUP BY  Referral_Source,
               ClientID,
               xClientId,

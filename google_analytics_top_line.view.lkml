@@ -19,6 +19,7 @@ view: google_analytics_top_line {
   }
 
   dimension: brand123 {
+    hidden: yes
     label: "Brand Name and Source"
     type: string
     sql: ${TABLE}.brand ;;

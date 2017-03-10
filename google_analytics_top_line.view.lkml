@@ -209,7 +209,7 @@ view: google_analytics_top_line {
 
   measure: average_session_duration {
     type: number
-    sql: (${session_duration}/${sessions})/60 ;;
+    sql: (NULLIF(${session_duration},0)/NULLIF(${sessions},0))/60 ;;
   }
 
   measure: count {

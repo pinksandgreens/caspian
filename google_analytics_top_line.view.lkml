@@ -8,12 +8,26 @@ view: google_analytics_top_line {
   }
 
   dimension: brand {
+    label: "Data Source"
+    type: string
+    sql: SPLIT_PART(${TABLE}.brand, '|', 1) ;;
+  }
+
+  dimension: brand_name {
+    type: string
+    sql: SPLIT_PART(${TABLE}.brand, '|', 2) ;;
+  }
+
+  dimension: brand123 {
+    label: "Brand Name and Source"
     type: string
     sql: ${TABLE}.brand ;;
   }
 
+
   dimension: brand_code {
     type: string
+    hidden: yes
     sql: CASE
         WHEN ${TABLE}.brand = '2fore1.co.uk' THEN  '2F1'
         WHEN ${TABLE}.brand = 'ClassicCar.co.uk' THEN 'CLC'
@@ -160,10 +174,6 @@ view: google_analytics_top_line {
     sql: ${TABLE}.sessions ;;
   }
 
-  measure: unique_pageviews {
-    type: sum
-    sql: ${TABLE}.uniquepageviews ;;
-  }
 
   measure: unique_users {
     hidden: yes
@@ -199,5 +209,9 @@ view: google_analytics_top_line {
   measure: average_session_duration {
     type: number
     sql: (${session_duration}/${sessions})/60 ;;
+  }
+
+  measure: count {
+    type: count
   }
 }

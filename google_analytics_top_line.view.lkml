@@ -177,8 +177,8 @@ view: google_analytics_top_line {
 
 
   measure: unique_users {
-    hidden: yes
-    label: "Sum of Unique Users"
+    hidden: no
+    label: "Users"
     type: sum
     sql: ${TABLE}.users ;;
   }

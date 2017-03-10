@@ -1,8 +1,8 @@
 view: adx {
   sql_table_name: ad_platform.adx ;;
 
-  dimension: ad_requests {
-    type: string
+  measure: ad_requests {
+    type: sum
     sql: ${TABLE}.ad_requests ;;
   }
 
@@ -26,8 +26,8 @@ view: adx {
     sql: ${TABLE}.buyer_network_name ;;
   }
 
-  dimension: clicks {
-    type: string
+  measure: clicks {
+    type: sum
     sql: ${TABLE}.clicks ;;
   }
 
@@ -54,18 +54,19 @@ view: adx {
     sql: ${TABLE}.dsp_name ;;
   }
 
-  dimension: earnings_gbp {
+  measure: earnings_gbp {
     type: string
-    sql: ${TABLE}."earnings (gbp)" ;;
+    value_format: "0.00"
+    sql: ${TABLE}."earnings (gbp)"::float ;;
   }
 
-  dimension: individual_ad_impressions {
-    type: string
+  measure: individual_ad_impressions {
+    type: sum
     sql: ${TABLE}.individual_ad_impressions ;;
   }
 
-  dimension: matched_ad_requests {
-    type: string
+  measure: matched_ad_requests {
+    type: sum
     sql: ${TABLE}.matched_ad_requests ;;
   }
 
@@ -75,6 +76,7 @@ view: adx {
   }
 
   dimension: rownum {
+    hidden: yes
     type: string
     sql: ${TABLE}.rownum ;;
   }

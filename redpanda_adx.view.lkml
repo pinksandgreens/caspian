@@ -57,7 +57,7 @@ view: adx {
   measure: earnings_gbp {
     label: "Earnings (GBP)"
     type: sum
-    value_format: "0.00"
+    value_format: "\£0.00"
     sql: ${TABLE}."earnings (gbp)"::float ;;
   }
 

@@ -6,10 +6,10 @@ include: "*.view"
 # include all dashboards in this project
 include: "*.dashboard"
 
-label: "BigQuery - Projects"
+label: "x: BigQuery - Projects"
 
 explore: ga_sessions_header_bidding {
-  label: "xi: BigQuery - Header Bidding Platform"
+  label: "BigQuery - Header Bidding Platform"
 
   always_filter: {
     #This will be the default date range.

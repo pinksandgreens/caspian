@@ -178,6 +178,7 @@ view: google_analytics_top_line {
 
   measure: unique_users {
     hidden: no
+    description: "Only unique per day. NOT by month or week."
     label: "Users"
     type: sum
     sql: ${TABLE}.users ;;
@@ -208,6 +209,7 @@ view: google_analytics_top_line {
   }
 
   measure: average_session_duration {
+    description: "Average session duration in minutes"
     type: number
     sql: (NULLIF(${session_duration},0)/NULLIF(${sessions},0))/60 ;;
   }

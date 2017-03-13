@@ -6,7 +6,7 @@ include: "*.view"
 # include all dashboards in this project
 include: "*.dashboard"
 
-label: "BigQuery - Brands"
+label: "x: BigQuery - Brands"
 
 # the view to start exploring from
 explore: ga_sessions {

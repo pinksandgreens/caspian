@@ -9,7 +9,7 @@ include: "*.dashboard"
 label: "BigQuery - Projects"
 
 explore: ga_sessions_header_bidding {
-  label: "BigQuery - Header Bidding Platform"
+  label: "xi: BigQuery - Header Bidding Platform"
 
   always_filter: {
     #This will be the default date range.

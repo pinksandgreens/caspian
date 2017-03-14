@@ -14,18 +14,21 @@ explore: nudge_individuals {
 
   join: nudge_households {
     type: inner
+    view_label: "1. Households"
     relationship: one_to_many
     sql_on: ${nudge_individuals.household_id} = ${nudge_households.household_id} ;;
   }
 
   join: nudge_subscriptions {
     type: inner
+    view_label: "4. Subscriptions"
     relationship: one_to_one
     sql_on: ${nudge_individuals.individual_id} = ${nudge_subscriptions.individual_id} ;;
   }
 
   join: nudge_interactions {
     type: inner
+    view_label: "3. Interactions"
     relationship: one_to_one
     sql_on: ${nudge_individuals.individual_id} = ${nudge_interactions.individual_id} ;;
   }

@@ -28,10 +28,10 @@ view: nudge_interactions {
     sql: ${TABLE}.response_date ;;
   }
 
-  dimension: response_value {
-    type: number
-    sql: ${TABLE}.response_value ;;
-  }
+#   dimension: response_value {
+#     type: number
+#     sql: ${TABLE}.response_value ;;
+#   }
 
   dimension: source {
     type: string
@@ -43,8 +43,17 @@ view: nudge_interactions {
     sql: ${TABLE}.source_key ;;
   }
 
-  measure: count {
+# NOT COMPLETE IS THIS PER TRANS PER SOURCE...
+  measure: Count_Records_Source2 {
+    type: count_distinct
+    label: "Records by Source Count Unique"
+    sql: ${TABLE}.individual_id  ;;
+    drill_fields: []
+}
+
+  measure: Count_Records_Source {
     type: count
+    label: "Records by Source Count"
     drill_fields: []
   }
 }

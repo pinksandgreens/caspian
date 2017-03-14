@@ -18,9 +18,11 @@ include: "*.dashboard"
 
 
 explore: kipper {
+  hidden: yes
   sql_table_name: publications.kipper ;;
 }
 
 explore: kipper_historical {
+  hidden:  yes
   sql_table_name: publications.kipper_historical ;;
 }

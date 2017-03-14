@@ -252,6 +252,7 @@ explore: ga_sessions_greatmagazines {
 
 explore: jr_lifestyle_parent_TP1 {
   label: "BigQuery - Lifestyle - Content Analysis"
+  hidden: yes
 
   join: jr_lifestyle_parent_TP2 {
     type: left_outer
@@ -381,16 +382,17 @@ explore: ga_sessions_car {
 
 explore: jr_mcn_syb_funnel_30_days {
   label: "BigQuery - MCN SYB Funnel Journey"
-
+  hidden: yes
 }
 
 explore: jr_mcn_syb_tx_customer_journey_source_rollup {
   label: "BigQuery - MCN SYB Source Rollup"
-
+  hidden: yes
 }
 
 explore: jr_mcn_tx_source_attribution {
   label: "BigQuery - MCN - Tx Source Analysis"
+  hidden: yes
   always_filter: {
     filters: {
       field: jr_mcn_tx_source_attribution.date_filter

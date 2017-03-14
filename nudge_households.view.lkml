@@ -159,10 +159,10 @@ view: nudge_households {
 #     sql: ${TABLE}.ms_wide_address_urn ;;
 #   }
 
-  dimension: orig_postcode {
-    type: string
-    sql: ${TABLE}.orig_postcode ;;
-  }
+#   dimension: orig_postcode {
+#     type: string
+#     sql: ${TABLE}.orig_postcode ;;
+#   }
 #
 #   dimension: paf_dps {
 #     type: string

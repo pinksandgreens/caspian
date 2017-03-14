@@ -26,6 +26,13 @@ explore: nudge_individuals {
     sql_on: ${nudge_individuals.individual_id} = ${nudge_subscriptions.individual_id} ;;
   }
 
+  join: nudge_subscription_history {
+    type: inner
+    view_label: "5. Subscriptions Hisotry"
+    relationship: one_to_one
+    sql_on: ${nudge_individuals.individual_id} = ${nudge_subscriptions.individual_id} ;;
+  }
+
   join: nudge_interactions {
     type: inner
     view_label: "3. Interactions"
@@ -35,6 +42,7 @@ explore: nudge_individuals {
 
   join: nudge_registrations {
     type: inner
+    view_label: "9. Regsitrations"
     relationship: one_to_one
     sql_on: ${nudge_individuals.individual_id} = ${nudge_registrations.individual_id} ;;
   }
@@ -42,24 +50,28 @@ explore: nudge_individuals {
 # THIS NEEDS SORTING AS IT NEEDS TO BE AT INDIVIDUAL LEVEL NOT SUBS LEVEL
   join: brand_lookup {
     type: inner
+    view_label: "Brand Lookup (TESTING)"
     relationship: one_to_one
     sql_on: ${brand_lookup.bra_code} = ${nudge_subscriptions.magazine_code} ;;
   }
 
   join: nudge_transactions {
     type: inner
+    view_label: "6. Transactions"
     relationship: one_to_many
     sql_on: ${nudge_individuals.individual_id} = ${nudge_transactions.individual_id} ;;
   }
 
   join: nudge_insurance_details {
     type: inner
+    view_label: "7. Insurance Details"
     relationship: many_to_many
     sql_on: ${nudge_interactions.source_key} = ${nudge_insurance_details.transaction_id} ;;
   }
 
   join: nudge_mcn_taxonomy {
     type: left_outer
+    view_label: "8. MCN Taxonomy Lookup"
     relationship: many_to_one
     sql_on: ${nudge_insurance_details.id} = ${nudge_mcn_taxonomy.id} ;;
   }

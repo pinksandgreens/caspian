@@ -3,6 +3,7 @@ view: nudge_individuals {
 
   dimension: age_band {
     type: string
+    label: "Age Band"
     sql: ${TABLE}.age_band ;;
   }
 
@@ -13,16 +14,19 @@ view: nudge_individuals {
 
   dimension: children_at_home {
     type: string
+    label: "Children at Home"
     sql: ${TABLE}.children_at_home ;;
   }
 
   dimension: company {
     type: string
+    label: "Company"
     sql: ${TABLE}.company ;;
   }
 
   dimension: composite_key {
     type: string
+    label: " Composite Key"
     sql: ${TABLE}.composite_key ;;
   }
 
@@ -43,6 +47,7 @@ view: nudge_individuals {
 
   dimension_group: created {
     type: time
+    label: "Created Date"
     timeframes: [date,day_of_week, week, month, month_name, month_num, year,]
     convert_tz: no
     sql: ${TABLE}.created_date ;;
@@ -50,6 +55,7 @@ view: nudge_individuals {
 
   dimension_group: date_of_birth {
     type: time
+    label: " DoB"
     timeframes: [date, week, month]
     convert_tz: no
     sql: ${TABLE}.date_of_birth ;;
@@ -57,6 +63,7 @@ view: nudge_individuals {
 
   dimension: email_address {
     hidden: no
+    label: "Email Address"
     type: string
     sql: ${TABLE}.email_address ;;
   }
@@ -143,6 +150,7 @@ view: nudge_individuals {
 
   dimension_group: first_loaded {
     type: time
+    label: "First Loaded Date"
     timeframes: [date, week, month, year]
     convert_tz: no
     sql: ${TABLE}.first_loaded_date ;;
@@ -150,11 +158,13 @@ view: nudge_individuals {
 
   dimension: first_name {
     type: string
+    label: " First Name"
     sql: ${TABLE}.first_name ;;
   }
 
   dimension: gender {
     type: string
+    label: " Gender"
     sql: ${TABLE}.gender ;;
   }
 #
@@ -170,21 +180,25 @@ view: nudge_individuals {
 
   dimension: household_id {
     type: number
+    label: "Household ID"
     sql: ${TABLE}.household_id ;;
   }
 
   dimension: household_income {
     type: string
+    label: " Household Income"
     sql: ${TABLE}.household_income ;;
   }
 
   dimension: household_size {
     type: string
+    label: "Household Size"
     sql: ${TABLE}.household_size ;;
   }
 
   dimension: individual_id {
     primary_key: yes
+    label: "Individual ID"
     type: number
     sql: ${TABLE}.individual_id ;;
   }
@@ -271,6 +285,7 @@ view: nudge_individuals {
 
   dimension: job_title {
     type: string
+    label: "Job Title"
     sql: ${TABLE}.job_title ;;
   }
 
@@ -283,6 +298,7 @@ view: nudge_individuals {
 
   dimension_group: last_interaction {
     type: time
+    label: "Last Interaction Date"
     timeframes: [date, week, month]
     convert_tz: no
     sql: ${TABLE}.last_interaction_date ;;
@@ -290,6 +306,7 @@ view: nudge_individuals {
 
   dimension_group: last_loaded {
     type: time
+    label: "Last Loaded Date"
     timeframes: [date, week, month]
     convert_tz: no
     sql: ${TABLE}.last_loaded_date ;;
@@ -299,16 +316,19 @@ view: nudge_individuals {
     type: time
     timeframes: [date, week, month]
     convert_tz: no
+    label: "Last Modified Date"
     sql: ${TABLE}.last_modified_date ;;
   }
 
   dimension: last_name {
     type: string
+    label: "Last Name"
     sql: ${TABLE}.last_name ;;
   }
 
   dimension: lifestage {
     type: string
+    label: "People UK Lifestage"
     sql: ${TABLE}.lifestage ;;
   }
 #
@@ -317,10 +337,10 @@ view: nudge_individuals {
 #     sql: ${TABLE}.lvt ;;
 #   }
 
-  dimension: magazine_read {
-    type: string
-    sql: ${TABLE}.magazine_read ;;
-  }
+#   dimension: magazine_read {
+#     type: string
+#     sql: ${TABLE}.magazine_read ;;
+#   }
 #
 #   dimension: media_span {
 #     type: string
@@ -329,6 +349,7 @@ view: nudge_individuals {
 
   dimension: middle_initials {
     type: string
+    label: "Middle Initials"
     sql: ${TABLE}.middle_initials ;;
   }
 #
@@ -349,6 +370,7 @@ view: nudge_individuals {
 
   dimension: ms_imputed_gender {
     type: string
+    label: "CACI Imputed Gender"
     sql: ${TABLE}.ms_imputed_gender ;;
   }
 #
@@ -364,11 +386,13 @@ view: nudge_individuals {
 
   dimension: ms_salacious_email_flag {
     type: string
+    label: "Salacious Email Flag"
     sql: ${TABLE}.ms_salacious_email_flag ;;
   }
 
   dimension: ms_salacious_name_flag {
     type: string
+    label: "Salacious Name Flag"
     sql: ${TABLE}.ms_salacious_name_flag ;;
   }
 #
@@ -379,11 +403,13 @@ view: nudge_individuals {
 
   dimension: occuptation {
     type: string
+    label: "Occupation"
     sql: ${TABLE}.occuptation ;;
   }
 
   dimension: puk {
     type: string
+    label: " People UK Segment"
     sql: ${TABLE}.puk ;;
   }
 #
@@ -394,31 +420,37 @@ view: nudge_individuals {
 
   dimension: see_ems {
     type: string
+    label: " See on EMS"
     sql: ${TABLE}.see_ems ;;
   }
 
   dimension: seen_acs {
     type: string
+    label: "Seen on ACS"
     sql: ${TABLE}.seen_acs ;;
   }
 
   dimension: seen_acs_stock {
     type: string
+    label: "Seen on ACS Stock"
     sql: ${TABLE}.seen_acs_stock ;;
   }
 
   dimension: seen_acs_subs {
     type: string
+    label: "Seen on ACS Subs"
     sql: ${TABLE}.seen_acs_subs ;;
   }
 
   dimension: seen_competitions {
     type: string
+    label: "Seen on Competitions"
     sql: ${TABLE}.seen_competitions ;;
   }
 
   dimension: seen_partner {
     type: string
+    label: "Seen Partner Feed"
     sql: ${TABLE}.seen_partner ;;
   }
 
@@ -429,11 +461,13 @@ view: nudge_individuals {
 
   dimension: seen_responsability {
     type: string
+    label: "Seen on Responsability"
     sql: ${TABLE}.seen_responsability ;;
   }
 
   dimension: seen_webform {
     type: string
+    label: "Seen on Webforms"
     sql: ${TABLE}.seen_webform ;;
   }
 #
@@ -444,6 +478,7 @@ view: nudge_individuals {
 
   dimension: suppression_flag {
     type: string
+    label: "Supression Flag"
     sql: ${TABLE}.suppression_flag ;;
   }
 #
@@ -459,23 +494,24 @@ view: nudge_individuals {
 
   dimension: title {
     type: string
+    label: "Title"
     sql: ${TABLE}.title ;;
   }
 
   dimension: work_phone {
     type: string
+    label: "Work Phone"
     sql: ${TABLE}.work_phone ;;
   }
 
-  dimension: year_of_birth {
-    type: number
-    sql: ${TABLE}.year_of_birth ;;
-  }
+#   dimension: year_of_birth {
+#     type: number
+#     sql: ${TABLE}.year_of_birth ;;
+#   }
 
   measure: Individuals_count {
     type: count_distinct
     sql: ${TABLE}.individual_id ;;
-    drill_fields: [first_name, last_name]
   }
 
   measure: Households_Count {

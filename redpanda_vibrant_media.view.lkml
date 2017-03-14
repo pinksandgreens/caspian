@@ -29,9 +29,11 @@ view: vibrant_media {
     sql: ${TABLE}.pageviews ;;
   }
 
-  dimension: revenue {
-    type: string
-    sql: ${TABLE}.revenue ;;
+  measure: revenue {
+    label: "Revenue (GBP)"
+    type: sum
+    value_format: "\£0.00"
+    sql: ${TABLE}.revenue::float ;;
   }
 
   dimension: rownum {

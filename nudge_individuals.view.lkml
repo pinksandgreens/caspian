@@ -47,12 +47,12 @@ view: nudge_individuals {
   dimension: last_name {
     type: string
     label: "Last Name"
-    sql: ${TABLE}.last_name ;
-    }
+    sql: ${TABLE}.last_name ;;
+  }
 
   dimension: gender {
     type: string
-    label: " Gender"
+    label: "Gender"
     sql: ${TABLE}.gender ;;
   }
 

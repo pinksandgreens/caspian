@@ -1,30 +1,30 @@
 view: nudge_households {
   sql_table_name: publications.nudge_households ;;
 
-  dimension: abc_audit_town {
-    type: string
-    sql: ${TABLE}.abc_audit_town ;;
-  }
-
-  dimension: abc_country_name {
-    type: string
-    sql: ${TABLE}.abc_country_name ;;
-  }
-
-  dimension: abc_international_region {
-    type: string
-    sql: ${TABLE}.abc_international_region ;;
-  }
-
-  dimension: abc_uk_county {
-    type: string
-    sql: ${TABLE}.abc_uk_county ;;
-  }
-
-  dimension: abc_uk_regions {
-    type: string
-    sql: ${TABLE}.abc_uk_regions ;;
-  }
+#   dimension: abc_audit_town {
+#     type: string
+#     sql: ${TABLE}.abc_audit_town ;;
+#   }
+#
+#   dimension: abc_country_name {
+#     type: string
+#     sql: ${TABLE}.abc_country_name ;;
+#   }
+#
+#   dimension: abc_international_region {
+#     type: string
+#     sql: ${TABLE}.abc_international_region ;;
+#   }
+#
+#   dimension: abc_uk_county {
+#     type: string
+#     sql: ${TABLE}.abc_uk_county ;;
+#   }
+#
+#   dimension: abc_uk_regions {
+#     type: string
+#     sql: ${TABLE}.abc_uk_regions ;;
+#   }
 
   dimension: acorn_category {
     type: string
@@ -70,16 +70,16 @@ view: nudge_households {
     type: string
     sql: ${TABLE}.address_line_3 ;;
   }
-
-  dimension: bpa_country_name {
-    type: string
-    sql: ${TABLE}.bpa_country_name ;;
-  }
-
-  dimension: bpa_international_region {
-    type: string
-    sql: ${TABLE}.bpa_international_region ;;
-  }
+#
+#   dimension: bpa_country_name {
+#     type: string
+#     sql: ${TABLE}.bpa_country_name ;;
+#   }
+#
+#   dimension: bpa_international_region {
+#     type: string
+#     sql: ${TABLE}.bpa_international_region ;;
+#   }
 
   dimension: company_name {
     type: string
@@ -110,21 +110,21 @@ view: nudge_households {
     type: number
     sql: ${TABLE}.household_id ;;
   }
-
-  dimension: international_mail_zone {
-    type: string
-    sql: ${TABLE}.international_mail_zone ;;
-  }
-
-  dimension: mailsort_phone_prefix {
-    type: string
-    sql: ${TABLE}.mailsort_phone_prefix ;;
-  }
-
-  dimension: mailsort_residue_code {
-    type: string
-    sql: ${TABLE}.mailsort_residue_code ;;
-  }
+#
+#   dimension: international_mail_zone {
+#     type: string
+#     sql: ${TABLE}.international_mail_zone ;;
+#   }
+#
+#   dimension: mailsort_phone_prefix {
+#     type: string
+#     sql: ${TABLE}.mailsort_phone_prefix ;;
+#   }
+#
+#   dimension: mailsort_residue_code {
+#     type: string
+#     sql: ${TABLE}.mailsort_residue_code ;;
+#   }
 
   dimension: ms_postcode {
     type: string
@@ -161,10 +161,10 @@ view: nudge_households {
     sql: ${TABLE}.postcode ;;
   }
 
-  dimension: royal_mail_region {
-    type: string
-    sql: ${TABLE}.royal_mail_region ;;
-  }
+#   dimension: royal_mail_region {
+#     type: string
+#     sql: ${TABLE}.royal_mail_region ;;
+#   }
 
   dimension: salacious_address_flag {
     type: string
@@ -186,8 +186,8 @@ view: nudge_households {
     sql: ${TABLE}.uk_verified_address ;;
   }
 
-  measure: count {
-    type: count
-    drill_fields: [company_name, abc_country_name, bpa_country_name]
+  measure: Household_Count {
+    type: count_distinct
+    sql: ${TABLE}.household_id ;;
   }
 }

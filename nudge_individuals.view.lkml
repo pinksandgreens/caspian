@@ -43,7 +43,7 @@ view: nudge_individuals {
 
   dimension_group: created {
     type: time
-    timeframes: [date, week, month]
+    timeframes: [date,day_of_week, week, month, month_name, month_num, year,]
     convert_tz: no
     sql: ${TABLE}.created_date ;;
   }

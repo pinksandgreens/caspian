@@ -112,11 +112,11 @@ view: nudge_households {
     type: string
     sql: ${TABLE}.county ;;
   }
-
-  dimension: cr_address_urn {
-    type: string
-    sql: ${TABLE}.cr_address_urn ;;
-  }
+#
+#   dimension: cr_address_urn {
+#     type: string
+#     sql: ${TABLE}.cr_address_urn ;;
+#   }
 
   dimension: household_id {
     type: number
@@ -138,11 +138,11 @@ view: nudge_households {
 #     type: string
 #     sql: ${TABLE}.mailsort_residue_code ;;
 #   }
-
-  dimension: ms_postcode {
-    type: string
-    sql: ${TABLE}.ms_postcode ;;
-  }
+#
+#   dimension: ms_postcode {
+#     type: string
+#     sql: ${TABLE}.ms_postcode ;;
+#   }
 
 #   dimension: ms_postcode_area {
 #     type: string

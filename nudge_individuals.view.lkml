@@ -3,68 +3,68 @@ view: nudge_individuals {
 
   dimension: individual_id {
     primary_key: yes
-    label: "Individual ID"
+    label: "                                                   Individual ID"
     type: number
     sql: ${TABLE}.individual_id ;;
   }
 
   dimension: household_id {
     type: number
-    label: "Household ID"
+    label: "                                                  Household ID"
     sql: ${TABLE}.household_id ;;
   }
 
   dimension: company {
     type: string
-    label: "Company"
+    label: "                                                Company"
     sql: ${TABLE}.company ;;
   }
 
   dimension: job_title {
     type: string
-    label: "Job Title"
+    label: "                                              Job Title"
     sql: ${TABLE}.job_title ;;
   }
 
   dimension: title {
     type: string
-    label: "Title"
+    label: "                                            Title"
     sql: ${TABLE}.title ;;
   }
 
   dimension: first_name {
     type: string
-    label: " First Name"
+    label: "                                          First Name"
     sql: ${TABLE}.first_name ;;
   }
 
   dimension: middle_initials {
     type: string
-    label: "Middle Initials"
+    label: "                                        Middle Initials"
     sql: ${TABLE}.middle_initials ;;
   }
 
   dimension: last_name {
     type: string
-    label: "Last Name"
+    label: "                                       Last Name"
     sql: ${TABLE}.last_name ;;
   }
 
   dimension: gender {
     type: string
-    label: "Gender"
+    label: "                                      Gender"
     sql: ${TABLE}.gender ;;
   }
 
   dimension: age_band {
     type: string
-    label: "Age Band"
+    label: "                                     Age Band"
     sql: ${TABLE}.age_band ;;
   }
 
   dimension_group: date_of_birth {
     type: time
-    label: " DoB"
+    label: "                                    DoB"
     timeframes: [date, week, month]
     convert_tz: no
     sql: ${TABLE}.date_of_birth ;;
@@ -72,38 +72,38 @@ view: nudge_individuals {
 
   dimension: children_at_home {
     type: string
-    label: "Children at Home"
+    label: "                                  Children at Home"
     sql: ${TABLE}.children_at_home ;;
   }
 
   dimension: household_income {
     type: string
-    label: " Household Income"
+    label: "                                 Household Income"
     sql: ${TABLE}.household_income ;;
   }
 
   dimension: household_size {
     type: string
-    label: "Household Size"
+    label: "                                Household Size"
     sql: ${TABLE}.household_size ;;
   }
 
   dimension: composite_key {
     type: string
-    label: "Composite Key"
+    label: "                               Composite Key"
     sql: ${TABLE}.composite_key ;;
   }
 
   dimension: email_address {
     hidden: no
-    label: "Email Address"
+    label: "                              Email Address"
     type: string
     sql: ${TABLE}.email_address ;;
   }
 
   dimension_group: created {
     type: time
-    label: "Created Date"
+    label: "                             Created Date"
     timeframes: [date,day_of_week, week, month, month_name, month_num, year,]
     convert_tz: no
     sql: ${TABLE}.created_date ;;
@@ -111,7 +111,7 @@ view: nudge_individuals {
 
   dimension_group: first_loaded {
     type: time
-    label: "First Loaded Date"
+    label: "                            First Loaded Date"
     timeframes: [date, week, month, year]
     convert_tz: no
     sql: ${TABLE}.first_loaded_date ;;
@@ -119,7 +119,7 @@ view: nudge_individuals {
 
   dimension_group: last_interaction {
     type: time
-    label: "Last Interaction Date"
+    label: "                           Last Interaction Date"
     timeframes: [date, week, month]
     convert_tz: no
     sql: ${TABLE}.last_interaction_date ;;
@@ -127,7 +127,7 @@ view: nudge_individuals {
 
   dimension_group: last_loaded {
     type: time
-    label: "Last Loaded Date"
+    label: "                          Last Loaded Date"
     timeframes: [date, week, month]
     convert_tz: no
     sql: ${TABLE}.last_loaded_date ;;
@@ -137,107 +137,108 @@ view: nudge_individuals {
     type: time
     timeframes: [date, week, month]
     convert_tz: no
-    label: "Last Modified Date"
+    label: "                         Last Modified Date"
     sql: ${TABLE}.last_modified_date ;;
   }
 
 
   dimension: lifestage {
     type: string
-    label: "People UK Lifestage"
+    label: "                        People UK Lifestage"
     sql: ${TABLE}.lifestage ;;
   }
 
 
   dimension: ms_imputed_gender {
     type: string
-    label: "CACI Imputed Gender"
+    label: "                      CACI Imputed Gender"
     sql: ${TABLE}.ms_imputed_gender ;;
   }
 
 
   dimension: ms_salacious_email_flag {
     type: string
-    label: "Salacious Email Flag"
+    label: "                    Salacious Email Flag"
     sql: ${TABLE}.ms_salacious_email_flag ;;
   }
 
   dimension: ms_salacious_name_flag {
     type: string
-    label: "Salacious Name Flag"
+    label: "                  Salacious Name Flag"
     sql: ${TABLE}.ms_salacious_name_flag ;;
   }
 
   dimension: occuptation {
     type: string
-    label: "Occupation"
+    label: "                Occupation"
     sql: ${TABLE}.occuptation ;;
   }
 
   dimension: puk {
     type: string
-    label: " People UK Segment"
+    label: "              People UK Segment"
     sql: ${TABLE}.puk ;;
   }
 
 
   dimension: see_ems {
     type: string
-    label: " See on EMS"
+    label: "            See on EMS"
     sql: ${TABLE}.see_ems ;;
   }
 
   dimension: seen_acs {
     type: string
-    label: "Seen on ACS"
+    label: "           Seen on ACS"
     sql: ${TABLE}.seen_acs ;;
   }
 
   dimension: seen_acs_stock {
     type: string
-    label: "Seen on ACS Stock"
+    label: "          Seen on ACS Stock"
     sql: ${TABLE}.seen_acs_stock ;;
   }
 
   dimension: seen_acs_subs {
     type: string
-    label: "Seen on ACS Subs"
+    label: "        Seen on ACS Subs"
     sql: ${TABLE}.seen_acs_subs ;;
   }
 
   dimension: seen_competitions {
     type: string
-    label: "Seen on Competitions"
+    label: "       Seen on Competitions"
     sql: ${TABLE}.seen_competitions ;;
   }
 
   dimension: seen_partner {
     type: string
-    label: "Seen Partner Feed"
+    label: "      Seen Partner Feed"
     sql: ${TABLE}.seen_partner ;;
   }
 
   dimension: seen_percentage {
     type: string
+    label: "     Seen Percentage"
     sql: ${TABLE}.seen_percentage ;;
   }
 
   dimension: seen_responsability {
     type: string
-    label: "Seen on Responsability"
+    label: "    Seen on Responsability"
     sql: ${TABLE}.seen_responsability ;;
   }
 
   dimension: seen_webform {
     type: string
-    label: "Seen on Webforms"
+    label: "   Seen on Webforms"
     sql: ${TABLE}.seen_webform ;;
   }
 
 
   dimension: suppression_flag {
     type: string
-    label: "Supression Flag"
+    label: " Supression Flag"
     sql: ${TABLE}.suppression_flag ;;
   }
 

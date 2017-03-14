@@ -90,7 +90,7 @@ view: nudge_individuals {
 
   dimension: composite_key {
     type: string
-    label: " Composite Key"
+    label: "Composite Key"
     sql: ${TABLE}.composite_key ;;
   }
 

@@ -36,7 +36,7 @@ explore: nudge_individuals {
     sql_on: ${nudge_individuals.individual_id} = ${nudge_registrations.individual_id} ;;
   }
 
-
+# THIS NEEDS SORTING AS IT NEEDS TO BE AT INDIVIDUAL LEVEL NOT SUBS LEVEL
   join: brand_lookup {
     type: inner
     relationship: one_to_one

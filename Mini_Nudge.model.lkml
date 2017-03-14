@@ -22,14 +22,14 @@ explore: nudge_individuals {
 
   join: nudge_subscriptions {
     type: inner
-    view_label: "4. Subscriptions"
+    view_label: "4. Subscriptions (Beta)"
     relationship: one_to_one
     sql_on: ${nudge_individuals.individual_id} = ${nudge_subscriptions.individual_id} ;;
   }
 
   join: nudge_subscription_history {
     type: inner
-    view_label: "5. Subscriptions Hisotry"
+    view_label: "5. Subscriptions Hisotry (Beta)"
     relationship: one_to_one
     sql_on: ${nudge_individuals.individual_id} = ${nudge_subscriptions.individual_id} ;;
   }
@@ -58,14 +58,14 @@ explore: nudge_individuals {
 
   join: nudge_transactions {
     type: inner
-    view_label: "6. Transactions"
+    view_label: "6. Transactions (Beta)"
     relationship: one_to_many
     sql_on: ${nudge_individuals.individual_id} = ${nudge_transactions.individual_id} ;;
   }
 
   join: nudge_insurance_details {
     type: inner
-    view_label: "7. Insurance Details"
+    view_label: "7. Insurance Details (Beta)"
     relationship: many_to_many
     sql_on: ${nudge_interactions.source_key} = ${nudge_insurance_details.transaction_id} ;;
   }

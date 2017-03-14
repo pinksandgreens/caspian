@@ -9,6 +9,7 @@ include: "*.dashboard"
 explore: nudge_individuals {
   persist_for: "24 hour"
   label: "Mini-Nudge Database"
+  view_label: "2. Individuals"
   # # Select the views that should be a part of this model,
   # # and define the joins that connect them together.
 

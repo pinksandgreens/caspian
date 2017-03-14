@@ -1,5 +1,5 @@
 view: nudge_individuals {
-  sql_table_name: publications.nudge_individuals ;;
+  sql_table_name: publications.nudge_individuals;;
 
   dimension: age_band {
     type: string

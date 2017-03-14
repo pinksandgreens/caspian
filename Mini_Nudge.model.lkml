@@ -31,7 +31,7 @@ explore: nudge_individuals {
     type: inner
     view_label: "5. Subscriptions Hisotry (Beta)"
     relationship: one_to_one
-    sql_on: ${nudge_individuals.individual_id} = ${nudge_subscriptions.individual_id} ;;
+    sql_on: ${nudge_individuals.individual_id} = ${nudge_subscription_history.individual_id} ;;
   }
 
   join: nudge_interactions {

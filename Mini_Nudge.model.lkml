@@ -14,8 +14,8 @@ explore: nudge_individuals {
 
   join: nudge_households {
     type: inner
-    relationship: one_to_one
-    sql_on: ${nudge_individuals.individual_id} = ${nudge_households.household_id} ;;
+    relationship: one_to_many
+    sql_on: ${nudge_individuals.household_id}_id} = ${nudge_households.household_id} ;;
   }
 
   join: nudge_subscriptions {

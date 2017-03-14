@@ -472,10 +472,15 @@ view: nudge_individuals {
     sql: ${TABLE}.year_of_birth ;;
   }
 
-  measure: count {
+  measure: Individuals_count {
     type: count_distinct
     sql: ${TABLE}.individual_id ;;
     drill_fields: [first_name, last_name]
+  }
+
+  measure: Households_Count {
+    type: count_distinct
+    sql: ${TABLE}.household_id;;
   }
 
   measure: Email_count_Subs_QA {

@@ -35,7 +35,7 @@ explore: nudge_individuals {
   }
 
   join: nudge_interactions {
-    type: inner
+    type: left_outer
     view_label: "3. Interactions"
     relationship: one_to_many
     sql_on: ${nudge_individuals.individual_id} = ${nudge_interactions.individual_id} ;;
@@ -85,7 +85,7 @@ explore: nudge_individuals {
   }
 
   join: nudge_brands {
-    type: left_outer
+    type: full_outer
     view_label: "XX. Nudge Brands"
     relationship: one_to_many
     sql_on: ${nudge_interactions.magazine_code} = ${nudge_brands.code} ;;

@@ -50,11 +50,11 @@ view: nudge_individuals {
     sql: ${TABLE}.last_name ;;
   }
 
-  dimension: gender {
-    type: string
-    label: "                                      Gender"
-    sql: ${TABLE}.gender ;;
-  }
+#   dimension: gender {
+#     type: string
+#     label: "                                      Gender"
+#     sql: ${TABLE}.gender ;;
+#   }
 
   dimension: age_band {
     type: string
@@ -151,7 +151,7 @@ view: nudge_individuals {
 
   dimension: ms_imputed_gender {
     type: string
-    label: "                      CACI Imputed Gender"
+    label: "                        Gender"
     sql: ${TABLE}.ms_imputed_gender ;;
   }
 

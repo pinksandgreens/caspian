@@ -86,7 +86,7 @@ explore: nudge_individuals {
 
   join: nudge_brands {
     type: full_outer
-    view_label: "XX. Nudge Brands"
+    view_label: "0. Nudge Brands"
     relationship: one_to_many
     sql_on: ${nudge_interactions.magazine_code} = ${nudge_brands.code} ;;
   }

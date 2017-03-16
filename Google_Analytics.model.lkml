@@ -205,16 +205,10 @@ explore: ga_demographics {
 }
 
 explore: google_analytics_weekly_demogs {
-  hidden: yes
-  label: "Google Analytics - Weekly Demographics"
+  hidden: no
+  label: "Google Analytics - Demographics"
   sql_table_name: publications.google_analytics_weekly_demogs ;;
   persist_for: "20 hour"
-
-  join: brand_lookup {
-    type: inner
-    relationship: one_to_one
-    sql_on: ${brand_lookup.bra_code} = ${google_analytics_weekly_demogs.brand_code} ;;
-  }
 }
 
 explore: google_analytics_demographics30days {

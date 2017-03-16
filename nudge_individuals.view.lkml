@@ -152,7 +152,12 @@ view: nudge_individuals {
   dimension: ms_imputed_gender {
     type: string
     label: "                        Gender"
-    sql: ${TABLE}.ms_imputed_gender ;;
+    sql: CASE
+  WHEN ${TABLE}.ms_imputed_gender = 'M' THEN 'Male'
+  WHEN ${TABLE}.ms_imputed_gender = 'F' THEN 'Female'
+  WHEN ${TABLE}.ms_imputed_gender = 'U' THEN 'Unknown'
+  ELSE 'Unknown'
+  END;;
   }
 
 

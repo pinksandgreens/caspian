@@ -3,7 +3,12 @@ view: nudge_subscriptions {
 
   dimension: circulation_status {
     type: string
-    sql: ${TABLE}.circulation_status ;;
+    sql: CASE
+      WHEN ${TABLE}.circulation_status = 'E' THEN 'Lapsed'
+      WHEN ${TABLE}.circulation_status = 'P' THEN 'Active'
+      WHEN ${TABLE}.circulation_status = 'Q' THEN 'Active'
+      WHEN ${TABLE}.circulation_status = 'R' THEN 'Active'
+    END ;;
   }
 
   dimension: copies {
@@ -268,7 +273,11 @@ view: nudge_subscriptions {
 
   dimension: subscription_indicator {
     type: string
-    sql: ${TABLE}.subscription_indicator ;;
+    sql: CASE
+      WHEN ${TABLE}.subscription_indicator = 'S' THEN 'Private Subscription'
+      WHEN ${TABLE}.subscription_indicator = 'D' THEN 'Donor Subscription'
+      WHEN ${TABLE}.subscription_indicator = 'R' THEN 'Recipient Subscription'
+    END ;;
   }
 
   dimension: subscription_ref {
@@ -327,22 +336,31 @@ view: nudge_subscriptions {
     sql: ${TABLE}.individual_id ;;
   }
 
-  measure: Active_Subs_Count {
-    type: count
-
-    filters: {
-      field: subscription_status
-      value: "C, I"
-    }
-
-    filters: {
-      field: circulation_status
-      value: "Q, R"
-    }
-
-    filters: {
-      field: subscription_indicator
-      value: "D, R, S"
-    }
+  measure: Count_of_Subscriptions {
+    type: count_distinct
+    sql: ${TABLE}.Subscription_ref ;;
   }
+
+#   measure: Active_Subscriptions {
+#       type: count_distinct
+#       sql:
+#
+#       ${TABLE}.Subscription_ref;;
+#   }
+
 }
+
+#
+# filters: {
+#   field: subscription_status
+#   value: "C, I"
+# }
+#
+# filters: {
+#   field: circulation_status
+#   value: "Q, R"
+# }
+#
+# filters: {
+#   field: subscription_indicator
+#   value: "D, R, S"

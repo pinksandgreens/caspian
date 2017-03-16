@@ -245,8 +245,10 @@ view: nudge_subscription_history {
     sql: ${TABLE}.value ;;
   }
 
-  measure: count {
-    type: count
-    drill_fields: []
+  measure: Count_Unique_SubsH {
+    type: count_distinct
+    sql: ${TABLE}.subscriptions_id ;;
   }
+
+
 }

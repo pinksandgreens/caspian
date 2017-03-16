@@ -85,9 +85,9 @@ explore: nudge_individuals {
   }
 
   join: nudge_brands {
-    type: full_outer
+    type: inner
     view_label: "0. Nudge Brands"
-    relationship: one_to_many
+    relationship: one_to_one
     sql_on: ${nudge_interactions.magazine_code} = ${nudge_brands.code} ;;
   }
 

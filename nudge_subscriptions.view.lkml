@@ -293,7 +293,7 @@ view: nudge_subscriptions {
   dimension: subscription_status_detail {
     type: string
     sql:  CASE
-      WHEN ${TABLE}.subscription_status_detail = 'B' THEN 'Subspended'
+      WHEN ${TABLE}.subscription_status_detail = 'B' THEN 'Suspended'
       WHEN ${TABLE}.subscription_status_detail = 'C' THEN 'Cancel'
       WHEN ${TABLE}.subscription_status_detail = 'E' THEN 'Lapsed'
       WHEN ${TABLE}.subscription_status_detail = 'F' THEN 'Inquiry'
@@ -302,9 +302,9 @@ view: nudge_subscriptions {
       WHEN ${TABLE}.subscription_status_detail = 'P' THEN 'Active'
       WHEN ${TABLE}.subscription_status_detail = 'Q' THEN 'Active'
       WHEN ${TABLE}.subscription_status_detail = 'R' THEN 'Active'
-      WHEN ${TABLE}.subscription_status_detail = 'S' THEN 'Subspended'
-      WHEN ${TABLE}.subscription_status_detail = 'T' THEN 'Subspended'
-      WHEN ${TABLE}.subscription_status_detail = 'U' THEN 'Subspended'
+      WHEN ${TABLE}.subscription_status_detail = 'S' THEN 'Suspended'
+      WHEN ${TABLE}.subscription_status_detail = 'T' THEN 'Suspended'
+      WHEN ${TABLE}.subscription_status_detail = 'U' THEN 'Suspended'
       WHEN ${TABLE}.subscription_status_detail = 'W' THEN 'Future'
       WHEN ${TABLE}.subscription_status_detail = 'Y' THEN 'Active'
       WHEN ${TABLE}.subscription_status_detail = 'Z' THEN 'Cancel'

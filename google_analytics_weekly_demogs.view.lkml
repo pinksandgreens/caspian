@@ -1,11 +1,11 @@
 view: google_analytics_weekly_demogs {
   sql_table_name: publications.google_analytics_weekly_demogs ;;
 
-  dimension: interestinmarketcategory {
-    label: "In-Market - All levels"
-    type: string
-    sql: ${TABLE}.interestinmarketcategory ;;
-  }
+#   dimension: interestinmarketcategory {
+#     label: "Affinity Category"
+#     type: string
+#     sql: ${TABLE}.interestinmarketcategory ;;
+#   }
 
   dimension: useragebracket {
     label: "Age Banding"
@@ -111,33 +111,33 @@ view: google_analytics_weekly_demogs {
     sql: (${session_duration}/${sessions})/60 ;;
   }
 
-  dimension: level_1 {
-    label: "In-Market - Level 1"
-    type: string
-    sql: split_part(${TABLE}.interestinmarketcategory,'/',1) ;;
-  }
-
-  dimension: level_2 {
-    label: "In-Market - Level 2"
-    type: string
-    sql: split_part(${TABLE}.interestinmarketcategory,'/',2) ;;
-  }
-
-  dimension: level_3 {
-    label: "In-Market - Level 3"
-    type: string
-    sql: split_part(${TABLE}.interestinmarketcategory,'/',3) ;;
-  }
-
-  dimension: level_4 {
-    label: "In-Market - Level 4"
-    type: string
-    sql: split_part(${TABLE}.interestinmarketcategory,'/',4) ;;
-  }
-
-  dimension: level_5 {
-    label: "In-Market - Level 5"
-    type: string
-    sql: split_part(${TABLE}.interestinmarketcategory,'/',5) ;;
-  }
+#   dimension: level_1 {
+#     label: "In-Market - Level 1"
+#     type: string
+#     sql: split_part(${TABLE}.interestinmarketcategory,'/',1) ;;
+#   }
+#
+#   dimension: level_2 {
+#     label: "In-Market - Level 2"
+#     type: string
+#     sql: split_part(${TABLE}.interestinmarketcategory,'/',2) ;;
+#   }
+#
+#   dimension: level_3 {
+#     label: "In-Market - Level 3"
+#     type: string
+#     sql: split_part(${TABLE}.interestinmarketcategory,'/',3) ;;
+#   }
+#
+#   dimension: level_4 {
+#     label: "In-Market - Level 4"
+#     type: string
+#     sql: split_part(${TABLE}.interestinmarketcategory,'/',4) ;;
+#   }
+#
+#   dimension: level_5 {
+#     label: "In-Market - Level 5"
+#     type: string
+#     sql: split_part(${TABLE}.interestinmarketcategory,'/',5) ;;
+#   }
 }

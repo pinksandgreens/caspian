@@ -139,10 +139,13 @@ view: nativo_marketplace {
     sql: ${TABLE}."publisher.name" ;;
   }
 
-  dimension: publisher_revenue {
-    type: string
-    sql: ${TABLE}."publisher.revenue" ;;
+  measure: publisher_revenue {
+    type: sum
+    value_format: "\£0.00"
+    sql: ${TABLE}."publisher.revenue"::float ;;
   }
+
+
 
   dimension: rownum {
     type: string

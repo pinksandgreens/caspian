@@ -34,14 +34,16 @@ view: teads {
     sql: ${TABLE}.impression ;;
   }
 
-  dimension: income_converted_gbp {
-    type: string
-    sql: ${TABLE}.income_converted_gbp ;;
+  measure: income_converted_gbp {
+    type: sum
+    value_format: "0.00"
+    sql: ${TABLE}.income_converted_gb::float ;;
   }
 
-  dimension: income_value {
-    type: string
-    sql: ${TABLE}.income_value ;;
+  measure: income_value {
+    type: sum
+    value_format: "0.00"
+    sql: ${TABLE}.income_value::float  ;;
   }
 
   dimension: placement {
@@ -54,9 +56,10 @@ view: teads {
     sql: ${TABLE}.placement_id ;;
   }
 
-  dimension: revenue {
-    type: string
-    sql: ${TABLE}.revenue ;;
+  measure: revenue {
+    type: sum
+    value_format: "0.00"
+    sql: ${TABLE}.revenue::float ;;
   }
 
   dimension: rownum {

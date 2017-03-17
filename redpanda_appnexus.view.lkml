@@ -2,7 +2,7 @@ view: appnexus {
   sql_table_name: ad_platform.appnexus ;;
 
   dimension: advertiser_currency {
-    hidden: yes
+    hidden: no
     type: string
     sql: ${TABLE}.advertiser_currency ;;
   }

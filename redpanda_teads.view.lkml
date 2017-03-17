@@ -37,7 +37,7 @@ view: teads {
   measure: income_converted_gbp {
     type: sum
     value_format: "0.00"
-    sql: ${TABLE}.income_converted_gb::float ;;
+    sql: ${TABLE}.income_converted_gbp::float ;;
   }
 
   measure: income_value {

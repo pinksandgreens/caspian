@@ -1,57 +1,68 @@
 view: dfp_key_values {
   sql_table_name: ad_platform.dfp_key_values ;;
 
-  dimension: column_total_line_item_level_clicks {
-    type: string
+  measure: column_total_line_item_level_clicks {
+    label: "Total Line Item Clicks"
+    type: sum
     sql: ${TABLE}."column.total_line_item_level_clicks" ;;
   }
 
-  dimension: column_total_line_item_level_impressions {
-    type: string
+  measure: column_total_line_item_level_impressions {
+    label: "Total Line Item Impressions"
+    type: sum
     sql: ${TABLE}."column.total_line_item_level_impressions" ;;
   }
 
   dimension: dimension_ad_unit_id {
+    label: "Ad Unit ID"
     type: string
     sql: ${TABLE}."dimension.ad_unit_id" ;;
   }
 
   dimension: dimension_ad_unit_name {
+    label: "Ad Unit Name"
     type: string
     sql: ${TABLE}."dimension.ad_unit_name" ;;
   }
 
   dimension: dimension_country_criteria_id {
+    label: "Country Criteria ID"
     type: string
     sql: ${TABLE}."dimension.country_criteria_id" ;;
   }
 
   dimension: dimension_country_name {
+    label: "Country Name"
     type: string
     sql: ${TABLE}."dimension.country_name" ;;
   }
 
   dimension: dimension_creative_id {
+    label: "Creative ID"
     type: string
     sql: ${TABLE}."dimension.creative_id" ;;
   }
 
   dimension: dimension_creative_name {
+    label: "Creative Name"
     type: string
     sql: ${TABLE}."dimension.creative_name" ;;
   }
 
   dimension: dimension_creative_size {
+    label: "Creative Size"
     type: string
     sql: ${TABLE}."dimension.creative_size" ;;
   }
 
   dimension: dimension_custom_criteria {
+    label: "Custom Criteria"
     type: string
     sql: ${TABLE}."dimension.custom_criteria" ;;
   }
 
   dimension: dimension_custom_targeting_value_id {
+    label: "Custom Targetting Value ID"
     type: string
     sql: ${TABLE}."dimension.custom_targeting_value_id" ;;
   }
@@ -65,26 +76,31 @@ view: dfp_key_values {
   }
 
   dimension: dimension_line_item_id {
+    label: "Line Item ID"
     type: string
     sql: ${TABLE}."dimension.line_item_id" ;;
   }
 
   dimension: dimension_line_item_name {
+    label: "Line Item Name"
     type: string
     sql: ${TABLE}."dimension.line_item_name" ;;
   }
 
   dimension: dimension_line_item_type {
+    label: "Line Item Type"
     type: string
     sql: ${TABLE}."dimension.line_item_type" ;;
   }
 
   dimension: rownum {
+    hidden: yes
     type: string
     sql: ${TABLE}.rownum ;;
   }
 
   measure: count {
+    hidden: yes
     type: count
     drill_fields: [dimension_line_item_name, dimension_creative_name, dimension_ad_unit_name, dimension_country_name]
   }

@@ -93,6 +93,7 @@ view: adx {
   }
 
   measure: count {
+    hidden: yes
     type: count
     drill_fields: [detail*]
   }

@@ -32,8 +32,8 @@ view: admarvel_site {
     sql: ${TABLE}."fill.rate"::float ;;
   }
 
-  dimension: impressions {
-    type: string
+  measure: impressions {
+    type: sum
     sql: ${TABLE}.impressions ;;
   }
 

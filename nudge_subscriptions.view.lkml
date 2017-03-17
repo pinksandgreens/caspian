@@ -312,7 +312,6 @@ view: nudge_subscriptions {
   }
 
 
-
   dimension: total_issues_despatched {
     type: number
     sql: ${TABLE}.total_issues_despatched ;;

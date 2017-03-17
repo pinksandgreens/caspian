@@ -97,7 +97,12 @@ view: nudge_households {
   dimension: uk_verified_address {
     type: string
     label: "UK Verified Address"
-    sql: ${TABLE}.uk_verified_address ;;
+    sql: CASE
+      WHEN ${TABLE}.uk_verified_address = 'P' THEN 'Verified PAF'
+      WHEN ${TABLE}.uk_verified_address = 'N' THEN 'Not Verified'
+      WHEN ${TABLE}.uk_verified_address = 'M' THEN 'Verified UK CACI Address Base'
+      WHEN ${TABLE}.uk_verified_address = 'W' THEN 'Verified CACI UK address base on premise level'
+     END;;
   }
 
   dimension: household_id {

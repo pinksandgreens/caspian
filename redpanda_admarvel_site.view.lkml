@@ -8,7 +8,7 @@ view: admarvel_site {
 
   measure: ctr {
     type: average
-    value_format: "0.00"
+    value_format: "0.0000"
     sql: ${TABLE}.ctr::float ;;
   }
 
@@ -22,13 +22,13 @@ view: admarvel_site {
 
   measure: ecpm {
     type: average
-    value_format: "0.00"
+    value_format: "0.0000"
     sql: ${TABLE}.ecpm::float ;;
   }
 
   measure: fill_rate {
     type: average
-    value_format: "0.00\%"
+    value_format: "0.0000\%"
     sql: ${TABLE}."fill.rate"::float ;;
   }
 
@@ -54,11 +54,12 @@ view: admarvel_site {
 
   measure: revenue {
     type: sum
-    value_format: "\£0.00"
+    value_format: "\£0.0000"
     sql: ${TABLE}.revenue::float ;;
   }
 
   dimension: rownum {
+    hidden: yes
     type: string
     sql: ${TABLE}.rownum ;;
   }
@@ -74,6 +75,7 @@ view: admarvel_site {
   }
 
   measure: count {
+    hidden: yes
     type: count
     drill_fields: [publisher_name, site_name]
   }

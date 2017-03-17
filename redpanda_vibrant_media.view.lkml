@@ -1,8 +1,9 @@
 view: vibrant_media {
   sql_table_name: ad_platform.vibrant_media ;;
 
-  dimension: adviews {
-    type: string
+  measure: adviews {
+    label: "Ad Views"
+    type: sum
     sql: ${TABLE}.adviews ;;
   }
 
@@ -24,8 +25,8 @@ view: vibrant_media {
     sql: TO_DATE(${TABLE}.date,'YYYYMMDD') ;;
   }
 
-  dimension: pageviews {
-    type: string
+  measure: pageviews {
+    type: sum
     sql: ${TABLE}.pageviews ;;
   }
 
@@ -37,6 +38,7 @@ view: vibrant_media {
   }
 
   dimension: rownum {
+    hidden: yes
     type: string
     sql: ${TABLE}.rownum ;;
   }
@@ -47,6 +49,7 @@ view: vibrant_media {
   }
 
   measure: count {
+    hidden: yes
     type: count
     drill_fields: []
   }

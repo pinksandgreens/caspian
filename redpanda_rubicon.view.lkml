@@ -8,7 +8,7 @@ view: rubicon {
 
   measure: auction_revenue {
     type: sum
-    value_format: "\£0.00"
+    value_format: "\£0.0000"
     sql: ${TABLE}.auction_revenue::float ;;
   }
 
@@ -58,7 +58,7 @@ view: rubicon {
 
   measure: revenue {
     type: sum
-    value_format: "0.00"
+    value_format: "\£0.0000"
     sql: ${TABLE}.revenue::float ;;
   }
 

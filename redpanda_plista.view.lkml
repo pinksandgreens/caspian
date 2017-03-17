@@ -75,6 +75,7 @@ view: plista {
   }
 
   dimension: data_groupby {
+    hidden: yes
     type: string
     label: "Groupby Dimension"
     sql: ${TABLE}."data.groupby" ;;
@@ -87,18 +88,21 @@ view: plista {
   }
 
   dimension: result {
+    hidden: yes
     type: string
     label: "Result"
     sql: ${TABLE}.result ;;
   }
 
   dimension: rownum {
+    hidden: yes
     type: string
     hidden: yes
     sql: ${TABLE}.rownum ;;
   }
 
   measure: count {
+    hidden: yes
     type: count
     drill_fields: [domain_name]
   }

@@ -1,8 +1,8 @@
 view: rezonence {
   sql_table_name: ad_platform.rezonence ;;
 
-  dimension: clicks {
-    type: string
+  measure: clicks {
+    type: sum
     sql: ${TABLE}.clicks ;;
   }
 
@@ -11,10 +11,21 @@ view: rezonence {
     sql: ${TABLE}.country ;;
   }
 
-  dimension: cpe {
-    type: string
-    sql: ${TABLE}.cpe ;;
+  measure: cpe {
+    description: "Revenue?"
+    type: sum
+    value_format: "\£0.0000"
+    sql: ${TABLE}.cpe::float ;;
   }
+
+  # measure: revenue {
+  #   label: "Revenue (?)"
+  #   description: "Cost-per-engagement(CPE)*Clicks"
+  #   type: number
+  #   value_format: "\£0.0000"
+  #   sql: ${cpe}*${clicks} ;;
+  # }
+
 
   dimension: creative_id {
     type: string
@@ -30,8 +41,8 @@ view: rezonence {
   }
 
 
-  dimension: engagements {
-    type: string
+  measure: engagements {
+    type: sum
     sql: ${TABLE}.engagements ;;
   }
 
@@ -40,22 +51,23 @@ view: rezonence {
     sql: ${TABLE}.site ;;
   }
 
-  dimension: video_completions {
-    type: string
+  measure: video_completions {
+    type: sum
     sql: ${TABLE}.video_completions ;;
   }
 
-  dimension: video_starts {
-    type: string
+  measure: video_starts {
+    type: sum
     sql: ${TABLE}.video_starts ;;
   }
 
-  dimension: views {
-    type: string
+  measure: views {
+    type: sum
     sql: ${TABLE}.views ;;
   }
 
   measure: count {
+    hidden: yes
     type: count
     drill_fields: []
   }

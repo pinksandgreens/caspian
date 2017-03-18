@@ -120,7 +120,7 @@ view: nudge_individuals {
   dimension_group: last_interaction {
     type: time
     label: "                           Last Interaction Date"
-    timeframes: [date, week, month]
+    timeframes: [date, day_of_week, day_of_week_index, week, month, month_num, month_name, year]
     convert_tz: no
     sql: ${TABLE}.last_interaction_date ;;
   }

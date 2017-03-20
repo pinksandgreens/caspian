@@ -57,8 +57,8 @@ view: adx {
   measure: earnings_gbp {
     label: "Earnings (GBP)"
     type: sum
-    value_format: "\£0.00"
-    sql: ${TABLE}."earnings (gbp)"::float ;;
+    value_format: "\£0.0000"
+    sql: ${TABLE}."earnings..gbp."::float ;;
   }
 
   measure: individual_ad_impressions {
@@ -90,6 +90,28 @@ view: adx {
   dimension: url_channel_name {
     type: string
     sql: ${TABLE}.url_channel_name ;;
+  }
+
+  dimension: video_ad_format {
+    type: string
+    sql: ${TABLE}.video_ad_format ;;
+  }
+
+  dimension: video_ad_duration {
+    type: string
+    sql: ${TABLE}.video_ad_duration ;;
+  }
+
+  measure: video_ad_abandonment {
+    type: average
+    sql: ${TABLE}.video_ad_abandonment_ratio ;;
+  }
+
+  measure: cost_per_click {
+    label: "Cost Per Click (GBP)"
+    type: sum
+    value_format: "\£0.0000"
+    sql: ${TABLE}."cost_per_click..gbp."::float ;;
   }
 
   measure: count {

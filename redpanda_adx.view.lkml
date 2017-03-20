@@ -109,7 +109,7 @@ view: adx {
 
   measure: cost_per_click {
     label: "Cost Per Click (GBP)"
-    type: sum
+    type: average
     value_format: "\£0.0000"
     sql: ${TABLE}."cost_per_click..gbp."::float ;;
   }

@@ -104,14 +104,23 @@ view: adx {
 
   measure: video_ad_abandonment {
     type: average
-    sql: ${TABLE}.video_ad_abandonment_ratio ;;
+    value_format: "0.00\%"
+    description: "% of users that abandoned the video ad"
+    sql: CASE
+          WHEN ${TABLE}.video_ad_abandonment_ratio = 'NA' THEN '0'
+          ELSE ${TABLE}.video_ad_abandonment_ratio::float*100
+         END;;
   }
 
   measure: cost_per_click {
     label: "Cost Per Click (GBP)"
+    description: "Revenue per click - revenue/clicks"
     type: average
     value_format: "\£0.0000"
-    sql: ${TABLE}."cost_per_click..gbp."::float ;;
+    sql: CASE
+          WHEN ${TABLE}."cost_per_click..gbp." = 'NA' THEN '0'
+          ELSE ${TABLE}."cost_per_click..gbp."::float
+         END;;
   }
 
   measure: count {

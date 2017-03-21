@@ -410,7 +410,7 @@ explore: jr_mcn_tx_source_attribution {
 }
 
 explore: jr_lifestyle_audience {
-  label: "BigQuery - Lifestyle - Audience Analysis"
+  label: "BigQuery - Lifestyle - UK Audience Analysis"
 
   join: jr_lifestyle_audience_test {
     type: left_outer

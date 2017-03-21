@@ -1,8 +1,8 @@
-view: jr_mcn_syb_tx_source_attribution_MCNClassifieds_part1 {
-  label: "MCN"
+view: jr_mcn_syb_lp_source_attribution {
+label: "MCN"
 
-  derived_table: {
-    sql:
+    derived_table: {
+      sql:
       SELECT
         Visitor_SYB_Cohort.ClientID AS Master_ClientID,
         'SYB' AS Domain,
@@ -60,8 +60,8 @@ view: jr_mcn_syb_tx_source_attribution_MCNClassifieds_part1 {
             WHERE hits.page.pagePath = 'mcnclassifieds.bauersecure.com/'
             )
           ) AS B
-        ON A.ClientID = B.ClientID
-        GROUP BY ClientID, Start_Investigation_Date, Last_SYB_Booking_Page_Visit
+          ON A.ClientID = B.ClientID
+          GROUP BY ClientID, Start_Investigation_Date, Last_SYB_Booking_Page_Visit
         ) AS Visitor_SYB_Cohort
         LEFT OUTER JOIN
         (SELECT
@@ -88,30 +88,30 @@ view: jr_mcn_syb_tx_source_attribution_MCNClassifieds_part1 {
           FORMAT_UTC_USEC(PARSE_UTC_USEC(Concat(LEFT(date,4),'-',SUBSTRING(date,5,2),'-',RIGHT(date,2)))) AS date
         FROM
           (TABLE_DATE_RANGE([uplifted-light-89310:111489521.ga_sessions_], DATE_ADD(USEC_TO_TIMESTAMP(now()), -62, 'DAY'), USEC_TO_TIMESTAMP(now())))
-        WHERE hits.type != 'EVENT'
+        WHERE hits.type != 'EVENT' AND hits.page.pagePath = 'mcnclassifieds.bauersecure.com/'
         ) AS Core_Stats
         ON Visitor_SYB_Cohort.ClientID = Core_Stats.ClientID
         WHERE Core_Stats.SessionStartDateTime BETWEEN Visitor_SYB_Cohort.Start_Investigation_Date AND Visitor_SYB_Cohort.Last_SYB_Booking_Page_Visit
 
       ;;
-  }
+    }
 
-  dimension: Master_ClientID {
-    label: "Master_ClientID"
-    sql: ${TABLE}.Master_ClientID ;;
+    dimension: Master_ClientID {
+      label: "Master_ClientID"
+      sql: ${TABLE}.Master_ClientID ;;
 #         description: "BFS Domain: SYB Transaction Referral Source"
-  }
+    }
 
-  dimension: Actual_Date {
-    label: "Actual Date"
-    sql: ${TABLE}.Actual_Date ;;
+    dimension: Actual_Date {
+      label: "Actual Date"
+      sql: ${TABLE}.Actual_Date ;;
 #         description: "BFS Domain: SYB Transaction Referral Source"
-  }
+    }
 
-  dimension: Hit_Time {
-    label: "Hit Time"
-    sql: ${TABLE}.Hit_Type ;;
+    dimension: Hit_Time {
+      label: "Hit Time"
+      sql: ${TABLE}.Hit_Type ;;
 #         description: "BFS Domain: SYB Transaction Referral Source"
-  }
+    }
 
-}
+  }

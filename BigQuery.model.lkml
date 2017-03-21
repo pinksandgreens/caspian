@@ -1,4 +1,4 @@
-connection: "bigquery-connection"
+    connection: "bigquery-connection"
 
 # include all views in this project
 include: "*.view"
@@ -313,6 +313,12 @@ explore: jr_lifestyle_parent_TP1 {
     sql_on: ${jr_lifestyle_referral_source_medium.Key} = ${jr_lifestyle_parent_TP1.Key} ;;
   }
 
+  join: jr_lifestyle_users {
+    type: left_outer
+    relationship: one_to_many
+    sql_on: ${jr_lifestyle_users.Key} = ${jr_lifestyle_parent_TP1.Key} ;;
+  }
+
   always_filter: {
     filters: {
       field: jr_lifestyle_parent_TP1.TP1
@@ -348,7 +354,7 @@ explore: ga_sessions_kiss {
     filters: {
       field: date_filter
       value: "30 days"
-      }
+    }
     filters: {
       field: date_filter_premigration
       value: "30 days"
@@ -384,8 +390,8 @@ explore: jr_mcn_syb_funnel_30_days {
 
 }
 
-explore: jr_mcn_syb_tx_customer_journey_source_rollup {
-  label: "BigQuery - MCN SYB Source Rollup"
+explore: jr_mcn_syb_funnel_test2 {
+  label: "BigQuery - MCN SYB Source - Basic"
 
 }
 
@@ -397,4 +403,27 @@ explore: jr_mcn_tx_source_attribution {
       value: "last month"
     }
   }
+}
+
+explore: jr_lifestyle_audience {
+  label: "BigQuery - Lifestyle - Audience Analysis"
+
+  join: jr_lifestyle_audience_test {
+    type: left_outer
+    relationship: one_to_many
+    sql_on: ${jr_lifestyle_audience_test.Mobile_Model} = ${jr_lifestyle_audience.Mobile_Model} ;;
+  }
+
+  always_filter: {
+    filters: {
+      field: jr_lifestyle_audience.TP1
+      value: "last month"
+    }
+
+    filters: {
+      field: jr_lifestyle_audience.brand_filter
+      value: "grazia"
+    }
+
+    }
 }

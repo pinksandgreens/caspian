@@ -18,7 +18,8 @@ view: social_youtube_advanced {
 
   measure: annotation_click_through_rate {
     type: average
-    sql: ${TABLE}.annotationclickthroughrate::float;;
+    value_format: "0.0000\%"
+    sql: ${TABLE}.annotationclickthroughrate::float*100;;
   }
 
   measure: annotation_closable_impressions {
@@ -27,8 +28,9 @@ view: social_youtube_advanced {
   }
 
   measure: annotation_closerate {
-    type: sum
-    sql: ${TABLE}.annotationcloserate ;;
+    type: average
+    value_format: "0.0000\%"
+    sql: ${TABLE}.annotationcloserate::float*100 ;;
   }
 
   measure: annotation_closes {
@@ -60,7 +62,8 @@ view: social_youtube_advanced {
 
   measure: card_click_rate {
     type: average
-    sql: ${TABLE}.cardclickrate::float  ;;
+    value_format: "0.0000\%"
+    sql: ${TABLE}.cardclickrate::float*100  ;;
   }
 
   measure: card_clicks {
@@ -75,7 +78,8 @@ view: social_youtube_advanced {
 
   measure: card_teaser_clickrate {
     type: average
-    sql: ${TABLE}.cardteaserclickrate::Float ;;
+    value_format: "0.0000\%"
+    sql: ${TABLE}.cardteaserclickrate::float*100 ;;
   }
 
   measure: card_teaser_clicks {

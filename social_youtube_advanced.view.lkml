@@ -18,7 +18,7 @@ view: social_youtube_advanced {
 
   measure: annotation_click_through_rate {
     type: average
-    sql: ${TABLE}.annotationclickthroughrate::float
+    sql: ${TABLE}.annotationclickthroughrate::float;;
   }
 
   measure: annotation_closable_impressions {

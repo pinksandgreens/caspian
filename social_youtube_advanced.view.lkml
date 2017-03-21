@@ -46,6 +46,7 @@ view: social_youtube_advanced {
   measure: average_view_duration {
     label: "Average View Duration (Seconds)"
     type: average
+    value_format: "0.00"
     sql: ${TABLE}.averageviewduration::float ;;
   }
 

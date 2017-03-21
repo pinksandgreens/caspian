@@ -6,7 +6,7 @@ include: "*.view"
 # include all dashboards in this project
 include: "*.dashboard"
 
-label: "BigQuery - Projects"
+label: "x: BigQuery - Projects"
 
 explore: ga_sessions_header_bidding {
   label: "BigQuery - Header Bidding Platform"

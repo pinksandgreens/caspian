@@ -2,38 +2,50 @@ view: appnexus {
   sql_table_name: ad_platform.appnexus ;;
 
   dimension: advertiser_currency {
+    hidden: no
     type: string
     sql: ${TABLE}.advertiser_currency ;;
   }
 
-  dimension: click_thru_pct {
+  dimension: click_thru_pct_1 {
+    hidden: yes
     type: string
-    sql: ${TABLE}.click_thru_pct ;;
+    sql: REPLACE(${TABLE}.click_thru_pct, '%', '') ;;
   }
 
-  dimension: clicks {
-    type: string
+  measure: click_thru_pct {
+    type: average
+    value_format: "0.0000\%"
+    sql: ${click_thru_pct_1}::float;;
+  }
+
+  measure: clicks {
+    type: sum
     sql: ${TABLE}.clicks ;;
   }
 
   dimension: clicks_1 {
+    hidden: yes
     type: string
     sql: ${TABLE}."clicks.1" ;;
   }
 
-  dimension: convs_rate {
-    type: string
-    sql: ${TABLE}.convs_rate ;;
+  measure: convs_rate {
+    type: average
+    value_format: "0.0000"
+    sql: ${TABLE}.convs_rate::float ;;
   }
 
-  dimension: cost {
-    type: string
-    sql: ${TABLE}.cost ;;
+  measure: cost {
+    type: sum
+    value_format: "\£0.0000"
+    sql: ${TABLE}.cost::float ;;
   }
 
-  dimension: cpm {
-    type: string
-    sql: ${TABLE}.cpm ;;
+  measure: cpm {
+    type: average
+    value_format: "\£0.0000"
+    sql: ${TABLE}.cpm::float ;;
   }
 
   dimension_group: date {
@@ -44,12 +56,13 @@ view: appnexus {
     sql: TO_DATE(${TABLE}.day,'YYYY-MM-DD') ;;
   }
 
-  dimension: imps {
-    type: string
+  measure: imps {
+    type: sum
     sql: ${TABLE}.imps ;;
   }
 
   dimension: imps_1 {
+    hidden: yes
     type: string
     sql: ${TABLE}."imps.1" ;;
   }
@@ -64,14 +77,16 @@ view: appnexus {
     sql: ${TABLE}.placement_name ;;
   }
 
-  dimension: ppm {
-    type: string
-    sql: ${TABLE}.ppm ;;
+  measure: ppm {
+    type: average
+    value_format: "0.0000"
+    sql: ${TABLE}.ppm::float ;;
   }
 
-  dimension: profit {
-    type: string
-    sql: ${TABLE}.profit ;;
+  measure: profit {
+    type: sum
+    value_format: "\£0.0000"
+    sql: ${TABLE}.profit::float ;;
   }
 
   dimension: publisher_id {
@@ -84,32 +99,37 @@ view: appnexus {
     sql: ${TABLE}.publisher_name ;;
   }
 
-  dimension: revenue {
-    type: string
-    sql: ${TABLE}.revenue ;;
+  measure: revenue {
+    type: sum
+    value_format: "\£0.0000"
+    sql: ${TABLE}.revenue::float ;;
   }
 
   dimension: rownum {
+    hidden: yes
     type: string
     sql: ${TABLE}.rownum ;;
   }
 
-  dimension: rpm {
-    type: string
-    sql: ${TABLE}.rpm ;;
+  measure: rpm {
+    value_format: "\£0.0000"
+    type: average
+    sql: ${TABLE}.rpm::float ;;
   }
 
-  dimension: total_convs {
-    type: string
+  measure: total_convs {
+    type: sum
     sql: ${TABLE}.total_convs ;;
   }
 
-  dimension: total_network_rpm {
-    type: string
-    sql: ${TABLE}.total_network_rpm ;;
+  measure: total_network_rpm {
+    value_format: "\£0.0000"
+    type: average
+    sql: ${TABLE}.total_network_rpm::float ;;
   }
 
   measure: count {
+    hidden: yes
     type: count
     drill_fields: [placement_name, publisher_name]
   }

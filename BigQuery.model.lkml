@@ -6,7 +6,7 @@ include: "*.view"
 # include all dashboards in this project
 include: "*.dashboard"
 
-label: "BigQuery - Brands"
+label: "x: BigQuery - Brands"
 
 # the view to start exploring from
 explore: ga_sessions {
@@ -197,6 +197,18 @@ explore: ga_sessions_todaygolfer {
   }
 }
 
+explore: ga_sessions_winit {
+  label: "BigQuery - Winit"
+
+  always_filter: {
+    filters: {
+      field: date_filter
+      value: "30 days"
+    }
+  }
+}
+
+
 explore: angling_times_content_consumed_by_article {
   hidden: yes
   label: "BigQuery - Angling Times - Article Cohort Analysis"
@@ -252,6 +264,7 @@ explore: ga_sessions_greatmagazines {
 
 explore: jr_lifestyle_parent_TP1 {
   label: "BigQuery - Lifestyle - Content Analysis"
+  hidden: yes
 
   join: jr_lifestyle_parent_TP2 {
     type: left_outer
@@ -385,18 +398,9 @@ explore: ga_sessions_car {
 }
 
 
-explore: jr_mcn_syb_funnel_30_days {
-  label: "BigQuery - MCN SYB Funnel Journey"
-
-}
-
-explore: jr_mcn_syb_funnel_test2 {
-  label: "BigQuery - MCN SYB Source - Basic"
-
-}
-
 explore: jr_mcn_tx_source_attribution {
   label: "BigQuery - MCN - Tx Source Analysis"
+  hidden: yes
   always_filter: {
     filters: {
       field: jr_mcn_tx_source_attribution.date_filter

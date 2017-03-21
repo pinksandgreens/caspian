@@ -21,9 +21,10 @@ view: nativo_marketplace {
     sql: ${TABLE}."advertiser.name" ;;
   }
 
-  dimension: avg_time_on_content {
-    type: string
-    sql: ${TABLE}."avg.time.on.content" ;;
+  measure: avg_time_on_content {
+    value_format: "0.0000"
+    type: average
+    sql: ${TABLE}."avg.time.on.content"::float ;;
   }
 
   dimension: campaign_id {
@@ -36,24 +37,26 @@ view: nativo_marketplace {
     sql: ${TABLE}."campaign.name" ;;
   }
 
-  dimension: clicks {
-    type: string
+  measure: clicks {
+    type: sum
     sql: ${TABLE}.clicks ;;
   }
 
-  dimension: cta {
-    type: string
+  measure: cta {
+    type: sum
     sql: ${TABLE}.cta ;;
   }
 
-  dimension: cta_rate {
-    type: string
-    sql: ${TABLE}."cta.rate" ;;
+  measure: cta_rate {
+    type: average
+    value_format: "0.0000"
+    sql: ${TABLE}."cta.rate"::float ;;
   }
 
-  dimension: ctr {
-    type: string
-    sql: ${TABLE}.ctr ;;
+  measure: ctr {
+    type: average
+    value_format: "0.0000\%"
+    sql: ${TABLE}.ctr::float*100 ;;
   }
 
   dimension_group: date {
@@ -74,33 +77,35 @@ view: nativo_marketplace {
     sql: ${TABLE}."device.name" ;;
   }
 
-  dimension: earned_views {
-    type: string
+  measure: earned_views {
+    type: sum
     sql: ${TABLE}."earned.views" ;;
   }
 
-  dimension: engaged_ctr {
-    type: string
-    sql: ${TABLE}."engaged.ctr" ;;
+  measure: engaged_ctr {
+    type: average
+    value_format: "0.0000\%"
+    sql: ${TABLE}."engaged.ctr"::float*100 ;;
   }
 
-  dimension: engagement_rate {
-    type: string
-    sql: ${TABLE}."engagement.rate" ;;
+  measure: engagement_rate {
+    type: average
+    value_format: "0.0000\%"
+    sql: ${TABLE}."engagement.rate"::float*100 ;;
   }
 
-  dimension: engagements {
-    type: string
+  measure: engagements {
+    type: sum
     sql: ${TABLE}.engagements ;;
   }
 
-  dimension: impressions {
-    type: string
+  measure: impressions {
+    type: sum
     sql: ${TABLE}.impressions ;;
   }
 
-  dimension: page_views {
-    type: string
+  measure: page_views {
+    type: sum
     sql: ${TABLE}."page.views" ;;
   }
 
@@ -124,9 +129,10 @@ view: nativo_marketplace {
     sql: ${TABLE}."publication.name" ;;
   }
 
-  dimension: publisher_cpm {
-    type: string
-    sql: ${TABLE}."publisher.cpm" ;;
+  measure: publisher_cpm {
+    type: average
+    value_format: "\£0.0000"
+    sql: ${TABLE}."publisher.cpm"::float ;;
   }
 
   dimension: publisher_id {
@@ -139,62 +145,68 @@ view: nativo_marketplace {
     sql: ${TABLE}."publisher.name" ;;
   }
 
-  dimension: publisher_revenue {
-    type: string
-    sql: ${TABLE}."publisher.revenue" ;;
+  measure: publisher_revenue {
+    type: sum
+    value_format: "\£0.0000"
+    sql: ${TABLE}."publisher.revenue"::float ;;
   }
 
+
+
   dimension: rownum {
+    hidden: yes
     type: string
     sql: ${TABLE}.rownum ;;
   }
 
-  dimension: shares {
-    type: string
+  measure: shares {
+    type: sum
     sql: ${TABLE}.shares ;;
   }
 
-  dimension: time_on_content {
-    type: string
+  measure: time_on_content {
+    type: sum
     sql: ${TABLE}."time.on.content" ;;
   }
 
-  dimension: video_completion_rate {
-    type: string
-    sql: ${TABLE}."video.completion.rate" ;;
+  measure: video_completion_rate {
+    type: average
+    value_format: "0.0000\%"
+    sql: ${TABLE}."video.completion.rate"::float*100 ;;
   }
 
-  dimension: video_views {
-    type: string
+  measure: video_views {
+    type: sum
     sql: ${TABLE}."video.views" ;;
   }
 
-  dimension: video_views_to_25_ {
-    type: string
+  measure: video_views_to_25_ {
+    type: sum
     sql: ${TABLE}."video.views.to.25." ;;
   }
 
-  dimension: video_views_to_50_ {
-    type: string
+  measure: video_views_to_50_ {
+    type: sum
     sql: ${TABLE}."video.views.to.50." ;;
   }
 
-  dimension: video_views_to_75_ {
-    type: string
+  measure: video_views_to_75_ {
+    type: sum
     sql: ${TABLE}."video.views.to.75." ;;
   }
 
-  dimension: views_to_15_seconds {
-    type: string
+  measure: views_to_15_seconds {
+    type: sum
     sql: ${TABLE}."views.to.15.seconds" ;;
   }
 
-  dimension: views_to_30_seconds {
-    type: string
+  measure: views_to_30_seconds {
+    type: sum
     sql: ${TABLE}."views.to.30.seconds" ;;
   }
 
   measure: count {
+    hidden: yes
     type: count
     drill_fields: [detail*]
   }

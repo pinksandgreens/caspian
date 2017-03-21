@@ -44,16 +44,19 @@ explore: bk_swap_ids_gygia {
 #     sql_on: ${bk_swap_ids_gygia.gygia_id} = ${bk_topline_october16."category id"}
 
 explore: bluekai_audience_reach {
+  hidden: yes
   label: "BlueKai Audience Reach"
   sql_table_name: publications.bluekai_reach ;;
 }
 
 explore: bk_topline_october16 {
+  hidden: yes
   label: "BlueKai Topline UK Reach"
   sql_table_name: publications.bk_topline_october16 ;;
 }
 
 explore: bk_topline_ukus {
+  hidden: yes
   label: "BlueKai Topline Reach UK & US"
   sql_table_name: publications.bk_topline_ukus ;;
 }

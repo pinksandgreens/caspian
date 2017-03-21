@@ -3,7 +3,12 @@ view: nudge_subscriptions {
 
   dimension: circulation_status {
     type: string
-    sql: ${TABLE}.circulation_status ;;
+    sql: CASE
+      WHEN ${TABLE}.circulation_status = 'E' THEN 'Lapsed'
+      WHEN ${TABLE}.circulation_status = 'P' THEN 'Active'
+      WHEN ${TABLE}.circulation_status = 'Q' THEN 'Active'
+      WHEN ${TABLE}.circulation_status = 'R' THEN 'Active'
+    END ;;
   }
 
   dimension: copies {
@@ -268,7 +273,11 @@ view: nudge_subscriptions {
 
   dimension: subscription_indicator {
     type: string
-    sql: ${TABLE}.subscription_indicator ;;
+    sql: CASE
+      WHEN ${TABLE}.subscription_indicator = 'S' THEN 'Private Subscription'
+      WHEN ${TABLE}.subscription_indicator = 'D' THEN 'Donor Subscription'
+      WHEN ${TABLE}.subscription_indicator = 'R' THEN 'Recipient Subscription'
+    END ;;
   }
 
   dimension: subscription_ref {
@@ -283,8 +292,25 @@ view: nudge_subscriptions {
 
   dimension: subscription_status_detail {
     type: string
-    sql: ${TABLE}.subscription_status_detail ;;
+    sql:  CASE
+      WHEN ${TABLE}.subscription_status_detail = 'B' THEN 'Suspended'
+      WHEN ${TABLE}.subscription_status_detail = 'C' THEN 'Cancel'
+      WHEN ${TABLE}.subscription_status_detail = 'E' THEN 'Lapsed'
+      WHEN ${TABLE}.subscription_status_detail = 'F' THEN 'Inquiry'
+      WHEN ${TABLE}.subscription_status_detail = 'L' THEN 'Suspended'
+      WHEN ${TABLE}.subscription_status_detail = 'N' THEN 'Cancel'
+      WHEN ${TABLE}.subscription_status_detail = 'P' THEN 'Active'
+      WHEN ${TABLE}.subscription_status_detail = 'Q' THEN 'Active'
+      WHEN ${TABLE}.subscription_status_detail = 'R' THEN 'Active'
+      WHEN ${TABLE}.subscription_status_detail = 'S' THEN 'Suspended'
+      WHEN ${TABLE}.subscription_status_detail = 'T' THEN 'Suspended'
+      WHEN ${TABLE}.subscription_status_detail = 'U' THEN 'Suspended'
+      WHEN ${TABLE}.subscription_status_detail = 'W' THEN 'Future'
+      WHEN ${TABLE}.subscription_status_detail = 'Y' THEN 'Active'
+      WHEN ${TABLE}.subscription_status_detail = 'Z' THEN 'Cancel'
+    END ;;
   }
+
 
   dimension: total_issues_despatched {
     type: number
@@ -327,22 +353,31 @@ view: nudge_subscriptions {
     sql: ${TABLE}.individual_id ;;
   }
 
-  measure: Active_Subs_Count {
-    type: count
-
-    filters: {
-      field: subscription_status
-      value: "C, I"
-    }
-
-    filters: {
-      field: circulation_status
-      value: "Q, R"
-    }
-
-    filters: {
-      field: subscription_indicator
-      value: "D, R, S"
-    }
+  measure: Count_of_Subscriptions {
+    type: count_distinct
+    sql: ${TABLE}.Subscription_ref ;;
   }
+
+#   measure: Active_Subscriptions {
+#       type: count_distinct
+#       sql:
+#
+#       ${TABLE}.Subscription_ref;;
+#   }
+
 }
+
+#
+# filters: {
+#   field: subscription_status
+#   value: "C, I"
+# }
+#
+# filters: {
+#   field: circulation_status
+#   value: "Q, R"
+# }
+#
+# filters: {
+#   field: subscription_indicator
+#   value: "D, R, S"

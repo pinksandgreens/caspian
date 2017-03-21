@@ -1,8 +1,8 @@
 view: adx {
   sql_table_name: ad_platform.adx ;;
 
-  dimension: ad_requests {
-    type: string
+  measure: ad_requests {
+    type: sum
     sql: ${TABLE}.ad_requests ;;
   }
 
@@ -26,8 +26,8 @@ view: adx {
     sql: ${TABLE}.buyer_network_name ;;
   }
 
-  dimension: clicks {
-    type: string
+  measure: clicks {
+    type: sum
     sql: ${TABLE}.clicks ;;
   }
 
@@ -54,18 +54,20 @@ view: adx {
     sql: ${TABLE}.dsp_name ;;
   }
 
-  dimension: earnings_gbp {
-    type: string
-    sql: ${TABLE}."earnings (gbp)" ;;
+  measure: earnings_gbp {
+    label: "Earnings (GBP)"
+    type: sum
+    value_format: "\£0.0000"
+    sql: ${TABLE}."earnings..gbp."::float ;;
   }
 
-  dimension: individual_ad_impressions {
-    type: string
+  measure: individual_ad_impressions {
+    type: sum
     sql: ${TABLE}.individual_ad_impressions ;;
   }
 
-  dimension: matched_ad_requests {
-    type: string
+  measure: matched_ad_requests {
+    type: sum
     sql: ${TABLE}.matched_ad_requests ;;
   }
 
@@ -75,6 +77,7 @@ view: adx {
   }
 
   dimension: rownum {
+    hidden: yes
     type: string
     sql: ${TABLE}.rownum ;;
   }
@@ -89,7 +92,39 @@ view: adx {
     sql: ${TABLE}.url_channel_name ;;
   }
 
+  dimension: video_ad_format {
+    type: string
+    sql: ${TABLE}.video_ad_format ;;
+  }
+
+  dimension: video_ad_duration {
+    type: string
+    sql: ${TABLE}.video_ad_duration ;;
+  }
+
+  measure: video_ad_abandonment {
+    type: average
+    value_format: "0.00\%"
+    description: "% of users that abandoned the video ad"
+    sql: CASE
+          WHEN ${TABLE}.video_ad_abandonment_ratio = 'NA' THEN '0'
+          ELSE ${TABLE}.video_ad_abandonment_ratio::float*100
+         END;;
+  }
+
+  measure: cost_per_click {
+    label: "Cost Per Click (GBP)"
+    description: "Revenue per click - revenue/clicks"
+    type: average
+    value_format: "\£0.0000"
+    sql: CASE
+          WHEN ${TABLE}."cost_per_click..gbp." = 'NA' THEN '0'
+          ELSE ${TABLE}."cost_per_click..gbp."::float
+         END;;
+  }
+
   measure: count {
+    hidden: yes
     type: count
     drill_fields: [detail*]
   }

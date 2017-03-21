@@ -1,62 +1,75 @@
 view: dfp_devices {
   sql_table_name: ad_platform.dfp_devices ;;
 
-  dimension: column_ad_exchange_line_item_level_clicks {
-    type: string
+  measure: column_ad_exchange_line_item_level_clicks {
+    label: "Adx - Line Item Clicks"
+    type: sum
     sql: ${TABLE}."column.ad_exchange_line_item_level_clicks" ;;
   }
 
-  dimension: column_ad_exchange_line_item_level_impressions {
-    type: string
+  measure: column_ad_exchange_line_item_level_impressions {
+    label: "Adx - Line Item Impressions"
+    type: sum
     sql: ${TABLE}."column.ad_exchange_line_item_level_impressions" ;;
   }
 
-  dimension: column_ad_exchange_line_item_level_revenue {
-    type: string
-    sql: ${TABLE}."column.ad_exchange_line_item_level_revenue" ;;
+  measure: column_ad_exchange_line_item_level_revenue {
+    label: "Adx - Line Item Revenue"
+    type: sum
+    value_format: "\£0.0000"
+    sql: ${TABLE}."column.ad_exchange_line_item_level_revenue"::float/1000000 ;;
   }
 
-  dimension: column_total_line_item_level_clicks {
-    type: string
+  measure: column_total_line_item_level_clicks {
+    label: "Total Line Item Clicks"
+    type: sum
     sql: ${TABLE}."column.total_line_item_level_clicks" ;;
   }
 
-  dimension: column_total_line_item_level_impressions {
-    type: string
+  measure: column_total_line_item_level_impressions {
+    label: "Total Line Item Impressions"
+    type: sum
     sql: ${TABLE}."column.total_line_item_level_impressions" ;;
   }
 
   dimension: dimension_ad_unit_id {
+    label: "Ad Unit ID"
     type: string
     sql: ${TABLE}."dimension.ad_unit_id" ;;
   }
 
   dimension: dimension_ad_unit_name {
+    label: "Ad Unit Name"
     type: string
     sql: ${TABLE}."dimension.ad_unit_name" ;;
   }
 
   dimension: dimension_country_criteria_id {
+    label: "Country Criteria ID"
     type: string
     sql: ${TABLE}."dimension.country_criteria_id" ;;
   }
 
   dimension: dimension_country_name {
+    label: "Country Name"
     type: string
     sql: ${TABLE}."dimension.country_name" ;;
   }
 
   dimension: dimension_creative_id {
+    label: "Creative ID"
     type: string
     sql: ${TABLE}."dimension.creative_id" ;;
   }
 
   dimension: dimension_creative_name {
+    label: "Creative Name"
     type: string
     sql: ${TABLE}."dimension.creative_name" ;;
   }
 
   dimension: dimension_creative_size {
+    label: "Creative Size"
     type: string
     sql: ${TABLE}."dimension.creative_size" ;;
   }
@@ -70,46 +83,55 @@ view: dfp_devices {
   }
 
   dimension: dimension_device_category_id {
+    label: "Category ID"
     type: string
     sql: ${TABLE}."dimension.device_category_id" ;;
   }
 
   dimension: dimension_device_category_name {
+    label: "Category Name"
     type: string
     sql: ${TABLE}."dimension.device_category_name" ;;
   }
 
   dimension: dimension_line_item_id {
+    label: "Line Item ID"
     type: string
     sql: ${TABLE}."dimension.line_item_id" ;;
   }
 
   dimension: dimension_line_item_name {
+    label: "Line Item Name"
     type: string
     sql: ${TABLE}."dimension.line_item_name" ;;
   }
 
   dimension: dimension_line_item_type {
+    label: "Line Item Type"
     type: string
     sql: ${TABLE}."dimension.line_item_type" ;;
   }
 
   dimension: dimension_order_id {
+    label: "Order ID"
     type: string
     sql: ${TABLE}."dimension.order_id" ;;
   }
 
   dimension: dimension_order_name {
+    label: "Order Name"
     type: string
     sql: ${TABLE}."dimension.order_name" ;;
   }
 
   dimension: rownum {
+    hidden: yes
     type: string
     sql: ${TABLE}.rownum ;;
   }
 
   measure: count {
+    hidden: yes
     type: count
     drill_fields: [detail*]
   }

@@ -1,35 +1,39 @@
 view: admarvel_site {
   sql_table_name: ad_platform.admarvel_site ;;
 
-  dimension: clicks {
-    type: string
+  measure: clicks {
+    type: sum
     sql: ${TABLE}.clicks ;;
   }
 
-  dimension: ctr {
-    type: string
-    sql: ${TABLE}.ctr ;;
+  measure: ctr {
+    type: average
+    value_format: "0.0000"
+    sql: ${TABLE}.ctr::float ;;
   }
 
   dimension_group: date {
+    label: ""
     type: time
     timeframes: []
     convert_tz: no
     sql: TO_DATE(${TABLE}.date,'MM-DD-YYYY') ;;
   }
 
-  dimension: ecpm {
-    type: string
-    sql: ${TABLE}.ecpm ;;
+  measure: ecpm {
+    type: average
+    value_format: "0.0000"
+    sql: ${TABLE}.ecpm::float ;;
   }
 
-  dimension: fill_rate {
-    type: string
-    sql: ${TABLE}."fill.rate" ;;
+  measure: fill_rate {
+    type: average
+    value_format: "0.0000\%"
+    sql: ${TABLE}."fill.rate"::float ;;
   }
 
-  dimension: impressions {
-    type: string
+  measure: impressions {
+    type: sum
     sql: ${TABLE}.impressions ;;
   }
 
@@ -43,17 +47,19 @@ view: admarvel_site {
     sql: ${TABLE}."publisher.name" ;;
   }
 
-  dimension: requests {
-    type: string
+  measure: requests {
+    type: sum
     sql: ${TABLE}.requests ;;
   }
 
-  dimension: revenue {
-    type: string
-    sql: ${TABLE}.revenue ;;
+  measure: revenue {
+    type: sum
+    value_format: "\£0.0000"
+    sql: ${TABLE}.revenue::float ;;
   }
 
   dimension: rownum {
+    hidden: yes
     type: string
     sql: ${TABLE}.rownum ;;
   }
@@ -69,6 +75,7 @@ view: admarvel_site {
   }
 
   measure: count {
+    hidden: yes
     type: count
     drill_fields: [publisher_name, site_name]
   }

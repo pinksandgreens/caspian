@@ -1,23 +1,26 @@
 view: adsense {
   sql_table_name: ad_platform.adsense ;;
 
-  dimension: ad_requests {
-    type: string
+  measure: ad_requests {
+    type: sum
     sql: ${TABLE}.ad_requests ;;
   }
 
-  dimension: ad_requests_coverage {
-    type: string
-    sql: ${TABLE}.ad_requests_coverage ;;
+  measure: ad_requests_coverage {
+    type: average
+    value_format: "0.0000\%"
+    sql: ${TABLE}.ad_requests_coverage::float*100;;
+        }
+
+  measure: ad_requests_ctr {
+    type: average
+    value_format: "0.0000\%"
+    sql: ${TABLE}.ad_requests_ctr::float*100 ;;
   }
 
-  dimension: ad_requests_ctr {
-    type: string
-    sql: ${TABLE}.ad_requests_ctr ;;
-  }
-
-  dimension: ad_requests_rpm_gbp {
-    type: string
+  measure: ad_requests_rpm_gbp {
+    type: sum
+    value_format: "\£0.0000"
     sql: ${TABLE}."ad_requests_rpm (gbp)" ;;
   }
 
@@ -41,14 +44,15 @@ view: adsense {
     sql: ${TABLE}.ad_unit_size_code ;;
   }
 
-  dimension: clicks {
-    type: string
+  measure: clicks {
+    type: sum
     sql: ${TABLE}.clicks ;;
   }
 
-  dimension: cost_per_click_gbp {
-    type: string
-    sql: ${TABLE}."cost_per_click (gbp)" ;;
+  measure: cost_per_click_gbp {
+    type: average
+    value_format: "\£0.0000"
+    sql: ${TABLE}."cost_per_click (gbp)"::float ;;
   }
 
   dimension: country_code {
@@ -69,62 +73,71 @@ view: adsense {
     sql: TO_DATE(${TABLE}.date,'YYYY-MM-DD') ;;
   }
 
-  dimension: earnings_gbp {
-    type: string
-    sql: ${TABLE}."earnings (gbp)" ;;
+  measure: earnings_gbp {
+    type: sum
+    value_format: "\£0.00"
+    sql: ${TABLE}."earnings (gbp)"::float ;;
   }
 
-  dimension: individual_ad_impressions {
-    type: string
+  measure: individual_ad_impressions {
+    type: sum
     sql: ${TABLE}.individual_ad_impressions ;;
   }
 
-  dimension: individual_ad_impressions_ctr {
-    type: string
-    sql: ${TABLE}.individual_ad_impressions_ctr ;;
+  measure: individual_ad_impressions_ctr {
+    type: average
+    value_format: "0.0000\%"
+    sql: ${TABLE}.individual_ad_impressions_ctr::float*100 ;;
   }
 
-  dimension: individual_ad_impressions_rpm_gbp {
-    type: string
-    sql: ${TABLE}."individual_ad_impressions_rpm (gbp)" ;;
+  measure: individual_ad_impressions_rpm_gbp {
+    type: sum
+    value_format: "\£0.0000"
+    sql: ${TABLE}."individual_ad_impressions_rpm (gbp)"::float ;;
   }
 
-  dimension: matched_ad_requests {
-    type: string
+  measure: matched_ad_requests {
+    type: sum
     sql: ${TABLE}.matched_ad_requests ;;
   }
 
-  dimension: matched_ad_requests_ctr {
-    type: string
-    sql: ${TABLE}.matched_ad_requests_ctr ;;
+  measure: matched_ad_requests_ctr {
+    type: average
+    value_format: "0.0000\%"
+    sql: ${TABLE}.matched_ad_requests_ctr::float*100 ;;
   }
 
-  dimension: matched_ad_requests_rpm_gbp {
-    type: string
-    sql: ${TABLE}."matched_ad_requests_rpm (gbp)" ;;
+  measure: matched_ad_requests_rpm_gbp {
+    type: sum
+    value_format: "\£0.0000"
+    sql: ${TABLE}."matched_ad_requests_rpm (gbp)"::float ;;
   }
 
-  dimension: page_views {
-    type: string
+  measure: page_views {
+    type: sum
     sql: ${TABLE}.page_views ;;
   }
 
-  dimension: page_views_ctr {
-    type: string
-    sql: ${TABLE}.page_views_ctr ;;
+  measure: page_views_ctr {
+    type: average
+    value_format: "0.0000\%"
+    sql: ${TABLE}.page_views_ctr::float*100 ;;
   }
 
-  dimension: page_views_rpm_gbp {
-    type: string
-    sql: ${TABLE}."page_views_rpm (gbp)" ;;
+  measure: page_views_rpm_gbp {
+    type: sum
+    value_format: "\£0.0000"
+    sql: ${TABLE}."page_views_rpm (gbp)"::float ;;
   }
 
   dimension: rownum {
+    hidden: yes
     type: string
     sql: ${TABLE}.rownum ;;
   }
 
   measure: count {
+    hidden: yes
     type: count
     drill_fields: [ad_unit_name, country_name]
   }

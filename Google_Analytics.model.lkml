@@ -11,11 +11,11 @@ explore: google_analytics_top_line {
   sql_table_name: publications.google_analytics_top_line ;;
   persist_for: "20 hour"
 
-  join: brand_lookup {
-    type: inner
-    relationship: one_to_one
-    sql_on: ${brand_lookup.bra_code} = ${google_analytics_top_line.brand_code} ;;
-  }
+#   join: brand_lookup {
+#     type: inner
+#     relationship: one_to_one
+#     sql_on: ${brand_lookup.bra_code} = ${google_analytics_top_line.brand_code} ;;
+#   }
 }
 
 # - explore: google_analytics_pages
@@ -176,7 +176,10 @@ explore: bigquery_google_analytics {
   }
 }
 
+######################## THIS IS USED BUT HIDDEN #################################
+
 explore: google_analytics_yearly {
+  hidden: yes
   label: "Google Analytics - By Month"
   sql_table_name: publications.google_analytics_yearly ;;
   persist_for: "20 hour"
@@ -189,6 +192,7 @@ explore: google_analytics_yearly {
 }
 
 explore: ga_demographics {
+  hidden: yes
   label: "Google Analytics - Demographics"
   sql_table_name: publications.ga_demographics ;;
   persist_for: "20 hour"
@@ -201,31 +205,14 @@ explore: ga_demographics {
 }
 
 explore: google_analytics_weekly_demogs {
-  label: "Google Analytics - Weekly Demographics"
+  hidden: no
+  label: "Google Analytics - Demographics"
   sql_table_name: publications.google_analytics_weekly_demogs ;;
   persist_for: "20 hour"
-
-  join: brand_lookup {
-    type: inner
-    relationship: one_to_one
-    sql_on: ${brand_lookup.bra_code} = ${google_analytics_weekly_demogs.brand_code} ;;
-  }
 }
 
-# foreign_key:
-
-#     - join: bigquery_google_analytics_hits
-#       type: inner
-#       relationship: one_to_many
-#       sql_on: ${bigquery_google_analytics.fullvisitorid}=${bigquery_google_analytics_hits.fullvisitorid}
-#
-#     - join: bigquery_google_analytics_hits_customdimensions
-#       type: inner
-#       relationship: one_to_many
-#       sql_on: ${bigquery_google_analytics.fullvisitorid}=${bigquery_google_analytics_hits_customdimensions.fullvisitorid}
-
-
 explore: google_analytics_demographics30days {
+  hidden: yes
   label: "Google Analytics - 30 Day Demographics"
   sql_table_name: publications.google_analytics_demographics30days ;;
   persist_for: "20 hour"
@@ -238,13 +225,24 @@ explore: google_analytics_demographics30days {
 }
 
 explore: google_analytics_trafficreport {
+  hidden: yes
   label: "Google Analytics - Traffic Report"
   sql_table_name: publications.google_analytics_trafficreport ;;
   persist_for: "20 hour"
 }
 
+############################################################################
+
+
+
+
+
+
+
+
 
 explore: google_analytics_marconi {
+  hidden: yes
   label: "Google Analytics - Marconi Tracker"
   sql_table_name: publications.google_analytics_marconi ;;
   persist_for: "20 hour"

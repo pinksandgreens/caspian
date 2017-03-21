@@ -37,8 +37,8 @@ view: nativo {
 
   measure: avg_time_on_content {
     type: average
-    value_format: "0.00\%"
-    sql: ${TABLE}."avg.time.on.content"::float*100 ;;
+    value_format: "0.0000"
+    sql: ${TABLE}."avg.time.on.content"::float ;;
   }
 
   dimension: budget_id {
@@ -76,9 +76,10 @@ view: nativo {
     sql: ${TABLE}.clicks ;;
   }
 
-  dimension: cpm {
-    type: string
-    sql: ${TABLE}.cpm ;;
+  measure: cpm {
+    type: average
+    value_format: "\£0.0000"
+    sql: ${TABLE}.cpm::float ;;
   }
 
   measure: cpm_impressions {
@@ -91,9 +92,9 @@ view: nativo {
     sql: ${TABLE}.cta ;;
   }
 
-  dimension: cta_rate {
-    type: string
-    value_format: "0.00\%"
+  measure: cta_rate {
+    type: average
+    value_format: "0.0000\%"
     sql: ${TABLE}."cta.rate"::float*100 ;;
   }
 
@@ -143,8 +144,8 @@ view: nativo {
     sql: ${TABLE}."engagement.rate"::float*100 ;;
   }
 
-  dimension: engagements {
-    type: string
+  measure: engagements {
+    type: sum
     sql: ${TABLE}.engagements ;;
   }
 
@@ -163,9 +164,10 @@ view: nativo {
     sql: TO_DATE(SPLIT_PART(${TABLE}."flight.start.date", 'T', 1),'YYYY-MM-DD');;
   }
 
-  dimension: gross_budget_spent {
-    type: string
-    sql: ${TABLE}."gross.budget.spent" ;;
+  measure: gross_budget_spent {
+    type: sum
+    value_format: "\£0.0000"
+    sql: ${TABLE}."gross.budget.spent"::float ;;
   }
 
   measure: impressions {
@@ -295,6 +297,7 @@ view: nativo {
   }
 
   measure: count {
+    hidden: yes
     type: count
     drill_fields: [detail*]
   }

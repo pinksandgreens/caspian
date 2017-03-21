@@ -11,14 +11,15 @@ view: teads {
     sql: ${TABLE}.ad_start ;;
   }
 
-  dimension: click {
-    type: string
+  measure: click {
+    type: sum
     sql: ${TABLE}.click ;;
   }
 
-  dimension: clickrate {
-    type: string
-    sql: ${TABLE}."click-rate" ;;
+  measure: clickrate {
+    type: average
+    value_format: "0.0000\%"
+    sql: ${TABLE}."click-rate"::float*100 ;;
   }
 
   dimension_group: date {
@@ -29,19 +30,21 @@ view: teads {
     sql: TO_DATE(${TABLE}.day,'YYYY/MM/DD') ;;
   }
 
-  dimension: impression {
-    type: string
+  measure: impression {
+    type: sum
     sql: ${TABLE}.impression ;;
   }
 
-  dimension: income_converted_gbp {
-    type: string
-    sql: ${TABLE}.income_converted_gbp ;;
+  measure: income_converted_gbp {
+    type: sum
+    value_format: "\£0.0000"
+    sql: ${TABLE}.income_converted_gbp::float ;;
   }
 
-  dimension: income_value {
-    type: string
-    sql: ${TABLE}.income_value ;;
+  measure: income_value {
+    type: sum
+    value_format: "0.0000"
+    sql: ${TABLE}.income_value::float  ;;
   }
 
   dimension: placement {
@@ -54,22 +57,26 @@ view: teads {
     sql: ${TABLE}.placement_id ;;
   }
 
-  dimension: revenue {
-    type: string
-    sql: ${TABLE}.revenue ;;
+  measure: revenue {
+    type: sum
+    value_format: "0.0000"
+    sql: ${TABLE}.revenue::float ;;
   }
 
   dimension: rownum {
+    hidden: yes
     type: string
     sql: ${TABLE}.rownum ;;
   }
 
-  dimension: start {
-    type: string
+  measure: start {
+    label: "Video Starts"
+    type: sum
     sql: ${TABLE}.start ;;
   }
 
   measure: count {
+    hidden:  yes
     type: count
     drill_fields: []
   }

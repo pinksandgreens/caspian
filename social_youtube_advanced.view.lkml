@@ -50,10 +50,10 @@ view: social_youtube_advanced {
     sql: ${TABLE}.averageviewduration::float ;;
   }
 
-  dimension: average_view_percentage {
-    type: string
+  measure: average_view_percentage {
+    type: average
     value_format: "0.00\%"
-    sql: ${TABLE}.averageviewpercentage::float  ;;
+    sql: ${TABLE}.averageviewpercentage::float ;;
   }
 
   dimension: brand {

@@ -110,10 +110,19 @@ explore: social_twitter_posts {
 }
 
 explore: social_youtube_videos {
+  hidden: yes
   label: "Youtube Videos"
   sql_table_name: publications.social_youtube_videos ;;
   persist_for: "1 hour"
 }
+
+explore: social_youtube_advanced {
+  hidden: no
+  label: "Youtube Videos"
+  sql_table_name: publications.social_youtube_advanced ;;
+  persist_for: "1 hour"
+}
+
 
 explore: social_twitter_trending_adv {
   label: "Twitter Trending"

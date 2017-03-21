@@ -197,6 +197,18 @@ explore: ga_sessions_todaygolfer {
   }
 }
 
+explore: ga_sessions_winit {
+  label: "BigQuery - Winit"
+
+  always_filter: {
+    filters: {
+      field: date_filter
+      value: "30 days"
+    }
+  }
+}
+
+
 explore: angling_times_content_consumed_by_article {
   hidden: yes
   label: "BigQuery - Angling Times - Article Cohort Analysis"

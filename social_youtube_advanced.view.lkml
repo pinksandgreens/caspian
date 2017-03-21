@@ -58,7 +58,11 @@ view: social_youtube_advanced {
 
   dimension: brand {
     type: string
-    sql: ${TABLE}.brand ;;
+    sql:
+      CASE
+        WHEN ${TABLE}.brand LIKE '%boxes?%' THEN 'Absolute Radio'
+        ELSE ${TABLE}.brand
+      END;;
   }
 
   measure: card_click_rate {

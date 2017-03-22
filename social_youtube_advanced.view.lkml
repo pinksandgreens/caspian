@@ -4,6 +4,7 @@ view: social_youtube_advanced {
   measure: ad_impressions {
     type: sum
     sql: ${TABLE}.adimpressions ;;
+    drill_fields: [post_details*]
   }
 
   measure: annotation_clickable_impressions {
@@ -48,12 +49,14 @@ view: social_youtube_advanced {
     type: average
     value_format: "0.00"
     sql: ${TABLE}.averageviewduration::float ;;
+    drill_fields: [post_details*]
   }
 
   measure: average_view_percentage {
     type: average
     value_format: "0.00\%"
     sql: ${TABLE}.averageviewpercentage::float ;;
+    drill_fields: [post_details*]
   }
 
   dimension: brand {
@@ -153,17 +156,20 @@ view: social_youtube_advanced {
     type: sum
     value_format: "\£0.0000"
     sql: ${TABLE}.estimatedrevenue::float ;;
+    drill_fields: [post_details*]
   }
 
   measure: gross_revenue {
     type: sum
     value_format: "\£0.0000"
     sql: ${TABLE}.grossrevenue::float ;;
+    drill_fields: [post_details*]
   }
 
   measure: likes {
     type: sum
     sql: ${TABLE}.likes ;;
+    drill_fields: [post_details*]
   }
 
   dimension: link {
@@ -190,6 +196,7 @@ view: social_youtube_advanced {
   measure: shares {
     type: sum
     sql: ${TABLE}.shares ;;
+    drill_fields: [post_details*]
   }
 
   measure: subscribers_gained {
@@ -230,11 +237,29 @@ view: social_youtube_advanced {
   measure: views {
     type: sum
     sql: ${TABLE}.views ;;
+    drill_fields: [post_details*]
   }
 
   measure: count {
     type: count
     hidden: yes
-    drill_fields: []
+    drill_fields: [post_details*]
   }
-}
+
+  set: post_details {
+    fields: [
+      brand,
+      title,
+      link,
+      views,
+      shares,
+      comments,
+      average_view_duration,
+      average_view_percentage,
+      subscribers_gained,
+      ad_impressions,
+      gross_revenue
+      ]
+    }
+
+  }

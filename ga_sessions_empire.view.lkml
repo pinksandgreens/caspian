@@ -1440,6 +1440,23 @@ view: ga_sessions_empire {
       convert_tz: yes
     }
 
+  dimension: totals_pageviews2 {
+    label: "Total Pageviews TEST"
+    type: string
+    hidden:  yes
+    sql: CASE
+        WHEN ${TABLE}.totals.pageviews IS NOT NULL THEN 1
+        ELSE NULL
+        END;;
+  }
+
+  measure: totals_pageviews3 {
+    label: "Individual Page Pageviews"
+    type: sum
+    hidden:  no
+    sql: ${totals_pageviews2};;
+  }
+
     dimension: visitor_id {
       type: number
       sql: ${TABLE}.visitorId ;;

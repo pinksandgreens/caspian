@@ -1586,6 +1586,23 @@ view: ga_sessions {
       }
     }
 
+  dimension: totals_pageviews2 {
+    label: "Total Pageviews TEST"
+    type: string
+    hidden:  yes
+    sql: CASE
+        WHEN ${TABLE}.totals.pageviews IS NOT NULL THEN 1
+        ELSE NULL
+        END;;
+  }
+
+  measure: totals_pageviews3 {
+    label: "Individual Page Pageviews"
+    type: sum
+    hidden:  no
+    sql: ${totals_pageviews2};;
+  }
+
     #   - measure: totals_pageviews
     #     label: 'Total Pageviews'
     #     type: sum
@@ -1599,16 +1616,6 @@ view: ga_sessions {
       drill_fields: [detail*]
     }
 
-    measure: gallery_pageviews {
-      label: "Total Gallery Pageviews"
-      type: sum
-      sql: ${TABLE}.totals.pageviews ;;
-
-      filters: {
-        field: hits__event_info__event_category
-        value: "Gallery"
-      }
-    }
 
     measure: pages_p_session {
       label: "Pages per Session"

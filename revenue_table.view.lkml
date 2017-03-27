@@ -10,9 +10,12 @@ view: revenue_table {
       END;;
   }
 
-  dimension: date {
-    type: string
-    sql:TO_DATE(${TABLE}.date,'YYYY-MM-DD') ;;
+  dimension_group: date {
+    type: time
+    label: ""
+    timeframes: []
+    convert_tz: no
+    sql: TO_DATE(${TABLE}.date,'YYYY-MM-DD') ;;
   }
 
   measure: impressions {

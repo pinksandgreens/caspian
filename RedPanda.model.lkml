@@ -91,3 +91,9 @@ explore: rezonence {
   sql_table_name: ad_platform.rezonence ;;
   persist_for: "6 hour"
 }
+
+explore: revenue_table {
+  hidden: no
+  sql_table_name: ad_platform.revenue_table ;;
+  persist_for: "6 hour"
+}

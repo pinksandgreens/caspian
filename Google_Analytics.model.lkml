@@ -211,6 +211,20 @@ explore: google_analytics_weekly_demogs {
   persist_for: "20 hour"
 }
 
+explore: google_analytics_weekly_demogs_inmarket {
+  hidden: no
+  label: "Google Analytics - In-Market"
+  sql_table_name: publications.google_analytics_weekly_demogs_inmarket ;;
+  persist_for: "20 hour"
+}
+
+explore: google_analytics_weekly_demogs_affinity {
+  hidden: no
+  label: "Google Analytics - Affinity"
+  sql_table_name: publications.google_analytics_weekly_demogs_affinity ;;
+  persist_for: "20 hour"
+}
+
 explore: google_analytics_demographics30days {
   hidden: yes
   label: "Google Analytics - 30 Day Demographics"

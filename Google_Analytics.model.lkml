@@ -228,7 +228,6 @@ explore: google_analytics_trafficreport {
   hidden: yes
   label: "Google Analytics - Traffic Report"
   sql_table_name: publications.google_analytics_trafficreport ;;
-  persist_for: "20 hour"
 }
 
 ############################################################################

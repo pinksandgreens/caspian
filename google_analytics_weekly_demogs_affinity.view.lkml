@@ -82,7 +82,7 @@ view: google_analytics_weekly_demogs_affinity {
 
 
   dimension: affinity {
-    label: "User Affinity Type"
+    label: "Affinity Category"
     type: string
     sql: ${TABLE}.interestaffinitycategory ;;
   }

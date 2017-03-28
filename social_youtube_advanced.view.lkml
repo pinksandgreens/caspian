@@ -224,10 +224,18 @@ view: social_youtube_advanced {
     sql: ${TABLE}.subscriberslost ;;
   }
 
-  dimension: thumbnail {
-    type: string
+  dimension: image_filewow {
+    hidden: yes
     sql: ${TABLE}.thumbnail ;;
   }
+
+  dimension: image_filelike2 {
+    label: "Thumbnail"
+    hidden: no
+    sql: ${image_filewow} ;;
+    html: <img src="{{ value }}" width="40" 0height="40"/>;;
+  }
+
 
   dimension: title {
     type: string
@@ -266,6 +274,7 @@ view: social_youtube_advanced {
       brand,
       title,
       link,
+      image_filelike2,
       views,
       shares,
       comments,

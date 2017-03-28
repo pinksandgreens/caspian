@@ -989,6 +989,7 @@ view: ga_sessions {
       }
 
     measure: hits__publisher__ads_viewed{
+      type: sum
       sql: ${TABLE}.hits.publisher.adsViewed;;
       }
 

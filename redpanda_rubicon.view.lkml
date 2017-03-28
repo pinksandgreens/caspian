@@ -89,6 +89,7 @@ view: rubicon {
   }
 
   measure: count {
+    hidden: no
     type: count
     drill_fields: []
   }

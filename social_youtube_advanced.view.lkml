@@ -7,6 +7,13 @@ view: social_youtube_advanced {
     drill_fields: [post_details*]
   }
 
+  measure: number_of_videos {
+    type: count_distinct
+    sql: ${TABLE}.video_id ;;
+    drill_fields: [post_details*]
+  }
+
+
   measure: annotation_clickable_impressions {
     type: sum
     sql: ${TABLE}.annotationclickableimpressions ;;
@@ -122,6 +129,14 @@ view: social_youtube_advanced {
     timeframes: []
     convert_tz: no
     sql: TO_DATE(${TABLE}.day,'YYYY-MM-DD') ;;
+  }
+
+  dimension_group: created {
+    type: time
+    label: "Created"
+    timeframes: []
+    convert_tz: no
+    sql: TO_TIMESTAMP(${TABLE}.published_date,'YYYY/MM/DD HH24:MI:SS');;
   }
 
   dimension: description {

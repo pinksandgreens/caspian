@@ -791,176 +791,209 @@ view: ga_sessions {
       fanout_on: "hits"
     }
 
-    # Not sure what use this is
-#
-#     dimension: hits__publisher__ads_clicked{
-#       type: number
-#       sql: ${TABLE}.hits.publisher.adsClicked;;
-#       }
-#
-#     dimension: hits__publisher__ads_pages_viewed{
-#       type: number
-#       sql: ${TABLE}.hits.publisher.adsPagesViewed;;
-#       }
-#
-#     dimension: hits__publisher__ads_revenue{
-#       type: number
-#       value_format: "$0.00"
-#       sql: ${TABLE}.hits.publisher.adsRevenue/1000000;;
-#       }
-#
-#     dimension: hits__publisher__ads_units_matched{
-#       type: number
-#       sql: ${TABLE}.hits.publisher.adsUnitsMatched;;
-#       }
-#
-#
-#     dimension: hits__publisher__ads_units_viewed{
-#       type: number
-#       sql: ${TABLE}.hits.publisher.adsUnitsViewed;;
-#       }
-#
-#     dimension: hits__publisher__ads_viewed{
-#       type: number
-#       sql: ${TABLE}.hits.publisher.adsViewed;;
-#       }
+
+
+    ########################### AD THINGS ###############################
 
 
 
+    measure: hits__publisher__adsense_backfill_dfp_clicks{
+    type: sum
+    sql: ${TABLE}.hits.publisher.adsenseBackfillDfpClicks;;
+    fanout_on: "hits"
+        }
+
+    measure: hits__publisher__adsense_backfill_dfp_impressions{
+    type: sum
+    sql: ${TABLE}.hits.publisher.adsenseBackfillDfpImpressions;;
+    fanout_on: "hits"
+        }
+
+    measure: hits__publisher__adsense_backfill_dfp_matched_queries{
+    type: sum
+    sql: ${TABLE}.hits.publisher.adsenseBackfillDfpMatchedQueries;;
+    fanout_on: "hits"
+        }
+
+    measure: hits__publisher__adsense_backfill_dfp_measurable_impressions{
+    type: sum
+    sql: ${TABLE}.hits.publisher.adsenseBackfillDfpMeasurableImpressions;;
+    fanout_on: "hits"
+      }
+
+    measure: hits__publisher__adsense_backfill_dfp_pages_viewed{
+    type: sum
+    sql: ${TABLE}.hits.publisher.adsenseBackfillDfpPagesViewed;;
+    fanout_on: "hits"
+      }
+
+    measure: hits__publisher__adsense_backfill_dfp_queries{
+    type: sum
+    sql: ${TABLE}.hits.publisher.adsenseBackfillDfpQueries;;
+    fanout_on: "hits"
+      }
+
+    measure: hits__publisher__adsense_backfill_dfp_revenue_cpc{
+    type: sum
+    value_format: "$0.0000"
+    sql: ${TABLE}.hits.publisher.adsenseBackfillDfpRevenueCpc/1000000;;
+    fanout_on: "hits"
+      }
+
+    measure: hits__publisher__adsense_backfill_dfp_revenue_cpm{
+    type: sum
+    value_format: "$0.0000"
+    sql: ${TABLE}.hits.publisher.adsenseBackfillDfpRevenueCpm/1000000;;
+    fanout_on: "hits"
+        }
+
+    measure: hits__publisher__adsense_backfill_dfp_viewable_impressions{
+    type: sum
+    sql: ${TABLE}.hits.publisher.adsenseBackfillDfpViewableImpressions;;
+    fanout_on: "hits"
+        }
+
+    measure: hits__publisher__adx_backfill_dfp_clicks{
+    type: sum
+    sql: ${TABLE}.hits.publisher.adxBackfillDfpClicks;;
+    fanout_on: "hits"
+        }
+
+    measure: hits__publisher__adx_backfill_dfp_impressions{
+    type: sum
+    sql: ${TABLE}.hits.publisher.adxBackfillDfpImpressions;;
+    fanout_on: "hits"
+        }
+
+    measure: hits__publisher__adx_backfill_dfp_matched_queries{
+    type: sum
+    sql: ${TABLE}.hits.publisher.adxBackfillDfpMatchedQueries;;
+    fanout_on: "hits"
+        }
+
+    measure: hits__publisher__adx_backfill_dfp_measurable_impressions{
+    type: sum
+    sql: ${TABLE}.hits.publisher.adxBackfillDfpMeasurableImpressions;;
+    fanout_on: "hits"
+        }
+
+    measure: hits__publisher__adx_backfill_dfp_pages_viewed{
+    type: sum
+    sql: ${TABLE}.hits.publisher.adxBackfillDfpPagesViewed;;
+    fanout_on: "hits"
+        }
+
+    measure: hits__publisher__adx_backfill_dfp_queries{
+    type: sum
+    sql: ${TABLE}.hits.publisher.adxBackfillDfpQueries;;
+    fanout_on: "hits"
+        }
+
+    measure: hits__publisher__adx_backfill_dfp_revenue_cpc{
+    type: sum
+    value_format: "$0.0000"
+    sql: ${TABLE}.hits.publisher.adxBackfillDfpRevenueCpc/1000000;;
+    fanout_on: "hits"
+        }
+
+    measure: hits__publisher__adx_backfill_dfp_revenue_cpm{
+    type: sum
+    value_format: "$0.0000"
+    sql: ${TABLE}.hits.publisher.adxBackfillDfpRevenueCpm/1000000;;
+    fanout_on: "hits"
+        }
+
+    measure: hits__publisher__adx_backfill_dfp_viewable_impressions{
+    type: sum
+    sql: ${TABLE}.hits.publisher.adxBackfillDfpViewableImpressions;;
+    fanout_on: "hits"
+        }
+
+    measure: hits__publisher__adx_clicks{
+    type: sum
+    sql: ${TABLE}.hits.publisher.adxClicks;;
+    fanout_on: "hits"
+        }
+
+    measure: hits__publisher__adx_impressions{
+    type: sum
+    sql: ${TABLE}.hits.publisher.adxImpressions;;
+    fanout_on: "hits"
+        }
+
+    measure: hits__publisher__adx_matched_queries{
+    type: sum
+    sql: ${TABLE}.hits.publisher.adxMatchedQueries;;
+    fanout_on: "hits"
+        }
+
+    measure: hits__publisher__adx_measurable_impressions{
+    type: sum
+    sql: ${TABLE}.hits.publisher.adxMeasurableImpressions;;
+    fanout_on: "hits"
+        }
+
+    measure: hits__publisher__adx_pages_viewed{
+    type: sum
+    sql: ${TABLE}.hits.publisher.adxPagesViewed;;
+    fanout_on: "hits"
+        }
+
+    measure: hits__publisher__adx_queries{
+    type: sum
+    sql: ${TABLE}.hits.publisher.adxQueries;;
+    fanout_on: "hits"
+        }
+
+    measure: hits__publisher__adx_revenue{
+    type: sum
+    value_format: "$0.0000"
+    sql: ${TABLE}.hits.publisher.adxRevenue/1000000 ;;
+    fanout_on: "hits"
+        }
+
+    measure: hits__publisher__adx_viewable_impressions{
+    type: sum
+    sql: ${TABLE}.hits.publisher.adxViewableImpressions;;
+    fanout_on: "hits"
+      }
+
+
+# I don't fully know
+
+    measure: hits__publisher__ads_clicked{
+      type: sum
+      sql: ${TABLE}.hits.publisher.adsClicked;;
+      }
+
+    measure: hits__publisher__ads_pages_viewed{
+      type: sum
+      sql: ${TABLE}.hits.publisher.adsPagesViewed;;
+      }
+
+    measure: hits__publisher__ads_revenue{
+      type: sum
+      value_format: "$0.0000"
+      sql: ${TABLE}.hits.publisher.adsRevenue/1000000;;
+      }
+
+    measure: hits__publisher__ads_units_matched{
+      type: sum
+      sql: ${TABLE}.hits.publisher.adsUnitsMatched;;
+      }
+
+
+    measure: hits__publisher__ads_units_viewed{
+      type: sum
+      sql: ${TABLE}.hits.publisher.adsUnitsViewed;;
+      }
+
+    measure: hits__publisher__ads_viewed{
+      sql: ${TABLE}.hits.publisher.adsViewed;;
+      }
 
 
 
-
-
-    # - dimension: hits__publisher__adsense_backfill_dfp_clicks
-    #   type: number
-    #   sql: ${TABLE}.hits.publisher.adsenseBackfillDfpClicks
-    #   fanout_on: hits
-
-    # - dimension: hits__publisher__adsense_backfill_dfp_impressions
-    #   type: number
-    #   sql: ${TABLE}.hits.publisher.adsenseBackfillDfpImpressions
-    #   fanout_on: hits
-
-    # - dimension: hits__publisher__adsense_backfill_dfp_matched_queries
-    #   type: number
-    #   sql: ${TABLE}.hits.publisher.adsenseBackfillDfpMatchedQueries
-    #   fanout_on: hits
-
-    # - dimension: hits__publisher__adsense_backfill_dfp_measurable_impressions
-    #   type: number
-    #   sql: ${TABLE}.hits.publisher.adsenseBackfillDfpMeasurableImpressions
-    #   fanout_on: hits
-
-    # - dimension: hits__publisher__adsense_backfill_dfp_pages_viewed
-    #   type: number
-    #   sql: ${TABLE}.hits.publisher.adsenseBackfillDfpPagesViewed
-    #   fanout_on: hits
-
-    # - dimension: hits__publisher__adsense_backfill_dfp_queries
-    #   type: number
-    #   sql: ${TABLE}.hits.publisher.adsenseBackfillDfpQueries
-    #   fanout_on: hits
-
-    # - dimension: hits__publisher__adsense_backfill_dfp_revenue_cpc
-    #   type: number
-    #   sql: ${TABLE}.hits.publisher.adsenseBackfillDfpRevenueCpc/1000000
-    #   fanout_on: hits
-
-    # - dimension: hits__publisher__adsense_backfill_dfp_revenue_cpm
-    #   type: number
-    #   sql: ${TABLE}.hits.publisher.adsenseBackfillDfpRevenueCpm/1000000
-    #   fanout_on: hits
-
-    # - dimension: hits__publisher__adsense_backfill_dfp_viewable_impressions
-    #   type: number
-    #   sql: ${TABLE}.hits.publisher.adsenseBackfillDfpViewableImpressions
-    #   fanout_on: hits
-
-    # - dimension: hits__publisher__adx_backfill_dfp_clicks
-    #   type: number
-    #   sql: ${TABLE}.hits.publisher.adxBackfillDfpClicks
-    #   fanout_on: hits
-
-    # - dimension: hits__publisher__adx_backfill_dfp_impressions
-    #   type: number
-    #   sql: ${TABLE}.hits.publisher.adxBackfillDfpImpressions
-    #   fanout_on: hits
-
-    # - dimension: hits__publisher__adx_backfill_dfp_matched_queries
-    #   type: number
-    #   sql: ${TABLE}.hits.publisher.adxBackfillDfpMatchedQueries
-    #   fanout_on: hits
-
-    # - dimension: hits__publisher__adx_backfill_dfp_measurable_impressions
-    #   type: number
-    #   sql: ${TABLE}.hits.publisher.adxBackfillDfpMeasurableImpressions
-    #   fanout_on: hits
-
-    # - dimension: hits__publisher__adx_backfill_dfp_pages_viewed
-    #   type: number
-    #   sql: ${TABLE}.hits.publisher.adxBackfillDfpPagesViewed
-    #   fanout_on: hits
-
-    # - dimension: hits__publisher__adx_backfill_dfp_queries
-    #   type: number
-    #   sql: ${TABLE}.hits.publisher.adxBackfillDfpQueries
-    #   fanout_on: hits
-
-    # - dimension: hits__publisher__adx_backfill_dfp_revenue_cpc
-    #   type: number
-    #   sql: ${TABLE}.hits.publisher.adxBackfillDfpRevenueCpc/1000000
-    #   fanout_on: hits
-
-    # - dimension: hits__publisher__adx_backfill_dfp_revenue_cpm
-    #   type: number
-    #   sql: ${TABLE}.hits.publisher.adxBackfillDfpRevenueCpm/1000000
-    #   fanout_on: hits
-
-    # - dimension: hits__publisher__adx_backfill_dfp_viewable_impressions
-    #   type: number
-    #   sql: ${TABLE}.hits.publisher.adxBackfillDfpViewableImpressions
-    #   fanout_on: hits
-
-    # - dimension: hits__publisher__adx_clicks
-    #   type: number
-    #   sql: ${TABLE}.hits.publisher.adxClicks
-    #   fanout_on: hits
-
-    # - dimension: hits__publisher__adx_impressions
-    #   type: number
-    #   sql: ${TABLE}.hits.publisher.adxImpressions
-    #   fanout_on: hits
-
-    # - dimension: hits__publisher__adx_matched_queries
-    #   type: number
-    #   sql: ${TABLE}.hits.publisher.adxMatchedQueries
-    #   fanout_on: hits
-
-    # - dimension: hits__publisher__adx_measurable_impressions
-    #   type: number
-    #   sql: ${TABLE}.hits.publisher.adxMeasurableImpressions
-    #   fanout_on: hits
-
-    # - dimension: hits__publisher__adx_pages_viewed
-    #   type: number
-    #   sql: ${TABLE}.hits.publisher.adxPagesViewed
-    #   fanout_on: hits
-
-    # - dimension: hits__publisher__adx_queries
-    #   type: number
-    #   sql: ${TABLE}.hits.publisher.adxQueries
-    #   fanout_on: hits
-
-    # - dimension: hits__publisher__adx_revenue
-    #   type: number
-    #   sql: ${TABLE}.hits.publisher.adxRevenue/1000000
-    #   fanout_on: hits
-
-    # - dimension: hits__publisher__adx_viewable_impressions
-    #   type: number
-    #   sql: ${TABLE}.hits.publisher.adxViewableImpressions
-    #   fanout_on: hits
 
     dimension: hits__publisher__dfp_ad_group {
       type: string
@@ -1024,16 +1057,16 @@ view: ga_sessions {
 
     measure: hits__publisher__dfp_revenue_cpc {
       label: "DFP CPC - Testing"
-      type: average
-      value_format: "$0.00"
+      type: sum
+      value_format: "$0.0000"
       sql: ${TABLE}.hits.publisher.dfpRevenueCpc/1000000 ;;
       fanout_on: "hits"
     }
 
     measure: hits__publisher__dfp_revenue_cpm {
       label: "DFP CPM - Testing"
-      type: average
-      value_format: "$0.00"
+      type: sum
+      value_format: "$0.0000"
       sql: ${TABLE}.hits.publisher.dfpRevenueCpm/1000000 ;;
       fanout_on: "hits"
     }
@@ -1042,9 +1075,11 @@ view: ga_sessions {
       label: "DFP Revenue"
       description: "DFP CPC * DFP Clicks"
       type: sum
-      value_format: "$0.00"
-      sql: (${TABLE}.hits.publisher.dfpRevenueCpc/1000000)*(${TABLE}.hits.publisher.dfpClicks) ;;
+      value_format: "$0.0000"
+      sql: ${TABLE}.hits.publisher.dfpRevenueCpc/1000000 ;;
     }
+
+#      sql: (${TABLE}.hits.publisher.dfpRevenueCpc/1000000)*(${TABLE}.hits.publisher.dfpClicks) ;;
 
     measure: hits__publisher__dfp_viewable_impressions {
       label: "DFP Viewable Impressions"
@@ -1066,6 +1101,14 @@ view: ga_sessions {
       sql: ${TABLE}.hits.publisher.viewableAdsViewed ;;
       fanout_on: "hits"
     }
+
+
+
+    ##########################################################
+
+
+
+
 
     dimension: hits__referer {
       type: string

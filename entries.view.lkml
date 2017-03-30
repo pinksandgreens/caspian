@@ -21,6 +21,8 @@ view: entries {
       date,
       week,
       month,
+      month_name,
+      month_num,
       quarter,
       year
     ]

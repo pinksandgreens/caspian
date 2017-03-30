@@ -20,7 +20,11 @@ view: revenue_table {
 
   measure: impressions {
     type: sum
-    sql: ${TABLE}.impressions ;;
+    sql:
+      CASE
+        WHEN ${TABLE}.impressions = 'NA' THEN NULL
+        ELSE ${TABLE}.impressions
+      END;;
   }
 
   dimension: platform {
@@ -31,7 +35,11 @@ view: revenue_table {
   measure: revenue {
     type: sum
     value_format: "\£0.00"
-    sql: ${TABLE}.revenue::float ;;
+    sql:
+      CASE
+        WHEN ${TABLE}.revenue = 'NA' THEN NULL
+        ELSE ${TABLE}.revenue::float
+      END;;
   }
 
 }

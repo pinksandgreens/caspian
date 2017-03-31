@@ -26,7 +26,7 @@ explore: entries {
   relationship: one_to_one
   sql_table_name: [bauerxcel.com:api-project-792028032348:Mongo_DB.sites]
   ;;
-  sql_on: ${sites.id} = ${entries.id} ;;
+  sql_on: ${sites.id} = ${entries.site_id} ;;
  }
 
 }

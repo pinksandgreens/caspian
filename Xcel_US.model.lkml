@@ -38,6 +38,10 @@ explore: ga_sessions_20161005 {
   }
 }
 
+explore: ga_page_metrics_month_20170301 {
+  view_label: "GA Page Metrics"
+  sql_table_name: [bauerxcel.com:api-project-792028032348:ga_editorial_data.ga_page_metrics_month_20170301] ;;
+}
 
 # BQ Table  Site
 # Dataset Details: 99659431 Simple Grace

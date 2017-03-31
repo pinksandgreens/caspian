@@ -38,3 +38,32 @@ explore: ga_sessions_20161005 {
     }
   }
 }
+
+
+# BQ Table  Site
+# Dataset Details: 99659431 Simple Grace
+# Dataset Details: 99687033 Recipes Plus
+# Dataset Details: 99656431 j14es
+# Dataset Details: 99302461 All Sweeps
+# Dataset Details: 85879355 Animal Tales Magazine
+# Dataset Details: 77116734 Closer Weekly
+# Dataset Details: 76304924 Girls' World
+# Dataset Details: 74811326 Miss literati
+# Dataset Details: 74005709 In Touch Weekly
+# Dataset Details: 74001021 Womans World
+# Dataset Details: 74000526 Life & Style
+# Dataset Details: 72272327 J 14
+# Dataset Details: 72272126 Twist
+# Dataset Details: 72205690 M Magazine
+# Dataset Details: 7128045  4TNZ
+# Dataset Details: 67247184 Astrogirl Freebies
+# Dataset Details: 39172709 First for Women
+# Dataset Details: 37783830 Ideas and Discoveries
+# Dataset Details: 22442075 Quizfest
+# Dataset Details: 20800654 FHM
+# Dataset Details: 16671093 My First for Woman
+# Dataset Details: 12544518 Sweepon
+# Dataset Details: 116843474  FHM
+# Dataset Details: 112922704  BNTP AND TWINIT
+# Dataset Details: 10832469 Soaps in Depth
+# Dataset Details: 04_Entries ?

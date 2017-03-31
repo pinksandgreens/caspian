@@ -14,6 +14,8 @@ label: "In Touch Weekly"
     sql: ${TABLE}.channelGrouping ;;
   }
 
+  #${TABLE}.visitnumber || ${TABLE}.date ||
+
   dimension: custom_dimensions__index {
     type: number
     sql: ${TABLE}.customDimensions.index ;;
@@ -24,11 +26,6 @@ label: "In Touch Weekly"
     type: string
     sql: ${TABLE}.customDimensions.value ;;
     fanout_on: "customDimensions"
-  }
-
-  dimension: date {
-    type: string
-    sql: ${TABLE}.date ;;
   }
 
   dimension: device__browser {
@@ -117,6 +114,7 @@ label: "In Touch Weekly"
   }
 
   dimension: full_visitor_id {
+    primary_key: yes
     type: string
     sql: ${TABLE}.fullVisitorId ;;
   }
@@ -143,12 +141,19 @@ label: "In Touch Weekly"
 
   dimension: geo_network__latitude {
     type: string
-    sql: ${TABLE}.geoNetwork.latitude ;;
+    sql: CAST(${TABLE}.geoNetwork.latitude AS FLOAT64) ;;
   }
 
   dimension: geo_network__longitude {
     type: string
-    sql: ${TABLE}.geoNetwork.longitude ;;
+    sql: CAST(${TABLE}.geoNetwork.longitude AS FLOAT64) ;;
+  }
+
+  dimension: location {
+    label: "Latitude/Longitude Location"
+    type: location
+    sql_latitude: ROUND(CAST(${TABLE}.geoNetwork.latitude AS FLOAT), 4) ;;
+    sql_longitude: ROUND(CAST(${TABLE}.geoNetwork.longitude AS FLOAT), 4) ;;
   }
 
   dimension: geo_network__metro {
@@ -418,19 +423,22 @@ label: "In Touch Weekly"
 
   dimension: hits__item__item_quantity {
     type: number
+    value_format: "$0.00"
     sql: ${TABLE}.hits.item.itemQuantity ;;
     fanout_on: "hits"
   }
 
   dimension: hits__item__item_revenue {
     type: number
-    sql: ${TABLE}.hits.item.itemRevenue ;;
+    value_format: "$0.00"
+    sql: ${TABLE}.hits.item.itemRevenue/1000000 ;;
     fanout_on: "hits"
   }
 
   dimension: hits__item__local_item_revenue {
     type: number
-    sql: ${TABLE}.hits.item.localItemRevenue ;;
+    value_format: "$0.00"
+    sql: ${TABLE}.hits.item.localItemRevenue/1000000 ;;
     fanout_on: "hits"
   }
 
@@ -590,6 +598,12 @@ label: "In Touch Weekly"
     fanout_on: "hits"
   }
 
+  dimension: hits__page__page_path_level2_and_3 {
+    type: string
+    sql: CONCAT(${TABLE}.hits.page.pagePathLevel2,${TABLE}.hits.page.pagePathLevel3) ;;
+    fanout_on: "hits"
+  }
+
   dimension: hits__page__page_path_level4 {
     type: string
     sql: ${TABLE}.hits.page.pagePathLevel4 ;;
@@ -664,7 +678,8 @@ label: "In Touch Weekly"
 
   dimension: hits__product__local_product_revenue {
     type: number
-    sql: ${TABLE}.hits.product.localProductRevenue ;;
+    value_format: "$0.00"
+    sql: ${TABLE}.hits.product.localProductRevenue/1000000 ;;
     fanout_on: "hits.product"
   }
 
@@ -706,7 +721,8 @@ label: "In Touch Weekly"
 
   dimension: hits__product__product_revenue {
     type: number
-    sql: ${TABLE}.hits.product.productRevenue ;;
+    value_format: "$0.00"
+    sql: ${TABLE}.hits.product.productRevenue/1000000 ;;
     fanout_on: "hits.product"
   }
 
@@ -770,281 +786,360 @@ label: "In Touch Weekly"
     fanout_on: "hits"
   }
 
-  dimension: hits__publisher__ads_clicked {
-    type: number
-    sql: ${TABLE}.hits.publisher.adsClicked ;;
+
+
+  ########################### AD THINGS ###############################
+
+
+
+  measure: hits__publisher__adsense_backfill_dfp_clicks{
+    label: "Ads Adsense Backfill DFP Clicks"
+    type: sum
+    sql: ${TABLE}.hits.publisher.adsenseBackfillDfpClicks;;
     fanout_on: "hits"
   }
 
-  dimension: hits__publisher__ads_pages_viewed {
-    type: number
-    sql: ${TABLE}.hits.publisher.adsPagesViewed ;;
+  measure: hits__publisher__adsense_backfill_dfp_impressions{
+    label: "Ads Adsense Backfill DFP Impressions"
+    type: sum
+    sql: ${TABLE}.hits.publisher.adsenseBackfillDfpImpressions;;
     fanout_on: "hits"
   }
 
-  dimension: hits__publisher__ads_revenue {
-    type: number
-    sql: ${TABLE}.hits.publisher.adsRevenue ;;
+  measure: hits__publisher__adsense_backfill_dfp_matched_queries{
+    label: "Ads Adsense Backfill DFP Matched Queries"
+    type: sum
+    sql: ${TABLE}.hits.publisher.adsenseBackfillDfpMatchedQueries;;
     fanout_on: "hits"
   }
 
-  dimension: hits__publisher__ads_units_matched {
-    type: number
-    sql: ${TABLE}.hits.publisher.adsUnitsMatched ;;
+  measure: hits__publisher__adsense_backfill_dfp_measurable_impressions{
+    label: "Ads Adsense Backfill DFP Measurable Impressions"
+    type: sum
+    sql: ${TABLE}.hits.publisher.adsenseBackfillDfpMeasurableImpressions;;
     fanout_on: "hits"
   }
 
-  dimension: hits__publisher__ads_units_viewed {
-    type: number
-    sql: ${TABLE}.hits.publisher.adsUnitsViewed ;;
+  measure: hits__publisher__adsense_backfill_dfp_pages_viewed{
+    label: "Ads Adsense Backfill DFP Pages Viewed"
+    type: sum
+    sql: ${TABLE}.hits.publisher.adsenseBackfillDfpPagesViewed;;
     fanout_on: "hits"
   }
 
-  dimension: hits__publisher__ads_viewed {
-    type: number
-    sql: ${TABLE}.hits.publisher.adsViewed ;;
+  measure: hits__publisher__adsense_backfill_dfp_queries{
+    label: "Ads Adsense Backfill DFP Queries"
+    type: sum
+    sql: ${TABLE}.hits.publisher.adsenseBackfillDfpQueries;;
     fanout_on: "hits"
   }
 
-  dimension: hits__publisher__adsense_backfill_dfp_clicks {
-    type: number
-    sql: ${TABLE}.hits.publisher.adsenseBackfillDfpClicks ;;
+  measure: hits__publisher__adsense_backfill_dfp_revenue_cpc{
+    label: "Ads Adsense Backfill DFP Revenue CPC"
+    type: sum
+    value_format: "$0.0000"
+    sql: ${TABLE}.hits.publisher.adsenseBackfillDfpRevenueCpc/1000000;;
     fanout_on: "hits"
   }
 
-  dimension: hits__publisher__adsense_backfill_dfp_impressions {
-    type: number
-    sql: ${TABLE}.hits.publisher.adsenseBackfillDfpImpressions ;;
+  measure: hits__publisher__adsense_backfill_dfp_revenue_cpm{
+    label: "Ads Adsense Backfill DFP Revenue CPM"
+    type: sum
+    value_format: "$0.0000"
+    sql: ${TABLE}.hits.publisher.adsenseBackfillDfpRevenueCpm/1000000;;
     fanout_on: "hits"
   }
 
-  dimension: hits__publisher__adsense_backfill_dfp_matched_queries {
-    type: number
-    sql: ${TABLE}.hits.publisher.adsenseBackfillDfpMatchedQueries ;;
+  measure: hits__publisher__adsense_backfill_dfp_viewable_impressions{
+    label: "Ads Adsense Backfill DFP Viewable Impressions"
+    type: sum
+    sql: ${TABLE}.hits.publisher.adsenseBackfillDfpViewableImpressions;;
     fanout_on: "hits"
   }
 
-  dimension: hits__publisher__adsense_backfill_dfp_measurable_impressions {
-    type: number
-    sql: ${TABLE}.hits.publisher.adsenseBackfillDfpMeasurableImpressions ;;
+  measure: hits__publisher__adx_backfill_dfp_clicks{
+    label: "Ads Adx Backfill DFP Clicks"
+    type: sum
+    sql: ${TABLE}.hits.publisher.adxBackfillDfpClicks;;
     fanout_on: "hits"
   }
 
-  dimension: hits__publisher__adsense_backfill_dfp_pages_viewed {
-    type: number
-    sql: ${TABLE}.hits.publisher.adsenseBackfillDfpPagesViewed ;;
+  measure: hits__publisher__adx_backfill_dfp_impressions{
+    label: "Ads Adx Backfill DFP Impressions"
+    type: sum
+    sql: ${TABLE}.hits.publisher.adxBackfillDfpImpressions;;
     fanout_on: "hits"
   }
 
-  dimension: hits__publisher__adsense_backfill_dfp_queries {
-    type: number
-    sql: ${TABLE}.hits.publisher.adsenseBackfillDfpQueries ;;
+  measure: hits__publisher__adx_backfill_dfp_matched_queries{
+    label: "Ads Adx Backfill DFP Matched Queries"
+    type: sum
+    sql: ${TABLE}.hits.publisher.adxBackfillDfpMatchedQueries;;
     fanout_on: "hits"
   }
 
-  dimension: hits__publisher__adsense_backfill_dfp_revenue_cpc {
-    type: number
-    sql: ${TABLE}.hits.publisher.adsenseBackfillDfpRevenueCpc ;;
+  measure: hits__publisher__adx_backfill_dfp_measurable_impressions{
+    label: "Ads Adx Backfill DFP Measurable Impressions"
+    type: sum
+    sql: ${TABLE}.hits.publisher.adxBackfillDfpMeasurableImpressions;;
     fanout_on: "hits"
   }
 
-  dimension: hits__publisher__adsense_backfill_dfp_revenue_cpm {
-    type: number
-    sql: ${TABLE}.hits.publisher.adsenseBackfillDfpRevenueCpm ;;
+  measure: hits__publisher__adx_backfill_dfp_pages_viewed{
+    label: "Ads Adx Backfill DFP Pages Viewed"
+    type: sum
+    sql: ${TABLE}.hits.publisher.adxBackfillDfpPagesViewed;;
     fanout_on: "hits"
   }
 
-  dimension: hits__publisher__adsense_backfill_dfp_viewable_impressions {
-    type: number
-    sql: ${TABLE}.hits.publisher.adsenseBackfillDfpViewableImpressions ;;
+  measure: hits__publisher__adx_backfill_dfp_queries{
+    label: "Ads Adx Backfill DFP Queries"
+    type: sum
+    sql: ${TABLE}.hits.publisher.adxBackfillDfpQueries;;
     fanout_on: "hits"
   }
 
-  dimension: hits__publisher__adx_backfill_dfp_clicks {
-    type: number
-    sql: ${TABLE}.hits.publisher.adxBackfillDfpClicks ;;
+  measure: hits__publisher__adx_backfill_dfp_revenue_cpc{
+    label: "Ads Backfill DFP Revenue CPC"
+    type: sum
+    value_format: "$0.0000"
+    sql: ${TABLE}.hits.publisher.adxBackfillDfpRevenueCpc/1000000;;
     fanout_on: "hits"
   }
 
-  dimension: hits__publisher__adx_backfill_dfp_impressions {
-    type: number
-    sql: ${TABLE}.hits.publisher.adxBackfillDfpImpressions ;;
+  measure: hits__publisher__adx_backfill_dfp_revenue_cpm{
+    label: "Ads Adx Backfill DFP Revenue CPM"
+    type: sum
+    value_format: "$0.0000"
+    sql: ${TABLE}.hits.publisher.adxBackfillDfpRevenueCpm/1000000;;
     fanout_on: "hits"
   }
 
-  dimension: hits__publisher__adx_backfill_dfp_matched_queries {
-    type: number
-    sql: ${TABLE}.hits.publisher.adxBackfillDfpMatchedQueries ;;
+  measure: hits__publisher__adx_backfill_dfp_viewable_impressions{
+    label: "Ads Adx Backfill DFP Viewable Impressions"
+    type: sum
+    sql: ${TABLE}.hits.publisher.adxBackfillDfpViewableImpressions;;
     fanout_on: "hits"
   }
 
-  dimension: hits__publisher__adx_backfill_dfp_measurable_impressions {
-    type: number
-    sql: ${TABLE}.hits.publisher.adxBackfillDfpMeasurableImpressions ;;
+  measure: hits__publisher__adx_clicks{
+    label: "Ads Adx CLicks"
+    type: sum
+    sql: ${TABLE}.hits.publisher.adxClicks;;
     fanout_on: "hits"
   }
 
-  dimension: hits__publisher__adx_backfill_dfp_pages_viewed {
-    type: number
-    sql: ${TABLE}.hits.publisher.adxBackfillDfpPagesViewed ;;
+  measure: hits__publisher__adx_impressions{
+    label: "Ads Adx Impressions"
+    type: sum
+    sql: ${TABLE}.hits.publisher.adxImpressions;;
     fanout_on: "hits"
   }
 
-  dimension: hits__publisher__adx_backfill_dfp_queries {
-    type: number
-    sql: ${TABLE}.hits.publisher.adxBackfillDfpQueries ;;
+  measure: hits__publisher__adx_matched_queries{
+    label: "Ads Adx Matched Queries"
+    type: sum
+    sql: ${TABLE}.hits.publisher.adxMatchedQueries;;
     fanout_on: "hits"
   }
 
-  dimension: hits__publisher__adx_backfill_dfp_revenue_cpc {
-    type: number
-    sql: ${TABLE}.hits.publisher.adxBackfillDfpRevenueCpc ;;
+  measure: hits__publisher__adx_measurable_impressions{
+    label: "Ads Adx Measurable Impressions"
+    type: sum
+    sql: ${TABLE}.hits.publisher.adxMeasurableImpressions;;
     fanout_on: "hits"
   }
 
-  dimension: hits__publisher__adx_backfill_dfp_revenue_cpm {
-    type: number
-    sql: ${TABLE}.hits.publisher.adxBackfillDfpRevenueCpm ;;
+  measure: hits__publisher__adx_pages_viewed{
+    label: "Ads Adx Pages Viewed"
+    type: sum
+    sql: ${TABLE}.hits.publisher.adxPagesViewed;;
     fanout_on: "hits"
   }
 
-  dimension: hits__publisher__adx_backfill_dfp_viewable_impressions {
-    type: number
-    sql: ${TABLE}.hits.publisher.adxBackfillDfpViewableImpressions ;;
+  measure: hits__publisher__adx_queries{
+    label: "Ads Adx Queries"
+    type: sum
+    sql: ${TABLE}.hits.publisher.adxQueries;;
     fanout_on: "hits"
   }
 
-  dimension: hits__publisher__adx_clicks {
-    type: number
-    sql: ${TABLE}.hits.publisher.adxClicks ;;
+  measure: hits__publisher__adx_revenue{
+    label: "Ads Adx Revenue"
+    type: sum
+    value_format: "$0.0000"
+    sql: ${TABLE}.hits.publisher.adxRevenue/1000000 ;;
     fanout_on: "hits"
   }
 
-  dimension: hits__publisher__adx_impressions {
-    type: number
-    sql: ${TABLE}.hits.publisher.adxImpressions ;;
+  measure: hits__publisher__adx_viewable_impressions{
+    label: "Ads Adx Viewable Impressions"
+    type: sum
+    sql: ${TABLE}.hits.publisher.adxViewableImpressions;;
     fanout_on: "hits"
   }
 
-  dimension: hits__publisher__adx_matched_queries {
-    type: number
-    sql: ${TABLE}.hits.publisher.adxMatchedQueries ;;
-    fanout_on: "hits"
+
+# I don't fully know
+
+  measure: hits__publisher__ads_clicked{
+    label: "Ads Clicked"
+    type: sum
+    sql: ${TABLE}.hits.publisher.adsClicked;;
   }
 
-  dimension: hits__publisher__adx_measurable_impressions {
-    type: number
-    sql: ${TABLE}.hits.publisher.adxMeasurableImpressions ;;
-    fanout_on: "hits"
+  measure: hits__publisher__ads_pages_viewed{
+    label: "Ads Pages Viewed"
+    type: sum
+    sql: ${TABLE}.hits.publisher.adsPagesViewed;;
   }
 
-  dimension: hits__publisher__adx_pages_viewed {
-    type: number
-    sql: ${TABLE}.hits.publisher.adxPagesViewed ;;
-    fanout_on: "hits"
+  measure: hits__publisher__ads_revenue{
+    label: "Ads Revenue"
+    type: sum
+    value_format: "$0.0000"
+    sql: ${TABLE}.hits.publisher.adsRevenue/1000000;;
   }
 
-  dimension: hits__publisher__adx_queries {
-    type: number
-    sql: ${TABLE}.hits.publisher.adxQueries ;;
-    fanout_on: "hits"
+  measure: hits__publisher__ads_units_matched{
+    label: "Ads Units Matched"
+    type: sum
+    sql: ${TABLE}.hits.publisher.adsUnitsMatched;;
   }
 
-  dimension: hits__publisher__adx_revenue {
-    type: number
-    sql: ${TABLE}.hits.publisher.adxRevenue ;;
-    fanout_on: "hits"
+
+  measure: hits__publisher__ads_units_viewed{
+    label: "Ads Units Viewed"
+    type: sum
+    sql: ${TABLE}.hits.publisher.adsUnitsViewed;;
   }
 
-  dimension: hits__publisher__adx_viewable_impressions {
-    type: number
-    sql: ${TABLE}.hits.publisher.adxViewableImpressions ;;
-    fanout_on: "hits"
+  measure: hits__publisher__ads_viewed{
+    label: "Ads Viewed"
+    type: sum
+    sql: ${TABLE}.hits.publisher.adsViewed;;
   }
+
+
+
 
   dimension: hits__publisher__dfp_ad_group {
+    label: "Ads DFP Ad Group"
     type: string
     sql: ${TABLE}.hits.publisher.dfpAdGroup ;;
     fanout_on: "hits"
   }
 
   dimension: hits__publisher__dfp_ad_units {
+    label: "Ads DFP Ad Unit"
     type: string
     sql: ${TABLE}.hits.publisher.dfpAdUnits ;;
     fanout_on: "hits"
   }
 
-  dimension: hits__publisher__dfp_clicks {
-    type: number
+  measure: hits__publisher__dfp_clicks {
+    label: "Ads DFP Clicks"
+    type: sum
     sql: ${TABLE}.hits.publisher.dfpClicks ;;
     fanout_on: "hits"
   }
 
-  dimension: hits__publisher__dfp_impressions {
-    type: number
+  measure: hits__publisher__dfp_impressions {
+    label: "Ads DFP Impressions"
+    type: sum
     sql: ${TABLE}.hits.publisher.dfpImpressions ;;
     fanout_on: "hits"
   }
 
-  dimension: hits__publisher__dfp_matched_queries {
-    type: number
+  measure: hits__publisher__dfp_matched_queries {
+    label: "Ads DFP Matched Queries"
+    type: sum
     sql: ${TABLE}.hits.publisher.dfpMatchedQueries ;;
     fanout_on: "hits"
   }
 
-  dimension: hits__publisher__dfp_measurable_impressions {
-    type: number
+  measure: hits__publisher__dfp_measurable_impressions {
+    label: "Ads DFP Measurable Impressions"
+    type: sum
     sql: ${TABLE}.hits.publisher.dfpMeasurableImpressions ;;
     fanout_on: "hits"
   }
 
   dimension: hits__publisher__dfp_network_id {
+    label: "Ads DFP Network ID"
     type: string
     sql: ${TABLE}.hits.publisher.dfpNetworkId ;;
     fanout_on: "hits"
   }
 
-  dimension: hits__publisher__dfp_pages_viewed {
-    type: number
+  measure: hits__publisher__dfp_pages_viewed {
+    label: "DFP Pages Viewed"
+    type: sum
     sql: ${TABLE}.hits.publisher.dfpPagesViewed ;;
     fanout_on: "hits"
   }
 
-  dimension: hits__publisher__dfp_queries {
-    type: number
+  measure: hits__publisher__dfp_queries {
+    label: "Ads DFP Queries"
+    type: sum
     sql: ${TABLE}.hits.publisher.dfpQueries ;;
     fanout_on: "hits"
   }
 
-  dimension: hits__publisher__dfp_revenue_cpc {
-    type: number
-    sql: ${TABLE}.hits.publisher.dfpRevenueCpc ;;
+  measure: hits__publisher__dfp_revenue_cpc {
+    label: "Ads DFP CPC"
+    type: sum
+    value_format: "$0.0000"
+    sql: ${TABLE}.hits.publisher.dfpRevenueCpc/1000000 ;;
     fanout_on: "hits"
   }
 
-  dimension: hits__publisher__dfp_revenue_cpm {
-    type: number
-    sql: ${TABLE}.hits.publisher.dfpRevenueCpm ;;
+  measure: hits__publisher__dfp_revenue_cpm {
+    label: "Ads DFP CPM"
+    type: sum
+    value_format: "$0.0000"
+    sql: ${TABLE}.hits.publisher.dfpRevenueCpm/1000000 ;;
     fanout_on: "hits"
   }
 
-  dimension: hits__publisher__dfp_viewable_impressions {
-    type: number
+  measure: dfp_revenue {
+    label: "Ads DFP Revenue"
+    description: "DFP CPC * DFP Clicks"
+    type: sum
+    value_format: "$0.0000"
+    sql: ${TABLE}.hits.publisher.dfpRevenueCpc/1000000 ;;
+  }
+
+#      sql: (${TABLE}.hits.publisher.dfpRevenueCpc/1000000)*(${TABLE}.hits.publisher.dfpClicks) ;;
+
+  measure: hits__publisher__dfp_viewable_impressions {
+    label: "Ads DFP Viewable Impressions"
+    type: sum
     sql: ${TABLE}.hits.publisher.dfpViewableImpressions ;;
     fanout_on: "hits"
   }
 
-  dimension: hits__publisher__measurable_ads_viewed {
-    type: number
+  measure: hits__publisher__measurable_ads_viewed {
+    label: "Ads DFP Measurable Ads Viewed"
+    type: sum
     sql: ${TABLE}.hits.publisher.measurableAdsViewed ;;
     fanout_on: "hits"
   }
 
-  dimension: hits__publisher__viewable_ads_viewed {
-    type: number
+  measure: hits__publisher__viewable_ads_viewed {
+    label: "Ads DFP Viewable Ads Viewed"
+    type: sum
     sql: ${TABLE}.hits.publisher.viewableAdsViewed ;;
     fanout_on: "hits"
   }
+
+
+
+  ##########################################################
+
+
+
+
 
   dimension: hits__referer {
     type: string
@@ -1052,17 +1147,15 @@ label: "In Touch Weekly"
     fanout_on: "hits"
   }
 
-  dimension: hits__refund__local_refund_amount {
-    type: number
-    sql: ${TABLE}.hits.refund.localRefundAmount ;;
-    fanout_on: "hits"
-  }
+  # - dimension: hits__refund__local_refund_amount
+  #   type: number
+  #   sql: ${TABLE}.hits.refund.localRefundAmount
+  #   fanout_on: hits
 
-  dimension: hits__refund__refund_amount {
-    type: number
-    sql: ${TABLE}.hits.refund.refundAmount ;;
-    fanout_on: "hits"
-  }
+  # - dimension: hits__refund__refund_amount
+  #   type: number
+  #   sql: ${TABLE}.hits.refund.refundAmount
+  #   fanout_on: hits
 
   dimension: hits__social__has_social_source_referral {
     type: string
@@ -1144,7 +1237,8 @@ label: "In Touch Weekly"
 
   dimension: hits__transaction__local_transaction_revenue {
     type: number
-    sql: ${TABLE}.hits.transaction.localTransactionRevenue ;;
+    value_format: "$0.00"
+    sql: ${TABLE}.hits.transaction.localTransactionRevenue/1000000 ;;
     fanout_on: "hits"
   }
 
@@ -1174,7 +1268,8 @@ label: "In Touch Weekly"
 
   dimension: hits__transaction__transaction_revenue {
     type: number
-    sql: ${TABLE}.hits.transaction.transactionRevenue ;;
+    value_format: "$0.00"
+    sql: ${TABLE}.hits.transaction.transactionRevenue/1000000 ;;
     fanout_on: "hits"
   }
 
@@ -1201,30 +1296,25 @@ label: "In Touch Weekly"
     sql: ${TABLE}.socialEngagementType ;;
   }
 
-  dimension: totals__bounces {
-    type: number
-    sql: ${TABLE}.totals.bounces ;;
-  }
+  # - dimension: totals__bounces
+  #   type: number
+  #   sql: ${TABLE}.totals.bounces
 
-  dimension: totals__hits {
-    type: number
-    sql: ${TABLE}.totals.hits ;;
-  }
+  # - dimension: totals__hits
+  #   type: number
+  #   sql: ${TABLE}.totals.hits
 
-  dimension: totals__new_visits {
-    type: number
-    sql: ${TABLE}.totals.newVisits ;;
-  }
+  # - dimension: totals__new_visits
+  #   type: number
+  #   sql: ${TABLE}.totals.newVisits
 
-  dimension: totals__pageviews {
-    type: number
-    sql: ${TABLE}.totals.pageviews ;;
-  }
+  # - dimension: totals__pageviews
+  #   type: number
+  #   sql: ${TABLE}.totals.pageviews
 
-  dimension: totals__screenviews {
-    type: number
-    sql: ${TABLE}.totals.screenviews ;;
-  }
+  # - dimension: totals__screenviews
+  #   type: number
+  #   sql: ${TABLE}.totals.screenviews
 
   dimension: totals__time_on_screen {
     type: number
@@ -1232,34 +1322,30 @@ label: "In Touch Weekly"
   }
 
   dimension: totals__time_on_site {
+    description: "Time on site in minutes"
     type: number
-    sql: ${TABLE}.totals.timeOnSite ;;
+    sql: ${TABLE}.totals.timeOnSite/60 ;;
   }
 
-  dimension: totals__total_transaction_revenue {
-    type: number
-    sql: ${TABLE}.totals.totalTransactionRevenue ;;
-  }
+  # - dimension: totals__total_transaction_revenue
+  #   type: number
+  #   sql: ${TABLE}.totals.totalTransactionRevenue/1000000
 
-  dimension: totals__transaction_revenue {
-    type: number
-    sql: ${TABLE}.totals.transactionRevenue ;;
-  }
+  # - dimension: totals__transaction_revenue
+  #   type: number
+  #   sql: ${TABLE}.totals.transactionRevenue/1000000
 
-  dimension: totals__transactions {
-    type: number
-    sql: ${TABLE}.totals.transactions ;;
-  }
+  # - dimension: totals__transactions
+  #   type: number
+  #   sql: ${TABLE}.totals.transactions
 
-  dimension: totals__unique_screenviews {
-    type: number
-    sql: ${TABLE}.totals.uniqueScreenviews ;;
-  }
+  # - dimension: totals__unique_screenviews
+  #   type: number
+  #   sql: ${TABLE}.totals.uniqueScreenviews
 
-  dimension: totals__visits {
-    type: number
-    sql: ${TABLE}.totals.visits ;;
-  }
+  # - dimension: totals__visits
+  #   type: number
+  #   sql: ${TABLE}.totals.visits
 
   dimension: traffic_source__ad_content {
     type: string
@@ -1367,7 +1453,7 @@ label: "In Touch Weekly"
   }
 
   dimension: visit_id {
-    type: number
+    type: string
     sql: ${TABLE}.visitId ;;
   }
 
@@ -1376,9 +1462,16 @@ label: "In Touch Weekly"
     sql: ${TABLE}.visitNumber ;;
   }
 
-  dimension: visit_start_time {
-    type: number
+  # - dimension: visit_start_time
+  #   type: number
+  #   sql: ${TABLE}.visitStartTime
+
+  dimension_group: start_time {
+    label: ""
+    type: time
     sql: ${TABLE}.visitStartTime ;;
+    datatype: epoch
+    convert_tz: yes
   }
 
   dimension: visitor_id {
@@ -1386,28 +1479,630 @@ label: "In Touch Weekly"
     sql: ${TABLE}.visitorId ;;
   }
 
-  measure: count {
-    type: count
-    approximate_threshold: 100000
+  #   - measure: count
+  #     type: count
+  #     approximate_threshold: 100000
+  #     drill_fields: detail*
+
+  dimension: hits_page_hostname_pp1 {
+    hidden: no
+    label: "Brand Code"
+    type: string
+    sql: CASE
+          WHEN ${TABLE}.hits.page.hostname LIKE '%0.0.0.0%' THEN 'UKN'
+          WHEN ${TABLE}.hits.page.hostname LIKE '%111.221.29.49%' THEN 'UKN'
+          WHEN ${TABLE}.hits.page.hostname LIKE '%208.71.46.190%' THEN 'UKN'
+          WHEN ${TABLE}.hits.page.hostname LIKE '%65.55.108.4%' THEN 'UKN'
+          WHEN ${TABLE}.hits.page.hostname LIKE '%admin.parkers.co.uk%' THEN 'PCP'
+          WHEN ${TABLE}.hits.page.hostname LIKE '%anonymouse.org%' THEN 'UKN'
+          WHEN ${TABLE}.hits.page.hostname LIKE '%bauer-xcel-4jnx.squarespace.com%' THEN 'UKN'
+          WHEN ${TABLE}.hits.page.hostname LIKE '%bauer-xcel-cynp.squarespace.com%' THEN 'UKN'
+          WHEN ${TABLE}.hits.page.hostname LIKE '%bauer.radio.test.web.dadi.technology%' THEN 'UKN'
+          WHEN ${TABLE}.hits.page.hostname LIKE '%bit.ly%' THEN 'UKN'
+          WHEN ${TABLE}.hits.page.hostname LIKE '%brc.co%' THEN 'UKN'
+          WHEN ${TABLE}.hits.page.hostname LIKE '%cc.bingj.com%' THEN 'UKN'
+          WHEN ${TABLE}.hits.page.hostname LIKE '%creative.bauermedia.co.uk%' THEN 'UKN'
+          WHEN ${TABLE}.hits.page.hostname LIKE '%demos.rezonence.com%' THEN 'UKN'
+          WHEN ${TABLE}.hits.page.hostname LIKE '%doc-00-7g-adspreview.googleusercontent.com%' THEN 'UKN'
+          WHEN ${TABLE}.hits.page.hostname LIKE '%doc-0o-ag-adspreview.googleusercontent.com%' THEN 'UKN'
+          WHEN ${TABLE}.hits.page.hostname LIKE '%empireonline.bauercdn.com%' THEN 'UKN'
+          WHEN ${TABLE}.hits.page.hostname LIKE '%empireonline.bauersecure.com%' THEN 'UKN'
+          WHEN ${TABLE}.hits.page.hostname LIKE '%empireonline.com%' THEN 'EMP'
+          WHEN ${TABLE}.hits.page.hostname LIKE '%fanyi.myyoudao.com%' THEN 'UKN'
+          WHEN ${TABLE}.hits.page.hostname LIKE '%forum.practicalfishkeeping.co.uk%' THEN 'PFI'
+          WHEN ${TABLE}.hits.page.hostname LIKE '%fr.blewpass.com%' THEN 'UKN'
+          WHEN ${TABLE}.hits.page.hostname LIKE '%inst.webinstantservice.com%' THEN 'UKN'
+          WHEN ${TABLE}.hits.page.hostname LIKE '%legacy.empireonline.com%' THEN 'EMP'
+          WHEN ${TABLE}.hits.page.hostname LIKE '%/grazia%' THEN 'GRA'
+          WHEN ${TABLE}.hits.page.hostname LIKE '%/closer%' THEN 'CLO'
+          WHEN ${TABLE}.hits.page.hostname LIKE '%/heat%' THEN 'HEA'
+          WHEN ${TABLE}.hits.page.pagePathLevel1 LIKE '%/grazia%' THEN 'GRA'
+          WHEN ${TABLE}.hits.page.pagePathLevel1 LIKE '%/closer%' THEN 'CLO'
+          WHEN ${TABLE}.hits.page.pagePathLevel1 LIKE '%/heat%' THEN 'HEA'
+          WHEN ${TABLE}.hits.page.hostname LIKE '%localhost%' THEN 'UKN'
+          WHEN ${TABLE}.hits.page.hostname LIKE '%m.youtube.com%' THEN 'UKN'
+          WHEN ${TABLE}.hits.page.hostname LIKE '%phx.4everproxy.com%' THEN 'UKN'
+          WHEN ${TABLE}.hits.page.hostname LIKE '%publisher-demos.sharethrough.com%' THEN 'UKN'
+          WHEN ${TABLE}.hits.page.hostname LIKE '%publisher-demos.sharethrough.com.s3.amazonaws.com%' THEN 'UKN'
+          WHEN ${TABLE}.hits.page.hostname LIKE '%radioplayer.magic.co.uk%' THEN 'MAG'
+          WHEN ${TABLE}.hits.page.hostname LIKE '%radioplayer.magic.co.uk.googleweblight.com%' THEN 'MAG'
+          WHEN ${TABLE}.hits.page.hostname LIKE '%radioplayer.magicabba-mammamia.co.uk%' THEN 'MAG'
+          WHEN ${TABLE}.hits.page.hostname LIKE '%radioplayer.magicchilled.co.uk%' THEN 'MAG'
+          WHEN ${TABLE}.hits.page.hostname LIKE '%radioplayer.magicsoul.co.uk%' THEN 'MAG'
+          WHEN ${TABLE}.hits.page.hostname LIKE '%radioplayer.mellowmagic.co.uk%' THEN 'MAG'
+          WHEN ${TABLE}.hits.page.hostname LIKE '%secure.parkers.co.uk%' THEN 'PCP'
+          WHEN ${TABLE}.hits.page.hostname LIKE '%test.empireonline.com%' THEN 'EMP'
+          WHEN ${TABLE}.hits.page.hostname LIKE '%test.planetradio.co.uk%' THEN 'PLA'
+          WHEN ${TABLE}.hits.page.hostname LIKE '%testabba.sarla.cc%' THEN 'UKN'
+          WHEN ${TABLE}.hits.page.hostname LIKE '%translate.googleusercontent.com%' THEN 'UKN'
+          WHEN ${TABLE}.hits.page.hostname LIKE '%ukradioplayer.magic.co.uk%' THEN 'MAG'
+          WHEN ${TABLE}.hits.page.hostname LIKE '%ukradioplayer.magicchilled.co.uk%' THEN 'MAG'
+          WHEN ${TABLE}.hits.page.hostname LIKE '%web.archive.org%' THEN 'UKN'
+          WHEN ${TABLE}.hits.page.hostname LIKE '%webcache.googleusercontent.com%' THEN 'UKN'
+          WHEN ${TABLE}.hits.page.hostname LIKE '%www.anglingtimes.co.uk%' THEN 'ATI'
+          WHEN ${TABLE}.hits.page.hostname LIKE '%www.anglingtimes.co.uk.googleweblight.com%' THEN 'ATI'
+          WHEN ${TABLE}.hits.page.hostname LIKE '%www.bikemagazine.co.uk%' THEN 'BIK'
+          WHEN ${TABLE}.hits.page.hostname LIKE '%www.birdwatching.co.uk%' THEN 'BWT'
+          WHEN ${TABLE}.hits.page.hostname LIKE '%www.birdwatching.co.uk.googleweblight.com%' THEN 'BWT'
+          WHEN ${TABLE}.hits.page.hostname LIKE '%www.brc.co%' THEN 'UKN'
+          WHEN ${TABLE}.hits.page.hostname LIKE '%www.carmechanicsmag.co.uk%' THEN 'CMC'
+          WHEN ${TABLE}.hits.page.hostname LIKE '%www.classicbike.co.uk%' THEN 'CLB'
+          WHEN ${TABLE}.hits.page.hostname LIKE '%www.classiccarsmagazine.co.uk%' THEN 'CLC'
+          WHEN ${TABLE}.hits.page.hostname LIKE '%www.classiccarweekly.co.uk%' THEN 'CCW'
+          WHEN ${TABLE}.hits.page.hostname LIKE '%www.closeronline.co.uk%' THEN 'CLO'
+          WHEN ${TABLE}.hits.page.hostname LIKE '%www.empireonline.com%' THEN 'EMP'
+          WHEN ${TABLE}.hits.page.hostname LIKE '%www.empireonline.com.googleweblight.com%' THEN 'EMP'
+          WHEN ${TABLE}.hits.page.hostname LIKE '%www.empireonline.com.prx.nl.teleport.to%' THEN 'EMP'
+          WHEN ${TABLE}.hits.page.hostname LIKE '%www.empireonline.stfi.re%' THEN 'EMP'
+          WHEN ${TABLE}.hits.page.hostname LIKE '%www.filterbypass.me%' THEN 'UKN'
+          WHEN ${TABLE}.hits.page.hostname LIKE '%www.gardenanswersmagazine.co.uk%' THEN 'GAN'
+          WHEN ${TABLE}.hits.page.hostname LIKE '%www.gardennewsmagazine.co.uk%' THEN 'GNW'
+          WHEN ${TABLE}.hits.page.hostname LIKE '%www.google.co.uk%' THEN 'UKN'
+          WHEN ${TABLE}.hits.page.hostname LIKE '%www.google.com%' THEN 'UKN'
+          WHEN ${TABLE}.hits.page.hostname LIKE '%www.greatmagazines.co.uk%' THEN 'GTM'
+          WHEN ${TABLE}.hits.page.hostname LIKE '%www.greatmagazines.co.uk.googleweblight.com%' THEN 'GTM'
+          WHEN ${TABLE}.hits.page.hostname LIKE '%www.heatworld.com%' THEN 'HEA'
+          WHEN ${TABLE}.hits.page.hostname LIKE '%www.landscapemagazine.co.uk%' THEN 'LSC'
+          WHEN ${TABLE}.hits.page.hostname LIKE '%www.livefortheoutdoors.com%' THEN 'LFT'
+          WHEN ${TABLE}.hits.page.hostname LIKE '%www.magic.co.uk%' THEN 'MAG'
+          WHEN ${TABLE}.hits.page.hostname LIKE '%www.magic.co.uk.googleweblight.com%' THEN 'MAG'
+          WHEN ${TABLE}.hits.page.hostname LIKE '%www.magicabba-mammamia.co.uk%' THEN 'MAG'
+          WHEN ${TABLE}.hits.page.hostname LIKE '%www.magicchilled.co.uk%' THEN 'MAG'
+          WHEN ${TABLE}.hits.page.hostname LIKE '%www.matchfootball.co.uk%' THEN 'MAT'
+          WHEN ${TABLE}.hits.page.hostname LIKE '%www.mcnsport.co.uk%' THEN 'MCS'
+          WHEN ${TABLE}.hits.page.hostname LIKE '%www.mellowmagic.co.uk%' THEN 'MAG'
+          WHEN ${TABLE}.hits.page.hostname LIKE '%www.model-rail.co.uk%' THEN 'MDR'
+          WHEN ${TABLE}.hits.page.hostname LIKE '%www.modernclassicsmagazine.co.uk%' THEN 'MOC'
+          WHEN ${TABLE}.hits.page.hostname LIKE '%www.moderngardensmagazine.co.uk%' THEN 'MOG'
+          WHEN ${TABLE}.hits.page.hostname LIKE '%www.motorcyclenews.com%' THEN 'MCN'
+          WHEN ${TABLE}.hits.page.hostname LIKE '%www.parkers.co.uk%' THEN 'PCP'
+          WHEN ${TABLE}.hits.page.hostname LIKE '%www.parkers.co.uk.googleweblight.com%' THEN 'PCP'
+          WHEN ${TABLE}.hits.page.hostname LIKE '%www.performancebikes.co.uk%' THEN 'PBK'
+          WHEN ${TABLE}.hits.page.hostname LIKE '%www.petproductmarketing.co.uk%' THEN 'PPM'
+          WHEN ${TABLE}.hits.page.hostname LIKE '%www.practicalclassics.co.uk%' THEN 'PRC'
+          WHEN ${TABLE}.hits.page.hostname LIKE '%www.practicalfishkeeping.co.uk%' THEN 'PFI'
+          WHEN ${TABLE}.hits.page.hostname LIKE '%www.practicalfishkeeping.co.uk.googleweblight.com%' THEN 'PFI'
+          WHEN ${TABLE}.hits.page.hostname LIKE '%www.practicalphotography.com%' THEN 'PFI'
+          WHEN ${TABLE}.hits.page.hostname LIKE '%www.practicalsportsbikesmag.co.uk%' THEN 'PRS'
+          WHEN ${TABLE}.hits.page.hostname LIKE '%www.ride.co.uk%' THEN 'RDE'
+          WHEN ${TABLE}.hits.page.hostname LIKE '%www.rightmove.co.uk%' THEN 'UKN'
+          WHEN ${TABLE}.hits.page.hostname LIKE '%www.seaangler.co.uk%' THEN 'SAN'
+          WHEN ${TABLE}.hits.page.hostname LIKE '%www.seaangler.co.uk.googleweblight.com%' THEN 'SAN'
+          WHEN ${TABLE}.hits.page.hostname LIKE '%www.steamrailway.co.uk%' THEN 'SRA'
+          WHEN ${TABLE}.hits.page.hostname LIKE '%www.topsante.co.uk%' THEN 'TST'
+          WHEN ${TABLE}.hits.page.hostname LIKE '%www.trailrunningmag.co.uk%' THEN 'TRR'
+          WHEN ${TABLE}.hits.page.hostname LIKE '%www.troutandsalmon.com%' THEN 'TAS'
+          WHEN ${TABLE}.hits.page.hostname LIKE '%www.troutfisherman.co.uk%' THEN 'TFI'
+          WHEN ${TABLE}.hits.page.hostname LIKE '%www.webcitation.org%' THEN 'UKN'
+          WHEN ${TABLE}.hits.page.hostname LIKE '%www.worldlingo.com%' THEN 'UKN'
+          WHEN ${TABLE}.hits.page.hostname LIKE '%www.yourhorse.co.uk%' THEN 'YHS'
+          WHEN ${TABLE}.hits.page.hostname LIKE '%www.youtube.com%' THEN 'UKN'
+          WHEN ${TABLE}.hits.page.hostname LIKE '%wwwbmstaging.cdsglobal.co.uk%' THEN 'UKN'
+          WHEN ${TABLE}.hits.page.hostname LIKE '%wwwbmtesting.cdsglobal.co.uk%' THEN 'UKN'
+          ELSE 'UKN'
+        END
+         ;;
+  }
+
+  #########
+
+  dimension: is_engaged {
+    description: "Based on having > 3 sessions"
+    type: string
+    sql: CASE
+          WHEN ${TABLE}.totals.pageviews > 2 THEN 'Engaged'
+          ELSE 'Not-Engaged'
+        END
+         ;;
+  }
+
+  dimension: uu_key {
+    label: "Unique Key"
+    hidden: yes
+    sql: CONCAT(string(${TABLE}.fullVisitorId),"-",string(${TABLE}.visitId)) ;;
+  }
+
+  measure: Unique_Users {
+    label: "Unique Users"
+    type: count_distinct
+    sql: ${TABLE}.fullVisitorId ;;
+  }
+
+  # - dimension: date
+  #   label: ''
+  #   type: time
+  #   timeframes: [date, week, month, month_num]
+  #   sql: ${TABLE}.date
+
+  measure: totals_newvisits {
+    label: "Total New Sessions"
+    type: sum_distinct
+    sql_distinct_key: ${uu_key} ;;
+    sql: ${TABLE}.totals.newVisits ;;
+  }
+
+  measure: totals_visits {
+    label: "Total Sessions"
+    type: sum_distinct
+    sql_distinct_key: ${uu_key} ;;
+    sql: ${TABLE}.totals.visits ;;
+  }
+
+  measure: totals_social_visits {
+    label: "Total Social Sessions"
+    type: sum_distinct
+    sql_distinct_key: ${uu_key} ;;
+    sql: ${TABLE}.totals.visits ;;
+
+    filters: {
+      field: hits__social__has_social_source_referral
+      value: "Yes"
+    }
+  }
+
+  dimension: totals_pageviews2 {
+    label: "Total Pageviews TEST"
+    type: string
+    hidden:  yes
+    sql: CASE
+        WHEN ${TABLE}.totals.pageviews IS NOT NULL THEN 1
+        ELSE NULL
+        END;;
+  }
+
+  measure: totals_pageviews3 {
+    label: "Individual Page Pageviews"
+    type: sum
+    hidden:  no
+    sql: ${totals_pageviews2};;
+  }
+
+  #   - measure: totals_pageviews
+  #     label: 'Total Pageviews'
+  #     type: sum
+  #     sql: ${TABLE}.totals.pageviews
+
+  measure: totals_pageviews {
+    label: "Total Pageviews"
+    type: sum_distinct
+    sql_distinct_key: ${uu_key} ;;
+    sql: ${TABLE}.totals.pageviews ;;
     drill_fields: [detail*]
   }
+
+
+  measure: pages_p_session {
+    label: "Pages per Session"
+    type: number
+    value_format: "0.00"
+    sql: ${totals_pageviews}/${totals_visits} ;;
+  }
+
+  measure: avg_time_on_site {
+    label: "Avg Time on Site per Session"
+    description: "Avg ime on site in minutes"
+    type: number
+    sql: (SUM(${TABLE}.totals.timeOnSite/60))/(SUM(${TABLE}.totals.visits)) ;;
+  }
+
+  measure: avg_dfp_clicks_per_session {
+    label: "Avg Ad Clicks Per Session"
+    description: "Avg ime on site in minutes"
+    type: number
+    sql: (SUM(${TABLE}.hits.publisher.dfpClicks))/(SUM(${TABLE}.totals.visits)) ;;
+  }
+
+  measure: avg_dfp_impressions_per_session {
+    label: "Avg Ad Impessions Per Session"
+    description: "Avg ime on site in minutes"
+    type: number
+    sql: (SUM(${TABLE}.hits.publisher.dfpImpressions))/(SUM(${TABLE}.totals.visits)) ;;
+  }
+
+  measure: totals__total_transaction_revenue {
+    label: "Total Transaction Revenue ($)"
+    type: sum
+    value_format: "$0.00"
+    sql: ${TABLE}.totals.totalTransactionRevenue/1000000 ;;
+  }
+
+  # - measure: totals__transaction_revenue
+  #   label: 'Transaction Revenue'
+  #   type: sum
+  #   sql: ${TABLE}.totals.transactionRevenue/1000000
+
+  measure: totals__transactions {
+    label: "Transaction Count"
+    type: sum
+    sql: ${TABLE}.totals.transactions ;;
+  }
+
+  # - measure: totals__unique_screenviews
+  #   label: 'Screenviews'
+  #   type: sum
+  #   sql: ${TABLE}.totals.uniqueScreenviews
+
+  measure: totals__bounces {
+    label: "Bounce Count"
+    type: sum
+    sql: ${TABLE}.totals.bounces ;;
+  }
+
+  measure: totals__new_visits {
+    label: "New Visits Count"
+    type: sum
+    sql: ${TABLE}.totals.newVisits ;;
+  }
+
+  dimension: is_new_visit {
+    label: "Is New Visit"
+    type: yesno
+    sql: ${TABLE}.totals.newVisits = 1 ;;
+  }
+
+  ################ H E A D E R  B I D D I N G #############
+
+  # Basically, the Prebid.js data is set as a dataframe under custom events in BigQuery. This means you need to filter out useless data, otherwise it ruins the means/sums.
+  # This is what we've replicated: http://prebid.org/assets/images/dev-docs/GA-custom-report.png
+  # This is basically working out how Google does their backend data manipulation, it's actually quite inefficient but it works.
+
+  # CASE DIMENSIONS INSTEAD OF FILTERING THEM:
+
+
+  #
+  #   - dimension: Prebid_Action
+  #     type: string
+  #     description: 'Request/Timeout/Bid/Win etc'
+  #     sql: ${TABLE}.hits.eventInfo.eventAction
+  #     filters:
+  #       hits__event_info__event_category: 'Prebid.js Bids'
+  #
+  #   - dimension: Prebid_Action
+  #     hidden: TRUE
+  #     description: 'Prebid value, useless outside of measures'
+  #     type: string
+  #     sql: ${TABLE}.hits.eventInfo.eventValue
+  #     filters:
+  #       hits__event_info__event_category: 'Prebid.js Bids'
+
+
+
+
+
+
+
+
+  measure: BIDTIME_TOTAL_VALUE {
+    hidden: yes
+    type: number
+    sql: CASE
+          WHEN ${TABLE}.hits.eventInfo.eventAction = 'Bid Load Time' THEN ${TABLE}.hits.eventInfo.eventValue
+        END
+         ;;
+  }
+
+  measure: BIDTIME_TOTAL_EVENTS {
+    hidden: yes
+    type: number
+    sql: CASE
+          WHEN ${TABLE}.hits.eventInfo.eventAction = 'Bid Load Time' THEN ${TABLE}.hits.eventInfo.eventAction
+        END
+         ;;
+  }
+
+  #   - measure: Prebid_BidLoadTime
+  #     label: 'Prebid - Avg Bid Loadtime (ms)'
+  #     description: 'Average bid loadtime (ms)'
+  #     type: avg
+  #     value_format: '0.00'
+  #     sql: ${TOTAL_VALUE}/${TOTAL_EVENTS}
+  #     filters:
+  #       hits__event_info__event_action: 'Bid Load Time'
+
+  measure: Prebid_BidLoadTime {
+    label: "Prebid - Avg Bid Loadtime (ms)"
+    description: "Average bid loadtime (ms)"
+    type: number
+    value_format: "0.00"
+    sql: (SUM(${BIDTIME_TOTAL_VALUE})/COUNT(${BIDTIME_TOTAL_EVENTS}))/10 ;;
+  }
+
+  measure: BIDS_TOTAL_EVENTS {
+    hidden: yes
+    type: number
+    sql: CASE
+          WHEN ${TABLE}.hits.eventInfo.eventAction = 'Bids' THEN ${TABLE}.hits.eventInfo.eventAction
+        END
+         ;;
+  }
+
+  measure: BIDS_TOTAL_VALUE {
+    hidden: yes
+    type: number
+    sql: CASE
+          WHEN ${TABLE}.hits.eventInfo.eventAction = 'Bids' THEN ${TABLE}.hits.eventInfo.eventValue
+        END
+         ;;
+  }
+
+  measure: Prebid_TotalBids {
+    label: "Prebid - Total Bids"
+    description: "Total number of bids"
+    type: sum_distinct
+    sql_distinct_key: ${uu_key2} ;;
+    sql: CASE
+          WHEN ${TABLE}.hits.eventInfo.eventAction = 'Bids' THEN 1
+        END
+         ;;
+  }
+
+  measure: Prebid_AvgBidCPM {
+    label: "Prebid - Avg Bid CPM"
+    description: "Avg Bid CPM"
+    type: average_distinct
+    sql_distinct_key: ${uu_key2} ;;
+    sql: CASE
+          WHEN ${TABLE}.hits.eventInfo.eventAction = 'Bids' THEN (${TABLE}.hits.eventInfo.eventValue/100)*0.79136
+        END
+         ;;
+    value_format: "\"£\"0.00"
+  }
+
+  measure: REQUESTS_TOTAL_EVENTS {
+    hidden: yes
+    type: number
+    sql: CASE
+          WHEN ${TABLE}.hits.eventInfo.eventAction = 'Requests' THEN ${TABLE}.hits.eventInfo.eventAction
+        END
+         ;;
+  }
+
+  measure: Prebid_Requests {
+    label: "Prebid - Total Requests"
+    description: "Total number of bid requests"
+    type: number
+    sql: COUNT(${REQUESTS_TOTAL_EVENTS}) ;;
+  }
+
+  measure: TIMEOUTS_TOTAL_EVENTS {
+    hidden: yes
+    type: number
+    sql: CASE
+          WHEN ${TABLE}.hits.eventInfo.eventAction = 'Timeouts' THEN ${TABLE}.hits.eventInfo.eventAction
+        END
+         ;;
+  }
+
+  measure: Prebid_Timeouts {
+    label: "Prebid - Total Timeouts"
+    description: "Total number of timeouts"
+    type: number
+    sql: COUNT(${TIMEOUTS_TOTAL_EVENTS}) ;;
+  }
+
+  dimension: uu_key_2 {
+    label: "Unique Key 2"
+    hidden: yes
+    sql: CONCAT(string(${TABLE}.fullVisitorId),"-",string(${TABLE}.visitId),"-",string(${TABLE}.hits.type),"-",string(${TABLE}.hits.eventInfo.eventAction)) ;;
+  }
+
+  dimension: Prebid_Bidder {
+    label: "Prebid - Bidder"
+    type: string
+    sql: CASE
+          WHEN ${TABLE}.hits.eventInfo.eventCategory = 'Prebid.js Bids' THEN ${TABLE}.hits.eventInfo.eventLabel
+        END
+         ;;
+  }
+
+  measure: WIN_TOTAL_EVENTS {
+    hidden: yes
+    type: number
+    sql: CASE
+          WHEN ${TABLE}.hits.eventInfo.eventAction = 'Wins' THEN ${TABLE}.hits.eventInfo.eventAction
+        END
+         ;;
+  }
+
+  measure: WIN_TOTAL_VALUE {
+    hidden: yes
+    type: number
+    sql: CASE
+          WHEN ${TABLE}.hits.eventInfo.eventAction = 'Wins' THEN ${TABLE}.hits.eventInfo.eventValue
+        END
+         ;;
+  }
+
+  #   - measure: Prebid_Wins
+  #     label: 'Prebid - Paid Impressions'
+  #     description: 'Total number of winning & paid for win'
+  #     type: sum
+  #     sql: |
+  #       CASE
+  #         WHEN (${TABLE}.hits.eventInfo.eventAction = 'Wins') THEN 1
+  #       END
+
+
+  dimension: uu_key2 {
+    label: "Unique Key2"
+    hidden: yes
+    sql: CONCAT(string(${TABLE}.fullVisitorId),string(${TABLE}.visitId),string(${TABLE}.hits.eventInfo.eventCategory),string(${TABLE}.hits.eventInfo.eventAction),string(${TABLE}.hits.eventInfo.eventLabel),string(${TABLE}.hits.hitNumber)) ;;
+  }
+
+  measure: Prebid_Wins {
+    label: "Prebid - Paid Impressions"
+    description: "Total number of paid impressions (winning bids)"
+    type: sum_distinct
+    sql_distinct_key: ${uu_key2} ;;
+    sql: CASE
+          WHEN ${TABLE}.hits.eventInfo.eventAction = 'Wins' THEN 1
+        END
+         ;;
+  }
+
+  measure: Prebid_Sum_Win_Value {
+    hidden: yes
+    label: "Prebid - Total Wins"
+    description: "Total number of winning bids"
+    type: sum_distinct
+    sql_distinct_key: ${uu_key2} ;;
+    sql: CASE
+          WHEN ${TABLE}.hits.eventInfo.eventAction = 'Wins' THEN ${TABLE}.hits.eventInfo.eventValue
+        END
+         ;;
+  }
+
+  measure: Prebid_Avg_Win_Value {
+    hidden: yes
+    label: "Prebid - Total Wins"
+    description: "Total number of winning bids"
+    type: number
+    sql: ${Prebid_Wins}/${Prebid_Sum_Win_Value} ;;
+  }
+
+  #   - measure: Prebid_Wins
+  #     label: 'Prebid - Total Wins'
+  #     description: 'Total number of winning bids'
+  #     type: sum
+  #     sql: ${WIN_TOTAL_EVENTS}
+
+  #   - measure: Prebid_WinCPM
+  #     label: 'Prebid - Total Wins'
+  #     description: 'Total number of winning bids'
+  #     type: sum
+  #     type: number
+  #     sql: ${WIN_TOTAL_VALUE}/1000
+
+  #   - measure: Prebid_AvgWinCPM
+  #     label: 'Prebid - Avg Win CPM'
+  #     description: 'Average winning CPM'
+  #     type: number
+  #     sql: ((SUM(${WIN_TOTAL_VALUE}))/(COUNT(${WIN_TOTAL_EVENTS})))/100
+  #     value_format: '$0.000000'
+
+  measure: Prebid_AvgWinCPM {
+    label: "Prebid - Avg Winning eCPM"
+    description: "Average winning eCPM"
+    type: number
+    sql: ((${Prebid_AvgWinRevenue}*100000)/(${Prebid_Wins}))/100 ;;
+    value_format: "\"£\"0.00"
+  }
+
+  measure: Prebid_AvgWinCPM1 {
+    label: "Prebid - Avg Winning rCPM"
+    description: "Average winning rCPM"
+    type: number
+    sql: ((${Prebid_AvgWinRevenue}*10000)/(${Prebid_Wins}))/100 ;;
+    value_format: "\"£\"0.00"
+  }
+
+  #   - measure: Prebid_AvgWinRevenue
+  #     label: 'Prebid - Revenue'
+  #     description: 'Winning Revenue CPM'
+  #     type: sum
+  #     value_format: '$0.00'
+  #     sql: ((${Prebid_Wins})*(${Prebid_Sum_Win_Value}/${Prebid_Wins}))/100000
+
+  #   - measure: Prebid_AvgWinRevenue
+  #     label: 'Prebid - Revenue'
+  #     description: 'Winning Revenue CPM'
+  #     type: number
+  #     value_format: '$0.00'
+  #     sql: (${Prebid_Wins}*${Prebid_Sum_Win_Value})/100000000000
+
+  measure: Prebid_AvgWinRevenue {
+    label: "Prebid - Revenue"
+    description: "Winning Revenue CPM"
+    type: number
+    value_format: "\"£\"0.00"
+    #updated 01/12/2016
+    sql: (((${Prebid_Sum_Win_Value})/100000)*0.79136) ;;
+  }
+
+  measure: Prebid_Timeout_Rate {
+    label: "Prebid - Timeout Rate"
+    description: "Timeout Rate"
+    type: number
+    value_format: "0.00\"%\""
+    sql: ${Prebid_Timeouts}/${Prebid_Requests} ;;
+  }
+
+  ################ CUSTOM DIMENSIONS WRANGLING ##############
+  #
+  #   - dimension: Author
+  #     label: 'Custom Dimensions - Author Name'
+  #     type: string
+  #     sql: |
+  #       CASE
+  #         WHEN string(${TABLE}.hits.customDimensions.index) = '1' THEN ${TABLE}.hits.customDimensions.value
+  #       END
+  #
+  #   - dimension: Published_Date
+  #     label: 'Custom Dimensions - Author Name'
+  #     hidden: TRUE
+  #     type: string
+  #     sql: |
+  #       CASE
+  #         WHEN string(${TABLE}.hits.customDimensions.index) = '2' THEN ${TABLE}.hits.customDimensions.value
+  #       END
+  #
+  #   - dimension: article_published
+  #     label: 'Custom Dimensions - Author Name'
+  #     type: time
+  #     timeframes: [date, week, month, month_num]
+  #     sql: ${Published_Date}
+  #
+  #   - dimension: Author_Published_Date
+  #     label: 'Custom Dimensions - Author & Published Date'
+  #     type: string
+  #     sql: CONCAT(string(${Author}),string(${Published_Date}))
+  #
+  #     #string(${hits__page__page_path})
+  #
+  #   - measure: No_articles
+  #     label: 'Number of Articles Published'
+  #     type: count_distinct
+  #     sql: ${Author_Published_Date}
+
+
+
+
+
+
+
+
+
+
+
 
   # ----- Sets of fields for drilling ------
   set: detail {
     fields: [
-      hits__app_info__landing_screen_name,
-      hits__app_info__exit_screen_name,
-      hits__app_info__app_name,
-      hits__app_info__name,
-      hits__app_info__screen_name,
-      hits__custom_variables__custom_var_name,
-      hits__source_property_info__source_property_display_name,
-      hits__item__product_name,
-      hits__product__product_list_name,
-      hits__product__v2_product_name,
-      hits__page__hostname,
-      hits__promotion__promo_name,
-      device__mobile_device_marketing_name
+      hits__page__page_title,
+      hits__page__page_path,
+      totals_pageviews,
+      totals__new_visits,
+      Unique_Users
     ]
   }
 }

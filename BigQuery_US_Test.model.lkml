@@ -6,7 +6,7 @@ include: "*.view"
 # include all dashboards in this project
 include: "*.dashboard"
 
-label: "x: BigQuery - Mongo"
+label: "x: BigQuery - Xcel US"
 
 # the view to start exploring from
 explore: entries {

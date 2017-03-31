@@ -1,5 +1,5 @@
 view: ga_sessions_20161005 {
-  sql_table_name: ( SELECT * FROM {% table_date_range date_filter 74005709.ga_sessions_ %},
+  sql_table_name: ( SELECT * FROM {% table_date_range date_filter 74005709.ga_sessions_20161005 %},
    {% table_date_range date_filter 74005709.ga_sessions_intraday_ %}) ;;
 
       filter: date_filter {

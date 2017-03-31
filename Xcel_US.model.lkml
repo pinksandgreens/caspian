@@ -6,10 +6,6 @@ include: "*.view"
 # include all dashboards in this project
 include: "*.dashboard"
 
-explore: for_tableau {
-  label: "Tableau"
-}
-
 # the view to start exploring from
 explore: entries {
   label: "BigQuery - SweepOn"

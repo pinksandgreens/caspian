@@ -798,42 +798,49 @@ view: ga_sessions {
 
 
     measure: hits__publisher__adsense_backfill_dfp_clicks{
+    label: "Ads Adsense Backfill DFP Clicks"
     type: sum
     sql: ${TABLE}.hits.publisher.adsenseBackfillDfpClicks;;
     fanout_on: "hits"
         }
 
     measure: hits__publisher__adsense_backfill_dfp_impressions{
+      label: "Ads Adsense Backfill DFP Impressions"
     type: sum
     sql: ${TABLE}.hits.publisher.adsenseBackfillDfpImpressions;;
     fanout_on: "hits"
         }
 
     measure: hits__publisher__adsense_backfill_dfp_matched_queries{
+    label: "Ads Adsense Backfill DFP Matched Queries"
     type: sum
     sql: ${TABLE}.hits.publisher.adsenseBackfillDfpMatchedQueries;;
     fanout_on: "hits"
         }
 
     measure: hits__publisher__adsense_backfill_dfp_measurable_impressions{
+    label: "Ads Adsense Backfill DFP Measurable Impressions"
     type: sum
     sql: ${TABLE}.hits.publisher.adsenseBackfillDfpMeasurableImpressions;;
     fanout_on: "hits"
       }
 
     measure: hits__publisher__adsense_backfill_dfp_pages_viewed{
+    label: "Ads Adsense Backfill DFP Pages Viewed"
     type: sum
     sql: ${TABLE}.hits.publisher.adsenseBackfillDfpPagesViewed;;
     fanout_on: "hits"
       }
 
     measure: hits__publisher__adsense_backfill_dfp_queries{
+    label: "Ads Adsense Backfill DFP Queries"
     type: sum
     sql: ${TABLE}.hits.publisher.adsenseBackfillDfpQueries;;
     fanout_on: "hits"
       }
 
     measure: hits__publisher__adsense_backfill_dfp_revenue_cpc{
+    label: "Ads Adsense Backfill DFP Revenue CPC"
     type: sum
     value_format: "$0.0000"
     sql: ${TABLE}.hits.publisher.adsenseBackfillDfpRevenueCpc/1000000;;
@@ -841,6 +848,7 @@ view: ga_sessions {
       }
 
     measure: hits__publisher__adsense_backfill_dfp_revenue_cpm{
+    label: "Ads Adsense Backfill DFP Revenue CPM"
     type: sum
     value_format: "$0.0000"
     sql: ${TABLE}.hits.publisher.adsenseBackfillDfpRevenueCpm/1000000;;
@@ -848,48 +856,56 @@ view: ga_sessions {
         }
 
     measure: hits__publisher__adsense_backfill_dfp_viewable_impressions{
+    label: "Ads Adsense Backfill DFP Viewable Impressions"
     type: sum
     sql: ${TABLE}.hits.publisher.adsenseBackfillDfpViewableImpressions;;
     fanout_on: "hits"
         }
 
     measure: hits__publisher__adx_backfill_dfp_clicks{
+    label: "Ads Adx Backfill DFP Clicks"
     type: sum
     sql: ${TABLE}.hits.publisher.adxBackfillDfpClicks;;
     fanout_on: "hits"
         }
 
     measure: hits__publisher__adx_backfill_dfp_impressions{
+    label: "Ads Adx Backfill DFP Impressions"
     type: sum
     sql: ${TABLE}.hits.publisher.adxBackfillDfpImpressions;;
     fanout_on: "hits"
         }
 
     measure: hits__publisher__adx_backfill_dfp_matched_queries{
+    label: "Ads Adx Backfill DFP Matched Queries"
     type: sum
     sql: ${TABLE}.hits.publisher.adxBackfillDfpMatchedQueries;;
     fanout_on: "hits"
         }
 
     measure: hits__publisher__adx_backfill_dfp_measurable_impressions{
+    label: "Ads Adx Backfill DFP Measurable Impressions"
     type: sum
     sql: ${TABLE}.hits.publisher.adxBackfillDfpMeasurableImpressions;;
     fanout_on: "hits"
         }
 
     measure: hits__publisher__adx_backfill_dfp_pages_viewed{
+    label: "Ads Adx Backfill DFP Pages Viewed"
     type: sum
     sql: ${TABLE}.hits.publisher.adxBackfillDfpPagesViewed;;
     fanout_on: "hits"
         }
 
     measure: hits__publisher__adx_backfill_dfp_queries{
+    label: "Ads Adx Backfill DFP Queries"
     type: sum
     sql: ${TABLE}.hits.publisher.adxBackfillDfpQueries;;
     fanout_on: "hits"
         }
 
     measure: hits__publisher__adx_backfill_dfp_revenue_cpc{
+    label: "Ads Backfill DFP Revenue CPC"
     type: sum
     value_format: "$0.0000"
     sql: ${TABLE}.hits.publisher.adxBackfillDfpRevenueCpc/1000000;;
@@ -897,6 +913,7 @@ view: ga_sessions {
         }
 
     measure: hits__publisher__adx_backfill_dfp_revenue_cpm{
+    label: "Ads Adx Backfill DFP Revenue CPM"
     type: sum
     value_format: "$0.0000"
     sql: ${TABLE}.hits.publisher.adxBackfillDfpRevenueCpm/1000000;;
@@ -904,48 +921,56 @@ view: ga_sessions {
         }
 
     measure: hits__publisher__adx_backfill_dfp_viewable_impressions{
+    label: "Ads Adx Backfill DFP Viewable Impressions"
     type: sum
     sql: ${TABLE}.hits.publisher.adxBackfillDfpViewableImpressions;;
     fanout_on: "hits"
         }
 
     measure: hits__publisher__adx_clicks{
+    label: "Ads Adx CLicks"
     type: sum
     sql: ${TABLE}.hits.publisher.adxClicks;;
     fanout_on: "hits"
         }
 
     measure: hits__publisher__adx_impressions{
+    label: "Ads Adx Impressions"
     type: sum
     sql: ${TABLE}.hits.publisher.adxImpressions;;
     fanout_on: "hits"
         }
 
     measure: hits__publisher__adx_matched_queries{
+    label: "Ads Adx Matched Queries"
     type: sum
     sql: ${TABLE}.hits.publisher.adxMatchedQueries;;
     fanout_on: "hits"
         }
 
     measure: hits__publisher__adx_measurable_impressions{
+    label: "Ads Adx Measurable Impressions"
     type: sum
     sql: ${TABLE}.hits.publisher.adxMeasurableImpressions;;
     fanout_on: "hits"
         }
 
     measure: hits__publisher__adx_pages_viewed{
+    label: "Ads Adx Pages Viewed"
     type: sum
     sql: ${TABLE}.hits.publisher.adxPagesViewed;;
     fanout_on: "hits"
         }
 
     measure: hits__publisher__adx_queries{
+    label: "Ads Adx Queries"
     type: sum
     sql: ${TABLE}.hits.publisher.adxQueries;;
     fanout_on: "hits"
         }
 
     measure: hits__publisher__adx_revenue{
+    label: "Ads Adx Revenue"
     type: sum
     value_format: "$0.0000"
     sql: ${TABLE}.hits.publisher.adxRevenue/1000000 ;;
@@ -953,6 +978,7 @@ view: ga_sessions {
         }
 
     measure: hits__publisher__adx_viewable_impressions{
+    label: "Ads Adx Viewable Impressions"
     type: sum
     sql: ${TABLE}.hits.publisher.adxViewableImpressions;;
     fanout_on: "hits"
@@ -962,33 +988,39 @@ view: ga_sessions {
 # I don't fully know
 
     measure: hits__publisher__ads_clicked{
+      label: "Ads Clicked"
       type: sum
       sql: ${TABLE}.hits.publisher.adsClicked;;
       }
 
     measure: hits__publisher__ads_pages_viewed{
+      label: "Ads Pages Viewed"
       type: sum
       sql: ${TABLE}.hits.publisher.adsPagesViewed;;
       }
 
     measure: hits__publisher__ads_revenue{
+      label: "Ads Revenue"
       type: sum
       value_format: "$0.0000"
       sql: ${TABLE}.hits.publisher.adsRevenue/1000000;;
       }
 
     measure: hits__publisher__ads_units_matched{
+      label: "Ads Units Matched"
       type: sum
       sql: ${TABLE}.hits.publisher.adsUnitsMatched;;
       }
 
 
     measure: hits__publisher__ads_units_viewed{
+      label: "Ads Units Viewed"
       type: sum
       sql: ${TABLE}.hits.publisher.adsUnitsViewed;;
       }
 
     measure: hits__publisher__ads_viewed{
+      label: "Ads Viewed"
       type: sum
       sql: ${TABLE}.hits.publisher.adsViewed;;
       }
@@ -997,46 +1029,49 @@ view: ga_sessions {
 
 
     dimension: hits__publisher__dfp_ad_group {
+      label: "Ads DFP Ad Group"
       type: string
       sql: ${TABLE}.hits.publisher.dfpAdGroup ;;
       fanout_on: "hits"
     }
 
     dimension: hits__publisher__dfp_ad_units {
+      label: "Ads DFP Ad Unit"
       type: string
       sql: ${TABLE}.hits.publisher.dfpAdUnits ;;
       fanout_on: "hits"
     }
 
     measure: hits__publisher__dfp_clicks {
-      label: "DFP Clicks"
+      label: "Ads DFP Clicks"
       type: sum
       sql: ${TABLE}.hits.publisher.dfpClicks ;;
       fanout_on: "hits"
     }
 
     measure: hits__publisher__dfp_impressions {
-      label: "DFP Impressions"
+      label: "Ads DFP Impressions"
       type: sum
       sql: ${TABLE}.hits.publisher.dfpImpressions ;;
       fanout_on: "hits"
     }
 
     measure: hits__publisher__dfp_matched_queries {
-      label: "DFP Matched Queries"
+      label: "Ads DFP Matched Queries"
       type: sum
       sql: ${TABLE}.hits.publisher.dfpMatchedQueries ;;
       fanout_on: "hits"
     }
 
     measure: hits__publisher__dfp_measurable_impressions {
-      label: "DFP Measurable Impressions"
+      label: "Ads DFP Measurable Impressions"
       type: sum
       sql: ${TABLE}.hits.publisher.dfpMeasurableImpressions ;;
       fanout_on: "hits"
     }
 
     dimension: hits__publisher__dfp_network_id {
+      label: "Ads DFP Network ID"
       type: string
       sql: ${TABLE}.hits.publisher.dfpNetworkId ;;
       fanout_on: "hits"
@@ -1050,14 +1085,14 @@ view: ga_sessions {
     }
 
     measure: hits__publisher__dfp_queries {
-      label: "DFP Queries"
+      label: "Ads DFP Queries"
       type: sum
       sql: ${TABLE}.hits.publisher.dfpQueries ;;
       fanout_on: "hits"
     }
 
     measure: hits__publisher__dfp_revenue_cpc {
-      label: "DFP CPC - Testing"
+      label: "Ads DFP CPC"
       type: sum
       value_format: "$0.0000"
       sql: ${TABLE}.hits.publisher.dfpRevenueCpc/1000000 ;;
@@ -1065,7 +1100,7 @@ view: ga_sessions {
     }
 
     measure: hits__publisher__dfp_revenue_cpm {
-      label: "DFP CPM - Testing"
+      label: "Ads DFP CPM"
       type: sum
       value_format: "$0.0000"
       sql: ${TABLE}.hits.publisher.dfpRevenueCpm/1000000 ;;
@@ -1073,7 +1108,7 @@ view: ga_sessions {
     }
 
     measure: dfp_revenue {
-      label: "DFP Revenue"
+      label: "Ads DFP Revenue"
       description: "DFP CPC * DFP Clicks"
       type: sum
       value_format: "$0.0000"
@@ -1083,21 +1118,21 @@ view: ga_sessions {
 #      sql: (${TABLE}.hits.publisher.dfpRevenueCpc/1000000)*(${TABLE}.hits.publisher.dfpClicks) ;;
 
     measure: hits__publisher__dfp_viewable_impressions {
-      label: "DFP Viewable Impressions"
+      label: "Ads DFP Viewable Impressions"
       type: sum
       sql: ${TABLE}.hits.publisher.dfpViewableImpressions ;;
       fanout_on: "hits"
     }
 
     measure: hits__publisher__measurable_ads_viewed {
-      label: "DFP Measurable Ads Viewed"
+      label: "Ads DFP Measurable Ads Viewed"
       type: sum
       sql: ${TABLE}.hits.publisher.measurableAdsViewed ;;
       fanout_on: "hits"
     }
 
     measure: hits__publisher__viewable_ads_viewed {
-      label: "DFP Viewable Ads Viewed"
+      label: "Ads DFP Viewable Ads Viewed"
       type: sum
       sql: ${TABLE}.hits.publisher.viewableAdsViewed ;;
       fanout_on: "hits"

@@ -411,7 +411,7 @@ explore: jr_mcn_tx_source_attribution {
 
 explore: jr_lifestyle_audience {
   label: "BigQuery - Lifestyle - UK Audience Analysis"
-
+  hidden: yes
   join: jr_lifestyle_audience_test {
     type: left_outer
     relationship: one_to_many

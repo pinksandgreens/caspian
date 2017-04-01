@@ -18,6 +18,9 @@ view: entries {
     timeframes: [
       raw,
       time,
+      minute30,
+      hour,
+      time_of_day,
       date,
       week,
       month,

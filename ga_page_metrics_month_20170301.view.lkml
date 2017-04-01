@@ -58,9 +58,9 @@ view: ga_page_metrics_month_20170301 {
   }
 
   measure: Pageviews {
-    type: count
+    type: sum
     sql: ${TABLE}.page_views ;;
-    approximate_threshold: 100000
+#     approximate_threshold: 100000
     drill_fields: [hostname]
   }
 }

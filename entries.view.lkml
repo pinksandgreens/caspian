@@ -96,6 +96,13 @@ view: entries {
   dimension: user_agent {
     type: string
     sql: ${TABLE}.user_agent ;;
+#     sql: CASE
+#        WHEN (${user_agent} LIKE '%iphone%' OR ${user_agent} LIKE '%iPhone%' OR ${user_agent} LIKE '%Windows mobile%' OR ${user_agent} LIKE '%Windows phone%' OR ${user_agent} LIKE '%Windows Phone%' OR ${user_agent} LIKE '%Nexus 5%' OR ${user_agent} LIKE '%GTI-9300%' OR ${user_agent} LIKE '%Nokia%' OR ${user_agent} LIKE '%SGH-M919V%' OR ${user_agent} LIKE '%SCH-%' OR ${user_agent} LIKE '%Mobi%' OR ${user_agent} LIKE '%Opera mini%') AND (${user_agent} NOT LIKE '%iPad%') THEN 'Mobile'
+#        WHEN ((${user_agent} LIKE '%Windows%' OR ${user_agent} LIKE '%WOW64%' OR ${user_agent} LIKE '%Intel Mac OS%' OR ${user_agent} LIKE '%Windows NT 6.1; Trident/7.0%' OR ${user_agent} LIKE '%Media Center PC%') AND (${user_agent} NOT LIKE '%iPad%')) THEN 'Desktop'
+#        WHEN (${user_agent} LIKE '%Tablet PC%' OR ${user_agent} LIKE '%Touch%' OR ${user_agent} LIKE '%MyPhone%' OR ${user_agent} LIKE '%iPad%' OR ${user_agent} LIKE '%ipad%' OR ${user_agent} LIKE '%Tablet%') THEN 'Tablet'
+#        ELSE 'Unknown'
+#       END
+#        ;;
 }
 #     hidden: no
 #     type: string

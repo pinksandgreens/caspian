@@ -8,7 +8,7 @@ include: "*.dashboard"
 
 # the view to start exploring from
 explore: entries {
-  label: "BigQuery - SweepOn"
+  label: "SweepOn"
 
   always_filter: {
     #This will be the default date range.

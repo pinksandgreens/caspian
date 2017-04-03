@@ -97,6 +97,12 @@ view: barnaclepages {
         WHEN ${TABLE}.brand = 'aloud.com' THEN  'ALU'
         WHEN ${TABLE}.brand = 'yourhorselive.co.uk' THEN 'YHL'
         WHEN ${TABLE}.brand = 'am-online.com' THEN 'AMN'
+        WHEN ${TABLE}.brand = 'Closer Weekly' THEN 'CWE'
+        WHEN ${TABLE}.brand = 'In Touch Weekly' THEN 'ITW'
+        WHEN ${TABLE}.brand = 'Womans World' THEN 'WOW'
+        WHEN ${TABLE}.brand = 'Life and Style' THEN 'LAS'
+        WHEN ${TABLE}.brand = 'J14' THEN 'JFT'
+        WHEN ${TABLE}.brand = 'FHM' THEN 'FHM'
         ELSE ${TABLE}.brand
       END
        ;;

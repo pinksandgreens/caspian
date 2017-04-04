@@ -32,3 +32,18 @@ explore: ga_sessions_quarterly_reports {
     }
   }
 }
+
+
+
+explore: ga_sessions_tentacle {
+    hidden: no
+    label: "BigQuery - Tentacle"
+
+    always_filter: {
+      #This will be the default date range.
+      filters: {
+        field: date_filter
+        value: "30 days"
+      }
+    }
+}

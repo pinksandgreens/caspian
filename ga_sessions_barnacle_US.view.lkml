@@ -11,8 +11,7 @@ view: ga_sessions_barnacle_US {
                   {% table_date_range date_filter 72272327.ga_sessions_ %},
                   {% table_date_range date_filter 72272327.ga_sessions_intraday_ %},
                   {% table_date_range date_filter 116843474.ga_sessions_ %},
-                  {% table_date_range date_filter 116843474.ga_sessions_intraday_ %},
-                  ;;
+                  {% table_date_range date_filter 116843474.ga_sessions_intraday_ %});;
 
 
 # "ga:77116734" "Closer Weekly" "Lifestyle US"

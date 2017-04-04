@@ -47,3 +47,15 @@ explore: ga_sessions_tentacle {
       }
     }
 }
+explore: ga_sessions_barnacle_US {
+  hidden: no
+  label: "BigQuery - Barnacle US 2.0"
+
+  always_filter: {
+    #This will be the default date range.
+    filters: {
+      field: date_filter
+      value: "30 days"
+    }
+  }
+}

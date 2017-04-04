@@ -1584,7 +1584,7 @@ view: ga_sessions_tentacle {
           WHEN ${TABLE}.hits.page.pagePath LIKE '%/hallam-fm/%' THEN 'Hallam'
           WHEN ${TABLE}.hits.page.pagePath LIKE '%/hallam/%' THEN 'Hallam'
           WHEN ${TABLE}.hits.page.pagePath LIKE '%/hallamfm/%' THEN 'Hallam'
-          WHEN ${TABLE}.hits.page.pagePath LIKE '%planetradio.co.uk/heat%' THEN 'Heat Radio'
+          WHEN  ${TABLE}.hits.page.hostname LIKE '%planetradio.co.uk%' AND ${TABLE}.hits.page.pagePath LIKE '%/heat/%' THEN 'Heat Radio'
           WHEN ${TABLE}.hits.page.pagePath LIKE '%/key-2/%' THEN 'Key'
           WHEN ${TABLE}.hits.page.pagePath LIKE '%/key2/%' THEN 'Key'
           WHEN ${TABLE}.hits.page.pagePath LIKE '%/key-3/%' THEN 'Key'
@@ -1678,6 +1678,10 @@ view: ga_sessions_tentacle {
           WHEN ${TABLE}.hits.page.pagePath LIKE '%radioplayer.clyde1%' THEN 'Clyde'
           WHEN ${TABLE}.hits.page.pagePath LIKE '%radioplayer.clyde2%' THEN 'Clyde'
           WHEN ${TABLE}.hits.page.pagePath LIKE '%radioplayer.clyde3%' THEN 'Clyde'
+          WHEN ${TABLE}.hits.page.hostname LIKE '%lifestyle.one%' AND ${TABLE}.hits.page.pagePath LIKE '%/heat/%' THEN 'Heat'
+          WHEN ${TABLE}.hits.page.hostname LIKE '%lifestyle.one%' AND ${TABLE}.hits.page.pagePath LIKE '%/closer/%' THEN 'Closer'
+          WHEN ${TABLE}.hits.page.hostname LIKE '%lifestyle.one%' AND ${TABLE}.hits.page.pagePath LIKE '%/grazia%' THEN 'Grazia'
+          WHEN ${TABLE}.hits.page.pagePath LIKE '%www.parkers.co.uk%' THEN 'Parkers'
           ELSE 'Unknown'
         END
          ;;

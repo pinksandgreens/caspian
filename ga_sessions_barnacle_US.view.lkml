@@ -1,6 +1,6 @@
 #US POC for Looker
 view: ga_sessions_barnacle_US {
-  sql_table_name: ( SELECT * FROM {% table_date_range date_filter 114668488.ga_sessions_ %},
+  sql_table_name: ( SELECT * FROM {% table_date_range date_filter 77116734.ga_sessions_ %},
                   {% table_date_range date_filter 77116734.ga_sessions_intraday_ %},
                   {% table_date_range date_filter 10832246.ga_sessions_ %},
                   {% table_date_range date_filter 10832246.ga_sessions_intraday_ %},

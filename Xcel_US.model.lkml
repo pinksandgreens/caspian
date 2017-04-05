@@ -43,6 +43,19 @@ explore: ga_page_metrics_month_20170301 {
   sql_table_name: [bauerxcel.com:api-project-792028032348:ga_editorial_data.ga_page_metrics_month_20170301] ;;
 }
 
+explore: ga_sessions_barnacle_US {
+  hidden: no
+  label: "BigQuery - Barnacle US 2.0"
+
+  always_filter: {
+    #This will be the default date range.
+    filters: {
+      field: date_filter
+      value: "30 days"
+    }
+ }
+}
+
 # BQ Table  Site
 # Dataset Details: 99659431 Simple Grace
 # Dataset Details: 99687033 Recipes Plus

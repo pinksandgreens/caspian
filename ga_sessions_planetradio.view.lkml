@@ -1799,12 +1799,11 @@ view: ga_sessions_planetradio {
     label: "Brand Platform"
     type: string
     sql: CASE
-          WHEN ${TABLE}.hits.page.pagePath LIKE '%planetradio.co.uk%' THEN 'Website'
-
           WHEN ${TABLE}.hits.page.pagePath LIKE '%kisstory.kissfmuk%' THEN 'Radioplayer'
           WHEN ${TABLE}.hits.page.pagePath LIKE '%kissfresh.kissfmuk%' THEN 'Radioplayer'
           WHEN ${TABLE}.hits.page.pagePath LIKE '%radioplayer%' THEN 'Radioplayer'
-          ELSE 'Unknown'
+          WHEN ${TABLE}.hits.page.pagePath LIKE '%/player/' THEN 'Radioplayer'
+          ELSE 'Website'
         END
          ;;
   }

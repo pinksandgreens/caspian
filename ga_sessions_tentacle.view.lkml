@@ -1804,7 +1804,7 @@ view: ga_sessions_tentacle {
       type: sum_distinct
       sql_distinct_key: ${uu_key} ;;
       sql: ${TABLE}.totals.pageviews ;;
-      drill_fields: [detail*]
+#       drill_fields: [detail*]
     }
 
 
@@ -1876,6 +1876,7 @@ view: ga_sessions_tentacle {
       type: yesno
       sql: ${TABLE}.totals.newVisits = 1 ;;
     }
+
 
     ################ H E A D E R  B I D D I N G #############
 
@@ -2201,25 +2202,4 @@ view: ga_sessions_tentacle {
     #     type: count_distinct
     #     sql: ${Author_Published_Date}
 
-
-
-
-
-
-
-
-
-
-
-
-    # ----- Sets of fields for drilling ------
-    set: detail {
-      fields: [
-        hits__page__page_title,
-        hits__page__page_path,
-        totals_pageviews,
-        totals__new_visits,
-        Unique_Users
-      ]
-    }
-  }
+}

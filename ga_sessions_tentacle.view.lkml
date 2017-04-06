@@ -613,6 +613,7 @@ view: ga_sessions_tentacle {
     sql:
       CASE
         WHEN ${TABLE}.hits.page.hostname LIKE "%planetradio%" THEN ""
+        WHEN ${TABLE}.hits.page.hostname LIKE "%radioplayer%" THEN ""
         ELSE ${TABLE}.hits.page.hostname
       END;;
     fanout_on: "hits"

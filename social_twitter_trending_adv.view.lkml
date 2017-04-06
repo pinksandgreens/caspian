@@ -33,4 +33,5 @@ view: social_twitter_trending_adv {
       <img src="http://i.imgur.com/aJnF2oW.jpg" height=10 width=10></a>
       ;;
   }
+
 }

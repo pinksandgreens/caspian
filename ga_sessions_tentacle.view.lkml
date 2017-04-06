@@ -617,21 +617,11 @@ view: ga_sessions_tentacle {
       label: "Link"
       hidden: no
       type: string
-      sql: CONCAT("www.",${hits__page__hostname},${hits__page__page_path}) ;;
+      sql: CONCAT("http://",${hits__page__hostname},${hits__page__page_path}) ;;
       html: <a href="{{ value }}" target="_new">
         <img src="http://i.imgur.com/aJnF2oW.jpg" height=10 width=10></a>
         ;;
     }
-
-    dimension: link_test {
-    type: string
-    sql: ${link} ;;
-    link: {
-      label: "{{value}}"
-      url: "lifestyle.com"
-    }
-  }
-
 
     dimension: hits__page__page_path_level1 {
       type: string

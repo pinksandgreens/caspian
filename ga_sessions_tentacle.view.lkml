@@ -613,15 +613,48 @@ view: ga_sessions_tentacle {
       fanout_on: "hits"
     }
 
-    dimension: link {
+    dimension: link_field {
       label: "Link"
-      hidden: no
+      hidden: yes
       type: string
       sql: CONCAT("http://",${hits__page__hostname},${hits__page__page_path}) ;;
-      html: <a href="{{ value }}" target="_new">
-        <img src="http://i.imgur.com/aJnF2oW.jpg" height=10 width=10></a>
-        ;;
     }
+
+    dimension: fav_ico {
+      label: "Link"
+      hidden: yes
+      type: string
+      sql: CONCAT("http://",${hits__page__hostname},"/favicon.ico") ;;
+    }
+
+    dimension: hits__page__page_title {
+      type: string
+      sql: ${TABLE}.hits.page.pageTitle ;;
+      fanout_on: "hits"
+
+      link: {
+        label: "Website"
+        url: "{{ link_field._value }}"
+        icon_url: "{{ fav_ico._value }}"
+      }
+
+      link: {
+        label: "Google"
+        url: "http://www.google.com/search?q={{ value }}"
+        icon_url: "http://google.com/favicon.ico"
+      }
+
+    }
+
+#   dimension: link {
+#     label: "Link"
+#     hidden: no
+#     type: string
+#     sql: CONCAT("http://",${hits__page__hostname},${hits__page__page_path}) ;;
+#     html: <a href="{{ value }}" target="_new">
+#         <img src="http://i.imgur.com/aJnF2oW.jpg" height=10 width=10></a>
+#         ;;
+#   }
 
     dimension: hits__page__page_path_level1 {
       type: string
@@ -653,11 +686,6 @@ view: ga_sessions_tentacle {
       fanout_on: "hits"
     }
 
-    dimension: hits__page__page_title {
-      type: string
-      sql: ${TABLE}.hits.page.pageTitle ;;
-      fanout_on: "hits"
-    }
 
     dimension: hits__page__search_category {
       type: string

@@ -607,6 +607,17 @@ view: ga_sessions_tentacle {
       fanout_on: "hits"
     }
 
+  dimension: hits__page__hostname_without_pr {
+    hidden: yes
+    type: string
+    sql:
+      CASE
+        WHEN ${TABLE}.hits.page.hostname LIKE "%planetradio%" THEN ""
+        ELSE ${TABLE}.hits.page.hostname
+      END;;
+    fanout_on: "hits"
+  }
+
     dimension: hits__page__page_path {
       type: string
       sql: ${TABLE}.hits.page.pagePath ;;
@@ -617,14 +628,14 @@ view: ga_sessions_tentacle {
       label: "Link"
       hidden: yes
       type: string
-      sql: CONCAT("http://",${hits__page__hostname},${hits__page__page_path}) ;;
+      sql: CONCAT("http://",${hits__page__hostname_without_pr},${hits__page__page_path}) ;;
     }
 
     dimension: fav_ico {
       label: "Link"
       hidden: yes
       type: string
-      sql: CONCAT("http://",${hits__page__hostname},"/favicon.ico") ;;
+      sql: CONCAT("http://",${hits__page__hostname_without_pr},"/favicon.ico") ;;
     }
 
     dimension: hits__page__page_title {

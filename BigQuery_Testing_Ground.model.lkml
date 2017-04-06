@@ -38,6 +38,7 @@ explore: ga_sessions_quarterly_reports {
 explore: ga_sessions_tentacle {
     hidden: no
     label: "BigQuery - Tentacle"
+    persist_for: "30 minutes"
 
     always_filter: {
       #This will be the default date range.

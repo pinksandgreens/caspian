@@ -613,6 +613,17 @@ view: ga_sessions_tentacle {
       fanout_on: "hits"
     }
 
+    dimension: link {
+      label: "Link"
+      hidden: no
+      type: string
+      sql: CONCAT(${TABLE}.hits.page.hostname,${TABLE}.hits.page.pagePath) ;;
+      html: <a href="{{ value }}" target="_new">
+        <img src="http://i.imgur.com/aJnF2oW.jpg" height=10 width=10></a>
+        ;;
+    }
+
+
     dimension: hits__page__page_path_level1 {
       type: string
       sql: ${TABLE}.hits.page.pagePathLevel1 ;;

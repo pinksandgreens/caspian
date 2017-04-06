@@ -617,11 +617,20 @@ view: ga_sessions_tentacle {
       label: "Link"
       hidden: no
       type: string
-      sql: CONCAT(${TABLE}.hits.page.hostname,${TABLE}.hits.page.pagePath) ;;
+      sql: CONCAT("www.",${hits__page__hostname},${hits__page__page_path}) ;;
       html: <a href="{{ value }}" target="_new">
         <img src="http://i.imgur.com/aJnF2oW.jpg" height=10 width=10></a>
         ;;
     }
+
+    dimension: link_test {
+    type: string
+    sql: ${link} ;;
+    link: {
+      label: "{{value}}"
+      url: "lifestyle.com"
+    }
+  }
 
 
     dimension: hits__page__page_path_level1 {
@@ -1532,6 +1541,7 @@ view: ga_sessions_tentacle {
     hidden: no
     label: "Brand Name"
     type: string
+    suggestions: ["Absolute Radio","Aire","Borders","Car Magazine","CFM","City","Classic Cars for Sale","Closer","Clyde","Cool FM","Downtown","Empire","Forth","Free","Gem","Grazia","Hallam","Heat","Heat Radio","Kerrang","Key","Kiss","Magic","Metro","MFR","Mother & Baby","Motorcyclenews","Northsound","Parkers","Planet Radio","Planet Rock","Rock FM","Tay FM","TFM","The Debrief","The Hits","Todays Golfer","Unknown","Viking","Wave","West FM","Westsound"]
     sql: CASE
           WHEN ${TABLE}.hits.page.pagePath LIKE '%/kiss/%' THEN 'Kiss'
           WHEN ${TABLE}.hits.page.pagePath LIKE '%/hits/%' THEN 'The Hits'

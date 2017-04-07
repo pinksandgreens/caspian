@@ -8,8 +8,6 @@ view: ga_sessions_tentacle {
                   {% table_date_range date_filter 21699534.ga_sessions_intraday_ %},
                   {% table_date_range date_filter 22661559.ga_sessions_ %},
                   {% table_date_range date_filter 22661559.ga_sessions_intraday_ %},
-                  {% table_date_range date_filter 24089672.ga_sessions_ %},
-                  {% table_date_range date_filter 24089672.ga_sessions_intraday_ %},
                   {% table_date_range date_filter 82149182.ga_sessions_ %},
                   {% table_date_range date_filter 82149182.ga_sessions_intraday_ %},
                   {% table_date_range date_filter 8896222.ga_sessions_ %},
@@ -31,6 +29,10 @@ view: ga_sessions_tentacle {
 # CAR 24931796
 # Today's Golfer  46993019
 # Classic Cars for Sale 53155378
+
+                  # {% table_date_range date_filter 24089672.ga_sessions_ %},
+                  # {% table_date_range date_filter 24089672.ga_sessions_intraday_ %},
+
 
     filter: date_filter {
       type: date

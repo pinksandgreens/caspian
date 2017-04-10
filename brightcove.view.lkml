@@ -25,7 +25,7 @@ view: brightcove {
           WHEN  ${destination_domain} LIKE '%carmagazine%' THEN 'carmagazine'
           WHEN  ${destination_domain} LIKE '%cfmradio%' THEN 'cfmradio'
           WHEN  ${destination_domain} LIKE '%classiccarsforsale%' THEN 'classiccarsforsale'
-          WHEN  ${destination_domain} LIKE '%closeronline%' THEN 'closeronline'
+          WHEN  ${destination_domain} LIKE '%closer%' THEN 'closer'
           WHEN  ${destination_domain} LIKE '%clyde1%' THEN 'clyde1'
           WHEN  ${destination_domain} LIKE '%clyde2%' THEN 'clyde2'
           WHEN  ${destination_domain} LIKE '%clyde3%' THEN 'clyde3'
@@ -38,11 +38,11 @@ view: brightcove {
           WHEN  ${destination_domain} LIKE '%forth3%' THEN 'forth3'
           WHEN  ${destination_domain} LIKE '%freeradio%' THEN 'freeradio'
           WHEN  ${destination_domain} LIKE '%gem106%' THEN 'gem106'
-          WHEN  ${destination_domain} LIKE '%graziadaily%' THEN 'graziadaily'
+          WHEN  ${destination_domain} LIKE '%grazia%' THEN 'grazia'
           WHEN  ${destination_domain} LIKE '%hallam2%' THEN 'hallam2'
           WHEN  ${destination_domain} LIKE '%hallam3%' THEN 'hallam3'
           WHEN  ${destination_domain} LIKE '%hallamfm%' THEN 'hallamfm'
-          WHEN  ${destination_domain} LIKE '%heatworld%' THEN 'heatworld'
+          WHEN  ${destination_domain} LIKE '%heat%' THEN 'heat'
           WHEN  ${destination_domain} LIKE '%horsedeals%' THEN 'horsedeals'
           WHEN  ${destination_domain} LIKE '%kerrang%' THEN 'kerrang'
           WHEN  ${destination_domain} LIKE '%kerrangradio%' THEN 'kerrangradio'
@@ -50,7 +50,6 @@ view: brightcove {
           WHEN  ${destination_domain} LIKE '%key2radio%' THEN 'key2radio'
           WHEN  ${destination_domain} LIKE '%key3radio%' THEN 'key3radio'
           WHEN  ${destination_domain} LIKE '%kissfmuk%' THEN 'kissfmuk'
-          WHEN  ${destination_domain} LIKE '%lifestyle%' THEN 'lifestyle'
           WHEN  ${destination_domain} LIKE '%livefortheoutdoors%' THEN 'livefortheoutdoors'
           WHEN  ${destination_domain} LIKE '%lro%' THEN 'lro'
           WHEN  ${destination_domain} LIKE '%magic%' THEN 'magic'
@@ -159,9 +158,11 @@ view: brightcove {
   }
 
   dimension: video_view {
-    type: string
+    type: number
     sql: ${TABLE}.video_view ;;
   }
+
+
 
   measure: count {
     type: count

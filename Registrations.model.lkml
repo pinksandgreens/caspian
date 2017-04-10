@@ -8,6 +8,7 @@ include: "*.dashboard"
 
 explore: gigya_users {
   label: "User Registration Data"
+  hidden: yes
   persist_for: "24 hour"
 
   join: bauer_list {

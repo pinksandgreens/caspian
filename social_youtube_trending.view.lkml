@@ -35,7 +35,7 @@ view: social_youtube_trending {
     label: "Image"
     hidden: no
     sql: ${image_filewow} ;;
-    html: <img src="{{ value }}" width="40" 0height="40"/>;;
+    html: <img src="{{ value }}" width="80" 0height="80"/>;;
   }
 
   dimension: link {

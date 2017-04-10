@@ -136,6 +136,12 @@ explore: social_youtube_trending {
   persist_for: "1 hour"
 }
 
+explore:brightcove {
+  label: "Brightcove Vid Stats"
+  sql_table_name: publications.brightcove ;;
+  persist_for: "1 hour"
+}
+
 
 #     - join: ga_radio_twitter_data
 #       type: inner

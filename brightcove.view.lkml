@@ -12,7 +12,17 @@ view: brightcove {
     label: ""
     timeframes: []
     convert_tz: no
-    sql: TO_DATE(${TABLE}.date,'YYYY-MM-DD') ;;
+    sql: TO_DATE(SPLIT_PART(${TABLE}.date, '|', 1),'YYYY-MM-DD') ;;
+  }
+
+  dimension: account_id {
+    type: string
+    sql: SPLIT_PART(${TABLE}.date, '|', 2) ;;
+  }
+
+  dimension: account_name {
+    type: string
+    sql: SPLIT_PART(${TABLE}.date, '|', 3) ;;
   }
 
   dimension: hostname {

@@ -16,23 +16,23 @@ explore: gigya_users {
     sql_on: ${bauer_list.email_address} = ${gigya_users.email} ;;
   }
 
-  join: radio_login_data_20160820 {
-    type: full_outer
-    relationship: one_to_many
-    sql_on: ${radio_login_data_20160820.account_email} = ${gigya_users.email} ;;
-  }
+#   join: radio_login_data_20160820 {
+#     type: full_outer
+#     relationship: one_to_many
+#     sql_on: ${radio_login_data_20160820.account_email} = ${gigya_users.email} ;;
+#   }
 
-  join: identities {
-    type: inner
-    relationship: one_to_one
-    sql_on: ${identities.email} = ${bauer_list.email_address} ;;
-  }
+#   join: identities {
+#     type: inner
+#     relationship: one_to_one
+#     sql_on: ${identities.email} = ${bauer_list.email_address} ;;
+#   }
 
-  join: identities_keys {
-    type: inner
-    relationship: one_to_one
-    sql_on: ${identities.idd_id} = ${identities_keys.idd_key_id} ;;
-  }
+#   join: identities_keys {
+#     type: inner
+#     relationship: one_to_one
+#     sql_on: ${identities.idd_id} = ${identities_keys.idd_key_id} ;;
+#   }
 
   join: gigya_brand_optin {
     type: left_outer
@@ -61,11 +61,11 @@ explore: gigya_users {
     sql_on: ${gigya_social_identities.gigya_id} = ${gigya_users.gigya_id} ;;
   }
 
-  join: brand_preferences {
-    type: inner
-    relationship: one_to_many
-    sql_on: ${brand_preferences.idd_id} = ${identities.idd_id} ;;
-  }
+#   join: brand_preferences {
+#     type: inner
+#     relationship: one_to_many
+#     sql_on: ${brand_preferences.idd_id} = ${identities.idd_id} ;;
+#   }
 
   join: postcode_lookup {
     type: inner

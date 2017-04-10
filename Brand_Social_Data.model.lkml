@@ -118,7 +118,7 @@ explore: social_youtube_videos {
 
 explore: social_youtube_advanced {
   hidden: no
-  label: "Youtube Videos"
+  label: "YouTube Videos"
   sql_table_name: publications.social_youtube_advanced ;;
   persist_for: "1 hour"
 }
@@ -129,6 +129,13 @@ explore: social_twitter_trending_adv {
   sql_table_name: publications.social_twitter_trending_adv ;;
   persist_for: "1 hour"
 }
+
+explore: social_youtube_trending {
+  label: "YouTube Trending"
+  sql_table_name: publications.social_youtube_trending ;;
+  persist_for: "1 hour"
+}
+
 
 #     - join: ga_radio_twitter_data
 #       type: inner

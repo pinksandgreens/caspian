@@ -269,6 +269,11 @@ view: social_youtube_advanced {
     drill_fields: [post_details*]
   }
 
+  dimension: chart_date {
+    sql:  TO_CHAR(${date_date},'MON YYYY') ;;
+    #sql: CONCAT(EXTRACT(month, ${date_month}), ' ', EXTRACT(year, ${date_year})) ;;
+  }
+
   set: post_details {
     fields: [
       brand,

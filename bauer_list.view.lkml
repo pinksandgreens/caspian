@@ -159,7 +159,7 @@ view: bauer_list {
   }
 
   dimension: firstname {
-    hidden: yes
+    hidden: no
     type: string
     sql: ${TABLE}.firstname ;;
   }
@@ -349,7 +349,7 @@ view: bauer_list {
   }
 
   dimension: lastname {
-    hidden: yes
+    hidden: no
     type: string
     sql: ${TABLE}.lastname ;;
   }

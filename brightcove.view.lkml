@@ -29,34 +29,34 @@ view: brightcove {
     type: string
     label: "Bauer Domain"
     sql: CASE
-          WHEN  ${destination_domain} LIKE '%absoluteradio%' THEN 'absoluteradio'
+          WHEN  ${destination_domain} LIKE '%absoluteradio%' THEN 'Absolute Radio'
           WHEN  ${destination_domain} LIKE '%anglingtimes%' THEN 'anglingtimes'
           WHEN  ${destination_domain} LIKE '%birdwatching%' THEN 'birdwatching'
           WHEN  ${destination_domain} LIKE '%carmagazine%' THEN 'carmagazine'
-          WHEN  ${destination_domain} LIKE '%cfmradio%' THEN 'cfmradio'
+          WHEN  ${destination_domain} LIKE '%cfmradio%' THEN 'CFMRadio'
           WHEN  ${destination_domain} LIKE '%classiccarsforsale%' THEN 'classiccarsforsale'
-          WHEN  ${destination_domain} LIKE '%closer%' THEN 'closer'
-          WHEN  ${destination_domain} LIKE '%clyde1%' THEN 'clyde1'
+          WHEN  ${destination_domain} LIKE '%closer%' THEN 'Closer'
+          WHEN  ${destination_domain} LIKE '%clyde1%' THEN 'Clyde 1'
           WHEN  ${destination_domain} LIKE '%clyde2%' THEN 'clyde2'
           WHEN  ${destination_domain} LIKE '%clyde3%' THEN 'clyde3'
-          WHEN  ${destination_domain} LIKE '%coolfm%' THEN 'coolfm'
+          WHEN  ${destination_domain} LIKE '%coolfm%' THEN 'Cool FM'
           WHEN  ${destination_domain} LIKE '%downtown%' THEN 'downtown'
           WHEN  ${destination_domain} LIKE '%downtowncountry%' THEN 'downtowncountry'
           WHEN  ${destination_domain} LIKE '%empireonline%' THEN 'empireonline'
-          WHEN  ${destination_domain} LIKE '%forth1%' THEN 'forth1'
+          WHEN  ${destination_domain} LIKE '%forth1%' THEN 'Forth 1'
           WHEN  ${destination_domain} LIKE '%forth2%' THEN 'forth2'
           WHEN  ${destination_domain} LIKE '%forth3%' THEN 'forth3'
           WHEN  ${destination_domain} LIKE '%freeradio%' THEN 'freeradio'
-          WHEN  ${destination_domain} LIKE '%gem106%' THEN 'gem106'
-          WHEN  ${destination_domain} LIKE '%grazia%' THEN 'grazia'
+          WHEN  ${destination_domain} LIKE '%gem106%' THEN 'Gem 106'
+          WHEN  ${destination_domain} LIKE '%grazia%' THEN 'Grazia UK'
           WHEN  ${destination_domain} LIKE '%hallam2%' THEN 'hallam2'
           WHEN  ${destination_domain} LIKE '%hallam3%' THEN 'hallam3'
           WHEN  ${destination_domain} LIKE '%hallamfm%' THEN 'hallamfm'
           WHEN  ${destination_domain} LIKE '%heat%' THEN 'heat'
           WHEN  ${destination_domain} LIKE '%horsedeals%' THEN 'horsedeals'
           WHEN  ${destination_domain} LIKE '%kerrang%' THEN 'kerrang'
-          WHEN  ${destination_domain} LIKE '%kerrangradio%' THEN 'kerrangradio'
-          WHEN  ${destination_domain} LIKE '%key103%' THEN 'key103'
+          WHEN  ${destination_domain} LIKE '%kerrangradio%' THEN 'Kerrang! Radio'
+          WHEN  ${destination_domain} LIKE '%key103%' THEN 'Key103'
           WHEN  ${destination_domain} LIKE '%key2radio%' THEN 'key2radio'
           WHEN  ${destination_domain} LIKE '%key3radio%' THEN 'key3radio'
           WHEN  ${destination_domain} LIKE '%kissfmuk%' THEN 'kissfmuk'
@@ -73,21 +73,21 @@ view: brightcove {
           WHEN  ${destination_domain} LIKE '%mfr2%' THEN 'mfr2'
           WHEN  ${destination_domain} LIKE '%mfr3%' THEN 'mfr3'
           WHEN  ${destination_domain} LIKE '%mojo4music%' THEN 'mojo4music'
-          WHEN  ${destination_domain} LIKE '%motherandbaby%' THEN 'motherandbaby'
+          WHEN  ${destination_domain} LIKE '%motherandbaby%' THEN 'Mother&Baby'
           WHEN  ${destination_domain} LIKE '%motorcyclenews%' THEN 'motorcyclenews'
-          WHEN  ${destination_domain} LIKE '%northsound1%' THEN 'northsound1'
+          WHEN  ${destination_domain} LIKE '%northsound1%' THEN 'Northsound 1'
           WHEN  ${destination_domain} LIKE '%northsound2%' THEN 'northsound2'
           WHEN  ${destination_domain} LIKE '%planetradio%' THEN 'planetradio'
-          WHEN  ${destination_domain} LIKE '%planetrock%' THEN 'planetrock'
+          WHEN  ${destination_domain} LIKE '%planetrock%' THEN 'Planet Rock'
           WHEN  ${destination_domain} LIKE '%qthemusic%' THEN 'qthemusic'
-          WHEN  ${destination_domain} LIKE '%radioaire%' THEN 'radioaire'
+          WHEN  ${destination_domain} LIKE '%radioaire%' THEN 'Radio Aire'
           WHEN  ${destination_domain} LIKE '%radioaire2%' THEN 'radioaire2'
           WHEN  ${destination_domain} LIKE '%radioaire3%' THEN 'radioaire3'
           WHEN  ${destination_domain} LIKE '%radioborders%' THEN 'radioborders'
           WHEN  ${destination_domain} LIKE '%radiocity%' THEN 'radiocity'
           WHEN  ${destination_domain} LIKE '%radiocity2%' THEN 'radiocity2'
           WHEN  ${destination_domain} LIKE '%radiocity3%' THEN 'radiocity3'
-          WHEN  ${destination_domain} LIKE '%radiocitytalk%' THEN 'radiocitytalk'
+          WHEN  ${destination_domain} LIKE '%radiocitytalk%' THEN 'Radio City Talk'
           WHEN  ${destination_domain} LIKE '%rockfm%' THEN 'rockfm'
           WHEN  ${destination_domain} LIKE '%rockfm2%' THEN 'rockfm2'
           WHEN  ${destination_domain} LIKE '%rockfm3%' THEN 'rockfm3'
@@ -98,15 +98,15 @@ view: brightcove {
           WHEN  ${destination_domain} LIKE '%tfm2%' THEN 'tfm2'
           WHEN  ${destination_domain} LIKE '%tfm3%' THEN 'tfm3'
           WHEN  ${destination_domain} LIKE '%tfmradio%' THEN 'tfmradio'
-          WHEN  ${destination_domain} LIKE '%thedebrief%' THEN 'thedebrief'
+          WHEN  ${destination_domain} LIKE '%thedebrief%' THEN 'The Debrief'
           WHEN  ${destination_domain} LIKE '%thehitsradio%' THEN 'thehitsradio'
-          WHEN  ${destination_domain} LIKE '%todaysgolfer%' THEN 'todaysgolfer'
+          WHEN  ${destination_domain} LIKE '%todaysgolfer%' THEN 'Today''s Golfer'
           WHEN  ${destination_domain} LIKE '%troutandsalmon%' THEN 'troutandsalmon'
           WHEN  ${destination_domain} LIKE '%troutfisherman%' THEN 'troutfisherman'
           WHEN  ${destination_domain} LIKE '%viking2%' THEN 'viking2'
           WHEN  ${destination_domain} LIKE '%viking3%' THEN 'viking3'
           WHEN  ${destination_domain} LIKE '%vikingfm%' THEN 'vikingfm'
-          WHEN  ${destination_domain} LIKE '%wave105%' THEN 'wave105'
+          WHEN  ${destination_domain} LIKE '%wave105%' THEN 'Wave 105'
           WHEN  ${destination_domain} LIKE '%westfm%' THEN 'westfm'
           WHEN  ${destination_domain} LIKE '%westsound%' THEN 'westsound'
           WHEN  ${destination_domain} LIKE '%westsoundradio%' THEN 'westsoundradio'
@@ -147,10 +147,10 @@ view: brightcove {
     sql: ${TABLE}.video_duration ;;
   }
 
-  dimension: video_impression {
-    type: string
-    sql: ${TABLE}.video_impression ;;
-  }
+#   dimension: video_impression {
+#     type: string
+#     sql: ${TABLE}.video_impression ;;
+#   }
 
   dimension: video_name {
     type: string
@@ -167,12 +167,15 @@ view: brightcove {
     sql: ${TABLE}.video_seconds_viewed ;;
   }
 
-  dimension: video_view {
-    type: number
+  measure: video_view {
+    type: sum
     sql: ${TABLE}.video_view ;;
   }
 
-
+  measure: video_impressions {
+    type: sum
+    sql: ${TABLE}.video_impression ;;
+  }
 
   measure: count {
     type: count

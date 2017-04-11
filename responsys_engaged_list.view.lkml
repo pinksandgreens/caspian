@@ -17,7 +17,7 @@ view: responsys_engaged_list {
   }
 
   dimension: email_address {
-    hidden: yes
+    hidden: no
     type: string
     sql: ${TABLE}.email_address ;;
   }

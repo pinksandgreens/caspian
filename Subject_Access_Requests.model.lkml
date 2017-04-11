@@ -104,6 +104,13 @@ explore: responsys_engaged_list {
     relationship: many_to_many
     sql_on: ${responsy_active.email_address} = ${responsys_engaged_list.email_address} ;;
   }
+
+  join: identities {
+    type: inner
+    relationship: one_to_one
+    sql_on: ${identities.email} = ${bauer_list.email_address} ;;
+  }
+
 }
 
 # - explore: email_list

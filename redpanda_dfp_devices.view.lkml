@@ -41,7 +41,7 @@ view: dfp_devices {
   dimension: dimension_ad_unit_name {
     label: "Ad Unit Name"
     type: string
-    sql: REPLACE(${TABLE}."dimension.ad_unit_name", '»','?') ;;
+     sql: REPLACE(REPLACE(${TABLE}."dimension.ad_unit_name", '»','?'),' ','');;
   }
 
   dimension: Ad_Unit_Name_Path_1 {

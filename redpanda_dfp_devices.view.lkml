@@ -41,8 +41,39 @@ view: dfp_devices {
   dimension: dimension_ad_unit_name {
     label: "Ad Unit Name"
     type: string
-    sql: ${TABLE}."dimension.ad_unit_name" ;;
+    sql: REPLACE(${TABLE}."dimension.ad_unit_name", '»','?') ;;
   }
+
+  dimension: Ad_Unit_Name_Path_1 {
+    type: string
+    sql: SPLIT_PART(${dimension_ad_unit_name}, '?', 1) ;;
+  }
+
+  dimension: Ad_Unit_Name_Path_2 {
+    type: string
+    sql: SPLIT_PART(${dimension_ad_unit_name}, '?', 2) ;;
+  }
+
+  dimension: Ad_Unit_Name_Path_3 {
+    type: string
+    sql: SPLIT_PART(${dimension_ad_unit_name}, '?', 3) ;;
+  }
+
+  dimension: Ad_Unit_Name_Path_4 {
+    type: string
+    sql: SPLIT_PART(${dimension_ad_unit_name}, '?', 4) ;;
+  }
+
+  dimension: Ad_Unit_Name_Path_5 {
+    type: string
+    sql: SPLIT_PART(${dimension_ad_unit_name}, '?', 5) ;;
+  }
+
+  dimension: Ad_Unit_Name_Path_6 {
+    type: string
+    sql: SPLIT_PART(${dimension_ad_unit_name}, '?', 6) ;;
+  }
+
 
   dimension: dimension_country_criteria_id {
     label: "Country Criteria ID"

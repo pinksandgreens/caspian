@@ -22,6 +22,12 @@ explore: responsy_active {
     sql_on: ${bauer_list.email_address} = ${responsy_active.email_address} ;;
   }
 
+  # join:  responsy_active {
+  #   type: inner
+  #   relationship: one_to_one
+  #   sql_on: ${responsy_active.email_address} = ${identities.email} ;;
+  # }
+
   join: brand_lookup {
     type: inner
     relationship: one_to_one

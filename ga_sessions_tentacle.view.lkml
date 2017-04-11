@@ -1702,7 +1702,7 @@ view: ga_sessions_tentacle {
           WHEN ${TABLE}.hits.page.pagePath LIKE '%/hallam-fm/%' THEN 'Hallam'
           WHEN ${TABLE}.hits.page.pagePath LIKE '%/hallam/%' THEN 'Hallam'
           WHEN ${TABLE}.hits.page.pagePath LIKE '%/hallamfm/%' THEN 'Hallam'
-          WHEN  ${TABLE}.hits.page.hostname LIKE '%planetradio.co.uk%' AND ${TABLE}.hits.page.pagePath LIKE '%/heat/%' THEN 'Heat Radio'
+          WHEN(${TABLE}.hits.page.hostname LIKE '%planetradio.co.uk%' AND ${TABLE}.hits.page.pagePath LIKE '%/heat/%') THEN 'Heat Radio'
           WHEN ${TABLE}.hits.page.pagePath LIKE '%/key-2/%' THEN 'Key'
           WHEN ${TABLE}.hits.page.pagePath LIKE '%/key2/%' THEN 'Key'
           WHEN ${TABLE}.hits.page.pagePath LIKE '%/key-3/%' THEN 'Key'
@@ -1796,9 +1796,9 @@ view: ga_sessions_tentacle {
           WHEN ${TABLE}.hits.page.pagePath LIKE '%radioplayer.clyde1%' THEN 'Clyde'
           WHEN ${TABLE}.hits.page.pagePath LIKE '%radioplayer.clyde2%' THEN 'Clyde'
           WHEN ${TABLE}.hits.page.pagePath LIKE '%radioplayer.clyde3%' THEN 'Clyde'
-          WHEN ${TABLE}.hits.page.hostname LIKE '%lifestyle.one%' AND ${TABLE}.hits.page.pagePath LIKE '%/heat/%' THEN 'Heat'
-          WHEN ${TABLE}.hits.page.hostname LIKE '%lifestyle.one%' AND ${TABLE}.hits.page.pagePath LIKE '%/closer/%' THEN 'Closer'
-          WHEN ${TABLE}.hits.page.hostname LIKE '%lifestyle.one%' AND ${TABLE}.hits.page.pagePath LIKE '%/grazia%' THEN 'Grazia'
+          WHEN (${TABLE}.hits.page.hostname LIKE '%lifestyle.one%' AND ${TABLE}.hits.page.pagePath LIKE '%/heat/%') THEN 'Heat'
+          WHEN (${TABLE}.hits.page.hostname LIKE '%lifestyle.one%' AND ${TABLE}.hits.page.pagePath LIKE '%/closer/%') THEN 'Closer'
+          WHEN (${TABLE}.hits.page.hostname LIKE '%lifestyle.one%' AND ${TABLE}.hits.page.pagePath LIKE '%/grazia%') THEN 'Grazia'
           WHEN ${TABLE}.hits.page.hostname LIKE '%parkers.co.uk%' THEN 'Parkers'
           WHEN ${TABLE}.hits.page.hostname LIKE '%motorcyclenews.com%' THEN 'Motorcyclenews'
           WHEN ${TABLE}.hits.page.hostname LIKE '%empireonline.com%' THEN 'Empire'
@@ -1859,6 +1859,7 @@ view: ga_sessions_tentacle {
 
     measure: Unique_Users {
       label: "Unique Users"
+      approximate_threshold: 10000
       type: count_distinct
       sql: ${TABLE}.fullVisitorId ;;
     }
@@ -1871,21 +1872,21 @@ view: ga_sessions_tentacle {
 
     measure: totals_newvisits {
       label: "Total New Sessions"
-      type: sum_distinct
+      type: sum
       sql_distinct_key: ${uu_key} ;;
       sql: ${TABLE}.totals.newVisits ;;
     }
 
     measure: totals_visits {
       label: "Total Sessions"
-      type: sum_distinct
+      type: sum
       sql_distinct_key: ${uu_key} ;;
       sql: ${TABLE}.totals.visits ;;
     }
 
     measure: totals_social_visits {
       label: "Total Social Sessions"
-      type: sum_distinct
+      type: sum
       sql_distinct_key: ${uu_key} ;;
       sql: ${TABLE}.totals.visits ;;
 
@@ -1919,7 +1920,7 @@ view: ga_sessions_tentacle {
 
     measure: totals_pageviews {
       label: "Total Pageviews"
-      type: sum_distinct
+      type: sum
       sql_distinct_key: ${uu_key} ;;
       sql: ${TABLE}.totals.pageviews ;;
 #       drill_fields: [detail*]

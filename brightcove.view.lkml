@@ -22,7 +22,20 @@ view: brightcove {
 
   dimension: account_name {
     type: string
-    sql: SPLIT_PART(${TABLE}.date, '|', 3) ;;
+    sql: CASE
+          WHEN SPLIT_PART(${TABLE}.date, '|', 3) = 'Empire' THEN 'Empire Magazine'
+          WHEN SPLIT_PART(${TABLE}.date, '|', 3) = 'Go Fishing' THEN 'GoFishingOnline'
+          WHEN SPLIT_PART(${TABLE}.date, '|', 3) = 'Grazia' THEN 'Grazia UK'
+          WHEN SPLIT_PART(${TABLE}.date, '|', 3) = 'Heat' THEN 'heat heatworld & heat Radio'
+          WHEN SPLIT_PART(${TABLE}.date, '|', 3) = 'Kerrang' THEN 'Kerrang! Radio'
+          WHEN SPLIT_PART(${TABLE}.date, '|', 3) = 'Kiss FM' THEN 'KISS FM UK'
+          WHEN SPLIT_PART(${TABLE}.date, '|', 3) = 'Magic 105.4' THEN 'Magic Radio'
+          WHEN SPLIT_PART(${TABLE}.date, '|', 3) = 'MCN' THEN 'MCN - Motorcyclenews.com'
+          WHEN SPLIT_PART(${TABLE}.date, '|', 3) = 'Mother and Baby' THEN 'Mother&Baby'
+          WHEN SPLIT_PART(${TABLE}.date, '|', 3) = 'Mother and Baby' THEN 'Mother&Baby'
+          ELSE SPLIT_PART(${TABLE}.date, '|', 3)
+        END
+        ;;
   }
 
   dimension: hostname {
@@ -52,7 +65,7 @@ view: brightcove {
           WHEN  ${destination_domain} LIKE '%hallam2%' THEN 'hallam2'
           WHEN  ${destination_domain} LIKE '%hallam3%' THEN 'hallam3'
           WHEN  ${destination_domain} LIKE '%hallamfm%' THEN 'hallamfm'
-          WHEN  ${destination_domain} LIKE '%heat%' THEN 'heat'
+          WHEN  ${destination_domain} LIKE '%heat%' THEN 'heatworld'
           WHEN  ${destination_domain} LIKE '%horsedeals%' THEN 'horsedeals'
           WHEN  ${destination_domain} LIKE '%kerrang%' THEN 'kerrang'
           WHEN  ${destination_domain} LIKE '%kerrangradio%' THEN 'Kerrang! Radio'

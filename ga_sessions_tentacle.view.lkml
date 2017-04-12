@@ -19,6 +19,15 @@ view: ga_sessions_tentacle {
                   {% table_date_range date_filter 53155378.ga_sessions_ %},
                   {% table_date_range date_filter 53155378.ga_sessions_intraday_ %});;
 
+
+
+#   sql_table_name: ( SELECT * FROM (TABLE_DATE_RANGE(["{% parameter table_id %}".ga_sessions_],TIMESTAMP(DATE_ADD(TIMESTAMP(CONCAT(CURRENT_DATE(), ' 00:00:00')), -60, 'DAY')),TIMESTAMP(DATE_ADD(DATE_ADD(DATE_ADD(TIMESTAMP(CONCAT(CURRENT_DATE(), ' 00:00:00')), -60, 'DAY'), 61, 'DAY'),-1, 'SECOND')))),
+#   (TABLE_DATE_RANGE(["{% parameter table_id %}".ga_sessions_intraday_],TIMESTAMP(DATE_ADD(TIMESTAMP(CONCAT(CURRENT_DATE(), ' 00:00:00')), -60, 'DAY')),TIMESTAMP(DATE_ADD(DATE_ADD(DATE_ADD(TIMESTAMP(CONCAT(CURRENT_DATE(), ' 00:00:00')), -60, 'DAY'), 61, 'DAY'),-1, 'SECOND')))));;
+
+
+# {% parameter table_id %}
+# 'REGEXP_MATCH(table_id, r"{% parameter brand %}")'
+
 # Lifestyle.one 114668488
 # Planet Radio  127467161
 # Empire  21699534
@@ -32,6 +41,62 @@ view: ga_sessions_tentacle {
 
                   # {% table_date_range date_filter 24089672.ga_sessions_ %},
                   # {% table_date_range date_filter 24089672.ga_sessions_intraday_ %},
+
+#      dimension: table_id
+#       {
+#         type: string
+#         sql: CASE
+#                 WHEN {% parameter table %} = 'Absolute Radio' THEN 127467161
+#                 WHEN {% parameter table %} = 'Aire' THEN 127467161
+#                 WHEN {% parameter table %} = 'Borders' THEN 127467161
+#                 WHEN {% parameter table %} = 'Car Magazine' THEN 24931796
+#                 WHEN {% parameter table %} = 'CFM' THEN 127467161
+#                 WHEN {% parameter table %} = 'City' THEN 127467161
+#                 WHEN {% parameter table %} = 'Classic Cars for Sale' THEN 53155378
+#                 WHEN {% parameter table %} = 'Closer' THEN 114668488
+#                 WHEN {% parameter table %} = 'Clyde' THEN 127467161
+#                 WHEN {% parameter table %} = 'Cool FM' THEN 127467161
+#                 WHEN {% parameter table %} = 'Downtown' THEN 127467161
+#                 WHEN {% parameter table %} = 'Empire' THEN 21699534
+#                 WHEN {% parameter table %} = 'Forth' THEN 127467161
+#                 WHEN {% parameter table %} = 'Free' THEN 127467161
+#                 WHEN {% parameter table %} = 'Gem' THEN 127467161
+#                 WHEN {% parameter table %} = 'Grazia' THEN 114668488
+#                 WHEN {% parameter table %} = 'Hallam' THEN 127467161
+#                 WHEN {% parameter table %} = 'Heat' THEN 114668488
+#                 WHEN {% parameter table %} = 'Heat Radio' THEN 127467161
+#                 WHEN {% parameter table %} = 'Kerrang' THEN 127467161
+#                 WHEN {% parameter table %} = 'Key' THEN 127467161
+#                 WHEN {% parameter table %} = 'Kiss' THEN 127467161
+#                 WHEN {% parameter table %} = 'Magic' THEN 127467161
+#                 WHEN {% parameter table %} = 'Metro' THEN 127467161
+#                 WHEN {% parameter table %} = 'MFR' THEN 127467161
+#                 WHEN {% parameter table %} = 'Mother & Baby' THEN 8896222
+#                 WHEN {% parameter table %} = 'Motorcyclenews' THEN 22661559
+#                 WHEN {% parameter table %} = 'Northsound' THEN 127467161
+#                 WHEN {% parameter table %} = 'Parkers' THEN 24089672
+#                 WHEN {% parameter table %} = 'Planet Radio' THEN 127467161
+#                 WHEN {% parameter table %} = 'Planet Rock' THEN 127467161
+#                 WHEN {% parameter table %} = 'Rock FM' THEN 127467161
+#                 WHEN {% parameter table %} = 'Tay FM' THEN 127467161
+#                 WHEN {% parameter table %} = 'TFM' THEN 127467161
+#                 WHEN {% parameter table %} = 'The Debrief' THEN 82149182
+#                 WHEN {% parameter table %} = 'The Hits' THEN 127467161
+#                 WHEN {% parameter table %} = 'Todays Golfer' THEN 46993019
+#                 WHEN {% parameter table %} = 'Unknown' THEN 127467161
+#                 WHEN {% parameter table %} = 'Viking' THEN 127467161
+#                 WHEN {% parameter table %} = 'Wave' THEN 127467161
+#                 WHEN {% parameter table %} = 'West FM' THEN 127467161
+#                 WHEN {% parameter table %} = 'Westsound' THEN 127467161
+#                 WHEN {% parameter table %} = 'Parkers' THEN 24089672
+#                 ELSE 0
+#               END;;
+#       }
+#
+#     filter: table {
+#       suggestions: ["Absolute Radio","Aire","Borders","Car Magazine","CFM","City","Classic Cars for Sale","Closer","Clyde","Cool FM","Downtown","Empire","Forth","Free","Gem","Grazia","Hallam","Heat","Heat Radio","Kerrang","Key","Kiss","Magic","Metro","MFR","Mother & Baby","Motorcyclenews","Northsound","Parkers","Planet Radio","Planet Rock","Rock FM","Tay FM","TFM","The Debrief","The Hits","Todays Golfer","Unknown","Viking","Wave","West FM","Westsound","Parkers"]
+#       type: string
+#     }
 
 
     filter: date_filter {
@@ -1559,6 +1624,16 @@ view: ga_sessions_tentacle {
       convert_tz: yes
     }
 
+#     dimension: last_30_days {
+#       type: yesno
+#       sql: DATEDIFF( NOW(), ${TABLE}.date ) < 31 ;;
+#     }
+
+    dimension: last_30_days {
+      type: string
+      sql: DATEDIFF( CURRENT_DATE(), ${start_time_date} ) < 31 ;;
+    }
+
     dimension: visitor_id {
       type: number
       sql: ${TABLE}.visitorId ;;
@@ -1637,7 +1712,7 @@ view: ga_sessions_tentacle {
           WHEN ${TABLE}.hits.page.pagePath LIKE '%/hallam-fm/%' THEN 'Hallam'
           WHEN ${TABLE}.hits.page.pagePath LIKE '%/hallam/%' THEN 'Hallam'
           WHEN ${TABLE}.hits.page.pagePath LIKE '%/hallamfm/%' THEN 'Hallam'
-          WHEN  ${TABLE}.hits.page.hostname LIKE '%planetradio.co.uk%' AND ${TABLE}.hits.page.pagePath LIKE '%/heat/%' THEN 'Heat Radio'
+          WHEN(${TABLE}.hits.page.hostname LIKE '%planetradio.co.uk%' AND ${TABLE}.hits.page.pagePath LIKE '%/heat/%') THEN 'Heat Radio'
           WHEN ${TABLE}.hits.page.pagePath LIKE '%/key-2/%' THEN 'Key'
           WHEN ${TABLE}.hits.page.pagePath LIKE '%/key2/%' THEN 'Key'
           WHEN ${TABLE}.hits.page.pagePath LIKE '%/key-3/%' THEN 'Key'
@@ -1731,9 +1806,9 @@ view: ga_sessions_tentacle {
           WHEN ${TABLE}.hits.page.pagePath LIKE '%radioplayer.clyde1%' THEN 'Clyde'
           WHEN ${TABLE}.hits.page.pagePath LIKE '%radioplayer.clyde2%' THEN 'Clyde'
           WHEN ${TABLE}.hits.page.pagePath LIKE '%radioplayer.clyde3%' THEN 'Clyde'
-          WHEN ${TABLE}.hits.page.hostname LIKE '%lifestyle.one%' AND ${TABLE}.hits.page.pagePath LIKE '%/heat/%' THEN 'Heat'
-          WHEN ${TABLE}.hits.page.hostname LIKE '%lifestyle.one%' AND ${TABLE}.hits.page.pagePath LIKE '%/closer/%' THEN 'Closer'
-          WHEN ${TABLE}.hits.page.hostname LIKE '%lifestyle.one%' AND ${TABLE}.hits.page.pagePath LIKE '%/grazia%' THEN 'Grazia'
+          WHEN (${TABLE}.hits.page.hostname LIKE '%lifestyle.one%' AND ${TABLE}.hits.page.pagePath LIKE '%/heat/%') THEN 'Heat'
+          WHEN (${TABLE}.hits.page.hostname LIKE '%lifestyle.one%' AND ${TABLE}.hits.page.pagePath LIKE '%/closer/%') THEN 'Closer'
+          WHEN (${TABLE}.hits.page.hostname LIKE '%lifestyle.one%' AND ${TABLE}.hits.page.pagePath LIKE '%/grazia%') THEN 'Grazia'
           WHEN ${TABLE}.hits.page.hostname LIKE '%parkers.co.uk%' THEN 'Parkers'
           WHEN ${TABLE}.hits.page.hostname LIKE '%motorcyclenews.com%' THEN 'Motorcyclenews'
           WHEN ${TABLE}.hits.page.hostname LIKE '%empireonline.com%' THEN 'Empire'
@@ -1794,6 +1869,7 @@ view: ga_sessions_tentacle {
 
     measure: Unique_Users {
       label: "Unique Users"
+      approximate_threshold: 10000
       type: count_distinct
       sql: ${TABLE}.fullVisitorId ;;
     }
@@ -1806,21 +1882,21 @@ view: ga_sessions_tentacle {
 
     measure: totals_newvisits {
       label: "Total New Sessions"
-      type: sum_distinct
+      type: sum
       sql_distinct_key: ${uu_key} ;;
       sql: ${TABLE}.totals.newVisits ;;
     }
 
     measure: totals_visits {
       label: "Total Sessions"
-      type: sum_distinct
+      type: sum
       sql_distinct_key: ${uu_key} ;;
       sql: ${TABLE}.totals.visits ;;
     }
 
     measure: totals_social_visits {
       label: "Total Social Sessions"
-      type: sum_distinct
+      type: sum
       sql_distinct_key: ${uu_key} ;;
       sql: ${TABLE}.totals.visits ;;
 
@@ -1854,7 +1930,7 @@ view: ga_sessions_tentacle {
 
     measure: totals_pageviews {
       label: "Total Pageviews"
-      type: sum_distinct
+      type: sum
       sql_distinct_key: ${uu_key} ;;
       sql: ${TABLE}.totals.pageviews ;;
 #       drill_fields: [detail*]

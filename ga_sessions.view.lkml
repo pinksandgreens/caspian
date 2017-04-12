@@ -1078,7 +1078,7 @@ view: ga_sessions {
     }
 
     measure: hits__publisher__dfp_pages_viewed {
-      label: "DFP Pages Viewed"
+      label: "Ads DFP Pages Viewed"
       type: sum
       sql: ${TABLE}.hits.publisher.dfpPagesViewed ;;
       fanout_on: "hits"

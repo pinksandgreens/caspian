@@ -1624,6 +1624,16 @@ view: ga_sessions_tentacle {
       convert_tz: yes
     }
 
+#     dimension: last_30_days {
+#       type: yesno
+#       sql: DATEDIFF( NOW(), ${TABLE}.date ) < 31 ;;
+#     }
+
+    dimension: last_30_days {
+      type: string
+      sql: DATEDIFF( CURRENT_DATE(), ${start_time_date} ) < 31 ;;
+    }
+
     dimension: visitor_id {
       type: number
       sql: ${TABLE}.visitorId ;;

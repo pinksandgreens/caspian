@@ -546,19 +546,19 @@ view: bauer_list {
   }
 
   dimension: postal_street_1 {
-    hidden: yes
+    hidden: no
     type: string
     sql: ${TABLE}.postal_street_1 ;;
   }
 
   dimension: postal_street_2 {
-    hidden: yes
+    hidden: no
     type: string
     sql: ${TABLE}.postal_street_2 ;;
   }
 
   dimension: postal_street_3 {
-    hidden: yes
+    hidden: no
     type: string
     sql: ${TABLE}.postal_street_3 ;;
   }

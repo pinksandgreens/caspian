@@ -928,7 +928,7 @@ view: ga_sessions {
         }
 
     measure: hits__publisher__adx_clicks{
-    label: "Ads Adx CLicks"
+    label: "Ads Adx Clicks"
     type: sum
     sql: ${TABLE}.hits.publisher.adxClicks;;
     fanout_on: "hits"

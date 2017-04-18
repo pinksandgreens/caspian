@@ -20,25 +20,25 @@ explore: bauer_list {
 
 
   join: responsys_engaged_list {
-    type: left_outer
+    type: full_outer
     relationship: one_to_one
     sql_on: ${bauer_list.email_address} = ${responsys_engaged_list.email_address};;
   }
 
   join: responsys_newsletter_permissions {
-    type: left_outer
+    type: full_outer
     relationship: one_to_many
     sql_on: ${bauer_list.email_address} = ${responsys_newsletter_permissions.email_address} ;;
   }
 
   join: responsys_brand_permissions {
-   type: left_outer
+   type: full_outer
    relationship: one_to_many
    sql_on: ${bauer_list.email_address} = ${responsys_brand_permissions.email_address} ;;
   }
 
   join: responsy_active {
-    type: left_outer
+    type: full_outer
     relationship: one_to_one
     sql_on:${bauer_list.email_address} = ${responsy_active.email_address} ;;
   }

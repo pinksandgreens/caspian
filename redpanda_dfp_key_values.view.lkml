@@ -106,13 +106,13 @@ view: dfp_key_values {
   }
 
   dimension: dimension_custom_criteria3 {
-    label: "Custom Criteria Model"
+    label: "Custom Criteria Make"
     type: string
     sql: SPLIT_PART(${dimension_custom_criteria2}, '_', 1) ;;
   }
 
   dimension: dimension_custom_criteria4 {
-    label: "Custom Criteria Make"
+    label: "Custom Criteria Model"
     type: string
     sql: SPLIT_PART(${dimension_custom_criteria2}, '_', 2) ;;
   }

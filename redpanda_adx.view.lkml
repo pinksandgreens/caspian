@@ -350,20 +350,29 @@ view: adx {
          ;;
   }
 
-  dimension: Brand_Platform {
-    hidden: no
-    label: "Radioplayer/Website"
-    type: string
-    sql: CASE
-          WHEN ${TABLE}.url_channel_name LIKE '%kisstory.kissfmuk%' THEN 'Radioplayer'
-          WHEN ${TABLE}.url_channel_name LIKE '%kissfresh.kissfmuk%' THEN 'Radioplayer'
-          WHEN ${TABLE}.url_channel_name LIKE '%radioplayer%' THEN 'Radioplayer'
-          WHEN ${TABLE}.url_channel_name LIKE '%/player/' THEN 'Radioplayer'
-          ELSE 'Website'
-        END
-         ;;
-  }
+    dimension: Brand_Platform {
+      hidden: no
+      label: "Radioplayer/Website"
+      type: string
+      sql: CASE
+            WHEN ${TABLE}.url_channel_name LIKE '%kisstory.kissfmuk%' THEN 'Radioplayer'
+            WHEN ${TABLE}.url_channel_name LIKE '%kissfresh.kissfmuk%' THEN 'Radioplayer'
+            WHEN ${TABLE}.url_channel_name LIKE '%radioplayer%' THEN 'Radioplayer'
+            WHEN ${TABLE}.url_channel_name LIKE '%player%' THEN 'Radioplayer'
+            ELSE 'Website'
+          END
+           ;;
+    }
 
+
+    dimension: marketplace {
+      type: string
+      sql: CASE
+          WHEN ${TABLE}.transaction_type_name = 'Open auction' THEN 'OMP'
+          WHEN ${TABLE}.transaction_type_name = 'Private auction' THEN 'PMP'
+          ELSE 'Other'
+          END;;
+    }
 
   measure: count {
     hidden: yes

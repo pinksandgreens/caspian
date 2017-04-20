@@ -1802,7 +1802,7 @@ view: ga_sessions_planetradio {
           WHEN ${TABLE}.hits.page.pagePath LIKE '%kisstory.kissfmuk%' THEN 'Radioplayer'
           WHEN ${TABLE}.hits.page.pagePath LIKE '%kissfresh.kissfmuk%' THEN 'Radioplayer'
           WHEN ${TABLE}.hits.page.pagePath LIKE '%radioplayer%' THEN 'Radioplayer'
-          WHEN ${TABLE}.hits.page.pagePath LIKE '%/player/' THEN 'Radioplayer'
+          WHEN ${TABLE}.hits.page.pagePath LIKE '%player%' THEN 'Radioplayer'
           ELSE 'Website'
         END
          ;;

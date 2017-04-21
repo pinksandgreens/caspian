@@ -325,6 +325,14 @@ view: admarvel_site {
          ;;
   }
 
+  dimension: marketplace {
+    type: string
+    sql: CASE
+          WHEN ${TABLE}."site.name" LIKE 'There is no OMP/PMP classifier in Adsense' THEN NULL
+          ELSE 'OMP'
+          END;;
+  }
+
   dimension: device {
     type: string
     sql: SPLIT_PART(${TABLE}."site.name", '-', 3) ;;

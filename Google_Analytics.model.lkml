@@ -255,7 +255,7 @@ explore: google_analytics_trafficreport {
 
 
 explore: google_analytics_marconi {
-  hidden: yes
+  hidden: no
   label: "Google Analytics - Marconi Tracker"
   sql_table_name: publications.google_analytics_marconi ;;
   persist_for: "20 hour"

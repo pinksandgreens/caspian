@@ -63,4 +63,11 @@ explore: ga_sessions_radio {
       value: "30 days"
     }
   }
+
+  join: ga_sessions_radiosearch {
+    type: inner
+    relationship: one_to_many
+    sql_on: ${ga_sessions_radiosearch.full_Visitor_Id} = ${ga_sessions_radio.full_visitor_id} ;;
+  }
+
 }

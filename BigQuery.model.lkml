@@ -398,6 +398,18 @@ explore: ga_sessions_car {
 }
 
 
+explore: ga_sessions_ccfs {
+  label: "BigQuery - CCFS"
+
+  always_filter: {
+    filters: {
+      field: date_filter
+      value: "30 days"
+    }
+  }
+}
+
+
 explore: jr_mcn_tx_source_attribution {
   label: "BigQuery - MCN - Tx Source Analysis"
   hidden: yes

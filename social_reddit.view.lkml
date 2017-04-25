@@ -11,7 +11,7 @@ view: social_reddit {
     hidden: no
     type: string
     sql: ${TABLE}.reddit_url ;;
-    html: <a href="{{ value }}" target="_new"><img src="http://i.imgur.com/aJnF2oW.jpg" height=10 width=10></a>;;
+    html: <a href="https://{{ value }}" target="_new"><img src="http://i.imgur.com/aJnF2oW.jpg" height=10 width=10></a>;;
   }
 
   dimension: thread {

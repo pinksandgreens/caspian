@@ -46,7 +46,7 @@ view: ga_sessions_radiosearch {
     sql: CASE
           WHEN (REGEXP_MATCH(${TABLE}.hits__page__page_path_level1,r'^.*\/(player)\/.+?\/.*')) THEN 'Listener'
           WHEN (REGEXP_MATCH(${TABLE}.hits__page__page_path_level1,r'^.*\/(entertainment|local|lifestyle|charity|sport|world|uk|public|news|weather)\/.+?\/.*')) THEN 'Listener'
-          WHEN (REGEXP_MATCH(${TABLE}.hits__page__page_path_level1,r'^.*\/(player)\/.+?\/.*')) AND (REGEXP_MATCH(${TABLE}.hits__page__page_path_level1,r'^.*\/(entertainment|local|lifestyle|charity|sport|world|uk|public|news|weather)\/.+?\/.*')) THEN 'Listener/Content'
+          WHEN ((${TABLE}.hits__page__page_path_level1 LIKE '%player%') AND (${TABLE}.hits__page__page_path_level1 LIKE '%entertainment%|%local%|lifestyle%|%charity%|%sport%|%world%|%uk%|%public%|%news%|%weather%')) THEN 'Listener/Content'
           ELSE 'Content'
          END
 

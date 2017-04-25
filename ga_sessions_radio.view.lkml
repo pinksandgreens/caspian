@@ -709,6 +709,14 @@ view: ga_sessions_radio {
 
     }
 
+
+  dimension: author {
+    type: string
+    sql: CASE
+          WHEN  ${TABLE}.hits.customDimensions.index = 1 THEN  ${TABLE}.hits.customDimensions.value
+         END;;
+  }
+
 #   dimension: link {
 #     label: "Link"
 #     hidden: no

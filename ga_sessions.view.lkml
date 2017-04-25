@@ -792,6 +792,17 @@ view: ga_sessions {
     }
 
 
+  dimension: UK_RoW {
+    label: "UK/RoW"
+    type: string
+    sql: CASE
+            WHEN ${TABLE}.geoNetwork.country = 'United Kingdom' THEN 'United Kingdom'
+            WHEN ${TABLE}.geoNetwork.country = '(not set)' THEN 'Unknown'
+            ELSE 'RoW'
+          END
+           ;;
+  }
+
 
     ########################### AD THINGS ###############################
 

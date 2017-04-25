@@ -9,9 +9,7 @@ view: ga_sessions_tentacle {
                   {% table_date_range date_filter 8896222.ga_sessions_ %},
                   {% table_date_range date_filter 8896222.ga_sessions_intraday_ %},
                   {% table_date_range date_filter 46993019.ga_sessions_ %},
-                  {% table_date_range date_filter 46993019.ga_sessions_intraday_ %},
-                  {% table_date_range date_filter 127467161.ga_sessions_ %},
-                  {% table_date_range date_filter 127467161.ga_sessions_intraday_ %});;
+                  {% table_date_range date_filter 46993019.ga_sessions_intraday_ %});;
 
 
 

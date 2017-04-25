@@ -36,12 +36,14 @@ view: teads {
   }
 
   measure: income_converted_gbp {
+    label: "Income (USB)"
     type: sum
     value_format: "\£0.0000"
     sql: ${TABLE}.income_converted_gbp::float ;;
   }
 
   measure: income_value {
+    hidden: yes
     type: sum
     value_format: "0.0000"
     sql: ${TABLE}.income_value::float  ;;
@@ -58,8 +60,9 @@ view: teads {
   }
 
   measure: revenue {
+    label: "Revenue GBP"
     type: sum
-    value_format: "0.0000"
+    value_format: "\£0.0000"
     sql: ${TABLE}.revenue::float ;;
   }
 

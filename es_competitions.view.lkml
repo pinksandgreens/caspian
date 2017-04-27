@@ -50,7 +50,7 @@ view: es_competitions {
   }
 
   dimension: ref_brand {
-    hidden: yes
+    hidden: no
     type: string
     sql: ${TABLE}.ref_brand ;;
   }

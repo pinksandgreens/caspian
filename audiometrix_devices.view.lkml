@@ -16,9 +16,9 @@ view: audiometrix_devices {
     sql: ${TABLE}.avg_active_sessions ;;
   }
 
-  dimension: avg_time_spent_listening {
-    type: string
-    sql: ${TABLE}.avg_time_spent_listening ;;
+  measure: hours_spent_listening_per_session {
+    type: number
+    sql: ${total_listening_hours}/${active_sessions};;
   }
 
   measure: bounce_rate {
@@ -43,6 +43,8 @@ view: audiometrix_devices {
     type: sum
     sql: ${TABLE}.session_requests ;;
   }
+
+
 
   measure: total_listening_hours {
     type: sum

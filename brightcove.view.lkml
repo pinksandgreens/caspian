@@ -31,6 +31,12 @@ view: brightcove {
         ;;
   }
 
+  dimension: hostname_unCASED {
+    type: string
+    label: "Domain where Video View Occured"
+    sql: ${destination_domain} ;;
+  }
+
   dimension: hostname {
     type: string
     label: "Bauer Domain"

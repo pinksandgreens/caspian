@@ -154,6 +154,12 @@ view: jr_test_youtube_vid_view_brand {
     value_format_name: percent_2
   }
 
+  measure: eCPM {
+    type: number
+    label: "9.4. eCPM"
+    sql: (${total_rev_v2}/NULLIF((${total_views_v2}/1000),0)) ;;
+    value_format_name: gbp
+  }
 
 ##################################################
 

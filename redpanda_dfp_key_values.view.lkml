@@ -92,6 +92,33 @@ view: dfp_key_values {
     sql: ${TABLE}."dimension.custom_criteria" ;;
   }
 
+  dimension: dimension_custom_criteria1 {
+    label: "Custom Criteria Title"
+    type: string
+   sql: SPLIT_PART(${TABLE}."dimension.custom_criteria", '=', 1) ;;
+  }
+
+# ADDED FOR REPORTING BY ALEX
+  dimension: dimension_custom_criteria2 {
+    label: "Custom Criteria Value"
+    type: string
+    sql: SPLIT_PART(${TABLE}."dimension.custom_criteria", '=', 2) ;;
+  }
+
+  dimension: dimension_custom_criteria3 {
+    label: "Custom Criteria Make"
+    type: string
+    sql: SPLIT_PART(${dimension_custom_criteria2}, '_', 1) ;;
+  }
+
+  dimension: dimension_custom_criteria4 {
+    label: "Custom Criteria Model"
+    type: string
+    sql: SPLIT_PART(${dimension_custom_criteria2}, '_', 2) ;;
+  }
+# ALEX END
+
+
   dimension: dimension_custom_targeting_value_id {
     label: "Custom Targetting Value ID"
     type: string

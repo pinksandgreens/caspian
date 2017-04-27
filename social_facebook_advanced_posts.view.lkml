@@ -54,14 +54,14 @@ view: social_facebook_advanced_posts {
           WHEN 'Metro Radio' THEN 'Metro'
           WHEN 'MFR' THEN 'MFR'
           WHEN 'Mother&Baby' THEN 'Mother & Baby'
-          WHEN 'Motorcycle News' THEN 'Motorcyclenews'
+          WHEN 'Motorcycle News' THEN 'MCN'
           WHEN 'Northsound 1' THEN 'Northsound'
           WHEN 'Planet Rock' THEN 'Planet Rock'
           WHEN '96.3 Radio Aire' THEN 'Aire'
-          WHEN 'Radio Borders' THEN 'Radio Borders'
+          WHEN 'Radio Borders' THEN 'Borders'
           WHEN 'Radio City 96.7' THEN 'City'
           WHEN '97.4 Rock FM' THEN 'Rock FM'
-          WHEN 'Tay FM' THEN 'Tay FM'
+          WHEN 'Tay FM' THEN 'Tay'
           WHEN 'TFM' THEN 'TFM'
           WHEN 'The Debrief' THEN 'The Debrief'
           WHEN '96.9 Viking FM' THEN 'Viking'
@@ -70,6 +70,51 @@ view: social_facebook_advanced_posts {
       END
        ;;
   }
+
+
+
+  # dimension: from_name {
+  #   label: "Brand Name"
+  #   type: string
+  #   sql: CASE ${TABLE}.from_name
+  #         WHEN 'Absolute Radio' THEN 'Absolute Radio'
+  #         WHEN 'CAR Magazine' THEN 'Car Magazine'
+  #         WHEN 'CFM Radio' THEN 'CFM'
+  #         WHEN 'Closer Magazine' THEN 'Closer'
+  #         WHEN 'Clyde 1' THEN 'Clyde'
+  #         WHEN 'Cool FM' THEN 'Cool FM'
+  #         WHEN 'Empire Magazine' THEN 'Empire'
+  #         WHEN 'Forth 1' THEN 'Forth'
+  #         WHEN 'Free Radio' THEN 'Free'
+  #         WHEN 'Gem 106' THEN 'Gem'
+  #         WHEN 'Grazia UK' THEN 'Grazia'
+  #         WHEN 'Hallam FM' THEN 'Hallam'
+  #         WHEN 'heat' THEN 'Heat'
+  #         WHEN 'Kerrang!' THEN 'Kerrang Magazine'
+  #         WHEN 'Kerrang! Radio' THEN 'Kerrang'
+  #         WHEN 'Key103' THEN 'Key'
+  #         WHEN 'Kiss FM (UK)' THEN 'Kiss'
+  #         WHEN 'KISS FM (UK)' THEN 'Kiss'
+  #         WHEN 'Magic Radio' THEN 'Magic'
+  #         WHEN 'Metro Radio' THEN 'Metro'
+  #         WHEN 'MFR' THEN 'MFR'
+  #         WHEN 'Mother&Baby' THEN 'Mother & Baby'
+  #         WHEN 'Motorcycle News' THEN 'MCN'
+  #         WHEN 'Northsound 1' THEN 'Northsound'
+  #         WHEN 'Planet Rock' THEN 'Planet Rock'
+  #         WHEN '96.3 Radio Aire' THEN 'Aire'
+  #         WHEN 'Radio Borders' THEN 'Borders'
+  #         WHEN 'Radio City 96.7' THEN 'City'
+  #         WHEN '97.4 Rock FM' THEN 'Rock FM'
+  #         WHEN 'Tay FM' THEN 'Tay'
+  #         WHEN 'TFM' THEN 'TFM'
+  #         WHEN 'The Debrief' THEN 'The Debrief'
+  #         WHEN '96.9 Viking FM' THEN 'Viking'
+  #         WHEN 'Today''s Golfer' THEN 'Todays Golfer'
+  #         ELSE ${TABLE}.from_name
+  #     END
+  #     ;;
+  # }
 
   # - measure: haha_count
   #   type: sum

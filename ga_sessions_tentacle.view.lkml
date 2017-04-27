@@ -2,22 +2,14 @@
 view: ga_sessions_tentacle {
   sql_table_name: ( SELECT * FROM {% table_date_range date_filter 114668488.ga_sessions_ %},
                   {% table_date_range date_filter 114668488.ga_sessions_intraday_ %},
-                  {% table_date_range date_filter 127467161.ga_sessions_ %},
-                  {% table_date_range date_filter 127467161.ga_sessions_intraday_ %},
                   {% table_date_range date_filter 21699534.ga_sessions_ %},
                   {% table_date_range date_filter 21699534.ga_sessions_intraday_ %},
-                  {% table_date_range date_filter 22661559.ga_sessions_ %},
-                  {% table_date_range date_filter 22661559.ga_sessions_intraday_ %},
                   {% table_date_range date_filter 82149182.ga_sessions_ %},
                   {% table_date_range date_filter 82149182.ga_sessions_intraday_ %},
                   {% table_date_range date_filter 8896222.ga_sessions_ %},
                   {% table_date_range date_filter 8896222.ga_sessions_intraday_ %},
-                  {% table_date_range date_filter 24931796.ga_sessions_ %},
-                  {% table_date_range date_filter 24931796.ga_sessions_intraday_ %},
                   {% table_date_range date_filter 46993019.ga_sessions_ %},
-                  {% table_date_range date_filter 46993019.ga_sessions_intraday_ %},
-                  {% table_date_range date_filter 53155378.ga_sessions_ %},
-                  {% table_date_range date_filter 53155378.ga_sessions_intraday_ %});;
+                  {% table_date_range date_filter 46993019.ga_sessions_intraday_ %});;
 
 
 
@@ -31,13 +23,13 @@ view: ga_sessions_tentacle {
 # Lifestyle.one 114668488
 # Planet Radio  127467161
 # Empire  21699534
-# MCN 22661559
-# Parkers 24089672
+# MCN 22661559 - REMOVED
+# Parkers 24089672 - REMOVED
 # The Debrief 82149182
 # Mother & Baby 8896222
-# CAR 24931796
+# CAR 24931796 - REMOVED
 # Today's Golfer  46993019
-# Classic Cars for Sale 53155378
+# Classic Cars for Sale 53155378 - REMOVED
 
                   # {% table_date_range date_filter 24089672.ga_sessions_ %},
                   # {% table_date_range date_filter 24089672.ga_sessions_intraday_ %},
@@ -1648,7 +1640,7 @@ view: ga_sessions_tentacle {
     hidden: no
     label: "Brand Name"
     type: string
-    suggestions: ["Absolute Radio","Aire","Borders","Car Magazine","CFM","City","Classic Cars for Sale","Closer","Clyde","Cool FM","Downtown","Empire","Forth","Free","Gem","Grazia","Hallam","Heat","Heat Radio","Kerrang","Key","Kiss","Magic","Metro","MFR","Mother & Baby","Motorcyclenews","Northsound","Parkers","Planet Radio","Planet Rock","Rock FM","Tay FM","TFM","The Debrief","The Hits","Todays Golfer","Unknown","Viking","Wave","West FM","Westsound"]
+    suggestions: ["Closer","Empire","Grazia","Heat","Mother & Baby","The Debrief","Todays Golfer"]
     sql: CASE
           WHEN ${TABLE}.hits.page.pagePath LIKE '%/kiss/%' THEN 'Kiss'
           WHEN ${TABLE}.hits.page.pagePath LIKE '%/hits/%' THEN 'The Hits'

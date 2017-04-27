@@ -16,9 +16,9 @@ view: audiometrix_devices {
     sql: ${TABLE}.avg_active_sessions ;;
   }
 
-  dimension: avg_time_spent_listening {
-    type: string
-    sql: ${TABLE}.avg_time_spent_listening ;;
+  measure: hours_spent_listening_per_session {
+    type: number
+    sql: ${total_listening_hours}/${active_sessions};;
   }
 
   measure: bounce_rate {
@@ -43,6 +43,8 @@ view: audiometrix_devices {
     type: sum
     sql: ${TABLE}.session_requests ;;
   }
+
+
 
   measure: total_listening_hours {
     type: sum
@@ -119,6 +121,17 @@ view: audiometrix_devices {
         WHEN ${TABLE}.brand = 'Westsound FM' THEN 'WSF'
         WHEN ${TABLE}.brand = 'Heat Radio' THEN 'HEA'
         ELSE ${TABLE}.brand
+      END
+       ;;
+  }
+
+
+  dimension: brand_country {
+    type: string
+    sql: CASE
+        WHEN ${TABLE}.brand LIKE '%(NO)%' THEN 'Norway'
+        WHEN ${TABLE}.brand LIKE '%(DK)%' THEN 'Denmark'
+        ELSE 'United Kingdom'
       END
        ;;
   }

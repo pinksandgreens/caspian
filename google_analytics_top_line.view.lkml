@@ -134,12 +134,19 @@ view: google_analytics_top_line {
     sql: ${TABLE}.platform = 'Web' ;;
   }
 
+  dimension: date_str {
+    label: "Recorded"
+    hidden: yes
+    type: string
+    sql: SPLIT_PART(${TABLE}.date,' ',1) ;;
+  }
+
   dimension_group: date {
     label: "Recorded"
     type: time
-    timeframes: [date, week, month, month_num]
+    timeframes: [date, week, month, month_num, year]
     convert_tz: no
-    sql: TO_DATE(${TABLE}.date,'YYYY-MM-DD') ;;
+    sql: TO_DATE(SPLIT_PART(${TABLE}.date,' ',1),'YYYY-MM-DD') ;;
   }
 
   measure: page_views {

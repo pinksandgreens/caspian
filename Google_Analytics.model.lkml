@@ -48,11 +48,11 @@ explore: audiometrix_countries {
   sql_table_name: publications.audiometrix_countries ;;
   persist_for: "20 hour"
 
-  join: brand_lookup {
-    type: inner
-    relationship: one_to_one
-    sql_on: ${audiometrix_countries.brand_code}=${brand_lookup.bra_code} ;;
-  }
+  # join: brand_lookup {
+  #   type: full_outer
+  #   relationship: many_to_one
+  #   sql_on: ${audiometrix_countries.brand_code}=${brand_lookup.bra_code} ;;
+  # }
 }
 
 explore: audiometrix_devices {
@@ -60,11 +60,11 @@ explore: audiometrix_devices {
   sql_table_name: publications.audiometrix_devices ;;
   persist_for: "20 hour"
 
-  join: brand_lookup {
-    type: inner
-    relationship: one_to_one
-    sql_on: ${audiometrix_devices.brand_code}=${brand_lookup.bra_code} ;;
-  }
+  # join: brand_lookup {
+  #   type: full_outer
+  #   relationship: many_to_one
+  #   sql_on: ${audiometrix_devices.brand_code}=${brand_lookup.bra_code} ;;
+  # }
 }
 
 explore: audiometrix_realtime {

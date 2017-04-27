@@ -125,6 +125,17 @@ view: audiometrix_devices {
        ;;
   }
 
+
+  dimension: brand_country {
+    type: string
+    sql: CASE
+        WHEN ${TABLE}.brand LIKE '%(NO)%' THEN 'Norway'
+        WHEN ${TABLE}.brand LIKE '%(DK)%' THEN 'Denmark'
+        ELSE 'United Kingdom'
+      END
+       ;;
+  }
+
   dimension: brand_network {
     type: string
     sql: CASE

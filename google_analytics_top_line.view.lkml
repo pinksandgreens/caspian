@@ -146,7 +146,7 @@ view: google_analytics_top_line {
     type: time
     timeframes: [date, week, month, month_num, year]
     convert_tz: no
-    sql: TO_DATE(SPLIT_PART(${TABLE}.date,' ',1),'YYYY-MM-DD') ;;
+    sql: TO_DATE(${TABLE}.date,'YYYY-MM-DD') ;;
   }
 
   measure: page_views {

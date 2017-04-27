@@ -69,44 +69,44 @@ view: jr_test_youtube_vid_view_brand {
 
 
   measure: test_views_V2 {
-    type: number
+    type: sum
     label: "1. Views: Last 30 Days"
-    sql: LISTAGG(${TABLE}.V2_views) ;;
+    sql: ${TABLE}.V2_views ;;
   }
 
   measure: test_views_V1 {
-    type: number
+    type: sum
     label: "3. Views: Between 30 to 60 Days"
-    sql: LISTAGG(${TABLE}.V1_views) ;;
+    sql: ${TABLE}.V1_views ;;
   }
 
   measure: test_estrevenue_V2 {
-    type: number
+    type: sum
     label: "2. Est. Rev: Last 30 Days"
-    sql: LISTAGG(${TABLE}.V2_revenue) ;;
+    sql: ${TABLE}.V2_revenue ;;
     value_format_name: gbp
   }
 
   measure: test_estrevenue_V1 {
-    type: number
+    type: sum
     label: "4. Est. Rev: Between last 30 to 60 Days"
-    sql: LISTAGG(${TABLE}.V1_revenue) ;;
+    sql: ${TABLE}.V1_revenue ;;
     value_format_name: gbp
 
   }
 
   measure: percentage_growth_views {
-    type: number
+    type: sum
     label: "5. Views: 30 Day Change"
-    sql: LISTAGG(${TABLE}.percentage_growth_views) ;;
+    sql: ${TABLE}.percentage_growth_views ;;
     value_format_name: percent_2
 
   }
 
   measure: percentage_growth_estrevenue {
-    type: number
+    type: sum
     label: "6. Rev: 30 Day Change"
-    sql: LISTAGG(${TABLE}.percentage_growth_estrevenue) ;;
+    sql: ${TABLE}.percentage_growth_estrevenue ;;
     value_format_name: percent_2
   }
 
@@ -157,6 +157,8 @@ view: jr_test_youtube_vid_view_brand {
 
 ##################################################
 
+
+  ###THIS IS FOR REFERENCE ONLY###
   dimension: brand_code {
     type: string
     sql: CASE

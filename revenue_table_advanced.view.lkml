@@ -27,6 +27,13 @@ view: revenue_table_advanced {
       END;;
   }
 
+  measure: eCPM {
+    label: "eCPM"
+    type: number
+    value_format: "\£0.0000"
+    sql: (${revenue}/${impressions})*1000 ;;
+  }
+
   dimension: platform {
     type: string
     sql: ${TABLE}.platform;;

@@ -152,13 +152,3 @@ explore:brightcove {
 #       type: inner
 #       relationship: many_to_many
 #       sql_on: ${ga_radio_users_data.brand} = ${ga_radio_twitter_data.brand}
-
-explore: jr_test_youtube_vid_view_brand {
-  hidden: no
-  label: "JR YouTube Test - by Brand"
-}
-
-explore: jr_test_youtube_vid_view_by_videos {
-  hidden: no
-  label: "JR YouTube Test - by Videos"
-}

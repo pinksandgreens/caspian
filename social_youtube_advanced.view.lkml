@@ -114,7 +114,7 @@ view: social_youtube_advanced {
 
   measure: cpm {
     type: average
-    value_format: "\£0.0000"
+    value_format_name: gbp
     sql: ${TABLE}.cpm::float ;;
   }
 
@@ -151,7 +151,7 @@ view: social_youtube_advanced {
 
   measure: estimated_adrevenue {
     type: sum
-    value_format: "\£0.0000"
+    value_format_name: gbp
     sql: ${TABLE}.estimatedadrevenue::float ;;
   }
 
@@ -163,20 +163,20 @@ view: social_youtube_advanced {
 
   measure: estimated_red_partner_revenue {
     type: sum
-    value_format: "\£0.0000"
+    value_format_name: gbp
     sql: ${TABLE}.estimatedredpartnerrevenue::float ;;
   }
 
   measure: estimated_revenue {
     type: sum
-    value_format: "\£0.0000"
+    value_format_name: gbp
     sql: ${TABLE}.estimatedrevenue::float ;;
     drill_fields: [post_details*]
   }
 
   measure: gross_revenue {
     type: sum
-    value_format: "\£0.0000"
+    value_format_name: gbp
     sql: ${TABLE}.grossrevenue::float ;;
     drill_fields: [post_details*]
   }
@@ -204,7 +204,7 @@ view: social_youtube_advanced {
 
   measure: playback_based_cpm {
     type: average
-    value_format: "\£0.0000"
+    value_format_name: gbp
     sql: ${TABLE}.playbackbasedcpm::float ;;
   }
 
@@ -289,6 +289,17 @@ view: social_youtube_advanced {
       ad_impressions,
       gross_revenue
       ]
+    }
+
+    dimension: 30_day_buckets  {
+      type: number
+      label: "30 day YT Buckets"
+      description: "1 = Past 30 Days, 2 = Past 31 - 60 Days, 0 = Everything Else"
+      sql:  CASE
+                WHEN datediff(day, cast(${TABLE}.day as DATE), (current_date - 3)) BETWEEN 0 AND 29 THEN 1
+                WHEN datediff(day, cast(${TABLE}.day as DATE), (current_date - 3)) BETWEEN 30 AND 59 THEN 2
+              ELSE 0
+            END ;;
     }
 
   }

@@ -18,7 +18,7 @@ view: jr_test_youtube_vid_view_brand {
           FROM
             (SELECT
               CASE
-              WHEN datediff(day, cast(day as DATE), (current_date - 2)) BETWEEN 0 AND 29 THEN 0
+              WHEN datediff(day, cast(day as DATE), (current_date - 3)) BETWEEN 0 AND 29 THEN 0
               ELSE 1
               END AS bucket,
               brand,
@@ -26,7 +26,7 @@ view: jr_test_youtube_vid_view_brand {
               CAST(estimatedadrevenue AS REAL) as estimatedadrevenue
             FROM
               publications.social_youtube_advanced
-            WHERE cast(day AS DATE) BETWEEN (CURRENT_DATE - 61) AND (CURRENT_DATE-2)
+            WHERE cast(day AS DATE) BETWEEN (CURRENT_DATE - 62) AND (CURRENT_DATE-3)
             )
           WHERE bucket = 0
           GROUP BY brand
@@ -39,7 +39,7 @@ view: jr_test_youtube_vid_view_brand {
             FROM
               (SELECT
                 CASE
-                  WHEN datediff(day, cast(day as DATE), (current_date - 2)) BETWEEN 0 AND 29 THEN 0
+                  WHEN datediff(day, cast(day as DATE), (current_date - 3)) BETWEEN 0 AND 29 THEN 0
                 ELSE 1
                 END AS bucket,
                 brand,
@@ -47,7 +47,7 @@ view: jr_test_youtube_vid_view_brand {
                 CAST(estimatedadrevenue AS REAL) as estimatedadrevenue
               FROM
                 publications.social_youtube_advanced
-              WHERE cast(day AS DATE) BETWEEN (CURRENT_DATE - 61) AND (CURRENT_DATE-2)
+              WHERE cast(day AS DATE) BETWEEN (CURRENT_DATE - 62) AND (CURRENT_DATE-3)
               )
             WHERE bucket = 1
             GROUP BY brand

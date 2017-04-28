@@ -13,7 +13,7 @@ derived_table: {
           (SELECT
             title,
             SUM(views) AS views_V2,
-            SUM(estimatedadrevenue) AS estrevenue_V2
+            SUM(estimatedrevenue) AS estrevenue_V2
           FROM
             (SELECT
               CASE
@@ -22,7 +22,7 @@ derived_table: {
               END AS bucket,
               title,
               views,
-              CAST(estimatedadrevenue AS REAL) as estimatedadrevenue
+              CAST(estimatedrevenue AS REAL) as estimatedrevenue
             FROM
               publications.social_youtube_advanced
             WHERE cast(day AS DATE) BETWEEN (CURRENT_DATE - 62) AND (CURRENT_DATE-3)
@@ -34,7 +34,7 @@ derived_table: {
           (SELECT
               title,
               SUM(views) AS views_V1,
-              SUM(estimatedadrevenue) AS estrevenue_V1
+              SUM(estimatedrevenue) AS estrevenue_V1
             FROM
               (SELECT
                 CASE
@@ -43,7 +43,7 @@ derived_table: {
                 END AS bucket,
                 title,
                 views,
-                CAST(estimatedadrevenue AS REAL) as estimatedadrevenue
+                CAST(estimatedrevenue AS REAL) as estimatedrevenue
               FROM
                 publications.social_youtube_advanced
               WHERE cast(day AS DATE) BETWEEN (CURRENT_DATE - 62) AND (CURRENT_DATE-3)

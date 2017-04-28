@@ -14,7 +14,7 @@ view: jr_test_youtube_vid_view_brand {
           (SELECT
             brand,
             SUM(views) AS views_V2,
-            SUM(estimatedadrevenue) AS estrevenue_V2
+            SUM(estimatedrevenue) AS estrevenue_V2
           FROM
             (SELECT
               CASE
@@ -23,7 +23,7 @@ view: jr_test_youtube_vid_view_brand {
               END AS bucket,
               brand,
               views,
-              CAST(estimatedadrevenue AS REAL) as estimatedadrevenue
+              CAST(estimatedrevenue AS REAL) as estimatedrevenue
             FROM
               publications.social_youtube_advanced
             WHERE cast(day AS DATE) BETWEEN (CURRENT_DATE - 62) AND (CURRENT_DATE-3)
@@ -35,7 +35,7 @@ view: jr_test_youtube_vid_view_brand {
           (SELECT
               brand,
               SUM(views) AS views_V1,
-              SUM(estimatedadrevenue) AS estrevenue_V1
+              SUM(estimatedrevenue) AS estrevenue_V1
             FROM
               (SELECT
                 CASE
@@ -44,7 +44,7 @@ view: jr_test_youtube_vid_view_brand {
                 END AS bucket,
                 brand,
                 views,
-                CAST(estimatedadrevenue AS REAL) as estimatedadrevenue
+                CAST(estimatedrevenue AS REAL) as estimatedrevenue
               FROM
                 publications.social_youtube_advanced
               WHERE cast(day AS DATE) BETWEEN (CURRENT_DATE - 62) AND (CURRENT_DATE-3)

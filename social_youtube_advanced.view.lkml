@@ -197,6 +197,14 @@ view: social_youtube_advanced {
       ;;
   }
 
+  dimension: link_without_hyperlink {
+    label: "URL"
+    hidden: no
+    type: string
+    sql: ${TABLE}.link ;;
+
+  }
+
   measure: monetized_playbacks {
     type: sum
     sql: ${TABLE}.monetizedplaybacks ;;

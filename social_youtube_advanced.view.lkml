@@ -205,6 +205,30 @@ view: social_youtube_advanced {
 
   }
 
+  dimension: watch_url {
+    label: "Absolute Video URL"
+    hidden: no
+    type: yesno
+    description: "This means that the video was watched on YouTube from the video's specific page. It's the precise URL where you can watch the video on YouTube"
+    sql: ${TABLE}.link LIKE '%watch?%';;
+  }
+
+  dimension: external_url {
+    label: "External URL"
+    hidden: no
+    type: yesno
+    sql: ${TABLE}.link NOT LIKE '%youtube%';;
+  }
+
+  dimension: channel_url {
+    label: "Channel Page URL"
+    hidden: no
+    type: yesno
+    sql: ${TABLE}.link LIKE '%1025Clyde1%' OR ${TABLE}.link LIKE '%967WestFM%' OR ${TABLE}.link LIKE '%96radioaire%' OR ${TABLE}.link LIKE '%974coolfm%' OR ${TABLE}.link LIKE '%ABSOLUTERADIO%' OR ${TABLE}.link LIKE '%askamum%' OR ${TABLE}.link LIKE '%BIKEmagazineUK%' OR ${TABLE}.link LIKE '%CARmagazineTV%' OR ${TABLE}.link LIKE '%CFMRadio%' OR ${TABLE}.link LIKE '%CityTalk105%' OR ${TABLE}.link LIKE '%CloserOnline%' OR ${TABLE}.link LIKE '%Empiremagazine%' OR ${TABLE}.link LIKE '%fhmweb%' OR ${TABLE}.link LIKE '%fleetnews%' OR ${TABLE}.link LIKE '%ForthOne973%' OR ${TABLE}.link LIKE '%GaryParkerWave%' OR ${TABLE}.link LIKE '%gem106official%' OR ${TABLE}.link LIKE '%GoFishingOnline%' OR ${TABLE}.link LIKE '%gothinkbig%' OR ${TABLE}.link LIKE '%Grazia%' OR ${TABLE}.link LIKE '%hallamfmradio%' OR ${TABLE}.link LIKE '%heatworld%' OR ${TABLE}.link LIKE '%HighStreetHoney%' OR ${TABLE}.link LIKE '%KerrangPodcast%' OR ${TABLE}.link LIKE '%Kerrangradio%' OR ${TABLE}.link LIKE '%Key103%' OR ${TABLE}.link LIKE '%KissFMUK%' OR ${TABLE}.link LIKE '%LandRoverOwner%' OR ${TABLE}.link LIKE '%magicfm1054%' OR ${TABLE}.link LIKE '%matchymovie%' OR ${TABLE}.link LIKE '%metroradiouk%' OR ${TABLE}.link LIKE '%MorayFirthRadio%' OR ${TABLE}.link LIKE '%motorcyclenewsdotcom%' OR ${TABLE}.link LIKE '%Nsound1%' OR ${TABLE}.link LIKE '%ParkersTV%' OR ${TABLE}.link LIKE '%PlanetRockRadio%' OR ${TABLE}.link LIKE '%PracticalClassics%' OR ${TABLE}.link LIKE '%practicalfishkeeping%' OR ${TABLE}.link LIKE '%Q4music%' OR ${TABLE}.link LIKE '%radiocity967%' OR ${TABLE}.link LIKE '%RAILmagazineOnline%' OR ${TABLE}.link LIKE '%rockfm974%' OR ${TABLE}.link LIKE '%tfmradio%' OR ${TABLE}.link LIKE '%TheDebriefUK%' OR ${TABLE}.link LIKE '%thehitsradioonline%' OR ${TABLE}.link LIKE '%todaysgolfer%' OR ${TABLE}.link LIKE '%trailmagazine%' OR ${TABLE}.link LIKE '%vikingfmvideos%' OR ${TABLE}.link LIKE '%Wave105radio%' OR ${TABLE}.link LIKE '%YourHorseOnline%' OR ${TABLE}.link LIKE '%zootoday%';;
+  }
+
+
+
   measure: monetized_playbacks {
     type: sum
     sql: ${TABLE}.monetizedplaybacks ;;

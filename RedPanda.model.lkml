@@ -104,3 +104,10 @@ explore: revenue_table_advanced {
   sql_table_name: ad_platform.revenue_table_advanced ;;
   persist_for: "6 hour"
 }
+
+explore: integrated_ads {
+  label: "IAS: Integrated Ads"
+  hidden: no
+  sql_table_name: publications.integrated_ads ;;
+  persist_for: "6 hour"
+}

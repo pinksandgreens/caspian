@@ -8,6 +8,7 @@ view: integrated_ads {
 
   dimension: campaign_name {
     type: string
+    label: "Campaign Name"
     sql: ${TABLE}.campaign_name ;;
   }
 

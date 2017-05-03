@@ -4,6 +4,7 @@ view: ias {
   dimension: host1 {
     type: string
     label: "Brand Code"
+    view_label: "Data Fields"
     sql: CASE
    WHEN ${TABLE}.host LIKE '%http://absoluteradio.co.uk%' THEN 'ABR'
    WHEN ${TABLE}.host LIKE '%http://carmagazine.co.uk%' THEN 'CAR'
@@ -101,6 +102,7 @@ view: ias {
   dimension: host2 {
     type: string
     label: "Brand Description"
+    view_label: "Data Fields"
     sql: CASE
    WHEN ${TABLE}.host LIKE '%http://absoluteradio.co.uk%' THEN 'Absolute Radio'
    WHEN ${TABLE}.host LIKE '%http://carmagazine.co.uk%' THEN 'Car Magazine'
@@ -197,6 +199,7 @@ view: ias {
   dimension: iabcategories {
     type: string
     label: "IAB Categories"
+    view_label: "Data Fields"
     sql: ${TABLE}.iabcategories ;;
   }
 
@@ -407,6 +410,7 @@ view: ias {
   dimension: extplacementid {
     type: string
     label: "Placement ID"
+    view_label: "Data Fields"
     sql: ${TABLE}.extplacementid ;;
   }
 
@@ -588,67 +592,107 @@ view: ias {
 
   dimension: offensivelanguagesc {
     type: string
+    hidden: yes
     sql: ${TABLE}.offensivelanguagesc ;;
   }
 
   dimension: os {
     type: string
-    sql: ${TABLE}.os ;;
+    label: "Operating System"
+    view_label: "Data Fields"
+    sql: case
+    WHEN ${TABLE}.os = 'OTHER' THEN 'Other'
+    WHEN ${TABLE}.os = 'LINUX' THEN 'Linux'
+    WHEN ${TABLE}.os = 'WINDOWS' THEN 'Windows'
+    WHEN ${TABLE}.os = 'MAC_OS_X' THEN 'Mac OS X'
+    ELSE 'Uknown'
+    END;;
   }
 
   dimension: platform {
     type: string
-    sql: ${TABLE}.platform ;;
+    view_label: "Data Fields"
+    label: "Device Platform"
+    sql: case
+   WHEN ${TABLE}.platform = 'IPHONE' THEN 'iPhone'
+   WHEN ${TABLE}.platform = 'ANDROID_PHONE' THEN 'Android Phone'
+   WHEN ${TABLE}.platform = 'COMPUTER' THEN 'Computer'
+   WHEN ${TABLE}.platform = 'IPAD' THEN 'iPad'
+   WHEN ${TABLE}.platform = 'ANDROID_TABLET' THEN 'Android Tablet'
+   WHEN ${TABLE}.platform = 'MOBILE_OTHER' THEN 'Mobile Other'
+    END ;;
   }
 
   dimension: pubcreative {
     type: string
+    label: "Publisher Creative"
+    view_label: "Data Fields"
     sql: ${TABLE}.pubcreative ;;
   }
 
   dimension: puborder {
     type: string
+    label: "Publisher Order"
+    view_label: "Data Fields"
     sql: ${TABLE}.puborder ;;
   }
 
   dimension: sadscore {
     type: string
+    hidden: yes
     sql: ${TABLE}.sadscore ;;
   }
 
   dimension: state {
     type: string
+    hidden: yes
     sql: ${TABLE}.state ;;
   }
 
   dimension: timereceived {
     type: string
+    hidden: yes
     sql: ${TABLE}.timereceived ;;
   }
 
   dimension: traqbucket {
     type: string
+    hidden: yes
     sql: ${TABLE}.traqbucket ;;
   }
 
   dimension: useragentstr {
     type: string
+    hidden: yes
+#     can revisit but is grouped in OS and Platform
     sql: ${TABLE}.useragentstr ;;
   }
 
   dimension: violencesc {
     type: string
+    hidden: yes
     sql: ${TABLE}.violencesc ;;
   }
 
   dimension: inviewabilitysample {
     type: string
+    hidden: yes
     sql: ${TABLE}.inviewabilitysample ;;
   }
 
   dimension: inviewfield {
     type: string
-    sql: ${TABLE}.inviewfield ;;
+    label: "In View Field"
+    view_label: "Data Fields"
+    sql: case
+    WHEN ${TABLE}.inviewfield = 'outOfView' THEN 'Out of View'
+    WHEN ${TABLE}.inviewfield = 'inView' THEN 'In View'
+    WHEN ${TABLE}.inviewfield = 'N/A' THEN 'N/A'
+    END
+
+
+
+;;
   }
 
 

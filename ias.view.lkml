@@ -228,31 +228,31 @@ view: ias {
 
   dimension: fullyinview0s {
     type: string
-    view_label: "100% Viewability Metrics"
+    view_label: "Viewability Metrics 100%"
     sql: ${TABLE}.fullyinview0s ;;
   }
 
   dimension: fullyinview15s {
     type: string
-    view_label: "100% Viewability Metrics"
+    view_label: "Viewability Metrics 100%"
     sql: ${TABLE}.fullyinview15s ;;
   }
 
   dimension: fullyinview1s {
     type: string
-    view_label: "100% Viewability Metrics"
+    view_label: "Viewability Metrics 100%"
     sql: ${TABLE}.fullyinview1s ;;
   }
 
   dimension: fullyinview5s {
     type: string
-    view_label: "100% Viewability Metrics"
+    view_label: "Viewability Metrics 100%"
     sql: ${TABLE}.fullyinview5s ;;
   }
 
   dimension: fullyinviewtime {
     type: string
-    view_label: "100% Viewability Metrics"
+    view_label: "Viewability Metrics100%"
     sql: ${TABLE}.fullyinviewtime ;;
   }
 
@@ -536,22 +536,31 @@ view: ias {
   }
 
   dimension: inviewtime {
-    type: string
+    type: number
+    label: "In View Time"
+    view_label: "View Time"
+#     needs casing but majority of data is 0 or 1 then 5 so no point bothering with decimals...
     sql: ${TABLE}.inviewtime ;;
   }
 
   dimension: inview1s {
     type: string
+    label: "In View 1 Second"
+    view_label: "View Time"
     sql: ${TABLE}.inview1s ;;
   }
 
   dimension: inview5s {
     type: string
+    label: "In View 5 Seconds"
+    view_label: "View Time"
     sql: ${TABLE}.inview5s ;;
   }
 
   dimension: inview15s {
     type: string
+    label: "In View 15 Seconds"
+    view_label: "View Time"
     sql: ${TABLE}.inview15s ;;
   }
 
@@ -706,6 +715,8 @@ view: ias {
 
   measure: count {
     type: count
+    label: "Count"
+    view_label: "Measures"
     drill_fields: []
   }
 }

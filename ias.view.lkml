@@ -1,156 +1,6 @@
 view: ias {
   sql_table_name: ad_platform.ias ;;
 
-  dimension: adsize {
-    type: string
-    sql: ${TABLE}.adsize ;;
-  }
-
-  dimension: adultsc {
-    type: string
-    sql: ${TABLE}.adultsc ;;
-  }
-
-  dimension: alcoholsc {
-    type: string
-    sql: ${TABLE}.alcoholsc ;;
-  }
-
-  dimension: browser {
-    type: string
-    sql: ${TABLE}.browser ;;
-  }
-
-  dimension: bundleid {
-    type: string
-    sql: ${TABLE}.bundleid ;;
-  }
-
-  dimension: cluttersc {
-    type: string
-    sql: ${TABLE}.cluttersc ;;
-  }
-
-  dimension: country {
-    type: string
-    sql: ${TABLE}.country ;;
-  }
-
-  dimension: crossdomainflag {
-    type: string
-    sql: ${TABLE}.crossdomainflag ;;
-  }
-
-  dimension: custom {
-    type: string
-    sql: ${TABLE}.custom ;;
-  }
-
-  dimension: datereceived {
-    type: string
-    sql: ${TABLE}.datereceived ;;
-  }
-
-  dimension: dma {
-    type: string
-    sql: ${TABLE}.dma ;;
-  }
-
-  dimension: downloadsc {
-    type: string
-    sql: ${TABLE}.downloadsc ;;
-  }
-
-  dimension: drugsc {
-    type: string
-    sql: ${TABLE}.drugsc ;;
-  }
-
-  dimension: extadnetworkid {
-    type: string
-    sql: ${TABLE}.extadnetworkid ;;
-  }
-
-  dimension: extadvertiserid {
-    type: string
-    sql: ${TABLE}.extadvertiserid ;;
-  }
-
-  dimension: extcampaignid {
-    type: string
-    sql: ${TABLE}.extcampaignid ;;
-  }
-
-  dimension: extchannelid {
-    type: string
-    sql: ${TABLE}.extchannelid ;;
-  }
-
-  dimension: extplacementid {
-    type: string
-    sql: ${TABLE}.extplacementid ;;
-  }
-
-  dimension: extpublisherid {
-    type: string
-    sql: ${TABLE}.extpublisherid ;;
-  }
-
-  dimension: fraudcategory {
-    type: string
-    sql: ${TABLE}.fraudcategory ;;
-  }
-
-  dimension: fullurl {
-    type: string
-    sql: ${TABLE}.fullurl ;;
-  }
-
-  dimension: fullyinview0s {
-    type: string
-    sql: ${TABLE}.fullyinview0s ;;
-  }
-
-  dimension: fullyinview15s {
-    type: string
-    sql: ${TABLE}.fullyinview15s ;;
-  }
-
-  dimension: fullyinview1s {
-    type: string
-    sql: ${TABLE}.fullyinview1s ;;
-  }
-
-  dimension: fullyinview5s {
-    type: string
-    sql: ${TABLE}.fullyinview5s ;;
-  }
-
-  dimension: fullyinviewtime {
-    type: string
-    sql: ${TABLE}.fullyinviewtime ;;
-  }
-
-  dimension: gamblingscore {
-    type: string
-    sql: ${TABLE}.gamblingscore ;;
-  }
-
-  dimension: hatesc {
-    type: string
-    sql: ${TABLE}.hatesc ;;
-  }
-
-  dimension: hithour {
-    type: string
-    sql: ${TABLE}.hithour ;;
-  }
-
-  dimension: host {
-    type: string
-    sql: ${TABLE}.host ;;
-  }
-
   dimension: host1 {
     type: string
     label: "Brand Code"
@@ -346,22 +196,342 @@ view: ias {
 
   dimension: iabcategories {
     type: string
+    label: "IAB Categories"
     sql: ${TABLE}.iabcategories ;;
   }
 
   dimension: invalidtraffictype {
-    type: string
+    type:  number
+#     value_format_name: float
+    label: "Invalid Traffic Type"
     sql: ${TABLE}.invalidtraffictype ;;
   }
 
-  dimension: invideosample {
-    type: string
-    sql: ${TABLE}.invideosample ;;
+  dimension: invalidtraffictype_desc {
+    type:  string
+    label: "Invalid Traffic Type Description"
+    sql: case
+    WHEN ${TABLE}.invalidtraffictype LIKE '%0%' THEN 'Not Suspicious'
+    WHEN ${TABLE}.invalidtraffictype LIKE '%1%' THEN 'General Invalid Traffic'
+    WHEN ${TABLE}.invalidtraffictype LIKE '%2%' THEN 'Sophisticated invalid traffic'
+      END
+    ;;
   }
 
-  dimension: inview15s {
+#100% VIEWABILITY METRICS  ############################################
+
+
+  dimension: fullyinview0s {
     type: string
-    sql: ${TABLE}.inview15s ;;
+    view_label: "100% Viewability Metrics"
+    sql: ${TABLE}.fullyinview0s ;;
+  }
+
+  dimension: fullyinview15s {
+    type: string
+    view_label: "100% Viewability Metrics"
+    sql: ${TABLE}.fullyinview15s ;;
+  }
+
+  dimension: fullyinview1s {
+    type: string
+    view_label: "100% Viewability Metrics"
+    sql: ${TABLE}.fullyinview1s ;;
+  }
+
+  dimension: fullyinview5s {
+    type: string
+    view_label: "100% Viewability Metrics"
+    sql: ${TABLE}.fullyinview5s ;;
+  }
+
+  dimension: fullyinviewtime {
+    type: string
+    view_label: "100% Viewability Metrics"
+    sql: ${TABLE}.fullyinviewtime ;;
+  }
+
+
+#VIDEO ONLY FIELDS  ############################################
+
+  dimension: invideosample {
+    type:  string
+    label: "In Video Sample"
+    view_label: "Video Only Fields"
+    sql:CASE
+    WHEN ${TABLE}.invideosample = '1' THEN 'Impression was Measurable'
+    WHEN ${TABLE}.invideosample = '0' THEN 'Impression was not Measurable'
+    END;;
+  }
+
+  dimension: video1qcompleted {
+    type: string
+    view_label: "Video Only Fields"
+    sql: ${TABLE}.video1qcompleted ;;
+  }
+
+  dimension: video1qinview {
+    type: string
+    view_label: "Video Only Fields"
+    sql: ${TABLE}.video1qinview ;;
+  }
+
+  dimension: video2qcompleted {
+    type: string
+    view_label: "Video Only Fields"
+    sql: ${TABLE}.video2qcompleted ;;
+  }
+
+  dimension: video2qinview {
+    type: string
+    view_label: "Video Only Fields"
+    sql: ${TABLE}.video2qinview ;;
+  }
+
+  dimension: video3qcompleted {
+    type: string
+    view_label: "Video Only Fields"
+    sql: ${TABLE}.video3qcompleted ;;
+  }
+
+  dimension: video3qinview {
+    type: string
+    view_label: "Video Only Fields"
+    sql: ${TABLE}.video3qinview ;;
+  }
+
+  dimension: video4qcompleted {
+    type: string
+    view_label: "Video Only Fields"
+    sql: ${TABLE}.video4qcompleted ;;
+  }
+
+  dimension: video4qinview {
+    type: string
+    view_label: "Video Only Fields"
+    sql: ${TABLE}.video4qinview ;;
+  }
+
+  dimension: videoinview {
+    type: string
+    view_label: "Video Only Fields"
+    sql: ${TABLE}.videoinview ;;
+  }
+
+  dimension: videomuted {
+    type: string
+    view_label: "Video Only Fields"
+    sql: ${TABLE}.videomuted ;;
+  }
+
+  dimension: videoneverstarted {
+    type: string
+    view_label: "Video Only Fields"
+    sql: ${TABLE}.videoneverstarted ;;
+  }
+############################################
+
+# Log File Data Fields ############################################
+
+#   dimension: datereceived {
+#     type: date
+#     timeframes:[date,day_of_month,day_of_week,day_of_week_index,week,week_of_year,month,month_name,month_num,year]
+#     sql: ${TABLE}.datereceived ;;
+#   }
+
+  dimension_group: datereceived {
+    label: "Date Recieved"
+    view_label: "Data Fields"
+    type: time
+    timeframes: [time, date, week, month, month_num, month_name, week_of_year,day_of_week_index,hour_of_day,year]
+    convert_tz: no
+    sql: ${TABLE}.datereceived::timestamp ;;
+  }
+
+  dimension_group: hithour {
+    type: time
+    view_label: "Data Fields"
+    label: "Hit Hour"
+    timeframes: [time]
+    convert_tz: no
+    sql: ${TABLE}.hithour::timestamp ;;
+  }
+
+  dimension: ipaddress {
+    type: string
+    view_label: "Data Fields"
+    label: "IP Address"
+    sql: ${TABLE}.ipaddress ;;
+  }
+
+  dimension: downloadsc {
+    type: string
+    hidden: yes
+    sql: ${TABLE}.downloadsc ;;
+  }
+
+  dimension: drugsc {
+    type: string
+    hidden: yes
+    sql: ${TABLE}.drugsc ;;
+  }
+
+  dimension: extadnetworkid {
+    type: string
+    view_label: "Data Fields"
+    label: "Network ID"
+    sql: ${TABLE}.extadnetworkid ;;
+  }
+
+  dimension: extadvertiserid {
+    type: string
+    view_label: "Data Fields"
+    label: "Advertiser ID"
+    sql: ${TABLE}.extadvertiserid ;;
+  }
+
+  dimension: extcampaignid {
+    type: string
+    view_label: "Data Fields"
+    label: "Campaign ID"
+    sql: ${TABLE}.extcampaignid ;;
+  }
+
+  dimension: extchannelid {
+    type: string
+    view_label: "Data Fields"
+    label: " Channel ID"
+    sql: ${TABLE}.extchannelid ;;
+  }
+
+  dimension: extplacementid {
+    type: string
+    label: "Placement ID"
+    sql: ${TABLE}.extplacementid ;;
+  }
+
+  dimension: extpublisherid {
+    type: string
+    view_label: "Data Fields"
+    label: "Publisher ID"
+    sql: ${TABLE}.extpublisherid ;;
+  }
+
+  dimension: fraudcategory {
+    view_label: "Data Fields"
+    type: string
+    hidden: yes
+    sql: ${TABLE}.fraudcategory ;;
+  }
+
+  dimension: fullurl {
+    type: string
+    view_label: "Data Fields"
+    label: " Full URL of Pixel"
+    sql: ${TABLE}.fullurl ;;
+  }
+
+  dimension: dma {
+    type: string
+    hidden: yes
+    sql: ${TABLE}.dma ;;
+  }
+
+  dimension: host {
+    type: string
+    view_label: "Data Fields"
+    label: "Host"
+    sql: ${TABLE}.host ;;
+  }
+
+  dimension: adsize {
+    type: string
+    label: "Ad Size"
+    view_label: "Data Fields"
+    sql: ${TABLE}.adsize ;;
+  }
+
+  dimension: adultsc {
+    type: string
+    hidden: yes
+    sql: ${TABLE}.adultsc ;;
+  }
+
+  dimension: alcoholsc {
+    type: string
+    hidden: yes
+    sql: ${TABLE}.alcoholsc ;;
+  }
+
+  dimension: browser {
+    type: string
+    view_label: "Data Fields"
+    label: "Browser"
+    sql: ${TABLE}.browser ;;
+  }
+
+  dimension: bundleid {
+    type: string
+    hidden: yes
+    sql: ${TABLE}.bundleid ;;
+  }
+
+  dimension: cluttersc {
+    type: string
+    hidden: yes
+    sql: ${TABLE}.cluttersc ;;
+  }
+
+  dimension: country {
+    type: string
+    view_label: "Data Fields"
+    label: "Country Code"
+    sql:${TABLE}.country ;;
+  }
+
+  dimension: country1 {
+    type: string
+    view_label: "Data Fields"
+    label: "GB/Rest of World"
+    sql: case
+    WHEN ${TABLE}.country = 'GB' THEN 'Great Britain'
+    ELSE 'Rest of World'
+    END;;
+  }
+
+  dimension: crossdomainflag {
+    type: string
+    label: "Cross Domain Flag"
+    view_label: "Data Fields"
+    sql:case
+       WHEN ${TABLE}.crossdomainflag = '1' THEN 'Direct placement'
+       WHEN ${TABLE}.crossdomainflag = '2' THEN 'Friendly iframe'
+       WHEN ${TABLE}.crossdomainflag = '3' THEN 'Unfriendly iframe/cross-domain'
+       WHEN ${TABLE}.crossdomainflag = '4' THEN 'Unknown'
+    END;;
+  }
+
+  dimension: custom {
+    type: string
+    hidden: yes
+    sql: ${TABLE}.custom ;;
+  }
+
+  dimension: gamblingscore {
+    type: string
+    hidden: yes
+    sql: ${TABLE}.gamblingscore ;;
+  }
+
+  dimension: hatesc {
+    type: string
+    hidden: yes
+    sql: ${TABLE}.hatesc ;;
+  }
+
+  dimension: inviewtime {
+    type: string
+    sql: ${TABLE}.inviewtime ;;
   }
 
   dimension: inview1s {
@@ -374,44 +544,46 @@ view: ias {
     sql: ${TABLE}.inview5s ;;
   }
 
-  dimension: inviewabilitysample {
+  dimension: inview15s {
     type: string
-    sql: ${TABLE}.inviewabilitysample ;;
-  }
-
-  dimension: inviewfield {
-    type: string
-    sql: ${TABLE}.inviewfield ;;
-  }
-
-  dimension: inviewtime {
-    type: string
-    sql: ${TABLE}.inviewtime ;;
-  }
-
-  dimension: ipaddress {
-    type: string
-    sql: ${TABLE}.ipaddress ;;
+    sql: ${TABLE}.inview15s ;;
   }
 
   dimension: maxfractioninview {
     type: string
+    hidden: yes
     sql: ${TABLE}.maxfractioninview ;;
   }
 
   dimension: measurable {
     type: string
-    sql: ${TABLE}.measurable ;;
+    label: "Impression is Measurable"
+    view_label: "Data Fields"
+    sql: case
+     WHEN ${TABLE}.measurable = '0' THEN 'Not Measurable'
+     WHEN ${TABLE}.measurable = '1' THEN 'Measurable'
+      END ;;
   }
 
   dimension: mediatype {
     type: string
+    hidden: yes
+#     just has value of display
     sql: ${TABLE}.mediatype ;;
   }
 
   dimension: noviewabilityreason {
     type: string
-    sql: ${TABLE}.noviewabilityreason ;;
+    label: "No Viewability Reason"
+    view_label: "Data Fields"
+    sql: case
+  WHEN ${TABLE}.noviewabilityreason = 'null' THEN 'Null'
+  WHEN ${TABLE}.noviewabilityreason = 'No Javascript'THEN 'No Javascript'
+  WHEN ${TABLE}.noviewabilityreason = 'Broken Javascript' THEN 'Broken Javascript'
+  WHEN ${TABLE}.noviewabilityreason = 'Mobile' THEN 'Mobile'
+  WHEN ${TABLE}.noviewabilityreason = 'No Flash Load' THEN 'No Flash Load'
+  WHEN ${TABLE}.noviewabilityreason = 'Unknown' THEN 'Unknown'
+   END ;;
   }
 
   dimension: offensivelanguagesc {
@@ -464,65 +636,27 @@ view: ias {
     sql: ${TABLE}.useragentstr ;;
   }
 
-  dimension: video1qcompleted {
-    type: string
-    sql: ${TABLE}.video1qcompleted ;;
-  }
-
-  dimension: video1qinview {
-    type: string
-    sql: ${TABLE}.video1qinview ;;
-  }
-
-  dimension: video2qcompleted {
-    type: string
-    sql: ${TABLE}.video2qcompleted ;;
-  }
-
-  dimension: video2qinview {
-    type: string
-    sql: ${TABLE}.video2qinview ;;
-  }
-
-  dimension: video3qcompleted {
-    type: string
-    sql: ${TABLE}.video3qcompleted ;;
-  }
-
-  dimension: video3qinview {
-    type: string
-    sql: ${TABLE}.video3qinview ;;
-  }
-
-  dimension: video4qcompleted {
-    type: string
-    sql: ${TABLE}.video4qcompleted ;;
-  }
-
-  dimension: video4qinview {
-    type: string
-    sql: ${TABLE}.video4qinview ;;
-  }
-
-  dimension: videoinview {
-    type: string
-    sql: ${TABLE}.videoinview ;;
-  }
-
-  dimension: videomuted {
-    type: string
-    sql: ${TABLE}.videomuted ;;
-  }
-
-  dimension: videoneverstarted {
-    type: string
-    sql: ${TABLE}.videoneverstarted ;;
-  }
-
   dimension: violencesc {
     type: string
     sql: ${TABLE}.violencesc ;;
   }
+
+  dimension: inviewabilitysample {
+    type: string
+    sql: ${TABLE}.inviewabilitysample ;;
+  }
+
+  dimension: inviewfield {
+    type: string
+    sql: ${TABLE}.inviewfield ;;
+  }
+
+
+############################################
+
+
+# ALL THE MEASURES
+
 
   measure: count {
     type: count

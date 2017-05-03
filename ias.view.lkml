@@ -205,6 +205,7 @@ view: ias {
 
   dimension: invalidtraffictype {
     type:  number
+    hidden: yes
 #     value_format_name: float
     label: "Invalid Traffic Type"
     sql: ${TABLE}.invalidtraffictype ;;
@@ -213,6 +214,7 @@ view: ias {
   dimension: invalidtraffictype_desc {
     type:  string
     label: "Invalid Traffic Type Description"
+    view_label: "Data Fields"
     sql: case
     WHEN ${TABLE}.invalidtraffictype LIKE '%0%' THEN 'Not Suspicious'
     WHEN ${TABLE}.invalidtraffictype LIKE '%1%' THEN 'General Invalid Traffic'

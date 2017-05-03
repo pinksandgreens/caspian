@@ -252,7 +252,7 @@ view: ias {
 
   dimension: fullyinviewtime {
     type: string
-    view_label: "Viewability Metrics100%"
+    view_label: "Viewability Metrics 100%"
     sql: ${TABLE}.fullyinviewtime ;;
   }
 

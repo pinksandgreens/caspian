@@ -111,3 +111,10 @@ explore: ias {
   sql_table_name: ad_platform.ias ;;
   persist_for: "6 hour"
 }
+
+explore: dfp_revenue {
+  label: "Dfp Revenue"
+  hidden: no
+  sql_table_name: ad_platform.dfp_revenue ;;
+  persist_for: "6 hour"
+}

@@ -1433,6 +1433,19 @@ view: ga_sessions {
       sql: ${TABLE}.trafficSource.campaign ;;
     }
 
+   dimension: email_type {
+    type: string
+    sql: CASE
+        WHEN ${TABLE}.trafficSource.campaign LIKE '%-E-B-%' THEN 'Newsletter'
+        WHEN ${TABLE}.trafficSource.campaign LIKE '%-E-M-%' THEN 'Marketing'
+        WHEN ${TABLE}.trafficSource.campaign LIKE '%-E-C-%' THEN 'Commercial'
+        WHEN ${TABLE}.trafficSource.campaign LIKE '%-e-b-%' THEN 'Newsletter'
+        WHEN ${TABLE}.trafficSource.campaign LIKE '%-e-m-%' THEN 'Marketing'
+        WHEN ${TABLE}.trafficSource.campaign LIKE '%-e-c-%' THEN 'Commercial'
+      END
+       ;;
+  }
+
     dimension: traffic_source__campaign_code {
       type: string
       sql: ${TABLE}.trafficSource.campaignCode ;;

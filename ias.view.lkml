@@ -199,9 +199,39 @@ view: ias {
   dimension: iabcategories {
     type: string
     label: "IAB Categories"
+    group_label: "IAB"
     view_label: "Data Fields"
     sql: ${TABLE}.iabcategories ;;
+    sql: REPLACE(${TABLE}.iabcategories,'iab_',' ') ;;
   }
+
+  dimension: iabcategories1 {
+    label: "IAB Category 1"
+    view_label: "Data Fields"
+    group_label: "IAB"
+    type: string
+    sql: SPLIT_PART(${TABLE}."iabcategories", ',', 1) ;;
+#     sql: REPLACE(${TABLE}.iabcategories,' ','iab_' ') ;;
+  }
+
+  dimension: iabcategories2 {
+    label: "IAB Category 2"
+    group_label: "IAB"
+    view_label: "Data Fields"
+    type: string
+    sql: SPLIT_PART(${TABLE}."iabcategories", ',', 2) ;;
+#     sql: REPLACE(${TABLE}.iabcategories,'iab_',' ') ;;
+  }
+
+  dimension: iabcategories3 {
+    label: "IAB Category 3"
+    group_label: "IAB"
+    view_label: "Data Fields"
+    type: string
+    sql: SPLIT_PART(${TABLE}."iabcategories", ',', 3) ;;
+#     sql: REPLACE(${TABLE}.iabcategories,'iab_',' ') ;;
+  }
+
 
   dimension: invalidtraffictype {
     type:  number

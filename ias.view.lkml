@@ -708,7 +708,7 @@ view: ias {
 
 # ALL THE MEASURES
 
-  measure: inviewfield_measure {
+  measure: inviewfield_measureyes {
     type: sum
     label: "In View Impressions"
     view_label: "Measures"
@@ -718,10 +718,98 @@ view: ias {
          END;;
   }
 
+  measure: inviewfield_measureno {
+    type: sum
+    label: "Out of View Impressions"
+    view_label: "Measures"
+    sql: case
+          WHEN ${inviewfield} = 'Out of View' THEN 1
+          ELSE 0
+         END;;
+  }
+
+  measure: inviewfield_measurena {
+    type: sum
+    label: "Out of View Impressions N/A"
+    view_label: "Measures"
+    hidden: yes
+    sql: case
+          WHEN ${inviewfield} = 'N/A' THEN 1
+          ELSE 0
+         END;;
+  }
+
+  measure: inviewfield_totaloutofview {
+    type: number
+    label: "Total Out of View Impressions"
+    view_label: "Measures"
+    sql: ${inviewfield_measureno}+${inviewfield_measurena} ;;
+  }
+
+  measure: measurable_yes {
+    type: sum
+    label: "Measured Impressions"
+    view_label: "Measures"
+    sql: case
+          WHEN ${measurable} = 'Measurable' THEN 1
+          ELSE 0
+         END;;
+  }
+
+  measure: measurable_no {
+    type: sum
+    label: "Unmeasured Impressions"
+    view_label: "Measures"
+    sql: case
+          WHEN ${measurable} = 'Not Measurable' THEN 1
+          ELSE 0
+         END;;
+  }
+
+  measure: total_impressions {
+    type: number
+    label: "Total Impressions"
+    view_label: "Measures"
+    sql: ${measurable_no}+${measurable_yes};;
+  }
+
+  measure: suspicious_impressions1 {
+    type: sum
+    hidden: yes
+    label: "Supsicious Impressions General"
+    view_label: "Measures"
+    sql: case
+          WHEN ${invalidtraffictype} = '1' THEN 1
+          ELSE 0
+         END;;
+  }
+
+  measure: suspicious_impressions2 {
+    type: sum
+    hidden:  yes
+    label: "Supsicious Impressions Sophisticated"
+    view_label: "Measures"
+    sql: case
+          WHEN ${invalidtraffictype} = '2' THEN 1
+          ELSE 0
+         END;;
+  }
+
+  measure: suspicious_impressionstotal {
+    type: number
+    label: "Supsicious Impressions"
+    #Product of Gen and Sophisticated Treffic
+    view_label: "Measures"
+    sql: ${suspicious_impressions1}+${suspicious_impressions2};;
+
+      #     WHEN ${TABLE}.invalidtraffictype LIKE '%0%' THEN 'Not Suspicious'
+      #     WHEN ${TABLE}.invalidtraffictype LIKE '%1%' THEN 'General Invalid Traffic'
+      #     WHEN ${TABLE}.invalidtraffictype LIKE '%2%' THEN 'Sophisticated invalid traffic'
+  }
 
   measure: count {
     type: count
-    label: "Count"
+    label: "Row Count"
     view_label: "Measures"
     drill_fields: []
   }

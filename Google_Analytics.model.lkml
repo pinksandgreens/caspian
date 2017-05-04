@@ -70,13 +70,13 @@ explore: audiometrix_devices {
 explore: audiometrix_realtime {
   hidden: yes
   label: "Audiometrix - Realtime"
-  sql_table_name: publications.audiometrix_realtime_unique ;;
+  sql_table_name: publications.audiometrix_realtime ;;
 }
 
 explore: audiometrix_realtime_devices {
   hidden: yes
   label: "Audiometrix - Realtime Devices"
-  sql_table_name: publications.audiometrix_realtime_devices_unique ;;
+  sql_table_name: publications.audiometrix_realtime_devices ;;
 }
 
 explore: google_analytics_devices {

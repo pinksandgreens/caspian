@@ -446,6 +446,12 @@ explore: jr_lifestyle_audience {
 
 
 
-explore: youtube_ad_revenue_raw {
+explore: youtube_ad_estimated_revenue {
   label: "BigQuery - Youtube"
+
+  join: youtube_basic {
+    type: left_outer
+    relationship: many_to_many
+    sql_on: ${youtube_ad_estimated_revenue.video_id} = ${youtube_basic.video_id} ;;
+  }
 }

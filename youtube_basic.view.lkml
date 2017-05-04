@@ -9,15 +9,21 @@ sql_table_name: Youtube.p_content_owner_basic_a3_Youtube;;
     sql: TIMESTAMP(${TABLE}.date) ;;
     }
 
+  dimension: primary_key {
+    type: string
+    primary_key: yes
+    sql: CONCAT(${TABLE}.date,${TABLE}.video_id);;}
+
+
   dimension: country_code {
     type: string
     sql: ${TABLE}.country_code;;}
 
-    dimension: video_id {
+  dimension: video_id {
     type: string
     sql: ${TABLE}.video_id;;}
 
-    dimension: channel_id {
+  dimension: channel_id {
     type: string
     sql: ${TABLE}.channel_id;;}
 
@@ -25,15 +31,15 @@ sql_table_name: Youtube.p_content_owner_basic_a3_Youtube;;
     type: string
     sql: ${TABLE}.claimed_status;;}
 
-    dimension: uploader_type {
+  dimension: uploader_type {
     type: string
     sql: ${TABLE}.uploader_type;;}
 
-    dimension: live_or_on_demand {
+  dimension: live_or_on_demand {
     type: string
     sql: ${TABLE}.live_or_on_demand;;}
 
-    dimension: subscribed_status {
+  dimension: subscribed_status {
     type: string
     sql: ${TABLE}.subscribed_status;;}
 

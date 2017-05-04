@@ -9,6 +9,11 @@ dimension_group: date {
     sql: TIMESTAMP(${TABLE}.date) ;;
   }
 
+  dimension: key {
+    type: string
+    primary_key: yes
+    sql: CONCAT(${TABLE}.date,${TABLE}.video_id);;}
+
   dimension: country_code {
     type: string
     sql: ${TABLE}.country_code;;}

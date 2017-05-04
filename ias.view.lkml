@@ -699,11 +699,7 @@ view: ias {
     WHEN ${TABLE}.inviewfield = 'outOfView' THEN 'Out of View'
     WHEN ${TABLE}.inviewfield = 'inView' THEN 'In View'
     WHEN ${TABLE}.inviewfield = 'N/A' THEN 'N/A'
-    END
-
-
-
-;;
+    END;;
   }
 
 
@@ -711,6 +707,16 @@ view: ias {
 
 
 # ALL THE MEASURES
+
+  measure: inviewfield_measure {
+    type: sum
+    label: "In View Impressions"
+    view_label: "Measures"
+    sql: case
+          WHEN ${inviewfield} = 'In View' THEN 1
+          ELSE 0
+         END;;
+  }
 
 
   measure: count {

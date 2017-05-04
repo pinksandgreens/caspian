@@ -443,3 +443,9 @@ explore: jr_lifestyle_audience {
 
     }
 }
+
+
+
+explore: youtube_ad_revenue_raw {
+  label: "BigQuery - Youtube"
+}

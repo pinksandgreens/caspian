@@ -46,12 +46,20 @@ view: revenue_table_advanced {
 
   dimension: brand {
     type: string
-    sql: ${TABLE}.brand ;;
+    sql: CASE
+      WHEN ${TABLE}.brand IS NULL THEN 'Unknown'
+      WHEN ${TABLE}.brand = 'Other' THEN 'Unknown'
+      ELSE ${TABLE}.brand
+      END;;
   }
+
 
   dimension: brand_market {
     type: string
-    sql: ${TABLE}.brand_market;;
+    sql: CASE
+      WHEN ${TABLE}.brand_market IS NULL THEN 'Unknown'
+      ELSE ${TABLE}.brand_market
+      END;;
   }
 
   measure: revenue {

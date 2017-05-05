@@ -549,7 +549,7 @@ view: ias {
 
   dimension: custom {
     type: string
-    hidden: yes
+    hidden: no
     sql: ${TABLE}.custom ;;
   }
 

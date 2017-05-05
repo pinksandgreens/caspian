@@ -2,6 +2,8 @@ view: youtube_basic {
 
 sql_table_name: Youtube.p_content_owner_basic_a3_Youtube;;
 
+#(SELECT date,channel_id,video_id,claimed_status,uploader_type,live_or_on_demand,subscribed_status,country_code,views,comments,shares,watch_time_minutes,average_view_duration_seconds,average_view_duration_percentage,annotation_impressions,annotation_clickable_impressions,annotation_clicks,annotation_click_through_rate,annotation_closable_impressions,annotation_closes,annotation_close_rate,card_teaser_impressions,card_teaser_clicks,card_teaser_click_rate,card_impressions,card_clicks,card_click_rate,subscribers_gained,subscribers_lost,videos_added_to_playlists,videos_removed_from_playlists,likes,dislikes,red_views,red_watch_time_minutes
+#                 FROM Youtube.p_content_owner_basic_a3_Youtube);;
 
   dimension_group: date {
     label: ""
@@ -60,11 +62,11 @@ sql_table_name: Youtube.p_content_owner_basic_a3_Youtube;;
     sql: ${TABLE}.watch_time_minutes;;}
 
   measure: average_view_duration_seconds {
-    type: sum
+    type: average
     sql: ${TABLE}.average_view_duration_seconds;;}
 
   measure: average_view_duration_percentage {
-    type: sum
+    type: average
     sql: ${TABLE}.average_view_duration_percentage;;}
 
   measure: annotation_impressions {

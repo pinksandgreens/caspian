@@ -1,4 +1,4 @@
-    connection: "bigquery-connection"
+connection: "bigquery-connection"
 
 # include all views in this project
 include: "*.view"
@@ -441,17 +441,23 @@ explore: jr_lifestyle_audience {
       value: "grazia"
     }
 
-    }
-}
-
-
-
-explore: youtube_ad_estimated_revenue {
-  label: "BigQuery - Youtube"
-
-  join: youtube_basic {
-    type: left_outer
-    relationship: many_to_many
-    sql_on: ${youtube_ad_estimated_revenue.video_id} = ${youtube_basic.video_id} ;;
   }
 }
+
+
+
+# explore: youtube_videos {
+#   label: "BigQuery - Youtube"
+#
+#   join: youtube_ad_estimated_revenue {
+#     type: left_outer
+#     relationship: many_to_many
+#     sql_on: ${youtube_videos.video_id} = ${youtube_ad_estimated_revenue.video_id} ;;
+#   }
+#
+#   join: youtube_basic {
+#     type: left_outer
+#     relationship: many_to_many
+#     sql_on: ${youtube_videos.video_id} = ${youtube_basic.video_id} ;;
+#   }
+# }

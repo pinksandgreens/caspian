@@ -40,7 +40,7 @@ dimension_group: date {
 
   measure: estimated_partner_revenue {
     type: sum
-    value_format: "\£0.0000"
+    value_format: "\$0.0000"
     sql: ${TABLE}.estimated_partner_revenue;;}
 
   measure: ad_impressions {
@@ -49,22 +49,22 @@ dimension_group: date {
 
   measure: estimated_partner_ad_revenue {
     type: sum
-    value_format: "\£0.0000"
+    value_format: "\$0.0000"
     sql: ${TABLE}.estimated_partner_ad_revenue;;}
 
     measure: estimated_partner_ad_auction_revenue {
     type: sum
-    value_format: "\£0.0000"
+    value_format: "\$0.0000"
     sql: ${TABLE}.estimated_partner_ad_auction_revenue;;}
 
     measure: estimated_partner_ad_reserved_revenue {
     type: sum
-    value_format: "\£0.0000"
+    value_format: "\$0.0000"
     sql: ${TABLE}.estimated_partner_ad_reserved_revenue;;}
 
     measure: estimated_youtube_ad_revenue {
     type: sum
-    value_format: "\£0.0000"
+    value_format: "\$0.0000"
     sql: ${TABLE}.estimated_youtube_ad_revenue;;}
 
     measure: estimated_monetized_playbacks {
@@ -73,22 +73,22 @@ dimension_group: date {
 
     measure: estimated_playback_based_cpm {
     type: sum
-    value_format: "\£0.0000"
+    value_format: "\$0.0000"
     sql: ${TABLE}.estimated_playback_based_cpm;;}
 
     measure: estimated_cpm {
     type: average
-    value_format: "\£0.0000"
+    value_format: "\$0.0000"
     sql: ${TABLE}.estimated_cpm;;}
 
     measure: estimated_partner_red_revenue {
     type: sum
-    value_format: "\£0.0000"
+    value_format: "\$0.0000"
     sql: ${TABLE}.estimated_partner_red_revenue;;}
 
     measure: estimated_partner_transaction_revenue {
     type: sum
-    value_format: "\£0.0000"
+    value_format: "\$0.0000"
     sql: ${TABLE}.estimated_partner_transaction_revenue;;}
 
 

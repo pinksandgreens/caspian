@@ -2,6 +2,7 @@ view: google_analytics_adhoc_monthly {
   sql_table_name: publications.google_analytics_adhoc_monthly ;;
 
   dimension: channelgrouping {
+    label: "Channel Grouping"
     type: string
     sql: ${TABLE}.channelgrouping ;;
   }
@@ -34,6 +35,7 @@ view: google_analytics_adhoc_monthly {
   }
 
   dimension: devicecategory {
+    label: "Device Category"
     type: string
     sql: INITCAP(${TABLE}.devicecategory) ;;
   }
@@ -75,7 +77,7 @@ view: google_analytics_adhoc_monthly {
     type: time
     timeframes: [month, month_num]
     convert_tz: no
-    sql: TO_DATE(${TABLE}.date,'YYYY/MM') ;;
+    sql: TO_DATE(${TABLE}.yearmonth,'YYYY/MM') ;;
   }
 
   measure: pages_per_session {

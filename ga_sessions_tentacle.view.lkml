@@ -1626,6 +1626,16 @@ view: ga_sessions_tentacle {
       sql: DATEDIFF( CURRENT_DATE(), ${start_time_date} ) < 31 ;;
     }
 
+  dimension: last_30_days2 {
+    label: "Past 30 Days"
+    type: string
+    sql:
+      CASE
+        WHEN DATEDIFF( CURRENT_DATE(), ${start_time_date} ) < 31 THEN 'Past 30 Days'
+        ELSE 'Previous 30 Day Session'
+      END;;
+  }
+
     dimension: visitor_id {
       type: number
       sql: ${TABLE}.visitorId ;;

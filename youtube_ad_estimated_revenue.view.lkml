@@ -9,6 +9,16 @@ dimension_group: date {
     sql: TIMESTAMP(${TABLE}.date) ;;
   }
 
+  dimension: 30_day_buckets  {
+    type: number
+    label: "30 Days"
+    description: "Bucket [1] = Past 30 Days, [2] = Past 31 - 60 Days"
+    sql:  CASE
+                WHEN DATEDIFF(DATE_ADD(CURRENT_TIMESTAMP(),-3,"DAY"),TIMESTAMP(${TABLE}.date)) BETWEEN 0 AND 29 THEN 1
+                WHEN DATEDIFF(DATE_ADD(CURRENT_TIMESTAMP(),-3,"DAY"),TIMESTAMP(${TABLE}.date)) BETWEEN 30 AND 59 THEN 2
+            END ;;
+  }
+
   dimension: key {
     type: string
     primary_key: yes

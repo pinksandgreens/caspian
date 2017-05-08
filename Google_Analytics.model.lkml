@@ -261,6 +261,12 @@ explore: google_analytics_marconi {
   persist_for: "20 hour"
 }
 
+explore: google_analytics_adhoc_monthly {
+  hidden: no
+  label: "Google Analytics - Monthly Traffic"
+  sql_table_name: publications.google_analytics_adhoc_monthly ;;
+  persist_for: "20 hour"
+}
 
 
 

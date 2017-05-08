@@ -376,6 +376,7 @@ view: social_youtube_advanced {
 
     dimension: 30_day_buckets  {
       type: number
+      hidden: no
       label: "30 day YT Buckets"
       description: "1 = Past 30 Days, 2 = Past 31 - 60 Days, 0 = Everything Else"
       sql:  CASE

@@ -30,35 +30,49 @@ explore:youtube_playback_location {
   label: "YouTube - Playback Location"
 }
 
-explore: youtube_all {
-  from: youtube_basic
-  label: "YouTube - ALL"
+#explore: youtube_all {
+#  from: youtube_basic
+#  label: "YouTube - ALL"
+#
+#  join: youtube_ad_estimated_revenue  {
+#    type: left_outer
+#    relationship: one_to_many
+#    sql_on: ${youtube_ad_estimated_revenue.video_id} = ${youtube_all.video_id} ;;
+#  }#
+#
+#  join: youtube_demogs  {
+#    type: left_outer
+#    relationship: one_to_many
+#    sql_on: ${youtube_demogs.video_id} = ${youtube_all.video_id} ;;
+#  }#
+#
+#  join: youtube_devices  {
+#    type: left_outer
+#    relationship: one_to_many
+#    sql_on: ${youtube_devices.video_id} = ${youtube_all.video_id} ;;
+#  }
+#
+#  join: youtube_playback_location  {
+#    type: left_outer
+#    relationship: one_to_many
+#    sql_on: ${youtube_playback_location.video_id} = ${youtube_all.video_id} ;;
+#  }
+#
+#}
+explore: youtube_rev_and_playback {
+  from: youtube_playback_location
+  label: "YouTube - Playback + Revenue"
 
   join: youtube_ad_estimated_revenue  {
     type: left_outer
     relationship: one_to_many
-    sql_on: ${youtube_ad_estimated_revenue.key} = ${youtube_all.primary_key} ;;
+    sql_on: ${youtube_ad_estimated_revenue.video_id} = ${youtube_rev_and_playback.video_id} ;;
   }
 
-  join: youtube_demogs  {
+  join: jr_yt_onsite_revenue {
     type: left_outer
     relationship: one_to_many
-    sql_on: ${youtube_demogs.key} = ${youtube_all.primary_key} ;;
+    sql_on: ${jr_yt_onsite_revenue.video_id} = ${youtube_rev_and_playback.video_id} ;;
   }
 
-  join: youtube_devices  {
-    type: left_outer
-    relationship: one_to_many
-    sql_on: ${youtube_devices.key} = ${youtube_all.primary_key} ;;
   }
-
-  join: youtube_playback_location  {
-    type: left_outer
-    relationship: one_to_many
-    sql_on: ${youtube_playback_location.key} = ${youtube_all.primary_key} ;;
-  }
-
-}
-
-
-

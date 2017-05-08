@@ -8,11 +8,49 @@ view: youtube_playback_location {
     sql: TIMESTAMP(${TABLE}.date) ;;
   }
 
-  dimension: key {
+  dimension: key { #Note this won't work in a view join sceanrio due to the CONCAT clause. BQ doesn't like CONCATs when joining tables
     type: string
     primary_key: yes
     description: "Date + Video ID CONCAT"
-    sql: CONCAT(${TABLE}.date,${TABLE}.video_id);;}
+    sql: CONCAT(${TABLE}.date,${TABLE}.video_id);;
+  }
+
+  measure:  youtube_watch_views{ #Watch Page Views Only
+    label: "YT Watch Views"
+    type: sum
+    sql:  CASE WHEN ${TABLE}.playback_location_type = 0 THEN ${TABLE}.views END
+    ;;
+  }
+
+  measure:  youtube_external_views{ #Watch Page Views Only
+    label: "YT External Views"
+    type: sum
+    sql:  CASE WHEN ${TABLE}.playback_location_type = 1 THEN ${TABLE}.views END
+    ;;
+  }
+
+  measure:  youtube_channel_views{ #Watch Page Views Only
+    label: "YT Channel Views"
+    type: sum
+    sql:  CASE WHEN ${TABLE}.playback_location_type = 2 THEN ${TABLE}.views END
+      ;;
+  }
+
+  measure:  youtube_unknown_views{ #Watch Page Views Only
+    label: "YT Unknown Views"
+    type: sum
+    sql:  CASE WHEN ${TABLE}.playback_location_type = 5 THEN ${TABLE}.views END
+      ;;
+    }
+
+  measure:  youtube_onsite_views{ #Sum Watch Page & Channel Views Using Playback_location = 0 and 2
+    label: "YT Domain Views"
+    type: number
+    description: "This aggregates both watch and channel page youtube views to calculate total youtube on-site views (Unknown views have been ommissed)"
+    sql: ${youtube_watch_views} + ${youtube_channel_views}
+    ;;
+
+  }
 
   dimension: public_name {
     type: string

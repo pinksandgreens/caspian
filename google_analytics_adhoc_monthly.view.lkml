@@ -40,10 +40,16 @@ view: google_analytics_adhoc_monthly {
     sql: INITCAP(${TABLE}.devicecategory) ;;
   }
 
-  dimension: key {
-    hidden: yes
+  dimension: key_device {
+    hidden: no
     type: string
     sql: ${TABLE}.key ;;
+  }
+
+  dimension: key_channel {
+    hidden: no
+    type: string
+    sql: ${TABLE}.brand_name || '' || ${TABLE}.channelgrouping ;;
   }
 
   dimension: market {
@@ -65,12 +71,6 @@ view: google_analytics_adhoc_monthly {
     type: sum
     sql: ${TABLE}.users ;;
   }
-
-  dimension: yearmonth {
-    type: string
-    sql: ${TABLE}.yearmonth ;;
-  }
-
 
   dimension_group: yearmonth {
     label: "Year/Month"

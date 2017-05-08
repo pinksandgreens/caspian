@@ -75,7 +75,7 @@ view: google_analytics_adhoc_monthly {
   dimension_group: yearmonth {
     label: "Year/Month"
     type: time
-    timeframes: [month, month_num]
+    timeframes: [year, month, month_num]
     convert_tz: no
     sql: TO_DATE(${TABLE}.yearmonth,'YYYY/MM') ;;
   }

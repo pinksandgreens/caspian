@@ -2257,10 +2257,9 @@ view: ga_sessions_radio {
 
     measure: totals_pageviews {
       label: "Total Pageviews"
-      type: sum
+      type: sum_distinct
       sql_distinct_key: ${uu_key} ;;
       sql: ${TABLE}.totals.pageviews ;;
-#       drill_fields: [detail*]
     }
 
 

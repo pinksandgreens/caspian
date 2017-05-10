@@ -1,6 +1,16 @@
 view: ias {
   sql_table_name: ad_platform.ias ;;
 
+  dimension: key {
+    primary_key: yes
+    type: string
+#     sql: ${TABLE}.pubcreative || '-' || ${TABLE}.puborder || '-' || ${TABLE}.adsize || '-' || ${TABLE}.extchannelid || '-' || ${TABLE}.extpublisherid || '-' || ${TABLE}.extplacementid ;;
+    sql: ${pubcreative} || '-' || ${puborder} || '-' || ${extchannelid} || '-' || ${extpublisherid} || '-' || ${extplacementid} ;;
+
+  }
+
+  # ^ removed ad_size because IAS is fucking shit at reporting it, and you can produce a unique key without it.
+
   dimension: host1 {
     type: string
     label: "Brand Code"
@@ -192,7 +202,7 @@ view: ias {
    WHEN ${TABLE}.host LIKE '%https://www.spiritanddestiny.co.uk%' THEN 'Spirit & Destiny'
    WHEN ${TABLE}.host LIKE '%https://www.thedebrief.co.uk%' THEN 'The Debrief'
    WHEN ${TABLE}.host LIKE '%https://www.yours.co.uk%' THEN 'Yours Magazine'
-   ELSE 'Uknown'
+   ELSE 'Unknown'
     END;;
   }
 
@@ -436,21 +446,30 @@ view: ias {
     type: string
     view_label: "Data Fields"
     label: " Channel ID"
-    sql: ${TABLE}.extchannelid ;;
+    sql: CASE
+          WHEN ${TABLE}.extchannelid IS NULL THEN '0'
+          ELSE ${TABLE}.extchannelid
+         END;;
   }
 
   dimension: extplacementid {
     type: string
     label: "Placement ID"
     view_label: "Data Fields"
-    sql: ${TABLE}.extplacementid ;;
+    sql: CASE
+          WHEN ${TABLE}.extplacementid IS NULL THEN '0'
+          ELSE ${TABLE}.extplacementid
+         END;;
   }
 
   dimension: extpublisherid {
     type: string
     view_label: "Data Fields"
     label: "Publisher ID"
-    sql: ${TABLE}.extpublisherid ;;
+    sql: CASE
+          WHEN ${TABLE}.extpublisherid IS NULL THEN '0'
+          ELSE ${TABLE}.extpublisherid
+         END;;
   }
 
   dimension: fraudcategory {
@@ -484,7 +503,10 @@ view: ias {
     type: string
     label: "Ad Size"
     view_label: "Data Fields"
-    sql: ${TABLE}.adsize ;;
+    sql: CASE
+          WHEN ${TABLE}.adsize IS NULL THEN '0'
+          ELSE ${TABLE}.adsize
+         END;;
   }
 
   dimension: adultsc {
@@ -668,14 +690,20 @@ view: ias {
     type: string
     label: "Publisher Creative"
     view_label: "Data Fields"
-    sql: ${TABLE}.pubcreative ;;
+    sql: CASE
+          WHEN ${TABLE}.pubcreative IS NULL THEN '0'
+          ELSE ${TABLE}.pubcreative
+         END;;
   }
 
   dimension: puborder {
     type: string
     label: "Publisher Order"
     view_label: "Data Fields"
-    sql: ${TABLE}.puborder ;;
+    sql: CASE
+          WHEN ${TABLE}.puborder IS NULL THEN '0'
+          ELSE ${TABLE}.puborder
+         END;;
   }
 
   dimension: sadscore {

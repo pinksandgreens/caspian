@@ -125,10 +125,4 @@ explore: dfp_revenue {
   sql_table_name: ad_platform.dfp_revenue ;;
   persist_for: "6 hour"
 
-  join: video_ad_brand_template {
-    type: left_outer
-    relationship: many_to_one
-    sql_on: ${dfp_revenue.Ad_Unit_Name_Path_2_StringOnly} = ${video_ad_brand_template.Ad_Sub_Unit_Name} ;;
-
-  }
 }

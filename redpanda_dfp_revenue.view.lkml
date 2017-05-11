@@ -90,8 +90,9 @@ view: dfp_revenue {
   measure: column_total_line_item_level_all_revenue {
     label: "Total Line Item Revenue"
     type: sum
-    value_format: "\£0.0000"
-    sql: ${TABLE}."column.total_line_item_level_all_revenue"::float/1000000 ;;
+    #value_format: "\£0.0000"
+    value_format_name: gbp
+    sql: ${TABLE}."column.total_line_item_level_all_revenue"::decimal/1000000 ;;
   }
 
   measure: column_total_line_item_level_clicks {
@@ -164,13 +165,15 @@ view: dfp_revenue {
     sql: SPLIT_PART(${dimension_ad_unit_name}, '?', 2) ;;
   }
 
-  dimension: Ad_Unit_Name_Path_2_StringOnly {
+  dimension: key {
     type: string
+    label: "Key"
     primary_key: yes
     sql:  CASE
-            WHEN ${TABLE}."dimension.ad_unit_name" LIKE '%brightcove%' THEN REGEXP_SUBSTR(SPLIT_PART(${dimension_ad_unit_name}, '?', 2),'[^()]*')
-          ELSE
-            NULL
+            WHEN ${TABLE}."dimension.ad_unit_name" LIKE '%brightcove%' THEN REGEXP_SUBSTR(${Ad_Unit_Name_Path_2},'[^()]*')||${date}
+            WHEN ${TABLE}."dimension.ad_unit_name" LIKE '%editorial-player%' THEN REGEXP_SUBSTR(${Ad_Unit_Name_Path_2},'[^()]*')||${date}
+          --ELSE
+            --NULL
           END;;
   }
 
@@ -212,13 +215,18 @@ view: dfp_revenue {
     sql: ${TABLE}."dimension.creative_size" ;;
   }
 
- dimension_group: date {
-    type: time
-    label: ""
-    timeframes: []
-    convert_tz: no
-    sql: TO_DATE(${TABLE}."dimension.date",'YYYY-MM-DD') ;;
-  }
+dimension: date {
+  type: date
+  sql: ${TABLE}."dimension.date" ;;
+}
+
+#dimension_group: date {
+#    type: time
+#    label: ""
+#    timeframes: []
+#    convert_tz: no
+#    sql: TO_DATE(${TABLE}."dimension.date",'YYYY-MM-DD') ;;
+#  }
 
   dimension: rownum {
     hidden: yes

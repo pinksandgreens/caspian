@@ -142,17 +142,13 @@ explore:brightcove {
   persist_for: "1 hour"
 
   join: dfp_revenue {
-    type: left_outer
-    relationship: one_to_one
-    sql_on: ${brightcove.key} = ${dfp_revenue.Ad_Unit_Name_Path_2_StringOnly} AND ${brightcove.date} = ${dfp_revenue.date_date} ;;
+    foreign_key: brightcove.key
   }
 
-  #join: dfp_revenue {
-  #  type: left_outer
-  #  relationship: one_to_many
 
 
-  #}
+
+
 }
 
 

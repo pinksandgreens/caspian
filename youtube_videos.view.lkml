@@ -4,8 +4,13 @@ view: youtube_videos {
 
 
   dimension: video_id {
+    primary_key: yes
     label: "Video_ID"
     sql: ${TABLE}.video_id;;
   }
+
+measure: count {
+  type: count
+}
 
   }

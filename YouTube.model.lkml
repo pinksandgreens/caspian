@@ -30,6 +30,41 @@ explore:youtube_playback_location {
   label: "YouTube - Playback Location"
 }
 
+explore: youtube_videos {
+  label: "YouTube - TestingA"
+
+  join: youtube_ad_estimated_revenue  {
+    type: left_outer
+    relationship: many_to_one
+    sql_on: ${youtube_videos.video_id} = ${youtube_ad_estimated_revenue.video_id} ;;
+  }
+
+  join: youtube_demogs  {
+    type: left_outer
+    relationship: many_to_one
+    sql_on: ${youtube_videos.video_id} = ${youtube_demogs.video_id} ;;
+    }
+
+  join: youtube_playback_location  {
+    type: left_outer
+    relationship: many_to_one
+    sql_on: ${youtube_videos.video_id} = ${youtube_playback_location.video_id} ;;
+  }
+
+  join: youtube_basic  {
+    type: left_outer
+    relationship: many_to_one
+    sql_on: ${youtube_videos.video_id} = ${youtube_basic.video_id} ;;
+  }
+
+  join: youtube_devices  {
+    type: left_outer
+    relationship: many_to_one
+    sql_on: ${youtube_videos.video_id} = ${youtube_devices.video_id} ;;
+  }
+
+}
+
 #explore: youtube_all {
 #  from: youtube_basic
 #  label: "YouTube - ALL"

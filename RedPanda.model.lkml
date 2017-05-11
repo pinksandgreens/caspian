@@ -110,6 +110,13 @@ explore: ias {
   hidden: no
   sql_table_name: ad_platform.ias ;;
   persist_for: "6 hour"
+
+  join: dfp_lookup {
+    type: left_outer
+    relationship: many_to_one
+    sql_on: ${ias.key} = ${dfp_lookup.key} ;;
+  }
+
 }
 
 explore: dfp_revenue {

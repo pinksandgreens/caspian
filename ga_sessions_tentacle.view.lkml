@@ -1813,7 +1813,7 @@ view: ga_sessions_tentacle {
           WHEN (${TABLE}.hits.page.hostname LIKE '%lifestyle.one%' AND ${TABLE}.hits.page.pagePath LIKE '%/grazia%') THEN 'Grazia'
           WHEN ${TABLE}.hits.page.hostname LIKE '%parkers.co.uk%' THEN 'Parkers'
           WHEN ${TABLE}.hits.page.hostname LIKE '%motorcyclenews.com%' THEN 'Motorcyclenews'
-          WHEN ${TABLE}.hits.page.hostname LIKE '%empireonline.com%' THEN 'Empire'
+          WHEN ${TABLE}.hits.page.hostname LIKE '%www.empireonline.com%' THEN 'Empire'
           WHEN ${TABLE}.hits.page.hostname LIKE '%motherandbaby.co.uk%' THEN 'Mother & Baby'
           WHEN ${TABLE}.hits.page.hostname LIKE '%carmagazine.co.uk%' THEN 'Car Magazine'
           WHEN ${TABLE}.hits.page.hostname LIKE '%classiccarsforsale.co.uk%' THEN 'Classic Cars for Sale'
@@ -1932,12 +1932,17 @@ view: ga_sessions_tentacle {
 
     measure: totals_pageviews {
       label: "Total Pageviews"
-      type: sum
+      type: sum_distinct
       sql_distinct_key: ${uu_key} ;;
       sql: ${TABLE}.totals.pageviews ;;
-#       drill_fields: [detail*]
     }
 
+  measure: totals_pageviews122{
+    label: "Total Pageviews - test"
+    type: sum
+    sql: ${TABLE}.totals.pageviews ;;
+#       drill_fields: [detail*]
+  }
 
     measure: pages_p_session {
       label: "Pages per Session"

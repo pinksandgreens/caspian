@@ -59,20 +59,17 @@ explore:youtube_playback_location {
 #  }
 #
 #}
-explore: youtube_rev_and_playback {
-  from: youtube_playback_location
-  label: "YouTube - Playback + Revenue"
+#explore: youtube_rev_and_playback {
+#  from: youtube_playback_location
+#  label: "YouTube - Playback + Revenue"
 
-  join: youtube_ad_estimated_revenue  {
-    type: left_outer
-    relationship: one_to_many
-    sql_on: ${youtube_ad_estimated_revenue.video_id} = ${youtube_rev_and_playback.video_id} ;;
+  #join: youtube_ad_estimated_revenue  {
+  #  type: left_outer
+  #  relationship: one_to_many
+  #  sql_on: ${youtube_ad_estimated_revenue.video_id} = ${youtube_rev_and_playback.video_id} ;;
+  #}
+
+  explore: jr_yt_onsite_offsite_revenue {
+    label: "YouTube On-Site/Off-site Revenue and Views"
   }
 
-  join: jr_yt_onsite_revenue {
-    type: left_outer
-    relationship: one_to_many
-    sql_on: ${jr_yt_onsite_revenue.video_id} = ${youtube_rev_and_playback.video_id} ;;
-  }
-
-  }

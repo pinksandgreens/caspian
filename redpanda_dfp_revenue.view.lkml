@@ -145,6 +145,15 @@ view: dfp_revenue {
     sql: REPLACE(REPLACE(${TABLE}."dimension.ad_unit_name", '»','?'),' ','');;
   }
 
+  #Need to create User Defined Ad_Sub_Unit_Name
+  #dimension: dimension_ad_sub_unit_name {
+  #  label: "Ad Sub Unit Name"
+  #  type: string
+  #  sql:  CASE
+  #          WHEN ${TABLE}."dimension.ad_unit_name" LIKE '%brightcove%' THEN REGEXP_SUBSTR(${TABLE}."dimension.ad_unit_name", '^.+?»(.+?)\(.*')
+  #        END ;;
+  #}
+
   dimension: Ad_Unit_Name_Path_1 {
     type: string
     sql: SPLIT_PART(${dimension_ad_unit_name}, '?', 1) ;;
@@ -154,6 +163,18 @@ view: dfp_revenue {
     type: string
     sql: SPLIT_PART(${dimension_ad_unit_name}, '?', 2) ;;
   }
+
+  dimension: Ad_Unit_Name_Path_2_StringOnly {
+    type: string
+    sql:  CASE
+            WHEN ${TABLE}."dimension.ad_unit_name" LIKE '%brightcove%' THEN REGEXP_SUBSTR(SPLIT_PART(${dimension_ad_unit_name}, '?', 2),'[^()]*')
+          ELSE
+            NULL
+          END;;
+  }
+
+
+
 
   dimension: Ad_Unit_Name_Path_3 {
     type: string

@@ -1,5 +1,7 @@
 view: youtube_playback_location {
 
+  label: "YouTube Onsite Revenue Calculation"
+
   sql_table_name: Youtube.p_content_owner_playback_location_a2_Youtube;;
 
   dimension_group: date {
@@ -8,12 +10,12 @@ view: youtube_playback_location {
     sql: TIMESTAMP(${TABLE}.date) ;;
   }
 
-  dimension: key { #Note this won't work in a view join sceanrio due to the CONCAT clause. BQ doesn't like CONCATs when joining tables
-    type: string
-    primary_key: yes
-    description: "Date + Video ID CONCAT"
-    sql: CONCAT(${TABLE}.date,${TABLE}.video_id);;
-  }
+  #dimension: key { #Note this won't work in a view join sceanrio due to the CONCAT clause. BQ doesn't like CONCATs when joining tables
+  #  type: string
+  #  primary_key: yes
+  #  description: "Date + Video ID CONCAT"
+  #  sql: CONCAT(${TABLE}.date,${TABLE}.video_id);;
+  #}
 
   measure:  youtube_watch_views{ #Watch Page Views Only
     label: "YT Watch Views"
@@ -127,6 +129,7 @@ view: youtube_playback_location {
     sql: ${TABLE}.asset_id;;}
 
   dimension: video_id {
+    primary_key: yes
     type: string
     sql: ${TABLE}.video_id;;}
 

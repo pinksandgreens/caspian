@@ -19,10 +19,10 @@ dimension_group: date {
             END ;;
   }
 
-  dimension: key {
-    type: string
-    primary_key: yes
-    sql: CONCAT(${TABLE}.date,${TABLE}.video_id);;}
+  #dimension: key {
+  #  type: string
+  #  primary_key: yes
+  #  sql: CONCAT(${TABLE}.date,${TABLE}.video_id);;}
 
   dimension: country_code {
     type: string
@@ -33,6 +33,7 @@ dimension_group: date {
     sql: ${TABLE}.ad_type;;}
 
   dimension: video_id {
+    primary_key: yes
     type: string
     sql: ${TABLE}.video_id;;}
 

@@ -166,6 +166,7 @@ view: dfp_revenue {
 
   dimension: Ad_Unit_Name_Path_2_StringOnly {
     type: string
+    primary_key: yes
     sql:  CASE
             WHEN ${TABLE}."dimension.ad_unit_name" LIKE '%brightcove%' THEN REGEXP_SUBSTR(SPLIT_PART(${dimension_ad_unit_name}, '?', 2),'[^()]*')
           ELSE

@@ -138,7 +138,7 @@ explore: social_youtube_trending {
 
 explore:brightcove {
   label: "Brightcove Vid Stats"
-  sql_table_name: publications.brightcove ;;
+  sql_table_name: publications.brightcove_master ;;
   persist_for: "1 hour"
 }
 

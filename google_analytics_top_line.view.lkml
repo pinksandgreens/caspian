@@ -130,6 +130,7 @@ view: google_analytics_top_line {
   #KEPT THIS NAME TO NOT BREAK ANYTHING, THIS IS ACTUALLY IS_WEB (YES/NO)
   dimension: is_app {
     label: "Is Web Data"
+    hidden: yes
     type: yesno
     sql: ${TABLE}.platform = 'Web' ;;
   }
@@ -155,6 +156,7 @@ view: google_analytics_top_line {
   }
 
   dimension: platform {
+    label: "Digital Platform"
     type: string
     sql: ${TABLE}.platform ;;
   }

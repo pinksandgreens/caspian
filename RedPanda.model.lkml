@@ -127,8 +127,8 @@ explore: dfp_revenue {
 
   join: video_ad_brand_template {
     type: left_outer
-    relationship: one_to_many
-    sql_on: ${video_ad_brand_template.Ad_Sub_Unit_Name} = ${dfp_revenue.Ad_Unit_Name_Path_2_StringOnly} ;;
+    relationship: many_to_one
+    sql_on: ${dfp_revenue.Ad_Unit_Name_Path_2_StringOnly} = ${video_ad_brand_template.Ad_Sub_Unit_Name} ;;
 
   }
 }

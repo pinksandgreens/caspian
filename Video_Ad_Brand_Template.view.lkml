@@ -7,8 +7,9 @@ view: video_ad_brand_template {
             FROM
               (SELECT 'RBCN_video' AS Ad_Sub_Unit_Name, 'BCN' AS Parent_Brand, 'Aire' AS Brand) UNION
               (SELECT 'SSPT_Angling-Times' AS Ad_Sub_Unit_Name, 'Angling Times' AS Parent_Brand, 'Angling Times' AS Brand) UNION
+              (SELECT 'RBCN_video' AS Ad_Sub_Unit_Name, 'BCN' AS Parent_Brand, 'BCN' AS Brand) UNION
               (SELECT 'RBCN_video' AS Ad_Sub_Unit_Name, 'BCN' AS Parent_Brand, 'Borders' AS Brand) UNION
-              (SELECT 'SMOD_Car' AS Ad_Sub_Unit_Name, 'Car Magazine' AS Parent_Brand, 'Car Magazine' AS Brand) UNION
+              (SELECT 'SMOD_Car' AS Ad_Sub_Unit_Name, 'CAR Magazine' AS Parent_Brand, 'CAR Magazine' AS Brand) UNION
               (SELECT 'RBCN_video' AS Ad_Sub_Unit_Name, 'BCN' AS Parent_Brand, 'CFM Radio' AS Brand) UNION
               (SELECT 'SAUT_Classic-Cars-for-Sale' AS Ad_Sub_Unit_Name, 'CCFS' AS Parent_Brand, 'CCFS' AS Brand) UNION
               (SELECT 'LWLN_Closer' AS Ad_Sub_Unit_Name, 'Closer' AS Parent_Brand, 'Closer' AS Brand) UNION
@@ -56,16 +57,19 @@ view: video_ad_brand_template {
 
   dimension: Ad_Sub_Unit_Name {
     type: string
-    primary_key: yes
+    #primary_key: yes
     sql: ${TABLE}.Ad_Sub_Unit_Name;;
   }
 
   dimension: Parent_Brand {
+    hidden: yes
+    primary_key: yes
     type: string
     sql: ${TABLE}.Parent_Brand;;
   }
 
   dimension: Brand {
+    hidden: yes
     type: string
     sql: ${TABLE}.Brand;;
   }

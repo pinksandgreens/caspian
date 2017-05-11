@@ -137,9 +137,22 @@ explore: social_youtube_trending {
 }
 
 explore:brightcove {
-  label: "Brightcove Vid Stats"
-  sql_table_name: publications.brightcove_master ;;
+  from:  brightcove_master
+  label: "Brightcove Video Stats"
   persist_for: "1 hour"
+
+  join: dfp_revenue {
+    type: left_outer
+    relationship: one_to_one
+    sql_on: ${brightcove.key} = ${dfp_revenue.Ad_Unit_Name_Path_2_StringOnly} AND ${brightcove.date} = ${dfp_revenue.date_date} ;;
+  }
+
+  #join: dfp_revenue {
+  #  type: left_outer
+  #  relationship: one_to_many
+
+
+  #}
 }
 
 

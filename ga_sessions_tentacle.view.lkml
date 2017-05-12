@@ -1,15 +1,15 @@
 #lifestyle
 view: ga_sessions_tentacle {
   sql_table_name: ( SELECT * FROM {% table_date_range date_filter 114668488.ga_sessions_ %},
-                  {% table_date_range date_filter 114668488.ga_sessions_intraday_ %},
+                  {% table_date_range intraday_date_filter 114668488.ga_sessions_intraday_ %},
                   {% table_date_range date_filter 21699534.ga_sessions_ %},
-                  {% table_date_range date_filter 21699534.ga_sessions_intraday_ %},
+                  {% table_date_range intraday_date_filter 21699534.ga_sessions_intraday_ %},
                   {% table_date_range date_filter 82149182.ga_sessions_ %},
-                  {% table_date_range date_filter 82149182.ga_sessions_intraday_ %},
+                  {% table_date_range intraday_date_filter 82149182.ga_sessions_intraday_ %},
                   {% table_date_range date_filter 8896222.ga_sessions_ %},
-                  {% table_date_range date_filter 8896222.ga_sessions_intraday_ %},
+                  {% table_date_range intraday_date_filter 8896222.ga_sessions_intraday_ %},
                   {% table_date_range date_filter 46993019.ga_sessions_ %},
-                  {% table_date_range date_filter 46993019.ga_sessions_intraday_ %});;
+                  {% table_date_range intraday_date_filter 46993019.ga_sessions_intraday_ %});;
 
 
 
@@ -94,6 +94,10 @@ view: ga_sessions_tentacle {
     filter: date_filter {
       type: date
     }
+
+  filter: intraday_date_filter {
+    type: date
+  }
 
     # TABLE_DATE_RANGE([uplifted-light-89310:114668488.ga_sessions_],DATE_ADD(CURRENT_TIMESTAMP(), -1, 'YEAR'),CURRENT_TIMESTAMP())
 

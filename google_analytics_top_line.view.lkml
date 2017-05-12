@@ -155,6 +155,43 @@ view: google_analytics_top_line {
     sql: ${TABLE}.pageviews ;;
   }
 
+  measure: uk_page_views {
+    type: sum
+    sql: ${TABLE}.pageviews ;;
+    filters: {
+      field: country_name
+      value: "United Kingdom"
+    }
+  }
+
+  measure: mobile_page_views {
+    type: sum
+    sql: ${TABLE}.pageviews ;;
+    filters: {
+      field: device
+      value: "Mobile"
+    }
+  }
+
+  measure: desktop_page_views {
+    type: sum
+    sql: ${TABLE}.pageviews ;;
+    filters: {
+      field: device
+      value: "Desktop"
+    }
+  }
+
+  measure: tablet_page_views {
+    type: sum
+    sql: ${TABLE}.pageviews ;;
+    filters: {
+      field: device
+      value: "Tablet"
+    }
+  }
+
+
   dimension: platform {
     label: "Digital Platform"
     type: string

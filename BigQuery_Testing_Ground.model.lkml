@@ -46,6 +46,11 @@ explore: ga_sessions_tentacle {
         field: date_filter
         value: "30 days"
       }
+
+      filters: {
+        field: intraday_date_filter
+        value: "1 days"
+      }
     }
 
   }

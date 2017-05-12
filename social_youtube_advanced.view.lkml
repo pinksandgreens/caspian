@@ -327,6 +327,7 @@ view: social_youtube_advanced {
 
   dimension: video_id {
     type: string
+    primary_key: yes
     sql: ${TABLE}.video_id ;;
   }
 

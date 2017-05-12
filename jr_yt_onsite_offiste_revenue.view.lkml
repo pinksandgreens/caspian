@@ -201,7 +201,8 @@ view: jr_yt_onsite_offsite_revenue {
   measure: daily_avg_estimated_cpm {
     label: "Est. CPM"
     type: average
-    sql: ${TABLE}.daily_avg_estimated_cpm ;;
+    sql: ${TABLE}.daily_avg_estimated_cpm * 0.77 ;;
+    value_format_name: gbp
   }
 
   dimension: 30_day_buckets  {

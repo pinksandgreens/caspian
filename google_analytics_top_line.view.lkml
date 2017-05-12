@@ -158,7 +158,7 @@ view: google_analytics_top_line {
   dimension_group: date {
     label: "Recorded"
     type: time
-    timeframes: [date, week, month, month_num, year]
+    timeframes: [date, week, month, month_num, month_name, day_of_month, year]
     convert_tz: no
     sql: TO_DATE(${TABLE}.date,'YYYY-MM-DD') ;;
   }

@@ -145,11 +145,19 @@ explore:brightcove {
     foreign_key: brightcove.key
   }
 
-
-
-
-
 }
+
+explore: brightcove_destination_domain {
+    label: "BC Dest Domain Temp Explore"
+
+  }
+
+
+
+
+
+
+
 
 
 #     - join: ga_radio_twitter_data

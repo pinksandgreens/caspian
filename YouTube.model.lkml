@@ -106,5 +106,6 @@ explore: youtube_videos {
 
   explore: jr_yt_onsite_offsite_revenue {
     label: "YouTube On-Site/Off-site Revenue and Views"
-  }
 
+
+  }

@@ -1,6 +1,8 @@
 view: brightcove_master {
   derived_table: {
-    sql: SELECT * FROM publications.brightcove_master
+    sql:  SELECT
+            *
+          FROM publications.brightcove_master
       ;;
   }
 
@@ -218,5 +220,14 @@ view: brightcove_master {
 
   }
 
+  dimension: 30_day_buckets  {
+    type: number
+    label: "30 Days"
+    description: "Bucket [1] = Past 30 Days, [2] = Past 31 - 60 Days"
+    sql:  CASE
+                WHEN DATEDIFF(day,CAST(date AS DATE),(CURRENT_DATE-3)) BETWEEN 0 AND 29 THEN 1
+                WHEN DATEDIFF(day,CAST(date AS DATE),(CURRENT_DATE-3)) BETWEEN 30 AND 59 THEN 2
+            END ;;
+  }
 
 }

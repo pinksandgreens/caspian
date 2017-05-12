@@ -111,6 +111,19 @@ view: google_analytics_top_line {
     sql: ${TABLE}.market ;;
   }
 
+  dimension: brand_country {
+    type: string
+    sql: CASE
+          WHEN ${TABLE}.market = 'Lifestyle US' THEN 'United States'
+          WHEN ${TABLE}.market = 'Radio' THEN 'United Kingdom'
+          WHEN ${TABLE}.market = 'Specialist' THEN 'United Kingdom'
+          WHEN ${TABLE}.market = 'Lifestyle ' THEN 'United Kingdom'
+          WHEN ${TABLE}.market = 'Lifestyle AU' THEN 'Australia'
+          WHEN ${TABLE}.market = 'Lifestyle NZ' THEN 'New Zealand'
+          ELSE ${TABLE}.market
+         END;;
+  }
+
   dimension: country {
     label: "UK/Overseas"
     type: string
@@ -145,7 +158,7 @@ view: google_analytics_top_line {
   dimension_group: date {
     label: "Recorded"
     type: time
-    timeframes: [date, week, month, month_num, year]
+    timeframes: [date, week, month, month_num, month_name, day_of_month, year]
     convert_tz: no
     sql: TO_DATE(${TABLE}.date,'YYYY-MM-DD') ;;
   }

@@ -107,5 +107,11 @@ explore: youtube_videos {
   explore: jr_yt_onsite_offsite_revenue {
     label: "YouTube On-Site/Off-site Revenue and Views"
 
+    join: social_youtube_advanced {
+      type: left_outer
+      relationship: one_to_one
+      sql_on: ${jr_yt_onsite_offsite_revenue.video_id} = ${social_youtube_advanced.video_id} ;;
+    }
+
 
   }

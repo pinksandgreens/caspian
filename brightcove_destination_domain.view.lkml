@@ -2,15 +2,15 @@ view: brightcove_destination_domain {
   derived_table: {
     sql: SELECT
       "all"."date" AS all_date,
-      "all"."video" AS all_video,
-      "all"."destination_domain" AS all_destination_domain,
-      "all"."video_view" AS all_views,
-      "onsite"."destination_domain" AS onsite_domain,
-      "onsite"."video_view" AS onsite_views,
-      "offsite"."destination_domain" AS offsite_domain,
-      "offsite"."video_view" AS offsite_views,
+      "all".video AS all_video,
+      "all".destination_domain AS all_destination_domain,
+      "all".video_view AS all_views,
+      onsite.destination_domain AS onsite_domain,
+      onsite.video_view AS onsite_views,
+      offsite.destination_domain AS offsite_domain,
+      offsite.video_view AS offsite_views,
       bauer_non_brand_domain.destination_domain AS bauer_other_domain,
-      "bauer_non_brand_domain"."video_view" AS bauer_other_views
+      bauer_non_brand_domain.video_view AS bauer_other_views
     FROM
       (SELECT
           date,
@@ -102,5 +102,14 @@ view: brightcove_destination_domain {
     sql: ${TABLE}.offsite_views ;;
   }
 
+  dimension: 30_day_buckets  {
+    type: number
+    label: "30 Days"
+    description: "Bucket [1] = Past 30 Days, [2] = Past 31 - 60 Days"
+    sql:  CASE
+                WHEN DATEDIFF(day,CAST(all_date AS DATE),(CURRENT_DATE-3)) BETWEEN 0 AND 29 THEN 1
+                WHEN DATEDIFF(day,CAST(all_date AS DATE),(CURRENT_DATE-3)) BETWEEN 30 AND 59 THEN 2
+            END ;;
+  }
 
 }

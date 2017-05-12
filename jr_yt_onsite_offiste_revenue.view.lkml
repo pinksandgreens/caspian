@@ -38,7 +38,7 @@ view: jr_yt_onsite_offsite_revenue {
               IF(SUM((views + red_views)) IS NULL, 0, SUM((views + red_views))) AS daily_yt_onsite_views
             FROM
               Youtube.p_content_owner_playback_location_a2_Youtube
-            WHERE TIMESTAMP(date) BETWEEN DATE_ADD(TIMESTAMP(CURRENT_DATE()),-32,"DAY") AND DATE_ADD(TIMESTAMP(CURRENT_DATE()),-3,"DAY") AND (playback_location_type = 0 OR playback_location_type = 2 OR playback_location_type = 5)
+            WHERE TIMESTAMP(date) BETWEEN DATE_ADD(TIMESTAMP(CURRENT_DATE()),-62,"DAY") AND DATE_ADD(TIMESTAMP(CURRENT_DATE()),-3,"DAY") AND (playback_location_type = 0 OR playback_location_type = 2 OR playback_location_type = 5)
             GROUP BY date,channel_id,video_id) AS A
           LEFT OUTER JOIN
             (SELECT --Seperate out external Viewing Activity
@@ -48,7 +48,7 @@ view: jr_yt_onsite_offsite_revenue {
               IF(SUM((views + red_views)) IS NULL, 0, SUM((views + red_views))) AS daily_external_views
             FROM
               Youtube.p_content_owner_playback_location_a2_Youtube
-            WHERE TIMESTAMP(date) BETWEEN DATE_ADD(TIMESTAMP(CURRENT_DATE()),-32,"DAY") AND DATE_ADD(TIMESTAMP(CURRENT_DATE()),-3,"DAY") AND playback_location_type = 1
+            WHERE TIMESTAMP(date) BETWEEN DATE_ADD(TIMESTAMP(CURRENT_DATE()),-62,"DAY") AND DATE_ADD(TIMESTAMP(CURRENT_DATE()),-3,"DAY") AND playback_location_type = 1
             GROUP BY date,channel_id,video_id) AS B
           ON A.video_id = B.video_id AND A.date = B.date) AS playback_table
         LEFT JOIN
@@ -59,7 +59,7 @@ view: jr_yt_onsite_offsite_revenue {
            AVG(estimated_cpm) AS daily_avg_estimated_cpm
           FROM
             Youtube.p_content_owner_estimated_revenue_a1_Youtube
-          WHERE TIMESTAMP(date) BETWEEN DATE_ADD(TIMESTAMP(CURRENT_DATE()),-32,"DAY") AND DATE_ADD(TIMESTAMP(CURRENT_DATE()),-3,"DAY")
+          WHERE TIMESTAMP(date) BETWEEN DATE_ADD(TIMESTAMP(CURRENT_DATE()),-62,"DAY") AND DATE_ADD(TIMESTAMP(CURRENT_DATE()),-3,"DAY")
           GROUP BY date,video_id) AS revenue_table
         ON playback_table.video_id = revenue_table.video_id AND playback_table.Date = revenue_table.date
         ORDER BY Date ASC
@@ -180,25 +180,38 @@ view: jr_yt_onsite_offsite_revenue {
   measure: daily_estimated_partner_revenue {
     label: "Est. Revenue"
     type: sum
-    sql: ${TABLE}.daily_estimated_partner_revenue ;;
+    sql: ${TABLE}.daily_estimated_partner_revenue * 0.77 ;;
+    value_format_name: gbp
   }
 
   measure: daily_onsite_yt_revenue {
     label: "Est. Onsite Revenue"
     type: sum
-    sql: ${TABLE}.daily_onsite_yt_revenue ;;
+    sql: ${TABLE}.daily_onsite_yt_revenue * 0.77 ;;
+    value_format_name: gbp
   }
 
   measure: daily_offsite_revenue {
     label: "Est. Offsite Revenue"
     type: sum
-    sql: ${TABLE}.daily_offsite_revenue ;;
+    sql: ${TABLE}.daily_offsite_revenue * 0.77 ;;
+    value_format_name: gbp
   }
 
   measure: daily_avg_estimated_cpm {
     label: "Est. CPM"
     type: average
     sql: ${TABLE}.daily_avg_estimated_cpm ;;
+  }
+
+  dimension: 30_day_buckets  {
+    type: number
+    label: "30 Days"
+    description: "Bucket [1] = Past 30 Days, [2] = Past 31 - 60 Days"
+    sql:  CASE
+                WHEN DATEDIFF(DATE_ADD(CURRENT_TIMESTAMP(),-3,"DAY"),TIMESTAMP(${TABLE}.Date)) BETWEEN 0 AND 29 THEN 1
+                WHEN DATEDIFF(DATE_ADD(CURRENT_TIMESTAMP(),-3,"DAY"),TIMESTAMP(${TABLE}.Date)) BETWEEN 30 AND 59 THEN 2
+            END ;;
   }
 
   #measure: daily_onsite_avg_estimated_cpm {

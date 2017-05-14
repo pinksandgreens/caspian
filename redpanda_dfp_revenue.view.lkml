@@ -16,7 +16,7 @@ view: dfp_revenue {
   measure: column_ad_exchange_line_item_level_revenue {
     label: "Adx Line Item Revenue"
     type: sum
-    value_format: "\£0.0000"
+    value_format_name: gbp
     sql: ${TABLE}."column.ad_exchange_line_item_level_revenue"::float/1000000 ;;
   }
 

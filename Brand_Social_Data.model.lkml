@@ -159,7 +159,6 @@ explore: brightcove_destination_domain {
 
 
 
-
 #     - join: ga_radio_twitter_data
 #       type: inner
 #       relationship: many_to_many

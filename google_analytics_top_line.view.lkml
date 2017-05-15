@@ -117,9 +117,10 @@ view: google_analytics_top_line {
           WHEN ${TABLE}.market = 'Lifestyle US' THEN 'United States'
           WHEN ${TABLE}.market = 'Radio' THEN 'United Kingdom'
           WHEN ${TABLE}.market = 'Specialist' THEN 'United Kingdom'
-          WHEN ${TABLE}.market = 'Lifestyle ' THEN 'United Kingdom'
+          WHEN ${TABLE}.market = 'Lifestyle' THEN 'United Kingdom'
           WHEN ${TABLE}.market = 'Lifestyle AU' THEN 'Australia'
           WHEN ${TABLE}.market = 'Lifestyle NZ' THEN 'New Zealand'
+          WHEN ${TABLE}.market = 'HBauer' THEN 'United Kingdom'
           ELSE ${TABLE}.market
          END;;
   }

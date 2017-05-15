@@ -247,6 +247,11 @@ view: google_analytics_top_line {
     sql: ${TABLE}.sessions ;;
   }
 
+  measure: pages_per_session {
+    type: number
+    sql: ${page_views}/${sessions} ;;
+  }
+
 
   measure: unique_users {
     hidden: no

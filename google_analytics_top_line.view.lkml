@@ -26,6 +26,7 @@ view: google_analytics_top_line {
          WHEN SPLIT_PART(${TABLE}.brand, '|', 2) = 'Radio Aire' THEN 'Aire'
          WHEN SPLIT_PART(${TABLE}.brand, '|', 2) = 'Viking Radio' THEN 'Viking'
          WHEN SPLIT_PART(${TABLE}.brand, '|', 2) = 'Radio Borders' THEN 'Borders'
+         WHEN SPLIT_PART(${TABLE}.brand, '|', 2) = 'Westsound' THEN 'Westsound Dumfries'
          ELSE SPLIT_PART(${TABLE}.brand, '|', 2)
         END;;
   }
@@ -249,6 +250,7 @@ view: google_analytics_top_line {
 
   measure: pages_per_session {
     type: number
+    value_format: "0.00"
     sql: ${page_views}/${sessions} ;;
   }
 

@@ -134,7 +134,7 @@ view: jr_yt_onsite_offsite_revenue {
           WHEN ${TABLE}.channel_id = 'UCwWyFRy2l6aUFMsRemP51Sw' THEN 'Practical Photography Magazine'
           WHEN ${TABLE}.channel_id = 'UCr6y-jKLdgQPWrt-O5LrRHQ' THEN 'TV Choice'
         ELSE
-          '3rd Party'
+          'Claimed Content'
         END
 ;;
   }

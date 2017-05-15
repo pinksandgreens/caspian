@@ -15,7 +15,19 @@ view: google_analytics_top_line {
 
   dimension: brand_name {
     type: string
-    sql: SPLIT_PART(${TABLE}.brand, '|', 2) ;;
+    sql: CASE
+         WHEN SPLIT_PART(${TABLE}.brand, '|', 2) = 'Radio Clyde' THEN 'Clyde'
+         WHEN SPLIT_PART(${TABLE}.brand, '|', 2) = 'Radio Forth' THEN 'Forth'
+         WHEN SPLIT_PART(${TABLE}.brand, '|', 2) = 'Key Radio' THEN 'Key'
+         WHEN SPLIT_PART(${TABLE}.brand, '|', 2) = 'Radio City' THEN 'City'
+         WHEN SPLIT_PART(${TABLE}.brand, '|', 2) = 'Metro Radio' THEN 'Metro'
+         WHEN SPLIT_PART(${TABLE}.brand, '|', 2) = 'Radio Hallam' THEN 'Hallam'
+         WHEN SPLIT_PART(${TABLE}.brand, '|', 2) = 'Radio Tay' THEN 'Tay'
+         WHEN SPLIT_PART(${TABLE}.brand, '|', 2) = 'Radio Aire' THEN 'Aire'
+         WHEN SPLIT_PART(${TABLE}.brand, '|', 2) = 'Viking Radio' THEN 'Viking'
+         WHEN SPLIT_PART(${TABLE}.brand, '|', 2) = 'Radio Borders' THEN 'Borders'
+         ELSE SPLIT_PART(${TABLE}.brand, '|', 2)
+        END;;
   }
 
   dimension: brand123 {

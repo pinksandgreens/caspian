@@ -886,7 +886,7 @@ view: ias {
       #     WHEN ${TABLE}.invalidtraffictype LIKE '%2%' THEN 'Sophisticated invalid traffic'
   }
 
-  measure: platformtype {
+  dimension: platformtype {
     type: string
     view_label: "Measures"
     label: "Device Category"

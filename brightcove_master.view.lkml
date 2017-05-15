@@ -225,8 +225,8 @@ view: brightcove_master {
     label: "30 Days"
     description: "Bucket [1] = Past 30 Days, [2] = Past 31 - 60 Days"
     sql:  CASE
-                WHEN DATEDIFF(day,CAST(date AS DATE),(CURRENT_DATE-3)) BETWEEN 0 AND 29 THEN 1
-                WHEN DATEDIFF(day,CAST(date AS DATE),(CURRENT_DATE-3)) BETWEEN 30 AND 59 THEN 2
+                WHEN DATEDIFF(day,CAST(date AS DATE),(CURRENT_DATE-3)) BETWEEN 3 AND 32 THEN 1 --Amended range for Gregs Presentation
+                WHEN DATEDIFF(day,CAST(date AS DATE),(CURRENT_DATE-3)) BETWEEN 33 AND 62 THEN 2 --Amended range for Gregs Presentation
             END ;;
   }
 

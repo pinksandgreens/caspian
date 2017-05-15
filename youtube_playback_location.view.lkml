@@ -119,8 +119,8 @@ view: youtube_playback_location {
     label: "30 Days"
     description: "Bucket [1] = Past 30 Days, [2] = Past 31 - 60 Days"
     sql:  CASE
-                WHEN DATEDIFF(DATE_ADD(CURRENT_TIMESTAMP(),-3,"DAY"),TIMESTAMP(${TABLE}.date)) BETWEEN 0 AND 29 THEN 1
-                WHEN DATEDIFF(DATE_ADD(CURRENT_TIMESTAMP(),-3,"DAY"),TIMESTAMP(${TABLE}.date)) BETWEEN 30 AND 59 THEN 2
+                WHEN DATEDIFF(DATE_ADD(CURRENT_TIMESTAMP(),-3,"DAY"),TIMESTAMP(${TABLE}.date)) BETWEEN 3 AND 33 THEN 1
+                WHEN DATEDIFF(DATE_ADD(CURRENT_TIMESTAMP(),-3,"DAY"),TIMESTAMP(${TABLE}.date)) BETWEEN 33 AND 62 THEN 2
             END ;;
   }
 

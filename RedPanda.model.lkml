@@ -33,12 +33,14 @@ explore: appnexus {
 }
 
 explore: dfp_devices {
+  label: "DFP Devices"
   hidden: no
   sql_table_name: ad_platform.dfp_devices ;;
   persist_for: "6 hour"
 }
 
 explore: dfp_key_values {
+  label: "DFP Key Values"
   hidden: no
   sql_table_name: ad_platform.dfp_key_values ;;
   persist_for: "6 hour"
@@ -120,9 +122,18 @@ explore: ias {
 }
 
 explore: dfp_revenue {
-  label: "Dfp Revenue"
+  label: "DFP Revenue"
   hidden: no
   sql_table_name: ad_platform.dfp_revenue ;;
+  persist_for: "6 hour"
+
+}
+
+
+explore: dfp_reach {
+  label: "DFP Reach"
+  hidden: no
+  sql_table_name: ad_platform.dfp_reach ;;
   persist_for: "6 hour"
 
 }

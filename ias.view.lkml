@@ -268,30 +268,35 @@ view: ias {
 
   dimension: fullyinview0s {
     type: string
+    hidden: yes
     view_label: "Viewability Metrics 100%"
     sql: ${TABLE}.fullyinview0s ;;
   }
 
   dimension: fullyinview15s {
     type: string
+    hidden: yes
     view_label: "Viewability Metrics 100%"
     sql: ${TABLE}.fullyinview15s ;;
   }
 
   dimension: fullyinview1s {
     type: string
+    hidden: yes
     view_label: "Viewability Metrics 100%"
     sql: ${TABLE}.fullyinview1s ;;
   }
 
   dimension: fullyinview5s {
     type: string
+    hidden: yes
     view_label: "Viewability Metrics 100%"
     sql: ${TABLE}.fullyinview5s ;;
   }
 
   dimension: fullyinviewtime {
     type: string
+    hidden: yes
     view_label: "Viewability Metrics 100%"
     sql: ${TABLE}.fullyinviewtime ;;
   }
@@ -301,6 +306,7 @@ view: ias {
 
   dimension: invideosample {
     type:  string
+    hidden: yes
     label: "In Video Sample"
     view_label: "Video Only Fields"
     sql:CASE
@@ -311,66 +317,77 @@ view: ias {
 
   dimension: video1qcompleted {
     type: string
+    hidden: yes
     view_label: "Video Only Fields"
     sql: ${TABLE}.video1qcompleted ;;
   }
 
   dimension: video1qinview {
     type: string
+    hidden: yes
     view_label: "Video Only Fields"
     sql: ${TABLE}.video1qinview ;;
   }
 
   dimension: video2qcompleted {
     type: string
+    hidden: yes
     view_label: "Video Only Fields"
     sql: ${TABLE}.video2qcompleted ;;
   }
 
   dimension: video2qinview {
     type: string
+    hidden: yes
     view_label: "Video Only Fields"
     sql: ${TABLE}.video2qinview ;;
   }
 
   dimension: video3qcompleted {
     type: string
+    hidden: yes
     view_label: "Video Only Fields"
     sql: ${TABLE}.video3qcompleted ;;
   }
 
   dimension: video3qinview {
     type: string
+    hidden: yes
     view_label: "Video Only Fields"
     sql: ${TABLE}.video3qinview ;;
   }
 
   dimension: video4qcompleted {
     type: string
+    hidden: yes
     view_label: "Video Only Fields"
     sql: ${TABLE}.video4qcompleted ;;
   }
 
   dimension: video4qinview {
     type: string
+    hidden: yes
     view_label: "Video Only Fields"
     sql: ${TABLE}.video4qinview ;;
   }
 
   dimension: videoinview {
     type: string
+    hidden: yes
     view_label: "Video Only Fields"
     sql: ${TABLE}.videoinview ;;
   }
 
   dimension: videomuted {
     type: string
+    hidden: yes
     view_label: "Video Only Fields"
     sql: ${TABLE}.videomuted ;;
   }
 
   dimension: videoneverstarted {
     type: string
+    hidden: yes
     view_label: "Video Only Fields"
     sql: ${TABLE}.videoneverstarted ;;
   }
@@ -589,6 +606,7 @@ view: ias {
 
   dimension: inviewtime {
     type: number
+    hidden: yes
     label: "In View Time"
     view_label: "View Time"
 #     needs casing but majority of data is 0 or 1 then 5 so no point bothering with decimals...
@@ -597,6 +615,7 @@ view: ias {
 
   dimension: inview1s {
     type: string
+    hidden: yes
     label: "In View 1 Second"
     view_label: "View Time"
     sql: ${TABLE}.inview1s ;;
@@ -604,6 +623,7 @@ view: ias {
 
   dimension: inview5s {
     type: string
+    hidden: yes
     label: "In View 5 Seconds"
     view_label: "View Time"
     sql: ${TABLE}.inview5s ;;
@@ -611,6 +631,7 @@ view: ias {
 
   dimension: inview15s {
     type: string
+    hidden: yes
     label: "In View 15 Seconds"
     view_label: "View Time"
     sql: ${TABLE}.inview15s ;;
@@ -863,6 +884,20 @@ view: ias {
       #     WHEN ${TABLE}.invalidtraffictype LIKE '%0%' THEN 'Not Suspicious'
       #     WHEN ${TABLE}.invalidtraffictype LIKE '%1%' THEN 'General Invalid Traffic'
       #     WHEN ${TABLE}.invalidtraffictype LIKE '%2%' THEN 'Sophisticated invalid traffic'
+  }
+
+  dimension: platformtype {
+    type: string
+    view_label: "Data Fields"
+    label: "Device Category"
+    sql: case
+         WHEN ${TABLE}.platform = 'IPHONE' THEN 'Mobile & Tablet'
+         WHEN ${TABLE}.platform = 'ANDROID_PHONE' THEN 'Mobile & Tablet'
+         WHEN ${TABLE}.platform = 'COMPUTER' THEN 'Desktop'
+         WHEN ${TABLE}.platform = 'IPAD' THEN 'Mobile & Tablet'
+         WHEN ${TABLE}.platform = 'ANDROID_TABLET' THEN 'Mobile & Tablet'
+         WHEN ${TABLE}.platform = 'MOBILE_OTHER' THEN 'Mobile & Tablet'
+          END ;;
   }
 
   measure: count {

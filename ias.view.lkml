@@ -888,7 +888,7 @@ view: ias {
 
   dimension: platformtype {
     type: string
-    view_label: "Measures"
+    view_label: "Data Fields"
     label: "Device Category"
     sql: case
          WHEN ${TABLE}.platform = 'IPHONE' THEN 'Mobile & Tablet'

@@ -59,6 +59,19 @@ view: ga_sessions_greatmagazines {
       sql: ${TABLE}.channelGrouping ;;
     }
 
+   dimension: email_type {
+    type: string
+    sql: CASE
+        WHEN ${TABLE}.trafficSource.campaign LIKE '%-E-B-%' THEN 'Newsletter'
+        WHEN ${TABLE}.trafficSource.campaign LIKE '%-E-M-%' THEN 'Marketing'
+        WHEN ${TABLE}.trafficSource.campaign LIKE '%-E-C-%' THEN 'Commercial'
+        WHEN ${TABLE}.trafficSource.campaign LIKE '%-e-b-%' THEN 'Newsletter'
+        WHEN ${TABLE}.trafficSource.campaign LIKE '%-e-m-%' THEN 'Marketing'
+        WHEN ${TABLE}.trafficSource.campaign LIKE '%-e-c-%' THEN 'Commercial'
+      END
+       ;;
+  }
+
     #${TABLE}.visitnumber || ${TABLE}.date ||
 
     dimension: custom_dimensions__index {

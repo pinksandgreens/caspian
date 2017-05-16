@@ -2314,9 +2314,7 @@ view: ga_sessions_planetradio {
       label: "Total Pageviews"
       type: sum_distinct
       sql_distinct_key: ${uu_key} ;;
-      sql: CASE
-            WHEN ${TABLE}.hits.type = 'PAGE' THEN ${TABLE}.totals.pageviews
-          END ;;
+      sql: ${TABLE}.totals.pageviews ;;
       drill_fields: [detail*]
     }
 

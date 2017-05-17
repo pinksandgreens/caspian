@@ -629,7 +629,7 @@ view: ga_sessions_planetradio {
     type: sum
     label: "Site Views"
     sql:  CASE
-            WHEN REGEXP_MATCH(${TABLE}.hits.page.pagePath, r'^(planetradio\.co\.uk\/absolute-80s\/.*|player\.absoluteradio\.co\.uk)') AND ${TABLE}.hits.type = 'PAGE' THEN 1
+            WHEN REGEXP_MATCH(${TABLE}.hits.page.pagePath, r'^(planetradio\.co\.uk\/absolute-.*|player\.absoluteradio.*)') AND ${TABLE}.hits.type = 'PAGE' THEN 1
             --WHEN REGEXP_MATCH(${TABLE}.hits.page.pagePath, r'^(planetradio\.co\.uk\/absolute-classic-rock\/.*|radioplayer\.absolute.*\.co\.uk)') AND ${TABLE}.hits.type = 'PAGE' THEN 1
             --WHEN REGEXP_MATCH(${TABLE}.hits.page.pagePath, r'^(planetradio\.co\.uk\/absolute-radio\/.*|radioplayer\.absolute.*\.co\.uk)') AND ${TABLE}.hits.type = 'PAGE' THEN 1
             --WHEN REGEXP_MATCH(${TABLE}.hits.page.pagePath, r'^(planetradio\.co\.uk\/absolute-radio-00s\/.*|radioplayer\.absolute.*\.co\.uk)') AND ${TABLE}.hits.type = 'PAGE' THEN 1
@@ -639,16 +639,16 @@ view: ga_sessions_planetradio {
             --WHEN REGEXP_MATCH(${TABLE}.hits.page.pagePath, r'^(planetradio\.co\.uk\/aire\/.*|radioplayer\.aire.*\.co\.uk') AND ${TABLE}.hits.type = 'PAGE' THEN 1
             --WHEN REGEXP_MATCH(${TABLE}.hits.page.pagePath, r'^(planetradio\.co\.uk\/aire-2\/.*|radioplayer\.aire-2.*\.co\.uk') AND ${TABLE}.hits.type = 'PAGE' THEN 1
             --WHEN REGEXP_MATCH(${TABLE}.hits.page.pagePath, r'^(planetradio\.co\.uk\/aire-3\/.*|radioplayer\.aire-3.*\.co\.uk') AND ${TABLE}.hits.type = 'PAGE' THEN 1
-            WHEN REGEXP_MATCH(${TABLE}.hits.page.pagePath, r'^(planetradio\.co\.uk\/borders\/.*|radioplayer\.radioborders\.com)') AND ${TABLE}.hits.type = 'PAGE' THEN 1
-            WHEN REGEXP_MATCH(${TABLE}.hits.page.pagePath, r'^(planetradio\.co\.uk\/cfm\/.*|radioplayer\.cfmradio\.co\.uk)') AND ${TABLE}.hits.type = 'PAGE' THEN 1
-            WHEN REGEXP_MATCH(${TABLE}.hits.page.pagePath, r'^(planetradio\.co\.uk\/city\/.*|radioplayer\.radiocity\.co\.uk)') AND ${TABLE}.hits.type = 'PAGE' THEN 1
-            WHEN REGEXP_MATCH(${TABLE}.hits.page.pagePath, r'^(planetradio\.co\.uk\/city-2\/.*|radioplayer\.radiocity2\.co\.uk)') AND ${TABLE}.hits.type = 'PAGE' THEN 1
-            WHEN REGEXP_MATCH(${TABLE}.hits.page.pagePath, r'^(planetradio\.co\.uk\/city-3\/.*|radioplayer\.radiocity3\.co\.uk)') AND ${TABLE}.hits.type = 'PAGE' THEN 1
-            WHEN REGEXP_MATCH(${TABLE}.hits.page.pagePath, r'^(planetradio\.co\.uk\/city-talk\/.*|radioplayer\.radiocitytalk\.co\.uk)') AND ${TABLE}.hits.type = 'PAGE' THEN 1
-            WHEN REGEXP_MATCH(${TABLE}.hits.page.pagePath, r'^(planetradio\.co\.uk\/clyde\/.*|radioplayer\.clyde1\.com)') AND ${TABLE}.hits.type = 'PAGE' THEN 1
-            WHEN REGEXP_MATCH(${TABLE}.hits.page.pagePath, r'^(planetradio\.co\.uk\/clyde-2\/.*|radioplayer\.clyde2\.com)') AND ${TABLE}.hits.type = 'PAGE' THEN 1
-            WHEN REGEXP_MATCH(${TABLE}.hits.page.pagePath, r'^(planetradio\.co\.uk\/clyde-3\/.*|radioplayer\.clyde3\.com)') AND ${TABLE}.hits.type = 'PAGE' THEN 1
-            WHEN REGEXP_MATCH(${TABLE}.hits.page.pagePath, r'^(planetradio\.co\.uk\/cool-fm\/.*|radioplayer\.coolfm\.co\.uk)') AND ${TABLE}.hits.type = 'PAGE' THEN 1
+            WHEN REGEXP_MATCH(${TABLE}.hits.page.pagePath, r'^(planetradio\.co\.uk\/borders\/.*|radioplayer\.radioborders.*)') AND ${TABLE}.hits.type = 'PAGE' THEN 1
+            WHEN REGEXP_MATCH(${TABLE}.hits.page.pagePath, r'^(planetradio\.co\.uk\/cfm\/.*|radioplayer\.cfmradio.*)') AND ${TABLE}.hits.type = 'PAGE' THEN 1
+            WHEN REGEXP_MATCH(${TABLE}.hits.page.pagePath, r'^(planetradio\.co\.uk\/city\/.*|radioplayer\.radiocity.*)') AND ${TABLE}.hits.type = 'PAGE' THEN 1
+            WHEN REGEXP_MATCH(${TABLE}.hits.page.pagePath, r'^(planetradio\.co\.uk\/city-2\/.*|radioplayer\.radiocity2.*)') AND ${TABLE}.hits.type = 'PAGE' THEN 1
+            WHEN REGEXP_MATCH(${TABLE}.hits.page.pagePath, r'^(planetradio\.co\.uk\/city-3\/.*|radioplayer\.radiocity3.*)') AND ${TABLE}.hits.type = 'PAGE' THEN 1
+            WHEN REGEXP_MATCH(${TABLE}.hits.page.pagePath, r'^(planetradio\.co\.uk\/city-talk\/.*|radioplayer\.radiocitytalk.*)') AND ${TABLE}.hits.type = 'PAGE' THEN 1
+            WHEN REGEXP_MATCH(${TABLE}.hits.page.pagePath, r'^(planetradio\.co\.uk\/clyde\/.*|radioplayer\.clyde1.*)') AND ${TABLE}.hits.type = 'PAGE' THEN 1
+            WHEN REGEXP_MATCH(${TABLE}.hits.page.pagePath, r'^(planetradio\.co\.uk\/clyde-2\/.*|radioplayer\.clyde2.*)') AND ${TABLE}.hits.type = 'PAGE' THEN 1
+            WHEN REGEXP_MATCH(${TABLE}.hits.page.pagePath, r'^(planetradio\.co\.uk\/clyde-3\/.*|radioplayer\.clyde3.*)') AND ${TABLE}.hits.type = 'PAGE' THEN 1
+            WHEN REGEXP_MATCH(${TABLE}.hits.page.pagePath, r'^(planetradio\.co\.uk\/cool-fm\/.*|radioplayer\.coolfm.*)') AND ${TABLE}.hits.type = 'PAGE' THEN 1
             --WHEN REGEXP_MATCH(${TABLE}.hits.page.pagePath, r'^(planetradio\.co\.uk\/downtown\/.*|radioplayer\.downtown.*\.co\.uk') AND ${TABLE}.hits.type = 'PAGE' THEN 1
             --WHEN REGEXP_MATCH(${TABLE}.hits.page.pagePath, r'^(planetradio\.co\.uk\/downtown-country\/.*|radioplayer\.downtown-country.*\.co\.uk') AND ${TABLE}.hits.type = 'PAGE' THEN 1
             --WHEN REGEXP_MATCH(${TABLE}.hits.page.pagePath, r'^(planetradio\.co\.uk\/forth\/.*|radioplayer\.forth.*\.co\.uk') AND ${TABLE}.hits.type = 'PAGE' THEN 1
@@ -660,13 +660,13 @@ view: ga_sessions_planetradio {
             --WHEN REGEXP_MATCH(${TABLE}.hits.page.pagePath, r'^(planetradio\.co\.uk\/hallam\/.*|radioplayer\.hallam.*\.co\.uk') AND ${TABLE}.hits.type = 'PAGE' THEN 1
             --WHEN REGEXP_MATCH(${TABLE}.hits.page.pagePath, r'^(planetradio\.co\.uk\/hallam-2\/.*|radioplayer\.hallam-2.*\.co\.uk') AND ${TABLE}.hits.type = 'PAGE' THEN 1
             --WHEN REGEXP_MATCH(${TABLE}.hits.page.pagePath, r'^(planetradio\.co\.uk\/hallam-3\/.*|radioplayer\.hallam-3.*\.co\.uk') AND ${TABLE}.hits.type = 'PAGE' THEN 1
-            WHEN REGEXP_MATCH(${TABLE}.hits.page.pagePath, r'^(planetradio\.co\.uk\/heat\/.*|radioplayer\.heatworld\.com)') AND ${TABLE}.hits.type = 'PAGE' THEN 1
-            WHEN REGEXP_MATCH(${TABLE}.hits.page.pagePath, r'^(planetradio\.co\.uk\/hits\/.*|radioplayer\.thehitsradio\.com)') AND ${TABLE}.hits.type = 'PAGE' THEN 1
-            WHEN REGEXP_MATCH(${TABLE}.hits.page.pagePath, r'^(planetradio\.co\.uk\/kerrang\/.*|radioplayer\.kerrangradio\.co\.uk)') AND ${TABLE}.hits.type = 'PAGE' THEN 1
+            WHEN REGEXP_MATCH(${TABLE}.hits.page.pagePath, r'^(planetradio\.co\.uk\/heat\/.*|radioplayer\.heatworld.*)') AND ${TABLE}.hits.type = 'PAGE' THEN 1
+            WHEN REGEXP_MATCH(${TABLE}.hits.page.pagePath, r'^(planetradio\.co\.uk\/hits\/.*|radioplayer\.thehitsradio.*)') AND ${TABLE}.hits.type = 'PAGE' THEN 1
+            WHEN REGEXP_MATCH(${TABLE}.hits.page.pagePath, r'^(planetradio\.co\.uk\/kerrang\/.*|radioplayer\.kerrangradio.*)') AND ${TABLE}.hits.type = 'PAGE' THEN 1
             --WHEN REGEXP_MATCH(${TABLE}.hits.page.pagePath, r'^(planetradio\.co\.uk\/key\/.*|radioplayer\.key.*\.co\.uk') AND ${TABLE}.hits.type = 'PAGE' THEN 1
             --WHEN REGEXP_MATCH(${TABLE}.hits.page.pagePath, r'^(planetradio\.co\.uk\/key-2\/.*|radioplayer\.key-2.*\.co\.uk') AND ${TABLE}.hits.type = 'PAGE' THEN 1
             --WHEN REGEXP_MATCH(${TABLE}.hits.page.pagePath, r'^(planetradio\.co\.uk\/key-3\/.*|radioplayer\.key-3.*\.co\.uk') AND ${TABLE}.hits.type = 'PAGE' THEN 1
-            WHEN REGEXP_MATCH(${TABLE}.hits.page.pagePath, r'^(^planetradio\.co\.uk/kiss|^radioplayer\.kissfmuk\.com|^kissfresh\.kissfmuk\.com|^kisstory\.kissfmuk\.com)') AND ${TABLE}.hits.type = 'PAGE' THEN 1
+            WHEN REGEXP_MATCH(${TABLE}.hits.page.pagePath, r'^(planetradio\.co\.uk/kiss|radioplayer\.kissfmuk\.com|kissfresh\.kissfmuk\.com|kisstory\.kissfmuk\.com)') AND ${TABLE}.hits.type = 'PAGE' THEN 1
             --WHEN REGEXP_MATCH(${TABLE}.hits.page.pagePath, r'^(planetradio\.co\.uk\/kiss-fresh\/.*|radioplayer\.kiss-fresh.*\.co\.uk') AND ${TABLE}.hits.type = 'PAGE' THEN 1
             --WHEN REGEXP_MATCH(${TABLE}.hits.page.pagePath, r'^(planetradio\.co\.uk\/kisstory\/.*|radioplayer\.kisstory.*\.co\.uk') AND ${TABLE}.hits.type = 'PAGE' THEN 1
             --WHEN REGEXP_MATCH(${TABLE}.hits.page.pagePath, r'^(planetradio\.co\.uk\/magic\/.*|radioplayer\.magic.*\.co\.uk') AND ${TABLE}.hits.type = 'PAGE' THEN 1
@@ -2358,75 +2358,75 @@ view: ga_sessions_planetradio {
     label: "Radio Brand"
     type: string
     sql: CASE
-          WHEN REGEXP_MATCH(${TABLE}.hits.page.pagePath, r'^planetradio\.co\.uk\/absolute-.*') THEN 'Absolute Radio'
-          --WHEN REGEXP_MATCH(${TABLE}.hits.page.pagePath, r'^planetradio\.co\.uk\/absolute-.*') THEN 'Absolute Classic Rock'
-          --WHEN REGEXP_MATCH(${TABLE}.hits.page.pagePath, r'^planetradio\.co\.uk\/absolute-radio\/.*') THEN 'Absolute Radio'
-          --WHEN REGEXP_MATCH(${TABLE}.hits.page.pagePath, r'^planetradio\.co\.uk\/absolute-radio-00s\/.*') THEN 'Absolute Radio 00s'
-          --WHEN REGEXP_MATCH(${TABLE}.hits.page.pagePath, r'^planetradio\.co\.uk\/absolute-radio-60s\/.*') THEN 'Absolute Radio 60s'
-          --WHEN REGEXP_MATCH(${TABLE}.hits.page.pagePath, r'^planetradio\.co\.uk\/absolute-radio-70s\/.*') THEN 'Absolute Radio 70s'
-          --WHEN REGEXP_MATCH(${TABLE}.hits.page.pagePath, r'^planetradio\.co\.uk\/absolute-radio-90s\/.*') THEN 'Absolute Radio 90s'
-          --WHEN REGEXP_MATCH(${TABLE}.hits.page.pagePath, r'^planetradio\.co\.uk\/aire\/.*') THEN 'Aire'
-          --WHEN REGEXP_MATCH(${TABLE}.hits.page.pagePath, r'^planetradio\.co\.uk\/aire-2\/.*') THEN 'Aire 2'
-          --WHEN REGEXP_MATCH(${TABLE}.hits.page.pagePath, r'^planetradio\.co\.uk\/aire-3\/.*') THEN 'Aire 3'
-          WHEN REGEXP_MATCH(${TABLE}.hits.page.pagePath, r'^planetradio\.co\.uk\/borders\/.*') THEN 'Borders'
-          WHEN REGEXP_MATCH(${TABLE}.hits.page.pagePath, r'^planetradio\.co\.uk\/cfm\/.*') THEN 'CFM'
-          WHEN REGEXP_MATCH(${TABLE}.hits.page.pagePath, r'^planetradio\.co\.uk\/city\/.*') THEN 'City'
-          WHEN REGEXP_MATCH(${TABLE}.hits.page.pagePath, r'^planetradio\.co\.uk\/city-2\/.*') THEN 'City 2'
-          WHEN REGEXP_MATCH(${TABLE}.hits.page.pagePath, r'^planetradio\.co\.uk\/city-3\/.*') THEN 'City 3'
-          WHEN REGEXP_MATCH(${TABLE}.hits.page.pagePath, r'^planetradio\.co\.uk\/city-talk\/.*') THEN 'City Talk'
-          WHEN REGEXP_MATCH(${TABLE}.hits.page.pagePath, r'^planetradio\.co\.uk\/clyde\/.*') THEN 'Clyde'
-          WHEN REGEXP_MATCH(${TABLE}.hits.page.pagePath, r'^planetradio\.co\.uk\/clyde-2\/.*') THEN 'Clyde 2'
-          WHEN REGEXP_MATCH(${TABLE}.hits.page.pagePath, r'^planetradio\.co\.uk\/clyde-3\/.*') THEN 'Clyde 3'
-          WHEN REGEXP_MATCH(${TABLE}.hits.page.pagePath, r'^planetradio\.co\.uk\/cool-fm\/.*') THEN 'Cool FM'
-          --WHEN REGEXP_MATCH(${TABLE}.hits.page.pagePath, r'^planetradio\.co\.uk\/downtown\/.*') THEN 'Downtown'
-          --WHEN REGEXP_MATCH(${TABLE}.hits.page.pagePath, r'^planetradio\.co\.uk\/downtown-country\/.*') THEN 'Downtown Country'
-          --WHEN REGEXP_MATCH(${TABLE}.hits.page.pagePath, r'^planetradio\.co\.uk\/forth\/.*') THEN 'Forth'
-          --WHEN REGEXP_MATCH(${TABLE}.hits.page.pagePath, r'^planetradio\.co\.uk\/forth-2\/.*') THEN 'Forth 2'
-          --WHEN REGEXP_MATCH(${TABLE}.hits.page.pagePath, r'^planetradio\.co\.uk\/forth-3\/.*') THEN 'Forth 3'
-          --WHEN REGEXP_MATCH(${TABLE}.hits.page.pagePath, r'^planetradio\.co\.uk\/free\/.*') THEN 'Free'
-          --WHEN REGEXP_MATCH(${TABLE}.hits.page.pagePath, r'^planetradio\.co\.uk\/free-80s\/.*') THEN 'Free 80S'
-          --WHEN REGEXP_MATCH(${TABLE}.hits.page.pagePath, r'^planetradio\.co\.uk\/gem-106\/.*') THEN 'Gem 106'
-          --WHEN REGEXP_MATCH(${TABLE}.hits.page.pagePath, r'^planetradio\.co\.uk\/hallam\/.*') THEN 'Hallam'
-          --WHEN REGEXP_MATCH(${TABLE}.hits.page.pagePath, r'^planetradio\.co\.uk\/hallam-2\/.*') THEN 'Hallam 2'
-          --WHEN REGEXP_MATCH(${TABLE}.hits.page.pagePath, r'^planetradio\.co\.uk\/hallam-3\/.*') THEN 'Hallam 3'
-          WHEN REGEXP_MATCH(${TABLE}.hits.page.pagePath, r'^planetradio\.co\.uk\/heat\/.*') THEN 'Heat'
-          WHEN REGEXP_MATCH(${TABLE}.hits.page.pagePath, r'^planetradio\.co\.uk\/hits\/.*') THEN 'Hits'
-          WHEN REGEXP_MATCH(${TABLE}.hits.page.pagePath, r'^planetradio\.co\.uk\/kerrang\/.*') THEN 'Kerrang'
-          --WHEN REGEXP_MATCH(${TABLE}.hits.page.pagePath, r'^planetradio\.co\.uk\/key\/.*') THEN 'Key'
-          --WHEN REGEXP_MATCH(${TABLE}.hits.page.pagePath, r'^planetradio\.co\.uk\/key-2\/.*') THEN 'Key 2'
-          --WHEN REGEXP_MATCH(${TABLE}.hits.page.pagePath, r'^planetradio\.co\.uk\/key-3\/.*') THEN 'Key 3'
-          WHEN REGEXP_MATCH(${TABLE}.hits.page.pagePath, r'^planetradio\.co\.uk\/kiss\/.*') THEN 'Kiss'
-          --WHEN REGEXP_MATCH(${TABLE}.hits.page.pagePath, r'^planetradio\.co\.uk\/kiss-fresh\/.*') THEN 'Kiss Fresh'
-          --WHEN REGEXP_MATCH(${TABLE}.hits.page.pagePath, r'^planetradio\.co\.uk\/kisstory\/.*') THEN 'Kisstory'
-          --WHEN REGEXP_MATCH(${TABLE}.hits.page.pagePath, r'^planetradio\.co\.uk\/magic\/.*') THEN 'Magic'
-          --WHEN REGEXP_MATCH(${TABLE}.hits.page.pagePath, r'^planetradio\.co\.uk\/magic-chilled\/.*') THEN 'Magic Chilled'
-          --WHEN REGEXP_MATCH(${TABLE}.hits.page.pagePath, r'^planetradio\.co\.uk\/magic-soul\/.*') THEN 'Magic Soul'
-          --WHEN REGEXP_MATCH(${TABLE}.hits.page.pagePath, r'^planetradio\.co\.uk\/mellow-magic\/.*') THEN 'Mellow Magic'
-          --WHEN REGEXP_MATCH(${TABLE}.hits.page.pagePath, r'^planetradio\.co\.uk\/metro\/.*') THEN 'Metro'
-          --WHEN REGEXP_MATCH(${TABLE}.hits.page.pagePath, r'^planetradio\.co\.uk\/metro-2\/.*') THEN 'Metro 2'
-          --WHEN REGEXP_MATCH(${TABLE}.hits.page.pagePath, r'^planetradio\.co\.uk\/metro-3\/.*') THEN 'Metro 3'
-          --WHEN REGEXP_MATCH(${TABLE}.hits.page.pagePath, r'^planetradio\.co\.uk\/mfr\/.*') THEN 'Mfr'
-          --WHEN REGEXP_MATCH(${TABLE}.hits.page.pagePath, r'^planetradio\.co\.uk\/mfr-2\/.*') THEN 'Mfr 2'
-          --WHEN REGEXP_MATCH(${TABLE}.hits.page.pagePath, r'^planetradio\.co\.uk\/mfr-3\/.*') THEN 'Mfr 3'
-          --WHEN REGEXP_MATCH(${TABLE}.hits.page.pagePath, r'^planetradio\.co\.uk\/northsound\/.*') THEN 'Northsound'
-          --WHEN REGEXP_MATCH(${TABLE}.hits.page.pagePath, r'^planetradio\.co\.uk\/northsound-2\/.*') THEN 'Northsound 2'
-          WHEN REGEXP_MATCH(${TABLE}.hits.page.pagePath, r'^planetradio\.co\.uk\/planet-rock\/.*') THEN 'Planet Rock'
-          WHEN REGEXP_MATCH(${TABLE}.hits.page.pagePath, r'^planetradio\.co\.uk\/rock-fm\/.*') THEN 'Rock FM'
-          WHEN REGEXP_MATCH(${TABLE}.hits.page.pagePath, r'^planetradio\.co\.uk\/rock-fm-2\/.*') THEN 'Rock FM 2'
-          WHEN REGEXP_MATCH(${TABLE}.hits.page.pagePath, r'^planetradio\.co\.uk\/rock-fm-3\/.*') THEN 'Rock FM 3'
-          WHEN REGEXP_MATCH(${TABLE}.hits.page.pagePath, r'^planetradio\.co\.uk\/tay\/.*') THEN 'Tay'
-          WHEN REGEXP_MATCH(${TABLE}.hits.page.pagePath, r'^planetradio\.co\.uk\/tay-2\/.*') THEN 'Tay 2'
-          WHEN REGEXP_MATCH(${TABLE}.hits.page.pagePath, r'^planetradio\.co\.uk\/tay-3\/.*') THEN 'Tay 3'
-          WHEN REGEXP_MATCH(${TABLE}.hits.page.pagePath, r'^planetradio\.co\.uk\/tfm\/.*') THEN 'Tfm'
-          WHEN REGEXP_MATCH(${TABLE}.hits.page.pagePath, r'^planetradio\.co\.uk\/tfm-2\/.*') THEN 'Tfm 2'
-          WHEN REGEXP_MATCH(${TABLE}.hits.page.pagePath, r'^planetradio\.co\.uk\/tfm-3\/.*') THEN 'Tfm 3'
-          WHEN REGEXP_MATCH(${TABLE}.hits.page.pagePath, r'^planetradio\.co\.uk\/viking\/.*') THEN 'Viking'
-          WHEN REGEXP_MATCH(${TABLE}.hits.page.pagePath, r'^planetradio\.co\.uk\/viking-2\/.*') THEN 'Viking 2'
-          WHEN REGEXP_MATCH(${TABLE}.hits.page.pagePath, r'^planetradio\.co\.uk\/viking-3\/.*') THEN 'Viking 3'
-          WHEN REGEXP_MATCH(${TABLE}.hits.page.pagePath, r'^planetradio\.co\.uk\/wave-105\/.*') THEN 'Wave 105'
-          --WHEN REGEXP_MATCH(${TABLE}.hits.page.pagePath, r'^planetradio\.co\.uk\/west\/.*') THEN 'West'
-          WHEN REGEXP_MATCH(${TABLE}.hits.page.pagePath, r'^planetradio\.co\.uk\/westsound\/.*') THEN 'Westsound'
-          WHEN REGEXP_MATCH(${TABLE}.hits.page.pagePath, r'^planetradio\.co\.uk\/westsound-fm\/.*') THEN 'Westsound FM'
+          WHEN REGEXP_MATCH(${TABLE}.hits.page.pagePath, r'^(planetradio\.co\.uk\/absolute-.*|player\.absoluteradio.*)') AND ${TABLE}.hits.type = 'PAGE' THEN 'Absolute Radio'
+          --WHEN REGEXP_MATCH(${TABLE}.hits.page.pagePath, r'^(planetradio\.co\.uk\/absolute-classic-rock\/.*|radioplayer\.absolute.*\.co\.uk)') AND ${TABLE}.hits.type = 'PAGE' THEN 'Absolute Classic Rock'
+          --WHEN REGEXP_MATCH(${TABLE}.hits.page.pagePath, r'^(planetradio\.co\.uk\/absolute-radio\/.*|radioplayer\.absolute.*\.co\.uk)') AND ${TABLE}.hits.type = 'PAGE' THEN 'Absolute Radio'
+          --WHEN REGEXP_MATCH(${TABLE}.hits.page.pagePath, r'^(planetradio\.co\.uk\/absolute-radio-00s\/.*|radioplayer\.absolute.*\.co\.uk)') AND ${TABLE}.hits.type = 'PAGE' THEN 'Absolute Radio 00s'
+          --WHEN REGEXP_MATCH(${TABLE}.hits.page.pagePath, r'^(planetradio\.co\.uk\/absolute-radio-60s\/.*|radioplayer\.absolute.*\.co\.uk)') AND ${TABLE}.hits.type = 'PAGE' THEN 'Absolute Radio 60s'
+          --WHEN REGEXP_MATCH(${TABLE}.hits.page.pagePath, r'^(planetradio\.co\.uk\/absolute-radio-70s\/.*|radioplayer\.absolute.*\.co\.uk)') AND ${TABLE}.hits.type = 'PAGE' THEN 'Absolute Radio 70s'
+          --WHEN REGEXP_MATCH(${TABLE}.hits.page.pagePath, r'^(planetradio\.co\.uk\/absolute-radio-90s\/.*|radioplayer\.absolute.*\.co\.uk)') AND ${TABLE}.hits.type = 'PAGE' THEN 'Absolute Radio 90s'
+          --WHEN REGEXP_MATCH(${TABLE}.hits.page.pagePath, r'^(planetradio\.co\.uk\/aire\/.*|radioplayer\.aire.*\.co\.uk') AND ${TABLE}.hits.type = 'PAGE' THEN 'Aire'
+          --WHEN REGEXP_MATCH(${TABLE}.hits.page.pagePath, r'^(planetradio\.co\.uk\/aire-2\/.*|radioplayer\.aire-2.*\.co\.uk') AND ${TABLE}.hits.type = 'PAGE' THEN 'Aire 2'
+          --WHEN REGEXP_MATCH(${TABLE}.hits.page.pagePath, r'^(planetradio\.co\.uk\/aire-3\/.*|radioplayer\.aire-3.*\.co\.uk') AND ${TABLE}.hits.type = 'PAGE' THEN 'Aire 3'
+          WHEN REGEXP_MATCH(${TABLE}.hits.page.pagePath, r'^(planetradio\.co\.uk\/borders\/.*|radioplayer\.radioborders\.com)') AND ${TABLE}.hits.type = 'PAGE' THEN 'Borders'
+          WHEN REGEXP_MATCH(${TABLE}.hits.page.pagePath, r'^(planetradio\.co\.uk\/cfm\/.*|radioplayer\.cfmradio.*)') AND ${TABLE}.hits.type = 'PAGE' THEN 'CFM'
+          WHEN REGEXP_MATCH(${TABLE}.hits.page.pagePath, r'^(planetradio\.co\.uk\/city\/.*|radioplayer\.radiocity.*)') AND ${TABLE}.hits.type = 'PAGE' THEN 'City'
+          WHEN REGEXP_MATCH(${TABLE}.hits.page.pagePath, r'^(planetradio\.co\.uk\/city-2\/.*|radioplayer\.radiocity2.*)') AND ${TABLE}.hits.type = 'PAGE' THEN 'City 2'
+          WHEN REGEXP_MATCH(${TABLE}.hits.page.pagePath, r'^(planetradio\.co\.uk\/city-3\/.*|radioplayer\.radiocity3.*)') AND ${TABLE}.hits.type = 'PAGE' THEN 'City 3'
+          WHEN REGEXP_MATCH(${TABLE}.hits.page.pagePath, r'^(planetradio\.co\.uk\/city-talk\/.*|radioplayer\.radiocitytalk.*)') AND ${TABLE}.hits.type = 'PAGE' THEN 'City Talk'
+          WHEN REGEXP_MATCH(${TABLE}.hits.page.pagePath, r'^(planetradio\.co\.uk\/clyde\/.*|radioplayer\.clyde1.*)') AND ${TABLE}.hits.type = 'PAGE' THEN 'Clyde'
+          WHEN REGEXP_MATCH(${TABLE}.hits.page.pagePath, r'^(planetradio\.co\.uk\/clyde-2\/.*|radioplayer\.clyde2.*)') AND ${TABLE}.hits.type = 'PAGE' THEN 'Clyde 2'
+          WHEN REGEXP_MATCH(${TABLE}.hits.page.pagePath, r'^(planetradio\.co\.uk\/clyde-3\/.*|radioplayer\.clyde3.*)') AND ${TABLE}.hits.type = 'PAGE' THEN 'Clyde 3'
+          WHEN REGEXP_MATCH(${TABLE}.hits.page.pagePath, r'^(planetradio\.co\.uk\/cool-fm\/.*|radioplayer\.coolfm.*)') AND ${TABLE}.hits.type = 'PAGE' THEN 'Cool FM'
+          --WHEN REGEXP_MATCH(${TABLE}.hits.page.pagePath, r'^(planetradio\.co\.uk\/downtown\/.*|radioplayer\.downtown.*\.co\.uk') AND ${TABLE}.hits.type = 'PAGE' THEN 'Downtown'
+          --WHEN REGEXP_MATCH(${TABLE}.hits.page.pagePath, r'^(planetradio\.co\.uk\/downtown-country\/.*|radioplayer\.downtown-country.*\.co\.uk') AND ${TABLE}.hits.type = 'PAGE' THEN 'Downtown Country'
+          --WHEN REGEXP_MATCH(${TABLE}.hits.page.pagePath, r'^(planetradio\.co\.uk\/forth\/.*|radioplayer\.forth.*\.co\.uk') AND ${TABLE}.hits.type = 'PAGE' THEN 'Forth'
+          --WHEN REGEXP_MATCH(${TABLE}.hits.page.pagePath, r'^(planetradio\.co\.uk\/forth-2\/.*|radioplayer\.forth-2.*\.co\.uk') AND ${TABLE}.hits.type = 'PAGE' THEN 'Forth 2'
+          --WHEN REGEXP_MATCH(${TABLE}.hits.page.pagePath, r'^(planetradio\.co\.uk\/forth-3\/.*|radioplayer\.forth-3.*\.co\.uk') AND ${TABLE}.hits.type = 'PAGE' THEN 'Forth 3'
+          --WHEN REGEXP_MATCH(${TABLE}.hits.page.pagePath, r'^(planetradio\.co\.uk\/free\/.*|radioplayer\.free.*\.co\.uk') AND ${TABLE}.hits.type = 'PAGE' THEN 'Free'
+          --WHEN REGEXP_MATCH(${TABLE}.hits.page.pagePath, r'^(planetradio\.co\.uk\/free-80s\/.*|radioplayer\.free-80s.*\.co\.uk') AND ${TABLE}.hits.type = 'PAGE' THEN 'Free 80S'
+          --WHEN REGEXP_MATCH(${TABLE}.hits.page.pagePath, r'^(planetradio\.co\.uk\/gem-106\/.*|radioplayer\.gem-106.*\.co\.uk') AND ${TABLE}.hits.type = 'PAGE' THEN 'Gem 106'
+          --WHEN REGEXP_MATCH(${TABLE}.hits.page.pagePath, r'^(planetradio\.co\.uk\/hallam\/.*|radioplayer\.hallam.*\.co\.uk') AND ${TABLE}.hits.type = 'PAGE' THEN 'Hallam'
+          --WHEN REGEXP_MATCH(${TABLE}.hits.page.pagePath, r'^(planetradio\.co\.uk\/hallam-2\/.*|radioplayer\.hallam-2.*\.co\.uk') AND ${TABLE}.hits.type = 'PAGE' THEN 'Hallam 2'
+          --WHEN REGEXP_MATCH(${TABLE}.hits.page.pagePath, r'^(planetradio\.co\.uk\/hallam-3\/.*|radioplayer\.hallam-3.*\.co\.uk') AND ${TABLE}.hits.type = 'PAGE' THEN 'Hallam 3'
+          WHEN REGEXP_MATCH(${TABLE}.hits.page.pagePath, r'^(planetradio\.co\.uk\/heat\/.*|radioplayer\.heatworld\.com)') AND ${TABLE}.hits.type = 'PAGE' THEN 'Heat'
+          WHEN REGEXP_MATCH(${TABLE}.hits.page.pagePath, r'^(planetradio\.co\.uk\/hits\/.*|radioplayer\.thehitsradio\.com)') AND ${TABLE}.hits.type = 'PAGE' THEN 'Hits'
+          WHEN REGEXP_MATCH(${TABLE}.hits.page.pagePath, r'^(planetradio\.co\.uk\/kerrang\/.*|radioplayer\.kerrangradio\.co\.uk)') AND ${TABLE}.hits.type = 'PAGE' THEN 'Kerrang'
+          --WHEN REGEXP_MATCH(${TABLE}.hits.page.pagePath, r'^(planetradio\.co\.uk\/key\/.*|radioplayer\.key.*\.co\.uk') AND ${TABLE}.hits.type = 'PAGE' THEN 'Key'
+          --WHEN REGEXP_MATCH(${TABLE}.hits.page.pagePath, r'^(planetradio\.co\.uk\/key-2\/.*|radioplayer\.key-2.*\.co\.uk') AND ${TABLE}.hits.type = 'PAGE' THEN 'Key 2'
+          --WHEN REGEXP_MATCH(${TABLE}.hits.page.pagePath, r'^(planetradio\.co\.uk\/key-3\/.*|radioplayer\.key-3.*\.co\.uk') AND ${TABLE}.hits.type = 'PAGE' THEN 'Key 3'
+          WHEN REGEXP_MATCH(${TABLE}.hits.page.pagePath, r'^(^planetradio\.co\.uk/kiss|^radioplayer\.kissfmuk\.com|^kissfresh\.kissfmuk\.com|^kisstory\.kissfmuk\.com)') AND ${TABLE}.hits.type = 'PAGE' THEN 'Kiss'
+          --WHEN REGEXP_MATCH(${TABLE}.hits.page.pagePath, r'^(planetradio\.co\.uk\/kiss-fresh\/.*|radioplayer\.kiss-fresh.*\.co\.uk') AND ${TABLE}.hits.type = 'PAGE' THEN 'Kiss Fresh'
+          --WHEN REGEXP_MATCH(${TABLE}.hits.page.pagePath, r'^(planetradio\.co\.uk\/kisstory\/.*|radioplayer\.kisstory.*\.co\.uk') AND ${TABLE}.hits.type = 'PAGE' THEN 'Kisstory'
+          --WHEN REGEXP_MATCH(${TABLE}.hits.page.pagePath, r'^(planetradio\.co\.uk\/magic\/.*|radioplayer\.magic.*\.co\.uk') AND ${TABLE}.hits.type = 'PAGE' THEN 'Magic'
+          --WHEN REGEXP_MATCH(${TABLE}.hits.page.pagePath, r'^(planetradio\.co\.uk\/magic-chilled\/.*|radioplayer\.magic-chilled.*\.co\.uk') AND ${TABLE}.hits.type = 'PAGE' THEN 'Magic Chilled'
+          --WHEN REGEXP_MATCH(${TABLE}.hits.page.pagePath, r'^(planetradio\.co\.uk\/magic-soul\/.*|radioplayer\.magic-soul.*\.co\.uk') AND ${TABLE}.hits.type = 'PAGE' THEN 'Magic Soul'
+          --WHEN REGEXP_MATCH(${TABLE}.hits.page.pagePath, r'^(planetradio\.co\.uk\/mellow-magic\/.*|radioplayer\.mellow-magic.*\.co\.uk') AND ${TABLE}.hits.type = 'PAGE' THEN 'Mellow Magic'
+          --WHEN REGEXP_MATCH(${TABLE}.hits.page.pagePath, r'^(planetradio\.co\.uk\/metro\/.*|radioplayer\.metro.*\.co\.uk') AND ${TABLE}.hits.type = 'PAGE' THEN 'Metro'
+          --WHEN REGEXP_MATCH(${TABLE}.hits.page.pagePath, r'^(planetradio\.co\.uk\/metro-2\/.*|radioplayer\.metro-2.*\.co\.uk') AND ${TABLE}.hits.type = 'PAGE' THEN 'Metro 2'
+          --WHEN REGEXP_MATCH(${TABLE}.hits.page.pagePath, r'^(planetradio\.co\.uk\/metro-3\/.*|radioplayer\.metro-3.*\.co\.uk') AND ${TABLE}.hits.type = 'PAGE' THEN 'Metro 3'
+          --WHEN REGEXP_MATCH(${TABLE}.hits.page.pagePath, r'^(planetradio\.co\.uk\/mfr\/.*|radioplayer\.mfr.*\.co\.uk') AND ${TABLE}.hits.type = 'PAGE' THEN 'Mfr'
+          --WHEN REGEXP_MATCH(${TABLE}.hits.page.pagePath, r'^(planetradio\.co\.uk\/mfr-2\/.*|radioplayer\.mfr-2.*\.co\.uk') AND ${TABLE}.hits.type = 'PAGE' THEN 'Mfr 2'
+          --WHEN REGEXP_MATCH(${TABLE}.hits.page.pagePath, r'^(planetradio\.co\.uk\/mfr-3\/.*|radioplayer\.mfr-3.*\.co\.uk') AND ${TABLE}.hits.type = 'PAGE' THEN 'Mfr 3'
+          --WHEN REGEXP_MATCH(${TABLE}.hits.page.pagePath, r'^(planetradio\.co\.uk\/northsound\/.*|radioplayer\.northsound.*\.co\.uk') AND ${TABLE}.hits.type = 'PAGE' THEN 'Northsound'
+          --WHEN REGEXP_MATCH(${TABLE}.hits.page.pagePath, r'^(planetradio\.co\.uk\/northsound-2\/.*|radioplayer\.northsound-2.*\.co\.uk') AND ${TABLE}.hits.type = 'PAGE' THEN 'Northsound 2'
+          WHEN REGEXP_MATCH(${TABLE}.hits.page.pagePath, r'^(planetradio\.co\.uk\/planet-rock\/.*|radioplayer\.planetrock.*)') AND ${TABLE}.hits.type = 'PAGE' THEN 'Planet Rock'
+          WHEN REGEXP_MATCH(${TABLE}.hits.page.pagePath, r'^(^planetradio\.co\.uk\/rock-fm\/.*|^radioplayer\.rockfm.*)') AND ${TABLE}.hits.type = 'PAGE' THEN 'Rock FM'
+          WHEN REGEXP_MATCH(${TABLE}.hits.page.pagePath, r'^(planetradio\.co\.uk\/rock-fm-2\/.*|^radioplayer\.rockfm2.*)') AND ${TABLE}.hits.type = 'PAGE' THEN 'Rock FM 2'
+          WHEN REGEXP_MATCH(${TABLE}.hits.page.pagePath, r'^(planetradio\.co\.uk\/rock-fm-3\/.*|^radioplayer\.rockfm3.*)') AND ${TABLE}.hits.type = 'PAGE' THEN 'Rock FM 3'
+          WHEN REGEXP_MATCH(${TABLE}.hits.page.pagePath, r'^(planetradio\.co\.uk\/tay\/.*|radioplayer\.tayfm.*)') AND ${TABLE}.hits.type = 'PAGE' THEN 'Tay'
+          WHEN REGEXP_MATCH(${TABLE}.hits.page.pagePath, r'^(planetradio\.co\.uk\/tay-2\/.*|radioplayer\.tay2.*)') AND ${TABLE}.hits.type = 'PAGE' THEN 'Tay 2'
+          WHEN REGEXP_MATCH(${TABLE}.hits.page.pagePath, r'^(planetradio\.co\.uk\/tay-3\/.*|radioplayer\.tay3.*)') AND ${TABLE}.hits.type = 'PAGE' THEN 'Tay 3'
+          WHEN REGEXP_MATCH(${TABLE}.hits.page.pagePath, r'^(planetradio\.co\.uk\/tfm\/.*|radioplayer\.tfmradio.*)') AND ${TABLE}.hits.type = 'PAGE' THEN 'Tfm'
+          WHEN REGEXP_MATCH(${TABLE}.hits.page.pagePath, r'^(planetradio\.co\.uk\/tfm-2\/.*|radioplayer\.tfm2.*)') AND ${TABLE}.hits.type = 'PAGE' THEN 'Tfm 2'
+          WHEN REGEXP_MATCH(${TABLE}.hits.page.pagePath, r'^(planetradio\.co\.uk\/tfm-3\/.*|radioplayer\.tfm3.*)') AND ${TABLE}.hits.type = 'PAGE' THEN 'Tfm 3'
+          WHEN REGEXP_MATCH(${TABLE}.hits.page.pagePath, r'^(planetradio\.co\.uk\/viking\/.*|radioplayer\.vikingfm.*)') AND ${TABLE}.hits.type = 'PAGE' THEN 'Viking'
+          WHEN REGEXP_MATCH(${TABLE}.hits.page.pagePath, r'^(planetradio\.co\.uk\/viking-2\/.*|radioplayer\.viking2.*)') AND ${TABLE}.hits.type = 'PAGE' THEN 'Viking 2'
+          WHEN REGEXP_MATCH(${TABLE}.hits.page.pagePath, r'^(planetradio\.co\.uk\/viking-3\/.*|radioplayer\.viking3.*)') AND ${TABLE}.hits.type = 'PAGE' THEN 'Viking 3'
+          WHEN REGEXP_MATCH(${TABLE}.hits.page.pagePath, r'^(planetradio\.co\.uk\/wave-105\/.*|radioplayer\.wave105.*)') AND ${TABLE}.hits.type = 'PAGE' THEN 'Wave 105'
+          --WHEN REGEXP_MATCH(${TABLE}.hits.page.pagePath, r'^(planetradio\.co\.uk\/west\/.*|radioplayer\.west.*\.co\.uk') AND ${TABLE}.hits.type = 'PAGE' THEN 'West'
+          WHEN REGEXP_MATCH(${TABLE}.hits.page.pagePath, r'^(planetradio\.co\.uk\/westsound\/.*|radioplayer\.westsound.*)') AND ${TABLE}.hits.type = 'PAGE' THEN 'Westsound'
+          WHEN REGEXP_MATCH(${TABLE}.hits.page.pagePath, r'^(planetradio\.co\.uk\/westsound-fm\/.*|radioplayer\.westfm.*)') AND ${TABLE}.hits.type = 'PAGE' THEN 'Westsound FM'
       END;;
 }
 

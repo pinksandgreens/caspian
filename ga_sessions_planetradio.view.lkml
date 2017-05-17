@@ -786,7 +786,7 @@ view: ga_sessions_planetradio {
     label: "All Homepage URL's"
     description: "Includes those homepage URLs that contain query strings/utm tracking"
     sql:  CASE
-            WHEN REGEXP_MATCH(${TABLE}.hits.page.pagePath, r'^(planetradio\.co\.uk\/absolute-.+?\/$|planetradio\.co\.uk\/absolute-.+?\/\?.+$)') THEN REGEXP_EXTRACT(${TABLE}.hits.page.pagePath, r'(.+)')
+            WHEN REGEXP_MATCH(${TABLE}.hits.page.pagePath, r'^planetradio\.co\.uk\/(absolute-80s|absolute-classic-rock|absolute-radio|absolute-radio-00s|absolute-radio-60s|absolute-radio-70s|absolute-radio-90s)\/$') THEN REGEXP_EXTRACT(${TABLE}.hits.page.pagePath, r'(.+)')
             --WHEN REGEXP_MATCH(${TABLE}.hits.page.pagePath, r'^(planetradio\.co\.uk\/absolute-classic-rock\/$|planetradio\.co\.uk\/absolute-classic-rock\/\?.+$)') THEN REGEXP_EXTRACT(${TABLE}.hits.page.pagePath, r'(.+)')
             --WHEN REGEXP_MATCH(${TABLE}.hits.page.pagePath, r'^(planetradio\.co\.uk\/absolute-radio\/$|planetradio\.co\.uk\/absolute-radio\/\?.+$)') THEN REGEXP_EXTRACT(${TABLE}.hits.page.pagePath, r'(.+)')
             --WHEN REGEXP_MATCH(${TABLE}.hits.page.pagePath, r'^(planetradio\.co\.uk\/absolute-radio-00s\/$|planetradio\.co\.uk\/absolute-radio-00s\/\?.+$)') THEN REGEXP_EXTRACT(${TABLE}.hits.page.pagePath, r'(.+)')
@@ -864,7 +864,7 @@ view: ga_sessions_planetradio {
     label: "Homepage Views"
     description: "Homepage Page Views (Including Query String/UTM Tracked derivatives)"
     sql:  CASE
-            WHEN REGEXP_MATCH(${TABLE}.hits.page.pagePath, r'^(planetradio\.co\.uk\/absolute-.+?\/$|planetradio\.co\.uk\/absolute-.+?\/\?.+$)') AND ${TABLE}.hits.type = 'PAGE' THEN 1
+            WHEN REGEXP_MATCH(${TABLE}.hits.page.pagePath, r'^planetradio\.co\.uk\/(absolute-80s|absolute-classic-rock|absolute-radio|absolute-radio-00s|absolute-radio-60s|absolute-radio-70s|absolute-radio-90s)\/$') AND ${TABLE}.hits.type = 'PAGE' THEN 1
             --WHEN REGEXP_MATCH(${TABLE}.hits.page.pagePath, r'^(planetradio\.co\.uk\/absolute-classic-rock\/$|planetradio\.co\.uk\/absolute-classic-rock\/\?.+$)') AND ${TABLE}.hits.type = 'PAGE' THEN 1
             --WHEN REGEXP_MATCH(${TABLE}.hits.page.pagePath, r'^(planetradio\.co\.uk\/absolute-radio\/$|planetradio\.co\.uk\/absolute-radio\/\?.+$)') AND ${TABLE}.hits.type = 'PAGE' THEN 1
             --WHEN REGEXP_MATCH(${TABLE}.hits.page.pagePath, r'^(planetradio\.co\.uk\/absolute-radio-00s\/$|planetradio\.co\.uk\/absolute-radio-00s\/\?.+$)') AND ${TABLE}.hits.type = 'PAGE' THEN 1

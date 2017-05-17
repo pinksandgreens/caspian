@@ -31,7 +31,10 @@ view: revenue_table_advanced {
     label: "eCPM"
     type: number
     value_format: "\£0.0000"
-    sql: (${revenue}/${impressions})*1000 ;;
+    sql: CASE
+          WHEN ${impressions} != 0 THEN (${revenue}/${impressions})*1000
+          ELSE NULL
+         END;;
   }
 
   dimension: platform {

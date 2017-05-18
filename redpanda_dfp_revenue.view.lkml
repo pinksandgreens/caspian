@@ -165,17 +165,69 @@ view: dfp_revenue {
     sql: SPLIT_PART(${dimension_ad_unit_name}, '?', 2) ;;
   }
 
+  dimension: Ad_Unit_Sub_Category_Name {
+    type: string
+    sql: CASE
+          WHEN ${TABLE}."dimension.ad_unit_name" LIKE '%brightcove%' THEN REGEXP_SUBSTR(${Ad_Unit_Name_Path_2},'[^()]*')
+          WHEN ${TABLE}."dimension.ad_unit_name" LIKE '%editorial-player%' THEN REGEXP_SUBSTR(${Ad_Unit_Name_Path_2},'[^()]*')
+        ELSE
+          'Not Brightcove Platform Related Ad Revenue'
+        END ;;
+  }
+
+
+  #Several Radio Stations are sharing the BCN Ad Tag yet BCN itself does not have a tag yet. Keep an eye on this.
+  #No player for CCFS Yet.
   dimension: key {
     type: string
     label: "Key"
+    hidden: yes
     primary_key: yes
     sql:  CASE
-            WHEN ${TABLE}."dimension.ad_unit_name" LIKE '%brightcove%' THEN REGEXP_SUBSTR(${Ad_Unit_Name_Path_2},'[^()]*')||${date}
-            WHEN ${TABLE}."dimension.ad_unit_name" LIKE '%editorial-player%' THEN REGEXP_SUBSTR(${Ad_Unit_Name_Path_2},'[^()]*')||${date}
-          --ELSE
-            --NULL
+            WHEN ${Ad_Unit_Sub_Category_Name} = 'RBCN_video' THEN 'BCN'||${date}
+            WHEN ${Ad_Unit_Sub_Category_Name} = 'SSPT_Angling-Times' THEN 'Angling Times'||${date}
+            WHEN ${Ad_Unit_Sub_Category_Name} = 'SMOD_Car' THEN 'CAR Magazine'||${date}
+            WHEN ${Ad_Unit_Sub_Category_Name} = 'SAUT_Classic-Cars-for-Sale' THEN 'CCFS'||${date}
+            WHEN ${Ad_Unit_Sub_Category_Name} = 'LWLN_Closer' THEN 'Closer'||${date}
+            WHEN ${Ad_Unit_Sub_Category_Name} = 'LMENS_Empire' THEN 'Empire Magazine'||${date}
+            WHEN ${Ad_Unit_Sub_Category_Name} = 'LWLN_Grazia' THEN 'Grazia'||${date}
+            WHEN ${Ad_Unit_Sub_Category_Name} = 'RNAT_heat' THEN 'Heat Radio'||${date}
+            WHEN ${Ad_Unit_Sub_Category_Name} = 'LWLN_Heatworld' THEN 'Heat'||${date}
+            WHEN ${Ad_Unit_Sub_Category_Name} = 'SPET_Horse-Deals' THEN 'Horse Deals'||${date}
+            WHEN ${Ad_Unit_Sub_Category_Name} = 'RNAT_kerrang' THEN 'Kerrang! Radio'||${date}
+            WHEN ${Ad_Unit_Sub_Category_Name} = 'LMENS_Kerrang' THEN 'Kerrang'||${date}
+            WHEN ${Ad_Unit_Sub_Category_Name} = 'RNAT_kiss' THEN 'KISS FM'||${date}
+            WHEN ${Ad_Unit_Sub_Category_Name} = 'SAUT_LRO' THEN 'LRO'||${date}
+            WHEN ${Ad_Unit_Sub_Category_Name} = 'RNAT_magic' THEN 'Magic Radio'||${date}
+            WHEN ${Ad_Unit_Sub_Category_Name} = 'SMOT_MCN' THEN 'MCN'||${date}
+            WHEN ${Ad_Unit_Sub_Category_Name} = 'LMENS_Mojo' THEN 'Mojo'||${date}
+            WHEN ${Ad_Unit_Sub_Category_Name} = 'SWSP_Mother-and-Baby' THEN 'Mother&Baby'||${date}
+            WHEN ${Ad_Unit_Sub_Category_Name} = 'SMOD_Mustard' THEN 'Mustard'||${date}
+            WHEN ${Ad_Unit_Sub_Category_Name} = 'SMOD_Parkers' THEN 'Parkers'||${date}
+            WHEN ${Ad_Unit_Sub_Category_Name} = 'RNAT_planet-rock' THEN 'Planet Rock'||${date}
+            WHEN ${Ad_Unit_Sub_Category_Name} = 'SLEI_Practical-Photography' THEN 'Practical Photography Magazine'||${date}
+            WHEN ${Ad_Unit_Sub_Category_Name} = 'LMENS_Q' THEN 'Q4music'||${date}
+            WHEN ${Ad_Unit_Sub_Category_Name} = 'LWLN_The-Debrief' THEN 'The Debrief'||${date}
+            WHEN ${Ad_Unit_Sub_Category_Name} = 'SSPT_Todays-Golfer' THEN 'Today''s Golfer'||${date}
+            WHEN ${Ad_Unit_Sub_Category_Name} = 'SPET_Your-Horse' THEN 'YourHorse Online'||${date}
+            WHEN ${Ad_Unit_Sub_Category_Name} = 'SWSP_Yours' THEN 'Yours'||${date}
+          ELSE
+            'No Ad Tag Exists'
           END;;
   }
+
+  #UPDATE Key to generate Brand from Ad_Unit_Name_Path_2. Then create Key based on Brand + Day
+  #dimension: old_key {
+  #  type: string
+  #  label: "Key"
+  #  primary_key: yes
+  #  sql:  CASE
+  #          WHEN ${TABLE}."dimension.ad_unit_name" LIKE '%brightcove%' THEN REGEXP_SUBSTR(${Ad_Unit_Name_Path_2},'[^()]*')||${date}
+  #          WHEN ${TABLE}."dimension.ad_unit_name" LIKE '%editorial-player%' THEN REGEXP_SUBSTR(${Ad_Unit_Name_Path_2},'[^()]*')||${date}
+  #        --ELSE
+  #          --NULL
+  #        END;;
+  #}
 
 
 

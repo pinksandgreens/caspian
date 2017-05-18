@@ -136,21 +136,35 @@ explore: social_youtube_trending {
   persist_for: "1 hour"
 }
 
-explore:brightcove {
-  from:  brightcove_master
-  label: "Brightcove Video Stats"
-  persist_for: "1 hour"
+#explore:brightcove {
+#  from:  brightcove_master
+#  label: "Brightcove Video Stats"
+#  persist_for: "1 hour"
 
-  join: dfp_revenue {
-    foreign_key: brightcove.key
-  }
+#  join: dfp_revenue {
+#    foreign_key: brightcove.key
+#  }
 
-}
+#}
 
 explore: brightcove_destination_domain {
     label: "BC Dest Domain Temp Explore"
 
   }
+
+#Will need to join to destination domain but need to update DD ETL process to capture brand.
+explore: brightcove_master {
+  label: "Brightcove"
+  persist_for: "1 hour"
+
+  join: dfp_revenue {
+    foreign_key: brightcove_master.key
+  }
+
+  #join: brightcove_destination_domain {
+  #    foreign_key: brightcove_master.key
+  #}
+}
 
 
 

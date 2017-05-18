@@ -227,6 +227,12 @@ view: nudge_subscriptions {
     sql: ${TABLE}.recipient_service_email_address ;;
   }
 
+  measure: recipient_service_email_address1 {
+    type: count_distinct
+    sql: ${TABLE}.recipient_service_email_address ;;
+  }
+
+
   dimension: renewal_status {
     type: string
     sql: ${TABLE}.renewal_status ;;

@@ -154,7 +154,9 @@ explore: brightcove_destination_domain {
 
 explore: brightcove {
   label: "Original BC"
-
+  join: dfp_revenue {
+    foreign_key: brightcove.key
+  }
 }
 
 #Will need to join to destination domain but need to update DD ETL process to capture brand.

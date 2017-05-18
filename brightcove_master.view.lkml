@@ -10,11 +10,16 @@ view: brightcove_master {
   }
 
 
-
+  #These are views attributable to official Players identified by Greg in Video Platform GDoc (As opposed to all on-site views for all videos that are children of these players.
+  measure: video_view {
+    label: "'Official' Player Total Views"
+    type: sum
+    sql: ${TABLE}.video_view ;;
+  }
 
   #Destination Domain is being filtered by Player ID. Therefore will return all activity associated with Videos assigned to these players.
   #This means that some videos will be embedded elsewhere which accounts for the increased activity vs On-Site Player Video Views.
-  measure: total_onsite_offiste_views {
+  measure: total_onsite_offsite_views {
     type: number
     label: "Total Onsite/Offsite Player Views"
     description: "All Onsite / Offsite Player Video Views"
@@ -69,13 +74,6 @@ view: brightcove_master {
   measure: avg_seconds_viewed {
     type: average
     sql: ${TABLE}.avg_seconds_viewed ;;
-  }
-
-  #These are views attributable to official Players identified by Greg in Video Platform GDoc (As opposed to all on-site views for all videos that are children of these players.
-  measure: video_view {
-    label: "'Official' Player Total Views"
-    type: sum
-    sql: ${TABLE}.video_view ;;
   }
 
   #measure: video_view {
@@ -173,13 +171,14 @@ view: brightcove_master {
   dimension: date {
     label: "Recorded Date"
     type: date
-    sql: ${TABLE}.date
+    sql: ${TABLE}.date ;;
   }
 
   dimension: brand {
     type: string
     sql: CASE
             WHEN ${TABLE}.brand = 'YourHorseOnline' THEN 'YourHorse Online'
+            WHEN ${TABLE}.brand = 'CCFS' THEN 'Classic Cars for Sale'
         ELSE
           ${TABLE}.brand
         END ;;

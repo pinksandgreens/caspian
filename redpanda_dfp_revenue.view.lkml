@@ -175,6 +175,11 @@ view: dfp_revenue {
         END ;;
   }
 
+  dimension: brightcove_ad_unit {
+    label: "Brightcove Pre-Roll?"
+    type: yesno
+    sql: ${TABLE}."dimension.ad_unit_name" LIKE '%brightcove%';;
+  }
 
   #Several Radio Stations are sharing the BCN Ad Tag yet BCN itself does not have a tag yet. Keep an eye on this.
   #No player for CCFS Yet.
@@ -187,7 +192,7 @@ view: dfp_revenue {
             WHEN ${Ad_Unit_Sub_Category_Name} = 'RBCN_video' THEN 'BCN'||${date}
             WHEN ${Ad_Unit_Sub_Category_Name} = 'SSPT_Angling-Times' THEN 'Angling Times'||${date}
             WHEN ${Ad_Unit_Sub_Category_Name} = 'SMOD_Car' THEN 'CAR Magazine'||${date}
-            WHEN ${Ad_Unit_Sub_Category_Name} = 'SAUT_Classic-Cars-for-Sale' THEN 'CCFS'||${date}
+            WHEN ${Ad_Unit_Sub_Category_Name} = 'SAUT_Classic-Cars-for-Sale' THEN 'Classic Cars for Sale'||${date}
             WHEN ${Ad_Unit_Sub_Category_Name} = 'LWLN_Closer' THEN 'Closer'||${date}
             WHEN ${Ad_Unit_Sub_Category_Name} = 'LMENS_Empire' THEN 'Empire Magazine'||${date}
             WHEN ${Ad_Unit_Sub_Category_Name} = 'LWLN_Grazia' THEN 'Grazia'||${date}

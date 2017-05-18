@@ -168,8 +168,8 @@ view: dfp_revenue {
   dimension: Ad_Unit_Sub_Category_Name {
     type: string
     sql: CASE
-          WHEN ${TABLE}."dimension.ad_unit_name" LIKE '%brightcove%' THEN REGEXP_SUBSTR(${Ad_Unit_Name_Path_2},'[^()]*')
-          WHEN ${TABLE}."dimension.ad_unit_name" LIKE '%editorial-player%' THEN REGEXP_SUBSTR(${Ad_Unit_Name_Path_2},'[^()]*')
+          WHEN ${TABLE}."dimension.ad_unit_name" LIKE '%brightcove%' THEN REGEXP_SUBSTR(SPLIT_PART(REPLACE(REPLACE(${TABLE}."dimension.ad_unit_name", '»','?'),' ',''), '?', 2),'[^()]*')
+          WHEN ${TABLE}."dimension.ad_unit_name" LIKE '%editorial-player%' THEN REGEXP_SUBSTR(SPLIT_PART(REPLACE(REPLACE(${TABLE}."dimension.ad_unit_name", '»','?'),' ',''), '?', 2),'[^()]*')
         ELSE
           'Not Brightcove Platform Related Ad Revenue'
         END ;;
@@ -296,8 +296,8 @@ dimension: date {
     label: "30 Days"
     description: "Bucket [1] = Past 30 Days, [2] = Past 31 - 60 Days"
     sql:  CASE
-                WHEN DATEDIFF(day,CAST("dimension.date" AS DATE),(CURRENT_DATE-3)) BETWEEN 0 AND 29 THEN 1
-                WHEN DATEDIFF(day,CAST("dimension.date" AS DATE),(CURRENT_DATE-3)) BETWEEN 30 AND 59 THEN 2
+                WHEN DATEDIFF(day,CAST("dimension.date" AS DATE),(CURRENT_DATE-4)) BETWEEN 0 AND 29 THEN 1
+                WHEN DATEDIFF(day,CAST("dimension.date" AS DATE),(CURRENT_DATE-4)) BETWEEN 30 AND 59 THEN 2
             END ;;
   }
 

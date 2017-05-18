@@ -4,9 +4,21 @@ view: brightcove_master {
     sql:  SELECT
             *
           FROM publications.brightcove_master AS A
-          JOIN ${brightcove_destination_domain.SQL_TABLE_NAME} AS B
+          FULL JOIN ${brightcove_destination_domain.SQL_TABLE_NAME} AS B
           ON A.video = B.video_id AND A."date" = B.recorded_date
-      ;;
+        ;;
+  }
+
+
+
+
+  #Destination Domain is being filtered by Player ID. Therefore will return all activity associated with Videos assigned to these players.
+  #This means that some videos will be embedded elsewhere which accounts for the increased activity vs On-Site Player Video Views.
+  measure: total_onsite_offiste_views {
+    type: number
+    label: "Total Onsite/Offsite Player Views"
+    description: "All Onsite / Offsite Player Video Views"
+    sql: (${onsite_views}+${offsite_views}) ;;
   }
 
   #This will sometimes be higher that the Total Views attributable to Official Players as a Video can be embedded elsewhere on a Bauer Domain.
@@ -159,8 +171,9 @@ view: brightcove_master {
   }
 
   dimension: date {
+    label: "Recorded Date"
     type: date
-    sql: ${TABLE}.date ;;
+    sql: ${TABLE}.date
   }
 
   dimension: brand {
@@ -273,8 +286,8 @@ view: brightcove_master {
     label: "30 Days"
     description: "Bucket [1] = Past 30 Days, [2] = Past 31 - 60 Days"
     sql:  CASE
-                WHEN DATEDIFF(day,CAST(date AS DATE),(CURRENT_DATE-3)) BETWEEN 0 AND 29 THEN 1 --Amended range for Gregs Presentation
-                WHEN DATEDIFF(day,CAST(date AS DATE),(CURRENT_DATE-3)) BETWEEN 30 AND 59 THEN 2 --Amended range for Gregs Presentation
+                WHEN DATEDIFF(day,CAST(date AS DATE),(CURRENT_DATE-4)) BETWEEN 0 AND 29 THEN 1
+                WHEN DATEDIFF(day,CAST(date AS DATE),(CURRENT_DATE-4)) BETWEEN 30 AND 59 THEN 2
             END ;;
   }
 

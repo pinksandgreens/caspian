@@ -152,6 +152,11 @@ explore: brightcove_destination_domain {
 
   }
 
+explore: brightcove {
+  label: "Original BC"
+
+}
+
 #Will need to join to destination domain but need to update DD ETL process to capture brand.
 explore: brightcove_master {
   label: "Brightcove"

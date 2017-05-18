@@ -3,6 +3,7 @@ view: brightcove {
 
   dimension: date {
     hidden: yes
+    label: "Recorded Date"
     type: string
     sql: ${TABLE}.date ;;
   }
@@ -25,7 +26,7 @@ view: brightcove {
     sql: CASE
           WHEN SPLIT_PART(${TABLE}.date, '|', 3) = 'Magic 105.4' THEN 'Magic Radio'
           WHEN SPLIT_PART(${TABLE}.date, '|', 3) = 'MCN' THEN 'Motorcyclenews'
-          WHEN SPLIT_PART(${TABLE}.date, '|', 3) = 'Mother and Baby' THEN 'Mother & Baby'
+          WHEN SPLIT_PART(${TABLE}.date, '|', 3) = 'Mother and Baby' THEN 'Mother&Baby'
           ELSE SPLIT_PART(${TABLE}.date, '|', 3)
         END
         ;;
@@ -193,4 +194,15 @@ view: brightcove {
     type: count
     drill_fields: [video_name]
   }
+
+  dimension: 30_day_buckets  {
+    type: number
+    label: "30 Days"
+    description: "Bucket [1] = Past 30 Days, [2] = Past 31 - 60 Days"
+    sql:  CASE
+                WHEN DATEDIFF(day,${date_raw},(CURRENT_DATE-4)) BETWEEN 0 AND 29 THEN 1
+                WHEN DATEDIFF(day,${date_raw},(CURRENT_DATE-4)) BETWEEN 30 AND 59 THEN 2
+            END ;;
+  }
+
 }

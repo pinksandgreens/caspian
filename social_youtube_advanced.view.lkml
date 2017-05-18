@@ -381,8 +381,8 @@ view: social_youtube_advanced {
       label: "30 day YT Buckets"
       description: "1 = Past 30 Days, 2 = Past 31 - 60 Days, 0 = Everything Else"
       sql:  CASE
-                WHEN datediff(day, cast(${TABLE}.day as DATE), (current_date - 3)) BETWEEN 0 AND 29 THEN 1
-                WHEN datediff(day, cast(${TABLE}.day as DATE), (current_date - 3)) BETWEEN 30 AND 59 THEN 2
+                WHEN datediff(day, cast(${TABLE}.day as DATE), (current_date - 4)) BETWEEN 0 AND 29 THEN 1
+                WHEN datediff(day, cast(${TABLE}.day as DATE), (current_date - 4)) BETWEEN 30 AND 59 THEN 2
               ELSE 0
             END ;;
     }

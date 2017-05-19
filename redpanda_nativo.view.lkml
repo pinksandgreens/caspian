@@ -196,6 +196,11 @@ view: nativo {
     sql: ${TABLE}."placement.name" ;;
   }
 
+  dimension: brand_name {
+    type: string
+    sql: SPLIT_PART(${TABLE}."placement.name",'-',1) ;;
+  }
+
   dimension: publication_id {
     type: string
     sql: ${TABLE}."publication.id" ;;

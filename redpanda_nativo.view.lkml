@@ -198,7 +198,7 @@ view: nativo {
 
   dimension: brand_name {
     type: string
-    sql: SPLIT_PART(${TABLE}."placement.name",'-',1) ;;
+    sql: SPLIT_PART(${TABLE}."placement.name",' -',1) ;;
   }
 
   dimension: publication_id {
@@ -209,6 +209,14 @@ view: nativo {
   dimension: publication_name {
     type: string
     sql: ${TABLE}."publication.name" ;;
+  }
+
+  dimension: marketplace {
+    type: string
+    sql: CASE
+          WHEN ${TABLE}."publisher.name" IS NOT NULL THEN 'PMP'
+          ELSE 'Other'
+         END;;
   }
 
   dimension: publisher_id {

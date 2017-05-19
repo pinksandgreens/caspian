@@ -153,7 +153,7 @@ explore: brightcove_destination_domain {
   }
 
 explore: brightcove {
-  label: "Original BC"
+  label: "Brightcove - All"
   join: dfp_revenue {
     foreign_key: brightcove.key
   }
@@ -161,7 +161,7 @@ explore: brightcove {
 
 #Will need to join to destination domain but need to update DD ETL process to capture brand.
 explore: brightcove_master {
-  label: "Brightcove"
+  label: "Brightcove - Players"
   persist_for: "1 hour"
 
   join: dfp_revenue {

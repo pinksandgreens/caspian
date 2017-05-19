@@ -54,7 +54,13 @@ view: adswizz {
     sql: ${TABLE}.datetime::timestamp ;;
   }
 
-
+  dimension: marketplace {
+    type: string
+    sql: CASE
+          WHEN  ${TABLE}.brand_name IS NOT NULL THEN 'PMP'
+          ELSE 'Other'
+         END;;
+  }
 
   measure: ecpm {
     type: average

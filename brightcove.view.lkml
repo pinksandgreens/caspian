@@ -1,5 +1,5 @@
 view: brightcove {
-  sql_table_name: publications.brightcove ;;
+  sql_table_name: publications.brightcove  ;;
 
   dimension: date {
     hidden: yes
@@ -27,6 +27,10 @@ view: brightcove {
           WHEN SPLIT_PART(${TABLE}.date, '|', 3) = 'Magic 105.4' THEN 'Magic Radio'
           WHEN SPLIT_PART(${TABLE}.date, '|', 3) = 'MCN' THEN 'MCN'
           WHEN SPLIT_PART(${TABLE}.date, '|', 3) = 'Mother and Baby' THEN 'Mother&Baby'
+          WHEN SPLIT_PART(${TABLE}.date, '|', 3) = 'Car Magazine' THEN 'CAR Magazine'
+          WHEN SPLIT_PART(${TABLE}.date, '|', 3) = 'Empire' THEN 'Empire Magazine'
+          WHEN SPLIT_PART(${TABLE}.date, '|', 3) = 'Kiss FM' THEN 'KISS FM'
+
           ELSE SPLIT_PART(${TABLE}.date, '|', 3)
         END
         ;;
@@ -37,7 +41,9 @@ view: brightcove {
     hidden: yes
     type: string
     primary_key: yes
-    sql: ${hostname}||${date} ;;
+    sql: CASE
+          WHEN ${account_name} != 'ENTS HUB' THEN ${account_name}||TO_DATE(SPLIT_PART("date", '|', 1),'YYYY-MM-DD')
+          END ;;
   }
 
   dimension: hostname_unCASED {

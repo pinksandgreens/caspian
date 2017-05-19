@@ -4,13 +4,13 @@ view: dfp_revenue {
   measure: column_ad_exchange_line_item_level_clicks {
     label: "Adx Line Item Clicks"
     type: sum
-    sql: ${TABLE}."column.ad_exchange_line_item_level_clicks" ;;
+    sql: ${TABLE}."column.ad_exchange_line_item_level_clicks"::INTEGER ;;
   }
 
   measure: column_ad_exchange_line_item_level_impressions {
     label: "Adx Line Item Impressions"
     type: sum
-    sql: ${TABLE}."column.ad_exchange_line_item_level_impressions" ;;
+    sql: ${TABLE}."column.ad_exchange_line_item_level_impressions"::INTEGER ;;
   }
 
   measure: column_ad_exchange_line_item_level_revenue {
@@ -98,27 +98,27 @@ view: dfp_revenue {
   measure: column_total_line_item_level_clicks {
     label: "Total Line Item Clicks"
     type: sum
-    sql: ${TABLE}."column.total_line_item_level_clicks" ;;
+    sql: ${TABLE}."column.total_line_item_level_clicks"::INTEGER ;;
   }
 
   measure: column_total_line_item_level_cpm_and_cpc_revenue {
     label: "Total Line Item CPM and CPC Revenue"
     type: sum
-    value_format: "\£0.0000"
+    value_format_name: gbp
     sql: ${TABLE}."column.total_line_item_level_cpm_and_cpc_revenue" ::float/1000000 ;;
   }
 
   measure: column_total_line_item_level_ctr {
     label: "Total Line Item CTR"
     type: average
-    value_format: "0.0000\%"
-    sql: ${TABLE}."column.total_line_item_level_ctr"::float*100;;
+    value_format_name: percent_2
+    sql: ${TABLE}."column.total_line_item_level_ctr"::float;;
   }
 
   measure: column_total_line_item_level_impressions {
     label: "Total Line Item Impressions"
     type: sum
-    sql: ${TABLE}."column.total_line_item_level_impressions" ;;
+    sql: ${TABLE}."column.total_line_item_level_impressions"::INTEGER ;;
   }
 
   measure: column_total_line_item_level_with_cpd_average_ecpm {

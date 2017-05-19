@@ -137,3 +137,12 @@ explore: dfp_reach {
   persist_for: "6 hour"
 
 }
+
+
+explore: adswizz {
+  label: "Adswizz"
+  hidden: no
+  sql_table_name: ad_platform.adswizz ;;
+  persist_for: "6 hour"
+
+}
